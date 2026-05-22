@@ -2,39 +2,12 @@ name: Deploy to Hostinger
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Target environment'
-        required: true
-        default: 'staging'
-        type: choice
-        options: [staging, production]
 
 jobs:
-  # ── Determine target environment ───────────────────────────
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      environment: ${{ steps.env.outputs.environment }}
-    steps:
-      - name: Resolve environment
-        id: env
-        run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "environment=${{ github.event.inputs.environment }}" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.ref_name }}" == "main" ]]; then
-            echo "environment=production" >> $GITHUB_OUTPUT
-          else
-            echo "environment=staging" >> $GITHUB_OUTPUT
-          fi
-
-  # ── Build & Deploy ─────────────────────────────────────────
   deploy:
-    needs: setup
     runs-on: ubuntu-latest
-    environment: ${{ needs.setup.outputs.environment }}
 
     steps:
       - name: Checkout code
@@ -60,12 +33,12 @@ jobs:
           password: ${{ secrets.HOSTINGER_PASSWORD }}
           port: ${{ secrets.HOSTINGER_PORT }}
           source: 'out/*'
-          target: ${{ secrets.DEPLOY_PATH }}
+          target: ${{ secrets.HOSTINGER_PATH }}
           strip_components: 1
           rm: false
 
       - name: Notify deployment complete
         run: |
-          echo "✅ Deployed to ${{ needs.setup.outputs.environment }}"
-          echo "Branch: ${{ github.ref_name }}"
+          echo "✅ Deployed to production"
           echo "Commit: ${{ github.sha }}"
+
