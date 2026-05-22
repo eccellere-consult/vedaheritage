@@ -31,6 +31,8 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
           local-dir: ./out/
           server-dir: /domains/vedaheritage.co.in/public_html/
           exclude: |
