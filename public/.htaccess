@@ -1,0 +1,16 @@
+Options -Indexes
+
+# Handle trailing slash static exports from Next.js
+DirectoryIndex index.html
+
+# Custom 404
+ErrorDocument 404 /404/index.html
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# www to non-www (remove this block if you prefer www)
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]

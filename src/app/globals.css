@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-ink-mid font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block bg-forest text-white font-sans font-medium text-sm tracking-widest uppercase px-8 py-3 transition-colors duration-200 hover:bg-forest-dark;
+  }
+
+  .btn-gold {
+    @apply inline-block bg-gold text-ink font-sans font-medium text-sm tracking-widest uppercase px-8 py-3 transition-colors duration-200 hover:bg-gold-light;
+  }
+
+  .btn-outline {
+    @apply inline-block border border-forest text-forest font-sans font-medium text-sm tracking-widest uppercase px-8 py-3 transition-colors duration-200 hover:bg-forest hover:text-white;
+  }
+
+  .section-label {
+    @apply text-gold font-sans font-medium text-xs tracking-[0.25em] uppercase mb-3;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl text-ink leading-tight;
+  }
+
+  .gold-rule {
+    @apply w-12 h-px bg-gold my-4;
+  }
+
+  .card {
+    @apply bg-white shadow-sm border-t-2 border-gold p-6 md:p-8;
+  }
+
+  .nav-link {
+    @apply text-ink-mid font-sans text-sm tracking-wider uppercase hover:text-forest transition-colors duration-150;
+  }
+}
