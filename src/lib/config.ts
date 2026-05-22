@@ -69,7 +69,7 @@ export const PHOTOS = {
   gallery: [
     { src: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80', alt: 'Kerala backwaters at dawn', caption: 'The Backwaters of Kollam' },
     { src: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80', alt: 'Ayurvedic medicinal garden', caption: 'Our Medicinal Garden' },
-    { src: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80', alt: 'Traditional Kerala heritage home', caption: 'Veda Heritage Exterior' },
+    { src: '/images/vedaheritage_2.png', alt: 'Veda Heritage — three views at golden hour, sunset and dawn', caption: 'Veda Heritage — Authentic Kerala Living' },
     { src: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80', alt: 'Heritage bedroom', caption: 'The Heritage Room' },
     { src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80', alt: 'Terrace room with balcony', caption: 'The Terrace Room' },
     { src: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80', alt: 'Ayurvedic treatment room', caption: 'Ayurvedic Treatments' },
