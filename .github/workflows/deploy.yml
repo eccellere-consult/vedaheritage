@@ -25,20 +25,15 @@ jobs:
       - name: Build static site
         run: npx next build
 
-      - name: Deploy to Hostinger via SCP
-        uses: appleboy/scp-action@v0.1.7
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.HOSTINGER_HOST }}
-          username: ${{ secrets.HOSTINGER_USER }}
-          password: ${{ secrets.HOSTINGER_PASSWORD }}
-          port: ${{ secrets.HOSTINGER_PORT }}
-          source: 'out/*'
-          target: ${{ secrets.HOSTINGER_PATH }}
-          strip_components: 1
-          rm: false
-
-      - name: Notify deployment complete
-        run: |
-          echo "✅ Deployed to production"
-          echo "Commit: ${{ github.sha }}"
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: /domains/vedaheritage.co.in/public_html/
+          exclude: |
+            **/.git*
+            **/.git*/**
 
