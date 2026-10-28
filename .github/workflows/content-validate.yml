@@ -18,5 +18,5 @@ jobs:
       - run: npm ci
       - name: Validate content schema, sources and folklore
         run: node scripts/validate-content.mjs
-      - name: Agent self-tests (offline: mocked pipeline + provider adapters)
+      - name: "Agent self-tests (offline, mocked pipeline and provider adapters)"
         run: npm run agents:test
