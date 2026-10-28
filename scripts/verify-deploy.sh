@@ -18,8 +18,28 @@ attempt() {
   return 0
 }
 
-for i in 1 2 3 4 5 6; do
+diagnose() {
+  echo; echo "=== Diagnostics (what the live site returns right now) ==="
+  local hosts=("$BASE")
+  case "$BASE" in https://www.*) hosts+=("https://${BASE#https://www.}");; esac
+  for host in "${hosts[@]}"; do
+    echo "--- $host"
+    curl -sSIL --max-time 20 "$host/" 2>&1 | grep -iE '^(HTTP|location|server|content-type)' | head -8
+    curl -sS -o /dev/null --max-time 20 -w "version.txt -> HTTP %{http_code}\n" "$host/version.txt" 2>&1
+  done
+  echo
+  echo "Hints:"
+  echo " - 404 on every page with Hostinger's default 'This Page Does Not Exist' = hPanel Git has not pulled the"
+  echo "   deploy branch into this domain's folder. Check hPanel > Advanced > Git (branch deploy, install path) and"
+  echo "   the GitHub webhook (docs/DEPLOYMENT.md)."
+  echo " - Works on the non-www host but not www = add the www record or set repo variable SITE_URL to the working host."
+  echo " - Redirect loop = check HTTPS/www rules in .htaccess and hPanel SSL settings."
+}
+
+ATTEMPTS="${VERIFY_ATTEMPTS:-6}"
+for i in $(seq 1 "$ATTEMPTS"); do
   if attempt; then echo "✔ live site serves build $SHA ($BASE)"; exit 0; fi
-  echo "attempt $i/6 failed; retrying in 20s"; sleep "${VERIFY_SLEEP:-20}"
+  echo "attempt $i/$ATTEMPTS failed; retrying in ${VERIFY_SLEEP:-20}s"; sleep "${VERIFY_SLEEP:-20}"
 done
+diagnose
 echo "✖ deploy verification failed for $BASE"; exit 1

@@ -1,5 +1,8 @@
 Options -Indexes
 
+# Never serve version-control or deploy-state files (hPanel Git keeps a .git folder in the web root)
+RedirectMatch 404 /\.(git|ftp-deploy)
+
 # Handle trailing slash static exports from Next.js
 DirectoryIndex index.html
 
