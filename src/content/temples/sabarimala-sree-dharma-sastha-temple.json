@@ -10,6 +10,29 @@
     "Sabarimala is a hill shrine in the Western Ghats dedicated to Lord Ayyappa (Dharma Sastha). It draws millions of pilgrims each year, most of them during the Mandala–Makaravilakku season from mid-November to mid-January.",
     "Pilgrims traditionally observe a period of austerity (vratham), wear black or blue clothing, and climb the eighteen sacred steps carrying the irumudi, a two-compartment bundle of offerings."
   ],
+  "history": {
+    "significance": "A pan-Indian pilgrimage that celebrates devotion beyond caste and creed: pilgrims address one another as 'Swami', and a shrine to Vavar, remembered as Ayyappa's Muslim companion, stands near the sacred steps.",
+    "timeline": [
+      {
+        "period": "Ancient and uncertain",
+        "event": "Ayyappa worship in the Western Ghats is linked with the Pandalam royal family and forest shrines; its exact antiquity is debated."
+      },
+      {
+        "period": "1950",
+        "event": "A fire damages the temple; it is rebuilt and a new idol is installed in the early 1950s."
+      },
+      {
+        "period": "Late 20th–21st century",
+        "event": "Pilgrim numbers grow into the tens of millions each year; the Travancore Devaswom Board manages the temple and pilgrim facilities."
+      }
+    ],
+    "keyFacts": [
+      "The pilgrimage season runs from mid-November to mid-January, culminating at Makaravilakku on Makara Sankranti.",
+      "Pilgrims traditionally observe a 41-day vratham (Mandala period) before the climb.",
+      "At Erumely, pilgrims perform the petta thullal dance before starting the trek.",
+      "The chant 'Swamiye Saranam Ayyappa' accompanies the whole pilgrimage."
+    ]
+  },
   "folklore": {
     "title": "Manikandan, the Pandalam Prince",
     "story": [
@@ -17,6 +40,25 @@
       "Manikandan went into the forest, defeated the demoness Mahishi and returned riding a tigress at the head of a tiger pack, revealing his divinity. He asked that a shrine be built at Sabarimala, where he is worshipped as Ayyappa."
     ],
     "note": "Retold from popular tradition; details vary by region."
+  },
+  "spiritual": {
+    "summary": "The journey is as much the point as the shrine: weeks of austerity, a forest trek and a shared chant dissolve differences, as every pilgrim becomes 'Swami'.",
+    "experiences": [
+      {
+        "title": "The vratham",
+        "text": "Many pilgrims keep a 41-day discipline of simple food, early rising, plain dress and abstinence. Even those who do not take the vow find the atmosphere of restraint and humility moving."
+      },
+      {
+        "title": "The trek and the steps",
+        "text": "The uphill walk from Pampa, often barefoot and in chanting groups, builds toward the climb of the eighteen steps. Pilgrims describe it as a shared act of surrender."
+      }
+    ],
+    "bestFor": "Committed pilgrims and respectful observers. Plan carefully; the season is very crowded.",
+    "mindfulTips": [
+      "Begin with the Devaswom Board's guidance and booking system, not hearsay.",
+      "Carry little, walk slowly and keep to the marked trail.",
+      "Maintain the discipline you have chosen from start to finish."
+    ]
   },
   "highlights": [
     "Eighteen sacred steps (Pathinettampadi)",
@@ -35,10 +77,32 @@
     ],
     "duration": "Full day or more"
   },
+  "travel": {
+    "byTrain": [
+      "Chengannur (CNGR) is the nearest major railhead, roughly 90 km from Pampa. Thiruvalla (TVLA) and Kottayam (KTYM) are alternatives. Special trains may run in the season."
+    ],
+    "byBus": [
+      "KSRTC runs special services to Pampa during the season from Chengannur, Kottayam, Pathanamthitta, Thiruvananthapuram and Kochi. Check the current KSRTC schedule."
+    ],
+    "byAir": [
+      "Kochi (COK) and Thiruvananthapuram (TRV) airports are each several hours away by road."
+    ]
+  },
+  "officialLinks": [
+    {
+      "label": "Travancore Devaswom Board",
+      "url": "https://travancoredevaswomboard.org/"
+    },
+    {
+      "label": "Sabarimala virtual queue and information",
+      "url": "https://sabarimalaonline.org/"
+    }
+  ],
   "coordinates": {
     "lat": 9.4347,
     "lng": 77.0805
   },
+  "images": [],
   "tags": [
     "temple",
     "Ayyappa",

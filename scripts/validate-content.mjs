@@ -3,6 +3,9 @@
 import fs from 'fs'
 import path from 'path'
 
+const PUBLIC = path.join(process.cwd(), 'public')
+const fileExists = src => src && src.startsWith('/') && fs.existsSync(path.join(PUBLIC, src))
+
 const ROOT = path.join(process.cwd(), 'src', 'content')
 const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'ayurveda']
 const STATUSES = ['draft', 'approved']
@@ -40,6 +43,19 @@ for (const cat of CATEGORIES) {
     if (!isStr(d.summary) || d.summary.length < 50 || d.summary.length > 200) fail(rel, 'summary must be 50–200 chars (used as meta description)')
     if (!isArr(d.description)) fail(rel, 'description must be a non-empty array of paragraphs')
     if (!d.folklore || !isStr(d.folklore.title) || !isArr(d.folklore.story)) fail(rel, 'folklore {title, story[]} is required on every entry')
+    const h = d.history
+    if (!h || !isStr(h.significance) || !Array.isArray(h.timeline) || h.timeline.length < 3 || h.timeline.some(t => !isStr(t.period) || !isStr(t.event)) || !isArr(h.keyFacts, 2)) fail(rel, 'history {significance, timeline[≥3 {period,event}], keyFacts[≥2]} required')
+    const sp = d.spiritual
+    if (!sp || !isStr(sp.summary) || !Array.isArray(sp.experiences) || sp.experiences.length < 1 || sp.experiences.some(x => !isStr(x.title) || !isStr(x.text)) || !isStr(sp.bestFor) || !isArr(sp.mindfulTips)) fail(rel, 'spiritual {summary, experiences[≥1], bestFor, mindfulTips[]} required')
+    const tr = d.travel
+    if (!tr || !isArr(tr.byTrain) || !isArr(tr.byBus)) fail(rel, 'travel {byTrain[], byBus[]} required (byWater, byAir optional)')
+    if (d.officialLinks && d.officialLinks.some(l => !isStr(l.label) || !/^https:\/\//.test(l.url || ''))) fail(rel, 'officialLinks must be [{label, url (https)}]')
+    if (!Array.isArray(d.images) || d.images.length > 2) fail(rel, 'images must be an array of at most 2')
+    for (const im of d.images || []) {
+      for (const f of ['src', 'alt', 'credit', 'license', 'sourceUrl']) if (!isStr(im[f])) fail(rel, `image missing ${f}`)
+      if (isStr(im.src) && !fileExists(im.src)) fail(rel, `image file not found in public/: ${im.src}`)
+    }
+    if (d.status === 'approved' && (d.images || []).length < 1) fail(rel, 'approved entries need ≥ 1 licensed, credited image')
     if (!isArr(d.highlights, 3)) fail(rel, 'need at least 3 highlights')
     const v = d.visitorInfo
     if (!v || !isStr(v.bestTime) || !isStr(v.howToReach) || !isArr(v.etiquette)) fail(rel, 'visitorInfo {bestTime, howToReach, etiquette[]} required')
@@ -48,7 +64,6 @@ for (const cat of CATEGORIES) {
     if (d.coordinates && (typeof d.coordinates.lat !== 'number' || typeof d.coordinates.lng !== 'number')) fail(rel, 'coordinates must be numeric lat/lng')
     if (!Array.isArray(d.sources) || d.sources.some(s => !isStr(s.label) || !/^https:\/\//.test(s.url || ''))) fail(rel, 'sources must be [{label, url (https)}]')
     if (d.status === 'approved' && (!Array.isArray(d.sources) || d.sources.length < 2)) fail(rel, 'approved entries need ≥ 2 sources')
-    if (d.image && d.image.startsWith('http') && !isStr(d.imageAlt)) fail(rel, 'image requires imageAlt')
   }
 }
 
@@ -58,6 +73,11 @@ for (const { rel, name, data: s } of load('stories')) {
   if (!STORY_TYPES.includes(s.type)) fail(rel, `type must be one of ${STORY_TYPES}`)
   for (const f of ['title', 'body', 'author']) if (!isStr(s[f])) fail(rel, `missing ${f}`)
   if (!isIsoDate(s.date)) fail(rel, 'date must be ISO')
+  for (const ph of s.photos || []) {
+    if (!isStr(ph.alt) || !isStr(ph.credit)) fail(rel, 'photo needs alt and credit')
+    if (!fileExists(ph.src)) fail(rel, `photo file not found in public/: ${ph.src}`)
+  }
+  if ((s.photos || []).length > 2) fail(rel, 'max 2 photos per story')
   if ((s.body || '').length > 4000) fail(rel, 'body over 4000 chars')
   if (s.entrySlug && !slugs.has(`${s.entryCategory}/${s.entrySlug}`)) fail(rel, 'entrySlug does not match any entry')
 }

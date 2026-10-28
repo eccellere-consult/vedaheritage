@@ -1,0 +1,56 @@
+name: Fetch licensed images
+
+# Finds openly licensed Wikimedia Commons photos for entries with fewer than 2
+# images and opens a PR. A human must check each photo is authentic and shows
+# the right place before merging.
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Only this entry slug (optional)'
+        required: false
+      force:
+        description: 'Replace existing images'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch images from Wikimedia Commons
+        env:
+          SLUG: ${{ inputs.slug }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          args=()
+          [ -n "$SLUG" ] && args+=(--only "$SLUG")
+          [ "$FORCE" = "true" ] && args+=(--force)
+          node scripts/fetch-commons-images.mjs "${args[@]}"
+      - name: Validate
+        run: node scripts/validate-content.mjs
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then echo "No new images found."; exit 0; fi
+          branch="images/$(date +%Y%m%d-%H%M%S)"
+          git config user.name "veda-content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A src/content public/images/discover
+          git commit -m "content: add licensed candidate images from Wikimedia Commons"
+          git push origin "$branch"
+          gh pr create --base "$BASE_BRANCH" --head "$branch" \
+            --title "Review candidate images (Wikimedia Commons)" \
+            --body "Candidate photos with credit and licence recorded. Check each: right place, authentic, good quality, attribution shown. Remove any that are not suitable before merging."

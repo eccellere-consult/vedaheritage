@@ -54,6 +54,15 @@ export type ContentStatus = 'draft' | 'approved'
 
 export interface Source { label: string; url: string }
 
+export interface EntryImage {
+  src: string                  // /images/discover/<slug>-1.jpg
+  alt: string
+  credit: string               // photographer / author
+  license: string              // e.g. "CC BY-SA 4.0"
+  licenseUrl?: string
+  sourceUrl: string            // page the image came from
+}
+
 export interface Entry {
   slug: string
   category: CategoryKey
@@ -63,7 +72,18 @@ export interface Entry {
   tagline: string
   summary: string              // 50–200 chars — used as meta description
   description: string[]        // paragraphs
+  history: {
+    significance: string
+    timeline: { period: string; event: string }[]
+    keyFacts: string[]
+  }
   folklore: { title: string; story: string[]; note?: string }
+  spiritual: {
+    summary: string
+    experiences: { title: string; text: string }[]
+    bestFor: string
+    mindfulTips: string[]
+  }
   highlights: string[]
   visitorInfo: {
     bestTime: string
@@ -71,10 +91,16 @@ export interface Entry {
     etiquette: string[]
     duration?: string
   }
+  travel: {
+    byTrain: string[]
+    byBus: string[]
+    byWater?: string[]
+    byAir?: string[]
+  }
+  officialLinks?: Source[]
   coordinates?: { lat: number; lng: number }
+  images: EntryImage[]         // 1–2 licensed, credited photos (required before approval)
   tags: string[]
-  image?: string
-  imageAlt?: string
   sources: Source[]
   status: ContentStatus
   lastVerified: string         // ISO date
@@ -89,6 +115,7 @@ export interface Story {
   origin?: string
   entryCategory?: CategoryKey
   entrySlug?: string
+  photos?: { src: string; alt: string; credit: string }[]
   date: string                 // ISO date
   status: ContentStatus
 }

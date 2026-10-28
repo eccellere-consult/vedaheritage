@@ -60,6 +60,7 @@ export default function DiscoverPage() {
           <h2 className="section-title mb-6">Notes &amp; stories</h2>
           <StoryList stories={stories} />
           <Link href="/stories/" className="btn-outline mt-8">Read all &amp; share yours</Link>
+          <p className="text-sm text-ink-mid mt-8">Planning the journey? Use our <Link href="/travel/" className="underline">Kerala Travel Planner</Link> for trains, KSRTC buses, ferries and official KTDC and Kerala Tourism links.</p>
         </div>
       </section>
     </>

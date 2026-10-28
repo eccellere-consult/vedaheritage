@@ -19,6 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch quarantined uploads (if any)
+        run: git fetch origin community-uploads || true
       - uses: actions/github-script@v7
         env:
           ISSUE_BODY: ${{ github.event.issue.body }}
@@ -45,6 +49,19 @@ jobs:
               date,
               status: 'approved',
             }
+            // Photos: copy from the quarantine branch after strict path checks.
+            const { execFileSync } = require('child_process')
+            const photos = []
+            for (const [i, ph] of (Array.isArray(s.photos) ? s.photos : []).slice(0, 2).entries()) {
+              if (!/^pending-uploads\/\d{8}-[0-9a-f]{8}\/[12]\.jpg$/.test(ph.path || '')) continue
+              const buf = execFileSync('git', ['show', `origin/community-uploads:${ph.path}`], { maxBuffer: 10 * 1024 * 1024 })
+              if (buf.length < 1000 || buf[0] !== 0xff || buf[1] !== 0xd8) continue   // must be a JPEG
+              fs.mkdirSync('public/images/community', { recursive: true })
+              const dest = `/images/community/${id}-${i + 1}.jpg`
+              fs.writeFileSync(`public${dest}`, buf)
+              photos.push({ src: dest, alt: clip(ph.alt, 160) || `Photo by ${clip(s.author, 60)}`, credit: clip(s.author, 60) })
+            }
+            if (photos.length) story.photos = photos
             fs.mkdirSync('src/content/stories', { recursive: true })
             fs.writeFileSync(`src/content/stories/${id}.json`, JSON.stringify(story, null, 2) + '\n')
             core.exportVariable('STORY_ID', id)
@@ -58,7 +75,7 @@ jobs:
           git config user.name "veda-content-bot"
           git config user.email "content-bot@users.noreply.github.com"
           git checkout -b "story/${STORY_ID}"
-          git add src/content/stories
+          git add src/content/stories public/images/community
           git commit -m "content: publish traveller story ${STORY_ID}"
           git push origin "story/${STORY_ID}"
           gh pr create --base "$BASE_BRANCH" --head "story/${STORY_ID}" \

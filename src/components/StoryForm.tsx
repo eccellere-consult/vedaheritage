@@ -6,6 +6,7 @@ import { WA } from '@/lib/config'
 export interface PlaceOption { category: string; slug: string; name: string }
 
 const ENDPOINT = '/api/submit-story.php'
+const MAX_BYTES = 5 * 1024 * 1024
 const TYPES = ['Experience', 'Folklore I heard', 'Travel tip']
 
 export default function StoryForm({ places, defaultPlace }: { places: PlaceOption[]; defaultPlace?: string }) {
@@ -15,15 +16,19 @@ export default function StoryForm({ places, defaultPlace }: { places: PlaceOptio
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>
-    const [entryCategory, entrySlug] = (data.place || '').split('/')
+    const fd = new FormData(form)
+    const [entryCategory, entrySlug] = String(fd.get('place') || '').split('/')
+    fd.set('entryCategory', entryCategory || '')
+    fd.set('entrySlug', entrySlug || '')
+    const files = fd.getAll('photos').filter((f): f is File => f instanceof File && f.size > 0)
+    if (files.length > 2 || files.some(f => f.size > MAX_BYTES || !/^image\/(jpeg|png|webp)$/.test(f.type))) {
+      setState('error')
+      setMsg('Please attach up to 2 photos (JPG, PNG or WebP, 5 MB each).')
+      return
+    }
     setState('sending')
     try {
-      const res = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, entryCategory, entrySlug }),
-      })
+      const res = await fetch(ENDPOINT, { method: 'POST', body: fd })
       const json = await res.json().catch(() => ({}))
       if (!res.ok || !json.ok) throw new Error(json.error || 'Something went wrong.')
       setState('done')
@@ -72,6 +77,15 @@ export default function StoryForm({ places, defaultPlace }: { places: PlaceOptio
       <label className="block text-xs tracking-wider uppercase text-ink-mid">Your story or note
         <textarea name="body" required minLength={40} maxLength={4000} rows={6} className={field + ' mt-1'} />
       </label>
+      <fieldset className="border border-gold/30 p-4 space-y-3">
+        <legend className="px-1 text-xs tracking-wider uppercase text-ink-mid">Add photos (optional, up to 2)</legend>
+        <input type="file" name="photos" accept="image/jpeg,image/png,image/webp" multiple className="text-sm" />
+        <input name="photoCaption" maxLength={160} placeholder="Short caption / what the photo shows" className={field} />
+        <label className="flex gap-2 text-xs text-ink-mid">
+          <input type="checkbox" name="photoConsent" className="mt-0.5" />
+          <span>I took these photos and grant Veda Heritage a non-exclusive licence to publish them on this website with credit to my first name. Location data is removed.</span>
+        </label>
+      </fieldset>
       {/* honeypot — hidden from people, filled by bots */}
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       <label className="flex gap-2 text-xs text-ink-mid">

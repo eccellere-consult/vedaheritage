@@ -25,6 +25,7 @@ export default function Footer() {
               {[
                 ['/discover', 'Discover Kerala'],
                 ['/stories', 'Traveller Stories'],
+                ['/travel', 'Kerala Travel Planner'],
                 ['/stay', 'Your Stay'],
                 ['/ayurveda', 'Ayurveda'],
                 ['/location', 'Location & How to Reach'],

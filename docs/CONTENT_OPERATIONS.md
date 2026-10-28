@@ -18,6 +18,30 @@ Nothing reaches production without a human merge. Only `status: "approved"` entr
 - Validate: `npm run validate` (also runs in CI on every content PR).
 - Preview with drafts: `npm run dev` or `npm run build:preview`.
 
+## Entry anatomy (every guide has all of these)
+`history` (significance, timeline, key facts) · `folklore` · `spiritual` (experiences, best for, mindful tips) ·
+`visitorInfo` · `travel` (train, KSRTC bus, water, air) · `officialLinks` · `images` (1–2, licensed and credited) · `sources` (≥ 2 to approve).
+
+## Images (authentic and licensed)
+- Run **Actions → Fetch licensed images**. It searches Wikimedia Commons, keeps only CC0 / CC BY / CC BY-SA / public-domain
+  photos with a named author, saves them to `public/images/discover/`, records credit + licence, and opens a PR.
+- In the PR, check each photo: right place, authentic, good quality. Delete any that are not. An entry cannot be set
+  to `approved` without at least one credited image (CI enforces this).
+- Your own or partner photos: add the file to `public/images/discover/`, add an `images` item with `credit`, `license`
+  ("© Veda Heritage, all rights reserved" is fine for your own) and `sourceUrl`.
+- Never use images from Google results, social media or news sites without written permission.
+
+## Visitor photos and stories
+Visitors can attach up to 2 photos to a story. The server re-encodes them (removes GPS/EXIF), stores them on the private
+`community-uploads` branch, and files a GitHub issue. Add the `approved` label → bot opens a PR that copies the photos into
+`public/images/community/` and shows them with credit under the story. Merge to publish; close the issue to reject.
+Check photos for faces of children, number plates, and anything inappropriate before approving.
+
+## Official links and travel
+Shared links live in `src/data/official-links.ts` (Kerala Tourism, KTDC, IRCTC, NTES, KSRTC, State Water Transport,
+Travancore Devaswom Board) and are shown on `/travel/` and every entry. Entry-specific bodies go in `officialLinks`.
+**Link check** runs every Monday and opens an issue if any link breaks. We link out; we do not scrape or mirror fares or timetables.
+
 ## SEO built in
 Per-page title, 50–200 char meta description (the entry `summary`), canonical URL, Open Graph/Twitter tags,
 JSON-LD (TouristAttraction/HinduTemple/Beach, Article, BreadcrumbList, ItemList), `sitemap.xml`, `robots.txt`,
@@ -25,8 +49,9 @@ JSON-LD (TouristAttraction/HinduTemple/Beach, Article, BreadcrumbList, ItemList)
 Submit `https://www.vedaheritage.co.in/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 
 ## One-time setup for visitor stories (Hostinger)
-1. Create a GitHub fine-grained token for this repo only: **Issues: Read and write**.
-2. Create `/domains/vedaheritage.co.in/vh-config.php` (outside `public_html`):
+1. Create a GitHub fine-grained token for this repo only.
+2. Token permissions: **Issues: write** and **Contents: write** (for the photo quarantine branch). Create the branch once: `git push origin main:community-uploads`.
+   Then create `/domains/vedaheritage.co.in/vh-config.php` (outside `public_html`):
    ```php
    <?php return ['github_token' => 'github_pat_xxx', 'repo' => 'eccellere-consult/vedaheritage',
                  'notify_email' => 'stay@vedaheritage.co.in'];

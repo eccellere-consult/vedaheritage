@@ -13,6 +13,17 @@ export default function StoryList({ stories }: { stories: Story[] }) {
           {s.body.split(/\n{2,}/).map((p, i) => (
             <p key={i} className="text-sm text-ink-mid leading-relaxed mb-2">{p}</p>
           ))}
+          {s.photos && s.photos.length > 0 && (
+            <div className="grid grid-cols-2 gap-2 mt-3">
+              {s.photos.map(ph => (
+                <figure key={ph.src}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={ph.src} alt={ph.alt} loading="lazy" className="w-full h-40 object-cover" />
+                  <figcaption className="text-[11px] text-ink-mid/70 mt-1">Photo: {ph.credit}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
           <p className="text-xs text-ink-mid/70 mt-3">
             — {s.author}{s.origin ? `, ${s.origin}` : ''} · {new Date(s.date).toLocaleDateString('en-IN', { year: 'numeric', month: 'short' })}
           </p>

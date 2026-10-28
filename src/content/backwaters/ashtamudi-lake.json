@@ -10,6 +10,36 @@
     "Ashtamudi Lake is a palm-fringed, multi-armed estuary at Kollam, recognised as a wetland of international importance under the Ramsar convention. Its name is commonly read as 'eight cones' or 'eight arms'.",
     "Munroe Island (Munroe Thuruthu) is a cluster of small islands reached by canoe, known for coconut groves, coir and quiet village canals; it is a quieter alternative to the busier backwater circuits."
   ],
+  "history": {
+    "significance": "Kollam (Quilon) was one of the great ancient ports of the Malabar coast, trading with the Middle East and China, and the starting point of the Kollavarsham, the Malayalam calendar.",
+    "timeline": [
+      {
+        "period": "825 CE",
+        "event": "The Kollavarsham, the Malayalam calendar era, begins, traditionally linked with Kollam."
+      },
+      {
+        "period": "13th–14th century",
+        "event": "Marco Polo and Ibn Battuta describe Kollam as a busy port visited by merchants from many lands."
+      },
+      {
+        "period": "1502",
+        "event": "The Portuguese establish a trading post at Kollam; the Dutch and British follow in later centuries."
+      },
+      {
+        "period": "Early 19th century",
+        "event": "Colonel John Munro, British Resident of Travancore and Cochin, is associated with the island that now bears his name."
+      },
+      {
+        "period": "2002",
+        "event": "Ashtamudi Lake is designated a Ramsar wetland of international importance."
+      }
+    ],
+    "keyFacts": [
+      "The Ashtamudi short-neck clam fishery is among the first in India to receive MSC sustainability certification.",
+      "The President's Trophy Boat Race is held on Ashtamudi Lake.",
+      "Kollam has long been a centre of the cashew and coir industries."
+    ]
+  },
   "folklore": {
     "title": "The Land the Sea Gave Back",
     "story": [
@@ -17,6 +47,25 @@
       "Fishing families around the lake recount stories of seasonal tides, the 'chakara' (mudbank) years when fish gather, and of lake spirits to be respected before a boat sets out."
     ],
     "note": "The lake-spirit stories are oral and need collection and attribution from local fishing communities."
+  },
+  "spiritual": {
+    "summary": "Ashtamudi's villages are close to some of Kerala's most distinctive living spiritual centres, including Amritapuri and the Oachira Parabrahma Temple.",
+    "experiences": [
+      {
+        "title": "Oachira Parabrahma Temple",
+        "text": "Oachira, near Veda Heritage, is known as a temple without a fixed idol, open to all, where worship centres on the formless Parabrahma. It is famed for the Oachirakali and the Panthrandu Vilakku festival."
+      },
+      {
+        "title": "Amritapuri Ashram",
+        "text": "The ashram of Mata Amritanandamayi (Amma) lies a short distance from the retreat, with daily meditation and seva. Check visitor guidelines before arriving."
+      }
+    ],
+    "bestFor": "Spiritual seekers who want community-based practice alongside quiet lake scenery.",
+    "mindfulTips": [
+      "Contact the ashram in advance about visitor rules.",
+      "Dress modestly and observe silence zones.",
+      "Take time on the lake at dawn."
+    ]
   },
   "highlights": [
     "Munroe Island canoe tours",
@@ -34,10 +83,25 @@
     ],
     "duration": "Half to full day"
   },
+  "travel": {
+    "byTrain": [
+      "Kollam Junction (QLN) is the main station, close to the Ashtamudi boat jetty."
+    ],
+    "byBus": [
+      "KSRTC Kollam bus station is in the city centre; buses run to Alappuzha, Thiruvananthapuram and beyond."
+    ],
+    "byWater": [
+      "The State Water Transport Department's Kollam–Alappuzha ferry crosses Ashtamudi Lake and the backwaters; check the schedule."
+    ],
+    "byAir": [
+      "Thiruvananthapuram (TRV) airport is roughly 65–70 km away."
+    ]
+  },
   "coordinates": {
     "lat": 8.9833,
     "lng": 76.5833
   },
+  "images": [],
   "tags": [
     "backwaters",
     "Kollam",

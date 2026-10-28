@@ -10,6 +10,28 @@
     "Karkidakam is the last month of the Malayalam calendar, falling roughly between mid-July and mid-August. Heavy rain and cooler weather make it the traditional season for Ayurvedic rejuvenation, because the body is considered most receptive to treatment.",
     "Households follow a special diet, including herbal porridge (karkidaka kanji or oushadha kanji), and many centres offer seasonal packages."
   ],
+  "history": {
+    "significance": "Karkidakam sits in the Malayalam solar calendar, the Kollavarsham, and joins agrarian life, seasonal medicine and Ramayana devotion.",
+    "timeline": [
+      {
+        "period": "825 CE",
+        "event": "The Kollavarsham calendar begins; its last month is Karkidakam."
+      },
+      {
+        "period": "16th century",
+        "event": "Thunchath Ezhuthachan composes the Adhyatma Ramayanam in Malayalam; its recitation becomes tied to Karkidakam."
+      },
+      {
+        "period": "Modern era",
+        "event": "Ayurvedic centres promote Karkidakam rejuvenation packages as a monsoon tradition."
+      }
+    ],
+    "keyFacts": [
+      "Karkidakam runs roughly from mid-July to mid-August.",
+      "The new moon of the month, Karkidaka Vavu, is the day for ancestral rites at places like Varkala and Thirunelli.",
+      "Ramayana masam means the Ramayana month."
+    ]
+  },
   "folklore": {
     "title": "The Lean Month and the Ramayana",
     "story": [
@@ -17,6 +39,25 @@
       "It is also the Ramayana month: temples and homes recite the Adhyatma Ramayanam by Thunchaththu Ezhuthachan, one chapter at a time, and the monsoon evenings are filled with the rhythm of the verses."
     ],
     "note": "Community practices should be verified with a regional source."
+  },
+  "spiritual": {
+    "summary": "Karkidakam turns the home and temple inward: recitation, simple food and reflection through the rains.",
+    "experiences": [
+      {
+        "title": "Ramayana recitation",
+        "text": "In homes and temples, a chapter of the Adhyatma Ramayanam is read each evening. Listening quietly, even without the language, is calming."
+      },
+      {
+        "title": "Karkidaka Vavu",
+        "text": "On the new moon, families perform rites for ancestors at rivers and seashores. It is the most visible spiritual event of the month."
+      }
+    ],
+    "bestFor": "Travellers who want a quiet, local, culturally rich season.",
+    "mindfulTips": [
+      "Expect rain and plan flexible days.",
+      "Ask before attending household or temple recitations.",
+      "Book rejuvenation packages in advance."
+    ]
   },
   "highlights": [
     "Herbal kanji and seasonal diet",
@@ -34,6 +75,18 @@
     ],
     "duration": "1–3 weeks"
   },
+  "travel": {
+    "byTrain": [
+      "Choose a centre near a major station."
+    ],
+    "byBus": [
+      "KSRTC services run all through the monsoon; allow extra time for rain."
+    ],
+    "byAir": [
+      "Kerala's airports operate normally in the monsoon; allow for weather delays."
+    ]
+  },
+  "images": [],
   "tags": [
     "Ayurveda",
     "monsoon",

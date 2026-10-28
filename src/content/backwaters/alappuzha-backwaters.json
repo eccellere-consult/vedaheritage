@@ -10,6 +10,32 @@
     "Alappuzha sits on the Vembanad Lake system, with a network of canals, lagoons and rice fields. Kuttanad, nearby, is among the few places in the world where farming is done below sea level.",
     "Visitors can take a houseboat cruise, a smaller canoe through village waterways, or a public ferry for an everyday view of life on the water."
   ],
+  "history": {
+    "significance": "A planned port town of the 18th century that tied Kerala's inland spice, coir and rice economy to the sea, and a stage for key social movements and traditions of the backwaters.",
+    "timeline": [
+      {
+        "period": "1760s–1770s",
+        "event": "Raja Kesavadas, Dewan of Travancore, develops Alappuzha as a port town with canals and trading facilities."
+      },
+      {
+        "period": "Mid-19th century",
+        "event": "Alappuzha's coir and trade industries flourish, with lighthouse and port facilities."
+      },
+      {
+        "period": "1946",
+        "event": "The Punnapra-Vayalar uprising takes place nearby, an important event in Kerala's political history."
+      },
+      {
+        "period": "1952",
+        "event": "The first Nehru Trophy Boat Race is held on the Punnamada Lake."
+      }
+    ],
+    "keyFacts": [
+      "Alappuzha is often called the 'Venice of the East' for its canals.",
+      "Kuttanad, nearby, farms rice below sea level, a rare practice.",
+      "Alappuzha is a major centre of the coir industry."
+    ]
+  },
   "folklore": {
     "title": "Snake Boats and the Nehru Trophy",
     "story": [
@@ -17,6 +43,25 @@
       "The Nehru Trophy Boat Race on Punnamada Lake is said to have started after Jawaharlal Nehru's visit in 1952, when a boat race was staged in his honour and he was so moved that he donated a trophy."
     ],
     "note": "Dates and details should be checked against the Nehru Trophy Boat Race Society."
+  },
+  "spiritual": {
+    "summary": "The backwaters carry a quiet spiritual life: a canal-side temple, a basilica and the slow rhythm of village prayer.",
+    "experiences": [
+      {
+        "title": "Ambalappuzha Sree Krishna Temple",
+        "text": "Famed for its Ambalappuzha Palpayasam (sweet milk pudding), offered to the deity, and for its Krishna worship and devotional music tradition."
+      },
+      {
+        "title": "Champakulam and Edathua",
+        "text": "Champakulam's St Mary's Basilica and Edathua's St George church draw Christian pilgrims, and Champakulam's Moolam boat race is tied to the church festival."
+      }
+    ],
+    "bestFor": "Travellers who want a slow, community-rooted experience of devotion.",
+    "mindfulTips": [
+      "Visit temples and churches outside the busiest hours.",
+      "Dress modestly and follow local rules.",
+      "Try a canoe journey at sunrise for quiet."
+    ]
   },
   "highlights": [
     "Houseboat and canoe cruises",
@@ -34,10 +79,25 @@
     ],
     "duration": "1–2 days"
   },
+  "travel": {
+    "byTrain": [
+      "Alappuzha (ALLP) railway station is in the town centre, close to the boat jetty."
+    ],
+    "byBus": [
+      "KSRTC Alappuzha bus station connects to Kochi, Kottayam, Thiruvananthapuram and others."
+    ],
+    "byWater": [
+      "State Water Transport Department ferries run to Kottayam and Kollam; check the current timetable."
+    ],
+    "byAir": [
+      "Cochin International Airport (COK) is roughly 85 km away."
+    ]
+  },
   "coordinates": {
     "lat": 9.4981,
     "lng": 76.3388
   },
+  "images": [],
   "tags": [
     "backwaters",
     "houseboat",
