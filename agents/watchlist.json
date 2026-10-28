@@ -1,0 +1,11 @@
+{
+  "priorityDistricts": ["Kollam", "Alappuzha", "Pathanamthitta", "Thiruvananthapuram", "Kottayam"],
+  "themes": [
+    "Major temples with documented legends (e.g. Ambalappuzha, Aranmula, Oachira, Vaikom, Guruvayur, Chottanikkara)",
+    "UNESCO, ASI and State Archaeology heritage sites",
+    "Backwater regions beyond Alappuzha (Kuttanad, Vembanad, Kumarakom, Munroe Island)",
+    "Beaches with historical or ritual significance",
+    "Ayurveda traditions, institutions and seasonal practices"
+  ],
+  "seedSources": ["keralatourism.org", "ktdc.com", "keralaarchaeology.gov.in", "travancoredevaswomboard.org", "asi.nic.in"]
+}

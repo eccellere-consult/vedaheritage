@@ -67,5 +67,7 @@ Safeguards: honeypot field, 5/hour per-IP limit, HTML stripped, links rejected, 
 - Timings, fees and festival dates must say "confirm before travelling".
 - No images without a clear licence.
 
-## Next: the agent fleet (Phase 1–2)
-Scout → Enricher → Verifier → PR (labelled `content`) on a schedule via GitHub Actions; Freshness sweeper weekly.
+## The agent fleet
+Scout → Enricher → Verifier run twice a week (01:00 IST before your Monday and Thursday review) and open one PR of draft entries with a
+scored verification report. See `agents/README.md` for setup (`ANTHROPIC_API_KEY` secret), safeguards and how to review.
+Still to build: a freshness sweeper that re-checks old entries (until then, run `verify --slug …` or the workflow's `verify` option).

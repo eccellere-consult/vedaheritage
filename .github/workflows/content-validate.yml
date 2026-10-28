@@ -5,6 +5,7 @@ on:
     paths:
       - 'src/content/**'
       - 'scripts/validate-content.mjs'
+      - 'agents/**'
 
 jobs:
   validate:
@@ -14,5 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - run: npm ci
       - name: Validate content schema, sources and folklore
         run: node scripts/validate-content.mjs
+      - name: Agent pipeline self-test (offline, mocked model)
+        run: node agents/test/mock-pipeline.test.mjs

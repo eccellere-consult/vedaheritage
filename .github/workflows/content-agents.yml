@@ -1,0 +1,79 @@
+name: Content agents (Scout → Enricher → Verifier)
+
+# Runs twice a week, just before your Monday and Thursday review (01:00 IST),
+# or on demand. Opens ONE pull request of DRAFT entries; nothing is published
+# until a human sets status "approved" and merges.
+
+on:
+  schedule:
+    - cron: '30 19 * * 0,3'
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'What to run'
+        type: choice
+        options: [pipeline, scout, enrich, verify]
+        default: pipeline
+      max:
+        description: 'Max new candidates (scout) / entries to write (enrich)'
+        default: '3'
+      slugs:
+        description: 'verify only: comma-separated slugs (blank = all drafts)'
+        required: false
+      budget:
+        description: 'Hard spend cap in USD for this run'
+        default: '10'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: content-agents
+  cancel-in-progress: false
+
+jobs:
+  agents:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Offline self-test of the agent pipeline
+        run: node agents/test/mock-pipeline.test.mjs
+      - name: Run agents
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          VERIFIER_MODEL: ${{ vars.VERIFIER_MODEL }}
+          CMD: ${{ inputs.command || 'pipeline' }}
+          MAX: ${{ inputs.max || '3' }}
+          SLUGS: ${{ inputs.slugs }}
+          BUDGET: ${{ inputs.budget || vars.AGENT_MAX_USD || '10' }}
+        run: |
+          args=("$CMD" --max "$MAX" --budget "$BUDGET")
+          if [ "$CMD" = "verify" ]; then
+            if [ -n "$SLUGS" ]; then args+=(--slug "$SLUGS"); else args+=(--drafts); fi
+          fi
+          node agents/run.mjs "${args[@]}"
+      - name: Validate content
+        run: node scripts/validate-content.mjs
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then echo "No changes."; exit 0; fi
+          branch="agents/$(date +%Y%m%d-%H%M)"
+          git config user.name "veda-content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A src/content agents/queue agents/evidence agents/reports
+          git commit -m "content: agent-drafted entries for review"
+          git push origin "$branch"
+          gh pr create --base "$BASE_BRANCH" --head "$branch" \
+            --title "Agent-drafted entries for review ($(date +%F))" \
+            --body-file agents/reports/latest.md
