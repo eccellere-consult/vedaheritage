@@ -5,18 +5,37 @@
 //  - mock mode (--mock) returns deterministic fixtures so the pipeline can be tested offline
 import Anthropic from '@anthropic-ai/sdk'
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod'
+import { BudgetExceeded, ModelRefused } from './errors.mjs'
+import { createOpenAICompat } from './openai-compat.mjs'
 
 const PRICE = { in: 4 / 1e6, out: 20 / 1e6, cacheRead: 0.2 / 1e6, cacheWrite: 5 / 1e6 } // claude-opus-5-5, USD/token
 
-export class BudgetExceeded extends Error {}
-export class ModelRefused extends Error {}
+export { BudgetExceeded, ModelRefused }
 
-export function createLLM({ mock = false, model, maxUsd = Number(process.env.AGENT_MAX_USD || 10) } = {}) {
+export const newBudget = (max = Number(process.env.AGENT_MAX_USD || 10)) => ({ usd: 0, max })
+
+const ROLES = ['scout', 'enricher', 'verifier']
+
+// Resolve provider + model for an agent role. Precedence:
+//   <ROLE>_PROVIDER / <ROLE>_MODEL  >  AGENT_PROVIDER / AGENT_MODEL  >  anthropic + claude-opus-5-5
+// (VERIFIER_MODEL has always worked this way, so existing setups are unchanged.)
+export function llmForRole(role, { mock = false, budget = newBudget() } = {}) {
+  if (!ROLES.includes(role)) throw new Error(`unknown role ${role}`)
+  const R = role.toUpperCase()
+  const provider = (process.env[`${R}_PROVIDER`] || process.env.AGENT_PROVIDER || 'anthropic').toLowerCase()
+  const model = process.env[`${R}_MODEL`] || process.env.AGENT_MODEL || (provider === 'anthropic' ? undefined : process.env[`${provider.toUpperCase()}_MODEL`])
+  return createLLM({ mock, provider, model, budget })
+}
+
+export function createLLM({ mock = false, provider = 'anthropic', model, budget = newBudget() } = {}) {
   const state = { usd: 0, inputTokens: 0, outputTokens: 0, calls: 0 }
   const consulted = new Set()
-  const MODEL = model || process.env.AGENT_MODEL || 'claude-opus-5-5'
-
   if (mock) return createMock(state, consulted)
+  if (!['anthropic', 'openai', 'xai'].includes(provider)) throw new Error(`Unknown provider "${provider}" (use anthropic, openai or xai)`)
+  if (provider === 'anthropic' && model && !/^claude/.test(model)) throw new Error(`Model "${model}" is not a Claude model but provider is anthropic. Set ${'<ROLE>'}_PROVIDER.`)
+  if (provider !== 'anthropic' && /^claude/.test(model || '')) throw new Error(`Model "${model}" is a Claude model but provider is ${provider}.`)
+  if (provider !== 'anthropic') return createOpenAICompat({ provider, model, budget, state })
+  const MODEL = model || 'claude-opus-5-5'
 
   const client = new Anthropic() // ANTHROPIC_API_KEY, or an `ant auth login` profile
 
@@ -24,10 +43,12 @@ export function createLLM({ mock = false, model, maxUsd = Number(process.env.AGE
     state.calls++
     state.inputTokens += usage.input_tokens || 0
     state.outputTokens += usage.output_tokens || 0
-    state.usd +=
+    const cost =
       (usage.input_tokens || 0) * PRICE.in + (usage.output_tokens || 0) * PRICE.out +
       (usage.cache_read_input_tokens || 0) * PRICE.cacheRead + (usage.cache_creation_input_tokens || 0) * PRICE.cacheWrite
-    if (state.usd > maxUsd) throw new BudgetExceeded(`Budget of $${maxUsd} exceeded (spent ~$${state.usd.toFixed(2)})`)
+    state.usd += cost
+    budget.usd += cost
+    if (budget.usd > budget.max) throw new BudgetExceeded(`Budget of $${budget.max} exceeded (spent ~$${budget.usd.toFixed(2)})`)
   }
 
   function harvestUrls(content, into) {
@@ -78,14 +99,14 @@ export function createLLM({ mock = false, model, maxUsd = Number(process.env.AGE
     return parsed.data
   }
 
-  return { research, extract, state, consulted, model: MODEL, mock: false }
+  return { research, extract, state, consulted, model: MODEL, provider: 'anthropic', mock: false }
 }
 
 // ---------------------------------------------------------------- mock -----
 function createMock(state, consulted) {
   const U = 'https://example.org/'
   return {
-    mock: true, model: 'mock', state, consulted,
+    mock: true, model: 'mock', provider: 'mock', state, consulted,
     async research({ label = '', ctx = {} }) {
       const urls = new Set([`${U}a-${label}`, `${U}b-${label}`])
       urls.forEach(u => consulted.add(u)); state.calls++

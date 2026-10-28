@@ -43,12 +43,25 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci
-      - name: Offline self-test of the agent pipeline
-        run: node agents/test/mock-pipeline.test.mjs
+      - name: Offline self-test of the agent pipeline and provider adapters
+        run: npm run agents:test
       - name: Run agents
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          # Per-role provider/model (all optional; default is Anthropic claude-opus-5-5).
+          SCOUT_PROVIDER: ${{ vars.SCOUT_PROVIDER }}
+          SCOUT_MODEL: ${{ vars.SCOUT_MODEL }}
+          ENRICHER_PROVIDER: ${{ vars.ENRICHER_PROVIDER }}
+          ENRICHER_MODEL: ${{ vars.ENRICHER_MODEL }}
+          VERIFIER_PROVIDER: ${{ vars.VERIFIER_PROVIDER }}
           VERIFIER_MODEL: ${{ vars.VERIFIER_MODEL }}
+          # Optional price overrides, USD per million tokens, for the spend cap.
+          OPENAI_PRICE_IN_PER_M: ${{ vars.OPENAI_PRICE_IN_PER_M }}
+          OPENAI_PRICE_OUT_PER_M: ${{ vars.OPENAI_PRICE_OUT_PER_M }}
+          XAI_PRICE_IN_PER_M: ${{ vars.XAI_PRICE_IN_PER_M }}
+          XAI_PRICE_OUT_PER_M: ${{ vars.XAI_PRICE_OUT_PER_M }}
           CMD: ${{ inputs.command || 'pipeline' }}
           MAX: ${{ inputs.max || '3' }}
           SLUGS: ${{ inputs.slugs }}

@@ -5,7 +5,7 @@
 //   --budget USD      hard spend cap for this run (default $10, env AGENT_MAX_USD)
 import fs from 'fs'
 import { spawnSync } from 'child_process'
-import { createLLM, BudgetExceeded, ModelRefused } from './lib/llm.mjs'
+import { llmForRole, newBudget, BudgetExceeded, ModelRefused } from './lib/llm.mjs'
 import { QUEUE, entryFile, evidenceFile, existingEntries, readJson, today, writeJson } from './lib/util.mjs'
 import { scout } from './scout.mjs'
 import { enrich } from './enricher.mjs'
@@ -100,15 +100,18 @@ async function main() {
     console.error('usage: node agents/run.mjs <scout|enrich|verify|pipeline> [--mock] [--max N] [--slug a,b] [--drafts] [--budget USD]')
     process.exit(2)
   }
-  // Set VERIFIER_MODEL (e.g. claude-fable-5-1) to verify with a different model than the one that wrote the entry.
-  const verifierModel = process.env.VERIFIER_MODEL
-  const llm = createLLM({ mock: flag('mock'), maxUsd: Number(opt('budget', process.env.AGENT_MAX_USD || 10)) })
-  const vllm = verifierModel && !flag('mock') ? createLLM({ model: verifierModel, maxUsd: Number(opt('budget', process.env.AGENT_MAX_USD || 10)) }) : llm
+  // Each role can use a different provider/model: SCOUT_*, ENRICHER_*, VERIFIER_* (or AGENT_*).
+  // Using a different vendor for the Verifier gives the most independent second opinion.
+  const budget = newBudget(Number(opt('budget', process.env.AGENT_MAX_USD || 10)))
+  const mock = flag('mock')
+  const scoutLLM = llmForRole('scout', { mock, budget })
+  const llm = llmForRole('enricher', { mock, budget })
+  const vllm = llmForRole('verifier', { mock, budget })
   const t0 = Date.now()
   add(`## Discover Kerala content agents — ${today()}`, '', `Drafts only. Nothing here is published until a human sets \`status: "approved"\` and merges.`, '')
   try {
     if (cmd === 'scout' || cmd === 'pipeline') {
-      const r = await scout(llm, { max: Number(opt('max', 8)) })
+      const r = await scout(scoutLLM, { max: Number(opt('max', 8)) })
       add(`### Scout: ${r.added.length} new candidate(s)`, '', ...r.added.map(c => `- P${c.priority} **${c.name}** (${c.category}, ${c.district}) — ${c.reason}`), ...(r.dropped.length ? ['', `Dropped: ${r.dropped.map(([n, w]) => `${n} (${w})`).join('; ')}`] : []), '')
       console.log(`scout: +${r.added.length}, dropped ${r.dropped.length}`)
     }
@@ -120,8 +123,7 @@ async function main() {
     if (err instanceof BudgetExceeded) add('', `⛔ Stopped early: ${err.message}`)
     else { console.error(err); add('', `⛔ Run failed: ${err.message}`); process.exitCode = 1 }
   }
-  const spent = llm.state.usd + (vllm !== llm ? vllm.state.usd : 0)
-  add('', `_Run: ${((Date.now() - t0) / 60000).toFixed(1)} min · ~$${spent.toFixed(2)} model spend (excludes web-search tool fees) · model ${llm.model}${vllm !== llm ? ` / verifier ${vllm.model}` : ''}_`)
+  add('', `_Run: ${((Date.now() - t0) / 60000).toFixed(1)} min · ~$${budget.usd.toFixed(2)} model spend (estimate; excludes web-search tool fees) · scout ${scoutLLM.provider}/${scoutLLM.model} · enricher ${llm.provider}/${llm.model} · verifier ${vllm.provider}/${vllm.model}_`)
   fs.mkdirSync('agents/reports', { recursive: true })
   fs.writeFileSync('agents/reports/latest.md', report.join('\n') + '\n')
   console.log('\n' + report.join('\n'))
