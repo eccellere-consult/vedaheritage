@@ -1,0 +1,22 @@
+name: Validate content
+
+on:
+  pull_request:
+    paths:
+      - 'src/content/**'
+      - 'scripts/validate-content.mjs'
+      - 'agents/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Validate content schema, sources and folklore
+        run: node scripts/validate-content.mjs
+      - name: Agent self-tests (offline: mocked pipeline + provider adapters)
+        run: npm run agents:test

@@ -1,0 +1,69 @@
+{
+  "slug": "thrissur",
+  "name": "Thrissur",
+  "headquarters": "Thrissur",
+  "region": "Central",
+  "tagline": "The cultural capital of Kerala",
+  "summary": "Thrissur: home of Thrissur Pooram, Guruvayur Temple, Kerala Kalamandalam, Athirappilly falls and Kuthampully handloom.",
+  "history": {
+    "overview": "Thrissur was a centre of the Kochi kingdom and a seat of learning; Shakthan Thampuran created the Thrissur Pooram at the end of the 18th century.",
+    "timeline": [
+      {
+        "period": "Late 18th century",
+        "event": "Shakthan Thampuran starts the Thrissur Pooram."
+      },
+      {
+        "period": "1930",
+        "event": "Kerala Kalamandalam is founded at Cheruthuruthy."
+      },
+      {
+        "period": "Present",
+        "event": "The district is known for temples, arts and festivals."
+      }
+    ]
+  },
+  "unique": [
+    "Thrissur Pooram",
+    "Guruvayur Temple and elephant sanctuary",
+    "Kerala Kalamandalam for classical arts",
+    "Athirappilly waterfalls"
+  ],
+  "bestTime": {
+    "season": "October to March",
+    "why": "Cool weather suits festivals and waterfalls; Pooram is in April–May.",
+    "avoid": "June–August (heavy rain)"
+  },
+  "lookFor": [
+    "Vadakkunnathan Temple",
+    "Kerala Kalamandalam",
+    "Athirappilly",
+    "Kuthampully handloom"
+  ],
+  "highlights": [
+    "Thrissur Pooram",
+    "Guruvayur",
+    "Athirappilly",
+    "Peechi dam"
+  ],
+  "festivals": [
+    "Thrissur Pooram (Apr–May)",
+    "Pulikali (Onam)",
+    "Guruvayur Ekadasi"
+  ],
+  "crafts": [
+    "Handloom",
+    "Aranmula mirrors (via emporiums)"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Thrissur district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Thrissur_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

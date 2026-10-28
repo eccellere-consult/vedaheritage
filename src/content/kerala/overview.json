@@ -1,0 +1,103 @@
+{
+  "title": "Kerala at a Glance",
+  "summary": "A brief history of Kerala, its three regions, the 14 districts, the seasons and what to look for, as a first guide for visitors and citizens.",
+  "intro": [
+    "Kerala is a narrow strip of land between the Western Ghats and the Arabian Sea, about 580 km long, with 14 districts. Its position on the spice route, its monsoon climate and its mix of faiths shaped a distinctive culture.",
+    "The land is often described in three belts: the high ranges, the midlands and the coastal lowlands, each with its own crops, festivals and food."
+  ],
+  "history": [
+    {
+      "period": "Ancient",
+      "event": "Spices, especially pepper, draw Phoenician, Greek, Roman and Arab traders to ports such as Muziris; the Ashokan edicts mention the Keralaputra."
+    },
+    {
+      "period": "c. 1st–3rd century",
+      "event": "Local tradition places the arrival of Jewish settlers and the first Christian communities on the coast (traditional dates)."
+    },
+    {
+      "period": "7th century",
+      "event": "By tradition, the Cheraman Juma Masjid at Kodungallur is among the earliest mosques in India."
+    },
+    {
+      "period": "9th–12th century",
+      "event": "The Kulasekhara kings rule from Mahodayapuram; the Kollavarsham calendar begins in 825 CE; Malayalam develops as a distinct language."
+    },
+    {
+      "period": "1498–1795",
+      "event": "Vasco da Gama lands near Kozhikode (1498); Portuguese, Dutch and British compete for the spice trade; Marthanda Varma consolidates Travancore (1729–1758)."
+    },
+    {
+      "period": "1920s–1930s",
+      "event": "Social reform movements, including the Vaikom Satyagraha (1924–25) and the Temple Entry Proclamation (1936), open temples to all castes."
+    },
+    {
+      "period": "1956–1957",
+      "event": "Kerala is formed on 1 November 1956 by merging Travancore–Cochin and Malabar; the 1957 elections bring the first elected communist government in the world to be voted in."
+    },
+    {
+      "period": "1990s–today",
+      "event": "Kerala becomes known for high literacy, public health and migration-based remittances; Kerala tourism grows from the 1990s."
+    }
+  ],
+  "regions": [
+    {
+      "name": "South Kerala",
+      "districts": "Thiruvananthapuram, Kollam, Pathanamthitta, Alappuzha",
+      "character": "Old Travancore: temples, backwaters, beaches, and the capital."
+    },
+    {
+      "name": "Central Kerala",
+      "districts": "Kottayam, Idukki, Ernakulam, Thrissur, Palakkad",
+      "character": "Cochin and the high ranges: hills, ports, festivals, rice country."
+    },
+    {
+      "name": "North Kerala (Malabar)",
+      "districts": "Malappuram, Kozhikode, Wayanad, Kannur, Kasaragod",
+      "character": "Malabar: spice-port history, Theyyam, forts and forested hills."
+    }
+  ],
+  "seasons": [
+    {
+      "season": "Winter (best)",
+      "months": "November to February",
+      "notes": "Cool, dry and busy; best for beaches, backwaters and sightseeing. Book ahead."
+    },
+    {
+      "season": "Summer",
+      "months": "March to May",
+      "notes": "Hot and humid on the coast; festivals peak; hills are pleasant."
+    },
+    {
+      "season": "Southwest monsoon",
+      "months": "June to September",
+      "notes": "Heavy rain; green landscapes; Ayurveda season; boat races in August–September."
+    },
+    {
+      "season": "Northeast monsoon",
+      "months": "October to November",
+      "notes": "Showers return, especially in the south; Theyyam begins in the north."
+    }
+  ],
+  "essentials": [
+    "Dress modestly at temples, mosques and churches; remove footwear where asked.",
+    "Non-Hindus may be restricted at some temples; check before you go.",
+    "Book trains, KSRTC buses and houseboats early for festival seasons.",
+    "Carry water, sun protection and rain gear in all seasons."
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kerala — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kerala"
+    },
+    {
+      "label": "History of Kerala — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/History_of_Kerala"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

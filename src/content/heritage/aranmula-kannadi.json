@@ -1,0 +1,136 @@
+{
+  "slug": "aranmula-kannadi",
+  "category": "heritage",
+  "name": "Aranmula Kannadi — the Metal Mirror",
+  "malayalamName": "ആറന്മുള കണ്ണാടി",
+  "district": "Pathanamthitta",
+  "tagline": "A hand-cast metal-alloy mirror made only in Aranmula",
+  "summary": "Aranmula Kannadi: Kerala's famous hand-cast metal mirror, its history and legend, how to spot an authentic piece, and where to buy and see it made.",
+  "description": [
+    "The Aranmula kannadi is a polished metal-alloy mirror made by a small number of families in Aranmula, a temple town on the Pamba river. Unlike glass mirrors it reflects from the front surface, so there is no ghost image.",
+    "The exact alloy and polishing method are traditionally guarded as a family craft. Aranmula kannadi holds a Geographical Indication tag and is used as a lucky object in ceremonies."
+  ],
+  "history": {
+    "significance": "One of Kerala's most distinctive crafts, tied to the Aranmula Parthasarathy Temple and the ritual life of the town.",
+    "timeline": [
+      {
+        "period": "Traditional origin",
+        "event": "Local legend places the craft among artisans brought to serve the Aranmula temple."
+      },
+      {
+        "period": "20th century",
+        "event": "The craft survives through a few families and cooperative bodies."
+      },
+      {
+        "period": "2000s",
+        "event": "Aranmula Kannadi receives Geographical Indication protection, helping buyers identify authentic pieces."
+      }
+    ],
+    "keyFacts": [
+      "The mirror is front-surfaced, which gives a sharp, undistorted reflection.",
+      "It is made by a small number of artisan families; production is slow.",
+      "One of the items placed in the ashtamangalyam set, auspicious articles used in ceremonies.",
+      "Real pieces are sold with tags or certificates; check the seller's credentials."
+    ]
+  },
+  "folklore": {
+    "title": "The Mirror of the Temple",
+    "story": [
+      "Tradition says the first kannadi was made by a group of skilled metalworkers who came to Aranmula to serve the Parthasarathy Temple, and that the secret alloy was entrusted to their families.",
+      "Another story says the king of Travancore valued the mirror so highly that he placed it among the auspicious items offered at royal ceremonies."
+    ],
+    "note": "Oral accounts differ; origin is traditional, not documented history."
+  },
+  "spiritual": {
+    "summary": "The mirror is treated as an auspicious object that brings clarity and good fortune into a home.",
+    "experiences": [
+      {
+        "title": "Visit a workshop",
+        "text": "At a family workshop you can see polishing, which takes patient, repeated work."
+      },
+      {
+        "title": "Attend the Aranmula temple festival season",
+        "text": "The town comes alive during the Uthrattathi boat race and the Vallasadya feast; check dates."
+      }
+    ],
+    "bestFor": "Craft-lovers and reflective travellers.",
+    "mindfulTips": [
+      "Handle the mirror gently; scratches are hard to repair.",
+      "Respect the workshop's request about photographing the process."
+    ]
+  },
+  "highlights": [
+    "Front-surface metal mirror with no ghost image",
+    "Aranmula Parthasarathy Temple",
+    "Pamba river and the Uthrattathi boat race",
+    "Vallasadya feast"
+  ],
+  "visitorInfo": {
+    "bestTime": "October to March; boat race and temple festivals fall in August–September.",
+    "howToReach": "Aranmula is on the Pamba river near Chengannur; the nearest railhead is Chengannur (CNGR), about 10 km away.",
+    "etiquette": [
+      "Buy only from certified workshops or cooperatives.",
+      "Do not bargain in temple precincts."
+    ],
+    "duration": "Half a day"
+  },
+  "heritage": {
+    "localName": "ആറന്മുള കണ്ണാടി",
+    "materials": "Copper-tin based metal alloy (exact formula guarded)",
+    "whereToSee": [
+      {
+        "name": "Aranmula Parthasarathy Temple",
+        "district": "Pathanamthitta",
+        "note": "Centre of the town's festivals and the Uthrattathi boat race."
+      }
+    ],
+    "whereToBuy": [
+      {
+        "name": "Aranmula Vishwabrahma Handicrafts Co-operative / Aranmula Kannadi workshops",
+        "kind": "cooperative",
+        "district": "Pathanamthitta",
+        "note": "Buy from certified outlets with a Geographical Indication tag or certificate (verify the current society and shops)."
+      },
+      {
+        "name": "Kairali — Kerala State Handicrafts Apex Co-operative Society emporiums",
+        "kind": "cooperative",
+        "district": "Statewide",
+        "note": "Government-linked craft emporiums in major towns; fixed prices and craft-certified items."
+      }
+    ],
+    "experiences": [
+      {
+        "name": "Aranmula Heritage Village / Vijnana Kalavedi",
+        "district": "Pathanamthitta",
+        "kind": "cultural-centre",
+        "note": "Cultural initiatives promoting Aranmula's crafts and arts (verify current visiting arrangements)."
+      }
+    ],
+    "buyingTips": [
+      "Insist on a tag or certificate and a written guarantee.",
+      "Prices are high; very cheap 'Aranmula mirrors' are imitations.",
+      "Take the piece in protective packing for travel."
+    ]
+  },
+  "images": [],
+  "tags": [
+    "heritage",
+    "Kerala",
+    "traditional craft",
+    "aranmula",
+    "kannadi",
+    "Pathanamthitta"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Aranmula Kannadi — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Aranmula_Kannadi"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

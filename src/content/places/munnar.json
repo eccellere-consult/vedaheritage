@@ -1,0 +1,121 @@
+{
+  "slug": "munnar",
+  "category": "places",
+  "name": "Munnar",
+  "malayalamName": "മൂന്നാർ",
+  "district": "Idukki",
+  "tagline": "Tea slopes, mist and the hills that bloom once in twelve years",
+  "summary": "Munnar in Idukki: tea estates, high-range viewpoints, Eravikulam and the Neelakurinji bloom — with the folklore of hill communities and the 12-year flower.",
+  "description": [
+    "Munnar is a hill station in the Western Ghats, set among tea estates at the meeting point of three rivers: Muthirapuzha, Nallathanni and Kundala. The name is commonly taken to mean 'three rivers'.",
+    "Visitors come for tea plantations, short treks, Eravikulam National Park and cool-weather escapes from the coast."
+  ],
+  "history": {
+    "significance": "A hill landscape reshaped by colonial-era tea planting and the later rise of Indian tea companies, and home to older tribal communities and rare high-range ecology.",
+    "timeline": [
+      {
+        "period": "1870s",
+        "event": "Land in the Kanan Devan hills is acquired for planting; John Daniel Munro, a British planter, is among the early developers."
+      },
+      {
+        "period": "Late 1800s",
+        "event": "Tea cultivation expands and plantation companies are established."
+      },
+      {
+        "period": "1902–1924",
+        "event": "The Kundala Valley Railway carries tea and supplies through the hills until it is destroyed in the great flood of 1924."
+      },
+      {
+        "period": "1964",
+        "event": "Tata Finlay, later Tata Tea, takes over the major estates."
+      },
+      {
+        "period": "2018",
+        "event": "The Neelakurinji blooms across the hills; the next mass bloom is expected around 2030."
+      }
+    ],
+    "keyFacts": [
+      "Anamudi, in Eravikulam National Park, is the highest peak in South India at about 2,695 m.",
+      "Eravikulam is the best-known home of the Nilgiri tahr.",
+      "Munnar sits at the confluence of the Muthirapuzha, Nallathanni and Kundala rivers."
+    ]
+  },
+  "folklore": {
+    "title": "The Flower That Counts Years",
+    "story": [
+      "The Neelakurinji, a shrub of the high ranges, blooms in mass roughly once every twelve years and turns the hills blue. Some hill communities, such as the Paliyan, are reported to use the blooming as a way of counting their ages.",
+      "The flower also features in Tamil Sangam poetry as a symbol of the hill landscape and of love in the mountains, giving the bloom a cultural weight beyond tourism."
+    ],
+    "note": "Local community practices should be verified with a community source before publication."
+  },
+  "spiritual": {
+    "summary": "Munnar offers a nature-based stillness: dawn mist on tea terraces, forest paths and a slow pace that suits meditation and walking in silence.",
+    "experiences": [
+      {
+        "title": "A silent dawn walk",
+        "text": "Walk through a tea estate at first light. Mist, birdsong and the pickers beginning their day make a natural practice in attention."
+      },
+      {
+        "title": "Learning from the hills' first people",
+        "text": "Hill communities such as the Muthuvan have lived here long before the plantations. Respectful, community-led visits show a different relationship with the land."
+      }
+    ],
+    "bestFor": "Nature lovers, walkers and those seeking quiet.",
+    "mindfulTips": [
+      "Stay in small, locally owned places where possible.",
+      "Leave no trace in estates and parks.",
+      "Ask permission before visiting community hamlets."
+    ]
+  },
+  "highlights": [
+    "Tea estates and tea museum",
+    "Eravikulam National Park (Nilgiri tahr)",
+    "Mattupetty and Echo Point viewpoints",
+    "Neelakurinji bloom years (verify next bloom)"
+  ],
+  "visitorInfo": {
+    "bestTime": "September to March; mist and rain are heaviest from June to August.",
+    "howToReach": "About 130 km from Kochi airport by road (roughly 4 hours); the nearest railhead is Aluva.",
+    "etiquette": [
+      "Do not litter in estates; they are working plantations.",
+      "Respect protected-area rules in Eravikulam.",
+      "Avoid plucking Neelakurinji flowers during bloom."
+    ],
+    "duration": "2–3 days"
+  },
+  "travel": {
+    "byTrain": [
+      "Munnar has no railway station. Aluva (ALY) is about 110 km away; Ernakulam (ERS) and Kottayam (KTYM) are also used as railheads."
+    ],
+    "byBus": [
+      "KSRTC operates direct services to Munnar from Ernakulam, Kottayam, Thiruvananthapuram and other cities."
+    ],
+    "byAir": [
+      "Cochin International Airport (COK) is roughly 110 km away (about 4 hours by road)."
+    ]
+  },
+  "coordinates": {
+    "lat": 10.0889,
+    "lng": 77.0595
+  },
+  "images": [],
+  "tags": [
+    "hill station",
+    "tea",
+    "Idukki",
+    "Western Ghats",
+    "nature"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Munnar — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Munnar"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

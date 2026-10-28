@@ -56,14 +56,14 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-ink/55" />
 
         <div className="relative text-center px-4 max-w-4xl mx-auto">
-          <p className="font-sans text-gold text-xs tracking-[0.35em] uppercase mb-6">
+          <p className="font-sans text-accent-light text-xs tracking-[0.35em] uppercase mb-6">
             Vavvakkavu · Kollam · Kerala
           </p>
           <h1 className="font-serif text-5xl md:text-7xl text-white leading-tight mb-4">
             Where Kerala's<br />
-            <span className="text-gold">Soul Lives</span>
+            <span className="text-accent-light">Soul Lives</span>
           </h1>
-          <div className="w-16 h-px bg-gold mx-auto my-6" />
+          <div className="w-16 h-px bg-accent mx-auto my-6" />
           <p className="font-sans text-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
             A traditional heritage villa with an Ayurvedic garden, 5 km from Amritapuri Ashram.
             Authentic Kerala. Absolute stillness. International hosting.
@@ -73,7 +73,7 @@ export default function HomePage() {
               href={SITE.airbnb}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold text-sm"
+              className="btn-accent text-sm"
             >
               Book on Airbnb
             </a>
@@ -81,7 +81,7 @@ export default function HomePage() {
               href={WA.enquiry}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline border-white text-white hover:bg-white hover:text-forest text-sm"
+              className="btn-outline border-white text-white hover:bg-white hover:text-primary text-sm"
             >
               WhatsApp Us
             </a>
@@ -96,12 +96,12 @@ export default function HomePage() {
       </section>
 
       {/* ── QUICK HIGHLIGHTS BAR ─────────────────────────────── */}
-      <section className="bg-forest text-white py-4">
+      <section className="bg-primary text-white py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/20">
             {highlights.map(h => (
               <div key={h.label} className="text-center px-4 py-2">
-                <p className="font-serif text-lg text-gold">{h.label}</p>
+                <p className="font-serif text-lg text-accent-light">{h.label}</p>
                 <p className="font-sans text-xs text-white/60 tracking-wide">{h.sub}</p>
               </div>
             ))}
@@ -110,12 +110,12 @@ export default function HomePage() {
       </section>
 
       {/* ── THREE PILLARS ────────────────────────────────────── */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="section-label">The Experience</p>
             <h2 className="section-title">Three Reasons Guests Return</h2>
-            <div className="gold-rule mx-auto" />
+            <div className="accent-rule mx-auto" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map(f => (
@@ -143,7 +143,7 @@ export default function HomePage() {
             <div>
               <p className="section-label">Our Story</p>
               <h2 className="section-title mb-4">A Kerala Family Home, Open to the World</h2>
-              <div className="gold-rule" />
+              <div className="accent-rule" />
               <p className="text-ink-mid leading-relaxed mb-4">
                 Veda Heritage is a traditional Kerala family residence in Vavvakkavu — a quiet fishing
                 and farming village on the backwaters of Kollam, where the land and the sea meet in
@@ -168,13 +168,13 @@ export default function HomePage() {
       </section>
 
       {/* ── AMRITAPURI CALLOUT ───────────────────────────────── */}
-      <section className="py-20 bg-gold-pale">
+      <section className="py-20 bg-accent-pale">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <p className="section-label">For Spiritual Guests</p>
           <h2 className="font-serif text-3xl md:text-4xl text-ink mb-4">
             The Perfect Base for Amritapuri
           </h2>
-          <div className="gold-rule mx-auto mb-6" />
+          <div className="accent-rule mx-auto mb-6" />
           <p className="text-ink-mid leading-relaxed mb-6">
             Amritapuri — the ashram of Mata Amritanandamayi (Amma) — draws 30,000–40,000 visitors
             each year from 100+ countries. The ashram's own accommodation is limited and basic.
@@ -184,7 +184,7 @@ export default function HomePage() {
           <div className="grid grid-cols-3 gap-6 mt-8 mb-8">
             {[['5 km', 'from Amritapuri'], ['12 min', 'by auto-rickshaw'], ['100+', 'countries of guests hosted']].map(([v, l]) => (
               <div key={l} className="text-center">
-                <p className="font-serif text-3xl text-forest">{v}</p>
+                <p className="font-serif text-3xl text-primary">{v}</p>
                 <p className="font-sans text-xs text-ink-mid tracking-wide mt-1">{l}</p>
               </div>
             ))}
@@ -204,17 +204,17 @@ export default function HomePage() {
       <section className="py-24 bg-ink">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-label text-gold/70">Guest Voices</p>
+            <p className="section-label text-accent-light">Guest Voices</p>
             <h2 className="font-serif text-3xl text-white">What Our Guests Say</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {testimonials.map(t => (
               <div key={t.author} className="border border-white/10 p-8">
-                <p className="text-gold text-3xl font-serif leading-none mb-4">"</p>
+                <p className="text-accent text-3xl font-serif leading-none mb-4">"</p>
                 <p className="text-white/80 italic font-serif text-lg leading-relaxed mb-6">{t.quote}</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-px bg-gold" />
-                  <p className="text-gold/70 text-sm font-sans">{t.author}</p>
+                  <div className="w-8 h-px bg-accent" />
+                  <p className="text-accent-light text-sm font-sans">{t.author}</p>
                 </div>
               </div>
             ))}
@@ -224,7 +224,7 @@ export default function HomePage() {
               href="https://www.airbnb.co.in/h/stay-near-amritapuri"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gold/60 text-sm font-sans hover:text-gold transition-colors"
+              className="text-accent-light text-sm font-sans hover:text-accent transition-colors"
             >
               Read all reviews on Airbnb ↗
             </a>
@@ -234,8 +234,7 @@ export default function HomePage() {
 
       {/* ── FINAL CTA ─────────────────────────────────────────── */}
       <section
-        className="py-24 text-center"
-        style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}
+        className="py-24 text-center bg-hero-gradient"
       >
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="font-serif text-4xl text-white mb-4">Ready to Arrive?</h2>
@@ -243,10 +242,10 @@ export default function HomePage() {
             Book directly via Airbnb or send us a WhatsApp message — we respond within the hour.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={SITE.airbnb} target="_blank" rel="noopener noreferrer" className="btn-gold text-sm">
+            <a href={SITE.airbnb} target="_blank" rel="noopener noreferrer" className="btn-accent text-sm">
               Book on Airbnb
             </a>
-            <a href={WA.book} target="_blank" rel="noopener noreferrer" className="btn-outline border-white text-white hover:bg-white hover:text-forest text-sm">
+            <a href={WA.book} target="_blank" rel="noopener noreferrer" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-sm">
               WhatsApp Us
             </a>
           </div>

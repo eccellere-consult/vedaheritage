@@ -1,0 +1,30 @@
+name: Check official links
+
+on:
+  schedule:
+    - cron: '17 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check links
+        id: check
+        run: node scripts/check-links.mjs 2>&1 | tee links.txt; exit ${PIPESTATUS[0]}
+        continue-on-error: true
+      - name: Open issue if links are broken
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create --title "Broken official links ($(date +%F))" \
+            --body "$(printf 'Weekly link check found problems:\n\n```\n%s\n```' "$(grep -E '^FAIL|broken' links.txt)")"

@@ -25,6 +25,9 @@ jobs:
       - name: Build static site
         run: npx next build
 
+      - name: Stamp build with commit SHA
+        run: echo "${{ github.sha }}" > out/version.txt
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -39,3 +42,5 @@ jobs:
             **/.git*
             **/.git*/**
 
+      - name: Verify the live site is serving this build
+        run: scripts/verify-deploy.sh "https://www.vedaheritage.co.in" "${{ github.sha }}"

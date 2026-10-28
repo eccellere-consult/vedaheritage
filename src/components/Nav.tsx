@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { WA, SITE } from '@/lib/config'
 
 const links = [
+  { href: '/discover', label: 'Discover' },
   { href: '/stay', label: 'Stay' },
   { href: '/ayurveda', label: 'Ayurveda' },
   { href: '/gallery', label: 'Gallery' },
@@ -20,14 +21,14 @@ export default function Nav() {
   const pathname = usePathname()
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-gold/20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-accent/20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
           <Link href="/" className="flex flex-col leading-none">
-            <span className="font-serif text-xl md:text-2xl text-forest tracking-wide">Veda Heritage</span>
-            <span className="font-sans text-[10px] text-gold tracking-[0.2em] uppercase mt-0.5">Vavvakkavu · Kerala</span>
+            <span className="font-serif text-xl md:text-2xl text-primary tracking-wide">Veda Heritage</span>
+            <span className="font-sans text-[10px] text-accent tracking-[0.2em] uppercase mt-0.5">Vavvakkavu · Kerala</span>
           </Link>
 
           {/* Desktop nav */}
@@ -36,7 +37,7 @@ export default function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`nav-link ${pathname === l.href ? 'text-forest font-medium' : ''}`}
+                className={`nav-link ${pathname === l.href ? 'text-primary font-medium' : ''}`}
               >
                 {l.label}
               </Link>
@@ -66,13 +67,13 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-cream border-t border-gold/20 px-4 pb-6">
+        <div className="md:hidden bg-surface border-t border-accent/20 px-4 pb-6">
           {links.map(l => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block py-3 nav-link border-b border-gold/10 last:border-0"
+              className="block py-3 nav-link border-b border-accent/10 last:border-0"
             >
               {l.label}
             </Link>

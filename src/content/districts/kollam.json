@@ -1,0 +1,69 @@
+{
+  "slug": "kollam",
+  "name": "Kollam",
+  "headquarters": "Kollam",
+  "region": "South",
+  "tagline": "The old port of Quilon and the cashew coast",
+  "summary": "Kollam: an ancient trading port on Ashtamudi Lake, with backwaters, cashew and coir industries, Munroe Island, Thenmala and nearby Amritapuri.",
+  "history": {
+    "overview": "Kollam was a prominent port, visited by merchants from Arabia and China; the Malayalam calendar (Kollavarsham) is traditionally dated from 825 CE. Portuguese, Dutch and British traders followed, leaving Thangassery's fort and lighthouse.",
+    "timeline": [
+      {
+        "period": "825 CE",
+        "event": "Kollavarsham calendar era begins, traditionally linked to Kollam."
+      },
+      {
+        "period": "13th–14th century",
+        "event": "Described as a bustling port by Marco Polo and Ibn Battuta."
+      },
+      {
+        "period": "1502",
+        "event": "Portuguese establish a trading post; Dutch and British follow."
+      }
+    ]
+  },
+  "unique": [
+    "Ashtamudi Lake, a Ramsar wetland",
+    "Cashew-processing capital",
+    "Thenmala, one of India's first planned eco-tourism destinations",
+    "Close to Amritapuri, Oachira and Veda Heritage"
+  ],
+  "bestTime": {
+    "season": "October to March",
+    "why": "Pleasant weather for boating, beaches and eco-tourism.",
+    "avoid": "Peak monsoon (June–August) for boat rides"
+  },
+  "lookFor": [
+    "Munroe Island canoe trip",
+    "Thangassery lighthouse and fort",
+    "Oachira Parabrahma Temple",
+    "Cashew and coir workshops"
+  ],
+  "highlights": [
+    "Ashtamudi Lake",
+    "Munroe Island",
+    "Thenmala eco-tourism",
+    "Oachira and Amritapuri"
+  ],
+  "festivals": [
+    "Kollam Pooram (Feb–Mar)",
+    "Oachirakali (June)",
+    "Onam boat races"
+  ],
+  "crafts": [
+    "Coir products",
+    "Cashew snacks"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kollam district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kollam_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

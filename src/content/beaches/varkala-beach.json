@@ -1,0 +1,118 @@
+{
+  "slug": "varkala-beach",
+  "category": "beaches",
+  "name": "Varkala Beach (Papanasam)",
+  "malayalamName": "വർക്കല",
+  "district": "Thiruvananthapuram",
+  "tagline": "A cliff-top beach beside a 2,000-year-old temple tradition",
+  "summary": "Varkala Beach in Thiruvananthapuram: red cliffs, the Papanasam shore, ancestral rites at Janardana Swamy Temple and the legend of Narada's bark cloth.",
+  "description": [
+    "Varkala is known for its laterite cliffs that rise directly above the Arabian Sea, with cafés and walking paths along the clifftop and a long beach below. A geological feature known as the Varkala Formation is protected as a national geo-heritage monument.",
+    "The beach is also called Papanasam, 'the destroyer of sins', and sits beside the Janardana Swamy Temple. Many Hindus come here to perform Bali, rites for departed ancestors."
+  ],
+  "history": {
+    "significance": "An ancient site of ancestral rites and the home of the Sivagiri Mutt, the base of the social reformer Sree Narayana Guru, whose teaching of 'one caste, one religion, one god for humanity' shaped modern Kerala.",
+    "timeline": [
+      {
+        "period": "Ancient (by tradition)",
+        "event": "The Janardana Swamy Temple is said to be around 2,000 years old; this is tradition rather than documented history."
+      },
+      {
+        "period": "1684",
+        "event": "The English East India Company establishes a trading post at Anjengo (Anchuthengu) near Varkala."
+      },
+      {
+        "period": "1904",
+        "event": "Sree Narayana Guru founds the Sivagiri Mutt on the hill above Varkala."
+      },
+      {
+        "period": "1928",
+        "event": "Sree Narayana Guru attains samadhi at Sivagiri."
+      }
+    ],
+    "keyFacts": [
+      "The cliffs expose the Warkalli Formation of sedimentary rock, named after Varkala.",
+      "The Geological Survey of India recognises Varkala Cliff as a national geo-heritage monument.",
+      "The annual Sivagiri pilgrimage takes place from 30 December to 1 January.",
+      "Thousands perform Bali rites at Papanasam on Karkidaka Vavu in July–August."
+    ]
+  },
+  "folklore": {
+    "title": "Narada's Bark Cloth",
+    "story": [
+      "Tradition says that sages once gathered to seek a place to perform penance. The wandering sage Narada suggested they throw a piece of bark cloth (valkalam) and settle where it fell. It landed at this spot, which came to be known as Valkalam, later Varkala.",
+      "Another local belief holds that the sea here cleanses the sins of those who bathe in it, which is how the shore earned the name Papanasam."
+    ],
+    "note": "Retold from local tradition; spelling and details vary."
+  },
+  "spiritual": {
+    "summary": "Varkala joins two kinds of spiritual experience: the ancestral rites of the Papanasam shore and the reform-minded, inclusive teaching of Sree Narayana Guru at Sivagiri.",
+    "experiences": [
+      {
+        "title": "Dawn rites at Papanasam",
+        "text": "At first light families wade into the sea to offer pindam and water for departed ancestors. Observing quietly from a respectful distance is a powerful encounter with living ritual."
+      },
+      {
+        "title": "Sivagiri Mutt",
+        "text": "A quiet hill complex dedicated to Sree Narayana Guru. Visitors can sit in the prayer hall and learn about the Guru's message of equality and education."
+      }
+    ],
+    "bestFor": "Reflective travellers, those interested in social reform, and anyone attending the ancestral rites.",
+    "mindfulTips": [
+      "Do not photograph the Bali rituals without permission.",
+      "Dress modestly when visiting the temple and Mutt.",
+      "Give the family rites space."
+    ]
+  },
+  "highlights": [
+    "Red cliffs and clifftop walk",
+    "Janardana Swamy Temple",
+    "Ancestral rites at Papanasam beach",
+    "Sunset viewpoints and yoga cafés"
+  ],
+  "visitorInfo": {
+    "bestTime": "November to March; the sea is rough during the June–August monsoon.",
+    "howToReach": "Varkala has its own railway station (about 3 km from the beach) on the Thiruvananthapuram–Kollam line; Thiruvananthapuram airport is about 55 km away.",
+    "etiquette": [
+      "Dress modestly in and near the temple.",
+      "Swim only where lifeguards indicate; currents can be strong.",
+      "Keep the cliff paths clean and avoid walking at the edge in the dark."
+    ],
+    "duration": "1–2 days"
+  },
+  "travel": {
+    "byTrain": [
+      "Varkala Sivagiri (VAK) station is about 3 km from the beach; autorickshaws are available."
+    ],
+    "byBus": [
+      "KSRTC and private buses connect Varkala with Thiruvananthapuram and Kollam."
+    ],
+    "byAir": [
+      "Thiruvananthapuram (TRV) airport is roughly 50 km away."
+    ]
+  },
+  "coordinates": {
+    "lat": 8.7379,
+    "lng": 76.7163
+  },
+  "images": [],
+  "tags": [
+    "beach",
+    "cliff",
+    "Varkala",
+    "Papanasam",
+    "Thiruvananthapuram"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Varkala — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Varkala"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

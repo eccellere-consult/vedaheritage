@@ -1,0 +1,113 @@
+{
+  "slug": "kappad-beach",
+  "category": "beaches",
+  "name": "Kappad Beach",
+  "malayalamName": "കാപ്പാട്",
+  "district": "Kozhikode",
+  "tagline": "Where Vasco da Gama is said to have landed in 1498",
+  "summary": "Kappad Beach in Kozhikode: the shore where Vasco da Gama landed in 1498, a rocky coast, Blue Flag recognition and the lore of the Malabar spice trade.",
+  "description": [
+    "Kappad is a rocky, tranquil beach north of Kozhikode on the Malabar coast, marked by a memorial to the arrival of the Portuguese navigator Vasco da Gama in 1498. The landing opened the sea route between Europe and India.",
+    "The beach has been recognised under the international Blue Flag programme for its clean-beach management (verify current status)."
+  ],
+  "history": {
+    "significance": "The shore associated with the 1498 arrival of Vasco da Gama, an event that opened the direct sea route between Europe and India and began the colonial era on the Malabar coast.",
+    "timeline": [
+      {
+        "period": "14th–15th century",
+        "event": "Kozhikode (Calicut) is a leading spice port, visited by Ibn Battuta in the 1340s and by Chinese fleets in the early 1400s."
+      },
+      {
+        "period": "1498",
+        "event": "Vasco da Gama's ships anchor near Kappad; the Zamorin of Calicut receives the Portuguese."
+      },
+      {
+        "period": "2020",
+        "event": "Kappad is certified under the Blue Flag programme as one of India's first beaches to be recognised."
+      }
+    ],
+    "keyFacts": [
+      "The Zamorin of Calicut was the ruler of the port at the time of da Gama's arrival.",
+      "The memorial stone at Kappad marks the traditional landing place.",
+      "Kozhikode's historic multi-faith character is shown in sites such as the Mishkal Mosque and the Tali Shiva Temple."
+    ]
+  },
+  "folklore": {
+    "title": "The Landing That Changed the Spice Trade",
+    "story": [
+      "Local memory holds that the first European ships anchored offshore and a small party came ashore here, to be received by the Zamorin of Calicut's officials. The meeting set off centuries of trade, rivalry and colonial change on the coast.",
+      "Fishermen tell that the rocks at Kappad were the ones that guided boats to land in earlier centuries, and the memorial stone is now one of the town's best-loved landmarks."
+    ],
+    "note": "The fishermen's account should be confirmed with a local source before publication."
+  },
+  "spiritual": {
+    "summary": "Kappad is a place for reflection on trade, encounter and change, with Kozhikode's mosques and temples nearby to deepen the experience.",
+    "experiences": [
+      {
+        "title": "Sunrise at the rocks",
+        "text": "Sit on the rocks as the tide rolls in and consider the long chain of meetings between cultures on this coast."
+      },
+      {
+        "title": "Kozhikode's sacred sites",
+        "text": "In the old town, the Mishkal Mosque and the Tali temple show Kerala's tradition of living side by side."
+      }
+    ],
+    "bestFor": "Heritage-minded travellers and those who value coastal calm.",
+    "mindfulTips": [
+      "Swim only where it is signposted as safe.",
+      "Take your litter away with you.",
+      "Be respectful at places of worship in the old town."
+    ]
+  },
+  "highlights": [
+    "Vasco da Gama landing memorial",
+    "Rocky coastline and sunset views",
+    "Kozhikode halwa and Malabar cuisine nearby",
+    "Mishkal Mosque and Kozhikode old town nearby"
+  ],
+  "visitorInfo": {
+    "bestTime": "October to March.",
+    "howToReach": "About 16 km north of Kozhikode city; the airport at Karipur is about 40 km away.",
+    "etiquette": [
+      "Swim only in designated areas.",
+      "Take litter back with you; the beach is managed for cleanliness.",
+      "Be respectful of nearby places of worship."
+    ],
+    "duration": "Half day"
+  },
+  "travel": {
+    "byTrain": [
+      "Koyilandy (QLD) and Kozhikode (CLT) are the nearest stations; from either, take a bus or taxi to Kappad."
+    ],
+    "byBus": [
+      "KSRTC and private buses run on the Kozhikode–Koyilandy road; ask for the Kappad stop."
+    ],
+    "byAir": [
+      "Calicut International Airport (CCJ) at Karipur is roughly 40 km away."
+    ]
+  },
+  "coordinates": {
+    "lat": 11.3811,
+    "lng": 75.7194
+  },
+  "images": [],
+  "tags": [
+    "beach",
+    "Kozhikode",
+    "Malabar",
+    "history",
+    "Vasco da Gama"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kappad — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kappad"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

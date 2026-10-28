@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NEXT_PUBLIC_SHOW_DRAFTS=1 next dev",
     "build": "next build",
-    "start": "next start"
+    "build:preview": "NEXT_PUBLIC_SHOW_DRAFTS=1 next build",
+    "validate": "node scripts/validate-content.mjs",
+    "start": "next start",
+    "agents:scout": "node agents/run.mjs scout",
+    "agents:enrich": "node agents/run.mjs enrich",
+    "agents:verify": "node agents/run.mjs verify",
+    "agents:pipeline": "node agents/run.mjs pipeline",
+    "agents:test": "node agents/test/mock-pipeline.test.mjs && node agents/test/providers.test.mjs"
   },
   "dependencies": {
     "next": "^16.2.4",
@@ -13,12 +20,15 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^1.3.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.19",
+    "openai": "^7.45.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "zod": "^4.6.7"
   }
 }

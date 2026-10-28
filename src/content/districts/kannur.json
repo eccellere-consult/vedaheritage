@@ -1,0 +1,68 @@
+{
+  "slug": "kannur",
+  "name": "Kannur",
+  "headquarters": "Kannur",
+  "region": "North",
+  "tagline": "The land of Theyyam and looms",
+  "summary": "Kannur: Theyyam ritual art, St Angelo Fort, Muzhappilangad drive-in beach, handloom weaving, Arakkal Museum and Parassinikkadavu.",
+  "history": {
+    "overview": "Kannur's coast hosted the Kolathiri rulers, the Arakkal Muslim kingdom and Portuguese, Dutch and British forts. Theyyam, a living ritual art, thrives in its village shrines.",
+    "timeline": [
+      {
+        "period": "1505",
+        "event": "Portuguese build St Angelo Fort."
+      },
+      {
+        "period": "17th–18th century",
+        "event": "Arakkal kingdom prominent."
+      },
+      {
+        "period": "Present",
+        "event": "Theyyam season draws visitors."
+      }
+    ]
+  },
+  "unique": [
+    "Theyyam rituals in village shrines",
+    "St Angelo Fort",
+    "Muzhappilangad drive-in beach",
+    "Handloom and beedi history"
+  ],
+  "bestTime": {
+    "season": "October to April",
+    "why": "Theyyam season (Dec–Apr) and beach weather.",
+    "avoid": "June–August (monsoon)"
+  },
+  "lookFor": [
+    "Theyyam performance",
+    "St Angelo Fort",
+    "Muzhappilangad beach",
+    "Parassinikkadavu Muthappan Temple"
+  ],
+  "highlights": [
+    "Theyyam",
+    "St Angelo Fort",
+    "Arakkal Museum",
+    "Payyambalam beach"
+  ],
+  "festivals": [
+    "Theyyam season (Dec–Apr)",
+    "Onam"
+  ],
+  "crafts": [
+    "Handloom",
+    "Coir"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kannur district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kannur_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

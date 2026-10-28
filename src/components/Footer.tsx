@@ -10,8 +10,8 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <h3 className="font-serif text-2xl text-white mb-1">Veda Heritage</h3>
-            <p className="text-gold text-xs tracking-[0.2em] uppercase mb-4">Vavvakkavu · Kerala</p>
-            <div className="w-10 h-px bg-gold mb-4" />
+            <p className="text-accent-light text-xs tracking-[0.2em] uppercase mb-4">Vavvakkavu · Kerala</p>
+            <div className="w-10 h-px bg-accent mb-4" />
             <p className="text-white/60 text-sm leading-relaxed">
               A traditional Kerala heritage villa where ancient Ayurvedic wisdom meets timeless
               hospitality — 5 km from Amritapuri Ashram.
@@ -20,15 +20,19 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <p className="section-label text-gold/70 mb-4">Explore</p>
+            <p className="section-label text-accent-light/70 mb-4">Explore</p>
             <div className="flex flex-col gap-2">
               {[
+                ['/discover', 'Discover Kerala'],
+                ['/kerala', 'Kerala History & Districts'],
+                ['/stories', 'Traveller Stories'],
+                ['/travel', 'Kerala Travel Planner'],
                 ['/stay', 'Your Stay'],
                 ['/ayurveda', 'Ayurveda'],
                 ['/location', 'Location & How to Reach'],
                 ['/contact', 'Book & Contact'],
               ].map(([href, label]) => (
-                <Link key={href} href={href} className="text-white/60 text-sm hover:text-gold transition-colors">
+                <Link key={href} href={href} className="text-white/60 text-sm hover:text-accent-light transition-colors">
                   {label}
                 </Link>
               ))}
@@ -36,7 +40,7 @@ export default function Footer() {
                 href="https://www.airbnb.co.in/h/stay-near-amritapuri"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/60 text-sm hover:text-gold transition-colors"
+                className="text-white/60 text-sm hover:text-accent-light transition-colors"
               >
                 Book on Airbnb ↗
               </a>
@@ -45,7 +49,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="section-label text-gold/70 mb-4">Contact</p>
+            <p className="section-label text-accent-light/70 mb-4">Contact</p>
             <div className="flex flex-col gap-3 text-sm text-white/60">
               <div>
                 <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Address</p>
@@ -54,13 +58,13 @@ export default function Footer() {
               <div>
                 <p className="text-white/40 text-xs uppercase tracking-wider mb-1">WhatsApp / Phone</p>
                 {/* Replace with actual number */}
-                <a href={WA.base} className="hover:text-gold transition-colors">
+                <a href={WA.base} className="hover:text-accent-light transition-colors">
                   {SITE.phoneDisplay}
                 </a>
               </div>
               <div>
                 <p className="text-white/40 text-xs uppercase tracking-wider mb-1">Email</p>
-                <a href="mailto:stay@vedaheritage.co.in" className="hover:text-gold transition-colors">
+                <a href="mailto:stay@vedaheritage.co.in" className="hover:text-accent-light transition-colors">
                   stay@vedaheritage.co.in
                 </a>
               </div>

@@ -1,0 +1,68 @@
+{
+  "slug": "palakkad",
+  "name": "Palakkad",
+  "headquarters": "Palakkad",
+  "region": "Central",
+  "tagline": "The gateway through the Western Ghats",
+  "summary": "Palakkad: the Palakkad Gap, rice fields, Silent Valley, Kalpathy agraharams, Palakkad Fort and Nelliyampathy hills.",
+  "history": {
+    "overview": "The Palakkad Gap has been Kerala's historic gateway to Tamil Nadu. The district's Tamil Brahmin agraharams, Tipu Sultan's fort and Silent Valley mark its layered history.",
+    "timeline": [
+      {
+        "period": "Ancient",
+        "event": "Trade route through the Palakkad Gap."
+      },
+      {
+        "period": "1766",
+        "event": "Hyder Ali of Mysore captures Palakkad; the fort is built in the 1760s."
+      },
+      {
+        "period": "Present",
+        "event": "Known as Kerala's granary."
+      }
+    ]
+  },
+  "unique": [
+    "Rice granary of Kerala",
+    "Silent Valley National Park",
+    "Kalpathy agraharam and chariot festival",
+    "Palakkad Fort"
+  ],
+  "bestTime": {
+    "season": "October to February",
+    "why": "Cooler, drier; hot in March–May.",
+    "avoid": "April–May (heat)"
+  },
+  "lookFor": [
+    "Kalpathy Ratholsavam",
+    "Malampuzha dam",
+    "Silent Valley forest",
+    "Nelliyampathy plantations"
+  ],
+  "highlights": [
+    "Palakkad Fort",
+    "Silent Valley",
+    "Nelliyampathy",
+    "Malampuzha"
+  ],
+  "festivals": [
+    "Kalpathy Ratholsavam (Nov)",
+    "Nenmara Vallangi Vela (Mar–Apr)"
+  ],
+  "crafts": [
+    "Palm products",
+    "Cotton handloom"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Palakkad district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Palakkad_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

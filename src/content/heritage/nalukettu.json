@@ -1,0 +1,166 @@
+{
+  "slug": "nalukettu",
+  "category": "heritage",
+  "name": "Nalukettu — the Courtyard House of Kerala",
+  "malayalamName": "നാലുകെട്ട്",
+  "district": "Statewide",
+  "tagline": "A four-winged house around an open courtyard, built for climate and family",
+  "summary": "Nalukettu, the traditional courtyard house of Kerala: design, history, regional palaces and homes to visit, and where to see its craftsmanship.",
+  "description": [
+    "A nalukettu has four blocks (nalu kettu) around a central open courtyard (nadumuttam). The courtyard brings in light and rain, ventilates the house and often holds a tulsi platform. Steeply sloped tiled roofs, deep verandas and carved timber suit Kerala's monsoon climate.",
+    "Larger houses add a second courtyard (ettukettu) or a third (pathinaarukettu). Many nalukettu homes belonged to Nair, Namboothiri and other families who lived as a joint household, the tharavad."
+  ],
+  "history": {
+    "significance": "A climate-adapted architecture and social form that still shapes how Kerala imagines the 'traditional home'.",
+    "timeline": [
+      {
+        "period": "Medieval period",
+        "event": "Courtyard houses emerge among landed families, shaped by thachu shastra (traditional carpentry and architecture)."
+      },
+      {
+        "period": "17th–19th century",
+        "event": "Royal palaces such as Padmanabhapuram and later Koyikkal showcase carved ceilings and mural traditions in the nalukettu plan."
+      },
+      {
+        "period": "20th century",
+        "event": "Land reform and the end of joint families lead many tharavads to be divided or demolished; heritage conservation begins."
+      }
+    ],
+    "keyFacts": [
+      "The plan follows thachu shastra, with the courtyard as the 'brahmasthan', the sacred centre.",
+      "Rainwater from the open courtyard drains to a stone basin.",
+      "The pooja room is traditionally placed in the north-east.",
+      "Teak, rosewood and jackwood joinery often uses little or no metal."
+    ]
+  },
+  "folklore": {
+    "title": "The House that Breathes",
+    "story": [
+      "Carpenters say a good nalukettu is like a living being, with the courtyard as its heart and the rafters as its ribs. The master carpenter (asari) would mark the measurements by tradition and begin building on an auspicious day.",
+      "Tharavad families speak of the house as the shared home of the ancestors; the household deity and the ancestral lamp stay with the oldest family branch."
+    ],
+    "note": "Retold from carpenters' and families' oral tradition; practice varies."
+  },
+  "spiritual": {
+    "summary": "Stepping into a nalukettu courtyard, many visitors feel a settled quiet.",
+    "experiences": [
+      {
+        "title": "Sit in the nadumuttam",
+        "text": "Visit a conserved tharavad or museum and sit quietly in the courtyard, noticing light and breeze."
+      },
+      {
+        "title": "Watch carpenters work",
+        "text": "Some craft centres demonstrate traditional carpentry and joinery."
+      }
+    ],
+    "bestFor": "Architecture lovers and slow travellers.",
+    "mindfulTips": [
+      "Remove footwear where asked.",
+      "Photograph only with permission in private homes."
+    ]
+  },
+  "highlights": [
+    "Open central courtyard (nadumuttam)",
+    "Carved timber ceilings and pillars",
+    "Deep verandas and sloping tile roofs",
+    "Thachu shastra, traditional architecture"
+  ],
+  "visitorInfo": {
+    "bestTime": "October to March; the courtyard in the monsoon is also memorable if you can visit during light rain.",
+    "howToReach": "Palaces and museums are in Thiruvananthapuram, Ernakulam and Kozhikode; heritage stays are listed by Kerala Tourism.",
+    "etiquette": [
+      "Do not touch carved surfaces.",
+      "Respect private homes and stay rules.",
+      "Ask before flash photography."
+    ],
+    "duration": "Half to full day"
+  },
+  "heritage": {
+    "localName": "നാലുകെട്ട് (nalukettu)",
+    "materials": "Teak, rosewood, jackwood, laterite, clay tiles",
+    "whereToSee": [
+      {
+        "name": "Padmanabhapuram Palace",
+        "district": "Kanniyakumari (Tamil Nadu), managed by Kerala Archaeology",
+        "kind": "heritage-home",
+        "note": "Timber palace of the Travancore kings with carved ceilings; a short drive across the Kerala border from Thiruvananthapuram."
+      },
+      {
+        "name": "Koyikkal Palace Museum, Nedumangad",
+        "district": "Thiruvananthapuram",
+        "kind": "heritage-home",
+        "note": "Nalukettu-style palace with a folklore and numismatics museum run by the State Archaeology Department."
+      },
+      {
+        "name": "Kuthiramalika (Puthenmalika) Palace Museum",
+        "district": "Thiruvananthapuram",
+        "kind": "heritage-home",
+        "note": "Travancore palace with carved horse brackets, in the Padmanabhaswamy Temple precinct."
+      },
+      {
+        "name": "Hill Palace Museum, Tripunithura",
+        "district": "Ernakulam",
+        "kind": "heritage-home",
+        "note": "Former Cochin royal residence set in a hill-top campus with a museum of royal artefacts."
+      }
+    ],
+    "whereToBuy": [
+      {
+        "name": "Heritage and homestay listings",
+        "kind": "online",
+        "district": "Statewide",
+        "note": "Use Kerala Tourism's classified listings to find registered heritage homes and homestays rather than unverified brokers.",
+        "url": "https://www.keralatourism.org/"
+      },
+      {
+        "name": "Surabhi — Handicrafts Development Corporation of Kerala emporiums",
+        "kind": "emporium",
+        "district": "Statewide",
+        "note": "State-run emporiums selling metalcraft, wood carving, coir and handloom; good for fixed-price first purchases."
+      }
+    ],
+    "experiences": [
+      {
+        "name": "Kerala Folklore Museum, Thripunithura",
+        "district": "Ernakulam",
+        "kind": "museum",
+        "note": "Private museum housed in a building assembled from traditional timber architecture; displays household objects, lamps and ritual items."
+      },
+      {
+        "name": "Sargaalaya — Kerala Arts and Crafts Village, Iringal",
+        "district": "Kozhikode",
+        "kind": "cultural-centre",
+        "note": "Craft village near Vadakara where artisans work and sell; allow half a day."
+      },
+      {
+        "name": "Registered tharavad homestays",
+        "district": "Statewide",
+        "kind": "heritage-home",
+        "note": "Search Kerala Tourism's approved homestay listings for nalukettu-style properties (verify each listing)."
+      }
+    ],
+    "buyingTips": [
+      "For architectural items, buy only reproductions; trade in antique doors and pillars is restricted.",
+      "If commissioning a home, work with a master carpenter and an architect experienced in thachu shastra."
+    ]
+  },
+  "images": [],
+  "tags": [
+    "heritage",
+    "Kerala",
+    "traditional craft",
+    "nalukettu"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Nalukettu — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Nalukettu"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

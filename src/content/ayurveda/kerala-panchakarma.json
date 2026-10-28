@@ -1,0 +1,113 @@
+{
+  "slug": "kerala-panchakarma",
+  "category": "ayurveda",
+  "name": "Panchakarma in Kerala",
+  "malayalamName": "പഞ്ചകർമ്മ",
+  "district": "Statewide",
+  "tagline": "The five-fold detox tradition at the heart of Kerala Ayurveda",
+  "summary": "Panchakarma in Kerala: how the five-fold Ayurvedic detox works, what a genuine programme includes, who should avoid it, and the Ashtavaidya tradition behind it.",
+  "description": [
+    "Panchakarma is a classical Ayurvedic programme of preparatory therapies (oleation and sweating) followed by cleansing procedures, intended to rebalance the body. In Kerala it is practised in hospitals, ashrams and retreats, usually over seven to twenty-eight days.",
+    "A genuine programme begins with a consultation by a qualified Ayurvedic physician (BAMS or equivalent), with diet, rest and treatments adjusted to the individual's constitution and season."
+  ],
+  "history": {
+    "significance": "Panchakarma draws on classical Sanskrit texts such as the Charaka Samhita and the Ashtanga Hridayam. Kerala preserved and adapted the practice through the Ashtavaidya families and institutions such as Kottakkal Arya Vaidya Sala.",
+    "timeline": [
+      {
+        "period": "Early centuries CE",
+        "event": "The Charaka Samhita and Sushruta Samhita, foundational Ayurvedic texts, are compiled."
+      },
+      {
+        "period": "Medieval period",
+        "event": "Vagbhata's Ashtanga Hridayam becomes the key text followed in Kerala's Ayurvedic tradition."
+      },
+      {
+        "period": "1902",
+        "event": "P. S. Varier founds the Arya Vaidya Sala in Kottakkal, which brings classical Ayurveda into an organised institution."
+      },
+      {
+        "period": "Late 20th century",
+        "event": "Kerala promotes Ayurveda tourism and introduces accreditation such as the Green Leaf and Olive Leaf schemes for centres."
+      }
+    ],
+    "keyFacts": [
+      "Panchakarma means 'five actions', a set of cleansing procedures given after preparatory therapies.",
+      "Kerala's tradition includes distinctive treatments such as pizhichil and njavara kizhi.",
+      "Accredited centres are listed by Kerala Tourism."
+    ]
+  },
+  "folklore": {
+    "title": "The Ashtavaidyas",
+    "story": [
+      "Kerala's classical Ayurveda is closely linked to the Ashtavaidyas, eight physician families whose lineage is traditionally traced back to the sage Parashurama, who is said to have invited them to settle the land he reclaimed from the sea.",
+      "These families are remembered for their mastery of Sanskrit medical texts and for passing knowledge from guru to student. Many Kerala treatments and oil formulations are said to descend from their practice."
+    ],
+    "note": "Lineage details vary; confirm with a recognised Ashtavaidya source."
+  },
+  "spiritual": {
+    "summary": "Ayurveda treats health as balance of body, mind and spirit, and Kerala programmes build in rest, silence and routine.",
+    "experiences": [
+      {
+        "title": "Shirodhara as stillness",
+        "text": "A stream of warm oil is poured over the forehead in a slow rhythm. Many guests describe it as a deep meditation."
+      },
+      {
+        "title": "Dinacharya, the daily routine",
+        "text": "A good programme restructures the day: early waking, simple meals and quiet evenings. The routine is itself part of the practice."
+      }
+    ],
+    "bestFor": "Guests who want rest, reflection and a gentle reset.",
+    "mindfulTips": [
+      "Switch off screens during treatment days.",
+      "Eat as advised and rest after treatments.",
+      "Choose a centre that offers a doctor's consultation."
+    ]
+  },
+  "highlights": [
+    "Abhyanga, shirodhara and kizhi therapies",
+    "Seasonal timing — monsoon is a traditional season",
+    "Medicinal gardens and oil preparation",
+    "Consultation-based, individual programmes"
+  ],
+  "visitorInfo": {
+    "bestTime": "Monsoon (June–August) is traditionally preferred; programmes run year-round.",
+    "howToReach": "Available across Kerala; choose a centre approved by the Department of Ayurveda or Kerala Tourism's accreditation scheme.",
+    "etiquette": [
+      "Disclose medical conditions and medicines at the first consultation.",
+      "Treatments are not recommended in certain conditions, including pregnancy; seek medical advice.",
+      "Follow dietary instructions during and after the programme."
+    ],
+    "duration": "7–28 days"
+  },
+  "travel": {
+    "byTrain": [
+      "Choose a centre near a major station such as Thiruvananthapuram, Kollam, Ernakulam or Kozhikode."
+    ],
+    "byBus": [
+      "KSRTC connects all districts; ask your centre about pick-up."
+    ],
+    "byAir": [
+      "Kerala's airports at Thiruvananthapuram, Kochi and Kozhikode serve most centres."
+    ]
+  },
+  "images": [],
+  "tags": [
+    "Ayurveda",
+    "Panchakarma",
+    "wellness",
+    "Kerala",
+    "therapy"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Ayurveda — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ayurveda"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

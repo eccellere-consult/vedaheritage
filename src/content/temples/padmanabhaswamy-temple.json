@@ -1,0 +1,118 @@
+{
+  "slug": "padmanabhaswamy-temple",
+  "category": "temples",
+  "name": "Sree Padmanabhaswamy Temple",
+  "malayalamName": "ശ്രീ പദ്മനാഭസ്വാമി ക്ഷേത്രം",
+  "district": "Thiruvananthapuram",
+  "tagline": "The reclining Vishnu at the heart of the Travancore capital",
+  "summary": "Sree Padmanabhaswamy Temple in Thiruvananthapuram: Dravidian-Kerala architecture, a reclining Vishnu, strict dress code and the legend of its founding.",
+  "description": [
+    "Sree Padmanabhaswamy Temple stands inside the old fort of Thiruvananthapuram and is dedicated to Vishnu in his reclining form, Anantha Padmanabha, resting on the serpent Ananta. The temple is closely tied to the identity of the former Travancore kingdom, whose rulers dedicated the realm to the deity.",
+    "The sanctum is entered through three doors, through which the deity is seen in parts: the face and chest, the navel and Brahma, and the feet. The gopuram, corridors and carved pillars combine Dravidian and Kerala temple styles."
+  ],
+  "history": {
+    "significance": "One of the 108 Divya Desams of the Vaishnava tradition and the spiritual seat of the Travancore royal house, whose rulers governed as 'Padmanabha Dasa', servants of the deity.",
+    "timeline": [
+      {
+        "period": "8th–9th century",
+        "event": "The temple is praised in the hymns of the Alvar saint Nammalvar, placing it among the 108 Divya Desams."
+      },
+      {
+        "period": "18th century",
+        "event": "King Marthanda Varma oversees major reconstruction and expansion of the temple."
+      },
+      {
+        "period": "1750",
+        "event": "Marthanda Varma dedicates the kingdom to Sree Padmanabha in the Thrippadidanam ceremony; later rulers style themselves Padmanabha Dasa."
+      },
+      {
+        "period": "2011–2020",
+        "event": "An inventory of the temple's vaults, ordered by the Supreme Court, draws worldwide attention; in 2020 the Court upholds the former royal family's role in managing the temple."
+      }
+    ],
+    "keyFacts": [
+      "The deity is seen in parts through three doors of the sanctum.",
+      "The two annual festivals, Alpashi (October–November) and Painkuni (March–April), end with an Aarattu procession to the sea at Shankhumukham.",
+      "The temple lies inside the East Fort area, the heart of the old Travancore capital."
+    ]
+  },
+  "folklore": {
+    "title": "The Child, the Tree and the Sage",
+    "story": [
+      "Local tradition tells of a devout sage, Divakara Muni (also remembered as Vilwamangalath Swamiyar), who prayed to see Vishnu. The god appeared to him as a mischievous child. When the sage tried to hold the child, the boy slipped away and disappeared into a tree.",
+      "The tree is said to have fallen and taken the form of Vishnu reclining on Ananta, stretching across a vast distance. The sage asked the deity to become smaller so that he could be worshipped, and the form was reduced until it could be seen through the three doors that devotees use today."
+    ],
+    "note": "Retold from local tradition; versions differ between sources."
+  },
+  "spiritual": {
+    "summary": "Darshan here is quiet, ordered and deeply Vaishnava: dawn rituals, lamplit corridors and Vishnu in repose invite stillness rather than spectacle.",
+    "experiences": [
+      {
+        "title": "Early-morning darshan",
+        "text": "Arrive before sunrise for the first darshan. The cooler hours, the sound of chanting and the oil lamps make this the most contemplative time to visit."
+      },
+      {
+        "title": "The Aarattu procession",
+        "text": "During Alpashi and Painkuni the deity is carried in procession to the sea. Watching the procession pass through the old fort streets is a rare living link to the royal-devotional tradition of Travancore."
+      }
+    ],
+    "bestFor": "Devotees and quiet-minded travellers. Photography is not allowed inside.",
+    "mindfulTips": [
+      "Visit without a fixed schedule; queues move slowly and are part of the experience.",
+      "Leave devices and leather items in the cloakroom and stay present.",
+      "Sit for a few minutes in the corridor after darshan before leaving."
+    ]
+  },
+  "highlights": [
+    "Reclining Vishnu seen through three doors",
+    "Dravidian–Kerala gopuram and carved corridors",
+    "Part of the Travancore royal heritage",
+    "Twice-yearly Aarattu processions (verify current dates)"
+  ],
+  "visitorInfo": {
+    "bestTime": "October to March for cooler weather; arrive early morning for shorter queues.",
+    "howToReach": "Inside the East Fort area of Thiruvananthapuram; the railway station and bus stand are a short drive away.",
+    "etiquette": [
+      "Traditional dress is required: mundu/dhoti for men, saree or long skirt and blouse for women.",
+      "Entry to the inner temple is restricted to Hindus.",
+      "Leather items, mobile phones and cameras are not permitted inside; use the cloakroom.",
+      "Follow temple staff instructions and keep silence in the sanctum."
+    ],
+    "duration": "1–2 hours"
+  },
+  "travel": {
+    "byTrain": [
+      "Thiruvananthapuram Central (TVC) is only a few kilometres away; prepaid taxis and autorickshaws wait outside the station."
+    ],
+    "byBus": [
+      "KSRTC Thampanoor (Thiruvananthapuram Central) bus station is close by, with city buses to East Fort."
+    ],
+    "byAir": [
+      "Thiruvananthapuram International Airport (TRV) is roughly 5–6 km away."
+    ]
+  },
+  "coordinates": {
+    "lat": 8.4828,
+    "lng": 76.9436
+  },
+  "images": [],
+  "tags": [
+    "temple",
+    "Vishnu",
+    "Thiruvananthapuram",
+    "Travancore",
+    "heritage"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Padmanabhaswamy Temple — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Padmanabhaswamy_Temple"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

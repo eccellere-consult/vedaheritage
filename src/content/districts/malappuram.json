@@ -1,0 +1,68 @@
+{
+  "slug": "malappuram",
+  "name": "Malappuram",
+  "headquarters": "Malappuram",
+  "region": "North",
+  "tagline": "A land of learning, football and the Malabar coast",
+  "summary": "Malappuram: Tirur and Thunchan Parambu, Kottakkal Arya Vaidya Sala, Nilambur teak, Ponnani's old mosque and the historic Mamankam site.",
+  "history": {
+    "overview": "Malappuram is rooted in the Zamorin's Malabar and the old port of Ponnani. Thunchath Ezhuthachan, called the father of modern Malayalam, is associated with Tirur.",
+    "timeline": [
+      {
+        "period": "16th century",
+        "event": "Thunchath Ezhuthachan writes the Malayalam Ramayana."
+      },
+      {
+        "period": "1902",
+        "event": "Arya Vaidya Sala founded at Kottakkal."
+      },
+      {
+        "period": "1969",
+        "event": "Malappuram district is formed."
+      }
+    ]
+  },
+  "unique": [
+    "Kottakkal Ayurveda tradition",
+    "Nilambur teak and the Teak Museum",
+    "Ponnani's Islamic scholarship",
+    "Mamankam heritage at Thirunavaya"
+  ],
+  "bestTime": {
+    "season": "October to March",
+    "why": "Pleasant weather for plantations and beaches.",
+    "avoid": "June–August (monsoon)"
+  },
+  "lookFor": [
+    "Thunchan Parambu",
+    "Kottakkal Arya Vaidya Sala",
+    "Nilambur Teak Museum",
+    "Ponnani Juma Masjid"
+  ],
+  "highlights": [
+    "Kottakkal",
+    "Nilambur",
+    "Ponnani",
+    "Thirunavaya"
+  ],
+  "festivals": [
+    "Mamankam heritage events",
+    "Nilambur Pattu"
+  ],
+  "crafts": [
+    "Mats and baskets",
+    "Ayurveda medicines"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Malappuram district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Malappuram_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}
