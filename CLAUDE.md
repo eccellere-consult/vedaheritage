@@ -1,6 +1,6 @@
 # Veda Heritage — project context for Claude
 
-**What this is:** vedaheritage.co.in — a Next.js 16 static export (`output: 'export'`) deployed to Hostinger by GitHub Actions FTP.
+**What this is:** vedaheritage.co.in — a Next.js 16 static export (`output: 'export'`) built by GitHub Actions and deployed to Hostinger via hPanel Git (the `deploy` branch holds only built files; FTP is a manual fallback).
 Two roles in one site: (1) a boutique heritage stay near Amritapuri, Vavvakkavu, Kollam; (2) **Discover Kerala**, a living guide to
 Kerala's temples, places, beaches, backwaters, heritage items, Ayurveda, history and 14 districts.
 Owner/author: Eccellere (management-consulting audience for plans and reports; Word/PPT deliverables use Eccellere standards).
@@ -8,7 +8,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 ## Read first
 - `docs/SITE_PLAN.md` — vision, scope, roadmap, KPIs, and the slot for the business plan (**business plan not yet in repo — ask the owner to reshare**).
 - `docs/CONTENT_OPERATIONS.md` — editorial workflow, twice-weekly review, story/photo moderation, setup.
-- `docs/DEPLOYMENT.md` — how deploys work and how to recover from a 404 or failed verification.
+- `docs/DEPLOYMENT.md` — how deploys work (hPanel Git), one-time setup, and recovery from a 404.
 - `agents/README.md` — Scout → Enricher → Verifier agents, safeguards, providers.
 
 ## Standards (keep consistent)

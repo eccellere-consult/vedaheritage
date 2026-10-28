@@ -1,14 +1,24 @@
-name: Deploy to Hostinger
+name: Build and publish site (hPanel Git deploy)
+
+# Builds the static site and publishes ONLY the built files to the `deploy` branch.
+# Hostinger hPanel > Advanced > Git pulls that branch into the domain's folder
+# (auto-deploy via a GitHub webhook). The repo's source never reaches the web server.
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+permissions:
+  contents: write
 
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,22 +46,23 @@ jobs:
           retention-days: 14
           include-hidden-files: true
 
-      - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftp
-          local-dir: ./out/
-          # Where the files go on the FTP server. Override WITHOUT a code change by setting the repo
-          # variable FTP_SERVER_DIR (Settings → Secrets and variables → Actions → Variables),
-          # e.g. /public_html/ if this domain is the plan's primary domain. See docs/DEPLOYMENT.md.
-          server-dir: ${{ vars.FTP_SERVER_DIR || '/domains/vedaheritage.co.in/public_html/' }}
-          exclude: |
-            **/.git*
-            **/.git*/**
+      - name: Publish built site to the deploy branch
+        env:
+          REPO: ${{ github.repository }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SHA: ${{ github.sha }}
+        run: |
+          cd out
+          git init -q -b deploy
+          git config user.name "veda-deploy-bot"
+          git config user.email "deploy-bot@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Build of ${SHA}"
+          git push --force "https://x-access-token:${TOKEN}@github.com/${REPO}.git" deploy
+          echo "Published build ${SHA} to branch 'deploy'."
 
-      - name: Verify the live site is serving this build
+      - name: Verify Hostinger is serving this build
+        # hPanel Git pulls on the GitHub webhook; allow up to ~6 minutes.
+        env:
+          VERIFY_ATTEMPTS: '18'
         run: scripts/verify-deploy.sh "${{ vars.SITE_URL || 'https://www.vedaheritage.co.in' }}" "${{ github.sha }}"
