@@ -28,6 +28,14 @@ jobs:
       - name: Stamp build with commit SHA
         run: echo "${{ github.sha }}" > out/version.txt
 
+      - name: Keep a downloadable copy of the built site (emergency manual upload)
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: out/
+          retention-days: 14
+          include-hidden-files: true
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -37,10 +45,13 @@ jobs:
           port: 21
           protocol: ftp
           local-dir: ./out/
-          server-dir: /domains/vedaheritage.co.in/public_html/
+          # Where the files go on the FTP server. Override WITHOUT a code change by setting the repo
+          # variable FTP_SERVER_DIR (Settings → Secrets and variables → Actions → Variables),
+          # e.g. /public_html/ if this domain is the plan's primary domain. See docs/DEPLOYMENT.md.
+          server-dir: ${{ vars.FTP_SERVER_DIR || '/domains/vedaheritage.co.in/public_html/' }}
           exclude: |
             **/.git*
             **/.git*/**
 
       - name: Verify the live site is serving this build
-        run: scripts/verify-deploy.sh "https://www.vedaheritage.co.in" "${{ github.sha }}"
+        run: scripts/verify-deploy.sh "${{ vars.SITE_URL || 'https://www.vedaheritage.co.in' }}" "${{ github.sha }}"

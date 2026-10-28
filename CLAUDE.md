@@ -8,6 +8,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 ## Read first
 - `docs/SITE_PLAN.md` — vision, scope, roadmap, KPIs, and the slot for the business plan (**business plan not yet in repo — ask the owner to reshare**).
 - `docs/CONTENT_OPERATIONS.md` — editorial workflow, twice-weekly review, story/photo moderation, setup.
+- `docs/DEPLOYMENT.md` — how deploys work and how to recover from a 404 or failed verification.
 - `agents/README.md` — Scout → Enricher → Verifier agents, safeguards, providers.
 
 ## Standards (keep consistent)
