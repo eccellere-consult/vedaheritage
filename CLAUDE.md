@@ -1,6 +1,6 @@
 # Veda Heritage — project context for Claude
 
-**What this is:** vedaheritage.co.in — a Next.js 16 static export (`output: 'export'`) built by GitHub Actions and deployed to Hostinger via hPanel Git (the `deploy` branch holds only built files; FTP is a manual fallback).
+**What this is:** vedaheritage.co.in — a Next.js 16 static export (`output: 'export'`) built by GitHub Actions and deployed to Hostinger via hPanel Git (the `deploy` branch holds only built files; the workflow `deploy.yml` publishes it on every merge to `main`).
 Two roles in one site: (1) a boutique heritage stay near Amritapuri, Vavvakkavu, Kollam; (2) **Discover Kerala**, a living guide to
 Kerala's temples, places, beaches, backwaters, heritage items, Ayurveda, history and 14 districts.
 Owner/author: Eccellere (management-consulting audience for plans and reports; Word/PPT deliverables use Eccellere standards).

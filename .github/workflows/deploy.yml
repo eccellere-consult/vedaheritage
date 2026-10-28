@@ -1,4 +1,4 @@
-name: Build and publish site (hPanel Git deploy)
+name: Build and publish site
 
 # Builds the static site and publishes ONLY the built files to the `deploy` branch.
 # Hostinger hPanel > Advanced > Git pulls that branch into the domain's folder
@@ -61,8 +61,16 @@ jobs:
           git push --force "https://x-access-token:${TOKEN}@github.com/${REPO}.git" deploy
           echo "Published build ${SHA} to branch 'deploy'."
 
-      - name: Verify Hostinger is serving this build
-        # hPanel Git pulls on the GitHub webhook; allow up to ~6 minutes.
+      - name: Check that the live site shows this build
+        id: verify
+        # hPanel Git pulls the deploy branch when GitHub tells it to (webhook). Allow ~4 minutes.
+        # A failure here is a WARNING, not a failed deploy: the build itself is fine.
+        continue-on-error: true
         env:
-          VERIFY_ATTEMPTS: '18'
+          VERIFY_ATTEMPTS: '12'
         run: scripts/verify-deploy.sh "${{ vars.SITE_URL || 'https://www.vedaheritage.co.in' }}" "${{ github.sha }}"
+
+      - name: Say so clearly if Hostinger has not picked it up yet
+        if: steps.verify.outcome == 'failure'
+        run: |
+          echo "::warning title=Live site not updated yet::The new build is ready on the deploy branch, but Hostinger has not pulled it. In hPanel > Advanced > Git click Deploy, and check the GitHub webhook (see docs/DEPLOYMENT.md)."

@@ -31,7 +31,7 @@ Folklore labelled as tradition; religious sensitivity review; images only with l
 Eccellere family palette: green primary, teal accent, navy ink. One token file, one `PageHero`, shared button and card styles. Accessible contrast, focus states, mobile-first.
 
 ## 7. Technology and deployment
-Next.js static export · Tailwind · GitHub Actions → FTP → Hostinger (push to `main`) with post-deploy verification · PHP story intake · optional AI providers (Anthropic default; OpenAI, xAI supported).
+Next.js static export · Tailwind · GitHub Actions build → `deploy` branch → Hostinger hPanel Git (auto via webhook) with a post-deploy check · PHP story intake · optional AI providers (Anthropic default; OpenAI, xAI supported).
 
 ## 8. Roadmap
 | Phase | Status | Scope |
