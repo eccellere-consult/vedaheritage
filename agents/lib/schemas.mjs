@@ -3,6 +3,7 @@ import { CATEGORIES } from './util.mjs'
 
 const Category = z.enum(CATEGORIES)
 const Source = z.object({ label: z.string(), url: z.string() })
+const PlaceOut = z.object({ name: z.string(), district: z.string(), kind: z.string().nullable(), note: z.string(), url: z.string().nullable() })
 
 // ---- Scout ---------------------------------------------------------------
 export const ScoutOut = z.object({
@@ -40,10 +41,17 @@ export const EntryOut = z.object({
   visitorInfo: z.object({
     bestTime: z.string(), howToReach: z.string(), etiquette: z.array(z.string()), duration: z.string().nullable(),
   }),
+  // Required for places with a fixed location; null for statewide heritage items.
   travel: z.object({
     byTrain: z.array(z.string()), byBus: z.array(z.string()),
     byWater: z.array(z.string()).nullable(), byAir: z.array(z.string()).nullable(),
-  }),
+  }).nullable(),
+  // Required (non-null) when category is "heritage": where to see it, where to buy, experience centres/homes.
+  heritage: z.object({
+    localName: z.string().nullable(), materials: z.string().nullable(),
+    whereToSee: z.array(PlaceOut), whereToBuy: z.array(PlaceOut), experiences: z.array(PlaceOut),
+    buyingTips: z.array(z.string()),
+  }).nullable(),
   officialLinks: z.array(Source).nullable(),
   coordinates: z.object({ lat: z.number(), lng: z.number() }).nullable(),
   tags: z.array(z.string()),
@@ -79,6 +87,8 @@ export const VerifyOut = z.object({
   recommendation: z.enum(['ready_for_review', 'needs_edit', 'reject']),
 })
 
+const cleanPlace = p => ({ name: p.name, district: p.district, ...(p.kind ? { kind: p.kind } : {}), note: p.note, ...(p.url ? { url: p.url } : {}) })
+
 // Convert Enricher output to the on-disk entry (drops nulls, adds fixed fields).
 export function toEntryFile(out, { category, slug, date, sources }) {
   const e = {
@@ -89,7 +99,11 @@ export function toEntryFile(out, { category, slug, date, sources }) {
     folklore: { title: out.folklore.title, story: out.folklore.story, ...(out.folklore.note ? { note: out.folklore.note } : {}) },
     spiritual: out.spiritual, highlights: out.highlights,
     visitorInfo: { bestTime: out.visitorInfo.bestTime, howToReach: out.visitorInfo.howToReach, etiquette: out.visitorInfo.etiquette, ...(out.visitorInfo.duration ? { duration: out.visitorInfo.duration } : {}) },
-    travel: { byTrain: out.travel.byTrain, byBus: out.travel.byBus, ...(out.travel.byWater?.length ? { byWater: out.travel.byWater } : {}), ...(out.travel.byAir?.length ? { byAir: out.travel.byAir } : {}) },
+    ...(out.travel ? { travel: { byTrain: out.travel.byTrain, byBus: out.travel.byBus, ...(out.travel.byWater?.length ? { byWater: out.travel.byWater } : {}), ...(out.travel.byAir?.length ? { byAir: out.travel.byAir } : {}) } } : {}),
+    ...(out.heritage ? { heritage: {
+      ...(out.heritage.localName ? { localName: out.heritage.localName } : {}), ...(out.heritage.materials ? { materials: out.heritage.materials } : {}),
+      whereToSee: out.heritage.whereToSee.map(cleanPlace), whereToBuy: out.heritage.whereToBuy.map(cleanPlace), experiences: out.heritage.experiences.map(cleanPlace),
+      buyingTips: out.heritage.buyingTips } } : {}),
     ...(out.officialLinks?.length ? { officialLinks: out.officialLinks } : {}),
     ...(out.coordinates ? { coordinates: out.coordinates } : {}),
     images: [], tags: out.tags, sources,

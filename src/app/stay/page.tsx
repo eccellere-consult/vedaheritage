@@ -52,24 +52,23 @@ export default function StayPage() {
     <>
       {/* Header */}
       <section
-        className="pt-32 pb-20 text-center"
-        style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}
+        className="pt-32 pb-20 text-center bg-hero-gradient"
       >
-        <p className="section-label text-gold/80">Accommodation</p>
+        <p className="section-label text-accent-light">Accommodation</p>
         <h1 className="font-serif text-5xl text-white mb-4">Your Stay</h1>
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
+        <div className="w-12 h-px bg-accent mx-auto mb-4" />
         <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed px-4">
           Two private heritage rooms in an authentic Kerala family home. Wake to birdsong, step into the Ayurvedic garden, and have the day to yourself.
         </p>
       </section>
 
       {/* Rooms */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="section-label">Accommodation</p>
             <h2 className="section-title">The Rooms</h2>
-            <div className="gold-rule mx-auto" />
+            <div className="accent-rule mx-auto" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {rooms.map(r => (
@@ -84,7 +83,7 @@ export default function StayPage() {
                 <p className="text-ink-mid text-sm leading-relaxed mb-4">{r.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {r.features.map(f => (
-                    <span key={f} className="text-xs bg-gold-pale text-ink-mid px-3 py-1 border border-gold/30">
+                    <span key={f} className="text-xs bg-accent-pale text-ink-mid px-3 py-1 border border-accent/30">
                       {f}
                     </span>
                   ))}
@@ -101,7 +100,7 @@ export default function StayPage() {
           <div className="text-center mb-16">
             <p className="section-label">Facilities</p>
             <h2 className="section-title">Everything You Need</h2>
-            <div className="gold-rule mx-auto" />
+            <div className="accent-rule mx-auto" />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {amenities.map(a => (
@@ -115,17 +114,17 @@ export default function StayPage() {
       </section>
 
       {/* House Rules */}
-      <section className="py-20 bg-gold-pale">
+      <section className="py-20 bg-accent-pale">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="section-label">Policies</p>
             <h2 className="section-title">House Rules</h2>
-            <div className="gold-rule mx-auto" />
+            <div className="accent-rule mx-auto" />
           </div>
-          <div className="bg-white p-8 border-l-4 border-gold">
+          <div className="bg-white p-8 border-l-4 border-accent">
             {rules.map(r => (
-              <div key={r} className="flex items-start gap-3 py-2 border-b border-gold/10 last:border-0">
-                <span className="text-gold text-lg leading-none flex-shrink-0">›</span>
+              <div key={r} className="flex items-start gap-3 py-2 border-b border-accent/10 last:border-0">
+                <span className="text-accent text-lg leading-none flex-shrink-0">›</span>
                 <p className="text-sm text-ink-mid">{r}</p>
               </div>
             ))}
@@ -134,7 +133,7 @@ export default function StayPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-forest text-center">
+      <section className="py-20 bg-primary text-center">
         <h2 className="font-serif text-3xl text-white mb-4">Ready to Book?</h2>
         <p className="text-white/70 mb-8 text-sm max-w-md mx-auto">
           Book instantly on Airbnb or message us directly on WhatsApp for custom rates and extended stays.
@@ -144,11 +143,11 @@ export default function StayPage() {
             href="https://www.airbnb.co.in/h/stay-near-amritapuri"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold text-xs"
+            className="btn-accent text-xs"
           >
             Book on Airbnb
           </a>
-          <Link href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-forest text-xs">
+          <Link href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-xs">
             Send an Enquiry
           </Link>
         </div>

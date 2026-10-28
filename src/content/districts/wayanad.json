@@ -1,0 +1,68 @@
+{
+  "slug": "wayanad",
+  "name": "Wayanad",
+  "headquarters": "Kalpetta",
+  "region": "North",
+  "tagline": "Hills, tribal heritage and ancient cave art",
+  "summary": "Wayanad: Western Ghats plateau with Edakkal Caves, Banasura Sagar, Thirunelli Temple, tribal heritage, spice and coffee estates.",
+  "history": {
+    "overview": "Wayanad has been home to tribal communities such as the Paniya, Kuruma and Adiyar. Kerala Varma Pazhassi Raja resisted the British here around 1800. The district was formed in 1980.",
+    "timeline": [
+      {
+        "period": "Prehistoric",
+        "event": "Edakkal Caves hold ancient carvings."
+      },
+      {
+        "period": "c. 1800",
+        "event": "Pazhassi Raja resists British rule."
+      },
+      {
+        "period": "1980",
+        "event": "Wayanad district is formed."
+      }
+    ]
+  },
+  "unique": [
+    "Edakkal Caves with Neolithic carvings",
+    "Tribal heritage and handicrafts",
+    "Spice, coffee and tea estates",
+    "Thirunelli Temple"
+  ],
+  "bestTime": {
+    "season": "October to May",
+    "why": "Cool, green hills; avoid heavy rain.",
+    "avoid": "June–August (heavy rain, landslides; check advisories)"
+  },
+  "lookFor": [
+    "Edakkal Caves",
+    "Banasura Sagar",
+    "Thirunelli",
+    "Tribal craft centres"
+  ],
+  "highlights": [
+    "Edakkal Caves",
+    "Chembra Peak",
+    "Banasura Sagar",
+    "Thirunelli"
+  ],
+  "festivals": [
+    "Valliyoorkavu festival (Mar)",
+    "Onam"
+  ],
+  "crafts": [
+    "Bamboo craft",
+    "Spice products"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Wayanad district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Wayanad_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

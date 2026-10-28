@@ -31,25 +31,24 @@ export default function AyurvedaPage() {
     <>
       {/* Header */}
       <section
-        className="pt-32 pb-20 text-center"
-        style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #2A7A4E 100%)' }}
+        className="pt-32 pb-20 text-center bg-hero-gradient"
       >
-        <p className="section-label text-gold/80">Wellness</p>
+        <p className="section-label text-accent-light">Wellness</p>
         <h1 className="font-serif text-5xl text-white mb-4">Ayurveda at Veda Heritage</h1>
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
+        <div className="w-12 h-px bg-accent mx-auto mb-4" />
         <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed px-4">
           From the living garden to the treatment room to the retail corner — Ayurveda is not a feature here. It is the foundation.
         </p>
       </section>
 
       {/* Garden */}
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
               <p className="section-label">Living Heritage</p>
               <h2 className="section-title mb-4">The Ayurvedic Medicinal Garden</h2>
-              <div className="gold-rule" />
+              <div className="accent-rule" />
               <p className="text-ink-mid leading-relaxed mb-4">
                 The property's Ayurvedic garden is home to 40+ medicinal plants — each identified with
                 its Sanskrit name, Malayalam name, and traditional use. This is not a decorative garden.
@@ -60,7 +59,7 @@ export default function AyurvedaPage() {
                 Each morning, your host walks guests through the garden — explaining the plants, their
                 stories, and their uses. It is a 20-minute living classroom that stays with guests for life.
               </p>
-              <p className="text-sm text-gold font-medium italic mb-6">
+              <p className="text-sm text-accent font-medium italic mb-6">
                 "The garden is the retreat's curriculum. Everything else is the practice."
               </p>
             </div>
@@ -77,7 +76,7 @@ export default function AyurvedaPage() {
             <p className="section-label text-center mb-8">Plants in the Garden</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {plants.map(p => (
-                <div key={p} className="bg-white border-l-2 border-gold px-4 py-2">
+                <div key={p} className="bg-white border-l-2 border-accent px-4 py-2">
                   <p className="text-sm text-ink-mid">{p}</p>
                 </div>
               ))}
@@ -100,7 +99,7 @@ export default function AyurvedaPage() {
             <div className="order-1 md:order-2">
               <p className="section-label">Treatments</p>
               <h2 className="section-title mb-4">Traditional Ayurvedic Treatment Room</h2>
-              <div className="gold-rule" />
+              <div className="accent-rule" />
               <p className="text-ink-mid leading-relaxed mb-4">
                 The retreat has a dedicated Ayurvedic treatment room with a traditional wooden massage
                 droni (table). Treatments are performed by a trained local Ayurvedic practitioner using
@@ -112,7 +111,7 @@ export default function AyurvedaPage() {
                 (forehead oil stream), Padabhyanga (foot and leg massage), and Nasyam
                 (nasal oil therapy). Booking in advance is required.
               </p>
-              <div className="bg-gold-pale border-l-4 border-gold p-4 text-sm text-ink-mid italic">
+              <div className="bg-accent-pale border-l-4 border-accent p-4 text-sm text-ink-mid italic">
                 Treatments are offered as a separate service. Rates and availability on request.
                 Please mention your interest when booking the retreat.
               </div>
@@ -122,12 +121,12 @@ export default function AyurvedaPage() {
       </section>
 
       {/* Vaidyaratnam Retail Corner */}
-      <section className="py-24 bg-gold-pale">
+      <section className="py-24 bg-accent-pale">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="section-label">Authorised Retail Partner</p>
             <h2 className="section-title">Vaidyaratnam Ayurveda Products</h2>
-            <div className="gold-rule mx-auto" />
+            <div className="accent-rule mx-auto" />
             <p className="text-ink-mid mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
               Veda Heritage is an authorised retail display partner of{' '}
               <strong>Vaidyaratnam Oushadhasala</strong> — India's most prestigious classical Ayurveda
@@ -138,22 +137,22 @@ export default function AyurvedaPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {products.map(p => (
-              <div key={p.name} className="bg-white p-5 border-t-2 border-gold">
+              <div key={p.name} className="bg-white p-5 border-t-2 border-accent">
                 <h4 className="font-serif text-base text-ink mb-2">{p.name}</h4>
                 <p className="text-xs text-ink-mid leading-relaxed">{p.use}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-forest text-white p-8 text-center max-w-2xl mx-auto">
-            <p className="font-serif text-lg mb-2 text-gold">Take Kerala Home</p>
+          <div className="bg-primary text-white p-8 text-center max-w-2xl mx-auto">
+            <p className="font-serif text-lg mb-2 text-accent-light">Take Kerala Home</p>
             <p className="text-white/80 text-sm leading-relaxed mb-4">
               All products are available for purchase at the retreat — MRP-priced, genuinely
               authentic, sourced directly from Vaidyaratnam's authorised distribution network.
               The perfect gifts, and the best personal Ayurveda supplements to continue your
               wellness journey at home.
             </p>
-            <Link href="/contact" className="btn-gold text-xs">
+            <Link href="/contact" className="btn-accent text-xs">
               Ask Us About Products
             </Link>
           </div>
@@ -168,7 +167,7 @@ export default function AyurvedaPage() {
           href="https://www.airbnb.co.in/h/stay-near-amritapuri"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-gold text-xs"
+          className="btn-accent text-xs"
         >
           Book on Airbnb →
         </a>

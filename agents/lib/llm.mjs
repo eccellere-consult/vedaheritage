@@ -135,7 +135,7 @@ function createMock(state, consulted) {
           highlights: ['One', 'Two', 'Three'],
           visitorInfo: { bestTime: 'Winter', howToReach: 'By road', etiquette: ['Dress modestly.'], duration: null },
           travel: { byTrain: ['Nearest station X'], byBus: ['KSRTC Y'], byWater: null, byAir: null },
-          officialLinks: null, coordinates: null, tags: ['mock', 'test'],
+          officialLinks: null, heritage: null, coordinates: null, tags: ['mock', 'test'],
           sources: [{ label: 'A', url: a }, { label: 'B', url: b }, { label: 'Hallucinated', url: 'https://not-consulted.example/x' }],
           claims: [{ claim: 'Founded in 1900', field: 'history.timeline', sourceUrl: a, sensitive: false }, { claim: 'Dress modestly', field: 'visitorInfo.etiquette', sourceUrl: b, sensitive: true }],
         }

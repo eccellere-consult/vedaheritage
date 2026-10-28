@@ -1,0 +1,68 @@
+{
+  "slug": "kasaragod",
+  "name": "Kasaragod",
+  "headquarters": "Kasaragod",
+  "region": "North",
+  "tagline": "Kerala's northern frontier of forts and many languages",
+  "summary": "Kasaragod: Bekal Fort, Ananthapura Lake Temple, Yakshagana, Tulu and Kannada influences and quiet northern beaches.",
+  "history": {
+    "overview": "Kasaragod lies between Malayalam, Tulu and Kannada cultures. Bekal Fort, built in the 17th century by the Keladi Nayakas, is one of Kerala's largest forts.",
+    "timeline": [
+      {
+        "period": "17th century",
+        "event": "Bekal Fort is built by the Keladi Nayakas."
+      },
+      {
+        "period": "1956",
+        "event": "Joins Kerala in the state reorganisation."
+      },
+      {
+        "period": "Present",
+        "event": "Known for multilingual heritage."
+      }
+    ]
+  },
+  "unique": [
+    "Bekal Fort and beach",
+    "Multilingual culture of Malayalam, Tulu, Kannada and Konkani",
+    "Yakshagana performances",
+    "Ananthapura Lake Temple"
+  ],
+  "bestTime": {
+    "season": "October to March",
+    "why": "Pleasant weather for forts and beaches.",
+    "avoid": "June–August (monsoon)"
+  },
+  "lookFor": [
+    "Bekal Fort",
+    "Ananthapura Lake Temple",
+    "Kappil and Valiyaparamba backwaters",
+    "Yakshagana performance"
+  ],
+  "highlights": [
+    "Bekal Fort",
+    "Ananthapura",
+    "Chandragiri Fort",
+    "Valiyaparamba backwaters"
+  ],
+  "festivals": [
+    "Theyyam season (Dec–Apr)",
+    "Yakshagana events"
+  ],
+  "crafts": [
+    "Coir",
+    "Handloom"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kasaragod district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kasaragod_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

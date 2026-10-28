@@ -7,6 +7,8 @@ import EntryCard from '@/components/EntryCard'
 import StoryList from '@/components/StoryList'
 import StoryForm from '@/components/StoryForm'
 import JsonLd from '@/components/JsonLd'
+import PageHero from '@/components/PageHero'
+import PlaceList from '@/components/PlaceList'
 import Timeline from '@/components/Timeline'
 import EntryImages from '@/components/EntryImages'
 import OfficialLinks from '@/components/OfficialLinks'
@@ -86,17 +88,14 @@ export default async function EntryPage({ params }: Props) {
         ],
       }} />
 
-      <section className="pt-32 pb-16 text-center" style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}>
-        <p className="section-label text-gold/80">
-          <Link href="/discover/" className="hover:underline">Discover</Link> · <Link href={`/discover/${e.category}/`} className="hover:underline">{cat.label}</Link> · {e.district}
-        </p>
-        <h1 className="font-serif text-4xl md:text-5xl text-white mb-2 px-4">{e.name}</h1>
-        {e.malayalamName && <p className="text-gold-light text-lg mb-3">{e.malayalamName}</p>}
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
-        <p className="text-white/70 max-w-2xl mx-auto text-sm leading-relaxed px-4">{e.tagline}</p>
-      </section>
+      <PageHero
+        label={<><Link href="/discover/" className="hover:underline">Discover</Link> · <Link href={`/discover/${e.category}/`} className="hover:underline">{cat.label}</Link> · {e.district}</>}
+        title={e.name}
+        sub={e.malayalamName}
+        subtitle={e.tagline}
+      />
 
-      <article className="py-14 bg-cream">
+      <article className="py-14 bg-surface">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <EntryImages images={e.images} />
           {e.description.map((p, i) => <p key={i} className="text-ink-mid leading-relaxed mb-4">{p}</p>)}
@@ -113,7 +112,7 @@ export default async function EntryPage({ params }: Props) {
             <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid">{e.history.keyFacts.map(f => <li key={f}>{f}</li>)}</ul>
           </section>
 
-          <section className="mt-12 bg-gold-pale border-l-4 border-gold p-6 md:p-8" aria-labelledby="folklore">
+          <section className="mt-12 bg-accent-pale border-l-4 border-accent p-6 md:p-8" aria-labelledby="folklore">
             <p className="section-label">Legend &amp; folklore</p>
             <h2 id="folklore" className="font-serif text-2xl text-ink mb-3">{e.folklore.title}</h2>
             {e.folklore.story.map((p, i) => <p key={i} className="text-ink-mid leading-relaxed mb-3">{p}</p>)}
@@ -121,8 +120,8 @@ export default async function EntryPage({ params }: Props) {
           </section>
 
           <section className="mt-12" aria-labelledby="spiritual">
-            <p className="section-label">Spiritual experience</p>
-            <h2 id="spiritual" className="section-title mb-3">The inner journey</h2>
+            <p className="section-label">{e.category === 'heritage' ? 'Cultural & spiritual meaning' : 'Spiritual experience'}</p>
+            <h2 id="spiritual" className="section-title mb-3">{e.category === 'heritage' ? 'What it means' : 'The inner journey'}</h2>
             <p className="text-ink-mid leading-relaxed mb-5">{e.spiritual.summary}</p>
             <div className="grid sm:grid-cols-2 gap-4">
               {e.spiritual.experiences.map(x => (
@@ -132,30 +131,62 @@ export default async function EntryPage({ params }: Props) {
                 </div>
               ))}
             </div>
-            <p className="text-sm text-ink-mid mt-4"><span className="font-medium text-forest">Best for:</span> {e.spiritual.bestFor}</p>
+            <p className="text-sm text-ink-mid mt-4"><span className="font-medium text-primary">Best for:</span> {e.spiritual.bestFor}</p>
             <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid mt-2">{e.spiritual.mindfulTips.map(t => <li key={t}>{t}</li>)}</ul>
           </section>
 
+          {e.heritage && (
+            <section className="mt-12 space-y-10" aria-labelledby="where">
+              <div>
+                <p className="section-label">Where to find it</p>
+                <h2 id="where" className="section-title mb-4">Where to see {e.name.split(' — ')[0]}</h2>
+                <PlaceList places={e.heritage.whereToSee} />
+              </div>
+              <div>
+                <p className="section-label">Shop &amp; buy</p>
+                <h2 className="section-title mb-2">Where to buy traditional pieces</h2>
+                <p className="text-sm text-ink-mid mb-4">Prefer co-operatives, government emporiums and workshops you can visit. Always confirm the shop is open and current before travelling.</p>
+                <PlaceList places={e.heritage.whereToBuy} />
+                <h3 className="font-serif text-xl text-ink mt-6 mb-2">Buying tips</h3>
+                <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid">{e.heritage.buyingTips.map(t => <li key={t}>{t}</li>)}</ul>
+              </div>
+              <div>
+                <p className="section-label">Experience centres &amp; heritage homes</p>
+                <h2 className="section-title mb-4">See it, try it, stay near it</h2>
+                <PlaceList places={e.heritage.experiences} />
+                {e.heritage.materials && <p className="text-xs text-ink-mid/70 mt-4">Materials: {e.heritage.materials}{e.heritage.localName ? ` · Local name: ${e.heritage.localName}` : ''}</p>}
+              </div>
+            </section>
+          )}
+
           <h2 className="section-title mt-12 mb-4">Plan your visit</h2>
           <dl className="grid sm:grid-cols-2 gap-4 text-sm">
-            <div className="card !p-4"><dt className="font-medium text-forest">Best time</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.bestTime}</dd></div>
-            <div className="card !p-4"><dt className="font-medium text-forest">How to reach</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.howToReach}</dd></div>
-            {e.visitorInfo.duration && <div className="card !p-4"><dt className="font-medium text-forest">Suggested time</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.duration}</dd></div>}
+            <div className="card !p-4"><dt className="font-medium text-primary">Best time</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.bestTime}</dd></div>
+            <div className="card !p-4"><dt className="font-medium text-primary">How to reach</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.howToReach}</dd></div>
+            {e.visitorInfo.duration && <div className="card !p-4"><dt className="font-medium text-primary">Suggested time</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.duration}</dd></div>}
           </dl>
           <h3 className="font-serif text-xl text-ink mt-6 mb-2">Etiquette &amp; good to know</h3>
           <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid">{e.visitorInfo.etiquette.map(t => <li key={t}>{t}</li>)}</ul>
 
+          {e.travel && (
           <section className="mt-12" aria-labelledby="getting-there">
             <h2 id="getting-there" className="section-title mb-4">Getting there: train, bus &amp; more</h2>
             <dl className="space-y-3 text-sm">
               {([['🚆 By train', e.travel.byTrain], ['🚌 By bus (KSRTC)', e.travel.byBus], ['⛴ By water', e.travel.byWater], ['✈ By air', e.travel.byAir]] as const).map(([label, lines]) =>
                 lines && lines.length > 0 ? (
-                  <div key={label} className="card !p-4"><dt className="font-medium text-forest">{label}</dt>{lines.map(l => <dd key={l} className="text-ink-mid mt-1">{l}</dd>)}</div>
+                  <div key={label} className="card !p-4"><dt className="font-medium text-primary">{label}</dt>{lines.map(l => <dd key={l} className="text-ink-mid mt-1">{l}</dd>)}</div>
                 ) : null)}
             </dl>
             <p className="text-xs text-ink-mid/70 mt-2">Schedules change. Book and check live status on the official sites below.</p>
             <div className="mt-4"><OfficialLinks extra={e.officialLinks} groups={['Tourism', 'Train', 'Bus', 'Water']} /></div>
           </section>
+          )}
+          {!e.travel && (
+            <section className="mt-12" aria-labelledby="official">
+              <h2 id="official" className="section-title mb-4">Official resources</h2>
+              <OfficialLinks extra={e.officialLinks} groups={['Tourism']} />
+            </section>
+          )}
 
           <p className="text-xs text-ink-mid/70 mt-8">
             Last verified {new Date(e.lastVerified).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}. Timings, fees and dates change — confirm with the venue before travelling.
@@ -164,7 +195,7 @@ export default async function EntryPage({ params }: Props) {
             ))}.
           </p>
 
-          <div className="mt-10 bg-white border-t-2 border-gold p-6 text-sm">
+          <div className="mt-10 bg-white border-t-2 border-accent p-6 text-sm">
             <p className="font-serif text-xl text-ink mb-1">Staying nearby?</p>
             <p className="text-ink-mid mb-3">Veda Heritage in Vavvakkavu, Kollam is a traditional Kerala home base for exploring the region.</p>
             <a href={WA.enquiry} target="_blank" rel="noopener noreferrer" className="btn-primary text-xs">Ask about a stay</a>

@@ -39,19 +39,19 @@ export default function StoryForm({ places, defaultPlace }: { places: PlaceOptio
     }
   }
 
-  const field = 'w-full border border-gold/40 bg-white px-3 py-2 text-sm focus:outline-none focus:border-forest'
+  const field = 'w-full border border-accent/40 bg-white px-3 py-2 text-sm focus:outline-none focus:border-primary'
 
   if (state === 'done') {
     return (
-      <div className="bg-gold-pale p-6 text-sm text-ink-mid">
-        <p className="font-medium text-forest mb-1">Thank you — your story is with our editors.</p>
+      <div className="bg-accent-pale p-6 text-sm text-ink-mid">
+        <p className="font-medium text-primary mb-1">Thank you — your story is with our editors.</p>
         <p>Stories are reviewed twice a week and published once approved. We may edit for length and clarity.</p>
       </div>
     )
   }
 
   return (
-    <form onSubmit={onSubmit} className="bg-white border-t-2 border-gold p-6 space-y-4">
+    <form onSubmit={onSubmit} className="bg-white border-t-2 border-accent p-6 space-y-4">
       <div className="grid md:grid-cols-2 gap-4">
         <label className="text-xs tracking-wider uppercase text-ink-mid">Your first name
           <input name="author" required maxLength={60} className={field + ' mt-1'} />
@@ -77,7 +77,7 @@ export default function StoryForm({ places, defaultPlace }: { places: PlaceOptio
       <label className="block text-xs tracking-wider uppercase text-ink-mid">Your story or note
         <textarea name="body" required minLength={40} maxLength={4000} rows={6} className={field + ' mt-1'} />
       </label>
-      <fieldset className="border border-gold/30 p-4 space-y-3">
+      <fieldset className="border border-accent/30 p-4 space-y-3">
         <legend className="px-1 text-xs tracking-wider uppercase text-ink-mid">Add photos (optional, up to 2)</legend>
         <input type="file" name="photos" accept="image/jpeg,image/png,image/webp" multiple className="text-sm" />
         <input name="photoCaption" maxLength={160} placeholder="Short caption / what the photo shows" className={field} />

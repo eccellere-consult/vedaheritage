@@ -1,0 +1,69 @@
+{
+  "slug": "pathanamthitta",
+  "name": "Pathanamthitta",
+  "headquarters": "Pathanamthitta",
+  "region": "South",
+  "tagline": "Pilgrim hills, temple rivers and the home of Aranmula",
+  "summary": "Pathanamthitta: Kerala's pilgrimage district with Sabarimala, Aranmula's mirror and boat race, the Pamba river and Gavi forest tourism.",
+  "history": {
+    "overview": "The district was carved out in 1982 from Kollam and Alappuzha, but its history stretches back to the Pandalam royal family, Ayyappa legend and old Christian communities along the Pamba.",
+    "timeline": [
+      {
+        "period": "Ancient and medieval",
+        "event": "Pandalam and Aranmula emerge as temple and princely centres."
+      },
+      {
+        "period": "1982",
+        "event": "Pathanamthitta district is formed."
+      },
+      {
+        "period": "Present",
+        "event": "Pilgrim traffic to Sabarimala shapes the local economy."
+      }
+    ]
+  },
+  "unique": [
+    "Sabarimala, among the largest annual pilgrimages",
+    "Aranmula's mirror, boat race and Vallasadya feast",
+    "Maramon Convention, a major Christian gathering",
+    "Forest ecotourism at Gavi"
+  ],
+  "bestTime": {
+    "season": "November to March",
+    "why": "Cool weather, pilgrimage season and clear Pamba river.",
+    "avoid": "July–August (heavy monsoon; flood-prone)"
+  },
+  "lookFor": [
+    "Aranmula Kannadi workshops",
+    "Pamba river banks",
+    "Konni elephant centre",
+    "Gavi forest"
+  ],
+  "highlights": [
+    "Sabarimala",
+    "Aranmula Parthasarathy Temple",
+    "Perunthenaruvi falls",
+    "Gavi"
+  ],
+  "festivals": [
+    "Makaravilakku (Jan)",
+    "Aranmula Uthrattathi boat race (Aug–Sep)",
+    "Maramon Convention (Feb)"
+  ],
+  "crafts": [
+    "Aranmula Kannadi",
+    "Bamboo craft"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Pathanamthitta district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pathanamthitta_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

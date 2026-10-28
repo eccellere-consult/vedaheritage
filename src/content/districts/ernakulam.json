@@ -1,0 +1,68 @@
+{
+  "slug": "ernakulam",
+  "name": "Ernakulam",
+  "headquarters": "Kochi",
+  "region": "Central",
+  "tagline": "Kerala's commercial capital and a multi-faith port city",
+  "summary": "Ernakulam: Kochi's colonial quarter, Jew Town, a major port, the Kochi-Muziris Biennale, Hill Palace and the folklore museum.",
+  "history": {
+    "overview": "Kochi became prominent after a great flood of 1341 opened the harbour. Portuguese, Dutch and British ruled in turn, and Jewish, Arab and Chinese traders shaped its cosmopolitan culture.",
+    "timeline": [
+      {
+        "period": "1341",
+        "event": "Periyar flood opens Kochi harbour."
+      },
+      {
+        "period": "1503",
+        "event": "Portuguese build Fort Immanuel."
+      },
+      {
+        "period": "2012",
+        "event": "First Kochi-Muziris Biennale is held."
+      }
+    ]
+  },
+  "unique": [
+    "Port city with Portuguese, Dutch and British heritage",
+    "Mattancherry Palace and Jewish quarter",
+    "Chendamangalam handloom",
+    "Kochi-Muziris Biennale"
+  ],
+  "bestTime": {
+    "season": "November to February",
+    "why": "Pleasant weather for walking and art events.",
+    "avoid": "June–August (monsoon)"
+  },
+  "lookFor": [
+    "Fort Kochi and fishing nets",
+    "Paradesi Synagogue",
+    "Hill Palace Museum",
+    "Kerala Folklore Museum"
+  ],
+  "highlights": [
+    "Fort Kochi",
+    "Mattancherry",
+    "Hill Palace",
+    "Bolgatty"
+  ],
+  "festivals": [
+    "Kochi-Muziris Biennale (Dec–Mar, biennial)",
+    "Thripunithura Athachamayam (Aug–Sep)"
+  ],
+  "crafts": [
+    "Handloom",
+    "Metal mirrors, spices"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Ernakulam district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ernakulam_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

@@ -7,7 +7,7 @@ const PUBLIC = path.join(process.cwd(), 'public')
 const fileExists = src => src && src.startsWith('/') && fs.existsSync(path.join(PUBLIC, src))
 
 const ROOT = path.join(process.cwd(), 'src', 'content')
-const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'ayurveda']
+const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda']
 const STATUSES = ['draft', 'approved']
 const STORY_TYPES = ['Experience', 'Folklore I heard', 'Travel tip']
 const errors = []
@@ -48,7 +48,12 @@ for (const cat of CATEGORIES) {
     const sp = d.spiritual
     if (!sp || !isStr(sp.summary) || !Array.isArray(sp.experiences) || sp.experiences.length < 1 || sp.experiences.some(x => !isStr(x.title) || !isStr(x.text)) || !isStr(sp.bestFor) || !isArr(sp.mindfulTips)) fail(rel, 'spiritual {summary, experiences[≥1], bestFor, mindfulTips[]} required')
     const tr = d.travel
-    if (!tr || !isArr(tr.byTrain) || !isArr(tr.byBus)) fail(rel, 'travel {byTrain[], byBus[]} required (byWater, byAir optional)')
+    if (cat === 'heritage') {
+      if (tr && (!isArr(tr.byTrain) || !isArr(tr.byBus))) fail(rel, 'travel, if present, needs byTrain[] and byBus[]')
+      const hr = d.heritage
+      const okPlaces = arr => Array.isArray(arr) && arr.length >= 1 && arr.every(p => isStr(p.name) && isStr(p.district) && isStr(p.note) && (!p.url || /^https:\/\//.test(p.url)))
+      if (!hr || !okPlaces(hr.whereToSee) || !okPlaces(hr.whereToBuy) || !okPlaces(hr.experiences) || !isArr(hr.buyingTips)) fail(rel, 'heritage {whereToSee[], whereToBuy[], experiences[] (each name, district, note), buyingTips[]} required')
+    } else if (!tr || !isArr(tr.byTrain) || !isArr(tr.byBus)) fail(rel, 'travel {byTrain[], byBus[]} required (byWater, byAir optional)')
     if (d.officialLinks && d.officialLinks.some(l => !isStr(l.label) || !/^https:\/\//.test(l.url || ''))) fail(rel, 'officialLinks must be [{label, url (https)}]')
     if (!Array.isArray(d.images) || d.images.length > 2) fail(rel, 'images must be an array of at most 2')
     for (const im of d.images || []) {
@@ -65,6 +70,28 @@ for (const cat of CATEGORIES) {
     if (!Array.isArray(d.sources) || d.sources.some(s => !isStr(s.label) || !/^https:\/\//.test(s.url || ''))) fail(rel, 'sources must be [{label, url (https)}]')
     if (d.status === 'approved' && (!Array.isArray(d.sources) || d.sources.length < 2)) fail(rel, 'approved entries need ≥ 2 sources')
   }
+}
+
+const REGIONS = ['South', 'Central', 'North']
+const districtNames = new Set()
+for (const { rel, name, data: d } of load('districts')) {
+  if (d.slug !== name) fail(rel, `slug "${d.slug}" must match filename "${name}"`)
+  districtNames.add(d.name)
+  if (!STATUSES.includes(d.status)) fail(rel, `status must be one of ${STATUSES}`)
+  for (const f of ['name', 'headquarters', 'tagline']) if (!isStr(d[f])) fail(rel, `missing ${f}`)
+  if (!REGIONS.includes(d.region)) fail(rel, `region must be one of ${REGIONS}`)
+  if (!isStr(d.summary) || d.summary.length < 50 || d.summary.length > 200) fail(rel, 'summary must be 50–200 chars')
+  if (!d.history || !isStr(d.history.overview) || !Array.isArray(d.history.timeline) || d.history.timeline.length < 2) fail(rel, 'history {overview, timeline[≥2]} required')
+  if (!isArr(d.unique, 3) || !isArr(d.lookFor, 3) || !isArr(d.highlights, 3) || !isArr(d.festivals)) fail(rel, 'unique[≥3], lookFor[≥3], highlights[≥3], festivals[] required')
+  if (!d.bestTime || !isStr(d.bestTime.season) || !isStr(d.bestTime.why) || !isStr(d.bestTime.avoid)) fail(rel, 'bestTime {season, why, avoid} required')
+  if (!Array.isArray(d.sources) || d.sources.some(s => !/^https:\/\//.test(s.url || ''))) fail(rel, 'sources must be [{label, url (https)}]')
+  if (d.status === 'approved' && d.sources.length < 2) fail(rel, 'approved needs ≥ 2 sources')
+  if (!isIsoDate(d.lastVerified)) fail(rel, 'lastVerified must be an ISO date')
+}
+for (const { rel, data: k } of load('kerala')) {
+  if (!isStr(k.title) || !isStr(k.summary) || !isArr(k.intro) || !isArr(k.essentials)) fail(rel, 'title, summary, intro[], essentials[] required')
+  if (!Array.isArray(k.history) || k.history.length < 4 || !Array.isArray(k.regions) || !Array.isArray(k.seasons) || k.seasons.length < 3) fail(rel, 'history[≥4], regions[], seasons[≥3] required')
+  if (!Array.isArray(k.sources) || k.sources.length < 1) fail(rel, 'sources required')
 }
 
 for (const { rel, name, data: s } of load('stories')) {
@@ -86,4 +113,4 @@ if (errors.length) {
   console.error(`\n✖ ${errors.length} content problem(s):\n` + errors.map(e => '  - ' + e).join('\n'))
   process.exit(1)
 }
-console.log(`✔ content valid (${slugs.size} entries)`)
+console.log(`✔ content valid (${slugs.size} entries, ${districtNames.size} districts)`)

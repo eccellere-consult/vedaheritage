@@ -18,6 +18,13 @@ Nothing reaches production without a human merge. Only `status: "approved"` entr
 - Validate: `npm run validate` (also runs in CI on every content PR).
 - Preview with drafts: `npm run dev` or `npm run build:preview`.
 
+## Heritage items, Kerala overview and districts
+- `src/content/heritage/` — traditional objects and crafts. Extra required block `heritage`: `whereToSee`, `whereToBuy`, `experiences` (each place: name, district, note; optional kind, url) and `buyingTips`.
+  Name only institutions you can confirm are real and operating (co-operatives, state emporiums, museums, conserved palaces). Never invent shops, addresses, prices or phone numbers.
+- `src/content/districts/<slug>.json` — one per district: brief history, what is unique, best time, what to look for, festivals, crafts.
+- `src/content/kerala/overview.json` — the Kerala-at-a-glance history, regions, seasons, essentials.
+- All of these ship as `draft`; review and set `status: "approved"` (needs ≥ 2 sources).
+
 ## Entry anatomy (every guide has all of these)
 `history` (significance, timeline, key facts) · `folklore` · `spiritual` (experiences, best for, mindful tips) ·
 `visitorInfo` · `travel` (train, KSRTC bus, water, air) · `officialLinks` · `images` (1–2, licensed and credited) · `sources` (≥ 2 to approve).

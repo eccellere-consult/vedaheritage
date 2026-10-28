@@ -35,12 +35,11 @@ export default function GalleryPage() {
     <>
       {/* Header */}
       <section
-        className="pt-32 pb-20 text-center"
-        style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}
+        className="pt-32 pb-20 text-center bg-hero-gradient"
       >
-        <p className="section-label text-gold/80">Visual Journey</p>
+        <p className="section-label text-accent-light">Visual Journey</p>
         <h1 className="font-serif text-5xl text-white mb-4">Gallery</h1>
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
+        <div className="w-12 h-px bg-accent mx-auto mb-4" />
         <p className="text-white/70 max-w-lg mx-auto text-sm leading-relaxed px-4">
           Kerala backwaters, the Ayurvedic garden, heritage rooms, and the landscape around Vavvakkavu.
           Click any photo to view full size.
@@ -48,14 +47,14 @@ export default function GalleryPage() {
       </section>
 
       {/* Grid */}
-      <section className="py-16 bg-cream">
+      <section className="py-16 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
             {photos.map((photo: Photo, i: number) => (
               <button
                 key={i}
                 onClick={() => setSelected(i)}
-                className="relative aspect-square overflow-hidden group focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
+                className="relative aspect-square overflow-hidden group focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
                 aria-label={`Open photo: ${photo.caption}`}
               >
                 <img
@@ -81,7 +80,7 @@ export default function GalleryPage() {
           </div>
 
           {/* Upload prompt */}
-          <div className="mt-12 bg-white border border-gold/30 p-8 text-center">
+          <div className="mt-12 bg-white border border-accent/30 p-8 text-center">
             <p className="section-label mb-2">Your Own Kerala Photos</p>
             <p className="text-ink-mid text-sm mb-4">
               Are you a past guest with photos of your stay? We would love to feature them here.
@@ -157,7 +156,7 @@ export default function GalleryPage() {
               <button
                 key={i}
                 onClick={e => { e.stopPropagation(); setSelected(i) }}
-                className={`w-8 h-8 flex-shrink-0 overflow-hidden rounded-sm ${i === selected ? 'ring-2 ring-gold' : 'opacity-50 hover:opacity-80'}`}
+                className={`w-8 h-8 flex-shrink-0 overflow-hidden rounded-sm ${i === selected ? 'ring-2 ring-accent' : 'opacity-50 hover:opacity-80'}`}
               >
                 <img src={photos[i].src} alt="" className="w-full h-full object-cover" />
               </button>

@@ -7,8 +7,8 @@ export default function StoryList({ stories }: { stories: Story[] }) {
   return (
     <div className="space-y-6">
       {stories.map(s => (
-        <article key={s.id} className="bg-white border-l-4 border-gold/40 p-6">
-          <p className="text-xs tracking-widest uppercase text-gold font-medium mb-1">{s.type}</p>
+        <article key={s.id} className="bg-white border-l-4 border-accent/40 p-6">
+          <p className="text-xs tracking-widest uppercase text-accent font-medium mb-1">{s.type}</p>
           <h3 className="font-serif text-xl text-ink mb-2">{s.title}</h3>
           {s.body.split(/\n{2,}/).map((p, i) => (
             <p key={i} className="text-sm text-ink-mid leading-relaxed mb-2">{p}</p>

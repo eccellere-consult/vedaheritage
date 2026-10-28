@@ -1,0 +1,69 @@
+{
+  "slug": "alappuzha",
+  "name": "Alappuzha",
+  "headquarters": "Alappuzha",
+  "region": "South",
+  "tagline": "The backwater district and rice bowl of Kerala",
+  "summary": "Alappuzha: Kuttanad's below-sea-level farming, houseboats, canal towns, snake-boat races, coir and temples such as Ambalappuzha and Mannarasala.",
+  "history": {
+    "overview": "Raja Kesavadas, Dewan of Travancore, developed Alappuzha as a port in the 18th century. The backwaters and canals connected rice fields, coir yards and ports.",
+    "timeline": [
+      {
+        "period": "1760s–1770s",
+        "event": "Planned port town and canals developed."
+      },
+      {
+        "period": "19th–20th century",
+        "event": "Coir and trade industries expand."
+      },
+      {
+        "period": "1946",
+        "event": "Punnapra-Vayalar uprising takes place nearby."
+      }
+    ]
+  },
+  "unique": [
+    "Houseboats and backwater lanes",
+    "Kuttanad, farming below sea level",
+    "Snake-boat races such as the Nehru Trophy",
+    "Mannarasala serpent shrine"
+  ],
+  "bestTime": {
+    "season": "November to February",
+    "why": "Cool, dry days for houseboats; August–September for boat races.",
+    "avoid": "June–July (heavy rain)"
+  },
+  "lookFor": [
+    "Village canals by canoe",
+    "Ambalappuzha palpayasam",
+    "Coir workshops",
+    "Alappuzha beach and lighthouse"
+  ],
+  "highlights": [
+    "Backwater cruises",
+    "Nehru Trophy Boat Race",
+    "Ambalappuzha Sree Krishna Temple",
+    "Mannarasala"
+  ],
+  "festivals": [
+    "Nehru Trophy Boat Race (Aug)",
+    "Champakulam Moolam boat race",
+    "Mannarasala Ayilyam"
+  ],
+  "crafts": [
+    "Coir mats",
+    "Bell-metal at Mannar"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Alappuzha district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Alappuzha_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

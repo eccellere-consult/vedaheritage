@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CATEGORIES, CATEGORY_KEYS, SITE_URL, entryPath, getEntries, getStories } from '@/lib/content'
 import DiscoverSearch from '@/components/DiscoverSearch'
 import StoryList from '@/components/StoryList'
+import PageHero from '@/components/PageHero'
 import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
@@ -30,23 +31,20 @@ export default function DiscoverPage() {
         mainEntity: { '@type': 'ItemList', itemListElement: entries.map((e, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE_URL}${entryPath(e)}`, name: e.name })) },
       }} />
 
-      <section className="pt-32 pb-20 text-center" style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}>
-        <p className="section-label text-gold/80">Discover Kerala</p>
-        <h1 className="font-serif text-4xl md:text-5xl text-white mb-4 px-4">Kerala, with the stories behind the places</h1>
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
-        <p className="text-white/70 max-w-2xl mx-auto text-sm leading-relaxed px-4">
-          Temples, beaches, backwaters, hill towns and Ayurveda — each guide carries the legend that made the place,
-          practical visitor advice, and notes from travellers who have been there.
-        </p>
-      </section>
+      <PageHero label="Discover Kerala" title="Kerala, with the stories behind the places" subtitle="Temples, beaches, backwaters, heritage crafts, hill towns and Ayurveda — each guide carries the legend that made the place, practical visitor advice and notes from travellers." />
 
-      <section className="py-14 bg-cream">
+      <section className="py-14 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-14">
+          <Link href="/kerala/" className="card block mb-8 hover:shadow-md transition-shadow">
+            <p className="section-label !mb-1">Start here</p>
+            <h2 className="font-serif text-2xl text-ink mb-1">Kerala at a glance — history and the 14 districts</h2>
+            <p className="text-sm text-ink-mid">A brief history of Kerala, what makes each district unique, the best time to visit and what to look for.</p>
+          </Link>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-14">
             {CATEGORY_KEYS.map(k => (
               <Link key={k} href={`/discover/${k}/`} className="card text-center hover:shadow-md transition-shadow !p-5">
                 <h2 className="font-serif text-xl text-ink">{CATEGORIES[k].label}</h2>
-                <p className="text-xs text-gold mt-1">{getEntries(k).length} guides</p>
+                <p className="text-xs text-accent mt-1">{getEntries(k).length} guides</p>
               </Link>
             ))}
           </div>

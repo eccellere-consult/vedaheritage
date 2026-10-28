@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { CATEGORIES, CATEGORY_KEYS, SITE_URL, getEntries, entryPath, type CategoryKey } from '@/lib/content'
 import EntryCard from '@/components/EntryCard'
+import PageHero from '@/components/PageHero'
 import JsonLd from '@/components/JsonLd'
 
 type Props = { params: Promise<{ category: string }> }
@@ -38,13 +39,8 @@ export default async function CategoryPage({ params }: Props) {
           ] },
         ],
       }} />
-      <section className="pt-32 pb-16 text-center" style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}>
-        <p className="section-label text-gold/80"><Link href="/discover/" className="hover:underline">Discover Kerala</Link></p>
-        <h1 className="font-serif text-4xl md:text-5xl text-white mb-4 px-4">{c.label} of Kerala</h1>
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
-        <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed px-4">{c.blurb}</p>
-      </section>
-      <section className="py-14 bg-cream">
+      <PageHero label={<Link href="/discover/" className="hover:underline">Discover Kerala</Link>} title={`${c.label} of Kerala`} subtitle={c.blurb} />
+      <section className="py-14 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {entries.length === 0 ? (
             <p className="text-center text-ink-mid">New {c.label.toLowerCase()} guides are being prepared. Check back soon, or <Link className="underline" href="/stories/">share a story</Link>.</p>

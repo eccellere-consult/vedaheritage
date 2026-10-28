@@ -27,7 +27,7 @@ export default function DiscoverSearch({ items }: { items: SearchItem[] }) {
   }, [items, q, cat])
 
   const pill = (active: boolean) =>
-    `text-xs font-medium px-3 py-1 rounded-full border transition-colors ${active ? 'bg-forest text-white border-forest' : 'border-gold/40 text-ink-mid hover:border-forest'}`
+    `text-xs font-medium px-3 py-1 rounded-full border transition-colors ${active ? 'bg-primary text-white border-primary' : 'border-accent/40 text-ink-mid hover:border-primary'}`
 
   return (
     <div>
@@ -37,7 +37,7 @@ export default function DiscoverSearch({ items }: { items: SearchItem[] }) {
           onChange={e => setQ(e.target.value)}
           placeholder="Search temples, beaches, districts, festivals…"
           aria-label="Search Kerala heritage"
-          className="flex-1 border border-gold/40 bg-white px-4 py-3 text-sm focus:outline-none focus:border-forest"
+          className="flex-1 border border-accent/40 bg-white px-4 py-3 text-sm focus:outline-none focus:border-primary"
         />
       </div>
       <div className="flex flex-wrap gap-2 mb-8">

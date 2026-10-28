@@ -41,19 +41,18 @@ export default function ContactPage() {
     <>
       {/* Header */}
       <section
-        className="pt-32 pb-20 text-center"
-        style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}
+        className="pt-32 pb-20 text-center bg-hero-gradient"
       >
-        <p className="font-sans text-gold/80 text-xs tracking-[0.25em] uppercase mb-3">Reservations</p>
+        <p className="font-sans text-accent-light text-xs tracking-[0.25em] uppercase mb-3">Reservations</p>
         <h1 className="font-serif text-5xl text-white mb-4">Book & Contact</h1>
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
+        <div className="w-12 h-px bg-accent mx-auto mb-4" />
         <p className="text-white/70 max-w-lg mx-auto text-sm leading-relaxed px-4">
           Book instantly on Airbnb, or send us a message — we respond within the hour.
           For extended stays or group bookings, WhatsApp is fastest.
         </p>
       </section>
 
-      <section className="py-24 bg-cream">
+      <section className="py-24 bg-surface">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
@@ -61,7 +60,7 @@ export default function ContactPage() {
             <div>
               <p className="section-label">Quickest Options</p>
               <h2 className="font-serif text-3xl text-ink mb-2">Get in Touch</h2>
-              <div className="gold-rule mb-8" />
+              <div className="accent-rule mb-8" />
 
               {/* WhatsApp — primary */}
               <a
@@ -97,7 +96,7 @@ export default function ContactPage() {
               {/* Email */}
               <a
                 href="mailto:stay@vedaheritage.co.in"
-                className="flex items-center gap-4 bg-white border border-gold/30 px-6 py-4 mb-8 hover:border-gold transition-colors"
+                className="flex items-center gap-4 bg-white border border-accent/30 px-6 py-4 mb-8 hover:border-accent transition-colors"
               >
                 <span className="text-2xl flex-shrink-0">✉️</span>
                 <div>
@@ -107,7 +106,7 @@ export default function ContactPage() {
               </a>
 
               {/* Address */}
-              <div className="bg-gold-pale p-6 border-l-4 border-gold">
+              <div className="bg-accent-pale p-6 border-l-4 border-accent">
                 <p className="section-label mb-3">Our Address</p>
                 <p className="text-sm text-ink-mid leading-relaxed">
                   Veda Heritage<br />
@@ -115,7 +114,7 @@ export default function ContactPage() {
                   Kollam District, Kerala 690536<br />
                   India
                 </p>
-                <p className="text-xs text-gold mt-3 italic">
+                <p className="text-xs text-accent mt-3 italic">
                   GPS pin shared on WhatsApp after booking confirmation.
                 </p>
               </div>
@@ -125,10 +124,10 @@ export default function ContactPage() {
             <div>
               <p className="section-label">Enquiry Form</p>
               <h2 className="font-serif text-3xl text-ink mb-2">Send a Message</h2>
-              <div className="gold-rule mb-8" />
+              <div className="accent-rule mb-8" />
 
               {state === 'success' ? (
-                <div className="bg-forest text-white p-8 text-center">
+                <div className="bg-primary text-white p-8 text-center">
                   <div className="text-4xl mb-3">✓</div>
                   <h3 className="font-serif text-xl mb-2">Message Sent!</h3>
                   <p className="text-white/80 text-sm">
@@ -152,7 +151,7 @@ export default function ContactPage() {
                         type="text"
                         name="name"
                         required
-                        className="w-full border border-gold/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-forest"
+                        className="w-full border border-accent/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary"
                         placeholder="Full name"
                       />
                     </div>
@@ -164,7 +163,7 @@ export default function ContactPage() {
                         type="text"
                         name="country"
                         required
-                        className="w-full border border-gold/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-forest"
+                        className="w-full border border-accent/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary"
                         placeholder="e.g. Germany"
                       />
                     </div>
@@ -178,7 +177,7 @@ export default function ContactPage() {
                       type="email"
                       name="email"
                       required
-                      className="w-full border border-gold/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-forest"
+                      className="w-full border border-accent/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -191,7 +190,7 @@ export default function ContactPage() {
                       <input
                         type="date"
                         name="arrival_date"
-                        className="w-full border border-gold/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-forest"
+                        className="w-full border border-accent/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary"
                       />
                     </div>
                     <div>
@@ -201,7 +200,7 @@ export default function ContactPage() {
                       <input
                         type="date"
                         name="departure_date"
-                        className="w-full border border-gold/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-forest"
+                        className="w-full border border-accent/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary"
                       />
                     </div>
                   </div>
@@ -212,7 +211,7 @@ export default function ContactPage() {
                     </label>
                     <select
                       name="guests"
-                      className="w-full border border-gold/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-forest"
+                      className="w-full border border-accent/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary"
                     >
                       <option value="1">1 guest</option>
                       <option value="2">2 guests</option>
@@ -228,7 +227,7 @@ export default function ContactPage() {
                     <textarea
                       name="message"
                       rows={4}
-                      className="w-full border border-gold/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-forest resize-none"
+                      className="w-full border border-accent/30 bg-white px-4 py-2.5 text-sm focus:outline-none focus:border-primary resize-none"
                       placeholder="Tell us about your visit — Amritapuri program, Ayurveda interest, special requirements..."
                     />
                   </div>
@@ -251,7 +250,7 @@ export default function ContactPage() {
                       href="https://www.airbnb.co.in/h/stay-near-amritapuri"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gold hover:underline"
+                      className="text-accent hover:underline"
                     >
                       Airbnb
                     </a>
@@ -260,7 +259,7 @@ export default function ContactPage() {
                       href={WA.base}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gold hover:underline"
+                      className="text-accent hover:underline"
                     >
                       WhatsApp
                     </a>

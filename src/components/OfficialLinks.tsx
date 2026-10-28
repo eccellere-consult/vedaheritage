@@ -6,8 +6,8 @@ export default function OfficialLinks({ extra = [], groups }: { extra?: Source[]
   return (
     <ul className="grid sm:grid-cols-2 gap-3 text-sm">
       {[...extra.map(e => ({ ...e, note: 'Official body for this place.' })), ...base].map(l => (
-        <li key={l.url} className="bg-white border border-gold/30 p-3">
-          <a href={l.url} target="_blank" rel="noopener noreferrer" className="font-medium text-forest hover:underline">{l.label} ↗</a>
+        <li key={l.url} className="bg-white border border-accent/30 p-3">
+          <a href={l.url} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">{l.label} ↗</a>
           <p className="text-xs text-ink-mid mt-1">{l.note}</p>
         </li>
       ))}

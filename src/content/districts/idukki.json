@@ -1,0 +1,68 @@
+{
+  "slug": "idukki",
+  "name": "Idukki",
+  "headquarters": "Painavu",
+  "region": "Central",
+  "tagline": "The hill district of tea, spices and dams",
+  "summary": "Idukki: Kerala's highest hill district, with Munnar tea estates, Periyar Tiger Reserve, cardamom plantations, Vagamon and the Idukki arch dam.",
+  "history": {
+    "overview": "The district is the heart of the Western Ghats high range, opened up by planters in the 19th century. The Idukki arch dam, built in the 1970s, is a major hydropower and engineering landmark.",
+    "timeline": [
+      {
+        "period": "19th century",
+        "event": "Planters open tea and cardamom estates."
+      },
+      {
+        "period": "1976",
+        "event": "Idukki arch dam is commissioned."
+      },
+      {
+        "period": "2018",
+        "event": "Neelakurinji blooms across the hills."
+      }
+    ]
+  },
+  "unique": [
+    "Cool high-range climate and tea estates",
+    "Periyar Tiger Reserve at Thekkady",
+    "Spice plantations",
+    "Idukki arch dam"
+  ],
+  "bestTime": {
+    "season": "September to March",
+    "why": "Cool, misty hills and clear views.",
+    "avoid": "June–August (heavy rain, landslides possible)"
+  },
+  "lookFor": [
+    "Tea estates and tea museum",
+    "Periyar boat and forest walks",
+    "Spice farm visits",
+    "Vagamon meadows"
+  ],
+  "highlights": [
+    "Munnar",
+    "Thekkady",
+    "Idukki dam",
+    "Vagamon"
+  ],
+  "festivals": [
+    "Neelakurinji bloom (every 12 years)",
+    "Onam"
+  ],
+  "crafts": [
+    "Spice products",
+    "Tea"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Idukki district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Idukki_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

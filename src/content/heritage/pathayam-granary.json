@@ -1,0 +1,152 @@
+{
+  "slug": "pathayam-granary",
+  "category": "heritage",
+  "name": "Pathayam — the Kerala Granary Chest",
+  "malayalamName": "പത്തായം",
+  "district": "Statewide",
+  "tagline": "The great wooden grain chest of the Kerala tharavad",
+  "summary": "Pathayam, the traditional wooden granary of Kerala tharavads: how it was built, why it mattered, and where to see one in a heritage home.",
+  "description": [
+    "A pathayam is a large, tightly joined wooden chest or room-sized box used to store paddy and other grain in traditional Kerala houses. It was usually built from jackfruit or teak, raised on feet and fitted with a small opening, to keep out damp, rodents and insects.",
+    "Pathayams of rice stood inside the tharavad (ancestral house) or in a detached store, and a family's wealth was often counted in the paddy stored there."
+  ],
+  "history": {
+    "significance": "A symbol of food security and family prosperity in the agrarian, matrilineal tharavad households that shaped Kerala society.",
+    "timeline": [
+      {
+        "period": "Medieval period",
+        "event": "Paddy farming and the joint-family tharavad system make large grain stores a feature of well-to-do homes."
+      },
+      {
+        "period": "19th–early 20th century",
+        "event": "Carpenter families produce fine, carved pathayams as part of nalukettu construction."
+      },
+      {
+        "period": "Late 20th century onward",
+        "event": "Land reform, nuclear families and modern storage reduce use; pathayams survive in heritage homes and museums."
+      }
+    ],
+    "keyFacts": [
+      "A pathayam could hold many hundreds of kilograms of paddy.",
+      "Paddy was measured in traditional units such as para and edangazhi.",
+      "The carpenter's skill is in the joinery: tight fitting with little or no metal.",
+      "Smaller pathayam-style chests are sold today as storage furniture."
+    ]
+  },
+  "folklore": {
+    "title": "The Granary and the Goddess",
+    "story": [
+      "Households speak of the granary as the seat of Lakshmi, the goddess of wealth and grain. At harvest the first sheaves and the first filling of the pathayam are marked with prayer and a lamp.",
+      "Another widespread custom is to keep a measure of paddy untouched in the pathayam as a promise of continued plenty."
+    ],
+    "note": "Practices vary between communities and families; this is a general account."
+  },
+  "spiritual": {
+    "summary": "The pathayam recalls a way of life based on harvest, sharing and thrift.",
+    "experiences": [
+      {
+        "title": "See one in a tharavad",
+        "text": "Ask your host or museum guide to open a pathayam and explain how it was filled and measured."
+      },
+      {
+        "title": "Join a harvest event",
+        "text": "In Kuttanad and Palakkad, harvest time offers a chance to see how grain reaches the granary."
+      }
+    ],
+    "bestFor": "Heritage-minded and family travellers.",
+    "mindfulTips": [
+      "Do not climb on or sit on antique chests.",
+      "Ask before photographing family homes."
+    ]
+  },
+  "highlights": [
+    "Joinery without nails in jackwood and teak",
+    "Part of the nalukettu household",
+    "Linked to Lakshmi and harvest customs"
+  ],
+  "visitorInfo": {
+    "bestTime": "Harvest months: September–October and January–February in much of Kerala.",
+    "howToReach": "Seen in nalukettu homes, folk museums and palace museums in Thiruvananthapuram, Ernakulam and Palakkad.",
+    "etiquette": [
+      "Do not touch exhibits in museums.",
+      "Ask permission in private homes."
+    ],
+    "duration": "1–2 hours"
+  },
+  "heritage": {
+    "localName": "പത്തായം (pathayam)",
+    "materials": "Jackwood (plavu), teak, rosewood",
+    "whereToSee": [
+      {
+        "name": "Kerala Folklore Museum, Thripunithura",
+        "district": "Ernakulam",
+        "kind": "museum",
+        "note": "Private museum housed in a building assembled from traditional timber architecture; displays household objects, lamps and ritual items."
+      },
+      {
+        "name": "Koyikkal Palace Museum, Nedumangad",
+        "district": "Thiruvananthapuram",
+        "kind": "heritage-home",
+        "note": "Nalukettu-style palace with a folklore and numismatics museum run by the State Archaeology Department."
+      },
+      {
+        "name": "Padmanabhapuram Palace",
+        "district": "Kanniyakumari (Tamil Nadu), managed by Kerala Archaeology",
+        "kind": "heritage-home",
+        "note": "Timber palace of the Travancore kings with carved ceilings; a short drive across the Kerala border from Thiruvananthapuram."
+      }
+    ],
+    "whereToBuy": [
+      {
+        "name": "Surabhi — Handicrafts Development Corporation of Kerala emporiums",
+        "kind": "emporium",
+        "district": "Statewide",
+        "note": "State-run emporiums selling metalcraft, wood carving, coir and handloom; good for fixed-price first purchases."
+      },
+      {
+        "name": "Master carpenters in Thrissur and Palakkad",
+        "kind": "workshop",
+        "district": "Thrissur / Palakkad",
+        "note": "Commission small pathayam-style chests from traditional carpenters; ask for references."
+      }
+    ],
+    "experiences": [
+      {
+        "name": "Kuthiramalika (Puthenmalika) Palace Museum",
+        "district": "Thiruvananthapuram",
+        "kind": "heritage-home",
+        "note": "Travancore palace with carved horse brackets, in the Padmanabhaswamy Temple precinct."
+      },
+      {
+        "name": "Hill Palace Museum, Tripunithura",
+        "district": "Ernakulam",
+        "kind": "heritage-home",
+        "note": "Former Cochin royal residence set in a hill-top campus with a museum of royal artefacts."
+      }
+    ],
+    "buyingTips": [
+      "Antique pathayams may need an export permit; ask the seller about Archaeological Survey rules for objects over 100 years old.",
+      "New pieces should be solid wood, with visible joinery."
+    ]
+  },
+  "images": [],
+  "tags": [
+    "heritage",
+    "Kerala",
+    "traditional craft",
+    "pathayam",
+    "granary"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Tharavad — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tharavad"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

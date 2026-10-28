@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 export const ROOT = process.cwd()
-export const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'ayurveda']
+export const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda']
 export const today = () => new Date().toISOString().slice(0, 10)
 
 export const slugify = s =>

@@ -1,0 +1,68 @@
+{
+  "slug": "kottayam",
+  "name": "Kottayam",
+  "headquarters": "Kottayam",
+  "region": "Central",
+  "tagline": "The land of letters, latex and lakes",
+  "summary": "Kottayam: Kerala's printing and literary city, with Kumarakom on Vembanad Lake, rubber estates, Syrian Christian churches and Vaikom's history.",
+  "history": {
+    "overview": "Kottayam was a centre of early Malayalam printing, with the Church Mission Society press established in the early 19th century. The Vaikom Satyagraha of 1924–25 began here.",
+    "timeline": [
+      {
+        "period": "1820s",
+        "event": "Church Mission Society press brings printing to Malayalam."
+      },
+      {
+        "period": "1924–25",
+        "event": "Vaikom Satyagraha challenges caste restrictions on temple roads."
+      },
+      {
+        "period": "Late 20th century",
+        "event": "Becomes a pioneering literate district."
+      }
+    ]
+  },
+  "unique": [
+    "Early Malayalam printing and publishing",
+    "Kumarakom backwaters and bird sanctuary",
+    "Syrian Christian heritage with painted churches",
+    "Rubber-growing hinterland"
+  ],
+  "bestTime": {
+    "season": "October to February",
+    "why": "Dry, pleasant for backwaters and bird watching.",
+    "avoid": "June–August (monsoon)"
+  },
+  "lookFor": [
+    "Kumarakom bird sanctuary",
+    "Painted churches at Valiyapally and Cheriapally",
+    "Aymanam village",
+    "Vaikom Mahadeva Temple"
+  ],
+  "highlights": [
+    "Kumarakom",
+    "Vembanad Lake",
+    "Vaikom",
+    "Illikkal Kallu viewpoint"
+  ],
+  "festivals": [
+    "Vaikathashtami (Nov–Dec)",
+    "Thirunakkara Arattu"
+  ],
+  "crafts": [
+    "Rubber wood furniture",
+    "Coir products"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kottayam district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kottayam_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

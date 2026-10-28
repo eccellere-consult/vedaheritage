@@ -1,0 +1,68 @@
+{
+  "slug": "kozhikode",
+  "name": "Kozhikode",
+  "headquarters": "Kozhikode",
+  "region": "North",
+  "tagline": "Calicut, the city of spices and sailors",
+  "summary": "Kozhikode: Calicut's spice-port history, Kappad beach, Beypore boat-building, Mishkal Mosque, halwa and the Sargaalaya craft village.",
+  "history": {
+    "overview": "Kozhikode was the capital of the Zamorins and a premier spice port. Vasco da Gama landed nearby in 1498. Beypore's wooden ship-builders still craft traditional boats.",
+    "timeline": [
+      {
+        "period": "14th–15th century",
+        "event": "Visited by Ibn Battuta and Chinese fleets."
+      },
+      {
+        "period": "1498",
+        "event": "Vasco da Gama arrives."
+      },
+      {
+        "period": "1766",
+        "event": "Hyder Ali takes Calicut."
+      }
+    ]
+  },
+  "unique": [
+    "Spice-port history and multi-faith heritage",
+    "Beypore uru (wooden boats)",
+    "Malabar cuisine and Kozhikode halwa",
+    "Sargaalaya craft village"
+  ],
+  "bestTime": {
+    "season": "October to March",
+    "why": "Pleasant for beaches and food trails.",
+    "avoid": "June–August (monsoon)"
+  },
+  "lookFor": [
+    "Kappad beach",
+    "Mishkal Mosque and Kuttichira",
+    "Beypore harbour",
+    "Sargaalaya"
+  ],
+  "highlights": [
+    "Kappad",
+    "Beypore",
+    "Mananchira",
+    "Thusharagiri falls"
+  ],
+  "festivals": [
+    "Onam events in the city",
+    "Kozhikode food and literature festivals (check dates)"
+  ],
+  "crafts": [
+    "Beypore boats",
+    "Halwa"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kozhikode district — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kozhikode_district"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

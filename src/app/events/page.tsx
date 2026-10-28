@@ -22,12 +22,11 @@ export default function EventsPage() {
     <>
       {/* Header */}
       <section
-        className="pt-32 pb-20 text-center"
-        style={{ background: 'linear-gradient(160deg, #0A2E1A 0%, #1A5C38 100%)' }}
+        className="pt-32 pb-20 text-center bg-hero-gradient"
       >
-        <p className="section-label text-gold/80">Plan Your Visit</p>
+        <p className="section-label text-accent-light">Plan Your Visit</p>
         <h1 className="font-serif text-5xl text-white mb-4">Kerala Events & Festivals</h1>
-        <div className="w-12 h-px bg-gold mx-auto mb-4" />
+        <div className="w-12 h-px bg-accent mx-auto mb-4" />
         <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed px-4">
           From Thrissur Pooram to Amma's Birthday, from Onam to the Karkidakam Ayurveda season —
           Kerala's calendar is extraordinarily rich. Plan around what matters to you.
@@ -35,7 +34,7 @@ export default function EventsPage() {
       </section>
 
       {/* Legend */}
-      <section className="bg-white border-b border-gold/10 py-4">
+      <section className="bg-white border-b border-accent/10 py-4">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-3 justify-center">
             {(Object.entries(EVENT_TYPE_COLOURS) as [EventType, string][]).map(([type, colours]) => (
@@ -48,7 +47,7 @@ export default function EventsPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-16 bg-cream">
+      <section className="py-16 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {eventsByMonth.map(({ month, events }) => (
@@ -56,7 +55,7 @@ export default function EventsPage() {
               {/* Month header */}
               <div className="flex items-center gap-4 mb-8">
                 <h2 className="font-serif text-3xl text-ink">{month}</h2>
-                <div className="flex-1 h-px bg-gold/30" />
+                <div className="flex-1 h-px bg-accent/30" />
               </div>
 
               {/* Events */}
@@ -64,21 +63,21 @@ export default function EventsPage() {
                 {events.map(event => (
                   <div
                     key={event.name}
-                    className={`bg-white p-6 md:p-8 border-l-4 ${event.highlight ? 'border-gold shadow-md' : 'border-gold/30'}`}
+                    className={`bg-white p-6 md:p-8 border-l-4 ${event.highlight ? 'border-accent shadow-md' : 'border-accent/30'}`}
                   >
                     <div className="flex flex-wrap items-start gap-3 mb-3">
                       <span className={`text-xs font-sans font-medium px-2 py-0.5 rounded-full border ${EVENT_TYPE_COLOURS[event.type]}`}>
                         {event.type}
                       </span>
                       {event.highlight && (
-                        <span className="text-xs font-sans font-bold text-gold tracking-wider uppercase">
+                        <span className="text-xs font-sans font-bold text-accent tracking-wider uppercase">
                           ★ Highlight
                         </span>
                       )}
                     </div>
 
                     <h3 className="font-serif text-xl text-ink mb-1">{event.name}</h3>
-                    <p className="text-gold text-xs font-sans tracking-wide mb-3">{event.dates}</p>
+                    <p className="text-accent text-xs font-sans tracking-wide mb-3">{event.dates}</p>
 
                     <p className="text-sm text-ink-mid leading-relaxed mb-4">{event.description}</p>
 
@@ -89,7 +88,7 @@ export default function EventsPage() {
                       </div>
                       <div>
                         <p className="text-ink-mid/50 uppercase tracking-wider mb-1">From the Retreat</p>
-                        <p className="text-forest font-medium">{event.distanceFromRetreat}</p>
+                        <p className="text-primary font-medium">{event.distanceFromRetreat}</p>
                       </div>
                       <div className="sm:col-span-2">
                         <p className="text-ink-mid/50 uppercase tracking-wider mb-1">Best For</p>
@@ -98,8 +97,8 @@ export default function EventsPage() {
                     </div>
 
                     {event.tip && (
-                      <div className="mt-4 pt-4 border-t border-gold/20 flex gap-2">
-                        <span className="text-gold flex-shrink-0 text-sm">💡</span>
+                      <div className="mt-4 pt-4 border-t border-accent/20 flex gap-2">
+                        <span className="text-accent flex-shrink-0 text-sm">💡</span>
                         <p className="text-xs text-ink-mid italic">{event.tip}</p>
                       </div>
                     )}
@@ -112,7 +111,7 @@ export default function EventsPage() {
       </section>
 
       {/* Year note */}
-      <section className="py-6 bg-white border-t border-gold/10">
+      <section className="py-6 bg-white border-t border-accent/10">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <p className="text-xs text-ink-mid/50 italic">
             Note: Festival dates vary each year based on the Malayalam lunar calendar.
@@ -133,11 +132,11 @@ export default function EventsPage() {
               href="https://wa.me/919964694566?text=Hello%2C%20I%20want%20to%20plan%20my%20stay%20around%20a%20Kerala%20festival."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold text-xs"
+              className="btn-accent text-xs"
             >
               Plan My Visit on WhatsApp
             </a>
-            <Link href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-forest text-xs">
+            <Link href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-xs">
               Send an Enquiry
             </Link>
           </div>

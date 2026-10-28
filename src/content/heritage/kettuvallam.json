@@ -1,0 +1,134 @@
+{
+  "slug": "kettuvallam",
+  "category": "heritage",
+  "name": "Kettuvallam — the Rice Barge",
+  "malayalamName": "കെട്ടുവള്ളം",
+  "district": "Alappuzha",
+  "tagline": "The plank-and-coir cargo boat that became the backwater houseboat",
+  "summary": "Kettuvallam, Kerala's traditional rice barge: how it is built without nails, its history in the spice and rice trade, and how to choose an authentic boat.",
+  "description": [
+    "A kettuvallam is a traditional backwater boat made of jackwood planks tied with coir rope and sealed with cashew-nut oil and resin, with a curved roof of woven palm leaves. The name means 'boat of knots'.",
+    "Once used to carry rice and spices across Kuttanad and Vembanad, many were converted into the houseboats that now carry tourists."
+  ],
+  "history": {
+    "significance": "A masterpiece of vernacular boatbuilding that tells the story of Kerala's inland trade.",
+    "timeline": [
+      {
+        "period": "Medieval to early modern",
+        "event": "Plank-built, coir-sewn boats carry rice and spices along the backwaters to ports such as Alappuzha and Kollam."
+      },
+      {
+        "period": "20th century",
+        "event": "Roads and trucks replace the cargo boats; many are abandoned or sold."
+      },
+      {
+        "period": "1990s onward",
+        "event": "Converted kettuvallams are re-fitted as houseboats, launching backwater tourism."
+      }
+    ],
+    "keyFacts": [
+      "Planks are stitched with coir and sealed without nails.",
+      "Roofs are woven from palm fronds.",
+      "Traditional boats are made of anjili (jackwood) or similar timber.",
+      "Registered houseboats are subject to rules on waste and safety."
+    ]
+  },
+  "folklore": {
+    "title": "The Boat of Knots",
+    "story": [
+      "Boatbuilders say the tying of the knots is a skill passed from father to son, and each family has its own way of binding the planks. A new boat is launched with a small ritual and a coconut offered to the water.",
+      "Boat-songs (vanchippattu) are sung by crews to keep rhythm, and the oldest verses are said to recall the journeys of grain boats."
+    ],
+    "note": "Traditions vary among boat-building families."
+  },
+  "spiritual": {
+    "summary": "A slow day on a kettuvallam is a lesson in how Kerala's water roads once worked.",
+    "experiences": [
+      {
+        "title": "Choose an eco-friendly boat",
+        "text": "Book a registered boat with waste-handling and low-noise engines."
+      },
+      {
+        "title": "Visit a boatyard",
+        "text": "Ask your host to arrange a visit to a boatyard to see coir-stitching and caulking."
+      }
+    ],
+    "bestFor": "Slow-travel and nature lovers.",
+    "mindfulTips": [
+      "Avoid single-use plastics on board.",
+      "Keep noise low near villages and bird areas."
+    ]
+  },
+  "highlights": [
+    "Nail-free plank-and-coir construction",
+    "Palm-thatch roofs",
+    "Cargo boat to houseboat",
+    "Vanchippattu boat songs"
+  ],
+  "visitorInfo": {
+    "bestTime": "November to February; boat-race season is August–September.",
+    "howToReach": "Houseboats start from Alappuzha, Kumarakom and Kollam jetties.",
+    "etiquette": [
+      "Use registered operators.",
+      "Respect fishing zones.",
+      "Tip crew fairly."
+    ],
+    "duration": "1–2 days"
+  },
+  "heritage": {
+    "localName": "കെട്ടുവള്ളം (kettuvallam)",
+    "materials": "Jackwood planks, coir rope, cashew-nut oil, palm leaves",
+    "whereToSee": [
+      {
+        "name": "Alappuzha and Kuttanad backwaters",
+        "district": "Alappuzha",
+        "note": "Traditional kettuvallams ply the canals."
+      },
+      {
+        "name": "Ashtamudi Lake, Kollam",
+        "district": "Kollam",
+        "note": "Houseboats and village boats."
+      }
+    ],
+    "whereToBuy": [
+      {
+        "name": "Registered houseboat operators (DTPC-approved)",
+        "kind": "online",
+        "district": "Alappuzha / Kollam / Kottayam",
+        "note": "Use boats registered with the District Tourism Promotion Council; ask for the registration certificate."
+      }
+    ],
+    "experiences": [
+      {
+        "name": "Kuttanad village and rice-farm walks",
+        "district": "Alappuzha",
+        "kind": "cultural-centre",
+        "note": "Community-run experiences available through homestays (verify operators)."
+      }
+    ],
+    "buyingTips": [
+      "Prefer boats with a green or eco rating and a visible licence.",
+      "Avoid bargain boats with unclear safety kit."
+    ]
+  },
+  "images": [],
+  "tags": [
+    "heritage",
+    "Kerala",
+    "traditional craft",
+    "kettuvallam",
+    "Alappuzha"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kettuvallam — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kettuvallam"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

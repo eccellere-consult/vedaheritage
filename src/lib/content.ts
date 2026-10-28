@@ -38,6 +38,13 @@ export const CATEGORIES = {
     seoTitle: 'Kerala Backwaters: Alleppey, Ashtamudi & Where to Go',
     schemaType: 'TouristAttraction',
   },
+  heritage: {
+    label: 'Heritage Items',
+    singular: 'Heritage item',
+    blurb: "Kerala's traditional objects, crafts and architecture — vilakku, kaavu, pathayam, nalukettu and more — with their history, where to see them and where to buy.",
+    seoTitle: 'Traditional Kerala Heritage: Vilakku, Nalukettu, Kaavu & Crafts to Buy',
+    schemaType: 'TouristAttraction',
+  },
   ayurveda: {
     label: 'Ayurveda',
     singular: 'Ayurveda',
@@ -61,6 +68,23 @@ export interface EntryImage {
   license: string              // e.g. "CC BY-SA 4.0"
   licenseUrl?: string
   sourceUrl: string            // page the image came from
+}
+
+export interface Place {
+  name: string
+  district: string
+  kind?: string
+  note: string
+  url?: string
+}
+
+export interface HeritageInfo {
+  localName?: string
+  materials?: string
+  whereToSee: Place[]
+  whereToBuy: Place[]
+  experiences: Place[]
+  buyingTips: string[]
 }
 
 export interface Entry {
@@ -91,12 +115,13 @@ export interface Entry {
     etiquette: string[]
     duration?: string
   }
-  travel: {
+  travel?: {                   // optional for statewide heritage items
     byTrain: string[]
     byBus: string[]
     byWater?: string[]
     byAir?: string[]
   }
+  heritage?: HeritageInfo      // required for category "heritage"
   officialLinks?: Source[]
   coordinates?: { lat: number; lng: number }
   images: EntryImage[]         // 1–2 licensed, credited photos (required before approval)
@@ -147,6 +172,59 @@ export function getEntry(category: CategoryKey, slug: string): Entry | undefined
 export function getStories(entry?: { category: CategoryKey; slug: string }): Story[] {
   const all = visible(readDir<Story>('stories')).sort((a, b) => b.date.localeCompare(a.date))
   return entry ? all.filter(s => s.entryCategory === entry.category && s.entrySlug === entry.slug) : all
+}
+
+export interface District {
+  slug: string
+  name: string
+  headquarters: string
+  region: 'South' | 'Central' | 'North'
+  tagline: string
+  summary: string
+  history: { overview: string; timeline: { period: string; event: string }[] }
+  unique: string[]
+  bestTime: { season: string; why: string; avoid: string }
+  lookFor: string[]
+  highlights: string[]
+  festivals: string[]
+  crafts: string[]
+  sources: Source[]
+  status: ContentStatus
+  lastVerified: string
+}
+
+export interface KeralaOverview {
+  title: string
+  summary: string
+  intro: string[]
+  history: { period: string; event: string }[]
+  regions: { name: string; districts: string; character: string }[]
+  seasons: { season: string; months: string; notes: string }[]
+  essentials: string[]
+  sources: Source[]
+  status: ContentStatus
+  lastVerified: string
+}
+
+export function getDistricts(): District[] {
+  const order = ['South', 'Central', 'North']
+  return visible(readDir<District>('districts')).sort(
+    (a, b) => order.indexOf(a.region) - order.indexOf(b.region) || a.name.localeCompare(b.name),
+  )
+}
+
+export const getDistrict = (slug: string) => getDistricts().find(d => d.slug === slug)
+
+export function getKerala(): KeralaOverview | undefined {
+  return visible(readDir<KeralaOverview>('kerala'))[0]
+}
+
+/** Entries linked to a district: located there, or listed as a place to see/buy/experience. */
+export function getEntriesForDistrict(name: string): Entry[] {
+  const hit = (p: Place) => p.district.toLowerCase().includes(name.toLowerCase())
+  return getEntries().filter(e =>
+    e.district.toLowerCase() === name.toLowerCase() ||
+    (e.heritage && [...e.heritage.whereToSee, ...e.heritage.whereToBuy, ...e.heritage.experiences].some(hit)))
 }
 
 export const SITE_URL = 'https://www.vedaheritage.co.in'
