@@ -1,0 +1,60 @@
+{
+  "slug": "munnar",
+  "category": "places",
+  "name": "Munnar",
+  "malayalamName": "മൂന്നാർ",
+  "district": "Idukki",
+  "tagline": "Tea slopes, mist and the hills that bloom once in twelve years",
+  "summary": "Munnar in Idukki: tea estates, high-range viewpoints, Eravikulam and the Neelakurinji bloom — with the folklore of hill communities and the 12-year flower.",
+  "description": [
+    "Munnar is a hill station in the Western Ghats, set among tea estates at the meeting point of three rivers: Muthirapuzha, Nallathanni and Kundala. The name is commonly taken to mean 'three rivers'.",
+    "Visitors come for tea plantations, short treks, Eravikulam National Park and cool-weather escapes from the coast."
+  ],
+  "folklore": {
+    "title": "The Flower That Counts Years",
+    "story": [
+      "The Neelakurinji, a shrub of the high ranges, blooms in mass roughly once every twelve years and turns the hills blue. Some hill communities, such as the Paliyan, are reported to use the blooming as a way of counting their ages.",
+      "The flower also features in Tamil Sangam poetry as a symbol of the hill landscape and of love in the mountains, giving the bloom a cultural weight beyond tourism."
+    ],
+    "note": "Local community practices should be verified with a community source before publication."
+  },
+  "highlights": [
+    "Tea estates and tea museum",
+    "Eravikulam National Park (Nilgiri tahr)",
+    "Mattupetty and Echo Point viewpoints",
+    "Neelakurinji bloom years (verify next bloom)"
+  ],
+  "visitorInfo": {
+    "bestTime": "September to March; mist and rain are heaviest from June to August.",
+    "howToReach": "About 130 km from Kochi airport by road (roughly 4 hours); the nearest railhead is Aluva.",
+    "etiquette": [
+      "Do not litter in estates; they are working plantations.",
+      "Respect protected-area rules in Eravikulam.",
+      "Avoid plucking Neelakurinji flowers during bloom."
+    ],
+    "duration": "2–3 days"
+  },
+  "coordinates": {
+    "lat": 10.0889,
+    "lng": 77.0595
+  },
+  "tags": [
+    "hill station",
+    "tea",
+    "Idukki",
+    "Western Ghats",
+    "nature"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Munnar — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Munnar"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "kappad-beach",
+  "category": "beaches",
+  "name": "Kappad Beach",
+  "malayalamName": "കാപ്പാട്",
+  "district": "Kozhikode",
+  "tagline": "Where Vasco da Gama is said to have landed in 1498",
+  "summary": "Kappad Beach in Kozhikode: the shore where Vasco da Gama landed in 1498, a rocky coast, Blue Flag recognition and the lore of the Malabar spice trade.",
+  "description": [
+    "Kappad is a rocky, tranquil beach north of Kozhikode on the Malabar coast, marked by a memorial to the arrival of the Portuguese navigator Vasco da Gama in 1498. The landing opened the sea route between Europe and India.",
+    "The beach has been recognised under the international Blue Flag programme for its clean-beach management (verify current status)."
+  ],
+  "folklore": {
+    "title": "The Landing That Changed the Spice Trade",
+    "story": [
+      "Local memory holds that the first European ships anchored offshore and a small party came ashore here, to be received by the Zamorin of Calicut's officials. The meeting set off centuries of trade, rivalry and colonial change on the coast.",
+      "Fishermen tell that the rocks at Kappad were the ones that guided boats to land in earlier centuries, and the memorial stone is now one of the town's best-loved landmarks."
+    ],
+    "note": "The fishermen's account should be confirmed with a local source before publication."
+  },
+  "highlights": [
+    "Vasco da Gama landing memorial",
+    "Rocky coastline and sunset views",
+    "Thiruvangad Sree Krishna temple nearby",
+    "Kozhikode halwa and Malabar cuisine nearby"
+  ],
+  "visitorInfo": {
+    "bestTime": "October to March.",
+    "howToReach": "About 16 km north of Kozhikode city; the airport at Karipur is about 40 km away.",
+    "etiquette": [
+      "Swim only in designated areas.",
+      "Take litter back with you; the beach is managed for cleanliness.",
+      "Be respectful of nearby places of worship."
+    ],
+    "duration": "Half day"
+  },
+  "coordinates": {
+    "lat": 11.3811,
+    "lng": 75.7194
+  },
+  "tags": [
+    "beach",
+    "Kozhikode",
+    "Malabar",
+    "history",
+    "Vasco da Gama"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Kappad — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kappad"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

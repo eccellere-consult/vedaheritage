@@ -1,0 +1,60 @@
+{
+  "slug": "fort-kochi",
+  "category": "places",
+  "name": "Fort Kochi",
+  "malayalamName": "ഫോർട്ട് കൊച്ചി",
+  "district": "Ernakulam",
+  "tagline": "Portuguese, Dutch and British layers in a walkable seaside town",
+  "summary": "Fort Kochi in Ernakulam: Chinese fishing nets, St Francis Church, Jew Town and colonial lanes — with the story of how the nets came to Kerala.",
+  "description": [
+    "Fort Kochi is the old colonial quarter of Kochi, shaped by Portuguese, Dutch and British rule and by centuries of spice trade. Its lanes hold churches, bungalows, galleries, cafés and the Dutch Cemetery, and are best explored on foot or by bicycle.",
+    "Nearby Mattancherry adds the Dutch Palace and Jew Town's antique shops and synagogue, making Fort Kochi a natural base for a heritage-focused day or two."
+  ],
+  "folklore": {
+    "title": "How the Fishing Nets Came to Kochi",
+    "story": [
+      "The cantilevered Chinese fishing nets (cheena vala) along the waterfront are the town's best-known image. A popular tradition links them to traders from the court of the Chinese explorer Zheng He, who visited the Malabar coast in the early 15th century.",
+      "Another account credits Portuguese settlers from Macau. Historians are unsure which version is right, and local fishermen simply say the nets have been worked by the same families for generations, lowered and raised by teams using stone counterweights."
+    ],
+    "note": "Origin is debated; presented here as folklore, not settled history."
+  },
+  "highlights": [
+    "Chinese fishing nets at sunrise and sunset",
+    "St Francis Church — the earliest European church in India",
+    "Mattancherry Palace and Jew Town",
+    "Kathakali and Kalaripayattu performances (check venues)"
+  ],
+  "visitorInfo": {
+    "bestTime": "November to February; avoid heavy monsoon for walking tours.",
+    "howToReach": "About 12 km from the Ernakulam city centre; local ferries and buses run from Ernakulam jetties. Kochi airport is about 40 km away.",
+    "etiquette": [
+      "Dress modestly in churches and synagogue.",
+      "Ask before photographing people at the fishing nets.",
+      "Bargain politely in Jew Town shops."
+    ],
+    "duration": "1–2 days"
+  },
+  "coordinates": {
+    "lat": 9.9658,
+    "lng": 76.2421
+  },
+  "tags": [
+    "heritage",
+    "Kochi",
+    "colonial",
+    "fishing nets",
+    "Ernakulam"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Fort Kochi — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fort_Kochi"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

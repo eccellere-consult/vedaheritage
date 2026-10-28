@@ -1,0 +1,60 @@
+{
+  "slug": "alappuzha-backwaters",
+  "category": "backwaters",
+  "name": "Alappuzha (Alleppey) Backwaters",
+  "malayalamName": "ആലപ്പുഴ",
+  "district": "Alappuzha",
+  "tagline": "Houseboats, canals and the world-famous snake-boat races",
+  "summary": "Alappuzha backwaters on Vembanad Lake: houseboat stays, canal village life, Kuttanad's below-sea-level farming and the lore of the snake-boat races.",
+  "description": [
+    "Alappuzha sits on the Vembanad Lake system, with a network of canals, lagoons and rice fields. Kuttanad, nearby, is among the few places in the world where farming is done below sea level.",
+    "Visitors can take a houseboat cruise, a smaller canoe through village waterways, or a public ferry for an everyday view of life on the water."
+  ],
+  "folklore": {
+    "title": "Snake Boats and the Nehru Trophy",
+    "story": [
+      "The long chundan vallam (snake boat), up to about 100 feet long with over 100 rowers, is traditionally associated with the war boats of local rulers. Oarsmen sing vanchippattu, the boat songs, to keep time.",
+      "The Nehru Trophy Boat Race on Punnamada Lake is said to have started after Jawaharlal Nehru's visit in 1952, when a boat race was staged in his honour and he was so moved that he donated a trophy."
+    ],
+    "note": "Dates and details should be checked against the Nehru Trophy Boat Race Society."
+  },
+  "highlights": [
+    "Houseboat and canoe cruises",
+    "Nehru Trophy Boat Race (August, check date)",
+    "Kuttanad below-sea-level farming",
+    "Alappuzha beach and lighthouse"
+  ],
+  "visitorInfo": {
+    "bestTime": "November to February; boat race season is typically August to September.",
+    "howToReach": "Alappuzha has a railway station and a boat jetty; Kochi airport is about 85 km away.",
+    "etiquette": [
+      "Choose licensed houseboat operators and ask about waste handling.",
+      "Avoid plastics on the water.",
+      "Ask permission before photographing residents."
+    ],
+    "duration": "1–2 days"
+  },
+  "coordinates": {
+    "lat": 9.4981,
+    "lng": 76.3388
+  },
+  "tags": [
+    "backwaters",
+    "houseboat",
+    "Alappuzha",
+    "Vembanad",
+    "boat race"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Alappuzha — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Alappuzha"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

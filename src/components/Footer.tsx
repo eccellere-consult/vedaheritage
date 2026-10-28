@@ -23,6 +23,8 @@ export default function Footer() {
             <p className="section-label text-gold/70 mb-4">Explore</p>
             <div className="flex flex-col gap-2">
               {[
+                ['/discover', 'Discover Kerala'],
+                ['/stories', 'Traveller Stories'],
                 ['/stay', 'Your Stay'],
                 ['/ayurveda', 'Ayurveda'],
                 ['/location', 'Location & How to Reach'],

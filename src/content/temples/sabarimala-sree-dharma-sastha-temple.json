@@ -1,0 +1,61 @@
+{
+  "slug": "sabarimala-sree-dharma-sastha-temple",
+  "category": "temples",
+  "name": "Sabarimala Sree Dharma Sastha Temple",
+  "malayalamName": "ശബരിമല",
+  "district": "Pathanamthitta",
+  "tagline": "The hill shrine of Ayyappan and one of the world's largest annual pilgrimages",
+  "summary": "Sabarimala, the hill shrine of Lord Ayyappa in Pathanamthitta: the pilgrimage season, the 18 sacred steps, the legend of Manikandan and pilgrim rules.",
+  "description": [
+    "Sabarimala is a hill shrine in the Western Ghats dedicated to Lord Ayyappa (Dharma Sastha). It draws millions of pilgrims each year, most of them during the Mandala–Makaravilakku season from mid-November to mid-January.",
+    "Pilgrims traditionally observe a period of austerity (vratham), wear black or blue clothing, and climb the eighteen sacred steps carrying the irumudi, a two-compartment bundle of offerings."
+  ],
+  "folklore": {
+    "title": "Manikandan, the Pandalam Prince",
+    "story": [
+      "Tradition says that a childless king of Pandalam found an infant with a bell (mani) around his neck on the banks of the river Pampa and named him Manikandan. After the king's wife later bore a son, court intrigue led the queen to feign an illness that only tiger's milk could cure.",
+      "Manikandan went into the forest, defeated the demoness Mahishi and returned riding a tigress at the head of a tiger pack, revealing his divinity. He asked that a shrine be built at Sabarimala, where he is worshipped as Ayyappa."
+    ],
+    "note": "Retold from popular tradition; details vary by region."
+  },
+  "highlights": [
+    "Eighteen sacred steps (Pathinettampadi)",
+    "Makaravilakku festival in January",
+    "Pilgrim trail via Erumely and Pampa",
+    "Strong tradition of inclusive, caste-free brotherhood among pilgrims (the 'Swami' greeting)"
+  ],
+  "visitorInfo": {
+    "bestTime": "Pilgrimage season is mid-November to mid-January; the shrine also opens for the first five days of each Malayalam month. Check the official schedule before travelling.",
+    "howToReach": "Reach Pampa by road from Pathanamthitta, Kottayam or Kochi, then trek about 5 km uphill. Nearest railheads are Chengannur and Thiruvalla.",
+    "etiquette": [
+      "Pilgrims follow a vratham (period of austerity) before the visit.",
+      "Follow the official darshan and online queue arrangements.",
+      "Carry only what you need; plastics are restricted in the forest area.",
+      "Respect the rules set by the Devaswom Board and the police on crowd management."
+    ],
+    "duration": "Full day or more"
+  },
+  "coordinates": {
+    "lat": 9.4347,
+    "lng": 77.0805
+  },
+  "tags": [
+    "temple",
+    "Ayyappa",
+    "pilgrimage",
+    "Pathanamthitta",
+    "Makaravilakku"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Sabarimala — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Sabarimala"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

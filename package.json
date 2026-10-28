@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NEXT_PUBLIC_SHOW_DRAFTS=1 next dev",
     "build": "next build",
+    "build:preview": "NEXT_PUBLIC_SHOW_DRAFTS=1 next build",
+    "validate": "node scripts/validate-content.mjs",
     "start": "next start"
   },
   "dependencies": {

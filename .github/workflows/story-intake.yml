@@ -1,0 +1,66 @@
+name: Publish approved story
+
+# A story submission arrives as an issue labelled "story-submission".
+# When the editor adds the "approved" label, this opens a PR that adds the
+# story as JSON. Merging the PR publishes it (the second, final gate).
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  story-to-pr:
+    if: github.event.label.name == 'approved' && contains(github.event.issue.labels.*.name, 'story-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
+        with:
+          script: |
+            const fs = require('fs')
+            const m = process.env.ISSUE_BODY.match(/```json\n([\s\S]*?)\n```/)
+            if (!m) core.setFailed('No JSON block found in issue body')
+            const s = JSON.parse(m[1])                      // data only, never executed
+            const types = ['Experience', 'Folklore I heard', 'Travel tip']
+            const clip = (v, n) => String(v || '').replace(/<[^>]*>/g, '').trim().slice(0, n)
+            const date = new Date().toISOString().slice(0, 10)
+            const id = `${date}-issue-${process.env.ISSUE_NUMBER}`
+            const story = {
+              id,
+              type: types.includes(s.type) ? s.type : 'Experience',
+              title: clip(s.title, 120),
+              body: clip(s.body, 4000),
+              author: clip(s.author, 60),
+              ...(s.origin ? { origin: clip(s.origin, 60) } : {}),
+              ...(s.entryCategory && /^[a-z0-9-]+$/.test(s.entrySlug || '') ? { entryCategory: s.entryCategory, entrySlug: s.entrySlug } : {}),
+              date,
+              status: 'approved',
+            }
+            fs.mkdirSync('src/content/stories', { recursive: true })
+            fs.writeFileSync(`src/content/stories/${id}.json`, JSON.stringify(story, null, 2) + '\n')
+            core.exportVariable('STORY_ID', id)
+      - name: Validate
+        run: node scripts/validate-content.mjs
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
+        run: |
+          git config user.name "veda-content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          git checkout -b "story/${STORY_ID}"
+          git add src/content/stories
+          git commit -m "content: publish traveller story ${STORY_ID}"
+          git push origin "story/${STORY_ID}"
+          gh pr create --base "$BASE_BRANCH" --head "story/${STORY_ID}" \
+            --title "Publish traveller story ${STORY_ID}" \
+            --body "Approved from issue #${{ github.event.issue.number }}. Merge to publish."

@@ -1,0 +1,56 @@
+{
+  "slug": "kerala-panchakarma",
+  "category": "ayurveda",
+  "name": "Panchakarma in Kerala",
+  "malayalamName": "പഞ്ചകർമ്മ",
+  "district": "Statewide",
+  "tagline": "The five-fold detox tradition at the heart of Kerala Ayurveda",
+  "summary": "Panchakarma in Kerala: how the five-fold Ayurvedic detox works, what a genuine programme includes, who should avoid it, and the Ashtavaidya tradition behind it.",
+  "description": [
+    "Panchakarma is a classical Ayurvedic programme of preparatory therapies (oleation and sweating) followed by cleansing procedures, intended to rebalance the body. In Kerala it is practised in hospitals, ashrams and retreats, usually over seven to twenty-eight days.",
+    "A genuine programme begins with a consultation by a qualified Ayurvedic physician (BAMS or equivalent), with diet, rest and treatments adjusted to the individual's constitution and season."
+  ],
+  "folklore": {
+    "title": "The Ashtavaidyas",
+    "story": [
+      "Kerala's classical Ayurveda is closely linked to the Ashtavaidyas, eight physician families whose lineage is traditionally traced back to the sage Parashurama, who is said to have invited them to settle the land he reclaimed from the sea.",
+      "These families are remembered for their mastery of Sanskrit medical texts and for passing knowledge from guru to student. Many Kerala treatments and oil formulations are said to descend from their practice."
+    ],
+    "note": "Lineage details vary; confirm with a recognised Ashtavaidya source."
+  },
+  "highlights": [
+    "Abhyanga, shirodhara and kizhi therapies",
+    "Seasonal timing — monsoon is a traditional season",
+    "Medicinal gardens and oil preparation",
+    "Consultation-based, individual programmes"
+  ],
+  "visitorInfo": {
+    "bestTime": "Monsoon (June–August) is traditionally preferred; programmes run year-round.",
+    "howToReach": "Available across Kerala; choose a centre approved by the Department of Ayurveda or Kerala Tourism's accreditation scheme.",
+    "etiquette": [
+      "Disclose medical conditions and medicines at the first consultation.",
+      "Treatments are not recommended in certain conditions, including pregnancy; seek medical advice.",
+      "Follow dietary instructions during and after the programme."
+    ],
+    "duration": "7–28 days"
+  },
+  "tags": [
+    "Ayurveda",
+    "Panchakarma",
+    "wellness",
+    "Kerala",
+    "therapy"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Ayurveda — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ayurveda"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}

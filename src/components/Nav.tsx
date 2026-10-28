@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { WA, SITE } from '@/lib/config'
 
 const links = [
+  { href: '/discover', label: 'Discover' },
   { href: '/stay', label: 'Stay' },
   { href: '/ayurveda', label: 'Ayurveda' },
   { href: '/gallery', label: 'Gallery' },

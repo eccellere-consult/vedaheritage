@@ -1,0 +1,60 @@
+{
+  "slug": "varkala-beach",
+  "category": "beaches",
+  "name": "Varkala Beach (Papanasam)",
+  "malayalamName": "വർക്കല",
+  "district": "Thiruvananthapuram",
+  "tagline": "A cliff-top beach beside a 2,000-year-old temple tradition",
+  "summary": "Varkala Beach in Thiruvananthapuram: red cliffs, the Papanasam shore, ancestral rites at Janardana Swamy Temple and the legend of Narada's bark cloth.",
+  "description": [
+    "Varkala is known for its laterite cliffs that rise directly above the Arabian Sea, with cafés and walking paths along the clifftop and a long beach below. A geological feature known as the Varkala Formation is protected as a national geo-heritage monument.",
+    "The beach is also called Papanasam, 'the destroyer of sins', and sits beside the Janardana Swamy Temple. Many Hindus come here to perform Bali, rites for departed ancestors."
+  ],
+  "folklore": {
+    "title": "Narada's Bark Cloth",
+    "story": [
+      "Tradition says that sages once gathered to seek a place to perform penance. The wandering sage Narada suggested they throw a piece of bark cloth (valkalam) and settle where it fell. It landed at this spot, which came to be known as Valkalam, later Varkala.",
+      "Another local belief holds that the sea here cleanses the sins of those who bathe in it, which is how the shore earned the name Papanasam."
+    ],
+    "note": "Retold from local tradition; spelling and details vary."
+  },
+  "highlights": [
+    "Red cliffs and clifftop walk",
+    "Janardana Swamy Temple",
+    "Ancestral rites at Papanasam beach",
+    "Sunset viewpoints and yoga cafés"
+  ],
+  "visitorInfo": {
+    "bestTime": "November to March; the sea is rough during the June–August monsoon.",
+    "howToReach": "Varkala has its own railway station (about 3 km from the beach) on the Thiruvananthapuram–Kollam line; Thiruvananthapuram airport is about 55 km away.",
+    "etiquette": [
+      "Dress modestly in and near the temple.",
+      "Swim only where lifeguards indicate; currents can be strong.",
+      "Keep the cliff paths clean and avoid walking at the edge in the dark."
+    ],
+    "duration": "1–2 days"
+  },
+  "coordinates": {
+    "lat": 8.7379,
+    "lng": 76.7163
+  },
+  "tags": [
+    "beach",
+    "cliff",
+    "Varkala",
+    "Papanasam",
+    "Thiruvananthapuram"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Varkala — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Varkala"
+    }
+  ],
+  "status": "draft",
+  "lastVerified": "2026-10-28"
+}
