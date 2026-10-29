@@ -23,6 +23,16 @@ You do this once. Labels in hPanel can differ slightly; the idea is the same.
    leave Secret blank, choose **Just the push event**, tick Active, **Add webhook**.
 5. **Check.** Open `https://www.vedaheritage.co.in/version.txt`. It shows a long code (the build ID). Open the home page and press Ctrl+F5.
 
+## Before you merge: wait for green
+Every pull request runs a check called **Checks** (content valid, tests pass, site builds). On the PR page, near the bottom, you see either
+**"All checks have passed"** (green, safe to merge) or a red cross (click **Details** to see what failed). Don't merge on red.
+
+**Make green compulsory (one-time, 2 minutes):** GitHub > repository **Settings > Branches > Add branch protection rule**
+- Branch name pattern: `main`
+- Tick **Require status checks to pass before merging**, search for and tick **Checks**
+- Click **Create**. The Merge button now stays disabled until the check is green.
+(The `Checks` name only appears in that search after it has run once on a pull request.)
+
 ## Every day after that
 Merge a pull request. Wait 3 to 6 minutes. The site updates by itself.
 In GitHub > **Actions** > latest run, a yellow warning "Live site not updated yet" means Hostinger has not pulled yet: click **Deploy** in hPanel > Git.
