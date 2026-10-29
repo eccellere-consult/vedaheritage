@@ -258,6 +258,102 @@ try {
         json_out(200, ['main' => substr($head['sha'], 0, 7), 'mainMessage' => strtok($head['commit']['message'] ?? '', "\n"), 'liveVersion' => $live, 'liveOk' => $code === 200, 'runs' => array_slice($runs, 0, 8)]);
     }
 
+
+    // ------------------------------------------------------------ marketplace
+    case 'market': {
+        $subs = []; foreach (glob(market_dir('submissions') . '/*.json') ?: [] as $f) { $d = json_file($f); if ($d) $subs[] = $d; }
+        usort($subs, fn($x, $y) => strcmp($y['created'] ?? '', $x['created'] ?? ''));
+        $byId = []; foreach ($subs as $d) $byId[$d['id']] = $d;
+        $pending = []; $live = [];
+        foreach ($subs as $d) {
+            $row = ['id' => $d['id'], 'title' => $d['title'], 'category' => MARKET_CATEGORIES[$d['category']] ?? $d['category'], 'condition' => $d['condition'], 'price' => $d['priceInr'],
+                'district' => $d['district'], 'created' => $d['created'], 'status' => $d['status'], 'photos' => count($d['photos'] ?? [])];
+            if ($d['status'] === 'pending') {
+                $row += ['description' => $d['description'], 'sellerName' => $d['sellerName'], 'contactEmail' => $d['contactEmail'] ?? '', 'contactPhone' => $d['contactPhone'] ?? '',
+                    'blockers' => listing_blockers($d), 'flags' => market_flags($d['title'] . ' ' . $d['description'])];
+                $pending[] = $row;
+            } elseif (in_array($d['status'], ['approved', 'sold'], true)) $live[] = $row;
+        }
+        $enq = []; foreach (glob(market_dir('enquiries') . '/*.json') ?: [] as $f) { $e = json_file($f); if ($e && ($e['status'] ?? '') === 'open') {
+            $s = $byId[$e['listingId']] ?? null;
+            $enq[] = $e + ['seller' => $s ? ['name' => $s['sellerName'], 'email' => $s['contactEmail'] ?? '', 'phone' => $s['contactPhone'] ?? ''] : null]; } }
+        usort($enq, fn($x, $y) => strcmp($y['created'], $x['created']));
+        json_out(200, ['pending' => $pending, 'live' => $live, 'enquiries' => $enq]);
+    }
+
+    case 'market_photo': {
+        $id = $_GET['id'] ?? ''; $n = (int)($_GET['n'] ?? 0);
+        if (!valid_id($id) || $n < 1 || $n > 3) json_out(400, ['error' => 'Bad request.']);
+        $f = market_dir('photos') . "/$id-$n.jpg";
+        if (!is_file($f)) json_out(404, ['error' => 'Not found.']);
+        header('Content-Type: image/jpeg'); header('Cache-Control: private, no-store'); header('X-Content-Type-Options: nosniff');
+        readfile($f); exit;
+    }
+
+    case 'market_decide': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $d = need_str($in, 'decision', 10);
+        if (!valid_id($id) || !in_array($d, ['approve', 'reject'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('submissions') . "/$id.json"; $sub = json_file($path);
+        if (!$sub || $sub['status'] !== 'pending') json_out(404, ['error' => 'No pending submission with that id.']);
+        if ($d === 'reject') {
+            foreach ($sub['photos'] as $p) @unlink(market_dir('photos') . '/' . basename($p));
+            $sub = ['id' => $id, 'status' => 'rejected', 'created' => $sub['created'], 'title' => $sub['title'], 'category' => $sub['category'], 'condition' => $sub['condition'], 'priceInr' => $sub['priceInr'], 'district' => $sub['district'], 'photos' => [], 'rejected' => gmdate('c')];
+            save_json($path, $sub); audit('market-reject', ['listing' => $id]);
+            json_out(200, ['ok' => true, 'message' => 'Rejected. The seller\'s contact details and photos were deleted.']);
+        }
+        $blockers = listing_blockers($sub);
+        if ($blockers) json_out(422, ['error' => 'Cannot publish yet.', 'blockers' => $blockers]);
+        $flags = market_flags($sub['title'] . ' ' . $sub['description']);
+        if ($flags && empty($in['override'])) json_out(409, ['error' => 'This listing needs a second look.', 'flags' => $flags, 'needsOverride' => true]);
+        $files = []; $photos = [];
+        foreach ($sub['photos'] as $i => $p) {
+            $bytes = @file_get_contents(market_dir('photos') . '/' . basename($p));
+            if ($bytes === false) json_out(500, ['error' => 'A photo file is missing on the server.']);
+            $dest = "public/images/marketplace/$id-" . ($i + 1) . '.jpg';
+            $files[$dest] = ['b64' => base64_encode($bytes)];
+            $photos[] = ['src' => '/images/marketplace/' . basename($dest), 'alt' => $sub['title'] . ' (photo ' . ($i + 1) . ')'];
+        }
+        $listing = ['id' => $id, 'title' => $sub['title'], 'category' => $sub['category'], 'condition' => $sub['condition'], 'priceInr' => $sub['priceInr'],
+            'description' => $sub['description'], 'district' => $sub['district'], 'sellerFirstName' => $sub['sellerName'], 'photos' => $photos,
+            'listedOn' => gmdate('Y-m-d'), 'expiresOn' => gmdate('Y-m-d', time() + MARKET_LISTING_DAYS * 86400), 'status' => 'approved'];
+        $files["src/content/listings/$id.json"] = ['text' => json_encode($listing, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"];
+        gh_commit_files($files, 'Publish marketplace listing: ' . $sub['title'] . ' (admin)');
+        $sub['status'] = 'approved'; $sub['approved'] = gmdate('c'); save_json($path, $sub);
+        audit('market-approve', ['listing' => $id, 'override' => !empty($in['override'])]);
+        json_out(200, ['ok' => true, 'message' => 'Published. The listing goes live after the next rebuild (a few minutes).']);
+    }
+
+    case 'market_status': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $to = need_str($in, 'status', 10);
+        if (!valid_id($id) || !in_array($to, ['sold', 'removed'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('submissions') . "/$id.json"; $sub = json_file($path);
+        if (!$sub || !in_array($sub['status'], ['approved', 'sold'], true)) json_out(404, ['error' => 'No live listing with that id.']);
+        $file = "src/content/listings/$id.json"; $f = gh_file($file, 'main');
+        if (!$f) json_out(404, ['error' => 'Listing file not found on main.']);
+        $listing = json_decode($f['text'], true);
+        if (!is_array($listing)) json_out(422, ['error' => 'Listing file is not valid JSON.']);
+        $listing['status'] = $to;
+        $files = [$file => ['text' => json_encode($listing, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]];
+        gh_commit_files($files, ($to === 'sold' ? 'Mark sold: ' : 'Remove listing: ') . $listing['title'] . ' (admin)');
+        if ($to === 'removed') { $sub['contactEmail'] = ''; $sub['contactPhone'] = ''; }
+        $sub['status'] = $to; save_json($path, $sub);
+        audit('market-' . $to, ['listing' => $id]);
+        json_out(200, ['ok' => true, 'message' => $to === 'sold' ? 'Marked sold.' : 'Removed. The seller contact details were deleted.']);
+    }
+
+    case 'market_enquiry_done': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('enquiries') . "/$id.json"; $e = json_file($path);
+        if (!$e) json_out(404, ['error' => 'Not found.']);
+        // Data minimisation: once introduced, keep the record but drop the buyer's contact details.
+        $e['status'] = 'introduced'; $e['contactEmail'] = ''; $e['contactPhone'] = ''; $e['message'] = ''; $e['done'] = gmdate('c');
+        save_json($path, $e); audit('market-enquiry-done', ['enquiry' => $id]);
+        json_out(200, ['ok' => true]);
+    }
+
     case 'activity': {
         $f = data_dir() . '/admin-audit.log'; $lines = is_file($f) ? array_slice(file($f, FILE_IGNORE_NEW_LINES), -60) : [];
         json_out(200, ['events' => array_reverse(array_map(fn($l) => json_decode($l, true) ?: [], $lines))]);

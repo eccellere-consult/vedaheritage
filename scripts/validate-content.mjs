@@ -110,8 +110,34 @@ for (const { rel, name, data: s } of load('stories')) {
   if (s.entrySlug && !slugs.has(`${s.entryCategory}/${s.entrySlug}`)) fail(rel, 'entrySlug does not match any entry')
 }
 
+const LISTING_CATS = ['lamps-brassware', 'textiles', 'furniture-woodwork', 'art-crafts', 'musical-instruments', 'books-prints', 'other-traditional']
+const LISTING_STATUSES = ['approved', 'sold', 'removed']
+let listingCount = 0
+for (const { rel, name, data: l } of load('listings')) {
+  listingCount++
+  if (l.id !== name) fail(rel, `id "${l.id}" must match filename "${name}"`)
+  if (!/^\d{8}-[0-9a-f]{8}$/.test(l.id || '')) fail(rel, 'id must look like 20261029-1a2b3c4d')
+  if (!LISTING_STATUSES.includes(l.status)) fail(rel, `status must be one of ${LISTING_STATUSES}`)
+  if (!LISTING_CATS.includes(l.category)) fail(rel, `category must be one of ${LISTING_CATS}`)
+  if (!['new', 'used'].includes(l.condition)) fail(rel, 'condition must be new or used')
+  if (!Number.isInteger(l.priceInr) || l.priceInr < 1 || l.priceInr > 500000) fail(rel, 'priceInr must be a whole number from 1 to 500000')
+  if (!isStr(l.title) || l.title.length < 5 || l.title.length > 90) fail(rel, 'title must be 5–90 chars')
+  if (!isStr(l.description) || l.description.length < 40 || l.description.length > 1500) fail(rel, 'description must be 40–1500 chars')
+  for (const f of ['district', 'sellerFirstName']) if (!isStr(l[f])) fail(rel, `missing ${f}`)
+  if (!isIsoDate(l.listedOn) || !isIsoDate(l.expiresOn) || l.expiresOn < l.listedOn) fail(rel, 'listedOn and expiresOn must be ISO dates, expiry after listing')
+  if (!Array.isArray(l.photos) || l.photos.length < 1 || l.photos.length > 3) fail(rel, 'photos must be 1–3')
+  for (const ph of l.photos || []) {
+    if (!isStr(ph.alt)) fail(rel, 'photo needs alt text')
+    if (!fileExists(ph.src)) fail(rel, `photo file not found in public/: ${ph.src}`)
+  }
+  // Privacy guard: seller contact details must never reach the public repo. Scan free-text fields only
+  // (ids, dates and photo filenames contain long digit runs that are not phone numbers).
+  const text = [l.title, l.description, l.district, l.sellerFirstName, ...(l.photos || []).map(ph => ph.alt)].filter(Boolean).join(' ')
+  if ('contactEmail' in l || 'contactPhone' in l || /[\w.+-]+@[\w-]+\.[\w.]+|(?<!\d)\+?\d[\d\s-]{8,}\d/.test(text)) fail(rel, 'listing appears to contain an email address, phone number or contact field; remove it')
+}
+
 if (errors.length) {
   console.error(`\n✖ ${errors.length} content problem(s):\n` + errors.map(e => '  - ' + e).join('\n'))
   process.exit(1)
 }
-console.log(`✔ content valid (${slugs.size} entries, ${districtNames.size} districts)`)
+console.log(`✔ content valid (${slugs.size} entries, ${districtNames.size} districts, ${listingCount} listings)`)

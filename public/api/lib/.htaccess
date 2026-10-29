@@ -1,0 +1,2 @@
+# Server-side includes only; never served over HTTP.
+Require all denied

@@ -73,10 +73,9 @@ Nine new categories sit beside the original six: `vedic` (Vedic heritage and man
 ### 2. Discussion (next)
 Moderated comments per entry, reusing the story intake (GitHub issue, human approval). No accounts. Rules: no medical advice, no personal data, no predictions presented as fact.
 
-### 3. Marketplace (decision needed before building)
-Recommended model: **moderated classifieds, not a payment platform.** A seller submits a listing (photos, description, price range, region, contact route). The owner approves it, and buyer and seller deal directly. The site takes no payments and holds no stock.
-- Risks to settle first: authenticity claims (antiques, Aranmula kannadi, idols), restricted items (ivory, certain plants and wildlife, antiquities need ARASI/ASI rules), seller identity, GST and consumer-law terms, liability disclaimer.
-- Alternative: curated "where to buy" lists (already live under `heritage.whereToBuy`) with links to co-operatives and emporiums.
+### 3. Marketplace (built: moderated classifieds)
+Sellers submit, the owner approves, buyers enquire, the owner introduces them, and the sale happens between them. No payments, stock or shipping on the site. Seller and buyer contact details stay private on the server; only the sanitised listing and photos reach the public repo. See `docs/MARKETPLACE.md`, including the **pre-launch legal checklist** (marketplace and intermediary rules, data protection, restricted items, tax).
+- Alternative kept alongside: curated "where to buy" lists (`heritage.whereToBuy`) linking to co-operatives and emporiums.
 
 ### 4. Out of scope for now
 Matrimonial matching or profiles (sensitive personal data, separate legal review) and paid astrology consultations.

@@ -8,31 +8,17 @@
 //     'allowed_ips'         => [],                  // optional: ['203.0.113.7']
 //   ];
 if (!defined('VH_ADMIN')) { http_response_code(404); exit; }
+require __DIR__ . '/../lib/common.php';
 
 const SESSION_IDLE = 1800;     // log out after 30 minutes idle
 const SESSION_MAX  = 28800;    // and after 8 hours regardless
-const CATS = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda'];
+const CATS = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical'];
 
 ini_set('display_errors', '0');
 
 // ---------------------------------------------------------------- config / io
-function cfg(): array {
-    static $c = null;
-    if ($c !== null) return $c;
-    $path = getenv('VH_CONFIG') ?: dirname(__DIR__, 3) . '/vh-config.php';
-    $c = is_file($path) ? require $path : [];
-    return is_array($c) ? $c : [];
-}
-
-function data_dir(): string {
-    $d = cfg()['data_dir'] ?? (dirname(__DIR__, 3) . '/vh-data');
-    if (!is_dir($d)) @mkdir($d, 0700, true);
-    if (!is_dir($d) || !is_writable($d)) {
-        $d = sys_get_temp_dir() . '/vh-data';
-        if (!is_dir($d)) @mkdir($d, 0700, true);
-    }
-    return $d;
-}
+function cfg(): array { return vh_cfg(); }
+function data_dir(): string { return vh_data_dir(); }
 
 function json_out(int $code, array $body): void {
     http_response_code($code);
@@ -236,4 +222,30 @@ function draft_row(array $e, ?array $ev, array $where): array {
         'status' => $e['status'] ?? '', 'where' => $where, 'images' => count($e['images'] ?? []), 'sources' => count($e['sources'] ?? []),
         'blockers' => publish_blockers($e), 'verification' => evidence_summary($ev),
     ];
+}
+
+// ---------------------------------------------------------------- one commit, many files
+/**
+ * Commit several files to main in ONE commit (one deploy). $files: path => ['text'=>string] | ['b64'=>string] | null (delete).
+ * @return string the new commit sha
+ */
+function gh_commit_files(array $files, string $message): string {
+    $R = '/repos/' . repo();
+    $ref = gh_ok(gh('GET', "$R/git/ref/heads/main"), 'read main');
+    $head = $ref['object']['sha'];
+    $commit = gh_ok(gh('GET', "$R/git/commits/$head"), 'read commit');
+    $tree = [];
+    foreach ($files as $path => $f) {
+        if ($f === null) { $tree[] = ['path' => $path, 'mode' => '100644', 'type' => 'blob', 'sha' => null]; continue; }
+        if (isset($f['b64'])) {
+            $blob = gh_ok(gh('POST', "$R/git/blobs", ['content' => $f['b64'], 'encoding' => 'base64']), 'upload file');
+            $tree[] = ['path' => $path, 'mode' => '100644', 'type' => 'blob', 'sha' => $blob['sha']];
+        } else {
+            $tree[] = ['path' => $path, 'mode' => '100644', 'type' => 'blob', 'content' => $f['text']];
+        }
+    }
+    $t = gh_ok(gh('POST', "$R/git/trees", ['base_tree' => $commit['tree']['sha'], 'tree' => $tree]), 'build tree');
+    $c = gh_ok(gh('POST', "$R/git/commits", ['message' => $message, 'tree' => $t['sha'], 'parents' => [$head]]), 'create commit');
+    gh_ok(gh('PATCH', "$R/git/refs/heads/main", ['sha' => $c['sha']]), 'update main');
+    return $c['sha'];
 }

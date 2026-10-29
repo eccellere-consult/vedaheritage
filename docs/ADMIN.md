@@ -8,6 +8,7 @@ The admin lives at **https://www.vedaheritage.co.in/admin/** (not linked anywher
 |---|---|---|
 | Overview | See drafts, published guides, open pull requests, stories waiting, live site version, last deploys | Reads GitHub and `version.txt` |
 | Drafts | **Approve & publish** a guide, or unpublish one. **Find images** for a guide with none | Commits `status: "approved"` to `main`; the site rebuilds and goes live in a few minutes |
+| Marketplace | Review seller submissions (photos, text, private contact, risk flags), **Approve & publish** or **Reject**; see buyer enquiries next to the seller's contact and **Mark introduced**; **Mark sold** or **Remove** | Listing JSON and photos are committed to `main` in one commit; contact details stay on the server (see `docs/MARKETPLACE.md`) |
 | Pull requests | **Merge** agent PRs (new drafts, images, stories) once checks are green | Refuses if checks are red, not yet approved on GitHub, or the PR has a conflict |
 | Stories | **Approve** or reject visitor stories | Approve adds the `approved` label, which opens the story PR; merge it under Pull requests |
 | Run agents | Start the content agents, image search, link check | Starts the GitHub workflow; results arrive as a pull request |

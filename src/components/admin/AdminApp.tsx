@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 
 const API = '/api/admin/'
 type Json = Record<string, any>
-type Tab = 'overview' | 'drafts' | 'prs' | 'stories' | 'agents' | 'activity'
-const TABS: [Tab, string][] = [['overview', 'Overview'], ['drafts', 'Drafts'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
+type Tab = 'overview' | 'drafts' | 'market' | 'prs' | 'stories' | 'agents' | 'activity'
+const TABS: [Tab, string][] = [['overview', 'Overview'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
 
 let csrf = ''
 async function api(a: string, body?: Json, query = ''): Promise<{ ok: boolean; status: number; data: Json }> {
@@ -61,6 +61,7 @@ export default function AdminApp() {
       {msg && <p role="status" className={`mb-4 px-4 py-3 text-sm border ${msg.bad ? 'bg-red-50 border-red-300 text-red-800' : 'bg-primary/10 border-primary/30 text-ink'}`}>{msg.text}</p>}
       {tab === 'overview' && <Overview go={setTab} />}
       {tab === 'drafts' && <Drafts say={say} />}
+      {tab === 'market' && <Market say={say} />}
       {tab === 'prs' && <Prs say={say} />}
       {tab === 'stories' && <Stories say={say} />}
       {tab === 'agents' && <Agents say={say} />}
@@ -113,14 +114,14 @@ function useLoad(a: string, query = '') {
 }
 
 function Overview({ go }: { go: (t: Tab) => void }) {
-  const ov = useLoad('overview'); const site = useLoad('site')
+  const ov = useLoad('overview'); const site = useLoad('site'); const mk = useLoad('market')
   const d = ov.data; const s = site.data
   const tile = (n: any, label: string, t: Tab) => <button key={label} onClick={() => go(t)} className="card text-left hover:shadow-md"><p className="font-serif text-4xl text-primary">{n ?? '…'}</p><p className="text-sm text-ink-mid">{label}</p></button>
   return (
     <div className="space-y-8">
       {ov.err && <p className="text-red-700 text-sm">{ov.err}</p>}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}{tile(mk.data ? mk.data.pending.length + mk.data.enquiries.length : undefined, 'Marketplace to review', 'market')}
       </div>
       <div className="card">
         <h2 className="font-serif text-xl mb-3">Site and deploy</h2>
@@ -180,6 +181,79 @@ function Drafts({ say }: { say: (t: string, bad?: boolean) => void }) {
           )
         })}
       </div>
+    </div>
+  )
+}
+
+function Market({ say }: { say: (t: string, bad?: boolean) => void }) {
+  const { data, err, reload } = useLoad('market'); const [busy, setBusy] = useState('')
+  const rupees = (n: number) => '₹' + Number(n).toLocaleString('en-IN')
+  async function decide(id: string, decision: 'approve' | 'reject', override = false): Promise<void> {
+    if (decision === 'reject' && !window.confirm('Reject this listing? The seller\'s photos and contact details are deleted immediately.')) return
+    setBusy(id); const r = await api('market_decide', { id, decision, override }); setBusy('')
+    if (r.ok) { say(r.data.message); reload(); return }
+    if (r.status === 409 && r.data.needsOverride) {
+      if (window.confirm(`This listing needs a second look:\n\n- ${(r.data.flags || []).join('\n- ')}\n\nCheck the photos and description. Publish anyway?`)) return decide(id, decision, true)
+      return
+    }
+    say([r.data.error, ...(r.data.blockers || [])].filter(Boolean).join(' · '), true)
+  }
+  async function setStatus(id: string, status: 'sold' | 'removed') {
+    if (status === 'removed' && !window.confirm('Remove this listing from the site? The seller contact details are deleted.')) return
+    setBusy(id); const r = await api('market_status', { id, status }); setBusy(''); say(r.ok ? r.data.message : r.data.error, !r.ok); reload()
+  }
+  async function introduced(id: string) { const r = await api('market_enquiry_done', { id }); say(r.ok ? 'Marked as introduced. The buyer\'s contact details were deleted.' : r.data.error, !r.ok); reload() }
+  const contact = (e?: string, p?: string) => [e, p].filter(Boolean).join(' · ') || 'none'
+  return (
+    <div className="space-y-10">
+      {err && <p className="text-red-700 text-sm">{err}</p>}{!data && !err && <p className="text-ink-mid">Loading…</p>}
+      {data && <>
+        <section>
+          <h2 className="font-serif text-xl mb-3">Listings to review ({data.pending.length})</h2>
+          {!data.pending.length && <p className="text-sm text-ink-mid">Nothing waiting.</p>}
+          <div className="space-y-4">{data.pending.map((l: Json) => (
+            <div key={l.id} className="card !p-5">
+              <div className="flex flex-wrap justify-between gap-3">
+                <div><h3 className="font-serif text-lg text-ink">{l.title}</h3><p className="text-xs text-ink-mid">{l.category} · {l.condition} · {rupees(l.price)} · {l.district} · {new Date(l.created).toLocaleDateString()}</p></div>
+                <div className="flex gap-2 items-start">
+                  <button className="btn-primary text-xs disabled:opacity-40 disabled:cursor-not-allowed" disabled={busy === l.id || l.blockers.length > 0} onClick={() => decide(l.id, 'approve')}>Approve &amp; publish</button>
+                  <button className="btn-outline text-xs" disabled={busy === l.id} onClick={() => decide(l.id, 'reject')}>Reject</button>
+                </div>
+              </div>
+              <div className="flex gap-2 my-3">{Array.from({ length: l.photos }, (_, i) => <a key={i} href={`${API}?a=market_photo&id=${l.id}&n=${i + 1}`} target="_blank" rel="noopener noreferrer"><img src={`${API}?a=market_photo&id=${l.id}&n=${i + 1}`} alt={`${l.title} photo ${i + 1}`} className="h-24 w-32 object-cover border border-accent/30" /></a>)}</div>
+              <p className="text-sm text-ink-mid whitespace-pre-wrap">{l.description}</p>
+              <p className="text-xs text-ink-mid mt-2">Seller: {l.sellerName} · private contact: {contact(l.contactEmail, l.contactPhone)}</p>
+              {l.blockers.length > 0 && <ul className="list-disc pl-5 mt-2 text-sm text-amber-800">{l.blockers.map((b: string) => <li key={b}>{b}</li>)}</ul>}
+              {l.flags.length > 0 && <ul className="list-disc pl-5 mt-2 text-sm text-red-700">{l.flags.map((b: string) => <li key={b}>Check: {b}</li>)}</ul>}
+            </div>))}</div>
+        </section>
+        <section>
+          <h2 className="font-serif text-xl mb-3">Enquiries to introduce ({data.enquiries.length})</h2>
+          {!data.enquiries.length && <p className="text-sm text-ink-mid">No open enquiries.</p>}
+          <div className="space-y-3">{data.enquiries.map((e: Json) => (
+            <div key={e.id} className="card !p-5">
+              <div className="flex flex-wrap justify-between gap-3"><h3 className="font-serif text-lg text-ink">{e.listingTitle}</h3><button className="btn-primary text-xs" onClick={() => introduced(e.id)}>Mark introduced</button></div>
+              <p className="text-sm text-ink-mid whitespace-pre-wrap mt-2">{e.message}</p>
+              <div className="grid sm:grid-cols-2 gap-3 mt-3 text-xs text-ink-mid">
+                <p><strong>Buyer:</strong> {e.name} · {contact(e.contactEmail, e.contactPhone)}</p>
+                <p><strong>Seller:</strong> {e.seller ? `${e.seller.name} · ${contact(e.seller.email, e.seller.phone)}` : 'unknown'}</p>
+              </div>
+              <p className="text-xs text-ink-mid/70 mt-2">Introduce them by email or WhatsApp, then mark introduced. Marking deletes the buyer's details.</p>
+            </div>))}</div>
+        </section>
+        <section>
+          <h2 className="font-serif text-xl mb-3">Live and sold ({data.live.length})</h2>
+          {!data.live.length && <p className="text-sm text-ink-mid">No live listings.</p>}
+          <div className="space-y-2">{data.live.map((l: Json) => (
+            <div key={l.id} className="card !p-4 flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm"><span className="font-medium text-ink">{l.title}</span> <span className="text-ink-mid">{rupees(l.price)} · {l.district}</span> {badge(l.status, l.status === 'approved' ? 'ok' : 'mute')}</p>
+              <div className="flex gap-2">
+                {l.status === 'approved' && <button className="btn-outline text-xs" disabled={busy === l.id} onClick={() => setStatus(l.id, 'sold')}>Mark sold</button>}
+                <button className="btn-outline text-xs" disabled={busy === l.id} onClick={() => setStatus(l.id, 'removed')}>Remove</button>
+              </div>
+            </div>))}</div>
+        </section>
+      </>}
     </div>
   )
 }
