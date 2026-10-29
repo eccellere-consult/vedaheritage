@@ -5,7 +5,7 @@ import { WA, SITE } from '@/lib/config'
 
 type FormState = 'idle' | 'sending' | 'success' | 'error'
 
-export default function ContactPage() {
+export default function BookingSection() {
   const [state, setState] = useState<FormState>('idle')
   const [error, setError] = useState('')
 
@@ -39,19 +39,6 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Header */}
-      <section
-        className="pt-32 pb-20 text-center bg-hero-gradient"
-      >
-        <p className="font-sans text-accent-light text-xs tracking-[0.25em] uppercase mb-3">Reservations</p>
-        <h1 className="font-serif text-5xl text-white mb-4">Book & Contact</h1>
-        <div className="w-12 h-px bg-accent mx-auto mb-4" />
-        <p className="text-white/70 max-w-lg mx-auto text-sm leading-relaxed px-4">
-          Book instantly on Airbnb, or send us a message — we respond within the hour.
-          For extended stays or group bookings, WhatsApp is fastest.
-        </p>
-      </section>
-
       <section className="py-24 bg-surface">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

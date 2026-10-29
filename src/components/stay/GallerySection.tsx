@@ -5,7 +5,7 @@ import { PHOTOS } from '@/lib/config'
 
 type Photo = { src: string; alt: string; caption: string }
 
-export default function GalleryPage() {
+export default function GallerySection() {
   const photos = PHOTOS.gallery
   const [selected, setSelected] = useState<number | null>(null)
 
@@ -33,19 +33,6 @@ export default function GalleryPage() {
 
   return (
     <>
-      {/* Header */}
-      <section
-        className="pt-32 pb-20 text-center bg-hero-gradient"
-      >
-        <p className="section-label text-accent-light">Visual Journey</p>
-        <h1 className="font-serif text-5xl text-white mb-4">Gallery</h1>
-        <div className="w-12 h-px bg-accent mx-auto mb-4" />
-        <p className="text-white/70 max-w-lg mx-auto text-sm leading-relaxed px-4">
-          Kerala backwaters, the Ayurvedic garden, heritage rooms, and the landscape around Vavvakkavu.
-          Click any photo to view full size.
-        </p>
-      </section>
-
       {/* Grid */}
       <section className="py-16 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

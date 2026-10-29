@@ -15,7 +15,7 @@ Make vedaheritage.co.in **the go-to site for Kerala's cultural heritage** for to
 | Stay guests | Booking, location, experiences nearby | Stay, Location, Contact |
 
 ## 3. Information architecture
-`/` · `/stay` · `/ayurveda` · `/gallery` · `/blog` · `/events` · `/location` · `/contact` ·
+`/` · `/stay` (one page: house, garden, photos, location, booking) · `/blog` · `/events` ·
 `/discover` (6 categories) · `/discover/<category>/<slug>` · `/kerala` · `/kerala/<district>` · `/travel` · `/stories`
 
 ## 4. Content model (see `src/lib/content.ts`)

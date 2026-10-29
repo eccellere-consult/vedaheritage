@@ -13,6 +13,7 @@ export const NAV_GROUPS: NavGroup[] = [
 
 export const NAV_LINKS = [
   { href: '/kerala', label: 'Districts' },
+  { href: '/events', label: 'Festivals' },
   { href: '/stories', label: 'Stories' },
   { href: '/travel', label: 'Travel' },
 ]

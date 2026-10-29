@@ -136,7 +136,7 @@ export default function EventsPage() {
             >
               Plan My Visit on WhatsApp
             </a>
-            <Link href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-xs">
+            <Link href="/stay/#book" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-xs">
               Send an Enquiry
             </Link>
           </div>

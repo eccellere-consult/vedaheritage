@@ -1,157 +1,47 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { PHOTOS } from '@/lib/config'
+import { WA, SITE } from '@/lib/config'
+import HouseSection from '@/components/stay/HouseSection'
+import GardenSection from '@/components/stay/GardenSection'
+import GallerySection from '@/components/stay/GallerySection'
+import LocationSection from '@/components/stay/LocationSection'
+import BookingSection from '@/components/stay/BookingSection'
 
 export const metadata: Metadata = {
-  title: 'Your Stay',
-  description: 'Two beautifully appointed heritage bedrooms, a traditional Kerala kitchen, an Ayurvedic garden, and a private compound — near Amritapuri, Kollam.',
+  title: 'Stay with us: Heritage Home near Amritapuri, Kollam',
+  description: 'Two heritage rooms, an Ayurvedic garden, photos, directions and booking for the Veda Heritage family home in Vavvakkavu, Kollam, 5 km from Amritapuri.',
+  alternates: { canonical: 'https://www.vedaheritage.co.in/stay/' },
 }
 
-const amenities = [
-  { icon: '🛏️', label: '2 Private Bedrooms' },
-  { icon: '🚿', label: 'Hot Water Shower' },
-  { icon: '📶', label: 'High-Speed Wi-Fi' },
-  { icon: '❄️', label: 'Air Conditioning' },
-  { icon: '🍳', label: 'Traditional Kitchen Access' },
-  { icon: '🌿', label: 'Ayurvedic Garden' },
-  { icon: '🔑', label: 'Self Check-in / Checkout' },
-  { icon: '🧺', label: 'Fresh Towels & Linen' },
-  { icon: '🏡', label: 'Private Compound' },
-  { icon: '🐦', label: 'Garden Seating Area' },
-  { icon: '🚗', label: 'Auto-rickshaw to Amritapuri' },
-  { icon: '🛡️', label: '24 hr Security' },
-]
-
-const rooms = [
-  {
-    name: 'The Heritage Room',
-    desc: 'Ground-floor room with original teakwood fittings, handmade ceramic tiles, and a garden-facing window. Sleeps 2. King bed. Air conditioning.',
-    features: ['King bed', 'AC', 'Garden view', 'En-suite bathroom'],
-    photo: PHOTOS.room1,
-  },
-  {
-    name: 'The Terrace Room',
-    desc: 'Upper-floor room with a private balcony overlooking the coconut grove. Cross-ventilated with sea breeze. Sleeps 2. Queen bed.',
-    features: ['Queen bed', 'AC', 'Private balcony', 'Coconut grove view'],
-    photo: PHOTOS.room2,
-  },
-]
-
-const rules = [
-  'Check-in: 2 PM onwards (flexible with advance notice)',
-  'Checkout: 11 AM',
-  'Maximum 4 guests',
-  'No smoking inside the property',
-  'Pets on request only',
-  'Quiet hours: 10 PM – 7 AM (ashram guests often rise early)',
-  'Free cancellation up to 48 hours before check-in',
-]
+const ANCHORS = [['house', 'The house'], ['garden', 'Garden & Ayurveda'], ['gallery', 'Photos'], ['location', 'Location'], ['book', 'Book']]
 
 export default function StayPage() {
   return (
     <>
-      {/* Header */}
-      <section
-        className="pt-32 pb-20 text-center bg-hero-gradient"
-      >
-        <p className="section-label text-accent-light">Accommodation</p>
-        <h1 className="font-serif text-5xl text-white mb-4">Your Stay</h1>
+      <section className="pt-32 pb-14 text-center bg-hero-gradient">
+        <p className="section-label text-accent-light">Stay with us</p>
+        <h1 className="font-serif text-4xl md:text-5xl text-white mb-4">A Kerala family home near Amritapuri</h1>
         <div className="w-12 h-px bg-accent mx-auto mb-4" />
-        <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed px-4">
-          Two private heritage rooms in an authentic Kerala family home. Wake to birdsong, step into the Ayurvedic garden, and have the day to yourself.
+        <p className="text-white/75 max-w-xl mx-auto text-sm leading-relaxed px-4">
+          Two heritage rooms, an Ayurvedic garden and a quiet compound in Vavvakkavu, Kollam, 5 km from Amritapuri.
+          Everything about the stay is on this page.
         </p>
-      </section>
-
-      {/* Rooms */}
-      <section className="py-24 bg-surface">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="section-label">Accommodation</p>
-            <h2 className="section-title">The Rooms</h2>
-            <div className="accent-rule mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {rooms.map(r => (
-              <div key={r.name} className="card">
-                {/* Room photo */}
-                <img
-                  src={r.photo}
-                  alt={r.name}
-                  className="w-full aspect-video object-cover mb-6"
-                />
-                <h3 className="font-serif text-2xl text-ink mb-3">{r.name}</h3>
-                <p className="text-ink-mid text-sm leading-relaxed mb-4">{r.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {r.features.map(f => (
-                    <span key={f} className="text-xs bg-accent-pale text-ink-mid px-3 py-1 border border-accent/30">
-                      {f}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="flex gap-4 justify-center mt-6">
+          <a href={SITE.airbnb} target="_blank" rel="noopener noreferrer" className="btn-accent text-xs">Book on Airbnb</a>
+          <a href={WA.enquiry} target="_blank" rel="noopener noreferrer" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-xs">WhatsApp</a>
         </div>
       </section>
 
-      {/* Amenities */}
-      <section className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="section-label">Facilities</p>
-            <h2 className="section-title">Everything You Need</h2>
-            <div className="accent-rule mx-auto" />
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {amenities.map(a => (
-              <div key={a.label} className="flex items-start gap-3">
-                <span className="text-xl flex-shrink-0">{a.icon}</span>
-                <span className="text-sm text-ink-mid">{a.label}</span>
-              </div>
-            ))}
-          </div>
+      <nav aria-label="On this page" className="sticky top-16 xl:top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-accent/20">
+        <div className="max-w-6xl mx-auto px-4 flex gap-6 overflow-x-auto py-3 text-sm whitespace-nowrap justify-center">
+          {ANCHORS.map(([id, label]) => <a key={id} href={`#${id}`} className="nav-link">{label}</a>)}
         </div>
-      </section>
+      </nav>
 
-      {/* House Rules */}
-      <section className="py-20 bg-accent-pale">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="section-label">Policies</p>
-            <h2 className="section-title">House Rules</h2>
-            <div className="accent-rule mx-auto" />
-          </div>
-          <div className="bg-white p-8 border-l-4 border-accent">
-            {rules.map(r => (
-              <div key={r} className="flex items-start gap-3 py-2 border-b border-accent/10 last:border-0">
-                <span className="text-accent text-lg leading-none flex-shrink-0">›</span>
-                <p className="text-sm text-ink-mid">{r}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-primary text-center">
-        <h2 className="font-serif text-3xl text-white mb-4">Ready to Book?</h2>
-        <p className="text-white/70 mb-8 text-sm max-w-md mx-auto">
-          Book instantly on Airbnb or message us directly on WhatsApp for custom rates and extended stays.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="https://www.airbnb.co.in/h/stay-near-amritapuri"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-accent text-xs"
-          >
-            Book on Airbnb
-          </a>
-          <Link href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-xs">
-            Send an Enquiry
-          </Link>
-        </div>
-      </section>
+      <div id="house" className="scroll-mt-32"><HouseSection /></div>
+      <div id="garden" className="scroll-mt-32"><GardenSection /></div>
+      <div id="gallery" className="scroll-mt-32"><GallerySection /></div>
+      <div id="location" className="scroll-mt-32"><LocationSection /></div>
+      <div id="book" className="scroll-mt-32"><BookingSection /></div>
     </>
   )
 }

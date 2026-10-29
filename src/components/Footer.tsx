@@ -33,7 +33,8 @@ export default function Footer() {
                 ['/stories', 'Traveller Stories'],
                 ['/travel', 'Kerala Travel Planner'],
                 ['/stay', 'Stay with us'],
-                ['/contact', 'Contact'],
+                ['/events', 'Festivals & Events'],
+                ['/blog', 'Blog'],
               ].map(([href, label]) => (
                 <Link key={href} href={href} className="text-white/60 text-sm hover:text-accent-light transition-colors">
                   {label}

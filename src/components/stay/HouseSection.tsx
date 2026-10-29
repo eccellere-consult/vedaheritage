@@ -1,0 +1,139 @@
+import Link from 'next/link'
+import { PHOTOS } from '@/lib/config'
+
+const amenities = [
+  { icon: '🛏️', label: '2 Private Bedrooms' },
+  { icon: '🚿', label: 'Hot Water Shower' },
+  { icon: '📶', label: 'High-Speed Wi-Fi' },
+  { icon: '❄️', label: 'Air Conditioning' },
+  { icon: '🍳', label: 'Traditional Kitchen Access' },
+  { icon: '🌿', label: 'Ayurvedic Garden' },
+  { icon: '🔑', label: 'Self Check-in / Checkout' },
+  { icon: '🧺', label: 'Fresh Towels & Linen' },
+  { icon: '🏡', label: 'Private Compound' },
+  { icon: '🐦', label: 'Garden Seating Area' },
+  { icon: '🚗', label: 'Auto-rickshaw to Amritapuri' },
+  { icon: '🛡️', label: '24 hr Security' },
+]
+
+const rooms = [
+  {
+    name: 'The Heritage Room',
+    desc: 'Ground-floor room with original teakwood fittings, handmade ceramic tiles, and a garden-facing window. Sleeps 2. King bed. Air conditioning.',
+    features: ['King bed', 'AC', 'Garden view', 'En-suite bathroom'],
+    photo: PHOTOS.room1,
+  },
+  {
+    name: 'The Terrace Room',
+    desc: 'Upper-floor room with a private balcony overlooking the coconut grove. Cross-ventilated with sea breeze. Sleeps 2. Queen bed.',
+    features: ['Queen bed', 'AC', 'Private balcony', 'Coconut grove view'],
+    photo: PHOTOS.room2,
+  },
+]
+
+const rules = [
+  'Check-in: 2 PM onwards (flexible with advance notice)',
+  'Checkout: 11 AM',
+  'Maximum 4 guests',
+  'No smoking inside the property',
+  'Pets on request only',
+  'Quiet hours: 10 PM – 7 AM (ashram guests often rise early)',
+  'Free cancellation up to 48 hours before check-in',
+]
+
+export default function HouseSection() {
+  return (
+    <>
+      {/* Rooms */}
+      <section className="py-24 bg-surface">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="section-label">Accommodation</p>
+            <h2 className="section-title">The Rooms</h2>
+            <div className="accent-rule mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {rooms.map(r => (
+              <div key={r.name} className="card">
+                {/* Room photo */}
+                <img
+                  src={r.photo}
+                  alt={r.name}
+                  className="w-full aspect-video object-cover mb-6"
+                />
+                <h3 className="font-serif text-2xl text-ink mb-3">{r.name}</h3>
+                <p className="text-ink-mid text-sm leading-relaxed mb-4">{r.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {r.features.map(f => (
+                    <span key={f} className="text-xs bg-accent-pale text-ink-mid px-3 py-1 border border-accent/30">
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Amenities */}
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="section-label">Facilities</p>
+            <h2 className="section-title">Everything You Need</h2>
+            <div className="accent-rule mx-auto" />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            {amenities.map(a => (
+              <div key={a.label} className="flex items-start gap-3">
+                <span className="text-xl flex-shrink-0">{a.icon}</span>
+                <span className="text-sm text-ink-mid">{a.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* House Rules */}
+      <section className="py-20 bg-accent-pale">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="section-label">Policies</p>
+            <h2 className="section-title">House Rules</h2>
+            <div className="accent-rule mx-auto" />
+          </div>
+          <div className="bg-white p-8 border-l-4 border-accent">
+            {rules.map(r => (
+              <div key={r} className="flex items-start gap-3 py-2 border-b border-accent/10 last:border-0">
+                <span className="text-accent text-lg leading-none flex-shrink-0">›</span>
+                <p className="text-sm text-ink-mid">{r}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-primary text-center">
+        <h2 className="font-serif text-3xl text-white mb-4">Ready to Book?</h2>
+        <p className="text-white/70 mb-8 text-sm max-w-md mx-auto">
+          Book instantly on Airbnb or message us directly on WhatsApp for custom rates and extended stays.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://www.airbnb.co.in/h/stay-near-amritapuri"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-accent text-xs"
+          >
+            Book on Airbnb
+          </a>
+          <Link href="#book" className="btn-outline border-white text-white hover:bg-white hover:text-primary text-xs">
+            Send an Enquiry
+          </Link>
+        </div>
+      </section>
+    </>
+  )
+}

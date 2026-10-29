@@ -38,7 +38,7 @@ export default function TravelPage() {
               {tips.map(([t, d]) => <div key={t} className="card !p-4"><h3 className="font-medium text-primary text-sm">{t}</h3><p className="text-sm text-ink-mid mt-1">{d}</p></div>)}
             </div>
           </div>
-          <p className="text-xs text-ink-mid/70">Veda Heritage is not affiliated with these organisations. Always confirm fares, timings and rules on the official site. Heading to the retreat? See <Link href="/location/" className="underline">how to reach Veda Heritage</Link>.</p>
+          <p className="text-xs text-ink-mid/70">Veda Heritage is not affiliated with these organisations. Always confirm fares, timings and rules on the official site. Heading to the retreat? See <Link href="/stay/#location" className="underline">how to reach Veda Heritage</Link>.</p>
         </div>
       </section>
     </>
