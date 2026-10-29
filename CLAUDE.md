@@ -10,6 +10,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 - `docs/CONTENT_OPERATIONS.md` — editorial workflow, twice-weekly review, story/photo moderation, setup.
 - `docs/DEPLOYMENT.md` — how deploys work (hPanel Git), one-time setup, and recovery from a 404.
 - `agents/README.md` — Scout → Enricher → Verifier agents, safeguards, providers.
+- `docs/ADMIN.md` — the admin page: what it does, one-time setup, security notes.
 
 ## Standards (keep consistent)
 **Design:** tokens live only in `tailwind.config.ts` — `primary` (green `#1D6A3A`), `accent` (teal `#1A6B72`; `accent-light` for text on dark),

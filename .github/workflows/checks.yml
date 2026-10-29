@@ -48,6 +48,9 @@ jobs:
       - name: Agent self-tests (offline, no API key needed)
         run: npm run agents:test
 
+      - name: Admin API tests (PHP, mock GitHub)
+        run: npm run admin:test
+
       - name: Type check
         run: npx tsc --noEmit
 

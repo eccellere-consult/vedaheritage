@@ -2,7 +2,7 @@
 // Admin API library (included by index.php only). PHP 7.4+ compatible.
 // Secrets live in /domains/<site>/vh-config.php OUTSIDE the web folder:
 //   <?php return [
-//     'github_token'        => 'github_pat_...',   // fine-grained, this repo only
+//     'admin_github_token'  => 'github_pat_...',   // fine-grained, this repo only (falls back to github_token)
 //     'repo'                => 'owner/name',
 //     'admin_password_hash' => '$2y$...',          // made by the one-time setup form
 //     'allowed_ips'         => [],                  // optional: ['203.0.113.7']
@@ -12,7 +12,6 @@ if (!defined('VH_ADMIN')) { http_response_code(404); exit; }
 const SESSION_IDLE = 1800;     // log out after 30 minutes idle
 const SESSION_MAX  = 28800;    // and after 8 hours regardless
 const CATS = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda'];
-const PR_PREFIXES = ['admin/', 'agents/', 'story/', 'images/'];
 
 ini_set('display_errors', '0');
 
@@ -155,7 +154,7 @@ function repo(): string {
 
 /** @return array [int status, mixed data] */
 function gh(string $method, string $path, ?array $body = null, array $query = []): array {
-    $token = cfg()['github_token'] ?? '';
+    $token = cfg()['admin_github_token'] ?? (cfg()['github_token'] ?? '');
     if (!$token) throw new RuntimeException('Server is not configured (GitHub token).');
     $base = rtrim(cfg()['github_api'] ?? 'https://api.github.com', '/');
     $url = $base . $path . ($query ? '?' . http_build_query($query) : '');

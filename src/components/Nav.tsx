@@ -12,17 +12,17 @@ export default function Nav() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-accent/20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none">
+          <Link href="/" className="flex flex-col leading-none whitespace-nowrap shrink-0">
             <span className="font-serif text-xl md:text-2xl text-primary tracking-wide">Veda Heritage</span>
             <span className="font-sans text-[10px] text-accent tracking-[0.2em] uppercase mt-0.5">Discover Kerala</span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden xl:flex items-center gap-5 whitespace-nowrap" aria-label="Main">
+          <nav className="hidden xl:flex items-center gap-4 whitespace-nowrap" aria-label="Main">
             {NAV_GROUPS.map(g => (
               <div key={g.label} className="relative group">
                 <button type="button" className="nav-link whitespace-nowrap inline-flex items-center gap-1" aria-haspopup="true">
