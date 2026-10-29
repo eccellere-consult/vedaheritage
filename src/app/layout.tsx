@@ -6,19 +6,19 @@ import WhatsAppButton from '@/components/WhatsAppButton'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Veda Heritage | Traditional Kerala Retreat near Amritapuri',
+    default: "Veda Heritage | Discover Kerala's Vedic & Traditional Heritage",
     template: '%s | Veda Heritage',
   },
   description:
-    'Veda Heritage — a traditional Kerala heritage villa in Vavvakkavu, Kollam. 5 km from Amritapuri Ashram. Ayurvedic garden, heritage stay, authentic Kerala experience.',
+    "Discover Kerala's temples, Vedic heritage and mantras, Ayurveda and healing plants, music, dance, astrology and wedding traditions. Hosted from a heritage home near Amritapuri.",
   keywords: [
-    'Kerala heritage retreat', 'stay near Amritapuri', 'Vavvakkavu villa',
+    'Kerala heritage', 'Vedic heritage Kerala', 'Kerala mantras', 'Ayurvedic plants Kerala', 'Kathakali', 'Kerala temples', 'Kerala wedding traditions', 'Kerala astrology', 'stay near Amritapuri', 'Vavvakkavu villa',
     'Kollam heritage stay', 'Kerala Ayurveda retreat', 'Amritapuri accommodation',
     'traditional Kerala house', 'vedaheritage',
   ],
   openGraph: {
-    title: 'Veda Heritage | Traditional Kerala Retreat near Amritapuri',
-    description: 'A traditional heritage villa in Vavvakkavu, Kollam — 5 km from Amritapuri. Ayurvedic garden, heritage rooms, authentic Kerala.',
+    title: "Veda Heritage | Discover Kerala's Vedic & Traditional Heritage",
+    description: "A living guide to Kerala's temples, Vedic heritage, Ayurveda, healing plants, music, dance and traditions.",
     url: 'https://www.vedaheritage.co.in',
     siteName: 'Veda Heritage',
     locale: 'en_IN',
