@@ -1,0 +1,9 @@
+{
+  "_note": "Default provider and model per provider. The first provider in 'preference' that has an API key set is used, so adding only one key is enough. Order is cheapest first (check each provider's pricing page; prices and model names change). Edit model names here when a provider renames one; no code change is needed.",
+  "preference": ["xai", "openai", "anthropic"],
+  "models": {
+    "xai": "grok-4-fast",
+    "openai": "gpt-5-mini",
+    "anthropic": "claude-opus-5-5"
+  }
+}

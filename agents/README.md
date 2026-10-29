@@ -33,14 +33,21 @@ Tune behaviour by editing the prompts. No code change is needed.
 - **Hard budget.** `--budget` / `AGENT_MAX_USD` (default $10) stops the run; the report says so.
 - **Independent verification.** Set `VERIFIER_PROVIDER` / `VERIFIER_MODEL` to verify with a different model, ideally a different vendor, than the one that wrote the entry.
 
+## Which AI provider is used by default
+**You only need one API key.** The agents pick the cheapest provider that has a key, in this order: **xAI (Grok) → OpenAI → Anthropic**.
+The default model for each is listed in `agents/models.json` (edit it there when a provider renames a model; names and prices change, so check each provider's pricing page).
+If you add a second key, the Verifier automatically uses a *different* provider from the writer, which makes the fact-check more independent.
+To force a choice, set the GitHub variable `AGENT_PROVIDER` (and optionally `AGENT_MODEL`).
+Cost caution: cheaper models make more mistakes. The Verifier and your approval catch them; judge cost per *approved* entry.
+
 ## Choosing providers and models (Anthropic, OpenAI, xAI/Grok)
 Each agent can run on a different provider. Set per role, or set `AGENT_PROVIDER` / `AGENT_MODEL` for all:
 
 | Variable | Meaning |
 |---|---|
 | `SCOUT_PROVIDER`, `SCOUT_MODEL` | provider: `anthropic` (default), `openai`, `xai` |
-| `ENRICHER_PROVIDER`, `ENRICHER_MODEL` | model: required for `openai` / `xai` (no default, names change; check the provider's current list) |
-| `VERIFIER_PROVIDER`, `VERIFIER_MODEL` | Anthropic default model is `claude-opus-5-5` |
+| `ENRICHER_PROVIDER`, `ENRICHER_MODEL` | model: defaults come from `agents/models.json` |
+| `VERIFIER_PROVIDER`, `VERIFIER_MODEL` | if unset, auto-detected (a different vendor from the writer when two keys exist) |
 | `OPENAI_API_KEY`, `XAI_API_KEY`, `ANTHROPIC_API_KEY` | keys for the providers you use |
 | `OPENAI_PRICE_IN_PER_M`, `OPENAI_PRICE_OUT_PER_M` (same for `XAI_`) | USD per million tokens, used by the spend cap. If unset, a deliberately high estimate ($5 in / $15 out) is used so the cap trips early. |
 | `AGENT_BASE_URL` | optional endpoint override for any OpenAI-compatible server that supports the Responses API, web search and JSON-schema output |

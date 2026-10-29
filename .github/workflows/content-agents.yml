@@ -50,7 +50,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
-          # Per-role provider/model (all optional; default is Anthropic claude-opus-5-5).
+          # Provider is auto-detected: the cheapest one that has a key (xAI, then OpenAI, then Anthropic).
+          # Override with these optional variables; per-role ones win over AGENT_*.
+          AGENT_PROVIDER: ${{ vars.AGENT_PROVIDER }}
+          AGENT_MODEL: ${{ vars.AGENT_MODEL }}
           SCOUT_PROVIDER: ${{ vars.SCOUT_PROVIDER }}
           SCOUT_MODEL: ${{ vars.SCOUT_MODEL }}
           ENRICHER_PROVIDER: ${{ vars.ENRICHER_PROVIDER }}
@@ -84,7 +87,8 @@ jobs:
           git config user.name "veda-content-bot"
           git config user.email "content-bot@users.noreply.github.com"
           git checkout -b "$branch"
-          git add -A src/content agents/queue agents/evidence agents/reports
+          # Stage only paths that exist: git fails (exit 128) on a missing path, and a fresh checkout has no empty folders.
+          for p in src/content agents/queue agents/evidence agents/reports; do [ -e "$p" ] && git add -A "$p"; done
           git commit -m "content: agent-drafted entries for review"
           git push origin "$branch"
           gh pr create --base "$BASE_BRANCH" --head "$branch" \

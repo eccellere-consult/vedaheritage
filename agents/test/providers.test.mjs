@@ -51,14 +51,32 @@ assert.equal(requests.at(-1).auth, 'Bearer k-xai')
 assert.equal(requests.at(-1).body.include, undefined)
 assert.equal(requests.at(-1).body.model, 'grok-test')
 
-// --- Roles are independent; unconfigured role defaults to Anthropic
-delete process.env.AGENT_PROVIDER
+// --- Auto-detect: cheapest provider that has a key (xai > openai > anthropic); Verifier prefers a different vendor
+for (const v of ['SCOUT_PROVIDER', 'SCOUT_MODEL', 'ENRICHER_PROVIDER', 'ENRICHER_MODEL', 'VERIFIER_PROVIDER', 'VERIFIER_MODEL', 'AGENT_PROVIDER', 'AGENT_MODEL']) delete process.env[v]
 process.env.ANTHROPIC_API_KEY = 'k-anth'
-assert.equal(llmForRole('enricher', { budget: newBudget(5) }).provider, 'anthropic')
+const pick = r => llmForRole(r, { budget: newBudget(5) })
+assert.equal(pick('enricher').provider, 'xai')
+assert.equal(pick('scout').provider, 'xai')
+assert.equal(pick('verifier').provider, 'openai')
+assert.equal(pick('enricher').model, 'grok-4-fast')
+const savedXai = process.env.XAI_API_KEY; delete process.env.XAI_API_KEY
+assert.equal(pick('enricher').provider, 'openai'); assert.equal(pick('verifier').provider, 'anthropic')
+const savedOpenai = process.env.OPENAI_API_KEY; delete process.env.OPENAI_API_KEY
+assert.equal(pick('enricher').provider, 'anthropic'); assert.equal(pick('verifier').provider, 'anthropic')
+assert.equal(pick('enricher').model, 'claude-opus-5-5')
+const savedAnth = process.env.ANTHROPIC_API_KEY; delete process.env.ANTHROPIC_API_KEY
+assert.throws(() => pick('enricher'), /No API key found/)
+assert.equal(llmForRole('enricher', { mock: true }).mock, true, 'mock mode needs no key')
+Object.assign(process.env, { XAI_API_KEY: savedXai, OPENAI_API_KEY: savedOpenai, ANTHROPIC_API_KEY: savedAnth })
+// explicit settings still win
+process.env.AGENT_PROVIDER = 'openai'; process.env.AGENT_MODEL = 'custom-model'
+assert.equal(pick('enricher').provider, 'openai'); assert.equal(pick('enricher').model, 'custom-model')
+process.env.VERIFIER_PROVIDER = 'xai'
+assert.equal(pick('verifier').provider, 'xai'); assert.equal(pick('verifier').model, 'grok-4-fast')
+delete process.env.AGENT_PROVIDER; delete process.env.AGENT_MODEL; delete process.env.VERIFIER_PROVIDER
 
 // --- Guard rails
-delete process.env.OPENAI_MODEL; delete process.env.SCOUT_MODEL
-assert.throws(() => llmForRole('scout'), /No model set/)
+process.env.SCOUT_PROVIDER = 'openai'
 process.env.SCOUT_MODEL = 'claude-opus-5-5'
 assert.throws(() => llmForRole('scout'), /Claude model but provider is openai/)
 process.env.SCOUT_MODEL = 'test-model'
