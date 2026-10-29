@@ -8,7 +8,7 @@ const urls = new Map()
 const add = (u, where) => u && urls.set(u, [...(urls.get(u) || []), where])
 
 for (const m of fs.readFileSync('src/data/official-links.ts', 'utf8').matchAll(/url: '(https:[^']+)'/g)) add(m[1], 'official-links.ts')
-for (const cat of ['temples', 'places', 'beaches', 'backwaters', 'ayurveda']) {
+for (const cat of ['temples', 'places', 'beaches', 'backwaters', 'ayurveda', 'heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings']) {
   const dir = path.join('src', 'content', cat)
   if (!fs.existsSync(dir)) continue
   for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.json'))) {

@@ -62,3 +62,21 @@ spam or abuse in stories (moderation) · over-reliance on one hosting path (post
 
 ## 12. Open decisions
 Exact eccare.in colour values · Malayalam launch timing · monetisation rules and labelling · who approves content and for how many hours per week.
+
+## Phase 2: Vedic and traditional knowledge, community and marketplace
+
+**Answer first:** the knowledge layer ships first (low risk); discussion and the marketplace follow in stages because they carry moderation, legal and payment risk.
+
+### 1. Knowledge layer (built)
+Eight new categories sit beside the original six: `vedic` (Vedic heritage and mantras), `healing` (traditional healing), `plants` (Ayurvedic plants), `cultivation`, `music`, `dance`, `astrology`, `weddings`. They are statewide topics: `travel` and the `heritage` place block are optional. Sensitive categories (vedic, healing, plants, astrology, weddings) show a "Please note" box on every page. The same Scout, Enricher, Verifier and human-approval flow applies.
+
+### 2. Discussion (next)
+Moderated comments per entry, reusing the story intake (GitHub issue, human approval). No accounts. Rules: no medical advice, no personal data, no predictions presented as fact.
+
+### 3. Marketplace (decision needed before building)
+Recommended model: **moderated classifieds, not a payment platform.** A seller submits a listing (photos, description, price range, region, contact route). The owner approves it, and buyer and seller deal directly. The site takes no payments and holds no stock.
+- Risks to settle first: authenticity claims (antiques, Aranmula kannadi, idols), restricted items (ivory, certain plants and wildlife, antiquities need ARASI/ASI rules), seller identity, GST and consumer-law terms, liability disclaimer.
+- Alternative: curated "where to buy" lists (already live under `heritage.whereToBuy`) with links to co-operatives and emporiums.
+
+### 4. Out of scope for now
+Matrimonial matching or profiles (sensitive personal data, separate legal review) and paid astrology consultations.
