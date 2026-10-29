@@ -3,6 +3,7 @@
 //  - extract():  structured output validated against a Zod schema
 //  - hard USD budget so a scheduled run can never overspend
 //  - mock mode (--mock) returns deterministic fixtures so the pipeline can be tested offline
+import fs from 'fs'
 import Anthropic from '@anthropic-ai/sdk'
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod'
 import { BudgetExceeded, ModelRefused } from './errors.mjs'
@@ -16,14 +17,33 @@ export const newBudget = (max = Number(process.env.AGENT_MAX_USD || 10)) => ({ u
 
 const ROLES = ['scout', 'enricher', 'verifier']
 
+// Provider auto-detection: the first provider in agents/models.json "preference" (cheapest first)
+// whose API key is set. Adding just one key is therefore enough.
+const KEY_ENV = { xai: 'XAI_API_KEY', openai: 'OPENAI_API_KEY', anthropic: 'ANTHROPIC_API_KEY' }
+const DEFAULTS = JSON.parse(fs.readFileSync(new URL('../models.json', import.meta.url), 'utf8'))
+
+export function defaultProvider(role) {
+  const available = DEFAULTS.preference.filter(p => process.env[KEY_ENV[p]])
+  if (!available.length) {
+    throw new Error('No API key found. Add one of XAI_API_KEY, OPENAI_API_KEY or ANTHROPIC_API_KEY as a GitHub secret (see agents/README.md).')
+  }
+  // The Verifier prefers a different vendor from the writer when a second key exists (more independent).
+  if (role === 'verifier') return available.find(p => p !== available[0]) || available[0]
+  return available[0]
+}
+
 // Resolve provider + model for an agent role. Precedence:
-//   <ROLE>_PROVIDER / <ROLE>_MODEL  >  AGENT_PROVIDER / AGENT_MODEL  >  anthropic + claude-opus-5-5
+//   provider: <ROLE>_PROVIDER > AGENT_PROVIDER > auto-detect (cheapest provider that has a key)
+//   model:    <ROLE>_MODEL > AGENT_MODEL (only when AGENT_PROVIDER is set) > agents/models.json
 // (VERIFIER_MODEL has always worked this way, so existing setups are unchanged.)
 export function llmForRole(role, { mock = false, budget = newBudget() } = {}) {
   if (!ROLES.includes(role)) throw new Error(`unknown role ${role}`)
+  if (mock) return createLLM({ mock: true })
   const R = role.toUpperCase()
-  const provider = (process.env[`${R}_PROVIDER`] || process.env.AGENT_PROVIDER || 'anthropic').toLowerCase()
-  const model = process.env[`${R}_MODEL`] || process.env.AGENT_MODEL || (provider === 'anthropic' ? undefined : process.env[`${provider.toUpperCase()}_MODEL`])
+  const explicit = process.env[`${R}_PROVIDER`] || process.env.AGENT_PROVIDER
+  const provider = (explicit || defaultProvider(role)).toLowerCase()
+  const agentModel = provider === (process.env.AGENT_PROVIDER || '').toLowerCase() ? process.env.AGENT_MODEL : undefined
+  const model = process.env[`${R}_MODEL`] || agentModel || DEFAULTS.models[provider]
   return createLLM({ mock, provider, model, budget })
 }
 
