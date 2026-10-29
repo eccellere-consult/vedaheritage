@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { CATEGORIES, CATEGORY_KEYS, SITE_URL, getEntries, getEntry, getStories, entryPath, type CategoryKey } from '@/lib/content'
+import { CATEGORIES, CATEGORY_KEYS, SITE_URL, cautionFor, isTradition, getEntries, getEntry, getStories, entryPath, type CategoryKey } from '@/lib/content'
 import { SITE, WA } from '@/lib/config'
 import EntryCard from '@/components/EntryCard'
 import StoryList from '@/components/StoryList'
@@ -97,6 +97,9 @@ export default async function EntryPage({ params }: Props) {
 
       <article className="py-14 bg-surface">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          {cautionFor(e.category) && (
+            <p role="note" className="rounded-lg border border-accent/30 bg-accent-pale px-4 py-3 text-sm text-ink mb-6"><span className="font-medium">Please note: </span>{cautionFor(e.category)}</p>
+          )}
           <EntryImages images={e.images} />
           {e.description.map((p, i) => <p key={i} className="text-ink-mid leading-relaxed mb-4">{p}</p>)}
 
@@ -120,8 +123,8 @@ export default async function EntryPage({ params }: Props) {
           </section>
 
           <section className="mt-12" aria-labelledby="spiritual">
-            <p className="section-label">{e.category === 'heritage' ? 'Cultural & spiritual meaning' : 'Spiritual experience'}</p>
-            <h2 id="spiritual" className="section-title mb-3">{e.category === 'heritage' ? 'What it means' : 'The inner journey'}</h2>
+            <p className="section-label">{isTradition(e.category) || e.category === 'heritage' ? 'Cultural & spiritual meaning' : 'Spiritual experience'}</p>
+            <h2 id="spiritual" className="section-title mb-3">{isTradition(e.category) || e.category === 'heritage' ? 'What it means' : 'The inner journey'}</h2>
             <p className="text-ink-mid leading-relaxed mb-5">{e.spiritual.summary}</p>
             <div className="grid sm:grid-cols-2 gap-4">
               {e.spiritual.experiences.map(x => (

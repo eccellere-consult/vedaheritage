@@ -51,7 +51,7 @@ $hits = is_file($rl) ? array_values(array_filter(array_map('intval', file($rl, F
 if (count($hits) >= 5) out(429, ['ok' => false, 'error' => 'Too many submissions. Please try again later.']);
 
 $types = ['Experience', 'Folklore I heard', 'Travel tip'];
-$cats  = ['temples', 'places', 'beaches', 'backwaters', 'ayurveda'];
+$cats  = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical'];
 $id    = gmdate('Ymd') . '-' . bin2hex(random_bytes(4));
 
 $story = [

@@ -9,6 +9,12 @@ DirectoryIndex index.html
 # Custom 404
 ErrorDocument 404 /404/index.html
 
+# Pages merged into /stay (house, garden, photos, location, booking)
+RedirectMatch 301 ^/ayurveda/?$ /stay/#garden
+RedirectMatch 301 ^/gallery/?$ /stay/#gallery
+RedirectMatch 301 ^/location/?$ /stay/#location
+RedirectMatch 301 ^/contact/?$ /stay/#book
+
 # Force HTTPS
 RewriteEngine On
 RewriteCond %{HTTPS} off

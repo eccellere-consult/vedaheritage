@@ -123,7 +123,7 @@ async function main() {
     if (err instanceof BudgetExceeded) add('', `⛔ Stopped early: ${err.message}`)
     else { console.error(err); add('', `⛔ Run failed: ${err.message}`); process.exitCode = 1 }
   }
-  add('', `_Run: ${((Date.now() - t0) / 60000).toFixed(1)} min · ~$${budget.usd.toFixed(2)} model spend (estimate; excludes web-search tool fees) · scout ${scoutLLM.provider}/${scoutLLM.model} · enricher ${llm.provider}/${llm.model} · verifier ${vllm.provider}/${vllm.model}_`)
+  add('', `_Run: ${((Date.now() - t0) / 60000).toFixed(1)} min · ~$${budget.usd.toFixed(2)} model spend (estimate; excludes web-search tool fees${[scoutLLM, llm, vllm].some(l => l.state?.estimated) ? '; the provider did not report token usage, so this is a rough text-size estimate' : ''}) · scout ${scoutLLM.provider}/${scoutLLM.model} · enricher ${llm.provider}/${llm.model} · verifier ${vllm.provider}/${vllm.model}_`)
   fs.mkdirSync('agents/reports', { recursive: true })
   fs.writeFileSync('agents/reports/latest.md', report.join('\n') + '\n')
   console.log('\n' + report.join('\n'))

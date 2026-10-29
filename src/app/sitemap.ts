@@ -3,7 +3,7 @@ import { CATEGORY_KEYS, SITE_URL, entryPath, getDistricts, getEntries } from '@/
 
 export const dynamic = 'force-static'
 
-const STATIC = ['/', '/stay/', '/ayurveda/', '/gallery/', '/blog/', '/events/', '/location/', '/contact/', '/discover/', '/stories/', '/travel/', '/kerala/']
+const STATIC = ['/', '/stay/', '/blog/', '/events/', '/discover/', '/stories/', '/travel/', '/kerala/']
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

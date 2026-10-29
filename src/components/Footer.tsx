@@ -13,8 +13,8 @@ export default function Footer() {
             <p className="text-accent-light text-xs tracking-[0.2em] uppercase mb-4">Vavvakkavu · Kerala</p>
             <div className="w-10 h-px bg-accent mb-4" />
             <p className="text-white/60 text-sm leading-relaxed">
-              A traditional Kerala heritage villa where ancient Ayurvedic wisdom meets timeless
-              hospitality — 5 km from Amritapuri Ashram.
+              A living guide to Kerala's temples, Vedic and traditional knowledge, healing, arts and
+              heritage. Hosted by a family heritage home near Amritapuri.
             </p>
           </div>
 
@@ -25,12 +25,17 @@ export default function Footer() {
               {[
                 ['/discover', 'Discover Kerala'],
                 ['/kerala', 'Kerala History & Districts'],
+                ['/discover/vedic', 'Vedic Heritage & Mantras'],
+                ['/discover/healing', 'Healing & Ayurvedic Plants'],
+                ['/discover/medical', 'Medical & Wellness Tourism'],
+                ['/discover/dance', 'Music & Dance'],
+                ['/discover/astrology', 'Astrology & Jyotisha'],
+                ['/discover/weddings', 'Weddings & Life Rituals'],
                 ['/stories', 'Traveller Stories'],
                 ['/travel', 'Kerala Travel Planner'],
-                ['/stay', 'Your Stay'],
-                ['/ayurveda', 'Ayurveda'],
-                ['/location', 'Location & How to Reach'],
-                ['/contact', 'Book & Contact'],
+                ['/stay', 'Stay with us'],
+                ['/events', 'Festivals & Events'],
+                ['/blog', 'Blog'],
               ].map(([href, label]) => (
                 <Link key={href} href={href} className="text-white/60 text-sm hover:text-accent-light transition-colors">
                   {label}

@@ -12,6 +12,7 @@ const srv = http.createServer((req, res) => {
     const body = JSON.parse(b || '{}')
     requests.push({ url: req.url, body, auth: req.headers.authorization })
     const wantsJson = !!body.text?.format
+    const noUsage = body.model === 'no-usage-model'
     const out = wantsJson
       ? { status: 'completed', output_text: JSON.stringify({ name: 'X', n: 3 }), output: [], usage: { input_tokens: 1000, output_tokens: 500 } }
       : { status: 'completed', output_text: 'notes mention https://prose-only.example/z', usage: { input_tokens: 2000, output_tokens: 1000 },
@@ -19,6 +20,7 @@ const srv = http.createServer((req, res) => {
             { type: 'web_search_call', action: { sources: [{ url: 'https://src.example/a' }] } },
             { type: 'message', content: [{ type: 'output_text', text: 'notes', annotations: [{ type: 'url_citation', url: 'https://src.example/b' }] }] },
           ] }
+    if (noUsage) delete out.usage
     res.writeHead(200, { 'content-type': 'application/json' }); res.end(JSON.stringify(out))
   })
 }).listen(0)
@@ -85,6 +87,16 @@ process.env.SCOUT_MODEL = 'test-model'
 const tiny = newBudget(0.01)
 const a = llmForRole('scout', { budget: tiny })
 await assert.rejects(() => a.research({ system: 'S', user: 'U' }), BudgetExceeded)
+
+// --- Provider reports no token usage: the cap must still count (estimate), and flag it
+process.env.SCOUT_MODEL = 'no-usage-model'
+const nu = newBudget(1000)
+const noUsage = llmForRole('scout', { budget: nu })
+await noUsage.research({ system: 'S', user: 'U' })
+assert.ok(nu.usd > 0, 'estimated spend must be > 0 when usage is missing')
+assert.equal(noUsage.state.estimated, true)
+const tiny2 = newBudget(0.05)
+await assert.rejects(() => llmForRole('scout', { budget: tiny2 }).research({ system: 'S', user: 'U' }), BudgetExceeded)
 
 srv.close()
 console.log('✔ provider adapters passed')

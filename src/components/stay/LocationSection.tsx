@@ -1,11 +1,5 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { WA } from '@/lib/config'
-
-export const metadata: Metadata = {
-  title: 'Location & How to Reach',
-  description: 'Veda Heritage is located in Vavvakkavu, Kollam, Kerala — 5 km from Amritapuri Ashram, 90 km from Trivandrum airport, 150 km from Kochi.',
-}
 
 const byOptions = [
   {
@@ -57,21 +51,9 @@ const nearby = [
   { name: 'Trivandrum (Thiruvananthapuram)', dist: '90 km', time: '1.5 hrs' },
 ]
 
-export default function LocationPage() {
+export default function LocationSection() {
   return (
     <>
-      {/* Header */}
-      <section
-        className="pt-32 pb-20 text-center bg-hero-gradient"
-      >
-        <p className="section-label text-accent-light">Getting Here</p>
-        <h1 className="font-serif text-5xl text-white mb-4">Location</h1>
-        <div className="w-12 h-px bg-accent mx-auto mb-4" />
-        <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed px-4">
-          Vavvakkavu, Kollam, Kerala — on the Kerala backwater coast between Kollam and Alappuzha, 5 km from Amritapuri.
-        </p>
-      </section>
-
       {/* Map */}
       <section className="bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -177,7 +159,7 @@ export default function LocationPage() {
             We host many guests who come for Amma's darshan programs, especially during Amma's birthday
             celebrations (September) and the winter season (December–February).
           </p>
-          <Link href="/contact" className="btn-accent text-xs">
+          <Link href="#book" className="btn-accent text-xs">
             Book Your Stay →
           </Link>
         </div>

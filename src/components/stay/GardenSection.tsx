@@ -1,11 +1,5 @@
-import type { Metadata } from 'next'
 import { PHOTOS } from '@/lib/config'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'Ayurveda',
-  description: 'Ayurvedic garden with 40+ medicinal plants, traditional Ayurvedic treatment room, and an authorised Vaidyaratnam retail corner at Veda Heritage, Kerala.',
-}
 
 const plants = [
   'Brahmi (Bacopa monnieri)', 'Tulsi (Holy Basil)', 'Ashwagandha', 'Neem',
@@ -26,21 +20,9 @@ const products = [
   { name: 'Herbal soaps & tea', use: 'Neem, turmeric, sandalwood soap; brahmi and tulsi herbal infusions' },
 ]
 
-export default function AyurvedaPage() {
+export default function GardenSection() {
   return (
     <>
-      {/* Header */}
-      <section
-        className="pt-32 pb-20 text-center bg-hero-gradient"
-      >
-        <p className="section-label text-accent-light">Wellness</p>
-        <h1 className="font-serif text-5xl text-white mb-4">Ayurveda at Veda Heritage</h1>
-        <div className="w-12 h-px bg-accent mx-auto mb-4" />
-        <p className="text-white/70 max-w-xl mx-auto text-sm leading-relaxed px-4">
-          From the living garden to the treatment room to the retail corner — Ayurveda is not a feature here. It is the foundation.
-        </p>
-      </section>
-
       {/* Garden */}
       <section className="py-24 bg-surface">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,7 +134,7 @@ export default function AyurvedaPage() {
               The perfect gifts, and the best personal Ayurveda supplements to continue your
               wellness journey at home.
             </p>
-            <Link href="/contact" className="btn-accent text-xs">
+            <Link href="#book" className="btn-accent text-xs">
               Ask Us About Products
             </Link>
           </div>

@@ -32,9 +32,18 @@ export function createOpenAICompat({ provider, model, budget, state }) {
   const reasoning = process.env.AGENT_REASONING_EFFORT ? { reasoning: { effort: process.env.AGENT_REASONING_EFFORT } } : {}
   const consulted = new Set()
 
-  function meter(usage = {}) {
-    const inTok = usage.input_tokens ?? usage.prompt_tokens ?? 0
-    const outTok = usage.output_tokens ?? usage.completion_tokens ?? 0
+  // If the provider reports no token usage, the spend cap would silently never trigger. In that case
+  // estimate conservatively from text size, plus a floor for research calls (they read many web pages
+  // that never appear in our text) so the cap still works.
+  const RESEARCH_FLOOR_TOKENS = 60000
+  function meter(usage, est) {
+    let inTok = usage?.input_tokens ?? usage?.prompt_tokens ?? 0
+    let outTok = usage?.output_tokens ?? usage?.completion_tokens ?? 0
+    if (!inTok && !outTok) {
+      inTok = Math.ceil((est?.inChars || 0) / 3.5) + (est?.research ? RESEARCH_FLOOR_TOKENS : 0)
+      outTok = Math.ceil((est?.outChars || 0) / 3.5)
+      state.estimated = true
+    }
     const cost = inTok * price.in + outTok * price.out
     state.calls++; state.inputTokens += inTok; state.outputTokens += outTok; state.usd += cost
     budget.usd += cost
@@ -66,7 +75,7 @@ export function createOpenAICompat({ provider, model, budget, state }) {
       ...(isXai ? {} : { include: ['web_search_call.action.sources'] }),
       ...reasoning,
     })
-    meter(res.usage)
+    meter(res.usage, { research: true, inChars: system.length + user.length, outChars: textOf(res).length })
     if (refused(res)) throw new ModelRefused('refusal')
     harvest(res, urls)
     urls.forEach(u => consulted.add(u))
@@ -81,7 +90,7 @@ export function createOpenAICompat({ provider, model, budget, state }) {
       text: { format: { type: 'json_schema', name: 'result', strict: true, schema: jsonSchema } },
       ...reasoning,
     })
-    meter(res.usage)
+    meter(res.usage, { inChars: system.length + user.length, outChars: textOf(res).length })
     if (refused(res)) throw new ModelRefused('refusal')
     if (res.status === 'incomplete') throw new Error(`Structured output incomplete (${res.incomplete_details?.reason || 'unknown'})`)
     const parsed = schema.safeParse(JSON.parse(textOf(res)))

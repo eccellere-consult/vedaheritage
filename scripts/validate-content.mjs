@@ -7,7 +7,8 @@ const PUBLIC = path.join(process.cwd(), 'public')
 const fileExists = src => src && src.startsWith('/') && fs.existsSync(path.join(PUBLIC, src))
 
 const ROOT = path.join(process.cwd(), 'src', 'content')
-const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda']
+const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical']
+const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical'])
 const STATUSES = ['draft', 'approved']
 const STORY_TYPES = ['Experience', 'Folklore I heard', 'Travel tip']
 const errors = []
@@ -48,11 +49,11 @@ for (const cat of CATEGORIES) {
     const sp = d.spiritual
     if (!sp || !isStr(sp.summary) || !Array.isArray(sp.experiences) || sp.experiences.length < 1 || sp.experiences.some(x => !isStr(x.title) || !isStr(x.text)) || !isStr(sp.bestFor) || !isArr(sp.mindfulTips)) fail(rel, 'spiritual {summary, experiences[≥1], bestFor, mindfulTips[]} required')
     const tr = d.travel
-    if (cat === 'heritage') {
+    if (STATEWIDE.has(cat)) {
       if (tr && (!isArr(tr.byTrain) || !isArr(tr.byBus))) fail(rel, 'travel, if present, needs byTrain[] and byBus[]')
       const hr = d.heritage
       const okPlaces = arr => Array.isArray(arr) && arr.length >= 1 && arr.every(p => isStr(p.name) && isStr(p.district) && isStr(p.note) && (!p.url || /^https:\/\//.test(p.url)))
-      if (!hr || !okPlaces(hr.whereToSee) || !okPlaces(hr.whereToBuy) || !okPlaces(hr.experiences) || !isArr(hr.buyingTips)) fail(rel, 'heritage {whereToSee[], whereToBuy[], experiences[] (each name, district, note), buyingTips[]} required')
+      if (cat !== 'heritage' && !hr) { /* optional for traditions */ } else if (!hr || !okPlaces(hr.whereToSee) || !okPlaces(hr.whereToBuy) || !okPlaces(hr.experiences) || !isArr(hr.buyingTips)) fail(rel, 'heritage {whereToSee[], whereToBuy[], experiences[] (each name, district, note), buyingTips[]} required')
     } else if (!tr || !isArr(tr.byTrain) || !isArr(tr.byBus)) fail(rel, 'travel {byTrain[], byBus[]} required (byWater, byAir optional)')
     if (d.officialLinks && d.officialLinks.some(l => !isStr(l.label) || !/^https:\/\//.test(l.url || ''))) fail(rel, 'officialLinks must be [{label, url (https)}]')
     if (!Array.isArray(d.images) || d.images.length > 2) fail(rel, 'images must be an array of at most 2')

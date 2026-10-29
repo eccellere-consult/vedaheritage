@@ -16,6 +16,7 @@ export const CATEGORIES = {
     blurb: "Kerala's temples — architecture, living rituals, legends and the etiquette that keeps a visit respectful.",
     seoTitle: 'Kerala Temples: History, Legends, Rituals & Visiting Guide',
     schemaType: 'HinduTemple',
+    group: 'place',
   },
   places: {
     label: 'Tourist Places',
@@ -23,6 +24,7 @@ export const CATEGORIES = {
     blurb: 'Hill stations, heritage towns, forts and palaces — the places that define a journey through Kerala.',
     seoTitle: 'Best Places to Visit in Kerala: Heritage, Hills & Towns',
     schemaType: 'TouristAttraction',
+    group: 'place',
   },
   beaches: {
     label: 'Beaches',
@@ -30,6 +32,7 @@ export const CATEGORIES = {
     blurb: "From cliff-top Varkala to the historic shore of Kappad — Kerala's coastline, its stories and its seasons.",
     seoTitle: 'Kerala Beaches: Best Beaches, Seasons & Local Legends',
     schemaType: 'Beach',
+    group: 'place',
   },
   backwaters: {
     label: 'Backwaters',
@@ -37,6 +40,7 @@ export const CATEGORIES = {
     blurb: "The lakes, canals and lagoons that make Kerala unlike anywhere else — houseboats, village life and boat-race lore.",
     seoTitle: 'Kerala Backwaters: Alleppey, Ashtamudi & Where to Go',
     schemaType: 'TouristAttraction',
+    group: 'place',
   },
   heritage: {
     label: 'Heritage Items',
@@ -44,6 +48,7 @@ export const CATEGORIES = {
     blurb: "Kerala's traditional objects, crafts and architecture — vilakku, kaavu, pathayam, nalukettu and more — with their history, where to see them and where to buy.",
     seoTitle: 'Traditional Kerala Heritage: Vilakku, Nalukettu, Kaavu & Crafts to Buy',
     schemaType: 'TouristAttraction',
+    group: 'place',
   },
   ayurveda: {
     label: 'Ayurveda',
@@ -51,11 +56,93 @@ export const CATEGORIES = {
     blurb: "Kerala's living Ayurvedic tradition — therapies, seasonal rejuvenation and the families who preserved the craft.",
     seoTitle: 'Ayurveda in Kerala: Panchakarma, Seasons & Authentic Practice',
     schemaType: 'TouristAttraction',
+    group: 'place',
+  },
+  vedic: {
+    label: 'Vedic Heritage & Mantras',
+    singular: 'Vedic tradition',
+    blurb: "Vedic chanting, mantras, rituals and the Namboodiri scholarly traditions of Kerala — with meaning, context and respectful practice.",
+    seoTitle: 'Vedic Heritage & Mantras of Kerala: Chanting, Rituals & Meaning',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Sacred texts and mantras are shared for understanding, not as a substitute for a qualified teacher. Pronunciation and initiation (upadesham) matter; learn from a guru.',
+  },
+  healing: {
+    label: 'Traditional Healing',
+    singular: 'Healing tradition',
+    blurb: "Kerala's traditional healing systems — vaidyam families, marma, kalari chikitsa, folk remedies — with history and where they are practised.",
+    seoTitle: 'Traditional Healing in Kerala: Vaidyam, Kalari Chikitsa & Folk Remedies',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Information on traditional practice is cultural, not medical advice. Consult a registered practitioner, and your doctor, before any treatment.',
+  },
+  plants: {
+    label: 'Ayurvedic Plants',
+    singular: 'Plant',
+    blurb: "The herbs, trees and sacred plants of Kerala's Ayurveda and ritual life — traditional uses, botany, cultivation and where to see them.",
+    seoTitle: 'Ayurvedic Plants of Kerala: Herbs, Sacred Trees & Traditional Uses',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Traditional uses are described as tradition, not as proven treatment. Do not self-medicate; some plants are harmful in the wrong dose.',
+  },
+  cultivation: {
+    label: 'Cultivation & Farming Heritage',
+    singular: 'Cultivation tradition',
+    blurb: "Kerala's farming heritage — spices, paddy, kaavu groves, home gardens, coconut and medicinal-plant cultivation — with seasonal insight.",
+    seoTitle: 'Kerala Cultivation Heritage: Spices, Paddy, Home Gardens & Medicinal Plants',
+    schemaType: 'Article',
+    group: 'tradition',
+  },
+  music: {
+    label: 'Music & Instruments',
+    singular: 'Music tradition',
+    blurb: "Sopana sangeetham, panchavadyam, chenda melam, Carnatic and folk music, and the instruments behind Kerala's temple and festival soundscape.",
+    seoTitle: 'Kerala Music: Panchavadyam, Chenda Melam, Sopana Sangeetham & Instruments',
+    schemaType: 'Article',
+    group: 'tradition',
+  },
+  dance: {
+    label: 'Dance & Performing Arts',
+    singular: 'Dance form',
+    blurb: "Kathakali, Mohiniyattam, Koodiyattam, Theyyam, Thiruvathira and more — history, symbolism, training centres and where to watch.",
+    seoTitle: 'Kerala Dance Forms: Kathakali, Mohiniyattam, Koodiyattam & Theyyam',
+    schemaType: 'Article',
+    group: 'tradition',
+  },
+  astrology: {
+    label: 'Astrology & Jyotisha',
+    singular: 'Astrology tradition',
+    blurb: "Kerala's Jyotisha tradition — panchangam, nakshatras, prasna and the scholarly lineages — explained as tradition and cultural practice.",
+    seoTitle: 'Kerala Astrology (Jyotisha): Panchangam, Nakshatras & Prasna Tradition',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Astrology is presented as a cultural and religious tradition, not as scientific fact or professional advice. Do not make health, legal or financial decisions on it.',
+  },
+  weddings: {
+    label: 'Weddings & Life Rituals',
+    singular: 'Ritual tradition',
+    blurb: "Vivaha customs across Kerala's communities — rituals, attire, muhurtham, temple weddings and the symbolism behind them.",
+    seoTitle: 'Kerala Wedding Traditions: Rituals, Attire, Muhurtham & Temple Weddings',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Customs vary widely by community, family and region. Descriptions are general; confirm specifics with elders or the officiating priest.',
+  },
+  medical: {
+    label: 'Medical & Wellness Tourism',
+    singular: 'Medical tourism guide',
+    blurb: "Planning treatment in Kerala — accredited hospitals, Ayurveda and Panchakarma centres, medical visas, recovery stays and what to confirm first.",
+    seoTitle: 'Medical Tourism in Kerala: Hospitals, Ayurveda Treatment, Visas & Planning',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'General planning information, not medical advice. Always consult your own doctor, confirm credentials and accreditation directly with the provider, and get written quotes before travelling. Prices and availability change.',
   },
 } as const
 
 export type CategoryKey = keyof typeof CATEGORIES
 export const CATEGORY_KEYS = Object.keys(CATEGORIES) as CategoryKey[]
+/** Knowledge/tradition categories are not places: travel and the heritage block are optional. */
+export const isTradition = (k: CategoryKey) => CATEGORIES[k].group === 'tradition'
+export const cautionFor = (k: CategoryKey): string | undefined => (CATEGORIES[k] as { caution?: string }).caution
 
 export type ContentStatus = 'draft' | 'approved'
 
