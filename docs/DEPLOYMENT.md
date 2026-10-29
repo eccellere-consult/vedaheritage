@@ -1,38 +1,44 @@
-# Deployment and recovery (GitHub → hPanel Git → Hostinger)
+# Deployment: how the site goes live
 
-**Flow:** push to `main` → GitHub Actions (`deploy.yml`) builds the static site → publishes **only the built files** to the `deploy` branch →
-hPanel's Git pulls `deploy` into the domain's folder (triggered by a GitHub webhook) → the workflow checks that the live site serves the same commit (`/version.txt`).
-The source code never reaches the web server. Every run also keeps the built site as a downloadable **`site-build` artifact** (14 days).
+**In one line:** when a change is merged into `main`, GitHub builds the website and puts the finished files on a branch called `deploy`.
+Hostinger's **Git** feature copies that branch into your website folder. Nobody has to upload anything by hand.
 
-## One-time setup
-1. **Merge this change to `main`.** The first run creates the `deploy` branch. Check Actions → *Build and publish site* ran (the verify step will fail until steps 2–4 are done; that is expected).
-2. **Clear the folder.** hPanel → Websites → *Manage* → Files → File Manager → `domains/vedaheritage.co.in/public_html/` (tick *Show hidden files*): delete everything inside,
-   including `.git`, `.ftp-deploy-sync-state.json` and any raw repository files. Hostinger's Git needs an empty install folder.
-3. **Remove any old Git entry.** hPanel → Advanced → **Git**: delete earlier entries for this domain (for example one pointing at `main`).
-4. **Create the Git deployment.** Advanced → Git → *Create a new repository*:
-   - Repository: `git@github.com:eccellere-consult/vedaheritage.git` (SSH, because the repo is private).
-   - Branch: **`deploy`**.
-   - Install path: the domain's web folder (leave blank or enter `public_html`, whichever hPanel shows for this website).
-   - Copy the **SSH key** hPanel shows → GitHub repo → Settings → **Deploy keys** → *Add deploy key* (read-only is enough).
-   - Click **Deploy** once to pull the first build.
-5. **Turn on auto-deploy.** hPanel shows an *Auto deployment* **webhook URL**. GitHub repo → Settings → **Webhooks** → *Add webhook*:
-   Payload URL = that URL, Content type = `application/json`, event = **Just the push event**. Every push (including the workflow's push to `deploy`) now triggers a pull.
-6. **Check:** open `https://www.vedaheritage.co.in/version.txt` (it shows the commit ID) and the home page.
+```
+merge to main  ->  GitHub builds the site  ->  branch "deploy"  ->  Hostinger Git pulls it  ->  live
+```
 
-## Day to day
-Merge to `main` → wait about 3–6 minutes → live. The workflow turns red if Hostinger did not pull the new build; its log prints what the live site returns.
+## One-time setup on Hostinger (about 10 minutes)
+You do this once. Labels in hPanel can differ slightly; the idea is the same.
 
-## If every page shows Hostinger's "This Page Does Not Exist" (404)
-The web folder has no `index.html`. Check in this order:
-- **File Manager:** does the folder contain `index.html`, `_next`, `version.txt`? If it holds repository files (`package.json`, `src/`), the Git entry is pointing at `main` instead of **`deploy`**: edit it to `deploy`, empty the folder, and click *Deploy*.
-- **Branch exists?** GitHub → branches → `deploy`. If missing, run Actions → *Build and publish site* → Run workflow.
-- **Webhook:** GitHub → Settings → Webhooks → *Recent deliveries* should show green ticks. If not, copy the URL again from hPanel.
-- **www:** open `https://vedaheritage.co.in` and `https://www.vedaheritage.co.in`. If only one works, add the missing DNS/alias, or set repo variable `SITE_URL` to the working host.
-- **Get the site back immediately:** Actions → latest run → **Artifacts → `site-build`**: download, unzip, upload the *contents* (including hidden `.htaccess`) to the folder with File Manager.
+1. **Delete any old Git entry.** hPanel > Websites > Manage > **Advanced > Git**. Remove existing entries for this domain.
+2. **Empty the website folder.** hPanel > **Files > File Manager** > `domains` > `vedaheritage.co.in` > `public_html`.
+   Click the gear icon, tick **Show hidden files**, select everything, **Delete**. The folder must be empty.
+3. **Connect GitHub.** Advanced > Git > *Create a new repository*:
+   - Repository address: `https://github.com/eccellere-consult/vedaheritage.git`
+   - Branch: `deploy`
+   - Install path: leave **blank**
+   Click **Create**, then **Deploy**.
+4. **Make it automatic.** In the same Git page copy the **Auto deployment webhook URL**. In GitHub open
+   `https://github.com/eccellere-consult/vedaheritage/settings/hooks` > **Add webhook**: paste the URL, Content type `application/json`,
+   leave Secret blank, choose **Just the push event**, tick Active, **Add webhook**.
+5. **Check.** Open `https://www.vedaheritage.co.in/version.txt`. It shows a long code (the build ID). Open the home page and press Ctrl+F5.
 
-## FTP fallback
-`deploy-ftp.yml` (manual only) uploads by FTP. Use it only if hPanel Git is unavailable, and never while Git deployment is active on the same folder.
-Secrets: `FTP_HOST`, `FTP_USER`, `FTP_PASSWORD`; optional variable `FTP_SERVER_DIR`.
+## Every day after that
+Merge a pull request. Wait 3 to 6 minutes. The site updates by itself.
+In GitHub > **Actions** > latest run, a yellow warning "Live site not updated yet" means Hostinger has not pulled yet: click **Deploy** in hPanel > Git.
 
-## Security note
-hPanel Git keeps a `.git` folder in the web root. `public/.htaccess` returns 404 for any `/.git…` path, and the `deploy` branch contains only built, public files.
+## If something looks wrong
+| What you see | What it means | What to do |
+|---|---|---|
+| Hostinger page "This Page Does Not Exist" (404) | The website folder has no `index.html` | In File Manager check `public_html` holds `index.html`, `version.txt`, `_next`. If it holds `package.json` or `src`, the Git entry uses the wrong branch: set it to `deploy`, empty the folder, click Deploy. |
+| "403 Forbidden" | Folder has files but no `index.html` | Same as above. |
+| Old site still showing | Browser or Hostinger cache | Press Ctrl+F5, then click Deploy in hPanel > Git. |
+| Yellow warning in GitHub Actions | Hostinger has not pulled yet | Click **Deploy** in hPanel > Git; check the webhook shows a green tick under GitHub > Settings > Webhooks > Recent deliveries. |
+
+## Emergency manual upload (no Git)
+GitHub > Actions > latest run > **Artifacts > site-build**: download the zip. In File Manager empty `public_html`, **Upload** the zip, right-click it > **Extract** (into the same folder), delete the zip.
+
+## Notes
+- The repository is public. Never store passwords, API keys or the business plan in it. Keys belong in GitHub **Settings > Secrets**.
+- `public/.htaccess` hides any `/.git` path from visitors.
+- The old FTP secrets (`FTP_HOST`, `FTP_USER`, `FTP_PASSWORD`) are no longer used and can be deleted from GitHub > Settings > Secrets and variables > Actions.
