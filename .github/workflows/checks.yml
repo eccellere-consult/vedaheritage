@@ -1,0 +1,55 @@
+name: Checks
+
+# Runs on EVERY pull request, so GitHub can show "All checks have passed" before you merge.
+# Green = safe to merge. Red = click Details to see what to fix.
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Workflow files are valid
+        run: |
+          python3 - <<'PY'
+          import glob, sys, yaml
+          bad = 0
+          for f in sorted(glob.glob('.github/workflows/*.yml')):
+              try:
+                  yaml.safe_load(open(f))
+              except Exception as e:
+                  bad += 1
+                  print(f'INVALID {f}: {e}')
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Content is valid (entries, districts, stories)
+        run: node scripts/validate-content.mjs
+
+      - name: Agent self-tests (offline, no API key needed)
+        run: npm run agents:test
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Site builds
+        run: npx next build
