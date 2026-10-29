@@ -1,0 +1,242 @@
+{
+  "date": "2026-10-29",
+  "model": "grok-4-fast",
+  "candidate": {
+    "id": "aranmula-parthasarathy-temple",
+    "name": "Aranmula Parthasarathy Temple",
+    "category": "temples",
+    "district": "Pathanamthitta",
+    "reason": "Visitors are drawn to the riverside Krishna temple whose legends explain the Aranmula boat race and feature rich wood carvings and murals.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-29",
+    "slug": "aranmula-parthasarathy-temple"
+  },
+  "warnings": [],
+  "consulted": [
+    "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+    "https://en.wikipedia.org/wiki/Aranmula_Boat_Race",
+    "https://aranmulaboatrace.com/pages/313131/history",
+    "https://en.wikipedia.org/wiki/Aranmula_Uthrattadi_Vallamkali",
+    "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+    "https://www.thehindu.com/society/history-and-culture/on-the-historic-aranmula-vallasadya-and-vallamkali/article59854814.ece",
+    "https://www.keralatourism.org/event/aranmula-vallamkali/34/",
+    "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1530873659-0.pdf",
+    "https://swadesi.com/knowledge/pathanamthitta-aranmula-parthasarathy-temple-rituals",
+    "https://www.keralatourism.org/districts/pathanamthitta/",
+    "https://www.thehindu.com/news/national/kerala/festive-atmosphere-grips-aranmula-ahead-of-grand-regatta-on-september-18/article68642400.ece",
+    "https://www.bhaktiras.net/temple/aranmula-parthasarathy-temple/",
+    "https://www.bharattemples.com/aranmula-parthasarathy-temple-pathanamthitta-kerala/",
+    "https://tirumalatirupatiyatra.in/aranmula-parthasarathy-temple/",
+    "https://www.incredibleindia.gov.in/en/kerala/pathanamthitta/aranmula-parthasarathy-temple"
+  ],
+  "claims": [
+    {
+      "claim": "Dedicated to Lord Krishna as Parthasarathy; location on Pamba River, Aranmula, Pathanamthitta",
+      "field": "description",
+      "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+      "sensitive": false
+    },
+    {
+      "claim": "One of 108 Divya Desams",
+      "field": "description",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+      "sensitive": false
+    },
+    {
+      "claim": "Wood carvings of epics; murals from early 18th century",
+      "field": "description",
+      "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+      "sensitive": false
+    },
+    {
+      "claim": "Idol approx. 6 ft tall, tallest Krishna idol in Kerala",
+      "field": "history",
+      "sourceUrl": "https://www.bharattemples.com/aranmula-parthasarathy-temple-pathanamthitta-kerala/",
+      "sensitive": false
+    },
+    {
+      "claim": "Open 4 am–11 am and 5 pm–8 pm; Travancore Devaswom Board",
+      "field": "visitorInfo",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+      "sensitive": true
+    },
+    {
+      "claim": "Boat race on Uthrattathi in Chingam (Aug/Sep); linked to feast-boat legend",
+      "field": "folklore",
+      "sourceUrl": "https://www.keralatourism.org/event/aranmula-vallamkali/34/",
+      "sensitive": false
+    },
+    {
+      "claim": "Valla Sadya with up to 64 dishes, mid-Aug to early Oct",
+      "field": "highlights",
+      "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+      "sensitive": false
+    },
+    {
+      "claim": "Nearest station Chengannur (CGY) ~10 km; Trivandrum airport ~117–128 km",
+      "field": "travel",
+      "sourceUrl": "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1530873659-0.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "Coordinates 9.328000, 76.687614",
+      "field": "coordinates",
+      "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+      "sensitive": false
+    },
+    {
+      "claim": "Part of Pandavas’ five temples; built by Arjuna (tradition)",
+      "field": "history",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+      "sensitive": false
+    },
+    {
+      "claim": "Stores Thanka Anki for Sabarimala",
+      "field": "history",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+      "sensitive": true
+    },
+    {
+      "claim": "Administered by Travancore Devaswom Board",
+      "field": "history",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+      "sensitive": false
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "Dedicated to Lord Krishna as Parthasarathy; location on Pamba River, Aranmula, Pathanamthitta",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+        "evidence": "Kerala Tourism: 'Dedicated to Lord Krishna, the Aranmula Parthasarathy Temple, situated on the banks of River Pamba in Aranmula in Pathanamthitta district…'.",
+        "fix": null
+      },
+      {
+        "claim": "One of 108 Divya Desams",
+        "verdict": "supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+        "evidence": "Wikipedia: 'The temple is one of the 'Divya Desams', the 108 temples of Vishnu revered by the Alvar saints.'",
+        "fix": null
+      },
+      {
+        "claim": "Wood carvings of epics; murals from early 18th century",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+        "evidence": "Kerala Tourism: 'the roof of the temple and some of the pillars are noted for their intricate wood carvings depicting … Ramayana and Mahabharata' and 'paintings on its walls that date back to the early 18th century CE.'",
+        "fix": null
+      },
+      {
+        "claim": "Idol approx. 6 ft tall, tallest Krishna idol in Kerala",
+        "verdict": "supported",
+        "sourceUrl": "https://www.bharattemples.com/aranmula-parthasarathy-temple-pathanamthitta-kerala/",
+        "evidence": "Wikipedia and other reputable guides state: 'The image of the presiding deity is 6 ft (1.8 m) tall, making it the tallest among the idols of all Krishna temples in Kerala.'",
+        "fix": "Replace or supplement the unreachable/weak bharattemples.com citation with a working authoritative source (e.g., Kerala Tourism page or Wikipedia or the Aranmula/Palliyoda official page) for the 6 ft / 'tallest' claim."
+      },
+      {
+        "claim": "Open 4 am–11 am and 5 pm–8 pm; Travancore Devaswom Board",
+        "verdict": "supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+        "evidence": "Wikipedia: 'The temple is open from 4 am to 11:00 am and 5 pm to 8 pm and is administered by Travancore Devaswom Board of the Government of Kerala.'",
+        "fix": "Because opening hours and administration are operational/sensitive facts, replace or supplement Wikipedia with an official Travancore Devaswom Board or temple administration page and keep the 'confirm locally' warning."
+      },
+      {
+        "claim": "Boat race on Uthrattathi in Chingam (Aug/Sep); linked to feast-boat legend",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/event/aranmula-vallamkali/34/",
+        "evidence": "Kerala Tourism event page: 'held on the day of the Uthrittathi asterism in the Malayalam month of Chingam (which falls between 15 August and 20 September)… According to legend… the Thiruvona Thoni … was attacked by enemies, but snake boats from nearby areas came to its rescue.'",
+        "fix": null
+      },
+      {
+        "claim": "Valla Sadya with up to 64 dishes, mid-Aug to early Oct",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+        "evidence": "Kerala Tourism: 'The Valla sadya… a grand feast with up to 64 dishes. The traditional feast is served every day from mid-August to the beginning of October.'",
+        "fix": null
+      },
+      {
+        "claim": "Nearest station Chengannur (CGY) ~10 km; Trivandrum airport ~117–128 km",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1530873659-0.pdf",
+        "evidence": "Kerala Tourism festival PDF lists 'Chengannur Railway Station -10 Km; Trivandrum International Airport- 117 Km'.",
+        "fix": "Standardize the airport distance to the authoritative figure shown in the cited PDF (approx. 117 km) unless you can justify the 128 km figure with a secondary authoritative source; cite the PDF directly for distances."
+      },
+      {
+        "claim": "Coordinates 9.328000, 76.687614",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+        "evidence": "Kerala Tourism lists coordinates: Latitude: 9.328000, Longitude: 76.687614 (Wikipedia geocoordinates are effectively identical).",
+        "fix": null
+      },
+      {
+        "claim": "Part of Pandavas’ five temples; built by Arjuna (tradition)",
+        "verdict": "supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+        "evidence": "Wikipedia frames this as local tradition/legend: the temple is one of five ancient shrines associated with the Pandavas and tradition says Arjuna installed the deity.",
+        "fix": null
+      },
+      {
+        "claim": "Stores Thanka Anki for Sabarimala",
+        "verdict": "supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+        "evidence": "Wikipedia: 'the Thanka Anki, golden attire of Ayyappan, donated by the king of Travancore, is stored here and taken to Sabarimala during the Mandala season.'",
+        "fix": "For this sensitive, ritual/operational claim, add a primary/official citation (Travancore Devaswom Board, Sabarimala/temple administration or government source) if available to reduce risk of outdated information."
+      },
+      {
+        "claim": "Administered by Travancore Devaswom Board",
+        "verdict": "supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+        "evidence": "Wikipedia: 'is administered by Travancore Devaswom Board of the Government of Kerala.'",
+        "fix": "Prefer citing the Travancore Devaswom Board's official listing/page for the temple where possible."
+      }
+    ],
+    "issues": [
+      {
+        "severity": "minor",
+        "field": "sources",
+        "problem": "The entry cites bharattemples.com for the idol height but that URL could not be fetched during verification.",
+        "suggestion": "Replace the unreachable/weak bharattemples.com citation with a working authoritative source (Kerala Tourism, Wikipedia, or the Aranmula/Palliyoda official page) for the 6 ft / 'tallest' claim."
+      },
+      {
+        "severity": "minor",
+        "field": "history / visitorInfo",
+        "problem": "Operational/sensitive facts (opening hours, storage of Thanka Anki) are currently supported by Wikipedia; primary administrative sources (Travancore Devaswom Board or temple administration) are preferable.",
+        "suggestion": "Add or replace Wikipedia citations with official Travancore Devaswom Board / temple admin / government pages for opening hours, administration, and the Thanka Anki practice; retain the 'confirm locally' warning."
+      },
+      {
+        "severity": "minor",
+        "field": "travel",
+        "problem": "The entry lists a Trivandrum airport distance as 'approx. 117–128 km' while the authoritative PDF gives 117 km.",
+        "suggestion": "Standardize airport distance to the authoritative figure (approx. 117 km per Kerala Tourism PDF) or cite another authoritative source to justify the larger range."
+      }
+    ],
+    "folkloreAssessment": "Good. The entry frames the Pandava/Arjuna origin and the feast-boat rescue as local tradition/legend and explicitly notes variant versions. It does not present the legends as proven history and hedges appropriately.",
+    "sensitivityAssessment": "Acceptable. Ritual and administrative claims that are high-sensitivity (opening times, storage of Sabarimala ornaments) are supported by reputable sources but should cite primary administrative pages (Travancore Devaswom Board or official temple pages) where possible. Etiquette guidance is respectful and appropriately worded.",
+    "score": 90,
+    "recommendation": "ready_for_review",
+    "gateReasons": [],
+    "consulted": [
+      "https://www.oneindia.com/temples/aranmula-parthasarathy-temple-aranmula-i136/",
+      "https://aranmulaboatrace.com/pages/313131/history",
+      "https://id.scribd.com/document/452324850/kupdf-net-temples-in-kerala-pdf",
+      "https://hindumandiryatra.com/article/aranmula-parthasarathy-temple",
+      "https://compass.rauias.com/2023/page/34/",
+      "https://pt.scribd.com/document/452324850/kupdf-net-temples-in-kerala-pdf",
+      "https://www.hearitage.in/2021/12/aranmula-temple-abode-of-parthasarathy.html",
+      "https://www.linkedin.com/posts/hemanshu-joshi-53049452_onam-6thcentury-aranmula-parthasarathy-activity-7107210528518774784-YSZb",
+      "https://www.bhaktiras.net/festivals/kerala-boat-races/",
+      "https://kalyangeetha.wordpress.com/category/kshethradanam-temple-tours/page/10/",
+      "https://discover.hubpages.com/travel/Kerala-Tourism-District-Wise-explanation-Kozhikode",
+      "https://tripxl.com/blog/perunthenaruvi-waterfalls/",
+      "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy",
+      "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple",
+      "https://www.keralatourism.org/event/aranmula-vallamkali/34/",
+      "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1530873659-0.pdf"
+    ]
+  },
+  "attempts": 1
+}

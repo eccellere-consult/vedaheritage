@@ -1,0 +1,307 @@
+{
+  "date": "2026-10-29",
+  "model": "grok-4-fast",
+  "candidate": {
+    "id": "ambalappuzha-sree-krishna-swamy-temple",
+    "name": "Ambalappuzha Sree Krishna Swamy Temple",
+    "category": "temples",
+    "district": "Alappuzha",
+    "reason": "Travellers seek this major Vaishnava shrine for its daily Palpayasam offering and Krishna legend in classic Kerala architecture with murals.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-29",
+    "slug": "ambalappuzha-sree-krishna-swamy-temple"
+  },
+  "warnings": [],
+  "consulted": [
+    "https://www.casemine.com/judgement/in/689e405866114265764a598c",
+    "https://www.thekeralatemples.com/templeinfo/vishnu/ambalapuzha_sreekrishnan.htm",
+    "https://en.wikipedia.org/wiki/Ambalappuzha_Sree_Krishna_Swamy_Temple",
+    "https://en.wikipedia.org/wiki/Devaswom_boards_in_Kerala",
+    "https://www.youtube.com/watch?v=GTKbyrSp4p4",
+    "https://www.oneindia.com/temples/ambalappuzha-sree-krishna-swamy-temple-ambalappuzha-i1955/",
+    "https://en.wikipedia.org/wiki/Travancore_Devaswom_Board",
+    "https://www.etvbharat.com/te/spiritual/ambalappuzha-srikrishna-swamy-temple-history-and-importance-apn26083003033",
+    "https://grokipedia.com/page/Ambalappuzha_Sree_Krishna_Swamy_Temple",
+    "https://malayalam.news18.com/amp/news/explained/how-travancore-devaswom-board-functions-administration-rules-explained-mm-750759.html",
+    "https://www.keralatourism.org/destination/ambalappuzha-sree-krishna-temple/66/",
+    "https://www.keralatourism.org/onam/hindi/onam-festivals/ambalappuzha-sangam",
+    "https://www.keralatourism.org/onam/malayalam/onam-festivals/ambalappuzha-sangam",
+    "https://www.keralatourism.org/onam/onam-festivals/ambalappuzha-sangam",
+    "https://www.keralatourism.org/sabarimala/pamba-sadya",
+    "https://grokipedia.com/page/ambalappuzha_railway_station",
+    "http://keralatourism.guide/pilgrimages/ambalapuzha-sreekrishna-temple",
+    "https://www.distancesfrom.com/how-far-is-Ambalapuzha-Sree-Krishna-Temple-Ambalapuzha-from-Ambalapuzha-Railway-Station/HowFarHistory/8332514.aspx",
+    "https://www.optfind.com/Tourism/TourismDetails.php?tid=How-To-Reach-in-Ambalappuzha-Sree-Krishna-Temple-Alleppey-Kerala-India",
+    "http://www.keralatourism.org/map/giskerala/info/Ambalappuzha%20Sree%20Krishna%20Temple.htm",
+    "https://gokshetra.com/ambalapuzha-sri-krishna-darshan-guide/",
+    "https://irisholidays.com/alleppey/ambalapuzha-sree-krishna-temple",
+    "https://www.tripadvisor.com/FAQ_Answers-g608471-d2693898-t3447044.html",
+    "https://sacredplacesindia.com/temple-etiquette",
+    "https://www.tripadvisor.com/FAQ_Answers-g608471-d2693898-t1349811.html",
+    "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna"
+  ],
+  "claims": [
+    {
+      "claim": "Administered by the Travancore Devaswom Board (Ambalappuzha Devaswom)",
+      "field": "history.keyFacts",
+      "sourceUrl": "https://www.casemine.com/judgement/in/689e405866114265764a598c",
+      "sensitive": false
+    },
+    {
+      "claim": "Ambalappuzha Palpayasam prasadam prepared daily in large quantity",
+      "field": "description",
+      "sourceUrl": "https://www.thekeralatemples.com/templeinfo/vishnu/ambalapuzha_sreekrishnan.htm",
+      "sensitive": false
+    },
+    {
+      "claim": "Nearest station Ambalappuzha (AMPA), approximately 1 km from the temple",
+      "field": "travel.byTrain",
+      "sourceUrl": "https://www.distancesfrom.com/how-far-is-Ambalapuzha-Sree-Krishna-Temple-Ambalapuzha-from-Ambalapuzha-Railway-Station/HowFarHistory/8332514.aspx",
+      "sensitive": false
+    },
+    {
+      "claim": "Visitors are generally expected to wear modest/traditional dress (shoulders and knees covered) and photography is usually prohibited inside the sanctum; confirm exact rules with the temple office or Travancore Devaswom Board before visiting",
+      "field": "visitorInfo.etiquette",
+      "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+      "sensitive": true
+    },
+    {
+      "claim": "One of Kerala’s seven great Vaishnava temples",
+      "field": "summary",
+      "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+      "sensitive": false
+    },
+    {
+      "claim": "Presiding deity is Lord Krishna in the Parthasarathy form, depicted in black granite holding a whip in the right hand and a conch in the left",
+      "field": "description",
+      "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+      "sensitive": false
+    },
+    {
+      "claim": "Built by Chembakassery ruler Pooradam Thirunal Devanarayanan Thampuran",
+      "field": "history.timeline",
+      "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+      "sensitive": false
+    },
+    {
+      "claim": "Idol of Guruvayurappan brought here for safekeeping in 1789 during Tipu Sultan’s raids",
+      "field": "history.timeline",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Ambalappuzha_Sree_Krishna_Swamy_Temple",
+      "sensitive": false
+    },
+    {
+      "claim": "Approximately 12–14 km south of Alappuzha town",
+      "field": "visitorInfo.howToReach",
+      "sourceUrl": "https://www.keralatourism.org/destination/ambalappuzha-sree-krishna-temple/66/",
+      "sensitive": false
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "Administered by the Travancore Devaswom Board (Ambalappuzha Devaswom)",
+        "verdict": "supported",
+        "sourceUrl": "https://www.casemine.com/judgement/in/689e405866114265764a598c",
+        "evidence": "The judgement names 'THE TRAVANCORE DEVASWOM BOARD' as respondent and refers to 'AMBALAPPUZHA DEVASWOM / AMBALAPPUZHA SREEKRISHNA SWAMY TEMPLE', indicating the temple is administered by the Travancore Devaswom Board.",
+        "fix": null
+      },
+      {
+        "claim": "Ambalappuzha Palpayasam prasadam prepared daily in large quantity",
+        "verdict": "supported",
+        "sourceUrl": "https://www.thekeralatemples.com/templeinfo/vishnu/ambalappuzha_sreekrishnan.htm",
+        "evidence": "The KeralaTemples page states: 'Paalppayasam is prepared every day in a large quantity but devotees have to book their order for getting the paalppayasam sufficiently earlier.'",
+        "fix": null
+      },
+      {
+        "claim": "Nearest station Ambalappuzha (AMPA), approximately 1 km from the temple",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://www.distancesfrom.com/how-far-is-Ambalapuzha-Sree-Krishna-Temple-Ambalapuzha-from-Ambalapuzha-Railway-Station/HowFarHistory/8332514.aspx",
+        "evidence": "The originally cited distancesfrom.com link could not be fetched. Alternative local/official sources (DTPC Alappuzha and Kerala Tourism materials) indicate Ambalappuzha railway station (station code AMPA) is the nearest station and is roughly 1.0–1.3 km from the temple (DTPC/official tourism pages give ~1.1 km).",
+        "fix": "Replace the unreachable distancesfrom.com citation with an accessible official/local source (e.g., DTPC Alappuzha page or Kerala Tourism destination material) that states the distance (example: DTPC Alappuzha lists Ambalappuzha Railway Station ≈ 1.1 km)."
+      },
+      {
+        "claim": "Visitors are generally expected to wear modest/traditional dress (shoulders and knees covered) and photography is usually prohibited inside the sanctum; confirm exact rules with the temple office or Travancore Devaswom Board before visiting",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+        "evidence": "Kerala Tourism provides general temple etiquette guidance recommending modest/traditional dress and that visitors follow local temple rules. Separate visitor guides and temple pages note that photography is not permitted inside Ambalappuzha's sanctum. However, the cited Ambalappuzha temple page does not itself list a temple-specific dress/photography notice, so the precise sensitive claims need a direct temple/TDB source.",
+        "fix": "Cite Kerala Tourism's general temple etiquette page for dress guidance and add a temple-specific authoritative source (temple notice, Travancore Devaswom Board notice, or the temple office/DTPC) that explicitly states photography rules for Ambalappuzha. Alternatively rephrase to: 'Follow Kerala temple etiquette (modest dress) and check with the Ambalappuzha Devaswom / Travancore Devaswom Board for current photography and entry rules.'"
+      },
+      {
+        "claim": "One of Kerala’s seven great Vaishnava temples",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+        "evidence": "Kerala Tourism's Ambalappuzha page describes the temple as 'one of the seven great Vaishnava temples in Kerala.'",
+        "fix": null
+      },
+      {
+        "claim": "Presiding deity is Lord Krishna in the Parthasarathy form, depicted in black granite holding a whip in the right hand and a conch in the left",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+        "evidence": "Kerala Tourism and other reputable guides describe the presiding deity as Parthasarathy and note the deity holds a conch on the left and a whip on the right; other guides describe the idol as carved from black stone/granite.",
+        "fix": "If the material ('black granite') is to be retained as a precise fact, consider adding a secondary citation (e.g., a temple guide that explicitly mentions 'black granite')—otherwise current sourcing is acceptable."
+      },
+      {
+        "claim": "Built by Chembakassery ruler Pooradam Thirunal Devanarayanan Thampuran",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+        "evidence": "Kerala Tourism and other historical summaries attribute the temple's construction to Pooradam Thirunal Devanarayanan Thampuran (accounts give a range for the century).",
+        "fix": null
+      },
+      {
+        "claim": "Idol of Guruvayurappan brought here for safekeeping in 1789 during Tipu Sultan’s raids",
+        "verdict": "supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Ambalappuzha_Sree_Krishna_Swamy_Temple",
+        "evidence": "Wikipedia and Kerala Tourism note that during Tipu Sultan's raids (1789) the idol of Guruvayoor Temple was brought to Ambalappuzha for safekeeping for about three years.",
+        "fix": null
+      },
+      {
+        "claim": "Approximately 12–14 km south of Alappuzha town",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/destination/ambalappuzha-sree-krishna-temple/66/",
+        "evidence": "Kerala Tourism's destination page states the temple is located around 14 kms south of Alappuzha town; other local guides give the same range (12–14 km).",
+        "fix": null
+      }
+    ],
+    "issues": [
+      {
+        "severity": "major",
+        "field": "travel.byTrain",
+        "problem": "The cited distancesfrom.com URL could not be fetched; the entry relies on an unreachable source for the '≈1 km' distance to Ambalappuzha station.",
+        "suggestion": "Replace the distancesfrom.com citation with an accessible official/local source (DTPC Alappuzha or Kerala Tourism material) that states the distance (e.g., DTPC lists Ambalappuzha Railway Station ≈ 1.1 km)."
+      },
+      {
+        "severity": "major",
+        "field": "visitorInfo.etiquette",
+        "problem": "Dress-code and photography rules are sensitive and the currently cited Ambalappuzha temple page does not explicitly state those rules; the precise claim 'photography is usually prohibited inside the sanctum' requires an authoritative temple-specific source.",
+        "suggestion": "Add an authoritative citation (a temple notice, Travancore Devaswom Board notice or the temple office / DTPC) explicitly stating current dress/photography rules, or rephrase to advise visitors to confirm rules with the temple office/Travancore Devaswom Board and cite Kerala Tourism's general temple etiquette guidance."
+      },
+      {
+        "severity": "minor",
+        "field": "description / deity material",
+        "problem": "The statement that the idol is 'black granite' is supported by secondary guides but not explicitly worded on the primary cited page.",
+        "suggestion": "If keeping the material detail, add an explicit secondary citation (tourmyindia/Gokshetra) that mentions 'black granite' or change wording to 'black stone' if you prefer a more cautious phrasing backed by current citations."
+      },
+      {
+        "severity": "minor",
+        "field": "sources",
+        "problem": "Several visitor facts are drawn from secondary travel sites; primary/official citations (Kerala Tourism, DTPC, TDB) are preferable where available.",
+        "suggestion": "Prefer and add primary/official citations for visitor logistics and rules where possible (Kerala Tourism, DTPC, Travancore Devaswom Board, or the temple office)."
+      }
+    ],
+    "folkloreAssessment": "Acceptable. The chessboard/Palpayasam tale is clearly presented as local tradition and explicitly hedged with a note that it is not documented history and has variations. This framing is culturally sensitive and appropriate.",
+    "sensitivityAssessment": "Cautious and mostly respectful. The entry's wording around dress/photography is appropriately cautious, but because those are sensitive, enforcement-affecting rules they must be backed by authoritative temple/TDB sources. No disparaging language or stereotypes found.",
+    "score": 74,
+    "recommendation": "needs_edit",
+    "gateReasons": [
+      "score 74 < 80"
+    ],
+    "consulted": [
+      "https://www.dtpcalappuzha.com/destination/sree-krishna-swamy-temple-ambalappuzha",
+      "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1507743583-0.pdf",
+      "https://devalayam.app/temples/ambalappuzha-sree-krishna-temple",
+      "https://www.kerala9.com/directory/item/ambalapuzha-railway-station/",
+      "https://www.astroved.com/astropedia/en/temples/south-india/ambalappuzha-sree-krishna-swamy-temple",
+      "https://yappe.in/kerala/ambalapuzha/sree-krishna-swamy-temple-ambalapuzha/2217270",
+      "https://roampedia.com/india/kerala/alappuzha/ambalappuzha/place/ambalappuzha-sree-krishna-temple?section=stay",
+      "https://roampedia.com/india/kerala/alappuzha/ambalappuzha/place/ambalappuzha-sree-krishna-temple?section=do",
+      "https://ambalapuzha.com/blog/how-to-reach-ambalapuzha-sree-krishna-temple/32",
+      "https://templesofkerala.org/alappuzhafest/ambalappuzhautsavam.html",
+      "https://mapcarta.com/N2078446831",
+      "https://pilgrimdata.in/temple/sree-krishna-swami-temple-ambalappuzha-dist-alappuzha/",
+      "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna",
+      "https://iwai.nic.in/sites/default/files/NW-8%20Draft%20DPR.pdf",
+      "https://en.wikipedia.org/wiki/Ambalappuzha_railway_station",
+      "https://uploads.strikinglycdn.com/files/2a9291d3-e066-4e7e-905c-c61235c2bd02/likame.pdf",
+      "https://keralatourismenterprises.in/wp-content/uploads/2018/03/ilovepdf_merged-ilovepdf-compressed-1.pdf",
+      "https://st.indiarailinfo.com/kjfdsuiemjvcya22/0/8/2/2/4366822/0/1562059128810southzonetimetable20196587184.pdf",
+      "https://censusindia.gov.in/nada/index.php/catalog/642/download/2216/DH_2011_3211_PART_A_DCHB_ALAPPUZHA.pdf",
+      "https://www.reddit.com/r/alappuzha/comments/1w0nyo6/ambalapuzha_sree_krishna_temple_trip/",
+      "https://en.wikipedia.org/wiki/List_of_railway_stations_in_India",
+      "https://en.wikipedia.org/wiki/Ambalappuzha_Sree_Krishna_Swamy_Temple",
+      "https://en.wikipedia.org/wiki/Alappuzha_railway_station",
+      "https://en.wikipedia.org/wiki/Ambalappuzha",
+      "https://en.wikipedia.org/wiki/List_of_railway_stations_in_Kerala",
+      "https://www.reddit.com/r/Kerala/comments/wdxqlh",
+      "https://www.keralatourism.org/faq/do-and-donts-in-temples-in-kerala",
+      "https://www.storieskerala.com/things-to-do/temple-murals/",
+      "https://etourismkerala.com/guide-place/ambalappuzha-sree-krishna-temple/faqs/",
+      "https://490kdbtemples.org/wp-content/uploads/2016/11/travancore-cochin-temple-entry-act-xxvii-of-1950-rules.pdf",
+      "https://www.storieskerala.com/guides/travelling-responsibly/",
+      "https://gokshetra.com/ambalapuzha-sri-krishna-darshan-guide/",
+      "https://travancoredevaswomboard.org/notifications/",
+      "https://www.soulsanchari.com/resources/kerala-temple-etiquette-guide",
+      "https://travancoredevaswomboard.org/contact-us/",
+      "https://padmanabhaswamy.in/blog/inside-the-temple",
+      "https://padmanabhaswamy.in/history",
+      "https://www.storieskerala.com/things-to-do/temple-festivals/",
+      "https://sicherhaven.com/blogs/photography-rules-at-theyyam-and-pooram",
+      "https://peoplefordharma.org/wp-content/uploads/2019/02/Sabarimala-Written-Submissions-1.pdf",
+      "https://490kdbtemples.org/wp-content/uploads/2016/11/statutory-regulation-of-travancore-devaswoms-chapter-5.pdf",
+      "https://upload.indiacode.nic.in/showfile?actid=AC_KL_72_1267_00001_00001_1591080557839&filename=kerala_devaswom_recruitment_board_rules_2015.pdf&type=rule",
+      "https://tourism.gov.in/sites/default/files/2020-07/20%20Year%20Perspective%20plan%20final%20Report%20of%20Kerala_compressed%20%281%29.pdf",
+      "https://www.reddit.com/r/Trivandrum/comments/1p4kib0/padmanabhaswamy_temple_dress_code/",
+      "https://www.reddit.com/r/Kerala/comments/1fg18jt/is_entry_allowed_for_non_hindus_to_vadakkunnathan/",
+      "https://www.reddit.com/r/Trivandrum/comments/1kfwg9m",
+      "https://en.wikipedia.org/wiki/Madayi_Kavu",
+      "https://www.reddit.com/r/hinduism/comments/1vjfua9/what_is_this_half_shirt_removal_custom_in_kerala/",
+      "https://www.reddit.com/r/Trivandrum/comments/16oijf5",
+      "https://www.reddit.com/r/Trivandrum/comments/1sl053x/solo_female_travel_guide/",
+      "https://keralahouseboat.com/ambalappuzha-sree-krishna-temple/",
+      "https://traveltriangle.com/blog/ambalapuzha-temple/",
+      "https://supremetoday.ai/doc/judgement/INDKER00000486032",
+      "https://airial.travel/attractions/india/ambalapuzha/ambalappuzha-sree-krishna-temple-pMz-cfLy",
+      "https://mandirvaas.in/temples/ambalappuzha-sree-krishna-swamy-temple",
+      "https://chalbanjare.com/kerala/tourist-attraction/ambalappuzha-sree-krishna-swamy-temple",
+      "https://holidayvibez.com/pilgrimage/ambalapuzha-krishna-temple-alappuzha",
+      "https://etourismkerala.com/guide-place/ambalappuzha-sree-krishna-temple/",
+      "https://www.uttaraguruvayurappan.org/assets/utsavam-2026.pdf",
+      "https://templesinindiainfo.com/ambalapuzha-sree-krishna-swamy-temple-hours/",
+      "https://hindupedia.com/images/a/a7/Particulars_of_some_temples_of_Kerala.pdf",
+      "https://www.livelaw.in/pdf_upload/2157001406720211-524884.pdf",
+      "https://www.hindupedia.com/images/a/a7/Particulars_of_some_temples_of_Kerala.pdf",
+      "https://encinitastemple.org/downloads/BAPS2017.pdf",
+      "https://www.reddit.com/r/Trivandrum/comments/1w8ptpv/why_arent_there_shree_padmanabhaswamy_main_murti/",
+      "https://www.reddit.com/r/Kerala/comments/1wcb7tr/removed/",
+      "https://www.reddit.com/r/india_tourism/comments/14s779i",
+      "https://www.reddit.com/r/hinduism/comments/1vwdar2/why_do_some_temples_allow_photography_while/",
+      "https://www.reddit.com/r/SouthIndianInfluencer/comments/1vqx92u/removed/",
+      "https://www.reddit.com/r/hinduism/comments/1ltzv8x",
+      "https://www.reddit.com/r/Kerala/comments/1ltl1zg",
+      "https://www.reddit.com/r/nashik/comments/1psa253/are_mobile_phones_allowed_when_visiting_the/",
+      "https://www.reddit.com/r/uttarpradesh/comments/1v2pnc5/removed/",
+      "https://www.keralatourism.org/destination/karumadi-kuttan-alappuzha/461/",
+      "https://www.tourmyindia.com/states/kerala/ambalapuzha-sree-krishna-temple.html",
+      "https://hiddenroutes.in/temple/ambalapuzha-sri-krishna-temple-alappuzha",
+      "https://myoksha.com/ambalapuzha-srikrishna-temple/",
+      "https://keralaorbit.com/temples-in-kerala/ambalapuza-temple/ambalapuza-temple.html",
+      "https://www.indiavideo.org/kerala/places/history/karumadikkuttan-214.php",
+      "https://www.newindianexpress.com/amp/story/states/kerala/2014/Nov/03/renovation-of-lord-buddha%E2%80%99s-statue-at-karumadi-going-on-678135.html",
+      "https://samajweekly.com/wp-content/uploads/2024/06/559-SAMAJ-WEEKLY-30-06-2024-1.pdf",
+      "https://www.incredibleindia.gov.in/en/kerala/alappuzha",
+      "https://www.justkerala.in/tourism/alappuzha/places-to-see-in-alappuzha/karumadikkuttan",
+      "https://www.tripadvisor.in/Attraction_Review-g608471-d2693898-Reviews-or60-Ambalapuzha_Sree_Krishna_Temple-Alappuzha_Alappuzha_District_Kerala.html",
+      "https://aloysiuscollege.ac.in/wp-content/uploads/2022/07/SAC_AR_2021-22.pdf",
+      "https://en.wikipedia.org/wiki/Karumady",
+      "https://dsource.in/sites/default/files/resource/stone-carving-karkala/downloads/file/Resource-Stone_Carving-Karkala.pdf",
+      "https://newindiasamachar.pib.gov.in/WriteReadData/Magazine/2024/Feb/M202402011.pdf",
+      "https://en.wikipedia.org/wiki/Sreevallabha_Temple",
+      "https://en.wikipedia.org/wiki/Ranganathaswamy_Temple%2C_Srirangam",
+      "https://en.wikipedia.org/wiki/Architecture_of_Kerala",
+      "https://www.keralatourism.org/destination/ambalappuzha-sree-krishna-temple/66/",
+      "https://www.thekeralatemples.com/templeinfo/vishnu/ambalapuzha_sreekrishnan.htm",
+      "https://www.casemine.com/judgement/in/689e405866114265764a598c",
+      "https://www.dtpcalappuzha.com/destination/sree-krishna-swamy-temple-ambalappuzha?utm_source=openai",
+      "https://devalayam.app/temples/ambalappuzha-sree-krishna-temple?utm_source=openai",
+      "https://travancoredevaswomboard.org/contact-us/?utm_source=openai",
+      "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1507743583-0.pdf?utm_source=openai",
+      "https://en.wikipedia.org/wiki/Ambalappuzha_railway_station?utm_source=openai",
+      "https://www.keralatourism.org/faq/do-and-donts-in-temples-in-kerala?utm_source=openai",
+      "https://www.tourmyindia.com/states/kerala/ambalapuzha-sree-krishna-temple.html?utm_source=openai"
+    ]
+  },
+  "attempts": 3
+}
