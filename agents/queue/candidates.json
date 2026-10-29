@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ambalappuzha-sree-krishna-swamy-temple",
+    "name": "Ambalappuzha Sree Krishna Swamy Temple",
+    "category": "temples",
+    "district": "Alappuzha",
+    "reason": "Travellers seek this major Vaishnava shrine for its daily Palpayasam offering and Krishna legend in classic Kerala architecture with murals.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-29",
+    "slug": "ambalappuzha-sree-krishna-swamy-temple"
+  },
+  {
+    "id": "aranmula-parthasarathy-temple",
+    "name": "Aranmula Parthasarathy Temple",
+    "category": "temples",
+    "district": "Pathanamthitta",
+    "reason": "Visitors are drawn to the riverside Krishna temple whose legends explain the Aranmula boat race and feature rich wood carvings and murals.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-29",
+    "slug": "aranmula-parthasarathy-temple"
+  },
+  {
+    "id": "oachira-parabrahma-temple",
+    "name": "Oachira Parabrahma Temple",
+    "category": "temples",
+    "district": "Kollam",
+    "reason": "Pilgrims and heritage travellers explore this rare open-air, idol-less temple known as Dakshina Kashi with unique rituals and martial displays.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/kollam/oachira"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-29",
+    "slug": "oachira-parabrahma-temple"
+  }
+]
