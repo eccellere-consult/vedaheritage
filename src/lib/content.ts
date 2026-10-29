@@ -127,6 +127,15 @@ export const CATEGORIES = {
     group: 'tradition',
     caution: 'Customs vary widely by community, family and region. Descriptions are general; confirm specifics with elders or the officiating priest.',
   },
+  medical: {
+    label: 'Medical & Wellness Tourism',
+    singular: 'Medical tourism guide',
+    blurb: "Planning treatment in Kerala — accredited hospitals, Ayurveda and Panchakarma centres, medical visas, recovery stays and what to confirm first.",
+    seoTitle: 'Medical Tourism in Kerala: Hospitals, Ayurveda Treatment, Visas & Planning',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'General planning information, not medical advice. Always consult your own doctor, confirm credentials and accreditation directly with the provider, and get written quotes before travelling. Prices and availability change.',
+  },
 } as const
 
 export type CategoryKey = keyof typeof CATEGORIES

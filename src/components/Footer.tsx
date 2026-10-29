@@ -27,6 +27,7 @@ export default function Footer() {
                 ['/kerala', 'Kerala History & Districts'],
                 ['/discover/vedic', 'Vedic Heritage & Mantras'],
                 ['/discover/healing', 'Healing & Ayurvedic Plants'],
+                ['/discover/medical', 'Medical & Wellness Tourism'],
                 ['/discover/dance', 'Music & Dance'],
                 ['/discover/astrology', 'Astrology & Jyotisha'],
                 ['/discover/weddings', 'Weddings & Life Rituals'],
