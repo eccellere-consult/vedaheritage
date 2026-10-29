@@ -41,6 +41,11 @@ assert.equal(entry.status, 'draft')
 assert.ok(entry.sources.every(s => s.url.startsWith('https://example.org/')), 'unretrieved source must be dropped')
 assert.equal(entry.sources.length, 2)
 
+// Official contacts: only the one taken from a retrieved page with well-formed details survives
+assert.equal(entry.contacts?.length, 1, 'only the retrieved, well-formed contact is kept')
+assert.equal(entry.contacts[0].label, 'Mock temple office')
+assert.ok(entry.contacts[0].verifiedOn && entry.contacts[0].sourceUrl.startsWith('https://example.org/'), 'contact carries source and date')
+
 // Evidence + report written, and the whole content set still validates
 assert.ok(fs.existsSync(path.join(tmp, 'agents/evidence/mock-temple-one.json')))
 assert.match(fs.readFileSync(path.join(tmp, 'agents/reports/latest.md'), 'utf8'), /ready for review/)

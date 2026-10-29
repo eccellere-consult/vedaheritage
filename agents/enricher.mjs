@@ -32,11 +32,16 @@ export async function enrich(llm, cand, { feedback = null, previous = null } = {
   const sources = out.sources.filter(s => allowed.has(s.url))
   if (sources.length < out.sources.length) warnings.push(`${out.sources.length - sources.length} source(s) dropped: URL was not actually retrieved`)
   if (out.officialLinks) out.officialLinks = out.officialLinks.filter(l => allowed.has(l.url))
+  // Official contacts: kept only if the page they came from was actually retrieved and the details are well formed.
+  const phoneOk = v => /^\+?\d[\d\s().-]{5,18}\d$/.test(v), emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+  const contacts = (out.contacts || []).filter(c => allowed.has(c.sourceUrl) && (c.phone || c.email || c.website)
+    && (!c.phone || phoneOk(c.phone)) && (!c.email || emailOk(c.email)) && (!c.website || /^https:\/\/\S+$/.test(c.website)))
+  if (contacts.length < (out.contacts || []).length) warnings.push(`${(out.contacts || []).length - contacts.length} contact(s) dropped: source page not retrieved or details malformed`)
   const claims = out.claims.filter(c => allowed.has(c.sourceUrl))
   if (claims.length < out.claims.length) warnings.push(`${out.claims.length - claims.length} claim(s) dropped: source URL not retrieved`)
   if (sources.length < 2) warnings.push('fewer than 2 retrieved sources')
 
   const slug = slugify(cand.name)
-  const entry = toEntryFile(out, { category: cand.category, slug, date: today(), sources })
+  const entry = toEntryFile(out, { category: cand.category, slug, date: today(), sources, contacts })
   return { entry, claims, warnings, consulted: [...allowed] }
 }

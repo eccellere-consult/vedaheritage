@@ -14,7 +14,7 @@ export const NAV_GROUPS: NavGroup[] = [
 /** Trip-planning links; shown in the menu only (not on the home topic grid). */
 export const NAV_PLAN: NavGroup = {
   label: 'Plan your trip', blurb: 'Districts, festivals, travel and stories',
-  items: [{ href: '/kerala', label: 'Kerala & 14 districts' }, { href: '/events', label: 'Festivals & events' }, { href: '/travel', label: 'Travel planner' }, { href: '/stories', label: 'Traveller stories' }],
+  items: [{ href: '/kerala', label: 'Kerala & 14 districts' }, { href: '/events', label: 'Festivals & events' }, { href: '/travel', label: 'Travel planner' }, { href: '/services', label: 'Local services directory' }, { href: '/stories', label: 'Traveller stories' }],
 }
 
 export const NAV_LINKS = [

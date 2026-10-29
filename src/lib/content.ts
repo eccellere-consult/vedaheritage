@@ -174,6 +174,21 @@ export interface HeritageInfo {
   buyingTips: string[]
 }
 
+export type ContactKind = 'tourism-office' | 'temple-office' | 'transport-enquiry' | 'emergency' | 'hospital' | 'police' | 'other'
+export const CONTACT_KINDS: ContactKind[] = ['tourism-office', 'temple-office', 'transport-enquiry', 'emergency', 'hospital', 'police', 'other']
+
+/** An official contact for a place. Each carries the official page it was taken from and when it was checked. */
+export interface ContactInfo {
+  label: string
+  kind: ContactKind
+  phone?: string
+  email?: string
+  website?: string
+  address?: string
+  sourceUrl: string
+  verifiedOn: string          // ISO date
+}
+
 export interface Entry {
   slug: string
   category: CategoryKey
@@ -210,6 +225,7 @@ export interface Entry {
   }
   heritage?: HeritageInfo      // required for category "heritage"
   officialLinks?: Source[]
+  contacts?: ContactInfo[]     // official contacts, each from a retrieved official source
   coordinates?: { lat: number; lng: number }
   images: EntryImage[]         // 1–2 licensed, credited photos (required before approval)
   tags: string[]

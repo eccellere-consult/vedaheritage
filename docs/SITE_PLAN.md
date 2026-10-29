@@ -77,5 +77,8 @@ Moderated comments per entry, reusing the story intake (GitHub issue, human appr
 Sellers submit, the owner approves, buyers enquire, the owner introduces them, and the sale happens between them. No payments, stock or shipping on the site. Seller and buyer contact details stay private on the server; only the sanitised listing and photos reach the public repo. See `docs/MARKETPLACE.md`, including the **pre-launch legal checklist** (marketplace and intermediary rules, data protection, restricted items, tax).
 - Alternative kept alongside: curated "where to buy" lists (`heritage.whereToBuy`) linking to co-operatives and emporiums.
 
+### 3b. Contacts and services directory (built)
+Official contacts on every place page (agent-sourced, dated), a free verified directory of local providers, and a capped, labelled sponsored tier. See `docs/DIRECTORY_MODEL.md`.
+
 ### 4. Out of scope for now
 Matrimonial matching or profiles (sensitive personal data, separate legal review) and paid astrology consultations.

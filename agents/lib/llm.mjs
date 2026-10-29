@@ -156,6 +156,11 @@ function createMock(state, consulted) {
           visitorInfo: { bestTime: 'Winter', howToReach: 'By road', etiquette: ['Dress modestly.'], duration: null },
           travel: { byTrain: ['Nearest station X'], byBus: ['KSRTC Y'], byWater: null, byAir: null },
           officialLinks: null, heritage: null, coordinates: null, tags: ['mock', 'test'],
+          contacts: [
+            { label: 'Mock temple office', kind: 'temple-office', phone: '+91 479 2300000', email: null, website: null, address: null, sourceUrl: a },
+            { label: 'Invented contact', kind: 'other', phone: '+91 99999 00000', email: null, website: null, address: null, sourceUrl: 'https://not-consulted.example/c' },
+            { label: 'Malformed contact', kind: 'other', phone: 'call us', email: null, website: null, address: null, sourceUrl: b },
+          ],
           sources: [{ label: 'A', url: a }, { label: 'B', url: b }, { label: 'Hallucinated', url: 'https://not-consulted.example/x' }],
           claims: [{ claim: 'Founded in 1900', field: 'history.timeline', sourceUrl: a, sensitive: false }, { claim: 'Dress modestly', field: 'visitorInfo.etiquette', sourceUrl: b, sensitive: true }],
         }

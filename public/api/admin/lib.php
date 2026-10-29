@@ -247,5 +247,6 @@ function gh_commit_files(array $files, string $message): string {
     $t = gh_ok(gh('POST', "$R/git/trees", ['base_tree' => $commit['tree']['sha'], 'tree' => $tree]), 'build tree');
     $c = gh_ok(gh('POST', "$R/git/commits", ['message' => $message, 'tree' => $t['sha'], 'parents' => [$head]]), 'create commit');
     gh_ok(gh('PATCH', "$R/git/refs/heads/main", ['sha' => $c['sha']]), 'update main');
+    cache_clear();
     return $c['sha'];
 }

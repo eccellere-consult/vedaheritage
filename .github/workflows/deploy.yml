@@ -8,6 +8,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '15 20 * * 0'   # weekly rebuild so expired listings and sponsored slots drop off and rotate
 
 permissions:
   contents: write

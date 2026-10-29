@@ -10,6 +10,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 - `docs/CONTENT_OPERATIONS.md` — editorial workflow, twice-weekly review, story/photo moderation, setup.
 - `docs/DEPLOYMENT.md` — how deploys work (hPanel Git), one-time setup, and recovery from a 404.
 - `agents/README.md` — Scout → Enricher → Verifier agents, safeguards, providers.
+- `docs/DIRECTORY_MODEL.md` — contacts and services directory: three tiers, verification, advertising caps, risks, legal checklist.
 - `docs/MARKETPLACE.md` — moderated classifieds: flow, where data lives (contact details are private), rules, pre-launch legal checklist.
 - `docs/ADMIN.md` — the admin page: what it does, one-time setup, security notes.
 
@@ -23,6 +24,7 @@ Every entry has history, folklore (framed as tradition, never as fact), spiritua
 Only `status: "approved"` publishes. Agents and Claude write **drafts only**; a human approves.
 **Accuracy:** no invented shops, addresses, prices, timings or dates. Cite retrieved sources. Say "confirm before travelling".
 **Tone:** friendly, professional, direct; simple present tense; executive-ready; SEO-aware (unique title and 50–200 char description per page).
+**Directory:** official contacts only from retrieved official pages; providers verified and re-verified yearly; ads capped, labelled, text-only, never for health services; private details never committed.
 **Marketplace:** seller and buyer contact details are never committed (the repo is public); public listings hold the seller's first name only.
 **Security/privacy:** story and photo submissions are moderated; photos are re-encoded (EXIF stripped); secrets only in GitHub/Hostinger, never in the repo.
 

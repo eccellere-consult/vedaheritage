@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 
 const API = '/api/admin/'
 type Json = Record<string, any>
-type Tab = 'overview' | 'drafts' | 'market' | 'prs' | 'stories' | 'agents' | 'activity'
-const TABS: [Tab, string][] = [['overview', 'Overview'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
+type Tab = 'overview' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
+const TABS: [Tab, string][] = [['overview', 'Overview'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
 
 let csrf = ''
 async function api(a: string, body?: Json, query = ''): Promise<{ ok: boolean; status: number; data: Json }> {
@@ -62,6 +62,7 @@ export default function AdminApp() {
       {tab === 'overview' && <Overview go={setTab} />}
       {tab === 'drafts' && <Drafts say={say} />}
       {tab === 'market' && <Market say={say} />}
+      {tab === 'providers' && <Providers say={say} />}
       {tab === 'prs' && <Prs say={say} />}
       {tab === 'stories' && <Stories say={say} />}
       {tab === 'agents' && <Agents say={say} />}
@@ -114,14 +115,14 @@ function useLoad(a: string, query = '') {
 }
 
 function Overview({ go }: { go: (t: Tab) => void }) {
-  const ov = useLoad('overview'); const site = useLoad('site'); const mk = useLoad('market')
+  const ov = useLoad('overview'); const site = useLoad('site'); const mk = useLoad('market'); const pv = useLoad('prov')
   const d = ov.data; const s = site.data
   const tile = (n: any, label: string, t: Tab) => <button key={label} onClick={() => go(t)} className="card text-left hover:shadow-md"><p className="font-serif text-4xl text-primary">{n ?? '…'}</p><p className="text-sm text-ink-mid">{label}</p></button>
   return (
     <div className="space-y-8">
       {ov.err && <p className="text-red-700 text-sm">{ov.err}</p>}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}{tile(mk.data ? mk.data.pending.length + mk.data.enquiries.length : undefined, 'Marketplace to review', 'market')}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}{tile(mk.data ? mk.data.pending.length + mk.data.enquiries.length : undefined, 'Marketplace to review', 'market')}{tile(pv.data ? pv.data.queue.length + pv.data.reports.length : undefined, 'Directory to review', 'providers')}
       </div>
       <div className="card">
         <h2 className="font-serif text-xl mb-3">Site and deploy</h2>
@@ -251,6 +252,113 @@ function Market({ say }: { say: (t: string, bad?: boolean) => void }) {
                 {l.status === 'approved' && <button className="btn-outline text-xs" disabled={busy === l.id} onClick={() => setStatus(l.id, 'sold')}>Mark sold</button>}
                 <button className="btn-outline text-xs" disabled={busy === l.id} onClick={() => setStatus(l.id, 'removed')}>Remove</button>
               </div>
+            </div>))}</div>
+        </section>
+      </>}
+    </div>
+  )
+}
+
+function Providers({ say }: { say: (t: string, bad?: boolean) => void }) {
+  const { data, err, reload } = useLoad('prov'); const [busy, setBusy] = useState('')
+  const [chk, setChk] = useState<Record<string, Json>>({}); const [ad, setAd] = useState<Record<string, Json>>({}); const [openAd, setOpenAd] = useState('')
+  const today = new Date().toISOString().slice(0, 10)
+  const setC = (id: string, k: string, v: boolean) => setChk(c => ({ ...c, [id]: { ...(c[id] || {}), [k]: v } }))
+  async function decide(id: string, decision: 'approve' | 'reject', override = false): Promise<void> {
+    if (decision === 'reject' && !window.confirm('Reject this application? The applicant\'s private details are deleted.')) return
+    setBusy(id); const r = await api('prov_decide', { id, decision, checks: chk[id] || {}, override }); setBusy('')
+    if (r.ok) { say(r.data.message); reload(); return }
+    if (r.status === 409 && r.data.needsOverride) {
+      if (window.confirm(`This application needs a second look:\n\n- ${(r.data.flags || []).join('\n- ')}\n\nPublish anyway?`)) return decide(id, decision, true)
+      return
+    }
+    say([r.data.error, ...(r.data.blockers || [])].filter(Boolean).join(' · '), true)
+  }
+  async function status(id: string, to: string, extra: Json = {}) {
+    if (to === 'removed' && !window.confirm('Remove this listing? Private details are deleted.')) return
+    if (to === 'reverified' && !window.confirm('Confirm you called the business and re-checked its details?')) return
+    setBusy(id); const r = await api('prov_status', { id, status: to, ...(to === 'reverified' ? { confirmed: true } : {}), ...extra }); setBusy(''); say(r.ok ? r.data.message : r.data.error, !r.ok); reload()
+  }
+  async function sponsor(id: string, clear = false) {
+    setBusy(id); const a = ad[id] || {}
+    const r = await api('prov_sponsor', clear ? { id, clear: true } : { id, headline: a.headline || '', line: a.line || '', from: a.from || today, until: a.until || '' }); setBusy('')
+    if (r.ok) { say(r.data.message); setOpenAd(''); reload() } else say([r.data.error, ...(r.data.blockers || [])].filter(Boolean).join(' · '), true)
+  }
+  const inp = 'border border-accent/30 px-2 py-1 text-sm w-full'
+  const yn = (ok: any, t: string) => badge(t, ok ? 'ok' : 'warn')
+  return (
+    <div className="space-y-10">
+      {err && <p className="text-red-700 text-sm">{err}</p>}{!data && !err && <p className="text-ink-mid">Loading…</p>}
+      {data && <>
+        <section>
+          <h2 className="font-serif text-xl mb-3">Applications to verify ({data.queue.length})</h2>
+          {!data.queue.length && <p className="text-sm text-ink-mid">Nothing waiting.</p>}
+          <div className="space-y-4">{data.queue.map((q: Json) => (
+            <div key={q.id} className="card !p-5">
+              <div className="flex flex-wrap justify-between gap-3">
+                <div><h3 className="font-serif text-lg text-ink">{q.name}</h3><p className="text-xs text-ink-mid">{q.type} · {q.districts.join(', ')} · applied {new Date(q.created).toLocaleDateString()}</p></div>
+                <div className="flex gap-2 items-start">
+                  <button className="btn-primary text-xs" disabled={busy === q.id} onClick={() => decide(q.id, 'approve')}>Verify &amp; publish</button>
+                  <button className="btn-outline text-xs" disabled={busy === q.id} onClick={() => decide(q.id, 'reject')}>Reject</button>
+                </div>
+              </div>
+              <p className="text-sm text-ink-mid mt-2">{q.summary}</p>
+              <div className="grid md:grid-cols-2 gap-4 mt-3 text-xs text-ink-mid">
+                <div><p className="font-medium text-ink mb-1">Public details</p><p>Phone {q.phone} · Email {q.email}</p><p>Website {q.website || 'none'}{q.address ? ` · ${q.address}` : ''}</p></div>
+                <div><p className="font-medium text-ink mb-1">Private (for verification)</p><p>{q.contactPerson} {q.contactPersonPhone && `· ${q.contactPersonPhone}`}</p><p>{q.credentialKind ? `${q.credentialKind}: ${q.credentialNumber}` : 'No credential given'}</p></div>
+              </div>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {yn(q.emailVerified, q.emailVerified ? 'email link confirmed' : (q.emailSent ? 'email link not clicked yet' : 'email could not be sent'))}
+                {q.website ? yn(q.site?.ok, q.site?.ok ? `website OK (${q.site.status})` : `website problem (${q.site?.status ?? 0})`) : badge('no website', 'mute')}
+                {q.website && q.site?.ok && !q.site.sameHost && badge(`redirects to ${q.site.finalHost}`, 'warn')}
+                {q.website && q.emailMatchesSite && badge('email domain matches website', 'ok')}
+                {q.duplicates.length > 0 && badge(`possible duplicate: ${q.duplicates.join(', ')}`, 'bad')}
+              </div>
+              {q.flags.length > 0 && <ul className="list-disc pl-5 mt-2 text-sm text-red-700">{q.flags.map((f: string) => <li key={f}>Check: {f}</li>)}</ul>}
+              <fieldset className="mt-3 border border-accent/30 p-3 text-sm space-y-1">
+                <legend className="px-1 text-xs uppercase tracking-wider text-ink-mid">What you verified yourself</legend>
+                <label className="flex gap-2"><input type="checkbox" onChange={e => setC(q.id, 'phone', e.target.checked)} /> I called or messaged the business phone and spoke to the business</label>
+                {q.needsCredential && <label className="flex gap-2"><input type="checkbox" onChange={e => setC(q.id, 'credential', e.target.checked)} /> I checked the registration or licence against the official register</label>}
+                {!q.emailVerified && <label className="flex gap-2"><input type="checkbox" onChange={e => setC(q.id, 'emailManual', e.target.checked)} /> The email is verified by other means (e.g. they replied to me from it)</label>}
+              </fieldset>
+            </div>))}</div>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-xl mb-3">Reports ({data.reports.length})</h2>
+          {!data.reports.length && <p className="text-sm text-ink-mid">No open reports.</p>}
+          <div className="space-y-3">{data.reports.map((r: Json) => (
+            <div key={r.id} className="card !p-4 flex flex-wrap justify-between gap-3">
+              <div><p className="text-sm"><span className="font-medium text-ink">{r.providerName}</span> {badge(r.reason, 'warn')}</p><p className="text-sm text-ink-mid whitespace-pre-wrap mt-1">{r.details}</p>{r.contactEmail && <p className="text-xs text-ink-mid mt-1">Reporter: {r.contactEmail}</p>}</div>
+              <button className="btn-outline text-xs self-start" onClick={async () => { await api('prov_report_done', { id: r.id }); say('Closed. The reporter\'s details were deleted.'); reload() }}>Close report</button>
+            </div>))}</div>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-xl mb-3">Listings ({data.live.length})</h2>
+          {!data.live.length && <p className="text-sm text-ink-mid">No listings yet.</p>}
+          <div className="space-y-3">{data.live.map((l: Json) => (
+            <div key={l.id} className="card !p-4">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-sm"><span className="font-medium text-ink">{l.name}</span> <span className="text-ink-mid">{l.typeLabel} · {l.districts.join(', ')}</span> {badge(l.status, l.status === 'approved' ? 'ok' : 'warn')} {l.due && badge(`re-verify by ${l.reverifyBy}`, 'warn')} {l.sponsored && badge(`sponsored ${l.sponsored.from} to ${l.sponsored.until}`, 'ok')}</p>
+                <div className="flex flex-wrap gap-2">
+                  <button className="btn-outline text-xs" disabled={busy === l.id} onClick={() => status(l.id, 'reverified')}>Re-verify</button>
+                  {l.sponsorable && l.status === 'approved' && (l.sponsored
+                    ? <button className="btn-outline text-xs" onClick={() => sponsor(l.id, true)}>End sponsorship</button>
+                    : <button className="btn-outline text-xs" onClick={() => setOpenAd(openAd === l.id ? '' : l.id)}>Sponsor…</button>)}
+                  {l.status === 'approved' ? <button className="btn-outline text-xs" onClick={() => status(l.id, 'suspended')}>Suspend</button> : <button className="btn-outline text-xs" onClick={() => status(l.id, 'approved')}>Restore</button>}
+                  <button className="btn-outline text-xs" onClick={() => status(l.id, 'removed')}>Remove</button>
+                </div>
+              </div>
+              {!l.sponsorable && <p className="text-xs text-ink-mid mt-1">This type cannot be advertised (health-related).</p>}
+              {openAd === l.id && (
+                <div className="mt-3 grid md:grid-cols-2 gap-3 text-sm">
+                  <label className="md:col-span-2">Headline (5–60 characters)<input className={inp} maxLength={60} onChange={e => setAd(a => ({ ...a, [l.id]: { ...(a[l.id] || {}), headline: e.target.value } }))} /></label>
+                  <label className="md:col-span-2">One line (15–140 characters, no links)<input className={inp} maxLength={140} onChange={e => setAd(a => ({ ...a, [l.id]: { ...(a[l.id] || {}), line: e.target.value } }))} /></label>
+                  <label>From<input type="date" defaultValue={today} className={inp} onChange={e => setAd(a => ({ ...a, [l.id]: { ...(a[l.id] || {}), from: e.target.value } }))} /></label>
+                  <label>Until (max 90 days, before {l.reverifyBy})<input type="date" className={inp} onChange={e => setAd(a => ({ ...a, [l.id]: { ...(a[l.id] || {}), until: e.target.value } }))} /></label>
+                  <button className="btn-primary text-xs md:col-span-2 justify-self-start" disabled={busy === l.id} onClick={() => sponsor(l.id)}>Start sponsorship</button>
+                </div>)}
             </div>))}</div>
         </section>
       </>}
