@@ -93,6 +93,8 @@ for (const cat of CATEGORIES) {
     if (!v || !isStr(v.bestTime) || !isStr(v.howToReach) || !isArr(v.etiquette)) fail(rel, 'visitorInfo {bestTime, howToReach, etiquette[]} required')
     if (!isArr(d.tags, 2)) fail(rel, 'need at least 2 tags')
     if (!isIsoDate(d.lastVerified)) fail(rel, 'lastVerified must be an ISO date')
+    if (d.autoPublished !== undefined && !isIsoDate(d.autoPublished)) fail(rel, 'autoPublished must be an ISO date')
+    if (d.reviewed !== undefined && typeof d.reviewed !== 'boolean') fail(rel, 'reviewed must be true or false')
     if (d.coordinates && (typeof d.coordinates.lat !== 'number' || typeof d.coordinates.lng !== 'number')) fail(rel, 'coordinates must be numeric lat/lng')
     if (!Array.isArray(d.sources) || d.sources.some(s => !isStr(s.label) || !/^https:\/\//.test(s.url || ''))) fail(rel, 'sources must be [{label, url (https)}]')
     if (d.status === 'approved' && (!Array.isArray(d.sources) || d.sources.length < 2)) fail(rel, 'approved entries need ≥ 2 sources')

@@ -294,6 +294,8 @@ export interface Entry {
   sources: Source[]
   status: ContentStatus
   lastVerified: string         // ISO date
+  autoPublished?: string       // ISO date the agents published it without prior human approval
+  reviewed?: boolean           // false until the owner has read it on the site (edit or Mark reviewed)
 }
 
 export interface Story {

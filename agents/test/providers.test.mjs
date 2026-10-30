@@ -4,6 +4,9 @@ import assert from 'assert/strict'
 import { z } from 'zod'
 import { llmForRole, newBudget, BudgetExceeded } from '../lib/llm.mjs'
 
+// The repository's saved admin choice must not leak into these tests.
+process.env.AGENT_SETTINGS_FILE = '/nonexistent/agent-settings.json'
+
 const requests = []
 const srv = http.createServer((req, res) => {
   let b = ''

@@ -176,7 +176,7 @@ function Overview({ go }: { go: (t: Tab) => void }) {
     <div className="space-y-8">
       {ov.err && <p className="text-red-700 text-sm">{ov.err}</p>}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile('→', 'Review agent work', 'review')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}{tile(mk.data ? mk.data.pending.length + mk.data.enquiries.length : undefined, 'Marketplace to review', 'market')}{tile(pv.data ? pv.data.queue.length + pv.data.reports.length : undefined, 'Directory to review', 'providers')}
+        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile(d?.toReview ?? '→', d?.toReview !== undefined ? 'Auto-published, to review' : 'Review agent work', d?.toReview ? 'drafts' : 'review')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}{tile(mk.data ? mk.data.pending.length + mk.data.enquiries.length : undefined, 'Marketplace to review', 'market')}{tile(pv.data ? pv.data.queue.length + pv.data.reports.length : undefined, 'Directory to review', 'providers')}
       </div>
       <div className="card">
         <h2 className="font-serif text-xl mb-3">Site and deploy</h2>
@@ -359,7 +359,12 @@ function Drafts({ say }: { say: (t: string, bad?: boolean) => void }) {
                 <div className="flex flex-wrap gap-2 items-center">
                   {v && badge(`verifier ${v.score ?? '?'}${v.gateReasons?.length ? ' · needs edit' : ' · ready'}`, v.gateReasons?.length ? 'warn' : 'ok')}
                   {e.status === 'approved'
-                    ? <button className="btn-outline text-xs" disabled={busy === e.slug} onClick={() => setStatus(e, 'draft')}>Unpublish</button>
+                    ? <>
+                        {e.autoPublished && !e.reviewed && badge('auto-published, not reviewed', 'warn')}
+                        <a className="btn-outline text-xs" href={`/discover/${e.category}/${e.slug}/`} target="_blank" rel="noopener noreferrer">View on site</a>
+                        {e.autoPublished && !e.reviewed && <button className="btn-outline text-xs" onClick={async () => { const r = await api('entry_reviewed', { category: e.category, slug: e.slug }); say(r.ok ? r.data.message : r.data.error, !r.ok); reload() }}>Mark reviewed</button>}
+                        <button className="btn-outline text-xs" disabled={busy === e.slug} onClick={() => setStatus(e, 'draft')}>Unpublish</button>
+                      </>
                     : <>
                         {e.images === 0 && <button className="btn-outline text-xs" onClick={() => findImages(e)}>Find images</button>}
                         <PhotoUpload category={e.category} slug={e.slug} say={say} onDone={reload} />
@@ -625,8 +630,25 @@ function Agents({ say }: { say: (t: string, bad?: boolean) => void }) {
   const keys = st.data?.keys as Record<string, boolean> | null | undefined
   const label = (k: string) => (PROVIDERS.find(p => p[0] === k) || [k, k])[1]
   const effective = saved.provider === 'auto' ? 'the cheapest provider that has a key' : label(saved.provider)
+  const auto = st.data?.autoPublish === true
+  async function setAuto(on: boolean) {
+    const msg = on
+      ? 'Publish automatically?\n\nFrom the next run, pages and events that pass every check go live on the site by themselves. You review them on the site and can edit, unpublish or delete.\n\nHealth topics, anything the fact-checker flags, anything without a credited photo and anything the content-safety check flags still wait for you.'
+      : 'Go back to approving every batch first?'
+    if (!window.confirm(msg)) return
+    const r = await api('agent_settings_save', { autoPublish: on }); say(r.ok ? r.data.message : r.data.error, !r.ok); if (r.ok) st.reload()
+  }
   return (
     <div className="space-y-6">
+      <div className={`card border-2 ${auto ? 'border-primary' : 'border-accent/20'}`}>
+        <h2 className="font-serif text-xl mb-1">How does agent work reach the site?</h2>
+        <p className="text-sm text-ink-mid mb-3">Switch between the two approaches at any time. The change applies from the next run.</p>
+        <div className="grid md:grid-cols-2 gap-3 mb-3 text-sm">
+          <div className={`p-3 border ${!auto ? 'border-primary bg-primary/5' : 'border-accent/20'}`}><strong>Review first</strong>{!auto && ' (on)'}<br />Each run opens a batch. You tick what to publish under <em>Review agent work</em>. Nothing is public until you say so.</div>
+          <div className={`p-3 border ${auto ? 'border-primary bg-primary/5' : 'border-accent/20'}`}><strong>Publish automatically</strong>{auto && ' (on)'}<br />Pages that pass every check go live by themselves. You review on the site, where an owner bar lets you edit, mark reviewed, unpublish or delete. Health topics and anything flagged still wait for you.</div>
+        </div>
+        <button className={auto ? 'btn-outline text-xs' : 'btn-primary text-xs'} onClick={() => setAuto(!auto)} disabled={!st.data}>{auto ? 'Switch back to review first' : 'Switch to publish automatically'}</button>
+      </div>
       <div className="card">
         <h2 className="font-serif text-xl mb-1">Which AI do the agents use?</h2>
         <p className="text-sm text-ink-mid mb-4">This default applies to the scheduled runs (Sunday and Wednesday) and to manual runs unless you pick another provider below. It is saved in the repository and takes effect on the next run.</p>

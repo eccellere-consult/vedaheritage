@@ -28,6 +28,20 @@ The weekly **events calendar** update (Sundays 01:00 IST, or **Run agents > Upda
 
 Per-page tools remain under **Drafts** (unpublish, find images, upload your own photo) for pages already on `main`.
 
+### Two modes: review first, or publish automatically
+**Run agents > How does agent work reach the site?** switches between them at any time; the change applies from the next run.
+
+| | Review first | Publish automatically |
+|---|---|---|
+| What the agents do | Open one batch (pull request) of drafts | Publish what passes every gate straight to the site |
+| Your job | Tick and publish under **Review agent work** | Read the live pages; use the **owner bar** to edit, mark reviewed, unpublish or delete |
+
+Automatic publishing only covers an entry when ALL of these hold: the fact-checker says ready with no flags and no contradicted claim; at least one credited photo whose file exists; two or more retrieved sources; a valid summary and all sections; the category is not `medical` or `healing`; and the **content-safety check** finds nothing (adult or sexual content, child exploitation, illegal or harmful material, adult-site links). Anything else stays a draft and is listed in the run report. Before the site is updated the build is tested; if it fails, the run opens a pull request instead.
+
+Published-by-agent pages show visitors "Editor review pending" until you edit them or press **Mark reviewed**. Events follow the same switch.
+
+**Owner bar:** log in at `/admin/`, then open any guide on the live site. A bar at the bottom shows **Edit**, **Mark reviewed**, **Unpublish**, **Delete** and **Admin**. On the Events page each event has **Remove event**. The Overview tile "Auto-published, to review" counts pages you have not reviewed. Edits and deletes rebuild the site in a few minutes. A deleted page is not re-added by the agents.
+
 ### Your own photos
 The browser shrinks the picture to 1600 px and re-encodes it as JPEG, and the server re-encodes it again, so GPS and camera data are removed. The credit you type is shown under the photo, with the licence "Own photo, used with the photographer's permission". Only upload pictures you took or may publish.
 

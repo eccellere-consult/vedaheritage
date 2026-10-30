@@ -2,7 +2,7 @@ name: Events calendar agent
 
 # Runs every Saturday evening UTC (01:00 IST Sunday), before the weekly site rebuild. Finds this week's, this
 # month's and the next 12 months' events for tourists, with dates read from pages it retrieved, and opens ONE
-# pull request. Nothing changes on the site until a human merges it (Admin > Review agent work).
+# pull request, or, when automatic publishing is on (Admin > Run agents), publishes straight to the site.
 
 on:
   schedule:
@@ -21,6 +21,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 concurrency:
   group: events-agent
@@ -56,19 +57,37 @@ jobs:
         run: node agents/run.mjs events --budget "$BUDGET"
       - name: Validate content
         run: node scripts/validate-content.mjs
-      - name: Open pull request
+      - name: Publish to the site, or open a pull request
+        # autoPublish true (admin > Run agents): commit to main and trigger the deploy; the owner reviews on the site.
+        # autoPublish false, or anything fails (build, push): open ONE pull request for review, as before.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
         run: |
-          if git diff --quiet -- src/content/events; then echo "No changes."; exit 0; fi
-          branch="agents/events-$(date +%Y%m%d-%H%M)"
+          if [ -z "$(git status --porcelain)" ]; then echo "No changes."; exit 0; fi
           git config user.name "veda-content-bot"
           git config user.email "content-bot@users.noreply.github.com"
-          git checkout -b "$branch"
-          git add -A src/content/events agents/reports
+          auto=$(node -e "try{console.log(JSON.parse(require('fs').readFileSync('agents/settings.json','utf8')).autoPublish===true?'yes':'no')}catch(e){console.log('no')}")
+          for p in src/content/events agents/reports; do [ -e "$p" ] && git add -A "$p"; done
           git commit -m "content: weekly events calendar update"
+          if [ "$auto" = "yes" ] && [ "$BASE_BRANCH" = "main" ]; then
+            if npm run build >/tmp/build.log 2>&1; then
+              for i in 1 2 3; do
+                if git push origin HEAD:main; then
+                  gh workflow run deploy.yml --ref main && echo "Published; deploy started."
+                  exit 0
+                fi
+                git pull --rebase origin main || break
+              done
+              echo "Push to main failed; opening a pull request instead."
+            else
+              tail -30 /tmp/build.log; echo "Build failed; opening a pull request instead."
+            fi
+          fi
+          branch="agents/events-$(date +%Y%m%d-%H%M)"
+          git checkout -b "$branch"
           git push origin "$branch"
+          cp agents/reports/latest.md /tmp/pr-body.md
           gh pr create --base "$BASE_BRANCH" --head "$branch" \
             --title "Events calendar update ($(date +%F))" \
-            --body-file agents/reports/latest.md
+            --body-file /tmp/pr-body.md

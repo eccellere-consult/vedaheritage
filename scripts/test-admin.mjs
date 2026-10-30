@@ -21,6 +21,9 @@ const files = {
   'src/content/temples/ready.json': good('ready'),
   'src/content/temples/noimage.json': good('noimage', { images: [] }),
   'src/content/temples/gated.json': good('gated'),
+  'src/content/temples/owned.json': good('owned', { autoPublished: '2026-10-30', reviewed: false, status: 'approved', images: [{ src: '/images/discover/owned-1.jpg', alt: 'a', credit: 'c', license: 'CC BY', sourceUrl: 'https://commons.wikimedia.org/x' }] }),
+  'agents/evidence/owned.json': { verification: { score: 90, recommendation: 'ready_for_review', gateReasons: [], results: [], issues: [] } },
+  'src/content/events/calendar.json': { updated: '2026-10-30', events: [{ id: 'e1', name: 'One' }, { id: 'e2', name: 'Two' }] },
   'agents/evidence/gated.json': { verification: { score: 70, recommendation: 'needs_edit', gateReasons: ['score 70 < 80'], results: [], issues: [] } },
 }
 const puts = [], labels = [], dispatches = []; let merged = []
@@ -130,6 +133,28 @@ try {
   const evw = await call('run_workflow', { method: 'POST', body: { workflow: 'events', inputs: { provider: 'openai' } } })
   ok(evw.s === 200 && dispatches.at(-1)?.p.endsWith('/events.yml/dispatches') && dispatches.at(-1).b.inputs.provider === 'openai' && (await call('run_workflow', { method: 'POST', body: { workflow: 'events', inputs: { provider: 'x;rm' } } })).s === 400, 'the events agent can be started from the admin (provider checked)')
   ok(Array.isArray((await call('review_pr&number=1')).d.events), 'review reports calendar changes')
+  const own = (await call('drafts')).d.entries.find(e => e.slug === 'owned')
+  ok(own?.autoPublished === '2026-10-30' && own.reviewed === false, 'drafts list reports auto-published and not yet reviewed')
+  ok((await call('overview')).d.toReview === 1, 'overview counts auto-published entries awaiting review')
+  const edited = { ...JSON.parse(JSON.stringify(files['src/content/temples/owned.json'])), summary: 'An edited summary that is comfortably longer than fifty characters in total.' }
+  const es = await call('entry_save', { method: 'POST', body: { category: 'temples', slug: 'owned', entry: edited } })
+  const ec = commits[commits.length - 1]; const ej = JSON.parse(ec.tree[0].content)
+  ok(es.s === 200 && ej.summary.startsWith('An edited') && ej.reviewed === true && ej.status === 'approved', 'owner edit saves, keeps it published and marks it reviewed')
+  ok((await call('entry_save', { method: 'POST', body: { category: 'temples', slug: 'owned', entry: { ...edited, summary: 'short' } } })).s === 422, 'an edit that breaks the publishing rules is refused')
+  ok((await call('entry_save', { method: 'POST', body: { category: 'temples', slug: 'owned', entry: { ...edited, slug: 'other' } } })).s === 422, 'slug cannot be changed by an edit')
+  const rv2 = await call('entry_reviewed', { method: 'POST', body: { category: 'temples', slug: 'owned' } })
+  ok(rv2.s === 200 && JSON.parse(commits[commits.length - 1].tree[0].content).reviewed === true, 'mark reviewed')
+  const dl = await call('entry_delete', { method: 'POST', body: { category: 'temples', slug: 'owned' } })
+  const dc = commits[commits.length - 1]; const dpaths = dc.tree.map(t => t.path)
+  ok(dl.s === 200 && dc.tree.every(t => t.sha === null) && dpaths.includes('src/content/temples/owned.json') && dpaths.includes('agents/evidence/owned.json') && dpaths.includes('public/images/discover/owned-1.jpg'), 'delete removes the entry, its evidence and its own photos in ONE commit')
+  ok((await call('entry_delete', { method: 'POST', body: { category: 'temples', slug: 'nope' } })).s === 404, 'deleting a missing entry is a 404')
+  const ed = await call('event_delete', { method: 'POST', body: { id: 'e1' } })
+  ok(ed.s === 200 && JSON.parse(commits[commits.length - 1].tree[0].content).events.map(x => x.id).join() === 'e2' && (await call('event_delete', { method: 'POST', body: { id: 'zz' } })).s === 404, 'owner can remove one event')
+  const svT = await call('agent_settings_save', { method: 'POST', body: { autoPublish: true } })
+  const setj = JSON.parse(commits[commits.length - 1].tree[0].content)
+  ok(svT.s === 200 && setj.autoPublish === true && setj.autoPublishExclude.join() === 'medical,healing' && setj.provider === 'auto', 'the publish-automatically toggle is saved and keeps the other settings')
+  const svF = await call('agent_settings_save', { method: 'POST', body: { autoPublish: false, provider: 'openai' } })
+  ok(svF.s === 200 && JSON.parse(commits[commits.length - 1].tree[0].content).autoPublish === false && JSON.parse(commits[commits.length - 1].tree[0].content).provider === 'openai', 'and switched back off'); delete files['agents/settings.json']
   const pl = await call('prs'); ok(pl.d.prs.map(p => p.checks).join() === 'passed,failed,needs_approval', 'PR list reports check state')
   ok((await call('merge_pr', { method: 'POST', body: { number: 2 } })).s === 422 && (await call('merge_pr', { method: 'POST', body: { number: 3 } })).s === 422 && !merged.length, 'red and unapproved PRs cannot be merged')
   ok((await call('merge_pr', { method: 'POST', body: { number: 1 } })).s === 200 && merged[0] === 1, 'green PR merges')

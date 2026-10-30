@@ -11,3 +11,4 @@ Rules:
 - Each event: a plain summary of one or two sentences (what it is and why a visitor would go), the place, the district (or "Kerala"), and the URLs you actually retrieved.
 - Describe rituals respectfully, as tradition. Mention dress codes or entry rules only if a source states them.
 - Skip events that have already ended. Keep to what you can source; fewer, correct events beat many guesses.
+- Never include adult, sexual or pornographic material, anything involving the exploitation of children, or anything illegal or harmful. Skip such an event entirely.

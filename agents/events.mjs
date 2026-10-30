@@ -1,5 +1,6 @@
 // EVENTS — keeps src/content/events/calendar.json current: this week, this month, the next 12 months.
 import { EventsOut } from './lib/schemas.mjs'
+import { safetyHits } from './lib/safety.mjs'
 import { prompt, readJson, slugify, today, writeJson } from './lib/util.mjs'
 
 export const CALENDAR = 'src/content/events/calendar.json'
@@ -34,6 +35,7 @@ export async function events(llm, { now = today() } = {}) {
     else if (c.start > last) dropped.push([c.name, 'too far ahead'])
     else if (!sources.length) dropped.push([c.name, 'no retrieved source'])
     else if (summary.length < 30 || summary.length > 400) dropped.push([c.name, 'summary length'])
+    else if (safetyHits({ name: c.name, summary, place: c.place, sources: c.sourceUrls }).length) dropped.push([c.name, 'content-safety check'])
     else found.push({ id: `${slugify(c.name)}-${c.start}`, name: c.name.trim(), type: c.type, start: c.start, end: c.end, place: c.place.trim(), district: c.district.trim(), summary, certainty: c.certainty, sources, lastChecked: now })
   }
 
