@@ -101,7 +101,24 @@
     "lat": 8.9833,
     "lng": 76.5833
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/ashtamudi-lake-1.jpg",
+      "alt": "Ferry MC Ganga, twin-hulled vessel, approaching Munroe Island, Ashtamudi Lake, Kollam, Kerala, India",
+      "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:MCGanga_Ferry_Ashtamudi_Munroe_Distant_Kerala_Mar22_A7C_01550.jpg"
+    },
+    {
+      "src": "/images/discover/ashtamudi-lake-2.jpg",
+      "alt": "Ferry MC Ganga, twin-hulled vessel, approaching Munroe Island, Ashtamudi Lake, Kollam, Kerala, India",
+      "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:MCGanga_Ferry_Ashtamudi_Munroe_Close_Kerala_Mar22_A7C_01552.jpg"
+    }
+  ],
   "tags": [
     "backwaters",
     "Kollam",
