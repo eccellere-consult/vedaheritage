@@ -6,7 +6,7 @@ require __DIR__ . '/lib.php';
 
 $a = preg_replace('/[^a-z_]/', '', $_GET['a'] ?? '');
 $method = $_SERVER['REQUEST_METHOD'];
-$in = $method === 'POST' ? read_json() : [];
+$in = $method === 'POST' ? read_json($a === 'photo_upload' ? 2600000 : 65536) : [];
 
 function need_str(array $in, string $k, int $max = 200): string {
     $v = $in[$k] ?? '';
@@ -48,6 +48,45 @@ function blob_json(string $sha): ?array {
     if (!is_array($d)) return null;
     @file_put_contents($f, $txt, LOCK_EX);
     return $d;
+}
+
+// ---------------------------------------------------------------- review helpers
+function review_branch_ok(string $ref): bool { return (bool)preg_match('~^(agents|images)/[A-Za-z0-9._/-]+$~', $ref); }
+
+/** An open, same-repo agent pull request; anything else is refused. */
+function review_pr_open(int $n): array {
+    $p = gh_ok(gh('GET', '/repos/' . repo() . "/pulls/$n"), 'read PR');
+    if (($p['state'] ?? '') !== 'open' || !empty($p['draft'])) json_out(422, ['error' => 'This pull request is not open.']);
+    if (!review_branch_ok($p['head']['ref'] ?? '') || (($p['head']['repo']['full_name'] ?? repo()) !== repo())) json_out(422, ['error' => 'Only agent pull requests can be reviewed here. Use Pull requests for others.']);
+    return $p;
+}
+
+/** Plain-words card for one entry in a pull request. */
+function review_card(array $e, ?array $ev, string $fileStatus, string $head): array {
+    $live = ($e['status'] ?? '') === 'approved';
+    $j = $e; $j['status'] = 'draft';
+    $v = evidence_summary($ev);
+    $imgs = [];
+    foreach ($e['images'] ?? [] as $im) {
+        if (!is_array($im) || !preg_match('~^/images/discover/[A-Za-z0-9/_.-]+$~', $im['src'] ?? '')) continue;
+        $imgs[] = ['url' => 'https://raw.githubusercontent.com/' . repo() . "/$head/public" . $im['src'], 'alt' => (string)($im['alt'] ?? ''), 'credit' => (string)($im['credit'] ?? ''), 'license' => (string)($im['license'] ?? '')];
+    }
+    $facts = null;
+    if ($v) {
+        $c = $v['counts']; $t = array_sum($c);
+        $facts = "$t claims checked: {$c['supported']} supported by sources, {$c['partly_supported']} partly, {$c['unverifiable']} could not be confirmed, {$c['contradicted']} contradicted.";
+    }
+    $srcs = [];
+    foreach ($e['sources'] ?? [] as $s) if (is_array($s) && preg_match('~^https://~', $s['url'] ?? '')) $srcs[] = ['label' => (string)($s['label'] ?? $s['url']), 'url' => $s['url']];
+    return [
+        'slug' => $e['slug'] ?? '', 'category' => $e['category'] ?? '', 'name' => $e['name'] ?? '', 'district' => $e['district'] ?? '',
+        'change' => $live ? 'update to a live page' : ($fileStatus === 'added' ? 'new entry' : 'updated draft'),
+        'live' => $live, 'summary' => (string)($e['summary'] ?? ''),
+        'about' => (string)($e['history']['significance'] ?? ''), 'tradition' => (string)($e['folklore']['title'] ?? ''), 'meaning' => (string)($e['spiritual']['summary'] ?? ''),
+        'images' => $imgs, 'sources' => $srcs,
+        'blockers' => $live ? [] : publish_blockers($j),
+        'verifier' => $v ? ['score' => $v['score'], 'ready' => !$v['gateReasons'], 'facts' => $facts, 'gates' => $v['gateReasons'], 'notes' => array_slice(array_map(fn($i) => trim(($i['field'] ?? '') . ': ' . ($i['problem'] ?? $i['detail'] ?? $i['issue'] ?? '')), $v['issues']), 0, 6)] : null,
+    ];
 }
 
 function check_state(string $sha): array {
@@ -182,6 +221,102 @@ try {
                 'checks' => $ck['state'], 'mergeable' => $full['mergeable'] ?? null, 'draft' => (bool)($p['draft'] ?? false), 'files' => $full['changed_files'] ?? null, 'updated' => $p['updated_at']];
         }
         json_out(200, ['prs' => $rows]);
+    }
+
+    // ---- Review: everything one agent run produced, approved and merged as ONE pull request (one deploy).
+    case 'review_list': {
+        $list = gh_ok(gh('GET', '/repos/' . repo() . '/pulls', null, ['state' => 'open', 'per_page' => 20]), 'list PRs');
+        $rows = [];
+        foreach ($list as $p) {
+            if (!review_branch_ok($p['head']['ref'] ?? '')) continue;
+            $rows[] = ['number' => $p['number'], 'title' => $p['title'], 'branch' => $p['head']['ref'], 'updated' => $p['updated_at'] ?? '', 'url' => $p['html_url'] ?? ''];
+        }
+        json_out(200, ['prs' => $rows]);
+    }
+
+    case 'review_pr': {
+        $n = (int)($_GET['number'] ?? 0); if ($n < 1) json_out(400, ['error' => 'Bad request.']);
+        $p = review_pr_open($n); $head = $p['head']['sha'];
+        $files = gh_ok(gh('GET', '/repos/' . repo() . "/pulls/$n/files", null, ['per_page' => 100]), 'read PR files');
+        $cards = []; $photos = 0; $other = 0;
+        foreach ($files as $f) {
+            $fn = $f['filename'] ?? '';
+            if (($f['status'] ?? '') === 'removed') { $other++; continue; }
+            if (preg_match('~^src/content/(' . implode('|', CATS) . ')/([a-z0-9-]+)\.json$~', $fn, $m)) {
+                $file = gh_file($fn, $head); $e = $file ? json_decode($file['text'], true) : null; if (!is_array($e)) continue;
+                $evf = gh_file("agents/evidence/{$m[2]}.json", $head); $ev = $evf ? json_decode($evf['text'], true) : null;
+                $cards[] = review_card($e, $ev, $f['status'] ?? 'modified', $head);
+            } elseif (strpos($fn, 'public/images/') === 0) $photos++;
+            else $other++;
+        }
+        $ck = check_state($head);
+        json_out(200, ['number' => $n, 'title' => $p['title'], 'head' => $head, 'branch' => $p['head']['ref'], 'url' => $p['html_url'] ?? '', 'checks' => $ck['state'],
+            'mergeable' => $p['mergeable'] ?? null, 'cards' => $cards, 'photoFiles' => $photos, 'otherFiles' => $other]);
+    }
+
+    case 'review_apply': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $n = need_int($in, 'number'); $seenHead = need_str($in, 'head', 40);
+        $p = review_pr_open($n); $head = $p['head']['sha'];
+        if ($seenHead !== $head) json_out(409, ['error' => 'This pull request changed since you opened it. Reload the review and look again.', 'stale' => true]);
+        $pick = is_array($in['publish'] ?? null) ? $in['publish'] : [];
+        $over = is_array($in['override'] ?? null) ? $in['override'] : [];
+        $files = []; $names = []; $problems = []; $gated = [];
+        foreach ($pick as $it) {
+            $cat = (string)($it['category'] ?? ''); $slug = (string)($it['slug'] ?? '');
+            if (!in_array($cat, CATS, true) || !valid_slug($slug)) json_out(400, ['error' => 'Bad request.']);
+            $path = "src/content/$cat/$slug.json";
+            $f = gh_file($path, $head); $e = $f ? json_decode($f['text'], true) : null;
+            if (!is_array($e)) json_out(404, ['error' => "$slug is not part of this pull request."]);
+            $e['status'] = 'draft';
+            if ($b = publish_blockers($e)) { $problems[] = ($e['name'] ?? $slug) . ': ' . implode(' ', $b); continue; }
+            $evf = gh_file("agents/evidence/$slug.json", $head);
+            $g = evidence_summary($evf ? json_decode($evf['text'], true) : null)['gateReasons'] ?? [];
+            if ($g && !in_array($slug, $over, true)) { $gated[] = ['slug' => $slug, 'name' => $e['name'] ?? $slug, 'gates' => $g]; continue; }
+            $e['status'] = 'approved'; $e['lastVerified'] = gmdate('Y-m-d');
+            $files[$path] = ['text' => json_encode($e, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"];
+            $names[] = $e['name'] ?? $slug;
+        }
+        if ($problems) json_out(422, ['error' => 'Some items cannot be published yet.', 'blockers' => $problems]);
+        if ($gated) json_out(409, ['error' => 'The fact-checker flagged some items.', 'needsOverride' => true, 'gated' => $gated]);
+        if ($files) {
+            gh_commit_files($files, 'Publish ' . count($names) . ' reviewed entries (admin): ' . implode(', ', array_slice($names, 0, 6)), $p['head']['ref']);
+        }
+        audit('review-apply', ['pr' => $n, 'published' => array_keys($files), 'override' => $over]);
+        json_out(200, ['ok' => true, 'published' => count($files), 'committed' => (bool)$files]);
+    }
+
+    // ---- Upload your own photo and attach it to a guide (one commit: the picture and the entry's image list).
+    case 'photo_upload': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cat = need_str($in, 'category', 30); $slug = need_str($in, 'slug', 80);
+        $credit = trim(strip_tags(need_str($in, 'credit', 120))); $alt = trim(strip_tags(need_str($in, 'alt', 200)));
+        if (!in_array($cat, CATS, true) || !valid_slug($slug)) json_out(400, ['error' => 'Bad request.']);
+        if (strlen($credit) < 2 || strlen($alt) < 5) json_out(422, ['error' => 'Type who took the photo and a short description of what it shows.']);
+        $bin = base64_decode(preg_replace('~^data:image/\w+;base64,~', '', need_str($in, 'image', 2500000)), true);
+        if ($bin === false || strlen($bin) > 1800000) json_out(422, ['error' => 'The picture is missing or larger than 1.8 MB.']);
+        $info = @getimagesizefromstring($bin);
+        if (!$info || $info[2] !== IMAGETYPE_JPEG) json_out(422, ['error' => 'Use a JPEG picture.']);
+        if ($info[0] < 600 || $info[1] < 400 || $info[0] > 4000 || $info[1] > 4000) json_out(422, ['error' => 'The picture must be between 600 and 4000 pixels wide.']);
+        if (function_exists('imagecreatefromstring') && ($im = @imagecreatefromstring($bin))) { // re-encode: drops EXIF (location, camera)
+            ob_start(); imagejpeg($im, null, 85); $re = ob_get_clean(); imagedestroy($im); if ($re) $bin = $re;
+        }
+        $branch = 'main'; $ref = 'main';
+        if (isset($in['number'])) { $p = review_pr_open(need_int($in, 'number')); $branch = $p['head']['ref']; $ref = $p['head']['sha']; }
+        $path = "src/content/$cat/$slug.json";
+        $f = gh_file($path, $ref); $e = $f ? json_decode($f['text'], true) : null;
+        if (!is_array($e)) json_out(404, ['error' => 'Entry not found.']);
+        $n = 1; $have = array_map(fn($i) => $i['src'] ?? '', is_array($e['images'] ?? null) ? $e['images'] : []);
+        while (in_array("/images/discover/$slug-own-$n.jpg", $have, true)) $n++;
+        $src = "/images/discover/$slug-own-$n.jpg";
+        $e['images'] = array_merge(is_array($e['images'] ?? null) ? $e['images'] : [], [[
+            'src' => $src, 'alt' => $alt, 'credit' => $credit, 'license' => 'Own photo, used with the photographer\'s permission',
+            'sourceUrl' => rtrim((string)(cfg()['site_url'] ?? 'https://vedaheritage.co.in'), '/') . '/',
+        ]]);
+        gh_commit_files(["public$src" => ['b64' => base64_encode($bin)], $path => ['text' => json_encode($e, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]],
+            'Add own photo to ' . ($e['name'] ?? $slug) . ' (admin)', $branch);
+        audit('photo-upload', ['entry' => "$cat/$slug", 'branch' => $branch, 'bytes' => strlen($bin)]);
+        json_out(200, ['ok' => true, 'message' => $branch === 'main' ? 'Photo attached. The site rebuilds in a few minutes.' : 'Photo attached to the batch. Reload the review to see it.']);
     }
 
     case 'merge_pr': {

@@ -5,8 +5,8 @@ import { useCallback, useEffect, useState } from 'react'
 // Explicit file name: a folder URL only works if the server's DirectoryIndex lists index.php.
 const API = '/api/admin/index.php'
 type Json = Record<string, any>
-type Tab = 'overview' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
-const TABS: [Tab, string][] = [['overview', 'Overview'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
+type Tab = 'overview' | 'review' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
+const TABS: [Tab, string][] = [['overview', 'Overview'], ['review', 'Review agent work'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
 
 let csrf = ''
 async function api(a: string, body?: Json, query = ''): Promise<{ ok: boolean; status: number; data: Json }> {
@@ -79,6 +79,7 @@ export default function AdminApp() {
       </div>
       {msg && <p role="status" className={`mb-4 px-4 py-3 text-sm border ${msg.bad ? 'bg-red-50 border-red-300 text-red-800' : 'bg-primary/10 border-primary/30 text-ink'}`}>{msg.text}</p>}
       {tab === 'overview' && <Overview go={setTab} />}
+      {tab === 'review' && <Review say={say} />}
       {tab === 'drafts' && <Drafts say={say} />}
       {tab === 'market' && <Market say={say} />}
       {tab === 'providers' && <Providers say={say} />}
@@ -175,7 +176,7 @@ function Overview({ go }: { go: (t: Tab) => void }) {
     <div className="space-y-8">
       {ov.err && <p className="text-red-700 text-sm">{ov.err}</p>}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}{tile(mk.data ? mk.data.pending.length + mk.data.enquiries.length : undefined, 'Marketplace to review', 'market')}{tile(pv.data ? pv.data.queue.length + pv.data.reports.length : undefined, 'Directory to review', 'providers')}
+        {tile(d?.drafts, 'Drafts waiting', 'drafts')}{tile('→', 'Review agent work', 'review')}{tile(d?.approved, 'Published guides', 'drafts')}{tile(d?.openPrs, 'Open pull requests', 'prs')}{tile(d?.stories, 'Stories to review', 'stories')}{tile(mk.data ? mk.data.pending.length + mk.data.enquiries.length : undefined, 'Marketplace to review', 'market')}{tile(pv.data ? pv.data.queue.length + pv.data.reports.length : undefined, 'Directory to review', 'providers')}
       </div>
       <div className="card">
         <h2 className="font-serif text-xl mb-3">Site and deploy</h2>
@@ -188,6 +189,132 @@ function Overview({ go }: { go: (t: Tab) => void }) {
           ))}</tbody></table>
         </>}
       </div>
+    </div>
+  )
+}
+
+/** Pick a photo you took, type the credit, attach it to a guide. The browser shrinks and re-encodes it (no GPS or camera data survives). */
+function PhotoUpload({ category, slug, number, say, onDone }: { category: string; slug: string; number?: number; say: (t: string, bad?: boolean) => void; onDone: () => void }) {
+  const [open, setOpen] = useState(false); const [file, setFile] = useState<File | null>(null); const [credit, setCredit] = useState(''); const [alt, setAlt] = useState(''); const [busy, setBusy] = useState(false)
+  async function shrink(f: File): Promise<string> {
+    const bmp = await createImageBitmap(f); const k = Math.min(1, 1600 / Math.max(bmp.width, bmp.height))
+    const cv = document.createElement('canvas'); cv.width = Math.round(bmp.width * k); cv.height = Math.round(bmp.height * k)
+    cv.getContext('2d')!.drawImage(bmp, 0, 0, cv.width, cv.height)
+    return cv.toDataURL('image/jpeg', 0.85)
+  }
+  async function send() {
+    if (!file) return say('Choose a picture first.', true)
+    setBusy(true)
+    try {
+      const image = await shrink(file)
+      const r = await api('photo_upload', { category, slug, number, image, credit, alt })
+      say(r.ok ? r.data.message : r.data.error, !r.ok)
+      if (r.ok) { setOpen(false); setFile(null); setCredit(''); setAlt(''); onDone() }
+    } catch { say('That file could not be read as a picture. Try a JPEG or PNG.', true) }
+    setBusy(false)
+  }
+  if (!open) return <button className="btn-outline text-xs" onClick={() => setOpen(true)}>Upload your own photo</button>
+  const inp = 'border border-accent/30 px-2 py-1 text-sm w-full'
+  return (
+    <div className="mt-2 p-3 border border-accent/30 space-y-2 w-full text-sm">
+      <label className="block">Picture you took<input type="file" accept="image/jpeg,image/png" className="block mt-1" onChange={e => setFile(e.target.files?.[0] || null)} /></label>
+      <label className="block">Credit (shown under the photo, e.g. &quot;Photo: Your Name&quot;)<input className={inp} value={credit} maxLength={120} onChange={e => setCredit(e.target.value)} /></label>
+      <label className="block">What it shows (for screen readers)<input className={inp} value={alt} maxLength={200} onChange={e => setAlt(e.target.value)} /></label>
+      <div className="flex gap-2"><button className="btn-primary text-xs disabled:opacity-40" disabled={busy || !file || credit.trim().length < 2 || alt.trim().length < 5} onClick={send}>{busy ? 'Uploading…' : 'Attach photo'}</button><button className="btn-outline text-xs" onClick={() => setOpen(false)}>Cancel</button></div>
+    </div>
+  )
+}
+
+function Review({ say }: { say: (t: string, bad?: boolean) => void }) {
+  const list = useLoad('review_list'); const [open, setOpen] = useState(0)
+  return (
+    <div className="space-y-4">
+      <div className="card !p-5 text-sm text-ink-mid">
+        <h2 className="font-serif text-xl text-ink mb-2">What you are approving</h2>
+        <p>Each agent run proposes new or improved <strong>Discover Kerala pages</strong>. Nothing is public until you publish it. For every page below you see what it is, its photos, its sources and the fact-checker&apos;s verdict. Tick the pages you are happy with, then press <strong>one button</strong>: the chosen pages are published and the whole batch goes live in a single update. Pages you leave unticked stay as drafts.</p>
+      </div>
+      {list.err && <p className="text-red-700 text-sm">{list.err}</p>}{!list.data && !list.err && <p className="text-ink-mid">Loading…</p>}
+      {list.data && !list.data.prs.length && <p className="text-ink-mid text-sm">No agent batches waiting. Start one under <strong>Run agents</strong>.</p>}
+      {(list.data?.prs || []).map((p: Json) => (
+        <div key={p.number}>
+          <button onClick={() => setOpen(open === p.number ? 0 : p.number)} className="card !p-4 w-full text-left flex justify-between items-center" aria-expanded={open === p.number}>
+            <span><span className="font-serif text-lg text-ink">{p.title}</span><span className="block text-xs text-ink-mid">Batch #{p.number} · {p.branch}</span></span>
+            <span className="text-primary text-sm">{open === p.number ? 'Hide' : 'Review'}</span>
+          </button>
+          {open === p.number && <Batch number={p.number} say={say} done={() => { setOpen(0); list.reload() }} />}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function Batch({ number, say, done }: { number: number; say: (t: string, bad?: boolean) => void; done: () => void }) {
+  const { data, err, reload } = useLoad('review_pr', `&number=${number}`)
+  const [pick, setPick] = useState<Record<string, boolean>>({}); const [init, setInit] = useState(false); const [step, setStep] = useState(''); const [more, setMore] = useState('')
+  const cards: Json[] = data?.cards || []
+  const key = (c: Json) => `${c.category}/${c.slug}`
+  const ready = (c: Json) => !c.live && c.blockers.length === 0
+  useEffect(() => { if (data && !init) { setPick(Object.fromEntries(cards.filter(c => ready(c) && (!c.verifier || c.verifier.ready)).map(c => [key(c), true]))); setInit(true) } }, [data, init]) // eslint-disable-line react-hooks/exhaustive-deps
+  const chosen = cards.filter(c => pick[key(c)])
+  async function go(override: string[] = []) {
+    setStep('Saving your choices…')
+    const r = await api('review_apply', { number, head: data?.head, override, publish: chosen.map(c => ({ category: c.category, slug: c.slug })) })
+    if (!r.ok) {
+      setStep('')
+      if (r.status === 409 && r.data.needsOverride) {
+        const lines = (r.data.gated || []).map((g: Json) => `${g.name}: ${(g.gates || []).join('; ')}`).join('\n\n')
+        if (window.confirm(`The fact-checker flagged:\n\n${lines}\n\nPublish these anyway? Check the facts against the sources first.`)) return go((r.data.gated || []).map((g: Json) => g.slug))
+        return
+      }
+      say([r.data.error, ...(r.data.blockers || [])].filter(Boolean).join(' · '), true); if (r.data.stale) reload(); return
+    }
+    for (let i = 0; i < 40; i++) {
+      setStep(r.data.committed ? 'Waiting for the safety checks to pass…' : 'Checking the batch…')
+      await new Promise(res => setTimeout(res, i === 0 ? 4000 : 8000))
+      const q = await api('review_pr', undefined, `&number=${number}`)
+      if (!q.ok) continue
+      if (q.data.checks === 'failed') { setStep(''); say('The safety checks failed. Open the pull request on GitHub to see why. Nothing was published.', true); return }
+      if (q.data.checks === 'needs_approval') { setStep(''); say('GitHub wants you to approve the checks first. Open the pull request and press "Approve and run".', true); return }
+      if (q.data.checks === 'passed') {
+        setStep('Publishing…')
+        const m = await api('merge_pr', { number }); setStep('')
+        say(m.ok ? `Done. ${r.data.published} page(s) published; the site updates in a few minutes.` : m.data.error, !m.ok); if (m.ok) done(); return
+      }
+    }
+    setStep(''); say('The checks are taking long. Come back and press the button again, or merge under Pull requests.', true)
+  }
+  return (
+    <div className="mt-3 space-y-3">
+      {err && <p className="text-red-700 text-sm">{err}</p>}{!data && !err && <p className="text-ink-mid">Loading…</p>}
+      {data && <p className="text-sm text-ink-mid">{cards.length} page(s) · {data.photoFiles} photo file(s) · safety checks: <strong>{data.checks}</strong>{data.mergeable === false && ' · conflict with main'} · <a className="underline text-primary" href={data.url} target="_blank" rel="noopener noreferrer">view on GitHub</a></p>}
+      {cards.map(c => (
+        <div key={key(c)} className="card !p-5">
+          <label className="flex items-start gap-3">
+            <input type="checkbox" className="mt-1.5 h-4 w-4" checked={!!pick[key(c)]} disabled={!ready(c) || !!step} onChange={e => setPick({ ...pick, [key(c)]: e.target.checked })} aria-label={`Publish ${c.name}`} />
+            <span className="flex-1">
+              <span className="font-serif text-lg text-ink">{c.name}</span>
+              <span className="block text-xs text-ink-mid">{c.category} · {c.district} · {c.change}</span>
+            </span>
+            {c.live ? badge('already live, edit only', 'warn') : c.blockers.length ? badge('not ready', 'bad') : c.verifier && !c.verifier.ready ? badge('check the facts', 'warn') : badge('ready to publish', 'ok')}
+          </label>
+          {c.images.length > 0 && <div className="flex gap-2 mt-3 overflow-x-auto">{c.images.map((im: Json, i: number) => <figure key={i} className="shrink-0"><img src={im.url} alt={im.alt} className="h-28 w-40 object-cover border border-accent/30" /><figcaption className="text-[11px] text-ink-mid max-w-[10rem]">{im.credit} · {im.license}</figcaption></figure>)}</div>}
+          <div className="mt-3"><PhotoUpload category={c.category} slug={c.slug} number={number} say={say} onDone={() => { setInit(false); reload() }} /></div>
+          <p className="text-sm text-ink mt-3">{c.summary}</p>
+          <button className="text-xs text-primary underline mt-2" onClick={() => setMore(more === key(c) ? '' : key(c))}>{more === key(c) ? 'Hide detail' : 'Read more, sources and fact-check'}</button>
+          {more === key(c) && <div className="mt-3 space-y-3 text-sm text-ink-mid">
+            {c.about && <p><strong>History:</strong> {c.about}</p>}
+            {c.tradition && <p><strong>Tradition and folklore (told as tradition, not fact):</strong> {c.tradition}</p>}
+            {c.meaning && <p><strong>Spiritual meaning:</strong> {c.meaning}</p>}
+            <div><strong>Sources:</strong><ul className="list-disc pl-5">{c.sources.map((s: Json) => <li key={s.url}><a className="underline text-primary" href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a></li>)}</ul></div>
+            {c.verifier ? <div><strong>Fact-check:</strong> score {c.verifier.score ?? '?'}. {c.verifier.facts}{c.verifier.gates.length > 0 && <ul className="list-disc pl-5 text-amber-800">{c.verifier.gates.map((g: string) => <li key={g}>{g}</li>)}</ul>}{c.verifier.notes.length > 0 && <ul className="list-disc pl-5">{c.verifier.notes.map((g: string, i: number) => <li key={i}>{g}</li>)}</ul>}</div> : <p><strong>Fact-check:</strong> none recorded for this page.</p>}
+          </div>}
+          {c.blockers.length > 0 && <ul className="list-disc pl-5 mt-3 text-sm text-amber-800">{c.blockers.map((b: string) => <li key={b}>{b}</li>)}</ul>}
+        </div>
+      ))}
+      {data && <div className="sticky bottom-0 bg-white/95 border-t border-accent/20 py-3 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-ink-mid">{step || (chosen.length ? `${chosen.length} page(s) will be published; the rest stay as drafts.` : 'Nothing ticked: the batch is saved as drafts, nothing goes public.')}</p>
+        <button className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed" disabled={!!step || data.mergeable === false || data.checks === 'failed'} onClick={() => { if (window.confirm(chosen.length ? `Publish ${chosen.length} page(s) and update the live site?` : 'Save this batch as drafts? Nothing becomes public.')) go() }}>{chosen.length ? `Publish ${chosen.length} & finish batch` : 'Save batch as drafts'}</button>
+      </div>}
     </div>
   )
 }
@@ -225,6 +352,7 @@ function Drafts({ say }: { say: (t: string, bad?: boolean) => void }) {
                     ? <button className="btn-outline text-xs" disabled={busy === e.slug} onClick={() => setStatus(e, 'draft')}>Unpublish</button>
                     : <>
                         {e.images === 0 && <button className="btn-outline text-xs" onClick={() => findImages(e)}>Find images</button>}
+                        <PhotoUpload category={e.category} slug={e.slug} say={say} onDone={reload} />
                         <button className="btn-primary text-xs disabled:opacity-40 disabled:cursor-not-allowed" disabled={busy === e.slug || e.blockers.length > 0} onClick={() => setStatus(e, 'approved')}>Approve &amp; publish</button>
                       </>}
                 </div>

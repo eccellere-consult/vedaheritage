@@ -18,11 +18,16 @@ The admin lives at **https://www.vedaheritage.co.in/admin/** (not linked anywher
 ### Why a draft cannot be published
 The admin enforces the same rules as the validator. A guide needs at least **1 licensed, credited image**, **2 sources**, a summary of 50 to 200 characters, and folklore, history, spiritual and visitor sections. If the verifier flagged the guide (score under 80), the admin asks you to confirm. It never publishes silently.
 
-### Typical flow
-1. **Run agents** → wait about 15 to 20 minutes → a pull request appears.
-2. **Pull requests** → merge it (drafts land on `main`, still hidden).
-3. **Drafts** → **Find images** → wait → merge the images PR → check the photos on GitHub first.
-4. **Drafts** → read the verifier notes → **Approve & publish**.
+### Typical flow (one batch, one deploy)
+1. **Run agents** → wait about 15 to 20 minutes → one batch (pull request) appears. Photos are already in it.
+2. **Review agent work** → open the batch. Each page shows its photos, summary, sources and the fact-checker's verdict in plain words. Open **Read more** for history, tradition and meaning.
+3. Tick the pages you accept (ready pages are pre-ticked; flagged pages are not). Missing a photo? **Upload your own photo**: pick the picture, type the credit and a description; it is attached to that page inside the batch.
+4. Press **Publish N & finish batch**. The admin publishes the ticked pages, waits for the safety checks, merges and the site updates once. Unticked pages stay drafts.
+
+Per-page tools remain under **Drafts** (unpublish, find images, upload your own photo) for pages already on `main`.
+
+### Your own photos
+The browser shrinks the picture to 1600 px and re-encodes it as JPEG, and the server re-encodes it again, so GPS and camera data are removed. The credit you type is shown under the photo, with the licence "Own photo, used with the photographer's permission". Only upload pictures you took or may publish.
 
 ## One-time setup (about 15 minutes)
 
