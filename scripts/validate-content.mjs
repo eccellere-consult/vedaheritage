@@ -7,8 +7,8 @@ const PUBLIC = path.join(process.cwd(), 'public')
 const fileExists = src => src && src.startsWith('/') && fs.existsSync(path.join(PUBLIC, src))
 
 const ROOT = path.join(process.cwd(), 'src', 'content')
-const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi']
-const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi'])
+const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi', 'crafts', 'artisans', 'wear']
+const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi', 'crafts', 'artisans', 'wear'])
 const STATUSES = ['draft', 'approved']
 const STORY_TYPES = ['Experience', 'Folklore I heard', 'Travel tip', 'Family recipe', 'Muthassi story']
 const CONTACT_KINDS = ['tourism-office', 'temple-office', 'transport-enquiry', 'emergency', 'hospital', 'police', 'other']
