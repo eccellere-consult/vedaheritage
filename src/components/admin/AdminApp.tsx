@@ -33,12 +33,13 @@ export default function AdminApp() {
   const [err, setErr] = useState('')
   const [code, setCode] = useState(0)
   const [missing, setMissing] = useState<string[]>([])
+  const [where, setWhere] = useState<{ found: boolean; looked: string[] } | null>(null)
 
   const load = useCallback(async () => {
     const r = await api('status')
     if (!r.ok) { setErr(r.data.error || ''); setCode(r.status); setPhase('error'); return }
     if (r.data.configError) { setErr(`The file vh-config.php has a typing mistake near line ${r.data.configError}. Open it in Hostinger File Manager and compare it with docs/ADMIN.md: every line ends with a comma, text is inside single quotes, and the file starts with <?php return [ and ends with ];`); setCode(200); setPhase('error'); return }
-    if (!r.data.configured) { setMissing(r.data.missing || []); setPhase('setup'); return }
+    if (!r.data.configured) { setMissing(r.data.missing || []); setWhere(r.data.config || null); setPhase('setup'); return }
     if (r.data.authed) { csrf = r.data.csrf; setPhase('app') } else setPhase('login')
   }, [])
   useEffect(() => { load() }, [load])
@@ -61,7 +62,7 @@ export default function AdminApp() {
       </div>
     </div>
   )
-  if (phase === 'setup') return <Setup missing={missing} />
+  if (phase === 'setup') return <Setup missing={missing} where={where} />
   if (phase === 'login') return <Login onDone={(t: string) => { csrf = t; setPhase('app') }} />
 
   return (
@@ -89,7 +90,7 @@ export default function AdminApp() {
   )
 }
 
-function Setup({ missing }: { missing: string[] }) {
+function Setup({ missing, where }: { missing: string[]; where: { found: boolean; looked: string[] } | null }) {
   const [pw, setPw] = useState(''); const [hash, setHash] = useState(''); const [e, setE] = useState('')
   const needsHash = missing.includes('admin_password_hash')
   const items: [string, string][] = [['repo', "'repo' (the GitHub repository name)"], ['admin_github_token', "'admin_github_token' (the GitHub token)"], ['admin_password_hash', "'admin_password_hash' (your password code)"]]
@@ -97,6 +98,12 @@ function Setup({ missing }: { missing: string[] }) {
     <div className="card max-w-xl space-y-4">
       <h1 className="font-serif text-2xl">Admin setup</h1>
       <p className="text-sm text-ink-mid">The admin service is running, but <code>vh-config.php</code> on the server is still missing some settings. All three must be present before you can log in. Steps are in <strong>docs/ADMIN.md</strong>.</p>
+      {where && (
+        <div className={`text-sm border px-3 py-2 ${where.found ? 'border-primary/30 bg-primary/10' : 'border-red-300 bg-red-50 text-red-800'}`}>
+          {where.found ? '✔ The server found vh-config.php.' : '✖ The server cannot find vh-config.php.'}
+          {!where.found && <> It looks for the file at <code>{where.looked[0]}</code>, in the folder that also contains <code>public_html</code>. Check the file name and folder in File Manager.</>}
+        </div>
+      )}
       <ul className="text-sm space-y-1">{items.map(([k, l]) => <li key={k}>{missing.includes(k) ? '✖' : '✔'} <span className={missing.includes(k) ? 'text-ink' : 'text-ink-mid'}>{l}</span></li>)}</ul>
       {needsHash && !hash && (
         <form onSubmit={async ev => { ev.preventDefault(); setE(''); const r = await api('setup', { password: pw }); if (r.ok) setHash(r.data.hash); else setE(r.data.error || 'Failed') }}>

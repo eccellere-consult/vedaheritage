@@ -254,6 +254,10 @@ try {
   fs.writeFileSync(path.join(tmp, 'broken-config.php'), "<?php return [\n  'repo' => 'a/b'\n  'admin_password_hash' => 'x',\n];\n")
   const brk = spawnSync('php', ['-r', '$_GET["a"]="status"; $_SERVER["REQUEST_METHOD"]="GET"; require "public/api/admin/index.php";'], { env: { ...process.env, VH_CONFIG: path.join(tmp, 'broken-config.php') }, encoding: 'utf8' })
   let brkJson = {}; try { brkJson = JSON.parse(brk.stdout) } catch {}
+  const nf = spawnSync('php', ['-r', '$_GET["a"]="status"; $_SERVER["REQUEST_METHOD"]="GET"; require "public/api/admin/index.php";'], { env: { ...process.env, VH_CONFIG: '/nowhere/domains/example.org/vh-config.php' }, encoding: 'utf8' })
+  let nfJson = {}; try { nfJson = JSON.parse(nf.stdout) } catch {}
+  ok(nfJson.config?.found === false && nfJson.config.looked[0] === 'domains/example.org/vh-config.php' && nfJson.missing?.length === 3, 'a missing vh-config.php is reported with where the server looked (shortened, no account names)')
+  ok(dj.config?.found === true, 'a present vh-config.php is reported as found')
   ok(brkJson.configured === false && Number(brkJson.configError) > 0 && brkJson.missing?.length === 3, 'a typing mistake in vh-config.php gives a clear status (line number and the names of missing settings, no secrets) instead of crashing')
   if (!process.env.ADMIN_HOLD) {
     cookie = ''; csrf = ''

@@ -75,6 +75,7 @@ if ($a === 'status') {
     if (!(cfg()['admin_password_hash'] ?? '')) $missing[] = 'admin_password_hash';
     json_out(200, [
         'configError' => vh_cfg_error_line() ?: null,
+        'config' => vh_cfg_where(),
         'authed' => $authed, 'csrf' => $authed ? ($_SESSION['csrf'] ?? '') : '',
         'configured' => !$missing,
         'missing' => $missing,
