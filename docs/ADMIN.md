@@ -51,6 +51,9 @@ If the file already has lines for story intake (`github_token`, `notify_email`),
 
 **Step 4. Log in** at `/admin/`. If you see "Incorrect password", re-copy the code (Step 2) without spaces.
 
+## If the setup page appears again after a deploy
+A deploy replaces the website files. Files that are not part of the site can be removed by Hostinger when it pulls a new build, and that includes `public_html/api/private/vh-config.php`. The site now ships a `.gitignore` that asks Git to leave that file and the `data/` folder next to it alone, which protects them if Hostinger only cleans tracked files. If the setup page still reappears after a merge, the file was removed: recreate it (keep the five lines in your password manager), then use the outside-the-web-folder location below if the setup page reports that PHP can read it. The status page (`…/api/admin/index.php?a=status`) now lists any file whose name starts with "vh" and spells out hidden characters, so a look-alike name such as a non-breaking hyphen is visible.
+
 ## If you see "Admin unavailable"
 Open `https://www.vedaheritage.co.in/api/admin/index.php?a=status` in a new tab. You should see one line starting with `{"configError"` or `{"authed"`.
 - **Page not found (404):** the latest deploy has not reached Hostinger. Check GitHub → Actions for a green "Build and publish site", then hPanel → Git for a green deploy.

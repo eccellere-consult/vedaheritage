@@ -292,6 +292,15 @@ try {
   try { ok(dd.stdout.trim() === path.join(webDir, 'api/private/data'), 'with PHP confined to the web folder, private data goes to the protected folder, not a temporary one (' + dd.stdout.trim().replace(webDir, '…/public') + ')') } finally { fs.rmSync(path.join(priv, 'data'), { recursive: true, force: true }) }
   const dd2 = spawnSync('php', ['-r', 'define("VH_LIB",1); require "public/api/lib/common.php"; echo vh_data_dir();'], { encoding: 'utf8', env: { ...process.env, VH_CONFIG: '' } })
   try { ok(dd2.stdout.trim() === path.resolve('vh-data') && !fs.existsSync(path.join(priv, 'data')), 'without restrictions, private data stays beside the web folder (vh-data)') } finally { fs.rmSync(path.resolve('vh-data'), { recursive: true, force: true }) }
+
+  // ---------------------------------------------------------------- hidden characters in the file name
+  const dh = fs.mkdtempSync(path.join(os.tmpdir(), 'vh-hidden-')); fs.mkdirSync(path.join(dh, 'site'))
+  fs.writeFileSync(path.join(dh, 'site', 'vh‑config.php'), 'x')          // non-breaking hyphen: looks identical in File Manager
+  fs.writeFileSync(path.join(dh, 'site', 'other.txt'), 'x')
+  const hid = probe(path.join(dh, 'site', 'vh-config.php')).config?.diag
+  ok(hid?.vhNames?.includes('vh\\u{2011}config.php') && hid.entryCount === 2 && hid.similarFile === null, 'diagnostic: a file name with a hidden look-alike hyphen is spelled out so it can be recognised')
+  fs.rmSync(dh, { recursive: true, force: true })
+  ok(/api\/private\/vh-config\.php/.test(fs.readFileSync('public/.gitignore', 'utf8')) && /api\/private\/data\//.test(fs.readFileSync('public/.gitignore', 'utf8')), 'the published .gitignore protects the server settings and private data from being cleaned by Git')
   if (!process.env.ADMIN_HOLD) {
     cookie = ''; csrf = ''
     let last; for (let i = 0; i < 5; i++) last = await call('login', { method: 'POST', body: { password: 'bad' + i } })

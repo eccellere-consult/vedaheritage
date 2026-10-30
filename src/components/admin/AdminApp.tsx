@@ -90,7 +90,7 @@ export default function AdminApp() {
   )
 }
 
-interface Diag { phpOk: boolean; dirExists: boolean; dirReadable: boolean; openBasedirSet: boolean; openBasedirCoversDir: boolean | null; similarFile: string | null; fileInWebFolder: boolean; fileOneLevelTooHigh: boolean; privateFolderReady?: boolean }
+interface Diag { phpOk: boolean; dirExists: boolean; dirReadable: boolean; openBasedirSet: boolean; openBasedirCoversDir: boolean | null; similarFile: string | null; fileInWebFolder: boolean; fileOneLevelTooHigh: boolean; privateFolderReady?: boolean; entryCount?: number | null; vhNames?: string[] }
 interface Where { found: boolean; looked: string[]; diag?: Diag }
 
 /** Plain-language reason the settings file was not found, most specific first. */
@@ -101,6 +101,7 @@ function whyNotFound(w: Where): string[] {
   if (!d.phpOk) r.push('This server runs PHP older than 7.4. In hPanel go to Advanced → PHP Configuration and choose 8.1 or newer.')
   if (d.fileInWebFolder) r.push('A vh-config.php sits inside public_html. That is the wrong place (the web folder is public and the file is never read from there). Move it up one level, into the folder that contains public_html.')
   if (d.fileOneLevelTooHigh) r.push(`A vh-config.php sits one folder too high. Move it down into ${target.replace('/vh-config.php', '')}.`)
+  if (d.vhNames && d.vhNames.length && !d.similarFile) r.push(`The server sees these names starting with "vh" in that folder: ${d.vhNames.join(', ')}. If one looks like vh-config.php but has \\u{...} codes in it, the name contains a hidden or look-alike character: delete that file and create a new one by typing the name yourself.`)
   if (d.similarFile) r.push(`There is a file named "${d.similarFile}". Rename it to exactly vh-config.php (no .txt, no spaces, a hyphen not an underscore).`)
   if (d.openBasedirSet && d.openBasedirCoversDir === false) r.push('This host blocks PHP from reading above public_html (open_basedir). Easiest fix: move vh-config.php into the protected folder public_html/api/private/ (visitors cannot open anything in it), then reload this page. Alternatively widen open_basedir under hPanel → Advanced → PHP Configuration.')
   else if (!d.dirReadable && d.dirExists) r.push('The folder exists but the server is not allowed to read it. Move vh-config.php into the protected folder public_html/api/private/ and reload, or check the folder permissions in File Manager (755 for folders).')
