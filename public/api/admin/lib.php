@@ -12,7 +12,7 @@ require __DIR__ . '/../lib/common.php';
 
 const SESSION_IDLE = 1800;     // log out after 30 minutes idle
 const SESSION_MAX  = 28800;    // and after 8 hours regardless
-const CATS = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical'];
+const CATS = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi'];
 
 ini_set('display_errors', '0');
 

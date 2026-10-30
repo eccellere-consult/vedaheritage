@@ -61,6 +61,13 @@ export const EntryOut = z.object({
     buyingTips: z.array(z.string()),
   }).nullable(),
   officialLinks: z.array(Source).nullable(),
+  // Food only: where to eat it. Named places only if confirmed from a retrieved page; otherwise places is empty and the tips say what to look for.
+  eat: z.object({ places: z.array(PlaceOut), tips: z.array(z.string()) }).nullable(),
+  // Dishes only (category "food"): a traditional recipe in your OWN words. Null for everything else.
+  recipe: z.object({
+    servings: z.string().nullable(), time: z.string().nullable(),
+    ingredients: z.array(z.string()), method: z.array(z.string()), tips: z.array(z.string()).nullable(),
+  }).nullable(),
   // Official contacts only (temple administration, tourism department, transport enquiries, emergency). Never private businesses.
   contacts: z.array(ContactOut).nullable(),
   coordinates: z.object({ lat: z.number(), lng: z.number() }).nullable(),
@@ -114,6 +121,10 @@ export function toEntryFile(out, { category, slug, date, sources, contacts = [] 
       ...(out.heritage.localName ? { localName: out.heritage.localName } : {}), ...(out.heritage.materials ? { materials: out.heritage.materials } : {}),
       whereToSee: out.heritage.whereToSee.map(cleanPlace), whereToBuy: out.heritage.whereToBuy.map(cleanPlace), experiences: out.heritage.experiences.map(cleanPlace),
       buyingTips: out.heritage.buyingTips } } : {}),
+    ...(out.eat && category === 'food' && out.eat.tips.length >= 2 ? { eat: { places: out.eat.places.map(cleanPlace), tips: out.eat.tips } } : {}),
+    ...(out.recipe && category === 'food' && out.recipe.ingredients.length >= 3 && out.recipe.method.length >= 3 ? { recipe: {
+      ...(out.recipe.servings ? { servings: out.recipe.servings } : {}), ...(out.recipe.time ? { time: out.recipe.time } : {}),
+      ingredients: out.recipe.ingredients, method: out.recipe.method, ...(out.recipe.tips?.length ? { tips: out.recipe.tips } : {}) } } : {}),
     ...(out.officialLinks?.length ? { officialLinks: out.officialLinks } : {}),
     ...(contacts.length ? { contacts: contacts.map(c => ({ label: c.label, kind: c.kind, ...(c.phone ? { phone: c.phone } : {}), ...(c.email ? { email: c.email } : {}), ...(c.website ? { website: c.website } : {}), ...(c.address ? { address: c.address } : {}), sourceUrl: c.sourceUrl, verifiedOn: date })) } : {}),
     ...(out.coordinates ? { coordinates: out.coordinates } : {}),

@@ -174,7 +174,7 @@ function createMock(state, consulted) {
           highlights: ['One', 'Two', 'Three'],
           visitorInfo: { bestTime: 'Winter', howToReach: 'By road', etiquette: ['Dress modestly.'], duration: null },
           travel: { byTrain: ['Nearest station X'], byBus: ['KSRTC Y'], byWater: null, byAir: null },
-          officialLinks: null, heritage: null, coordinates: null, tags: ['mock', 'test'],
+          officialLinks: null, heritage: null, coordinates: null, recipe: null, eat: null, tags: ['mock', 'test'],
           contacts: [
             { label: 'Mock temple office', kind: 'temple-office', phone: '+91 479 2300000', email: null, website: null, address: null, sourceUrl: a },
             { label: 'Invented contact', kind: 'other', phone: '+91 99999 00000', email: null, website: null, address: null, sourceUrl: 'https://not-consulted.example/c' },

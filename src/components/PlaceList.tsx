@@ -2,6 +2,7 @@ import type { Place } from '@/lib/content'
 
 const KIND_LABEL: Record<string, string> = {
   cooperative: 'Co-operative', emporium: 'Emporium', workshop: 'Workshop', market: 'Market', online: 'Listings',
+  restaurant: 'Restaurant', oottupura: 'Traditional meals house', thattukada: 'Street stall', 'kanji-kada': 'Kanji shop', 'temple-canteen': 'Temple canteen', 'homestay-meal': 'Homestay meal', 'toddy-shop': 'Licensed toddy shop',
   museum: 'Museum', 'heritage-home': 'Heritage home', 'cultural-centre': 'Cultural centre',
 }
 

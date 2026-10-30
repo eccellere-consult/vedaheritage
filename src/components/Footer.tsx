@@ -28,6 +28,8 @@ export default function Footer() {
                 ['/discover/vedic', 'Vedic Heritage & Mantras'],
                 ['/discover/healing', 'Healing & Ayurvedic Plants'],
                 ['/discover/medical', 'Medical & Wellness Tourism'],
+                ['/discover/food', 'Kerala Food & Recipes'],
+                ['/discover/muthassi', 'Muthassi Stories'],
                 ['/discover/dance', 'Music & Dance'],
                 ['/discover/astrology', 'Astrology & Jyotisha'],
                 ['/discover/weddings', 'Weddings & Life Rituals'],
