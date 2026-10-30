@@ -97,7 +97,24 @@
     "lat": 9.4981,
     "lng": 76.3388
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/alappuzha-backwaters-1.jpg",
+      "alt": "Church in Alleppey Alappuzha Backwaters",
+      "credit": "Avinash Singh",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Church_in_Alleppey_Alappuzha_Backwaters_(29572542881).jpg"
+    },
+    {
+      "src": "/images/discover/alappuzha-backwaters-2.jpg",
+      "alt": "Backwaters of Alleppey Kerela",
+      "credit": "Avinash Singh",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boat_in_the_Backwaters_of_Alleppey_Kerela_(29027455364).jpg"
+    }
+  ],
   "tags": [
     "backwaters",
     "houseboat",
