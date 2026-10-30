@@ -95,7 +95,24 @@
     "lat": 9.3832858,
     "lng": 76.3673143
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/ambalappuzha-sree-krishna-swamy-temple-1.jpg",
+      "alt": "Sree Krishna Swamy Temple, commonly known as Ambalappuzha Sree Krishna Swamy Temple is an Indian Hindu temple dedicated to Krishna at Ambalappuzha in Alappuzha ",
+      "credit": "Vijayanrajapuram",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ambalappuzha_Sree_Krishna_Temple_Kunchan_nambiar_Mizhave.jpg"
+    },
+    {
+      "src": "/images/discover/ambalappuzha-sree-krishna-swamy-temple-2.jpg",
+      "alt": "Sree Krishna Swamy Temple, commonly known as Ambalappuzha Sree Krishna Swamy Temple is an Indian Hindu temple dedicated to Krishna at Ambalappuzha in Alappuzha ",
+      "credit": "Vijayanrajapuram",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ambalappuzha_Sree_Krishna_Temple_17.jpg"
+    }
+  ],
   "tags": [
     "temple",
     "Krishna",
