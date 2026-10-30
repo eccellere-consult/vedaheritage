@@ -238,7 +238,7 @@ try {
         $n = (int)($_GET['number'] ?? 0); if ($n < 1) json_out(400, ['error' => 'Bad request.']);
         $p = review_pr_open($n); $head = $p['head']['sha'];
         $files = gh_ok(gh('GET', '/repos/' . repo() . "/pulls/$n/files", null, ['per_page' => 100]), 'read PR files');
-        $cards = []; $photos = 0; $other = 0;
+        $cards = []; $photos = 0; $other = 0; $evs = [];
         foreach ($files as $f) {
             $fn = $f['filename'] ?? '';
             if (($f['status'] ?? '') === 'removed') { $other++; continue; }
@@ -246,12 +246,17 @@ try {
                 $file = gh_file($fn, $head); $e = $file ? json_decode($file['text'], true) : null; if (!is_array($e)) continue;
                 $evf = gh_file("agents/evidence/{$m[2]}.json", $head); $ev = $evf ? json_decode($evf['text'], true) : null;
                 $cards[] = review_card($e, $ev, $f['status'] ?? 'modified', $head);
+            } elseif ($fn === 'src/content/events/calendar.json') {
+                $hf = gh_file($fn, $head); $mf = gh_file($fn, 'main');
+                $hc = $hf ? json_decode($hf['text'], true) : null; $mc = $mf ? json_decode($mf['text'], true) : null;
+                $old = []; foreach (($mc['events'] ?? []) as $x) $old[$x['id'] ?? ''] = $x;
+                foreach (($hc['events'] ?? []) as $x) if (is_array($x) && !isset($old[$x['id'] ?? ''])) $evs[] = ['name' => (string)($x['name'] ?? ''), 'start' => (string)($x['start'] ?? ''), 'end' => (string)($x['end'] ?? ''), 'place' => (string)($x['place'] ?? ''), 'district' => (string)($x['district'] ?? ''), 'certainty' => (string)($x['certainty'] ?? ''), 'summary' => (string)($x['summary'] ?? ''), 'sources' => array_values(array_filter(array_map(fn($s) => preg_match('~^https://~', $s['url'] ?? '') ? ['label' => (string)($s['label'] ?? $s['url']), 'url' => $s['url']] : null, is_array($x['sources'] ?? null) ? $x['sources'] : [])))];
             } elseif (strpos($fn, 'public/images/') === 0) $photos++;
             else $other++;
         }
         $ck = check_state($head);
         json_out(200, ['number' => $n, 'title' => $p['title'], 'head' => $head, 'branch' => $p['head']['ref'], 'url' => $p['html_url'] ?? '', 'checks' => $ck['state'],
-            'mergeable' => $p['mergeable'] ?? null, 'cards' => $cards, 'photoFiles' => $photos, 'otherFiles' => $other]);
+            'mergeable' => $p['mergeable'] ?? null, 'cards' => $cards, 'events' => $evs, 'photoFiles' => $photos, 'otherFiles' => $other]);
     }
 
     case 'review_apply': {
@@ -381,6 +386,10 @@ try {
             $slug = (string)($inp['slug'] ?? ''); if ($slug !== '' && !valid_slug($slug)) json_out(400, ['error' => 'Bad slug.']);
             $send = ($slug !== '' ? ['slug' => $slug] : []) + ['force' => !empty($inp['force']) ? 'true' : 'false'];
             $file = 'fetch-images.yml';
+        } elseif ($w === 'events') {
+            $pv = (string)($inp['provider'] ?? 'saved');
+            if (!in_array($pv, ['saved', 'auto', 'xai', 'openai', 'anthropic'], true)) json_out(400, ['error' => 'Bad provider.']);
+            $send = ['provider' => $pv]; $file = 'events.yml';
         } elseif ($w === 'link-check') { $file = 'link-check.yml'; }
         else json_out(400, ['error' => 'Unknown workflow.']);
         $r = gh('POST', '/repos/' . repo() . "/actions/workflows/$file/dispatches", ['ref' => 'main'] + ($send ? ['inputs' => $send] : []));
@@ -391,7 +400,7 @@ try {
 
     case 'site': {
         $runs = [];
-        foreach (['deploy.yml', 'content-agents.yml', 'fetch-images.yml'] as $wf) {
+        foreach (['deploy.yml', 'content-agents.yml', 'events.yml', 'fetch-images.yml'] as $wf) {
             $r = gh('GET', '/repos/' . repo() . "/actions/workflows/$wf/runs", null, ['per_page' => 3]);
             foreach (($r[1]['workflow_runs'] ?? []) as $x) $runs[] = ['workflow' => $wf, 'status' => $x['status'], 'conclusion' => $x['conclusion'], 'when' => $x['created_at'], 'url' => $x['html_url'], 'sha' => substr($x['head_sha'], 0, 7), 'event' => $x['event']];
         }

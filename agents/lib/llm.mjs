@@ -161,6 +161,16 @@ function createMock(state, consulted) {
           { name: 'Unsourced Mock Place', category: 'places', district: 'Kollam', reason: 'no sources', priority: 3, sourceUrls: ['https://not-consulted.example/y'] },
         ] }
       }
+      if (label === 'events') {
+        const d = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10)
+        return { events: [
+          { name: 'Mock Boat Race', type: 'Boat race', start: d(3), end: d(3), place: 'Mock Lake', district: 'Alappuzha', summary: 'A mock snake-boat race used to exercise the events agent end to end.', certainty: 'confirmed', sourceUrls: [`${U}a-events`] },
+          { name: 'Mock Temple Utsavam', type: 'Temple festival', start: d(200), end: d(206), place: 'Mock Temple', district: 'Thrissur', summary: 'A mock temple festival with the usual dates, not yet announced officially.', certainty: 'expected', sourceUrls: [`${U}b-events`] },
+          { name: 'Unsourced Mock Fair', type: 'Fair & market', start: d(10), end: d(11), place: 'Nowhere', district: 'Kollam', summary: 'A mock fair that has no retrieved source and must be dropped.', certainty: 'confirmed', sourceUrls: ['https://not-consulted.example/f'] },
+          { name: 'Mock Past Event', type: 'Cultural', start: d(-9), end: d(-8), place: 'Mock Hall', district: 'Kollam', summary: 'A mock event that has already ended and must be dropped.', certainty: 'confirmed', sourceUrls: [`${U}a-events`] },
+          { name: 'Mock Bad Date', type: 'Cultural', start: '2026-13-45', end: '2026-13-46', place: 'Mock Hall', district: 'Kollam', summary: 'A mock event with an impossible date that must be dropped.', certainty: 'confirmed', sourceUrls: [`${U}a-events`] },
+        ] }
+      }
       if (label === 'enrich') {
         const a = ctx.urls?.[0] || `${U}a`, b = ctx.urls?.[1] || `${U}b`
         return {

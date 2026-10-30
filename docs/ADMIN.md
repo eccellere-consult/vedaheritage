@@ -24,6 +24,8 @@ The admin enforces the same rules as the validator. A guide needs at least **1 l
 3. Tick the pages you accept (ready pages are pre-ticked; flagged pages are not). Missing a photo? **Upload your own photo**: pick the picture, type the credit and a description; it is attached to that page inside the batch.
 4. Press **Publish N & finish batch**. The admin publishes the ticked pages, waits for the safety checks, merges and the site updates once. Unticked pages stay drafts.
 
+The weekly **events calendar** update (Sundays 01:00 IST, or **Run agents > Update events now**) arrives as a batch too. It shows each new event with its dates, place and source links; check the links, then press **Merge events calendar**.
+
 Per-page tools remain under **Drafts** (unpublish, find images, upload your own photo) for pages already on `main`.
 
 ### Your own photos

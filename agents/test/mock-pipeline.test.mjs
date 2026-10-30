@@ -72,5 +72,19 @@ assert.equal(toEntryFile({ ...base, recipe: null, eat }, { category: 'temples', 
 assert.equal(toEntryFile({ ...base, recipe: null, eat: { places: [], tips: ['only one'] } }, { category: 'food', slug: 't', date: '2026-01-01', sources: [] }).eat, undefined, 'where-to-eat needs at least two tips')
 assert.equal(toEntryFile({ ...base, recipe: { ...rec, method: ['1'] } }, { category: 'food', slug: 't', date: '2026-01-01', sources: [] }).recipe, undefined, 'an incomplete recipe is dropped')
 
-fs.rmSync(tmp, { recursive: true, force: true })
 console.log('✔ agent pipeline (mock) passed')
+
+// Events agent: only dated, sourced, upcoming events are kept; a rerun updates in place
+r = run('events')
+assert.equal(r.status, 0, r.stderr || r.stdout)
+const calPath = path.join(tmp, 'src/content/events/calendar.json')
+let cal = JSON.parse(fs.readFileSync(calPath, 'utf8'))
+assert.deepEqual(cal.events.map(e => e.name).sort(), ['Mock Boat Race', 'Mock Temple Utsavam'], 'unsourced, past and bad-date events are dropped')
+assert.ok(cal.events.every(e => e.sources.every(s => s.url.startsWith('https://example.org/'))), 'only retrieved sources survive')
+assert.equal(cal.events.find(e => e.name === 'Mock Temple Utsavam').certainty, 'expected')
+r = run('events')
+cal = JSON.parse(fs.readFileSync(calPath, 'utf8'))
+assert.equal(cal.events.length, 2, 'a second run does not duplicate events')
+assert.equal(spawnSync('node', ['scripts/validate-content.mjs'], { cwd: tmp, encoding: 'utf8' }).status, 0, 'calendar passes the validator')
+
+fs.rmSync(tmp, { recursive: true, force: true })

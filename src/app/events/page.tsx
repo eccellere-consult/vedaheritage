@@ -1,13 +1,41 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { KERALA_EVENTS, EVENT_TYPE_COLOURS, EventType } from '@/data/events'
+import { planningWindows, formatRange, getCalendar, CalendarEvent } from '@/lib/events'
 
 export const metadata: Metadata = {
   title: 'Kerala Events & Festivals',
   description: 'A month-by-month guide to Kerala festivals, Amritapuri ashram programs, and cultural events near Veda Heritage, Vavvakkavu, Kollam.',
 }
 
+function Upcoming({ title, blurb, events }: { title: string; blurb: string; events: CalendarEvent[] }) {
+  if (!events.length) return null
+  return (
+    <div className="mb-12">
+      <h2 className="font-serif text-3xl text-ink">{title}</h2>
+      <p className="text-sm text-ink-mid mb-5">{blurb}</p>
+      <div className="grid sm:grid-cols-2 gap-4">
+        {events.map(e => (
+          <div key={e.id} className="bg-white p-5 border-l-4 border-accent/40">
+            <p className="text-accent text-xs tracking-wide">{formatRange(e)} · {e.type}</p>
+            <h3 className="font-serif text-xl text-ink my-1">{e.name}</h3>
+            <p className="text-xs text-ink-mid mb-2">{e.place}, {e.district}</p>
+            <p className="text-sm text-ink-mid">{e.summary}</p>
+            <p className="text-xs mt-3 text-ink-mid">
+              {e.certainty === 'confirmed' ? 'Dates published by the organiser.' : 'Usual dates: confirm before travelling.'}{' '}
+              {e.sources.slice(0, 2).map((s, i) => <a key={i} className="underline text-primary mr-2" href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a>)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function EventsPage() {
+  const win = planningWindows()
+  const cal = getCalendar()
+  const hasUpcoming = win.week.length + win.month.length + win.year.length > 0
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December',
@@ -32,6 +60,19 @@ export default function EventsPage() {
           Kerala's calendar is extraordinarily rich. Plan around what matters to you.
         </p>
       </section>
+
+      {/* Plan ahead: refreshed weekly by the events agent */}
+      {hasUpcoming && (
+        <section className="py-14 bg-surface border-b border-accent/10">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="section-label">Plan ahead</p>
+            <Upcoming title="This week" blurb="Happening in the next seven days." events={win.week} />
+            <Upcoming title="This month" blurb="Later this month." events={win.month} />
+            <Upcoming title="The year ahead" blurb="Book early for these." events={win.year} />
+            <p className="text-xs text-ink-mid/70 italic">Checked weekly{cal.updated ? `, last on ${cal.updated}` : ''}. Dates come from the linked pages. Always confirm with the organiser before you travel.</p>
+          </div>
+        </section>
+      )}
 
       {/* Legend */}
       <section className="bg-white border-b border-accent/10 py-4">

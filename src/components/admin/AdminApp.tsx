@@ -287,6 +287,16 @@ function Batch({ number, say, done }: { number: number; say: (t: string, bad?: b
     <div className="mt-3 space-y-3">
       {err && <p className="text-red-700 text-sm">{err}</p>}{!data && !err && <p className="text-ink-mid">Loading…</p>}
       {data && <p className="text-sm text-ink-mid">{cards.length} page(s) · {data.photoFiles} photo file(s) · safety checks: <strong>{data.checks}</strong>{data.mergeable === false && ' · conflict with main'} · <a className="underline text-primary" href={data.url} target="_blank" rel="noopener noreferrer">view on GitHub</a></p>}
+      {(data?.events || []).length > 0 && (
+        <div className="card !p-5">
+          <h3 className="font-serif text-lg text-ink">Events calendar: {data?.events.length} new event(s)</h3>
+          <p className="text-sm text-ink-mid mb-3">These appear on the Events page under This week, This month and The year ahead. Each date comes from a page the agent retrieved. Open the link to check it.</p>
+          <ul className="space-y-3 text-sm">{data?.events.map((e: Json, i: number) => (
+            <li key={i}><strong>{e.name}</strong> · {e.start === e.end ? e.start : `${e.start} to ${e.end}`} · {e.place}, {e.district} · {e.certainty === 'confirmed' ? badge('dates published', 'ok') : badge('usual dates, unconfirmed', 'warn')}
+              <span className="block text-ink-mid">{e.summary}</span>
+              <span className="block">{e.sources.map((s: Json, k: number) => <a key={k} className="underline text-primary mr-3 text-xs" href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a>)}</span></li>))}</ul>
+        </div>
+      )}
       {cards.map(c => (
         <div key={key(c)} className="card !p-5">
           <label className="flex items-start gap-3">
@@ -312,8 +322,8 @@ function Batch({ number, say, done }: { number: number; say: (t: string, bad?: b
         </div>
       ))}
       {data && <div className="sticky bottom-0 bg-white/95 border-t border-accent/20 py-3 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-ink-mid">{step || (chosen.length ? `${chosen.length} page(s) will be published; the rest stay as drafts.` : 'Nothing ticked: the batch is saved as drafts, nothing goes public.')}</p>
-        <button className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed" disabled={!!step || data.mergeable === false || data.checks === 'failed'} onClick={() => { if (window.confirm(chosen.length ? `Publish ${chosen.length} page(s) and update the live site?` : 'Save this batch as drafts? Nothing becomes public.')) go() }}>{chosen.length ? `Publish ${chosen.length} & finish batch` : 'Save batch as drafts'}</button>
+        <p className="text-sm text-ink-mid">{step || (chosen.length ? `${chosen.length} page(s) will be published; the rest stay as drafts.` : (data.events || []).length ? 'Nothing ticked: only the events calendar update is merged.' : 'Nothing ticked: the batch is saved as drafts, nothing goes public.')}</p>
+        <button className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed" disabled={!!step || data.mergeable === false || data.checks === 'failed'} onClick={() => { if (window.confirm(chosen.length ? `Publish ${chosen.length} page(s) and update the live site?` : 'Save this batch as drafts? Nothing becomes public.')) go() }}>{chosen.length ? `Publish ${chosen.length} & finish batch` : (data.events || []).length ? 'Merge events calendar' : 'Save batch as drafts'}</button>
       </div>}
     </div>
   )
@@ -663,6 +673,11 @@ function Agents({ say }: { say: (t: string, bad?: boolean) => void }) {
           <input id="is" className={inp + ' mb-3'} value={im.slug} onChange={e => setIm({ ...im, slug: e.target.value })} />
           <label className="text-sm flex gap-2 mb-3"><input type="checkbox" checked={im.force} onChange={e => setIm({ ...im, force: e.target.checked })} /> Replace existing images</label>
           <button className="btn-primary text-xs" onClick={() => run('fetch-images', im)}>Find images</button>
+        </div>
+        <div className="card">
+          <h2 className="font-serif text-xl mb-1">Update the events calendar</h2>
+          <p className="text-sm text-ink-mid mb-4">Finds events for this week, this month and the year ahead, with dates read from the pages it retrieved. It also runs by itself every Sunday at 01:00 IST. The result arrives as a batch under <strong>Review agent work</strong>.</p>
+          <button className="btn-primary text-xs" onClick={() => run('events', {})}>Update events now</button>
         </div>
         <div className="card">
           <h2 className="font-serif text-xl mb-1">Check official links</h2>

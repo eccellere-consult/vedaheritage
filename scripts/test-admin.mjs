@@ -127,6 +127,9 @@ try {
   ok((await up({ image: Buffer.from('not a jpeg').toString('base64') })).s === 422 && (await up({ credit: '' })).s === 400 && (await up({ slug: '../x' })).s === 400, 'upload rejects non-JPEG, missing credit and bad slugs')
   const u2 = await call('photo_upload', { method: 'POST', body: { category: 'temples', slug: 'gated', number: 1, credit: 'Photo: Asha', alt: 'Gate of the temple', image: ownJpg } })
   ok(u2.s === 200 && refsPatched.at(-1) === 'agents/x', 'a photo can be attached inside an agent batch (commit goes to its branch)')
+  const evw = await call('run_workflow', { method: 'POST', body: { workflow: 'events', inputs: { provider: 'openai' } } })
+  ok(evw.s === 200 && dispatches.at(-1)?.p.endsWith('/events.yml/dispatches') && dispatches.at(-1).b.inputs.provider === 'openai' && (await call('run_workflow', { method: 'POST', body: { workflow: 'events', inputs: { provider: 'x;rm' } } })).s === 400, 'the events agent can be started from the admin (provider checked)')
+  ok(Array.isArray((await call('review_pr&number=1')).d.events), 'review reports calendar changes')
   const pl = await call('prs'); ok(pl.d.prs.map(p => p.checks).join() === 'passed,failed,needs_approval', 'PR list reports check state')
   ok((await call('merge_pr', { method: 'POST', body: { number: 2 } })).s === 422 && (await call('merge_pr', { method: 'POST', body: { number: 3 } })).s === 422 && !merged.length, 'red and unapproved PRs cannot be merged')
   ok((await call('merge_pr', { method: 'POST', body: { number: 1 } })).s === 200 && merged[0] === 1, 'green PR merges')
@@ -135,7 +138,7 @@ try {
   ok((await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'rm -rf', max: '3' } } })).s === 400, 'workflow input is validated (command)')
   ok((await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'scout', budget: '99' } } })).s === 400, 'workflow input is validated (budget cap)')
   const run = await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'scout', max: '2', budget: '5' } } })
-  ok(run.s === 200 && dispatches[0]?.b.ref === 'main' && dispatches[0].b.inputs.command === 'scout', 'agents run is dispatched on main')
+  ok(run.s === 200 && dispatches.find(d => d.p.includes('content-agents'))?.b.ref === 'main' && dispatches.find(d => d.p.includes('content-agents')).b.inputs.command === 'scout', 'agents run is dispatched on main')
   const act = await call('activity'); ok(act.d.events.some(e => e.e === 'set-status') && act.d.events.some(e => e.e === 'login-failed'), 'audit log records actions and failed logins')
   await call('logout', { method: 'POST' }); ok((await call('overview')).s === 401, 'logout ends the session')
 
