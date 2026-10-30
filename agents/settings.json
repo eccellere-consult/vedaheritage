@@ -1,5 +1,5 @@
 {
-    "provider": "auto",
+    "provider": "openai",
     "verifierProvider": "anthropic",
     "updated": "2026-10-30"
 }
