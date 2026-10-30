@@ -1,149 +1,149 @@
 {
-  "slug": "ambalappuzha-sree-krishna-swamy-temple",
-  "category": "temples",
-  "name": "Ambalappuzha Sree Krishna Swamy Temple",
-  "district": "Alappuzha",
-  "tagline": "Major Vaishnava shrine famed for Ambalappuzha Palpayasam prasadam",
-  "summary": "One of Kerala’s seven great Vaishnava temples in Alappuzha, known for Ambalappuzha Palpayasam prasadam and Parthasarathy-form Krishna idol in classic Kerala architecture with murals.",
-  "description": [
-    "The temple stands in Ambalappuzha town and is popularly known as the “Dwaraka of the South.” The presiding deity is Lord Krishna in the Parthasarathy form, depicted in black granite holding a whip in the right hand and a conch in the left.",
-    "The shrine follows classic Kerala temple architecture with a chuttambalam adorned with murals including depictions of the Dasavatharam. It is one of the seven greatest temples associated with historic Travancore.",
-    "Its fame rests especially on the Ambalappuzha Palpayasam, a sweet milk-rice porridge offered as prasadam (prepared daily in large quantity; advance booking often required)."
-  ],
-  "history": {
-    "significance": "The temple is one of the seven great Vaishnava shrines of Kerala and a key site linked to the Chembakassery kingdom and later Travancore traditions.",
-    "timeline": [
-      {
-        "period": "15th–17th century CE",
-        "event": "Built by Chembakassery ruler Pooradam Thirunal Devanarayanan Thampuran (accounts vary slightly on exact century)."
-      },
-      {
-        "period": "1789",
-        "event": "Idol of Guruvayurappan brought here for safekeeping during Tipu Sultan’s raids and kept for about three years."
-      },
-      {
-        "period": "15th century onward",
-        "event": "Ambalappuzha Temple Festival (Chambakulam Moolam water festival) established, commemorating the bringing of the Krishna idol from Karinkulam temple."
-      }
+    "slug": "ambalappuzha-sree-krishna-swamy-temple",
+    "category": "temples",
+    "name": "Ambalappuzha Sree Krishna Swamy Temple",
+    "district": "Alappuzha",
+    "tagline": "Major Vaishnava shrine famed for Ambalappuzha Palpayasam prasadam",
+    "summary": "One of Kerala’s seven great Vaishnava temples in Alappuzha, known for Ambalappuzha Palpayasam prasadam and Parthasarathy-form Krishna idol in classic Kerala architecture with murals.",
+    "description": [
+        "The temple stands in Ambalappuzha town and is popularly known as the “Dwaraka of the South.” The presiding deity is Lord Krishna in the Parthasarathy form, depicted in black granite holding a whip in the right hand and a conch in the left.",
+        "The shrine follows classic Kerala temple architecture with a chuttambalam adorned with murals including depictions of the Dasavatharam. It is one of the seven greatest temples associated with historic Travancore.",
+        "Its fame rests especially on the Ambalappuzha Palpayasam, a sweet milk-rice porridge offered as prasadam (prepared daily in large quantity; advance booking often required)."
     ],
-    "keyFacts": [
-      "Administered by the Travancore Devaswom Board (Ambalappuzha Devaswom).",
-      "Idol likened specifically to the Parthasarathy form; considered one of Travancore’s seven greatest temples."
-    ]
-  },
-  "folklore": {
-    "title": "Chess debt and daily Palpayasam",
-    "story": [
-      "By tradition, Lord Krishna appeared in the guise of a sage at the Chembakassery king’s court and challenged him to a game of chess. The sage requested grains of rice placed on the chessboard in doubling quantities up to the 64th square.",
-      "The king lost and the required amount exceeded the kingdom’s rice stores. The sage revealed himself as Krishna and allowed the debt to be repaid gradually by serving Palpayasam daily to devotees at the temple until the original obligation is fulfilled."
-    ],
-    "note": "The legend is presented as tradition, not documented history; the chessboard doubling motif appears across multiple sources with slight narrative variations."
-  },
-  "spiritual": {
-    "summary": "Vaishnava shrine dedicated to Krishna with associated worship of Ganapathi, Ayyappan and Bhagavathi in the temple complex.",
-    "experiences": [
-      {
-        "title": "Observe daily poojas and Palpayasam distribution",
-        "text": "Respectful visitors can observe daily poojas and rituals including the distribution of Palpayasam prasadam."
-      },
-      {
-        "title": "Participate in recitations or devotional singing",
-        "text": "Participate in recitations or devotional singing when permitted and take quiet walks in the temple precincts and around the temple tank."
-      }
-    ],
-    "bestFor": "Pilgrims and those interested in Kerala temple traditions and Krishna bhakti",
-    "mindfulTips": [
-      "Follow temple conduct rules and dress modestly",
-      "Avoid photography inside the sanctum",
-      "Confirm prasadam availability or booking requirements in advance through official channels"
-    ]
-  },
-  "highlights": [
-    "Ambalappuzha Palpayasam prasadam (the temple’s signature offering; prepared daily)",
-    "Kerala-style architecture and chuttambalam murals (Dasavatharam paintings)",
-    "Association with Guruvayur during historical events",
-    "Annual festivals including the Chambakulam Moolam water festival and Aaraattu"
-  ],
-  "visitorInfo": {
-    "bestTime": "Year-round; major festivals occur in the Malayalam months of Mithunam (Chambakulam Moolam) and Meenam (Aaraattu on Thiruvonam day). Confirm dates and any special arrangements before travel.",
-    "howToReach": "Approximately 12–14 km south of Alappuzha town along the coastal road.",
-    "etiquette": [
-      "Visitors are generally expected to wear modest/traditional dress (shoulders and knees covered; men often remove upper garments for sanctum entry) and photography is usually prohibited inside the sanctum; confirm exact rules with the temple office or Travancore Devaswom Board before visiting",
-      "Remove footwear before entering",
-      "Maintain silence and follow priest/devotee instructions"
-    ],
-    "duration": "1–2 hours for darshan and viewing the premises (longer if queuing for prasadam)"
-  },
-  "travel": {
-    "byTrain": [
-      "Nearest station Ambalappuzha (AMPA), approximately 1 km from the temple"
-    ],
-    "byBus": [
-      "KSRTC and local buses serve Ambalappuzha; Alappuzha bus stand is the main nearby hub"
-    ],
-    "byAir": [
-      "Cochin International Airport (approximately 85–98 km)"
-    ]
-  },
-  "officialLinks": [
-    {
-      "label": "Kerala Tourism",
-      "url": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna"
-    }
-  ],
-  "coordinates": {
-    "lat": 9.3832858,
-    "lng": 76.3673143
-  },
-  "images": [
-    {
-      "src": "/images/discover/ambalappuzha-sree-krishna-swamy-temple-1.jpg",
-      "alt": "Sree Krishna Swamy Temple, commonly known as Ambalappuzha Sree Krishna Swamy Temple is an Indian Hindu temple dedicated to Krishna at Ambalappuzha in Alappuzha ",
-      "credit": "Vijayanrajapuram",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ambalappuzha_Sree_Krishna_Temple_Kunchan_nambiar_Mizhave.jpg"
+    "history": {
+        "significance": "The temple is one of the seven great Vaishnava shrines of Kerala and a key site linked to the Chembakassery kingdom and later Travancore traditions.",
+        "timeline": [
+            {
+                "period": "15th–17th century CE",
+                "event": "Built by Chembakassery ruler Pooradam Thirunal Devanarayanan Thampuran (accounts vary slightly on exact century)."
+            },
+            {
+                "period": "1789",
+                "event": "Idol of Guruvayurappan brought here for safekeeping during Tipu Sultan’s raids and kept for about three years."
+            },
+            {
+                "period": "15th century onward",
+                "event": "Ambalappuzha Temple Festival (Chambakulam Moolam water festival) established, commemorating the bringing of the Krishna idol from Karinkulam temple."
+            }
+        ],
+        "keyFacts": [
+            "Administered by the Travancore Devaswom Board (Ambalappuzha Devaswom).",
+            "Idol likened specifically to the Parthasarathy form; considered one of Travancore’s seven greatest temples."
+        ]
     },
-    {
-      "src": "/images/discover/ambalappuzha-sree-krishna-swamy-temple-2.jpg",
-      "alt": "Sree Krishna Swamy Temple, commonly known as Ambalappuzha Sree Krishna Swamy Temple is an Indian Hindu temple dedicated to Krishna at Ambalappuzha in Alappuzha ",
-      "credit": "Vijayanrajapuram",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ambalappuzha_Sree_Krishna_Temple_08.jpg"
-    }
-  ],
-  "tags": [
-    "temple",
-    "Krishna",
-    "Vaishnava",
-    "Alappuzha",
-    "Palpayasam",
-    "Kerala architecture",
-    "murals"
-  ],
-  "sources": [
-    {
-      "label": "Kerala Tourism",
-      "url": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna"
+    "folklore": {
+        "title": "Chess debt and daily Palpayasam",
+        "story": [
+            "By tradition, Lord Krishna appeared in the guise of a sage at the Chembakassery king’s court and challenged him to a game of chess. The sage requested grains of rice placed on the chessboard in doubling quantities up to the 64th square.",
+            "The king lost and the required amount exceeded the kingdom’s rice stores. The sage revealed himself as Krishna and allowed the debt to be repaid gradually by serving Palpayasam daily to devotees at the temple until the original obligation is fulfilled."
+        ],
+        "note": "The legend is presented as tradition, not documented history; the chessboard doubling motif appears across multiple sources with slight narrative variations."
     },
-    {
-      "label": "The Kerala Temples",
-      "url": "https://www.thekeralatemples.com/templeinfo/vishnu/ambalapuzha_sreekrishnan.htm"
+    "spiritual": {
+        "summary": "Vaishnava shrine dedicated to Krishna with associated worship of Ganapathi, Ayyappan and Bhagavathi in the temple complex.",
+        "experiences": [
+            {
+                "title": "Observe daily poojas and Palpayasam distribution",
+                "text": "Respectful visitors can observe daily poojas and rituals including the distribution of Palpayasam prasadam."
+            },
+            {
+                "title": "Participate in recitations or devotional singing",
+                "text": "Participate in recitations or devotional singing when permitted and take quiet walks in the temple precincts and around the temple tank."
+            }
+        ],
+        "bestFor": "Pilgrims and those interested in Kerala temple traditions and Krishna bhakti",
+        "mindfulTips": [
+            "Follow temple conduct rules and dress modestly",
+            "Avoid photography inside the sanctum",
+            "Confirm prasadam availability or booking requirements in advance through official channels"
+        ]
     },
-    {
-      "label": "Casemine",
-      "url": "https://www.casemine.com/judgement/in/689e405866114265764a598c"
+    "highlights": [
+        "Ambalappuzha Palpayasam prasadam (the temple’s signature offering; prepared daily)",
+        "Kerala-style architecture and chuttambalam murals (Dasavatharam paintings)",
+        "Association with Guruvayur during historical events",
+        "Annual festivals including the Chambakulam Moolam water festival and Aaraattu"
+    ],
+    "visitorInfo": {
+        "bestTime": "Year-round; major festivals occur in the Malayalam months of Mithunam (Chambakulam Moolam) and Meenam (Aaraattu on Thiruvonam day). Confirm dates and any special arrangements before travel.",
+        "howToReach": "Approximately 12–14 km south of Alappuzha town along the coastal road.",
+        "etiquette": [
+            "Visitors are generally expected to wear modest/traditional dress (shoulders and knees covered; men often remove upper garments for sanctum entry) and photography is usually prohibited inside the sanctum; confirm exact rules with the temple office or Travancore Devaswom Board before visiting",
+            "Remove footwear before entering",
+            "Maintain silence and follow priest/devotee instructions"
+        ],
+        "duration": "1–2 hours for darshan and viewing the premises (longer if queuing for prasadam)"
     },
-    {
-      "label": "DistancesFrom",
-      "url": "https://www.distancesfrom.com/how-far-is-Ambalapuzha-Sree-Krishna-Temple-Ambalapuzha-from-Ambalapuzha-Railway-Station/HowFarHistory/8332514.aspx"
+    "travel": {
+        "byTrain": [
+            "Nearest station Ambalappuzha (AMPA), approximately 1 km from the temple"
+        ],
+        "byBus": [
+            "KSRTC and local buses serve Ambalappuzha; Alappuzha bus stand is the main nearby hub"
+        ],
+        "byAir": [
+            "Cochin International Airport (approximately 85–98 km)"
+        ]
     },
-    {
-      "label": "Grokipedia",
-      "url": "https://grokipedia.com/page/ambalappuzha_railway_station"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-10-29"
+    "officialLinks": [
+        {
+            "label": "Kerala Tourism",
+            "url": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna"
+        }
+    ],
+    "coordinates": {
+        "lat": 9.3832858,
+        "lng": 76.3673143
+    },
+    "images": [
+        {
+            "src": "/images/discover/ambalappuzha-sree-krishna-swamy-temple-1.jpg",
+            "alt": "Sree Krishna Swamy Temple, commonly known as Ambalappuzha Sree Krishna Swamy Temple is an Indian Hindu temple dedicated to Krishna at Ambalappuzha in Alappuzha ",
+            "credit": "Vijayanrajapuram",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ambalappuzha_Sree_Krishna_Temple_Kunchan_nambiar_Mizhave.jpg"
+        },
+        {
+            "src": "/images/discover/ambalappuzha-sree-krishna-swamy-temple-2.jpg",
+            "alt": "Sree Krishna Swamy Temple, commonly known as Ambalappuzha Sree Krishna Swamy Temple is an Indian Hindu temple dedicated to Krishna at Ambalappuzha in Alappuzha ",
+            "credit": "Vijayanrajapuram",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ambalappuzha_Sree_Krishna_Temple_08.jpg"
+        }
+    ],
+    "tags": [
+        "temple",
+        "Krishna",
+        "Vaishnava",
+        "Alappuzha",
+        "Palpayasam",
+        "Kerala architecture",
+        "murals"
+    ],
+    "sources": [
+        {
+            "label": "Kerala Tourism",
+            "url": "https://www.keralatourism.org/temples/alappuzha/ambalapuzha-sree-krishna"
+        },
+        {
+            "label": "The Kerala Temples",
+            "url": "https://www.thekeralatemples.com/templeinfo/vishnu/ambalapuzha_sreekrishnan.htm"
+        },
+        {
+            "label": "Casemine",
+            "url": "https://www.casemine.com/judgement/in/689e405866114265764a598c"
+        },
+        {
+            "label": "DistancesFrom",
+            "url": "https://www.distancesfrom.com/how-far-is-Ambalapuzha-Sree-Krishna-Temple-Ambalapuzha-from-Ambalapuzha-Railway-Station/HowFarHistory/8332514.aspx"
+        },
+        {
+            "label": "Grokipedia",
+            "url": "https://grokipedia.com/page/ambalappuzha_railway_station"
+        }
+    ],
+    "status": "approved",
+    "lastVerified": "2026-10-30"
 }
