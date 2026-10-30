@@ -1,141 +1,141 @@
 {
-  "slug": "fort-kochi",
-  "category": "places",
-  "name": "Fort Kochi",
-  "malayalamName": "ഫോർട്ട് കൊച്ചി",
-  "district": "Ernakulam",
-  "tagline": "Portuguese, Dutch and British layers in a walkable seaside town",
-  "summary": "Fort Kochi in Ernakulam: Chinese fishing nets, St Francis Church, Jew Town and colonial lanes — with the story of how the nets came to Kerala.",
-  "description": [
-    "Fort Kochi is the old colonial quarter of Kochi, shaped by Portuguese, Dutch and British rule and by centuries of spice trade. Its lanes hold churches, bungalows, galleries, cafés and the Dutch Cemetery, and are best explored on foot or by bicycle.",
-    "Nearby Mattancherry adds the Dutch Palace and Jew Town's antique shops and synagogue, making Fort Kochi a natural base for a heritage-focused day or two."
-  ],
-  "history": {
-    "significance": "One of the earliest European settlements in India, where Portuguese, Dutch and British layers sit beside Jewish, Arab, Chinese and Kerala traditions in a single walkable quarter.",
-    "timeline": [
-      {
-        "period": "1341",
-        "event": "A great flood of the Periyar river reshapes the coast, opening the natural harbour of Kochi and shifting trade from the older port of Muziris."
-      },
-      {
-        "period": "1503",
-        "event": "The Portuguese build Fort Immanuel, among the first European forts in India, with the permission of the Raja of Kochi."
-      },
-      {
-        "period": "1524",
-        "event": "Vasco da Gama dies in Cochin and is buried at St Francis Church; his remains are later taken to Lisbon."
-      },
-      {
-        "period": "1568",
-        "event": "The Paradesi Synagogue is built in nearby Mattancherry."
-      },
-      {
-        "period": "1663–1795",
-        "event": "The Dutch capture Cochin from the Portuguese in 1663; the British take over in 1795."
-      }
+    "slug": "fort-kochi",
+    "category": "places",
+    "name": "Fort Kochi",
+    "malayalamName": "ഫോർട്ട് കൊച്ചി",
+    "district": "Ernakulam",
+    "tagline": "Portuguese, Dutch and British layers in a walkable seaside town",
+    "summary": "Fort Kochi in Ernakulam: Chinese fishing nets, St Francis Church, Jew Town and colonial lanes — with the story of how the nets came to Kerala.",
+    "description": [
+        "Fort Kochi is the old colonial quarter of Kochi, shaped by Portuguese, Dutch and British rule and by centuries of spice trade. Its lanes hold churches, bungalows, galleries, cafés and the Dutch Cemetery, and are best explored on foot or by bicycle.",
+        "Nearby Mattancherry adds the Dutch Palace and Jew Town's antique shops and synagogue, making Fort Kochi a natural base for a heritage-focused day or two."
     ],
-    "keyFacts": [
-      "St Francis Church is believed to be among the oldest European-built churches in India.",
-      "Mattancherry Palace, called the Dutch Palace, was built by the Portuguese in about 1555 and presented to the Raja of Kochi.",
-      "Fort Kochi is the main venue of the Kochi-Muziris Biennale, held since 2012."
-    ]
-  },
-  "folklore": {
-    "title": "How the Fishing Nets Came to Kochi",
-    "story": [
-      "The cantilevered Chinese fishing nets (cheena vala) along the waterfront are the town's best-known image. A popular tradition links them to traders from the court of the Chinese explorer Zheng He, who visited the Malabar coast in the early 15th century.",
-      "Another account credits Portuguese settlers from Macau. Historians are unsure which version is right, and local fishermen simply say the nets have been worked by the same families for generations, lowered and raised by teams using stone counterweights."
-    ],
-    "note": "Origin is debated; presented here as folklore, not settled history."
-  },
-  "spiritual": {
-    "summary": "Fort Kochi is a place of quiet multi-faith heritage: church bells, a synagogue, mosques and temples within a short walk of each other.",
-    "experiences": [
-      {
-        "title": "An interfaith walk",
-        "text": "Walk between St Francis Church, Santa Cruz Basilica and the Paradesi Synagogue in Mattancherry. Notice how each community has kept its own rhythm of prayer in the same small town."
-      },
-      {
-        "title": "Dawn at the fishing nets",
-        "text": "Before the crowds arrive, the nets are worked in silence by the fishermen. It is a good place for unhurried reflection."
-      }
-    ],
-    "bestFor": "Heritage walkers, photographers and travellers interested in interfaith history.",
-    "mindfulTips": [
-      "Dress modestly in all places of worship.",
-      "Ask before photographing worshippers.",
-      "Visit early morning or late afternoon for quiet."
-    ]
-  },
-  "highlights": [
-    "Chinese fishing nets at sunrise and sunset",
-    "St Francis Church — the earliest European church in India",
-    "Mattancherry Palace and Jew Town",
-    "Kathakali and Kalaripayattu performances (check venues)"
-  ],
-  "visitorInfo": {
-    "bestTime": "November to February; avoid heavy monsoon for walking tours.",
-    "howToReach": "About 12 km from the Ernakulam city centre; local ferries and buses run from Ernakulam jetties. Kochi airport is about 40 km away.",
-    "etiquette": [
-      "Dress modestly in churches and synagogue.",
-      "Ask before photographing people at the fishing nets.",
-      "Bargain politely in Jew Town shops."
-    ],
-    "duration": "1–2 days"
-  },
-  "travel": {
-    "byTrain": [
-      "Ernakulam Junction (ERS) and Ernakulam Town (ERN) are the nearest main stations, roughly 10–12 km away; continue by bus, ferry or taxi."
-    ],
-    "byBus": [
-      "KSRTC buses reach Ernakulam; local buses and autorickshaws continue to Fort Kochi."
-    ],
-    "byWater": [
-      "State Water Transport Department ferries run from the Ernakulam jetty to Fort Kochi."
-    ],
-    "byAir": [
-      "Cochin International Airport (COK) at Nedumbassery is roughly 40 km away."
-    ]
-  },
-  "coordinates": {
-    "lat": 9.9658,
-    "lng": 76.2421
-  },
-  "images": [
-    {
-      "src": "/images/discover/fort-kochi-1.jpg",
-      "alt": "Jew Street Mattancherry, Fort Kochi, Ernakulam, Kerala, India",
-      "credit": "Ranjithsiji",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jew_Street_Mattancherry,_Fort_Kochi,_Ernakulam,_Kerala,_India_IMG_20190526_152051.jpg"
+    "history": {
+        "significance": "One of the earliest European settlements in India, where Portuguese, Dutch and British layers sit beside Jewish, Arab, Chinese and Kerala traditions in a single walkable quarter.",
+        "timeline": [
+            {
+                "period": "1341",
+                "event": "A great flood of the Periyar river reshapes the coast, opening the natural harbour of Kochi and shifting trade from the older port of Muziris."
+            },
+            {
+                "period": "1503",
+                "event": "The Portuguese build Fort Immanuel, among the first European forts in India, with the permission of the Raja of Kochi."
+            },
+            {
+                "period": "1524",
+                "event": "Vasco da Gama dies in Cochin and is buried at St Francis Church; his remains are later taken to Lisbon."
+            },
+            {
+                "period": "1568",
+                "event": "The Paradesi Synagogue is built in nearby Mattancherry."
+            },
+            {
+                "period": "1663–1795",
+                "event": "The Dutch capture Cochin from the Portuguese in 1663; the British take over in 1795."
+            }
+        ],
+        "keyFacts": [
+            "St Francis Church is believed to be among the oldest European-built churches in India.",
+            "Mattancherry Palace, called the Dutch Palace, was built by the Portuguese in about 1555 and presented to the Raja of Kochi.",
+            "Fort Kochi is the main venue of the Kochi-Muziris Biennale, held since 2012."
+        ]
     },
-    {
-      "src": "/images/discover/fort-kochi-2.jpg",
-      "alt": "Jew Street Mattancherry, Fort Kochi, Ernakulam, Kerala, India",
-      "credit": "Ranjithsiji",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jew_Street_Mattancherry,_Fort_Kochi,_Ernakulam,_Kerala,_India_IMG_20190526_152111.jpg"
-    }
-  ],
-  "tags": [
-    "heritage",
-    "Kochi",
-    "colonial",
-    "fishing nets",
-    "Ernakulam"
-  ],
-  "sources": [
-    {
-      "label": "Kerala Tourism — official site",
-      "url": "https://www.keralatourism.org/"
+    "folklore": {
+        "title": "How the Fishing Nets Came to Kochi",
+        "story": [
+            "The cantilevered Chinese fishing nets (cheena vala) along the waterfront are the town's best-known image. A popular tradition links them to traders from the court of the Chinese explorer Zheng He, who visited the Malabar coast in the early 15th century.",
+            "Another account credits Portuguese settlers from Macau. Historians are unsure which version is right, and local fishermen simply say the nets have been worked by the same families for generations, lowered and raised by teams using stone counterweights."
+        ],
+        "note": "Origin is debated; presented here as folklore, not settled history."
     },
-    {
-      "label": "Fort Kochi — Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Fort_Kochi"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-10-28"
+    "spiritual": {
+        "summary": "Fort Kochi is a place of quiet multi-faith heritage: church bells, a synagogue, mosques and temples within a short walk of each other.",
+        "experiences": [
+            {
+                "title": "An interfaith walk",
+                "text": "Walk between St Francis Church, Santa Cruz Basilica and the Paradesi Synagogue in Mattancherry. Notice how each community has kept its own rhythm of prayer in the same small town."
+            },
+            {
+                "title": "Dawn at the fishing nets",
+                "text": "Before the crowds arrive, the nets are worked in silence by the fishermen. It is a good place for unhurried reflection."
+            }
+        ],
+        "bestFor": "Heritage walkers, photographers and travellers interested in interfaith history.",
+        "mindfulTips": [
+            "Dress modestly in all places of worship.",
+            "Ask before photographing worshippers.",
+            "Visit early morning or late afternoon for quiet."
+        ]
+    },
+    "highlights": [
+        "Chinese fishing nets at sunrise and sunset",
+        "St Francis Church — the earliest European church in India",
+        "Mattancherry Palace and Jew Town",
+        "Kathakali and Kalaripayattu performances (check venues)"
+    ],
+    "visitorInfo": {
+        "bestTime": "November to February; avoid heavy monsoon for walking tours.",
+        "howToReach": "About 12 km from the Ernakulam city centre; local ferries and buses run from Ernakulam jetties. Kochi airport is about 40 km away.",
+        "etiquette": [
+            "Dress modestly in churches and synagogue.",
+            "Ask before photographing people at the fishing nets.",
+            "Bargain politely in Jew Town shops."
+        ],
+        "duration": "1–2 days"
+    },
+    "travel": {
+        "byTrain": [
+            "Ernakulam Junction (ERS) and Ernakulam Town (ERN) are the nearest main stations, roughly 10–12 km away; continue by bus, ferry or taxi."
+        ],
+        "byBus": [
+            "KSRTC buses reach Ernakulam; local buses and autorickshaws continue to Fort Kochi."
+        ],
+        "byWater": [
+            "State Water Transport Department ferries run from the Ernakulam jetty to Fort Kochi."
+        ],
+        "byAir": [
+            "Cochin International Airport (COK) at Nedumbassery is roughly 40 km away."
+        ]
+    },
+    "coordinates": {
+        "lat": 9.9658,
+        "lng": 76.2421
+    },
+    "images": [
+        {
+            "src": "/images/discover/fort-kochi-1.jpg",
+            "alt": "Jew Street Mattancherry, Fort Kochi, Ernakulam, Kerala, India",
+            "credit": "Ranjithsiji",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jew_Street_Mattancherry,_Fort_Kochi,_Ernakulam,_Kerala,_India_IMG_20190526_152051.jpg"
+        },
+        {
+            "src": "/images/discover/fort-kochi-2.jpg",
+            "alt": "Jew Street Mattancherry, Fort Kochi, Ernakulam, Kerala, India",
+            "credit": "Ranjithsiji",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jew_Street_Mattancherry,_Fort_Kochi,_Ernakulam,_Kerala,_India_IMG_20190526_152111.jpg"
+        }
+    ],
+    "tags": [
+        "heritage",
+        "Kochi",
+        "colonial",
+        "fishing nets",
+        "Ernakulam"
+    ],
+    "sources": [
+        {
+            "label": "Kerala Tourism — official site",
+            "url": "https://www.keralatourism.org/"
+        },
+        {
+            "label": "Fort Kochi — Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Fort_Kochi"
+        }
+    ],
+    "status": "approved",
+    "lastVerified": "2026-10-30"
 }
