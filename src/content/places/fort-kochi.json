@@ -101,7 +101,24 @@
     "lat": 9.9658,
     "lng": 76.2421
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/fort-kochi-1.jpg",
+      "alt": "Jew Street Mattancherry, Fort Kochi, Ernakulam, Kerala, India",
+      "credit": "Ranjithsiji",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jew_Street_Mattancherry,_Fort_Kochi,_Ernakulam,_Kerala,_India_IMG_20190526_152051.jpg"
+    },
+    {
+      "src": "/images/discover/fort-kochi-2.jpg",
+      "alt": "Jew Street Mattancherry, Fort Kochi, Ernakulam, Kerala, India",
+      "credit": "Ranjithsiji",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jew_Street_Mattancherry,_Fort_Kochi,_Ernakulam,_Kerala,_India_IMG_20190526_152111.jpg"
+    }
+  ],
   "tags": [
     "heritage",
     "Kochi",
