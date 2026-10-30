@@ -1,141 +1,141 @@
 {
-  "slug": "ashtamudi-lake",
-  "category": "backwaters",
-  "name": "Ashtamudi Lake and Munroe Island",
-  "malayalamName": "അഷ്ടമുടി കായൽ",
-  "district": "Kollam",
-  "tagline": "Kerala's second-largest lake and the gateway to Kollam's village waterways",
-  "summary": "Ashtamudi Lake in Kollam: eight-armed estuary, Munroe Island canoe trips, coir and fishing villages — close to Veda Heritage — and a founding legend.",
-  "description": [
-    "Ashtamudi Lake is a palm-fringed, multi-armed estuary at Kollam, recognised as a wetland of international importance under the Ramsar convention. Its name is commonly read as 'eight cones' or 'eight arms'.",
-    "Munroe Island (Munroe Thuruthu) is a cluster of small islands reached by canoe, known for coconut groves, coir and quiet village canals; it is a quieter alternative to the busier backwater circuits."
-  ],
-  "history": {
-    "significance": "Kollam (Quilon) was one of the great ancient ports of the Malabar coast, trading with the Middle East and China, and the starting point of the Kollavarsham, the Malayalam calendar.",
-    "timeline": [
-      {
-        "period": "825 CE",
-        "event": "The Kollavarsham, the Malayalam calendar era, begins, traditionally linked with Kollam."
-      },
-      {
-        "period": "13th–14th century",
-        "event": "Marco Polo and Ibn Battuta describe Kollam as a busy port visited by merchants from many lands."
-      },
-      {
-        "period": "1502",
-        "event": "The Portuguese establish a trading post at Kollam; the Dutch and British follow in later centuries."
-      },
-      {
-        "period": "Early 19th century",
-        "event": "Colonel John Munro, British Resident of Travancore and Cochin, is associated with the island that now bears his name."
-      },
-      {
-        "period": "2002",
-        "event": "Ashtamudi Lake is designated a Ramsar wetland of international importance."
-      }
+    "slug": "ashtamudi-lake",
+    "category": "backwaters",
+    "name": "Ashtamudi Lake and Munroe Island",
+    "malayalamName": "അഷ്ടമുടി കായൽ",
+    "district": "Kollam",
+    "tagline": "Kerala's second-largest lake and the gateway to Kollam's village waterways",
+    "summary": "Ashtamudi Lake in Kollam: eight-armed estuary, Munroe Island canoe trips, coir and fishing villages — close to Veda Heritage — and a founding legend.",
+    "description": [
+        "Ashtamudi Lake is a palm-fringed, multi-armed estuary at Kollam, recognised as a wetland of international importance under the Ramsar convention. Its name is commonly read as 'eight cones' or 'eight arms'.",
+        "Munroe Island (Munroe Thuruthu) is a cluster of small islands reached by canoe, known for coconut groves, coir and quiet village canals; it is a quieter alternative to the busier backwater circuits."
     ],
-    "keyFacts": [
-      "The Ashtamudi short-neck clam fishery is among the first in India to receive MSC sustainability certification.",
-      "The President's Trophy Boat Race is held on Ashtamudi Lake.",
-      "Kollam has long been a centre of the cashew and coir industries."
-    ]
-  },
-  "folklore": {
-    "title": "The Land the Sea Gave Back",
-    "story": [
-      "Kerala's founding legend says the sage Parashurama threw his axe from the shore at Gokarnam, and the sea receded as far as it flew, revealing the land that became Kerala. Lakes and backwaters such as Ashtamudi are remembered in local telling as the places where the sea has not quite let go.",
-      "Fishing families around the lake recount stories of seasonal tides, the 'chakara' (mudbank) years when fish gather, and of lake spirits to be respected before a boat sets out."
-    ],
-    "note": "The lake-spirit stories are oral and need collection and attribution from local fishing communities."
-  },
-  "spiritual": {
-    "summary": "Ashtamudi's villages are close to some of Kerala's most distinctive living spiritual centres, including Amritapuri and the Oachira Parabrahma Temple.",
-    "experiences": [
-      {
-        "title": "Oachira Parabrahma Temple",
-        "text": "Oachira, near Veda Heritage, is known as a temple without a fixed idol, open to all, where worship centres on the formless Parabrahma. It is famed for the Oachirakali and the Panthrandu Vilakku festival."
-      },
-      {
-        "title": "Amritapuri Ashram",
-        "text": "The ashram of Mata Amritanandamayi (Amma) lies a short distance from the retreat, with daily meditation and seva. Check visitor guidelines before arriving."
-      }
-    ],
-    "bestFor": "Spiritual seekers who want community-based practice alongside quiet lake scenery.",
-    "mindfulTips": [
-      "Contact the ashram in advance about visitor rules.",
-      "Dress modestly and observe silence zones.",
-      "Take time on the lake at dawn."
-    ]
-  },
-  "highlights": [
-    "Munroe Island canoe tours",
-    "Coir-making and fishing villages",
-    "Sunset cruise from Kollam",
-    "Close to Veda Heritage and Amritapuri"
-  ],
-  "visitorInfo": {
-    "bestTime": "October to March.",
-    "howToReach": "Kollam Junction railway station and the KSRTC stand are close to the Ashtamudi boat jetty; Munroe Island is about 25 km from Kollam by road or boat.",
-    "etiquette": [
-      "Hire local boatmen and community guides where possible.",
-      "Do not feed wildlife or leave plastics on the water.",
-      "Respect nesting areas and fishing zones."
-    ],
-    "duration": "Half to full day"
-  },
-  "travel": {
-    "byTrain": [
-      "Kollam Junction (QLN) is the main station, close to the Ashtamudi boat jetty."
-    ],
-    "byBus": [
-      "KSRTC Kollam bus station is in the city centre; buses run to Alappuzha, Thiruvananthapuram and beyond."
-    ],
-    "byWater": [
-      "The State Water Transport Department's Kollam–Alappuzha ferry crosses Ashtamudi Lake and the backwaters; check the schedule."
-    ],
-    "byAir": [
-      "Thiruvananthapuram (TRV) airport is roughly 65–70 km away."
-    ]
-  },
-  "coordinates": {
-    "lat": 8.9833,
-    "lng": 76.5833
-  },
-  "images": [
-    {
-      "src": "/images/discover/ashtamudi-lake-1.jpg",
-      "alt": "Ferry MC Ganga, twin-hulled vessel, approaching Munroe Island, Ashtamudi Lake, Kollam, Kerala, India",
-      "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:MCGanga_Ferry_Ashtamudi_Munroe_Distant_Kerala_Mar22_A7C_01550.jpg"
+    "history": {
+        "significance": "Kollam (Quilon) was one of the great ancient ports of the Malabar coast, trading with the Middle East and China, and the starting point of the Kollavarsham, the Malayalam calendar.",
+        "timeline": [
+            {
+                "period": "825 CE",
+                "event": "The Kollavarsham, the Malayalam calendar era, begins, traditionally linked with Kollam."
+            },
+            {
+                "period": "13th–14th century",
+                "event": "Marco Polo and Ibn Battuta describe Kollam as a busy port visited by merchants from many lands."
+            },
+            {
+                "period": "1502",
+                "event": "The Portuguese establish a trading post at Kollam; the Dutch and British follow in later centuries."
+            },
+            {
+                "period": "Early 19th century",
+                "event": "Colonel John Munro, British Resident of Travancore and Cochin, is associated with the island that now bears his name."
+            },
+            {
+                "period": "2002",
+                "event": "Ashtamudi Lake is designated a Ramsar wetland of international importance."
+            }
+        ],
+        "keyFacts": [
+            "The Ashtamudi short-neck clam fishery is among the first in India to receive MSC sustainability certification.",
+            "The President's Trophy Boat Race is held on Ashtamudi Lake.",
+            "Kollam has long been a centre of the cashew and coir industries."
+        ]
     },
-    {
-      "src": "/images/discover/ashtamudi-lake-2.jpg",
-      "alt": "Ferry MC Ganga, twin-hulled vessel, approaching Munroe Island, Ashtamudi Lake, Kollam, Kerala, India",
-      "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:MCGanga_Ferry_Ashtamudi_Munroe_Close_Kerala_Mar22_A7C_01552.jpg"
-    }
-  ],
-  "tags": [
-    "backwaters",
-    "Kollam",
-    "Ramsar",
-    "Munroe Island",
-    "lake"
-  ],
-  "sources": [
-    {
-      "label": "Kerala Tourism — official site",
-      "url": "https://www.keralatourism.org/"
+    "folklore": {
+        "title": "The Land the Sea Gave Back",
+        "story": [
+            "Kerala's founding legend says the sage Parashurama threw his axe from the shore at Gokarnam, and the sea receded as far as it flew, revealing the land that became Kerala. Lakes and backwaters such as Ashtamudi are remembered in local telling as the places where the sea has not quite let go.",
+            "Fishing families around the lake recount stories of seasonal tides, the 'chakara' (mudbank) years when fish gather, and of lake spirits to be respected before a boat sets out."
+        ],
+        "note": "The lake-spirit stories are oral and need collection and attribution from local fishing communities."
     },
-    {
-      "label": "Ashtamudi Lake — Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Ashtamudi_Lake"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-10-28"
+    "spiritual": {
+        "summary": "Ashtamudi's villages are close to some of Kerala's most distinctive living spiritual centres, including Amritapuri and the Oachira Parabrahma Temple.",
+        "experiences": [
+            {
+                "title": "Oachira Parabrahma Temple",
+                "text": "Oachira, near Veda Heritage, is known as a temple without a fixed idol, open to all, where worship centres on the formless Parabrahma. It is famed for the Oachirakali and the Panthrandu Vilakku festival."
+            },
+            {
+                "title": "Amritapuri Ashram",
+                "text": "The ashram of Mata Amritanandamayi (Amma) lies a short distance from the retreat, with daily meditation and seva. Check visitor guidelines before arriving."
+            }
+        ],
+        "bestFor": "Spiritual seekers who want community-based practice alongside quiet lake scenery.",
+        "mindfulTips": [
+            "Contact the ashram in advance about visitor rules.",
+            "Dress modestly and observe silence zones.",
+            "Take time on the lake at dawn."
+        ]
+    },
+    "highlights": [
+        "Munroe Island canoe tours",
+        "Coir-making and fishing villages",
+        "Sunset cruise from Kollam",
+        "Close to Veda Heritage and Amritapuri"
+    ],
+    "visitorInfo": {
+        "bestTime": "October to March.",
+        "howToReach": "Kollam Junction railway station and the KSRTC stand are close to the Ashtamudi boat jetty; Munroe Island is about 25 km from Kollam by road or boat.",
+        "etiquette": [
+            "Hire local boatmen and community guides where possible.",
+            "Do not feed wildlife or leave plastics on the water.",
+            "Respect nesting areas and fishing zones."
+        ],
+        "duration": "Half to full day"
+    },
+    "travel": {
+        "byTrain": [
+            "Kollam Junction (QLN) is the main station, close to the Ashtamudi boat jetty."
+        ],
+        "byBus": [
+            "KSRTC Kollam bus station is in the city centre; buses run to Alappuzha, Thiruvananthapuram and beyond."
+        ],
+        "byWater": [
+            "The State Water Transport Department's Kollam–Alappuzha ferry crosses Ashtamudi Lake and the backwaters; check the schedule."
+        ],
+        "byAir": [
+            "Thiruvananthapuram (TRV) airport is roughly 65–70 km away."
+        ]
+    },
+    "coordinates": {
+        "lat": 8.9833,
+        "lng": 76.5833
+    },
+    "images": [
+        {
+            "src": "/images/discover/ashtamudi-lake-1.jpg",
+            "alt": "Ferry MC Ganga, twin-hulled vessel, approaching Munroe Island, Ashtamudi Lake, Kollam, Kerala, India",
+            "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:MCGanga_Ferry_Ashtamudi_Munroe_Distant_Kerala_Mar22_A7C_01550.jpg"
+        },
+        {
+            "src": "/images/discover/ashtamudi-lake-2.jpg",
+            "alt": "Ferry MC Ganga, twin-hulled vessel, approaching Munroe Island, Ashtamudi Lake, Kollam, Kerala, India",
+            "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:MCGanga_Ferry_Ashtamudi_Munroe_Close_Kerala_Mar22_A7C_01552.jpg"
+        }
+    ],
+    "tags": [
+        "backwaters",
+        "Kollam",
+        "Ramsar",
+        "Munroe Island",
+        "lake"
+    ],
+    "sources": [
+        {
+            "label": "Kerala Tourism — official site",
+            "url": "https://www.keralatourism.org/"
+        },
+        {
+            "label": "Ashtamudi Lake — Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Ashtamudi_Lake"
+        }
+    ],
+    "status": "approved",
+    "lastVerified": "2026-10-30"
 }
