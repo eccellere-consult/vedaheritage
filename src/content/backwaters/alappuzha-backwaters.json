@@ -1,137 +1,137 @@
 {
-  "slug": "alappuzha-backwaters",
-  "category": "backwaters",
-  "name": "Alappuzha (Alleppey) Backwaters",
-  "malayalamName": "ആലപ്പുഴ",
-  "district": "Alappuzha",
-  "tagline": "Houseboats, canals and the world-famous snake-boat races",
-  "summary": "Alappuzha backwaters on Vembanad Lake: houseboat stays, canal village life, Kuttanad's below-sea-level farming and the lore of the snake-boat races.",
-  "description": [
-    "Alappuzha sits on the Vembanad Lake system, with a network of canals, lagoons and rice fields. Kuttanad, nearby, is among the few places in the world where farming is done below sea level.",
-    "Visitors can take a houseboat cruise, a smaller canoe through village waterways, or a public ferry for an everyday view of life on the water."
-  ],
-  "history": {
-    "significance": "A planned port town of the 18th century that tied Kerala's inland spice, coir and rice economy to the sea, and a stage for key social movements and traditions of the backwaters.",
-    "timeline": [
-      {
-        "period": "1760s–1770s",
-        "event": "Raja Kesavadas, Dewan of Travancore, develops Alappuzha as a port town with canals and trading facilities."
-      },
-      {
-        "period": "Mid-19th century",
-        "event": "Alappuzha's coir and trade industries flourish, with lighthouse and port facilities."
-      },
-      {
-        "period": "1946",
-        "event": "The Punnapra-Vayalar uprising takes place nearby, an important event in Kerala's political history."
-      },
-      {
-        "period": "1952",
-        "event": "The first Nehru Trophy Boat Race is held on the Punnamada Lake."
-      }
+    "slug": "alappuzha-backwaters",
+    "category": "backwaters",
+    "name": "Alappuzha (Alleppey) Backwaters",
+    "malayalamName": "ആലപ്പുഴ",
+    "district": "Alappuzha",
+    "tagline": "Houseboats, canals and the world-famous snake-boat races",
+    "summary": "Alappuzha backwaters on Vembanad Lake: houseboat stays, canal village life, Kuttanad's below-sea-level farming and the lore of the snake-boat races.",
+    "description": [
+        "Alappuzha sits on the Vembanad Lake system, with a network of canals, lagoons and rice fields. Kuttanad, nearby, is among the few places in the world where farming is done below sea level.",
+        "Visitors can take a houseboat cruise, a smaller canoe through village waterways, or a public ferry for an everyday view of life on the water."
     ],
-    "keyFacts": [
-      "Alappuzha is often called the 'Venice of the East' for its canals.",
-      "Kuttanad, nearby, farms rice below sea level, a rare practice.",
-      "Alappuzha is a major centre of the coir industry."
-    ]
-  },
-  "folklore": {
-    "title": "Snake Boats and the Nehru Trophy",
-    "story": [
-      "The long chundan vallam (snake boat), up to about 100 feet long with over 100 rowers, is traditionally associated with the war boats of local rulers. Oarsmen sing vanchippattu, the boat songs, to keep time.",
-      "The Nehru Trophy Boat Race on Punnamada Lake is said to have started after Jawaharlal Nehru's visit in 1952, when a boat race was staged in his honour and he was so moved that he donated a trophy."
-    ],
-    "note": "Dates and details should be checked against the Nehru Trophy Boat Race Society."
-  },
-  "spiritual": {
-    "summary": "The backwaters carry a quiet spiritual life: a canal-side temple, a basilica and the slow rhythm of village prayer.",
-    "experiences": [
-      {
-        "title": "Ambalappuzha Sree Krishna Temple",
-        "text": "Famed for its Ambalappuzha Palpayasam (sweet milk pudding), offered to the deity, and for its Krishna worship and devotional music tradition."
-      },
-      {
-        "title": "Champakulam and Edathua",
-        "text": "Champakulam's St Mary's Basilica and Edathua's St George church draw Christian pilgrims, and Champakulam's Moolam boat race is tied to the church festival."
-      }
-    ],
-    "bestFor": "Travellers who want a slow, community-rooted experience of devotion.",
-    "mindfulTips": [
-      "Visit temples and churches outside the busiest hours.",
-      "Dress modestly and follow local rules.",
-      "Try a canoe journey at sunrise for quiet."
-    ]
-  },
-  "highlights": [
-    "Houseboat and canoe cruises",
-    "Nehru Trophy Boat Race (August, check date)",
-    "Kuttanad below-sea-level farming",
-    "Alappuzha beach and lighthouse"
-  ],
-  "visitorInfo": {
-    "bestTime": "November to February; boat race season is typically August to September.",
-    "howToReach": "Alappuzha has a railway station and a boat jetty; Kochi airport is about 85 km away.",
-    "etiquette": [
-      "Choose licensed houseboat operators and ask about waste handling.",
-      "Avoid plastics on the water.",
-      "Ask permission before photographing residents."
-    ],
-    "duration": "1–2 days"
-  },
-  "travel": {
-    "byTrain": [
-      "Alappuzha (ALLP) railway station is in the town centre, close to the boat jetty."
-    ],
-    "byBus": [
-      "KSRTC Alappuzha bus station connects to Kochi, Kottayam, Thiruvananthapuram and others."
-    ],
-    "byWater": [
-      "State Water Transport Department ferries run to Kottayam and Kollam; check the current timetable."
-    ],
-    "byAir": [
-      "Cochin International Airport (COK) is roughly 85 km away."
-    ]
-  },
-  "coordinates": {
-    "lat": 9.4981,
-    "lng": 76.3388
-  },
-  "images": [
-    {
-      "src": "/images/discover/alappuzha-backwaters-1.jpg",
-      "alt": "Church in Alleppey Alappuzha Backwaters",
-      "credit": "Avinash Singh",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Church_in_Alleppey_Alappuzha_Backwaters_(29572542881).jpg"
+    "history": {
+        "significance": "A planned port town of the 18th century that tied Kerala's inland spice, coir and rice economy to the sea, and a stage for key social movements and traditions of the backwaters.",
+        "timeline": [
+            {
+                "period": "1760s–1770s",
+                "event": "Raja Kesavadas, Dewan of Travancore, develops Alappuzha as a port town with canals and trading facilities."
+            },
+            {
+                "period": "Mid-19th century",
+                "event": "Alappuzha's coir and trade industries flourish, with lighthouse and port facilities."
+            },
+            {
+                "period": "1946",
+                "event": "The Punnapra-Vayalar uprising takes place nearby, an important event in Kerala's political history."
+            },
+            {
+                "period": "1952",
+                "event": "The first Nehru Trophy Boat Race is held on the Punnamada Lake."
+            }
+        ],
+        "keyFacts": [
+            "Alappuzha is often called the 'Venice of the East' for its canals.",
+            "Kuttanad, nearby, farms rice below sea level, a rare practice.",
+            "Alappuzha is a major centre of the coir industry."
+        ]
     },
-    {
-      "src": "/images/discover/alappuzha-backwaters-2.jpg",
-      "alt": "Backwaters of Alleppey Kerela",
-      "credit": "Avinash Singh",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boat_in_the_Backwaters_of_Alleppey_Kerela_(29027455364).jpg"
-    }
-  ],
-  "tags": [
-    "backwaters",
-    "houseboat",
-    "Alappuzha",
-    "Vembanad",
-    "boat race"
-  ],
-  "sources": [
-    {
-      "label": "Kerala Tourism — official site",
-      "url": "https://www.keralatourism.org/"
+    "folklore": {
+        "title": "Snake Boats and the Nehru Trophy",
+        "story": [
+            "The long chundan vallam (snake boat), up to about 100 feet long with over 100 rowers, is traditionally associated with the war boats of local rulers. Oarsmen sing vanchippattu, the boat songs, to keep time.",
+            "The Nehru Trophy Boat Race on Punnamada Lake is said to have started after Jawaharlal Nehru's visit in 1952, when a boat race was staged in his honour and he was so moved that he donated a trophy."
+        ],
+        "note": "Dates and details should be checked against the Nehru Trophy Boat Race Society."
     },
-    {
-      "label": "Alappuzha — Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Alappuzha"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-10-28"
+    "spiritual": {
+        "summary": "The backwaters carry a quiet spiritual life: a canal-side temple, a basilica and the slow rhythm of village prayer.",
+        "experiences": [
+            {
+                "title": "Ambalappuzha Sree Krishna Temple",
+                "text": "Famed for its Ambalappuzha Palpayasam (sweet milk pudding), offered to the deity, and for its Krishna worship and devotional music tradition."
+            },
+            {
+                "title": "Champakulam and Edathua",
+                "text": "Champakulam's St Mary's Basilica and Edathua's St George church draw Christian pilgrims, and Champakulam's Moolam boat race is tied to the church festival."
+            }
+        ],
+        "bestFor": "Travellers who want a slow, community-rooted experience of devotion.",
+        "mindfulTips": [
+            "Visit temples and churches outside the busiest hours.",
+            "Dress modestly and follow local rules.",
+            "Try a canoe journey at sunrise for quiet."
+        ]
+    },
+    "highlights": [
+        "Houseboat and canoe cruises",
+        "Nehru Trophy Boat Race (August, check date)",
+        "Kuttanad below-sea-level farming",
+        "Alappuzha beach and lighthouse"
+    ],
+    "visitorInfo": {
+        "bestTime": "November to February; boat race season is typically August to September.",
+        "howToReach": "Alappuzha has a railway station and a boat jetty; Kochi airport is about 85 km away.",
+        "etiquette": [
+            "Choose licensed houseboat operators and ask about waste handling.",
+            "Avoid plastics on the water.",
+            "Ask permission before photographing residents."
+        ],
+        "duration": "1–2 days"
+    },
+    "travel": {
+        "byTrain": [
+            "Alappuzha (ALLP) railway station is in the town centre, close to the boat jetty."
+        ],
+        "byBus": [
+            "KSRTC Alappuzha bus station connects to Kochi, Kottayam, Thiruvananthapuram and others."
+        ],
+        "byWater": [
+            "State Water Transport Department ferries run to Kottayam and Kollam; check the current timetable."
+        ],
+        "byAir": [
+            "Cochin International Airport (COK) is roughly 85 km away."
+        ]
+    },
+    "coordinates": {
+        "lat": 9.4981,
+        "lng": 76.3388
+    },
+    "images": [
+        {
+            "src": "/images/discover/alappuzha-backwaters-1.jpg",
+            "alt": "Church in Alleppey Alappuzha Backwaters",
+            "credit": "Avinash Singh",
+            "license": "CC BY 2.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Church_in_Alleppey_Alappuzha_Backwaters_(29572542881).jpg"
+        },
+        {
+            "src": "/images/discover/alappuzha-backwaters-2.jpg",
+            "alt": "Backwaters of Alleppey Kerela",
+            "credit": "Avinash Singh",
+            "license": "CC BY 2.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boat_in_the_Backwaters_of_Alleppey_Kerela_(29027455364).jpg"
+        }
+    ],
+    "tags": [
+        "backwaters",
+        "houseboat",
+        "Alappuzha",
+        "Vembanad",
+        "boat race"
+    ],
+    "sources": [
+        {
+            "label": "Kerala Tourism — official site",
+            "url": "https://www.keralatourism.org/"
+        },
+        {
+            "label": "Alappuzha — Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Alappuzha"
+        }
+    ],
+    "status": "approved",
+    "lastVerified": "2026-10-30"
 }
