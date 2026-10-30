@@ -60,5 +60,17 @@ assert.equal(r.status, 0, r.stderr || r.stdout)
 r = run('pipeline')
 assert.equal(JSON.parse(fs.readFileSync(path.join(tmp, 'agents/queue/candidates.json'), 'utf8')).filter(c => c.name === 'Mock Temple One').length, 1)
 
+// A recipe is kept only for food entries and only when it has enough steps
+import { toEntryFile } from '../lib/schemas.mjs'
+const base = { name: 'Test', malayalamName: null, district: 'Kerala', tagline: 't', summary: 's', description: ['d'], history: { significance: 'x', timeline: [], keyFacts: [] }, folklore: { title: 't', story: ['s'], note: null }, spiritual: { summary: 's', experiences: [], bestFor: 'b', mindfulTips: [] }, highlights: [], visitorInfo: { bestTime: 'b', howToReach: 'h', etiquette: [], duration: null }, travel: null, heritage: null, officialLinks: null, coordinates: null, tags: [], sources: [] }
+const eat = { places: [{ name: 'Confirmed Oottupura', district: 'Alappuzha', kind: 'oottupura', note: 'Traditional meals on a banana leaf.', url: null }], tips: ['Look for an oottupura.', 'Ask for kanji and payar.'] }
+const rec = { servings: '4', time: '30 minutes', ingredients: ['a', 'b', 'c'], method: ['1', '2', '3'], tips: null }
+assert.ok(toEntryFile({ ...base, recipe: rec }, { category: 'food', slug: 't', date: '2026-01-01', sources: [] }).recipe, 'food entry keeps a complete recipe')
+assert.equal(toEntryFile({ ...base, recipe: rec }, { category: 'temples', slug: 't', date: '2026-01-01', sources: [] }).recipe, undefined, 'a non-food entry never carries a recipe')
+assert.equal(toEntryFile({ ...base, recipe: null, eat }, { category: 'food', slug: 't', date: '2026-01-01', sources: [] }).eat.places[0].name, 'Confirmed Oottupura', 'food entry keeps where-to-eat with its places')
+assert.equal(toEntryFile({ ...base, recipe: null, eat }, { category: 'temples', slug: 't', date: '2026-01-01', sources: [] }).eat, undefined, 'a non-food entry never carries where-to-eat')
+assert.equal(toEntryFile({ ...base, recipe: null, eat: { places: [], tips: ['only one'] } }, { category: 'food', slug: 't', date: '2026-01-01', sources: [] }).eat, undefined, 'where-to-eat needs at least two tips')
+assert.equal(toEntryFile({ ...base, recipe: { ...rec, method: ['1'] } }, { category: 'food', slug: 't', date: '2026-01-01', sources: [] }).recipe, undefined, 'an incomplete recipe is dropped')
+
 fs.rmSync(tmp, { recursive: true, force: true })
 console.log('✔ agent pipeline (mock) passed')

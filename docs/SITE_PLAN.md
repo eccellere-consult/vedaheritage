@@ -68,7 +68,7 @@ Exact eccare.in colour values · Malayalam launch timing · monetisation rules a
 **Answer first:** the knowledge layer ships first (low risk); discussion and the marketplace follow in stages because they carry moderation, legal and payment risk.
 
 ### 1. Knowledge layer (built)
-Nine new categories sit beside the original six: `vedic` (Vedic heritage and mantras), `healing` (traditional healing), `plants` (Ayurvedic plants), `cultivation`, `music`, `dance`, `astrology`, `weddings`, `medical` (medical and wellness tourism). They are statewide topics: `travel` and the `heritage` place block are optional. Sensitive categories (vedic, healing, plants, astrology, weddings) show a "Please note" box on every page. The same Scout, Enricher, Verifier and human-approval flow applies.
+Eleven new categories sit beside the original six: `vedic` (Vedic heritage and mantras), `healing` (traditional healing), `plants` (Ayurvedic plants), `cultivation`, `music`, `dance`, `astrology`, `weddings`, `medical` (medical and wellness tourism), `food` (Kerala food and recipes, with an optional recipe block) and `muthassi` (grandmothers' stories, lullabies and proverbs). They are statewide topics: `travel` and the `heritage` place block are optional. Sensitive categories (vedic, healing, plants, astrology, weddings) show a "Please note" box on every page. The same Scout, Enricher, Verifier and human-approval flow applies.
 
 ### 2. Discussion (next)
 Moderated comments per entry, reusing the story intake (GitHub issue, human approval). No accounts. Rules: no medical advice, no personal data, no predictions presented as fact.

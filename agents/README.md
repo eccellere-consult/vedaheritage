@@ -66,6 +66,9 @@ OpenAI and xAI run through the OpenAI SDK and the Responses API with the provide
 
 **Not yet verified live:** the OpenAI and xAI adapters are tested against a fake local Responses API only (request shapes, citation harvesting, budget cap, routing). xAI's web search and structured-output support, and how well either provider's search opens specific pages for claim checking, need a first live run. Start with `verify` on one slug and read the report.
 
+## Food and muthassi stories
+The `food` category adds two optional blocks to an entry: `recipe` (ingredients, method and tips, written in the agent's own words) and `eat` (where to eat it: tips on what to look for and ask for, plus named places only when a retrieved page confirms they exist). The `muthassi` category carries the retold tale in `folklore.story` and says that versions differ. The validator enforces the shape; the agent gates and prompts enforce the sourcing.
+
 ## Photos
 After each run the workflow fetches open-licence photos from Wikimedia Commons for drafts that have none (`scripts/fetch-commons-images.mjs --drafts`) and includes them in the pull request, so drafts arrive publishable once a human has checked the photos. If no suitable photo is found the entry stays unpublishable until one is added.
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { WA, SITE } from '@/lib/config'
+import HouseIntro from '@/components/stay/HouseIntro'
 import HouseSection from '@/components/stay/HouseSection'
 import GardenSection from '@/components/stay/GardenSection'
 import GallerySection from '@/components/stay/GallerySection'
@@ -36,6 +37,8 @@ export default function StayPage() {
           {ANCHORS.map(([id, label]) => <a key={id} href={`#${id}`} className="nav-link">{label}</a>)}
         </div>
       </nav>
+
+      <HouseIntro />
 
       <div id="house" className="scroll-mt-32"><HouseSection /></div>
       <div id="garden" className="scroll-mt-32"><GardenSection /></div>

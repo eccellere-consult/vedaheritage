@@ -7,7 +7,7 @@ export interface PlaceOption { category: string; slug: string; name: string }
 
 const ENDPOINT = '/api/submit-story.php'
 const MAX_BYTES = 5 * 1024 * 1024
-const TYPES = ['Experience', 'Folklore I heard', 'Travel tip']
+const TYPES = ['Experience', 'Folklore I heard', 'Travel tip', 'Family recipe', 'Muthassi story']
 
 export default function StoryForm({ places, defaultPlace }: { places: PlaceOption[]; defaultPlace?: string }) {
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')

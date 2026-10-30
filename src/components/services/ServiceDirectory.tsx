@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { DISTRICT_NAMES, PROVIDER_TYPES } from '@/lib/provider-options'
 import type { Provider } from '@/lib/providers'
@@ -13,6 +13,13 @@ export default function ServiceDirectory({ providers, sponsoredByDistrict }: { p
   const [district, setDistrict] = useState('all')
   const [type, setType] = useState('all')
   const [q, setQ] = useState('')
+  // Links such as /services/?type=food&district=Kollam pre-select the filters.
+  useEffect(() => {
+    const sp = new URLSearchParams(window.location.search)
+    const d = sp.get('district'), t = sp.get('type')
+    if (d && (DISTRICT_NAMES as readonly string[]).includes(d)) setDistrict(d)
+    if (t && t in PROVIDER_TYPES) setType(t)
+  }, [])
   const results = useMemo(() => {
     const t = q.trim().toLowerCase()
     return providers.filter(p => (district === 'all' || p.districts.includes(district)) && (type === 'all' || p.type === type) && (!t || `${p.name} ${p.summary}`.toLowerCase().includes(t)))

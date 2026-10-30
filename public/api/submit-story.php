@@ -50,8 +50,8 @@ $rl = sys_get_temp_dir() . '/vh_story_' . hash('sha256', $ip);
 $hits = is_file($rl) ? array_values(array_filter(array_map('intval', file($rl, FILE_IGNORE_NEW_LINES)), fn($t) => $t > time() - 3600)) : [];
 if (count($hits) >= 5) out(429, ['ok' => false, 'error' => 'Too many submissions. Please try again later.']);
 
-$types = ['Experience', 'Folklore I heard', 'Travel tip'];
-$cats  = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical'];
+$types = ['Experience', 'Folklore I heard', 'Travel tip', 'Family recipe', 'Muthassi story'];
+$cats  = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi'];
 $id    = gmdate('Ymd') . '-' . bin2hex(random_bytes(4));
 
 $story = [

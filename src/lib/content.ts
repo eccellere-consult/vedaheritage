@@ -136,6 +136,24 @@ export const CATEGORIES = {
     group: 'tradition',
     caution: 'General planning information, not medical advice. Always consult your own doctor, confirm credentials and accreditation directly with the provider, and get written quotes before travelling. Prices and availability change.',
   },
+  food: {
+    label: 'Kerala Food & Recipes',
+    singular: 'Dish',
+    blurb: "Kerala's kitchen: sadya, seafood, spices, snacks and festival dishes, with the history, the stories and how to cook them.",
+    seoTitle: 'Kerala Food & Recipes: Sadya, Seafood, Spices & Traditional Dishes',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Recipes are guides written in our own words. Quantities and timings vary by household and kitchen. Mind allergies and food safety, and adjust to taste.',
+  },
+  muthassi: {
+    label: 'Muthassi Stories',
+    singular: 'Muthassi story',
+    blurb: "The tales, lullabies, proverbs and legends Kerala's grandmothers tell, retold from oral tradition with their meaning.",
+    seoTitle: "Muthassi Kathakal: Kerala Grandmother's Stories, Folk Tales & Lullabies",
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Retold from oral tradition. Versions differ between families and regions, and we note where they do.',
+  },
 } as const
 
 export type CategoryKey = keyof typeof CATEGORIES
@@ -189,6 +207,21 @@ export interface ContactInfo {
   verifiedOn: string          // ISO date
 }
 
+/** Where to eat a traditional food, and how to find and order it. Named places must be confirmed from retrieved sources. */
+export interface EatInfo {
+  places: Place[]     // may be empty when no place could be confirmed; the tips then say what kind of place to look for
+  tips: string[]
+}
+
+/** A traditional recipe in our own words (ingredients are not copyrightable; wording is, so never copy a source). */
+export interface Recipe {
+  servings?: string
+  time?: string
+  ingredients: string[]
+  method: string[]
+  tips?: string[]
+}
+
 export interface Entry {
   slug: string
   category: CategoryKey
@@ -224,6 +257,8 @@ export interface Entry {
     byAir?: string[]
   }
   heritage?: HeritageInfo      // required for category "heritage"
+  recipe?: Recipe             // dishes only
+  eat?: EatInfo               // dishes and food traditions: where to eat them
   officialLinks?: Source[]
   contacts?: ContactInfo[]     // official contacts, each from a retrieved official source
   coordinates?: { lat: number; lng: number }
@@ -236,7 +271,7 @@ export interface Entry {
 
 export interface Story {
   id: string
-  type: 'Experience' | 'Folklore I heard' | 'Travel tip'
+  type: 'Experience' | 'Folklore I heard' | 'Travel tip' | 'Family recipe' | 'Muthassi story'
   title: string
   body: string
   author: string
@@ -327,7 +362,8 @@ export function getEntriesForDistrict(name: string): Entry[] {
   const hit = (p: Place) => p.district.toLowerCase().includes(name.toLowerCase())
   return getEntries().filter(e =>
     e.district.toLowerCase() === name.toLowerCase() ||
-    (e.heritage && [...e.heritage.whereToSee, ...e.heritage.whereToBuy, ...e.heritage.experiences].some(hit)))
+    (e.heritage && [...e.heritage.whereToSee, ...e.heritage.whereToBuy, ...e.heritage.experiences].some(hit)) ||
+    (e.eat && e.eat.places.some(hit)))
 }
 
 export const SITE_URL = 'https://www.vedaheritage.co.in'

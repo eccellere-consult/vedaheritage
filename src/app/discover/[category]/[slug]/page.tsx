@@ -13,6 +13,7 @@ import Timeline from '@/components/Timeline'
 import EntryImages from '@/components/EntryImages'
 import OfficialLinks from '@/components/OfficialLinks'
 import ContactsBlock from '@/components/services/ContactsBlock'
+import RecipeBlock from '@/components/RecipeBlock'
 
 type Props = { params: Promise<{ category: string; slug: string }> }
 
@@ -81,6 +82,12 @@ export default async function EntryPage({ params }: Props) {
             publisher: { '@type': 'Organization', name: SITE.name, url: SITE_URL },
             mainEntityOfPage: url,
           },
+          ...(e.recipe && e.images.length ? [{
+            '@type': 'Recipe', name: e.name, description: e.summary, image: e.images.map(i => `${SITE_URL}${i.src}`), url,
+            recipeCategory: 'Kerala', recipeCuisine: 'Kerala, India', ...(e.recipe.servings ? { recipeYield: e.recipe.servings } : {}),
+            recipeIngredient: e.recipe.ingredients, recipeInstructions: e.recipe.method.map(text => ({ '@type': 'HowToStep', text })),
+            author: { '@type': 'Organization', name: SITE.name },
+          }] : []),
           { '@type': 'BreadcrumbList', itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Discover', item: `${SITE_URL}/discover/` },
             { '@type': 'ListItem', position: 2, name: cat.label, item: `${SITE_URL}/discover/${e.category}/` },
@@ -106,6 +113,20 @@ export default async function EntryPage({ params }: Props) {
 
           <h2 className="section-title mt-10 mb-4">Highlights</h2>
           <ul className="list-disc pl-5 space-y-1 text-ink-mid">{e.highlights.map(h => <li key={h}>{h}</li>)}</ul>
+
+          {e.eat && (
+            <section className="mt-12" aria-labelledby="eat">
+              <p className="section-label">Where to eat</p>
+              <h2 id="eat" className="section-title mb-3">Where to eat {e.name}</h2>
+              <ul className="list-disc pl-5 space-y-1 text-ink-mid text-sm mb-5">{e.eat.tips.map(t => <li key={t}>{t}</li>)}</ul>
+              {e.eat.places.length > 0 && <PlaceList places={e.eat.places} />}
+              <p className="text-xs text-ink-mid mt-4">
+                Always confirm that a place is open before travelling. <Link href="/services/?type=food" className="underline">Find verified restaurants and food stalls by district</Link>.
+              </p>
+            </section>
+          )}
+
+          {e.recipe && <RecipeBlock recipe={e.recipe} name={e.name} />}
 
           <section className="mt-12" aria-labelledby="history">
             <p className="section-label">History &amp; significance</p>

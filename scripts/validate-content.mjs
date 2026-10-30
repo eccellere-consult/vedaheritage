@@ -7,10 +7,10 @@ const PUBLIC = path.join(process.cwd(), 'public')
 const fileExists = src => src && src.startsWith('/') && fs.existsSync(path.join(PUBLIC, src))
 
 const ROOT = path.join(process.cwd(), 'src', 'content')
-const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical']
-const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical'])
+const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi']
+const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi'])
 const STATUSES = ['draft', 'approved']
-const STORY_TYPES = ['Experience', 'Folklore I heard', 'Travel tip']
+const STORY_TYPES = ['Experience', 'Folklore I heard', 'Travel tip', 'Family recipe', 'Muthassi story']
 const CONTACT_KINDS = ['tourism-office', 'temple-office', 'transport-enquiry', 'emergency', 'hospital', 'police', 'other']
 const PHONE_RE = /^(\+?\d[\d\s().-]{5,18}\d)$/
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -59,6 +59,20 @@ for (const cat of CATEGORIES) {
       if (cat !== 'heritage' && !hr) { /* optional for traditions */ } else if (!hr || !okPlaces(hr.whereToSee) || !okPlaces(hr.whereToBuy) || !okPlaces(hr.experiences) || !isArr(hr.buyingTips)) fail(rel, 'heritage {whereToSee[], whereToBuy[], experiences[] (each name, district, note), buyingTips[]} required')
     } else if (!tr || !isArr(tr.byTrain) || !isArr(tr.byBus)) fail(rel, 'travel {byTrain[], byBus[]} required (byWater, byAir optional)')
     if (d.officialLinks && d.officialLinks.some(l => !isStr(l.label) || !/^https:\/\//.test(l.url || ''))) fail(rel, 'officialLinks must be [{label, url (https)}]')
+    if (d.eat !== undefined) {
+      const ea = d.eat
+      if (cat !== 'food') fail(rel, 'eat (where to eat) is only for the food category')
+      if (!ea || !isArr(ea.tips, 2)) fail(rel, 'eat needs tips[≥2]')
+      for (const pl of (ea && ea.places) || []) if (!isStr(pl.name) || !isStr(pl.district) || !isStr(pl.note) || (pl.url && !/^https:\/\//.test(pl.url))) fail(rel, 'eat.places: each needs name, district, note (url, if given, https)')
+      if (ea && ea.places !== undefined && !Array.isArray(ea.places)) fail(rel, 'eat.places must be an array')
+    }
+    if (d.recipe !== undefined) {
+      const r = d.recipe
+      if (!r || !isArr(r.ingredients, 3) || !isArr(r.method, 3)) fail(rel, 'recipe needs ingredients[≥3] and method[≥3] (non-empty strings)')
+      if (r && r.tips !== undefined && !isArr(r.tips, 0)) fail(rel, 'recipe.tips must be an array of strings')
+      if (r && ['servings', 'time'].some(k => r[k] !== undefined && !isStr(r[k]))) fail(rel, 'recipe.servings and recipe.time must be text')
+      if (cat !== 'food') fail(rel, 'recipe is only for the food category')
+    }
     for (const c of d.contacts || []) {
       if (!isStr(c.label) || !CONTACT_KINDS.includes(c.kind)) fail(rel, `contacts: each needs a label and kind (${CONTACT_KINDS})`)
       if (!c.phone && !c.email && !c.website) fail(rel, `contacts "${c.label}": needs a phone, email or website`)

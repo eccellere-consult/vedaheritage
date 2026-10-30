@@ -45,6 +45,10 @@ export const PHOTOS = {
   about: '/images/vedaheritage_1.png',
   aboutAlt: 'Veda Heritage — Traditional Kerala family home in Vavvakkavu, Kollam',
 
+  // Stay page — the house exterior (web copy of vedaheritage_1.png, native 1024 px)
+  house: '/images/vedaheritage-house.jpg',
+  houseAlt: 'Veda Heritage: the two-storey Kerala family home with a blue metal roof, wooden balcony and coconut palms, in Vavvakkavu, Kollam',
+
   // Ayurveda — Medicinal garden
   garden: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=80',
   gardenAlt: 'Medicinal herbs and Ayurvedic plants in the traditional garden',
