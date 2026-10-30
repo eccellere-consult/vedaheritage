@@ -7,8 +7,8 @@ const PUBLIC = path.join(process.cwd(), 'public')
 const fileExists = src => src && src.startsWith('/') && fs.existsSync(path.join(PUBLIC, src))
 
 const ROOT = path.join(process.cwd(), 'src', 'content')
-const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi']
-const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi'])
+const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi', 'crafts', 'artisans', 'wear']
+const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi', 'crafts', 'artisans', 'wear'])
 const STATUSES = ['draft', 'approved']
 const STORY_TYPES = ['Experience', 'Folklore I heard', 'Travel tip', 'Family recipe', 'Muthassi story']
 const CONTACT_KINDS = ['tourism-office', 'temple-office', 'transport-enquiry', 'emergency', 'hospital', 'police', 'other']
@@ -214,6 +214,27 @@ const seen = new Map()
 for (const { rel, p } of providers) {
   if (p.status === 'removed') continue
   for (const key of [`email:${String(p.email).toLowerCase()}`, `phone:${String(p.phone).replace(/\D/g, '')}`]) { if (seen.has(key)) fail(rel, `duplicate of ${seen.get(key)} (${key})`); else seen.set(key, rel) }
+}
+
+// Events calendar (written by the events agent): every event is dated, placed and sourced.
+const EVENT_TYPES = ['Festival', 'Temple festival', 'Cultural', 'Arts & performance', 'Boat race', 'Wellness', 'Fair & market', 'Other']
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/
+const realDay = v => typeof v === 'string' && ISO_DAY.test(v) && new Date(v + 'T00:00:00Z').toISOString().slice(0, 10) === v
+for (const { rel, data: c } of load('events')) {
+  if (!Array.isArray(c.events)) { fail(rel, 'events[] required'); continue }
+  const ids = new Set()
+  for (const e of c.events) {
+    const w = `${rel} "${e?.name}"`
+    if (!e || !isStr(e.id) || ids.has(e.id)) { fail(w, 'needs a unique id'); continue }
+    ids.add(e.id)
+    for (const f of ['name', 'place', 'district', 'summary']) if (!isStr(e[f])) fail(w, `missing ${f}`)
+    if (!EVENT_TYPES.includes(e.type)) fail(w, `type must be one of ${EVENT_TYPES.join(', ')}`)
+    if (!realDay(e.start) || !realDay(e.end)) fail(w, 'start and end must be real ISO dates (YYYY-MM-DD)')
+    else if (e.end < e.start) fail(w, 'ends before it starts')
+    if (!['confirmed', 'expected'].includes(e.certainty)) fail(w, 'certainty must be confirmed or expected')
+    if (!Array.isArray(e.sources) || e.sources.length < 1 || e.sources.some(s => !isStr(s.label) || !/^https:\/\//.test(s.url || ''))) fail(w, 'needs at least one https source [{label, url}]')
+    if (!realDay(e.lastChecked)) fail(w, 'lastChecked must be an ISO date')
+  }
 }
 
 if (errors.length) {

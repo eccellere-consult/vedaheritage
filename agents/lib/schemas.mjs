@@ -133,3 +133,19 @@ export function toEntryFile(out, { category, slug, date, sources, contacts = [] 
   }
   return e
 }
+
+// ---- Events --------------------------------------------------------------
+export const EVENT_TYPES = ['Festival', 'Temple festival', 'Cultural', 'Arts & performance', 'Boat race', 'Wellness', 'Fair & market', 'Other']
+export const EventsOut = z.object({
+  events: z.array(z.object({
+    name: z.string(),
+    type: z.enum(EVENT_TYPES),
+    start: z.string(),               // ISO date YYYY-MM-DD
+    end: z.string(),                 // ISO date, same as start for a one-day event
+    place: z.string(),               // venue or town
+    district: z.string(),            // a Kerala district, or "Kerala" for state-wide
+    summary: z.string(),             // 1-2 plain sentences: what it is and why a visitor would go
+    certainty: z.enum(['confirmed', 'expected']), // confirmed = dates published by an official page; expected = usual dates, not yet announced
+    sourceUrls: z.array(z.string()), // URLs actually seen during research
+  })),
+})

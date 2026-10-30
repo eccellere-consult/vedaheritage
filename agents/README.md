@@ -102,3 +102,10 @@ Setup once:
 ## Cost and limits
 Model spend per entry is typically a few dollars at `claude-opus-5-5` rates, dominated by research turns; the report prints an estimate (web-search tool fees are not included).
 Agents cannot reach sites that block bots, and some government pages are images or PDFs. Those claims come back "unverifiable" and are held for human checking. Refused requests are logged and skipped. Server-side refusal fallbacks are not enabled.
+
+## Events calendar agent (weekly)
+`node agents/run.mjs events` keeps `src/content/events/calendar.json` current for tourists who plan ahead: this week, the rest of this month, and the next 12 months. The Events page (`/events`) shows them under **This week**, **This month** and **The year ahead**, split by the build date. The deploy workflow also rebuilds every Sunday, so the sections roll forward weekly.
+
+Safeguards: every event needs real ISO start and end dates, a place, a plain summary and at least one source URL that was actually retrieved during the run (others are dropped). Past events, impossible dates, events more than 400 days ahead and unsourced events are dropped. `certainty` is `confirmed` only when a retrieved page publishes the date; otherwise `expected` ("usual dates, confirm before travelling"). Events that have ended are removed on the next run.
+
+Schedule: `.github/workflows/events.yml`, Saturdays 19:30 UTC (Sunday 01:00 IST), or on demand from the admin (**Run agents > Update events now**). It opens one pull request (`agents/events-<date>`) that lists every new, changed and removed event with its source links. In the admin it appears under **Review agent work** as an events card; **Merge events calendar** merges it in one step.

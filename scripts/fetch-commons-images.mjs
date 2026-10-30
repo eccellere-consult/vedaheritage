@@ -59,7 +59,7 @@ async function main() {
   const outDir = path.join(process.cwd(), 'public', 'images', 'discover')
   fs.mkdirSync(outDir, { recursive: true })
   let changed = 0
-  for (const cat of ['temples', 'places', 'beaches', 'backwaters', 'ayurveda', 'heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi']) {
+  for (const cat of ['temples', 'places', 'beaches', 'backwaters', 'ayurveda', 'heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi', 'crafts', 'artisans', 'wear']) {
     const dir = path.join(root, cat)
     if (!fs.existsSync(dir)) continue
     for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.json'))) {

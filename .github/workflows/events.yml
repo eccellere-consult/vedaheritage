@@ -1,0 +1,74 @@
+name: Events calendar agent
+
+# Runs every Saturday evening UTC (01:00 IST Sunday), before the weekly site rebuild. Finds this week's, this
+# month's and the next 12 months' events for tourists, with dates read from pages it retrieved, and opens ONE
+# pull request. Nothing changes on the site until a human merges it (Admin > Review agent work).
+
+on:
+  schedule:
+    - cron: '30 19 * * 6'
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: 'AI provider (saved = use the default saved in the admin page)'
+        type: choice
+        options: [saved, auto, xai, openai, anthropic]
+        default: saved
+      budget:
+        description: 'Hard spend cap in USD for this run'
+        default: '3'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: events-agent
+  cancel-in-progress: false
+
+jobs:
+  events:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Offline self-test of the agent pipeline
+        run: npm run agents:test
+      - name: Update the events calendar
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          AGENT_PROVIDER: ${{ (inputs.provider != '' && inputs.provider != 'saved') && inputs.provider || vars.AGENT_PROVIDER }}
+          AGENT_MODEL: ${{ vars.AGENT_MODEL }}
+          SCOUT_PROVIDER: ${{ vars.SCOUT_PROVIDER }}
+          SCOUT_MODEL: ${{ vars.SCOUT_MODEL }}
+          OPENAI_PRICE_IN_PER_M: ${{ vars.OPENAI_PRICE_IN_PER_M }}
+          OPENAI_PRICE_OUT_PER_M: ${{ vars.OPENAI_PRICE_OUT_PER_M }}
+          XAI_PRICE_IN_PER_M: ${{ vars.XAI_PRICE_IN_PER_M }}
+          XAI_PRICE_OUT_PER_M: ${{ vars.XAI_PRICE_OUT_PER_M }}
+          BUDGET: ${{ inputs.budget || vars.AGENT_MAX_USD || '3' }}
+        run: node agents/run.mjs events --budget "$BUDGET"
+      - name: Validate content
+        run: node scripts/validate-content.mjs
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
+        run: |
+          if git diff --quiet -- src/content/events; then echo "No changes."; exit 0; fi
+          branch="agents/events-$(date +%Y%m%d-%H%M)"
+          git config user.name "veda-content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A src/content/events agents/reports
+          git commit -m "content: weekly events calendar update"
+          git push origin "$branch"
+          gh pr create --base "$BASE_BRANCH" --head "$branch" \
+            --title "Events calendar update ($(date +%F))" \
+            --body-file agents/reports/latest.md

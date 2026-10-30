@@ -33,6 +33,8 @@ export default function Footer() {
                 ['/discover/dance', 'Music & Dance'],
                 ['/discover/astrology', 'Astrology & Jyotisha'],
                 ['/discover/weddings', 'Weddings & Life Rituals'],
+                ['/discover/crafts', 'Handicrafts & Artisans'],
+                ['/discover/wear', 'Traditional Wear'],
                 ['/services', 'Local Services Directory'],
                 ['/marketplace', 'Heritage Marketplace'],
                 ['/stories', 'Traveller Stories'],

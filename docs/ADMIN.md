@@ -18,11 +18,18 @@ The admin lives at **https://www.vedaheritage.co.in/admin/** (not linked anywher
 ### Why a draft cannot be published
 The admin enforces the same rules as the validator. A guide needs at least **1 licensed, credited image**, **2 sources**, a summary of 50 to 200 characters, and folklore, history, spiritual and visitor sections. If the verifier flagged the guide (score under 80), the admin asks you to confirm. It never publishes silently.
 
-### Typical flow
-1. **Run agents** → wait about 15 to 20 minutes → a pull request appears.
-2. **Pull requests** → merge it (drafts land on `main`, still hidden).
-3. **Drafts** → **Find images** → wait → merge the images PR → check the photos on GitHub first.
-4. **Drafts** → read the verifier notes → **Approve & publish**.
+### Typical flow (one batch, one deploy)
+1. **Run agents** → wait about 15 to 20 minutes → one batch (pull request) appears. Photos are already in it.
+2. **Review agent work** → open the batch. Each page shows its photos, summary, sources and the fact-checker's verdict in plain words. Open **Read more** for history, tradition and meaning.
+3. Tick the pages you accept (ready pages are pre-ticked; flagged pages are not). Missing a photo? **Upload your own photo**: pick the picture, type the credit and a description; it is attached to that page inside the batch.
+4. Press **Publish N & finish batch**. The admin publishes the ticked pages, waits for the safety checks, merges and the site updates once. Unticked pages stay drafts.
+
+The weekly **events calendar** update (Sundays 01:00 IST, or **Run agents > Update events now**) arrives as a batch too. It shows each new event with its dates, place and source links; check the links, then press **Merge events calendar**.
+
+Per-page tools remain under **Drafts** (unpublish, find images, upload your own photo) for pages already on `main`.
+
+### Your own photos
+The browser shrinks the picture to 1600 px and re-encodes it as JPEG, and the server re-encodes it again, so GPS and camera data are removed. The credit you type is shown under the photo, with the licence "Own photo, used with the photographer's permission". Only upload pictures you took or may publish.
 
 ## One-time setup (about 15 minutes)
 
@@ -50,6 +57,9 @@ Hostinger hPanel → File Manager → open `domains/vedaheritage.co.in/` (the fo
 If the file already has lines for story intake (`github_token`, `notify_email`), keep them and add yours before the final `];`. Save.
 
 **Step 4. Log in** at `/admin/`. If you see "Incorrect password", re-copy the code (Step 2) without spaces.
+
+## If the setup page appears again after a deploy
+A deploy replaces the website files. Files that are not part of the site can be removed by Hostinger when it pulls a new build, and that includes `public_html/api/private/vh-config.php`. The site now ships a `.gitignore` that asks Git to leave that file and the `data/` folder next to it alone, which protects them if Hostinger only cleans tracked files. If the setup page still reappears after a merge, the file was removed: recreate it (keep the five lines in your password manager), then use the outside-the-web-folder location below if the setup page reports that PHP can read it. The status page (`…/api/admin/index.php?a=status`) now lists any file whose name starts with "vh" and spells out hidden characters, so a look-alike name such as a non-breaking hyphen is visible.
 
 ## If you see "Admin unavailable"
 Open `https://www.vedaheritage.co.in/api/admin/index.php?a=status` in a new tab. You should see one line starting with `{"configError"` or `{"authed"`.

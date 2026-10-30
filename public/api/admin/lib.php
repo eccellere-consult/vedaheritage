@@ -12,7 +12,7 @@ require __DIR__ . '/../lib/common.php';
 
 const SESSION_IDLE = 1800;     // log out after 30 minutes idle
 const SESSION_MAX  = 28800;    // and after 8 hours regardless
-const CATS = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi'];
+const CATS = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi', 'crafts', 'artisans', 'wear'];
 
 ini_set('display_errors', '0');
 
@@ -32,8 +32,8 @@ function json_out(int $code, array $body): void {
     exit;
 }
 
-function read_json(): array {
-    $raw = file_get_contents('php://input', false, null, 0, 65536);
+function read_json(int $max = 65536): array {
+    $raw = file_get_contents('php://input', false, null, 0, $max);
     $d = json_decode($raw ?: '', true);
     return is_array($d) ? $d : [];
 }
@@ -226,12 +226,12 @@ function draft_row(array $e, ?array $ev, array $where): array {
 
 // ---------------------------------------------------------------- one commit, many files
 /**
- * Commit several files to main in ONE commit (one deploy). $files: path => ['text'=>string] | ['b64'=>string] | null (delete).
+ * Commit several files to a branch (default main) in ONE commit (one deploy). $files: path => ['text'=>string] | ['b64'=>string] | null (delete).
  * @return string the new commit sha
  */
-function gh_commit_files(array $files, string $message): string {
+function gh_commit_files(array $files, string $message, string $branch = 'main'): string {
     $R = '/repos/' . repo();
-    $ref = gh_ok(gh('GET', "$R/git/ref/heads/main"), 'read main');
+    $ref = gh_ok(gh('GET', "$R/git/ref/heads/$branch"), "read $branch");
     $head = $ref['object']['sha'];
     $commit = gh_ok(gh('GET', "$R/git/commits/$head"), 'read commit');
     $tree = [];
@@ -246,7 +246,7 @@ function gh_commit_files(array $files, string $message): string {
     }
     $t = gh_ok(gh('POST', "$R/git/trees", ['base_tree' => $commit['tree']['sha'], 'tree' => $tree]), 'build tree');
     $c = gh_ok(gh('POST', "$R/git/commits", ['message' => $message, 'tree' => $t['sha'], 'parents' => [$head]]), 'create commit');
-    gh_ok(gh('PATCH', "$R/git/refs/heads/main", ['sha' => $c['sha']]), 'update main');
+    gh_ok(gh('PATCH', "$R/git/refs/heads/$branch", ['sha' => $c['sha']]), "update $branch");
     cache_clear();
     return $c['sha'];
 }

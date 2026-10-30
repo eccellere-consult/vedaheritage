@@ -30,6 +30,8 @@ const prs = { 1: { number: 1, title: 'green', state: 'open', draft: false, merge
 const conc = { g: 'success', r: 'failure', n: 'action_required' }
 const blobs = {}; const treeNow = () => Object.entries(files).map(([p, v]) => { const t = JSON.stringify(v); const s = sha(t); blobs[s] = t; return { path: p, type: 'blob', sha: s } })
 
+const publishFine = e => e.images.length > 0 && e.images.every(i => i.src && i.alt && i.credit && i.license && i.sourceUrl)
+const refsRead = [], refsPatched = []; let m0
 const commits = []; let lastTree = []; const blobB64 = {}
 const gh = http.createServer((req, res) => {
   let body = ''; req.on('data', c => body += c); req.on('end', () => {
@@ -39,12 +41,12 @@ const gh = http.createServer((req, res) => {
     if (req.headers.authorization !== 'Bearer tok') { res.statusCode = 401; return j({ message: 'bad token' }) }
     if (p === '/git/trees/main') return j({ sha: 'treesha', tree: treeNow() })
     if (p === '/site') { res.setHeader('content-type', 'text/html'); return res.end('<html>ok</html>') }
-    if (p === '/git/ref/heads/main') return j({ object: { sha: 'headsha' } })
+    if ((m0 = p.match(/^\/git\/ref\/heads\/(.+)$/))) { refsRead.push(m0[1]); return j({ object: { sha: 'headsha' } }) }
     if (p === '/git/commits/headsha') return j({ tree: { sha: 'basetree' } })
     if (p === '/git/blobs' && req.method === 'POST') { const s = sha(b.content); blobB64[s] = b.content; return j({ sha: s }) }
     if (p === '/git/trees' && req.method === 'POST') { lastTree = b.tree; return j({ sha: 'newtree' }) }
     if (p === '/git/commits' && req.method === 'POST') { commits.push({ message: b.message, tree: lastTree, blobs: Object.fromEntries(lastTree.filter(t => t.sha).map(t => [t.path, blobB64[t.sha]])) }); for (const t of lastTree) if (t.content && t.path.endsWith('.json')) files[t.path] = JSON.parse(t.content); return j({ sha: 'newcommit' }) }
-    if (p === '/git/refs/heads/main' && req.method === 'PATCH') return j({})
+    if ((m0 = p.match(/^\/git\/refs\/heads\/(.+)$/)) && req.method === 'PATCH') { refsPatched.push(m0[1]); return j({}) }
     let m
     if ((m = p.match(/^\/git\/blobs\/(\w+)$/))) return j({ content: Buffer.from(blobs[m[1]] || '{}').toString('base64') })
     if ((m = p.match(/^\/contents\/(.+)$/))) {
@@ -53,6 +55,7 @@ const gh = http.createServer((req, res) => {
       const t = JSON.stringify(v); return j({ sha: sha(t), content: Buffer.from(t).toString('base64') })
     }
     if (p === '/pulls') return j(Object.values(prs))
+    if ((m = p.match(/^\/pulls\/(\d+)\/files$/))) return j(m[1] === '1' ? [{ filename: 'src/content/temples/ready.json', status: 'added' }, { filename: 'src/content/temples/noimage.json', status: 'added' }, { filename: 'src/content/temples/gated.json', status: 'modified' }, { filename: 'public/images/discover/a.jpg', status: 'added' }, { filename: 'agents/queue/x.json', status: 'added' }] : [])
     if ((m = p.match(/^\/pulls\/(\d+)\/merge$/))) { merged.push(+m[1]); return j({ merged: true }) }
     if ((m = p.match(/^\/pulls\/(\d+)$/))) return j(prs[m[1]] || (res.statusCode = 404, { message: 'nf' }))
     if ((m = p.match(/^\/commits\/(\w)\w*\/check-runs$/))) return j({ check_runs: [{ status: 'completed', conclusion: conc[m[1]] }] })
@@ -103,6 +106,30 @@ try {
   ok(over.s === 200 && puts.length === 2, 'override publishes a flagged entry')
   ok((await call('set_status', { method: 'POST', body: { category: '../x', slug: 'ready', status: 'approved' } })).s === 400, 'path traversal in category is rejected')
   ok((await call('set_status', { method: 'POST', body: { category: 'temples', slug: 'Ready/../x', status: 'approved' } })).s === 400, 'bad slug is rejected')
+  const rl = await call('review_list'); ok(rl.d.prs.length === 3, 'review lists agent pull requests')
+  const rv = await call('review_pr&number=1'); const byS = Object.fromEntries((rv.d.cards || []).map(c => [c.slug, c]))
+  ok(rv.d.cards?.length === 3 && rv.d.photoFiles === 1 && rv.d.checks === 'passed', 'review shows every page in the batch with photo count and check state')
+  ok(byS.ready.blockers.length === 0 && byS.noimage.blockers.length > 0 && byS.gated.verifier?.ready === false && byS.ready.images[0].url.includes('/public/images/discover/a.jpg'), 'review cards carry readiness, blockers, verifier verdict and photo')
+  const HEAD = 'g'.repeat(40)
+  ok((await call('review_apply', { method: 'POST', body: { number: 1, head: 'x'.repeat(40), publish: [] } })).s === 409, 'review refuses a stale view of the batch')
+  ok((await call('review_apply', { method: 'POST', body: { number: 1, head: HEAD, publish: [{ category: 'temples', slug: 'noimage' }] } })).s === 422 && !commits.length, 'review refuses an entry with blockers')
+  const rg = await call('review_apply', { method: 'POST', body: { number: 1, head: HEAD, publish: [{ category: 'temples', slug: 'gated' }] } })
+  ok(rg.s === 409 && rg.d.needsOverride && !commits.length, 'review needs an override for a flagged entry')
+  const ra = await call('review_apply', { method: 'POST', body: { number: 1, head: HEAD, publish: [{ category: 'temples', slug: 'ready' }, { category: 'temples', slug: 'gated' }], override: ['gated'] } })
+  const last = commits[commits.length - 1]
+  ok(ra.s === 200 && ra.d.published === 2 && refsRead.includes('agents/x') && refsPatched.includes('agents/x') && last.tree.length === 2 && last.tree.every(t => JSON.parse(t.content).status === 'approved'), 'review publishes the chosen pages in ONE commit on the agent branch')
+  ok(files['src/content/temples/noimage.json'].status === 'draft', 'unticked pages stay drafts')
+  const ownJpg = spawnSync('php', ['-r', '$i=imagecreatetruecolor(800,600);ob_start();imagejpeg($i);echo base64_encode(ob_get_clean());']).stdout.toString()
+  const up = body => call('photo_upload', { method: 'POST', body: { category: 'temples', slug: 'noimage', credit: 'Photo: Asha', alt: 'The temple pond at dusk', image: ownJpg, ...body } })
+  const c0 = commits.length; const u1 = await up({})
+  const uc = commits[commits.length - 1]; const ue = JSON.parse(uc.tree.find(t => t.path.endsWith('.json')).content)
+  ok(u1.s === 200 && commits.length === c0 + 1 && uc.tree.some(t => t.path === 'public/images/discover/noimage-own-1.jpg') && ue.images[0].credit === 'Photo: Asha' && ue.images[0].src === '/images/discover/noimage-own-1.jpg' && publishFine(ue), 'own photo is attached in ONE commit with credit, and the entry then has no image blocker')
+  ok((await up({ image: Buffer.from('not a jpeg').toString('base64') })).s === 422 && (await up({ credit: '' })).s === 400 && (await up({ slug: '../x' })).s === 400, 'upload rejects non-JPEG, missing credit and bad slugs')
+  const u2 = await call('photo_upload', { method: 'POST', body: { category: 'temples', slug: 'gated', number: 1, credit: 'Photo: Asha', alt: 'Gate of the temple', image: ownJpg } })
+  ok(u2.s === 200 && refsPatched.at(-1) === 'agents/x', 'a photo can be attached inside an agent batch (commit goes to its branch)')
+  const evw = await call('run_workflow', { method: 'POST', body: { workflow: 'events', inputs: { provider: 'openai' } } })
+  ok(evw.s === 200 && dispatches.at(-1)?.p.endsWith('/events.yml/dispatches') && dispatches.at(-1).b.inputs.provider === 'openai' && (await call('run_workflow', { method: 'POST', body: { workflow: 'events', inputs: { provider: 'x;rm' } } })).s === 400, 'the events agent can be started from the admin (provider checked)')
+  ok(Array.isArray((await call('review_pr&number=1')).d.events), 'review reports calendar changes')
   const pl = await call('prs'); ok(pl.d.prs.map(p => p.checks).join() === 'passed,failed,needs_approval', 'PR list reports check state')
   ok((await call('merge_pr', { method: 'POST', body: { number: 2 } })).s === 422 && (await call('merge_pr', { method: 'POST', body: { number: 3 } })).s === 422 && !merged.length, 'red and unapproved PRs cannot be merged')
   ok((await call('merge_pr', { method: 'POST', body: { number: 1 } })).s === 200 && merged[0] === 1, 'green PR merges')
@@ -111,7 +138,7 @@ try {
   ok((await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'rm -rf', max: '3' } } })).s === 400, 'workflow input is validated (command)')
   ok((await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'scout', budget: '99' } } })).s === 400, 'workflow input is validated (budget cap)')
   const run = await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'scout', max: '2', budget: '5' } } })
-  ok(run.s === 200 && dispatches[0]?.b.ref === 'main' && dispatches[0].b.inputs.command === 'scout', 'agents run is dispatched on main')
+  ok(run.s === 200 && dispatches.find(d => d.p.includes('content-agents'))?.b.ref === 'main' && dispatches.find(d => d.p.includes('content-agents')).b.inputs.command === 'scout', 'agents run is dispatched on main')
   const act = await call('activity'); ok(act.d.events.some(e => e.e === 'set-status') && act.d.events.some(e => e.e === 'login-failed'), 'audit log records actions and failed logins')
   await call('logout', { method: 'POST' }); ok((await call('overview')).s === 401, 'logout ends the session')
 
@@ -140,8 +167,9 @@ try {
   const ph = await fetch(`http://127.0.0.1:18911/api/admin/?a=market_photo&id=${A.id}&n=1`, { headers: { cookie } })
   ok(ph.status === 200 && ph.headers.get('content-type') === 'image/jpeg', 'admin can view a private photo')
   ok((await fetch(`http://127.0.0.1:18911/api/admin/?a=market_photo&id=${A.id}&n=1`)).status === 401, 'private photo is not public')
+  const base0 = commits.length
   const b1 = await call('market_decide', { method: 'POST', body: { id: B.id, decision: 'approve' } })
-  ok(b1.s === 409 && b1.d.needsOverride && commits.length === 0, 'risky listing needs an explicit override and nothing is committed')
+  ok(b1.s === 409 && b1.d.needsOverride && commits.length === base0, 'risky listing needs an explicit override and nothing is committed')
   const a1 = await call('market_decide', { method: 'POST', body: { id: A.id, decision: 'approve' } })
   const cA = commits[commits.length - 1]; const pubJson = cA && JSON.parse(cA.tree.find(t => t.path.endsWith('.json')).content)
   ok(a1.s === 200 && cA.tree.length === 3 && Object.keys(cA.blobs).every(k => k.startsWith('public/images/marketplace/')) && cA.tree.some(t => t.path === `src/content/listings/${A.id}.json`), 'approval publishes the listing and its 2 photos in ONE commit')
@@ -292,6 +320,15 @@ try {
   try { ok(dd.stdout.trim() === path.join(webDir, 'api/private/data'), 'with PHP confined to the web folder, private data goes to the protected folder, not a temporary one (' + dd.stdout.trim().replace(webDir, '…/public') + ')') } finally { fs.rmSync(path.join(priv, 'data'), { recursive: true, force: true }) }
   const dd2 = spawnSync('php', ['-r', 'define("VH_LIB",1); require "public/api/lib/common.php"; echo vh_data_dir();'], { encoding: 'utf8', env: { ...process.env, VH_CONFIG: '' } })
   try { ok(dd2.stdout.trim() === path.resolve('vh-data') && !fs.existsSync(path.join(priv, 'data')), 'without restrictions, private data stays beside the web folder (vh-data)') } finally { fs.rmSync(path.resolve('vh-data'), { recursive: true, force: true }) }
+
+  // ---------------------------------------------------------------- hidden characters in the file name
+  const dh = fs.mkdtempSync(path.join(os.tmpdir(), 'vh-hidden-')); fs.mkdirSync(path.join(dh, 'site'))
+  fs.writeFileSync(path.join(dh, 'site', 'vh‑config.php'), 'x')          // non-breaking hyphen: looks identical in File Manager
+  fs.writeFileSync(path.join(dh, 'site', 'other.txt'), 'x')
+  const hid = probe(path.join(dh, 'site', 'vh-config.php')).config?.diag
+  ok(hid?.vhNames?.includes('vh\\u{2011}config.php') && hid.entryCount === 2 && hid.similarFile === null, 'diagnostic: a file name with a hidden look-alike hyphen is spelled out so it can be recognised')
+  fs.rmSync(dh, { recursive: true, force: true })
+  ok(/api\/private\/vh-config\.php/.test(fs.readFileSync('public/.gitignore', 'utf8')) && /api\/private\/data\//.test(fs.readFileSync('public/.gitignore', 'utf8')), 'the published .gitignore protects the server settings and private data from being cleaned by Git')
   if (!process.env.ADMIN_HOLD) {
     cookie = ''; csrf = ''
     let last; for (let i = 0; i < 5; i++) last = await call('login', { method: 'POST', body: { password: 'bad' + i } })

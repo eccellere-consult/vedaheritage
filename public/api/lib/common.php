@@ -21,6 +21,13 @@ function vh_cfg_candidates(): array {
     $c[] = dirname(__DIR__, 3) . '/vh-config.php';
     $dr = rtrim((string)($_SERVER['DOCUMENT_ROOT'] ?? ''), '/');
     if ($dr !== '') $c[] = dirname($dr) . '/vh-config.php';
+    // The account's home directory as PHP sees it (it can differ from the path shown in File Manager).
+    $home = rtrim((string)($_SERVER['HOME'] ?? getenv('HOME') ?: (function_exists('posix_getpwuid') && function_exists('posix_geteuid') ? (posix_getpwuid(posix_geteuid())['dir'] ?? '') : '')), '/');
+    if ($home !== '') {
+        $site = basename(dirname($dr !== '' ? $dr : dirname(__DIR__, 2)));
+        if ($site !== '') $c[] = $home . '/domains/' . $site . '/vh-config.php';
+        $c[] = $home . '/vh-config.php';
+    }
     $c[] = dirname(__DIR__) . '/private/vh-config.php';
     return array_values(array_unique($c));
 }
@@ -70,6 +77,17 @@ function vh_cfg_diagnose(): array {
     if ($readable) foreach (['vh-config.php.txt', 'vh_config.php', 'vh-config.PHP', 'Vh-config.php', 'vh-config.php.php', 'vh-config (1).php', 'vh-config.php ', 'vh-config.txt', 'vh-config'] as $v) {
         if (@file_exists($dir . '/' . $v)) { $similar = $v; break; }
     }
+    // Names beginning "vh" in the folder, with any hidden or look-alike characters spelled out (e.g. a non-breaking hyphen).
+    $vh = []; $total = null;
+    if ($readable && ($names = @scandir($dir)) !== false) {
+        $total = count($names) - 2;
+        foreach ($names as $n) {
+            if (strncasecmp($n, 'vh', 2) !== 0) continue;
+            $e = preg_replace_callback('/[^A-Za-z0-9._()-]/u', fn($m) => sprintf('\\u{%04X}', mb_ord($m[0], 'UTF-8')), $n) ?? '?';
+            $vh[] = mb_substr($e, 0, 60);
+            if (count($vh) >= 6) break;
+        }
+    }
     $web = dirname(__DIR__, 2) . '/vh-config.php';      // inside the web folder: wrong, and never read
     $tooHigh = $dir !== '' ? dirname($dir) . '/vh-config.php' : '';
     return [
@@ -79,6 +97,8 @@ function vh_cfg_diagnose(): array {
         'openBasedirSet' => $ob !== '',
         'openBasedirCoversDir' => $covers,
         'similarFile' => $similar,
+        'entryCount' => $total,
+        'vhNames' => $vh,
         'fileInWebFolder' => @file_exists($web),
         'fileOneLevelTooHigh' => $tooHigh !== '' && @file_exists($tooHigh),
         'privateFolderReady' => @is_dir(dirname(__DIR__) . '/private') && @is_file(dirname(__DIR__) . '/private/.htaccess'),

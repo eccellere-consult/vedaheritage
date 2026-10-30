@@ -8,7 +8,7 @@ export const NAV_GROUPS: NavGroup[] = [
   { label: 'Places', blurb: 'Temples, beaches, backwaters and heritage towns', items: [d('temples', 'Temples'), d('places', 'Tourist Places'), d('beaches', 'Beaches'), d('backwaters', 'Backwaters')] },
   { label: 'Vedic & Wisdom', blurb: 'Mantras, astrology and life rituals', items: [d('vedic', 'Vedic Heritage & Mantras'), d('astrology', 'Astrology & Jyotisha'), d('weddings', 'Weddings & Life Rituals')] },
   { label: 'Healing & Wellness', blurb: 'Ayurveda, traditional healing, plants and medical tourism', items: [d('ayurveda', 'Ayurveda'), d('healing', 'Traditional Healing'), d('plants', 'Ayurvedic Plants'), d('cultivation', 'Cultivation & Farming'), d('medical', 'Medical & Wellness Tourism')] },
-  { label: 'Food, Arts & Folk', blurb: 'Kerala food and recipes, grandmothers\' tales, music, dance and traditional objects', items: [d('food', 'Kerala Food & Recipes'), d('muthassi', 'Muthassi Stories'), d('music', 'Music & Instruments'), d('dance', 'Dance & Performing Arts'), d('heritage', 'Heritage Items & Crafts')] },
+  { label: 'Food, Arts & Folk', blurb: 'Kerala food and recipes, grandmothers\' tales, music, dance and handicrafts, artisans, traditional wear and objects', items: [d('food', 'Kerala Food & Recipes'), d('muthassi', 'Muthassi Stories'), d('music', 'Music & Instruments'), d('dance', 'Dance & Performing Arts'), d('heritage', 'Heritage Items & Crafts'), d('crafts', 'Handicrafts & Craft Villages'), d('artisans', 'Artisans & Communities'), d('wear', 'Traditional Wear')] },
 ]
 
 /** Trip-planning links; shown in the menu only (not on the home topic grid). */

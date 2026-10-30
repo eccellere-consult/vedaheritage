@@ -1,4 +1,4 @@
-// Orchestrator.  node agents/run.mjs <scout|enrich|verify|pipeline> [options]
+// Orchestrator.  node agents/run.mjs <scout|enrich|verify|pipeline|events> [options]
 //   --mock            use deterministic fixtures (no API key, no network)
 //   --max N           scout: max new candidates (default 8); enrich: max entries (default 3)
 //   --slug a,b        verify: only these slugs        --drafts   verify: all draft entries
@@ -10,6 +10,7 @@ import { QUEUE, entryFile, evidenceFile, existingEntries, readJson, today, write
 import { scout } from './scout.mjs'
 import { enrich } from './enricher.mjs'
 import { verify, summarizeFixes } from './verifier.mjs'
+import { events } from './events.mjs'
 
 const args = process.argv.slice(2)
 const cmd = args[0]
@@ -96,8 +97,8 @@ async function runVerify(llm) {
 }
 
 async function main() {
-  if (!['scout', 'enrich', 'verify', 'pipeline'].includes(cmd)) {
-    console.error('usage: node agents/run.mjs <scout|enrich|verify|pipeline> [--mock] [--max N] [--slug a,b] [--drafts] [--budget USD]')
+  if (!['scout', 'enrich', 'verify', 'pipeline', 'events'].includes(cmd)) {
+    console.error('usage: node agents/run.mjs <scout|enrich|verify|pipeline|events> [--mock] [--max N] [--slug a,b] [--drafts] [--budget USD]')
     process.exit(2)
   }
   // Each role can use a different provider/model: SCOUT_*, ENRICHER_*, VERIFIER_* (or AGENT_*).
@@ -119,6 +120,16 @@ async function main() {
       await runEnrich(llm, vllm, Number(opt('max', 3)))
     }
     if (cmd === 'verify') await runVerify(vllm)
+    if (cmd === 'events') {
+      const r = await events(scoutLLM)
+      const line = e => `**${e.name}** · ${e.start === e.end ? e.start : `${e.start} to ${e.end}`} · ${e.place}, ${e.district} · ${e.certainty === 'confirmed' ? 'dates published' : 'usual dates, confirm before travelling'} · ${e.sources.map(s => s.url).join(' ')}`
+      add(`### Events calendar: ${r.total} upcoming event(s)`, '', `Dates come from pages the agent retrieved. Check each link before merging.`, '')
+      if (r.added.length) add(`**New (${r.added.length})**`, ...r.added.map(e => `- ${line(e)}`), '')
+      if (r.changed.length) add(`**Dates changed (${r.changed.length})**`, ...r.changed.map(c => `- ${c.to.name}: ${c.from.start} to ${c.from.end} → ${c.to.start} to ${c.to.end}`), '')
+      if (r.removed.length) add(`**Removed because they are over (${r.removed.length})**`, ...r.removed.map(e => `- ${e.name} (${e.end})`), '')
+      if (r.dropped.length) add(`Dropped: ${r.dropped.map(([n, w]) => `${n} (${w})`).join('; ')}`, '')
+      console.log(`events: +${r.added.length}, changed ${r.changed.length}, removed ${r.removed.length}, dropped ${r.dropped.length}`)
+    }
   } catch (err) {
     if (err instanceof BudgetExceeded) add('', `⛔ Stopped early: ${err.message}`)
     else { console.error(err); add('', `⛔ Run failed: ${err.message}`); process.exitCode = 1 }

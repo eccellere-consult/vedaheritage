@@ -154,6 +154,33 @@ export const CATEGORIES = {
     group: 'tradition',
     caution: 'Retold from oral tradition. Versions differ between families and regions, and we note where they do.',
   },
+  crafts: {
+    label: 'Handicrafts & Craft Villages',
+    singular: 'Craft',
+    blurb: "Kerala's living crafts: Aranmula kannadi, bell metal, coir, screw-pine and reed weaving, wood and ivory-substitute carving, clay and terracotta, with where each is made and how to buy it fairly.",
+    seoTitle: 'Kerala Handicrafts: Aranmula Kannadi, Bell Metal, Coir, Weaving & Craft Villages',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Buy from cooperatives, government emporiums and workshops you can confirm. Ask about materials and certification (Geographical Indication tags where they exist), and confirm opening times and prices before travelling.',
+  },
+  artisans: {
+    label: 'Artisans & Craft Communities',
+    singular: 'Artisan community',
+    blurb: "The craft communities, cooperatives and recognised master artisans behind Kerala's heritage: their skills, lineage, training and how to visit or support them respectfully.",
+    seoTitle: 'Kerala Artisans: Master Craftspeople, Weavers & Craft Cooperatives',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Entries cover communities, cooperatives, institutions and publicly recognised master artisans from published sources. Private contact details are never listed. Ask before photographing people at work and pay fair prices.',
+  },
+  wear: {
+    label: 'Traditional Wear',
+    singular: 'Traditional garment',
+    blurb: "Kasavu sari and mundu, kuthampully and Balaramapuram handloom, ornaments and temple dress codes: what each is, where it comes from and how it is worn.",
+    seoTitle: 'Kerala Traditional Wear: Kasavu, Mundu, Handloom Weaves, Ornaments & Dress Codes',
+    schemaType: 'Article',
+    group: 'tradition',
+    caution: 'Temple dress rules differ by temple and change. Confirm the dress code with the temple before visiting. Check handloom authenticity marks before buying.',
+  },
 } as const
 
 export type CategoryKey = keyof typeof CATEGORIES
