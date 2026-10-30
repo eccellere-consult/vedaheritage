@@ -113,7 +113,16 @@
     "lat": 9.328,
     "lng": 76.687614
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/aranmula-parthasarathy-temple-1.jpg",
+      "alt": "Gopuram of the Aranmula Parthasarathy Temple, Pathanamthitta District, Kerala, South India",
+      "credit": "Gnoeee",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aranmula_Parthasarathy_Temple_(2).jpg"
+    }
+  ],
   "tags": [
     "temples",
     "pathanamthitta",
