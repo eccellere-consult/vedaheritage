@@ -112,7 +112,16 @@
       "Take the piece in protective packing for travel."
     ]
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/aranmula-kannadi-1.jpg",
+      "alt": "Aranmula kannadi, meaning the Aranmula mirror, is a handmade metal-alloy mirror, made in Aranmula, a small town in Pathanamthitta, Kerala, India.",
+      "credit": "Prasanth Prakash",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aranmula_Kannadi.jpg"
+    }
+  ],
   "tags": [
     "heritage",
     "Kerala",
