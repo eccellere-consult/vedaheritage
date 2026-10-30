@@ -56,6 +56,7 @@ const gh = http.createServer((req, res) => {
     if ((m = p.match(/^\/pulls\/(\d+)\/merge$/))) { merged.push(+m[1]); return j({ merged: true }) }
     if ((m = p.match(/^\/pulls\/(\d+)$/))) return j(prs[m[1]] || (res.statusCode = 404, { message: 'nf' }))
     if ((m = p.match(/^\/commits\/(\w)\w*\/check-runs$/))) return j({ check_runs: [{ status: 'completed', conclusion: conc[m[1]] }] })
+    if (p === '/actions/secrets') return j({ secrets: [{ name: 'XAI_API_KEY' }, { name: 'OPENAI_API_KEY' }] })
     if (p === '/commits/main') return j({ sha: 'abcdef1234567', commit: { message: 'head' } })
     if (p === '/issues') return j([{ number: 5, title: 'Story', body: '<script>x</script>', labels: [{ name: 'story-submission' }], created_at: 'now', html_url: 'u' }, { number: 6, title: 'pr', pull_request: { url: 'x' }, labels: [{ name: 'story-submission' }] }])
     if ((m = p.match(/^\/issues\/(\d+)\/labels$/))) { labels.push([+m[1], b.labels]); return j([]) }
@@ -230,6 +231,21 @@ try {
   ok(susp.s === 200 && sj.status === 'suspended' && !sj.sponsored, 'suspending hides the listing and ends its sponsorship')
   await call('prov_status', { method: 'POST', body: { id: Am[1], status: 'removed' } })
   const rmd = JSON.parse(fs.readFileSync(path.join(tmp, `data/market/providers/${Am[1]}.json`), 'utf8')); ok(rmd.status === 'removed' && rmd.contactPerson === '' && rmd.credentialNumber === '' && rmd.email === '', 'removing a provider deletes the private details')
+
+  // ---------------------------------------------------------------- which AI the agents use
+  const as0 = await call('agent_settings')
+  ok(as0.s === 200 && as0.d.provider === 'auto' && as0.d.verifierProvider === 'auto' && as0.d.keys?.xai === true && as0.d.keys?.anthropic === false, 'agent settings default to automatic and show which provider keys exist')
+  ok((await call('agent_settings_save', { method: 'POST', body: { provider: 'gemini', verifierProvider: 'auto' } })).s === 400, 'an unknown AI provider is refused')
+  ok((await call('agent_settings_save', { method: 'POST', token: false, body: { provider: 'openai', verifierProvider: 'auto' } })).s === 403, 'saving the AI choice needs the session token')
+  const sv = await call('agent_settings_save', { method: 'POST', body: { provider: 'openai', verifierProvider: 'xai' } })
+  const svc = commits[commits.length - 1]; const svj = JSON.parse(svc.tree[0].content)
+  ok(sv.s === 200 && svc.tree.length === 1 && svc.tree[0].path === 'agents/settings.json' && svj.provider === 'openai' && svj.verifierProvider === 'xai', 'the chosen AI is saved to agents/settings.json on main')
+  const as1 = await call('agent_settings'); ok(as1.d.provider === 'openai' && as1.d.verifierProvider === 'xai', '…and read back')
+  const runP = await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'scout', max: '2', budget: '5', provider: 'anthropic', verifier: 'auto' } } })
+  ok(runP.s === 200 && dispatches[dispatches.length - 1].b.inputs.provider === 'anthropic' && dispatches[dispatches.length - 1].b.inputs.verifier === 'auto', "a run can use a different AI for that run only")
+  ok((await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'scout', provider: 'llama' } } })).s === 400, 'an unknown AI provider is refused for a run')
+  const runD = await call('run_workflow', { method: 'POST', body: { workflow: 'content-agents', inputs: { command: 'scout' } } })
+  ok(runD.s === 200 && dispatches[dispatches.length - 1].b.inputs.provider === 'saved', 'a run with no choice uses the saved default')
   if (!process.env.ADMIN_HOLD) {
     cookie = ''; csrf = ''
     let last; for (let i = 0; i < 5; i++) last = await call('login', { method: 'POST', body: { password: 'bad' + i } })

@@ -420,20 +420,56 @@ function Stories({ say }: { say: (t: string, bad?: boolean) => void }) {
   )
 }
 
+const PROVIDERS: [string, string][] = [['auto', 'Automatic (cheapest with a key)'], ['xai', 'xAI (Grok)'], ['openai', 'OpenAI'], ['anthropic', 'Anthropic (Claude)']]
+const VERIFIERS: [string, string][] = [['auto', 'A different vendor from the writer (recommended)'], ['xai', 'xAI (Grok)'], ['openai', 'OpenAI'], ['anthropic', 'Anthropic (Claude)']]
+
 function Agents({ say }: { say: (t: string, bad?: boolean) => void }) {
-  const [f, setF] = useState({ command: 'pipeline', max: '3', budget: '5', slugs: '' }); const [im, setIm] = useState({ slug: '', force: false })
+  const st = useLoad('agent_settings')
+  const [f, setF] = useState({ command: 'pipeline', max: '3', budget: '5', slugs: '', provider: 'saved', verifier: 'saved' }); const [im, setIm] = useState({ slug: '', force: false })
+  const [saved, setSaved] = useState({ provider: 'auto', verifierProvider: 'auto' }); const [dirty, setDirty] = useState(false)
+  useEffect(() => { if (st.data) { setSaved({ provider: st.data.provider, verifierProvider: st.data.verifierProvider }); setDirty(false) } }, [st.data])
   const run = async (workflow: string, inputs: Json) => { const r = await api('run_workflow', { workflow, inputs }); say(r.ok ? r.data.message : r.data.error, !r.ok) }
-  const inp = 'border border-accent/30 px-3 py-2 w-full text-sm'
+  const save = async () => { const r = await api('agent_settings_save', saved); say(r.ok ? r.data.message : r.data.error, !r.ok); if (r.ok) st.reload() }
+  const inp = 'border border-accent/30 px-3 py-2 w-full text-sm bg-white'
+  const keys = st.data?.keys as Record<string, boolean> | null | undefined
+  const label = (k: string) => (PROVIDERS.find(p => p[0] === k) || [k, k])[1]
+  const effective = saved.provider === 'auto' ? 'the cheapest provider that has a key' : label(saved.provider)
   return (
-    <div className="grid md:grid-cols-2 gap-6">
+    <div className="space-y-6">
       <div className="card">
-        <h2 className="font-serif text-xl mb-1">Content agents</h2>
-        <p className="text-sm text-ink-mid mb-4">Scout, Enricher and Verifier draft new guides. Output arrives as a pull request. Costs real money per run; the budget is a hard cap.</p>
+        <h2 className="font-serif text-xl mb-1">Which AI do the agents use?</h2>
+        <p className="text-sm text-ink-mid mb-4">This default applies to the scheduled runs (Sunday and Wednesday) and to manual runs unless you pick another provider below. It is saved in the repository and takes effect on the next run.</p>
+        {st.err && <p className="text-red-700 text-sm">{st.err}</p>}
+        <div className="grid md:grid-cols-2 gap-4 mb-3">
+          <label className="text-sm">Research and writing (Scout and Enricher)
+            <select className={inp + ' mt-1'} value={saved.provider} onChange={e => { setSaved({ ...saved, provider: e.target.value }); setDirty(true) }}>{PROVIDERS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></label>
+          <label className="text-sm">Fact-checking (Verifier)
+            <select className={inp + ' mt-1'} value={saved.verifierProvider} onChange={e => { setSaved({ ...saved, verifierProvider: e.target.value }); setDirty(true) }}>{VERIFIERS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></label>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <button className="btn-primary text-xs disabled:opacity-40 disabled:cursor-not-allowed" disabled={!dirty} onClick={save}>Save default</button>
+          <span className="text-xs text-ink-mid">Writers use {effective}.</span>
+        </div>
+        <div className="flex flex-wrap gap-2 items-center text-xs">
+          {keys ? (['xai', 'openai', 'anthropic'] as const).map(k => <span key={k}>{badge(`${label(k).split(' ')[0]} key ${keys[k] ? 'set' : 'missing'}`, keys[k] ? 'ok' : 'bad')}</span>)
+            : <span className="text-ink-mid">Key status is unknown to this page. Add <em>Secrets: Read</em> to the admin token to show it, or check GitHub → Settings → Secrets.</span>}
+        </div>
+        {st.data?.lastRun && <p className="text-xs text-ink-mid mt-3">Last run: {st.data.lastRun}</p>}
+        <p className="text-xs text-ink-mid mt-2">A provider with no key fails immediately with a clear message, before any money is spent.</p>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+      <div className="card">
+        <h2 className="font-serif text-xl mb-1">Run the content agents now</h2>
+        <p className="text-sm text-ink-mid mb-4">Scout, Enricher and Verifier draft new guides, then fetch licensed photos. Output arrives as a pull request. Each run costs real money; the budget is a hard cap.</p>
         <label className="text-sm block mb-1" htmlFor="cmd">What to run</label>
         <select id="cmd" className={inp + ' mb-3'} value={f.command} onChange={e => setF({ ...f, command: e.target.value })}>{['pipeline', 'scout', 'enrich', 'verify'].map(c => <option key={c}>{c}</option>)}</select>
         <div className="grid grid-cols-2 gap-3 mb-3">
           <div><label className="text-sm block mb-1" htmlFor="max">Max entries (1–10)</label><input id="max" className={inp} value={f.max} onChange={e => setF({ ...f, max: e.target.value })} /></div>
           <div><label className="text-sm block mb-1" htmlFor="bud">Budget cap, USD (1–20)</label><input id="bud" className={inp} value={f.budget} onChange={e => setF({ ...f, budget: e.target.value })} /></div>
+        </div>
+        <div className="grid grid-cols-2 gap-3 mb-3">
+          <div><label className="text-sm block mb-1" htmlFor="rp">AI for this run (writing)</label><select id="rp" className={inp} value={f.provider} onChange={e => setF({ ...f, provider: e.target.value })}><option value="saved">Saved default</option>{PROVIDERS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></div>
+          <div><label className="text-sm block mb-1" htmlFor="rv">AI for this run (checking)</label><select id="rv" className={inp} value={f.verifier} onChange={e => setF({ ...f, verifier: e.target.value })}><option value="saved">Saved default</option>{VERIFIERS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select></div>
         </div>
         {f.command === 'verify' && <><label className="text-sm block mb-1" htmlFor="sl">Slugs to verify (comma-separated, blank = all drafts)</label><input id="sl" className={inp + ' mb-3'} value={f.slugs} onChange={e => setF({ ...f, slugs: e.target.value })} /></>}
         <button className="btn-primary text-xs" onClick={() => run('content-agents', f)}>Start agents</button>
@@ -441,7 +477,7 @@ function Agents({ say }: { say: (t: string, bad?: boolean) => void }) {
       <div className="space-y-6">
         <div className="card">
           <h2 className="font-serif text-xl mb-1">Find licensed images</h2>
-          <p className="text-sm text-ink-mid mb-4">Searches Wikimedia Commons for open-licence photos and opens a pull request. Check each photo before merging.</p>
+          <p className="text-sm text-ink-mid mb-4">Searches Wikimedia Commons for open-licence photos and opens a pull request. Check each photo before merging. The agents run does this automatically for new drafts.</p>
           <label className="text-sm block mb-1" htmlFor="is">Entry slug (blank = all entries with fewer than 2 images)</label>
           <input id="is" className={inp + ' mb-3'} value={im.slug} onChange={e => setIm({ ...im, slug: e.target.value })} />
           <label className="text-sm flex gap-2 mb-3"><input type="checkbox" checked={im.force} onChange={e => setIm({ ...im, force: e.target.checked })} /> Replace existing images</label>
@@ -452,6 +488,7 @@ function Agents({ say }: { say: (t: string, bad?: boolean) => void }) {
           <p className="text-sm text-ink-mid mb-4">Tests the official KTDC, Kerala Tourism and railway links used in guides.</p>
           <button className="btn-outline text-xs" onClick={() => run('link-check', {})}>Run link check</button>
         </div>
+      </div>
       </div>
     </div>
   )

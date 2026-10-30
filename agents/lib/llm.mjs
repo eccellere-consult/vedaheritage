@@ -22,27 +22,46 @@ const ROLES = ['scout', 'enricher', 'verifier']
 const KEY_ENV = { xai: 'XAI_API_KEY', openai: 'OPENAI_API_KEY', anthropic: 'ANTHROPIC_API_KEY' }
 const DEFAULTS = JSON.parse(fs.readFileSync(new URL('../models.json', import.meta.url), 'utf8'))
 
-export function defaultProvider(role) {
-  const available = DEFAULTS.preference.filter(p => process.env[KEY_ENV[p]])
-  if (!available.length) {
-    throw new Error('No API key found. Add one of XAI_API_KEY, OPENAI_API_KEY or ANTHROPIC_API_KEY as a GitHub secret (see agents/README.md).')
-  }
-  // The Verifier prefers a different vendor from the writer when a second key exists (more independent).
-  if (role === 'verifier') return available.find(p => p !== available[0]) || available[0]
-  return available[0]
+export const PROVIDERS = ['xai', 'openai', 'anthropic']
+
+// "auto", "saved" and empty all mean "no explicit choice here".
+const norm = v => { const x = String(v || '').trim().toLowerCase(); return x && x !== 'auto' && x !== 'saved' ? x : '' }
+
+/** Saved default from agents/settings.json (edited from the admin page). Missing or broken file = all auto. */
+export function readSettings() {
+  try { return JSON.parse(fs.readFileSync(process.env.AGENT_SETTINGS_FILE || new URL('../settings.json', import.meta.url), 'utf8')) } catch { return {} }
 }
 
-// Resolve provider + model for an agent role. Precedence:
-//   provider: <ROLE>_PROVIDER > AGENT_PROVIDER > auto-detect (cheapest provider that has a key)
-//   model:    <ROLE>_MODEL > AGENT_MODEL (only when AGENT_PROVIDER is set) > agents/models.json
-// (VERIFIER_MODEL has always worked this way, so existing setups are unchanged.)
+const available = () => DEFAULTS.preference.filter(p => process.env[KEY_ENV[p]])
+
+// Resolve the provider for a role ("auto", "saved" and empty all mean "no explicit choice here").
+//   Scout and Enricher: <ROLE>_PROVIDER env > AGENT_PROVIDER env (this run's choice or a repository variable)
+//                       > saved default (agents/settings.json "provider") > auto (cheapest provider that has a key)
+//   Verifier:           VERIFIER_PROVIDER env > saved "verifierProvider" > auto: a DIFFERENT vendor from the writer when a
+//                       second key exists, so the fact-checker is not the model marking its own work.
+export function resolveProvider(role) {
+  const R = role.toUpperCase(), cfg = readSettings()
+  const explicit = role === 'verifier'
+    ? norm(process.env.VERIFIER_PROVIDER) || norm(cfg.verifierProvider)
+    : norm(process.env[`${R}_PROVIDER`]) || norm(process.env.AGENT_PROVIDER) || norm(cfg.provider)
+  if (explicit) return explicit
+  const have = available()
+  if (!have.length) throw new Error('No API key found. Add one of XAI_API_KEY, OPENAI_API_KEY or ANTHROPIC_API_KEY as a GitHub secret (see agents/README.md).')
+  if (role === 'verifier') { const writer = resolveProvider('enricher'); return have.find(p => p !== writer) || have[0] }
+  return have[0]
+}
+export const defaultProvider = resolveProvider  // kept for older callers
+
+// Resolve provider + model for an agent role. Model precedence:
+//   <ROLE>_MODEL > AGENT_MODEL (only when AGENT_PROVIDER is the provider in use) > agents/models.json
 export function llmForRole(role, { mock = false, budget = newBudget() } = {}) {
   if (!ROLES.includes(role)) throw new Error(`unknown role ${role}`)
   if (mock) return createLLM({ mock: true })
   const R = role.toUpperCase()
-  const explicit = process.env[`${R}_PROVIDER`] || process.env.AGENT_PROVIDER
-  const provider = (explicit || defaultProvider(role)).toLowerCase()
-  const agentModel = provider === (process.env.AGENT_PROVIDER || '').toLowerCase() ? process.env.AGENT_MODEL : undefined
+  const provider = resolveProvider(role)
+  if (!PROVIDERS.includes(provider)) throw new Error(`Unknown provider "${provider}" (use xai, openai, anthropic or auto)`)
+  if (!process.env[KEY_ENV[provider]]) throw new Error(`${provider} is selected for the ${role} but ${KEY_ENV[provider]} is not set. Add it as a GitHub secret, or choose another provider.`)
+  const agentModel = provider === norm(process.env.AGENT_PROVIDER) ? process.env.AGENT_MODEL : undefined
   const model = process.env[`${R}_MODEL`] || agentModel || DEFAULTS.models[provider]
   return createLLM({ mock, provider, model, budget })
 }

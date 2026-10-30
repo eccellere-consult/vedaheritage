@@ -230,7 +230,9 @@ try {
             $max = (string)($inp['max'] ?? '3'); if (!preg_match('/^([1-9]|10)$/', $max)) json_out(400, ['error' => 'Max must be 1 to 10.']);
             $bud = (string)($inp['budget'] ?? '5'); if (!preg_match('/^([1-9]|1[0-9]|20)$/', $bud)) json_out(400, ['error' => 'Budget must be 1 to 20 USD.']);
             $slugs = (string)($inp['slugs'] ?? ''); if ($slugs !== '' && !preg_match('/^[a-z0-9-]+(,[a-z0-9-]+){0,9}$/', $slugs)) json_out(400, ['error' => 'Slugs must be comma-separated.']);
-            $send = ['command' => $cmd, 'max' => $max, 'budget' => $bud] + ($slugs !== '' ? ['slugs' => $slugs] : []);
+            $pv = (string)($inp['provider'] ?? 'saved'); $vv = (string)($inp['verifier'] ?? 'saved');
+            foreach ([$pv, $vv] as $x) if (!in_array($x, ['saved', 'auto', 'xai', 'openai', 'anthropic'], true)) json_out(400, ['error' => 'Bad provider.']);
+            $send = ['command' => $cmd, 'max' => $max, 'budget' => $bud, 'provider' => $pv, 'verifier' => $vv] + ($slugs !== '' ? ['slugs' => $slugs] : []);
             $file = 'content-agents.yml';
         } elseif ($w === 'fetch-images') {
             $slug = (string)($inp['slug'] ?? ''); if ($slug !== '' && !valid_slug($slug)) json_out(400, ['error' => 'Bad slug.']);
@@ -468,6 +470,29 @@ try {
         $path = market_dir('reports') . "/$id.json"; $r = json_file($path); if (!$r) json_out(404, ['error' => 'Not found.']);
         $r['status'] = 'closed'; $r['contactEmail'] = ''; $r['details'] = mb_substr($r['details'], 0, 0); $r['closed'] = gmdate('c');
         save_json($path, $r); audit('prov-report-done', ['report' => $id]); json_out(200, ['ok' => true]);
+    }
+
+    // ------------------------------------------------------------ which AI the agents use
+    case 'agent_settings': {
+        $f = gh_file('agents/settings.json', 'main'); $cfgJ = $f ? json_decode($f['text'], true) : [];
+        if (!is_array($cfgJ)) $cfgJ = [];
+        $last = gh_file('agents/reports/latest.md', 'main'); $lastRun = null;
+        if ($last && preg_match('/^_Run:.*$/m', $last['text'], $m)) $lastRun = trim($m[0], "_ \r\n");
+        // Which API keys exist? Needs the token's optional "Secrets: read" permission; otherwise unknown (null).
+        $keys = null; $r = gh('GET', '/repos/' . repo() . '/actions/secrets', null, ['per_page' => 100]);
+        if ($r[0] === 200 && is_array($r[1])) { $names = array_column($r[1]['secrets'] ?? [], 'name'); $keys = ['xai' => in_array('XAI_API_KEY', $names, true), 'openai' => in_array('OPENAI_API_KEY', $names, true), 'anthropic' => in_array('ANTHROPIC_API_KEY', $names, true)]; }
+        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'lastRun' => $lastRun, 'keys' => $keys]);
+    }
+
+    case 'agent_settings_save': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $ok = ['auto', 'xai', 'openai', 'anthropic'];
+        $prov = (string)($in['provider'] ?? ''); $ver = (string)($in['verifierProvider'] ?? '');
+        if (!in_array($prov, $ok, true) || !in_array($ver, $ok, true)) json_out(400, ['error' => 'Choose auto, xai, openai or anthropic.']);
+        $body = json_encode(['provider' => $prov, 'verifierProvider' => $ver, 'updated' => gmdate('Y-m-d')], JSON_PRETTY_PRINT) . "\n";
+        gh_commit_files(['agents/settings.json' => ['text' => $body]], "Agents use $prov (verifier: $ver) (admin)");
+        audit('agent-settings', ['provider' => $prov, 'verifier' => $ver]);
+        json_out(200, ['ok' => true, 'message' => 'Saved. The next scheduled or manual run uses this choice.']);
     }
 
     case 'activity': {

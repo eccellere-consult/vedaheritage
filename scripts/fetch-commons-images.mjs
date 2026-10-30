@@ -3,7 +3,7 @@
 // Output is a CANDIDATE set: the entry stays "draft" and a human approves the
 // images (right place? authentic? good quality?) in the pull request.
 //
-// Usage: node scripts/fetch-commons-images.mjs [--only <slug>] [--force]
+// Usage: node scripts/fetch-commons-images.mjs [--only <slug>] [--force] [--drafts]
 // Needs network access to commons.wikimedia.org / upload.wikimedia.org.
 import fs from 'fs'
 import path from 'path'
@@ -54,6 +54,7 @@ async function main() {
   const args = process.argv.slice(2)
   const only = args.includes('--only') ? args[args.indexOf('--only') + 1] : null
   const force = args.includes('--force')
+  const draftsOnly = args.includes('--drafts')   // only entries still in draft (used by the agents workflow)
   const root = path.join(process.cwd(), 'src', 'content')
   const outDir = path.join(process.cwd(), 'public', 'images', 'discover')
   fs.mkdirSync(outDir, { recursive: true })
@@ -65,6 +66,7 @@ async function main() {
       const file = path.join(dir, f)
       const e = JSON.parse(fs.readFileSync(file, 'utf8'))
       if (only && e.slug !== only) continue
+      if (draftsOnly && e.status !== 'draft') continue
       if (!force && (e.images || []).length >= 2) continue
       const query = e.district && e.district !== 'Statewide' ? `${e.name} ${e.district}` : `${e.name} Kerala`
       const picks = pickImages(await search(query), 2 - (force ? 0 : (e.images || []).length))

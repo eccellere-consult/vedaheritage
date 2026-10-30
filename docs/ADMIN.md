@@ -12,7 +12,7 @@ The admin lives at **https://www.vedaheritage.co.in/admin/** (not linked anywher
 | Directory | Verify provider applications (automatic checks plus the checks you tick), publish, **sponsor** within the caps, re-verify, suspend or remove, and close visitor reports | Public listing JSON (no private data) is committed to `main`; see `docs/DIRECTORY_MODEL.md` |
 | Pull requests | **Merge** agent PRs (new drafts, images, stories) once checks are green | Refuses if checks are red, not yet approved on GitHub, or the PR has a conflict |
 | Stories | **Approve** or reject visitor stories | Approve adds the `approved` label, which opens the story PR; merge it under Pull requests |
-| Run agents | Start the content agents, image search, link check | Starts the GitHub workflow; results arrive as a pull request |
+| Run agents | **Choose which AI the agents use** (xAI, OpenAI, Anthropic or automatic; a saved default plus a per-run override), start the content agents, image search, link check | Saves `agents/settings.json`; starts the GitHub workflow; results arrive as a pull request with photos already fetched |
 | Activity | See what was done and failed logins | Audit log stored outside the web folder |
 
 ### Why a draft cannot be published
@@ -29,7 +29,7 @@ The admin enforces the same rules as the validator. A guide needs at least **1 l
 **Step 1. Create a GitHub token for the admin.**
 GitHub → your profile picture → Settings → Developer settings → Personal access tokens → **Fine-grained tokens** → Generate new token.
 - Resource owner: `eccellere-consult`. Repository access: **Only select repositories** → `vedaheritage`.
-- Repository permissions: **Contents** Read and write · **Pull requests** Read and write · **Issues** Read and write · **Actions** Read and write · (Metadata is automatic).
+- Repository permissions: **Contents** Read and write · **Pull requests** Read and write · **Issues** Read and write · **Actions** Read and write · (Metadata is automatic). Optional: **Secrets** Read-only, so the Run agents tab can show which AI keys are set (it never reads their values).
 - Expiration: choose 90 days and put the renewal date in your calendar. Copy the token (starts `github_pat_`); GitHub shows it once.
 
 **Step 2. Create your password code.**

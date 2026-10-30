@@ -100,3 +100,41 @@ await assert.rejects(() => llmForRole('scout', { budget: tiny2 }).research({ sys
 
 srv.close()
 console.log('✔ provider adapters passed')
+
+
+// --- Provider toggle: precedence of this run's choice, the saved default and auto-detect
+import fs from 'fs'
+import os from 'os'
+import path from 'path'
+const settingsFile = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'agent-settings-')), 'settings.json')
+process.env.AGENT_SETTINGS_FILE = settingsFile
+const setSaved = o => fs.writeFileSync(settingsFile, JSON.stringify(o))
+const who = r => llmForRole(r, { budget: newBudget(5) }).provider
+for (const v of ['SCOUT_PROVIDER', 'ENRICHER_PROVIDER', 'VERIFIER_PROVIDER', 'AGENT_PROVIDER', 'SCOUT_MODEL', 'ENRICHER_MODEL', 'VERIFIER_MODEL', 'AGENT_MODEL']) delete process.env[v]
+
+setSaved({ provider: 'auto', verifierProvider: 'auto' })
+assert.deepEqual([who('scout'), who('enricher'), who('verifier')], ['xai', 'xai', 'openai'], 'auto: cheapest for writers, a different vendor for the verifier')
+setSaved({ provider: 'anthropic', verifierProvider: 'auto' })
+assert.deepEqual([who('scout'), who('enricher'), who('verifier')], ['anthropic', 'anthropic', 'xai'], 'saved provider for all roles; auto verifier picks a different vendor than the writer')
+setSaved({ provider: 'openai', verifierProvider: 'xai' })
+assert.deepEqual([who('enricher'), who('verifier')], ['openai', 'xai'], 'saved verifier choice is honoured')
+setSaved({ provider: 'openai', verifierProvider: 'auto' })
+process.env.AGENT_PROVIDER = 'xai'
+assert.deepEqual([who('enricher'), who('verifier')], ['xai', 'openai'], "this run's provider overrides the saved one for the writers; the verifier stays independent")
+process.env.VERIFIER_PROVIDER = 'anthropic'
+assert.equal(who('verifier'), 'anthropic', "this run's verifier choice wins")
+delete process.env.VERIFIER_PROVIDER
+process.env.AGENT_PROVIDER = 'saved'
+assert.equal(who('enricher'), 'openai', '"saved" means use the saved default')
+process.env.AGENT_PROVIDER = 'auto'; setSaved({})
+assert.equal(who('enricher'), 'xai', '"auto" falls through to auto-detect')
+delete process.env.AGENT_PROVIDER
+fs.writeFileSync(settingsFile, 'not json'); assert.equal(who('enricher'), 'xai', 'a broken settings file is ignored')
+
+// A chosen provider without a key fails early with a clear message (not mid-run after spending money)
+const savedKey = process.env.OPENAI_API_KEY; delete process.env.OPENAI_API_KEY
+process.env.AGENT_PROVIDER = 'openai'
+assert.throws(() => who('enricher'), /openai is selected .* OPENAI_API_KEY is not set/)
+process.env.OPENAI_API_KEY = savedKey; process.env.AGENT_PROVIDER = 'gemini'
+assert.throws(() => who('enricher'), /Unknown provider "gemini"/)
+delete process.env.AGENT_PROVIDER
