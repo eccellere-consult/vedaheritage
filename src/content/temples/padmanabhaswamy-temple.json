@@ -95,7 +95,24 @@
     "lat": 8.4828,
     "lng": 76.9436
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/padmanabhaswamy-temple-1.jpg",
+      "alt": "Sree Padmanabhaswamy Temple Lakshadeepam 2020",
+      "credit": "Arun RJ",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sree_Padmanabhaswamy_Temple_Lakshadeepam.jpg"
+    },
+    {
+      "src": "/images/discover/padmanabhaswamy-temple-2.jpg",
+      "alt": "Night view of Sree Padmanabhaswamy Temple in Thiruvananthapuram, Kerala",
+      "credit": "JVN5871",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sree_Padmanabhaswamy_Temple_night.jpg"
+    }
+  ],
   "tags": [
     "temple",
     "Vishnu",
