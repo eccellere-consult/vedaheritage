@@ -45,6 +45,8 @@ Hostinger hPanel → File Manager → open `domains/vedaheritage.co.in/` (the fo
   'admin_password_hash' => 'PASTE_THE_$2y$_CODE_HERE',
 ];
 ```
+**If your host blocks PHP from reading above `public_html`** (the setup page then says so, and `…/api/admin/index.php?a=status` shows `"openBasedirCoversDir":false`), put the same file here instead: `public_html/api/private/vh-config.php`. That folder arrives with the site and is closed to every web request by its own `.htaccess`, so visitors cannot open anything in it. Private submissions (marketplace and directory) are then stored in `public_html/api/private/data/` the same way. Never put the file anywhere else inside `public_html`. Deploys do not delete files you add to that folder, but keep a copy of your settings somewhere safe.
+
 If the file already has lines for story intake (`github_token`, `notify_email`), keep them and add yours before the final `];`. Save.
 
 **Step 4. Log in** at `/admin/`. If you see "Incorrect password", re-copy the code (Step 2) without spaces.

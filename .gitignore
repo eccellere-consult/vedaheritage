@@ -32,3 +32,5 @@ next-env.d.ts
 vh-config.php
 public/vh-config.php
 vh-data/
+public/api/private/vh-config.php
+public/api/private/data/

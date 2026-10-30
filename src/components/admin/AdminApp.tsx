@@ -90,7 +90,7 @@ export default function AdminApp() {
   )
 }
 
-interface Diag { phpOk: boolean; dirExists: boolean; dirReadable: boolean; openBasedirSet: boolean; openBasedirCoversDir: boolean | null; similarFile: string | null; fileInWebFolder: boolean; fileOneLevelTooHigh: boolean }
+interface Diag { phpOk: boolean; dirExists: boolean; dirReadable: boolean; openBasedirSet: boolean; openBasedirCoversDir: boolean | null; similarFile: string | null; fileInWebFolder: boolean; fileOneLevelTooHigh: boolean; privateFolderReady?: boolean }
 interface Where { found: boolean; looked: string[]; diag?: Diag }
 
 /** Plain-language reason the settings file was not found, most specific first. */
@@ -102,11 +102,12 @@ function whyNotFound(w: Where): string[] {
   if (d.fileInWebFolder) r.push('A vh-config.php sits inside public_html. That is the wrong place (the web folder is public and the file is never read from there). Move it up one level, into the folder that contains public_html.')
   if (d.fileOneLevelTooHigh) r.push(`A vh-config.php sits one folder too high. Move it down into ${target.replace('/vh-config.php', '')}.`)
   if (d.similarFile) r.push(`There is a file named "${d.similarFile}". Rename it to exactly vh-config.php (no .txt, no spaces, a hyphen not an underscore).`)
-  if (d.openBasedirSet && d.openBasedirCoversDir === false) r.push('PHP is restricted by open_basedir and may not read that folder. In hPanel go to Advanced → PHP Configuration and widen open_basedir to include the folder above public_html, or ask Hostinger support to allow it.')
-  else if (!d.dirReadable && d.dirExists) r.push('The folder exists but the server is not allowed to read it. Check the folder permissions in File Manager (755 for folders) or ask Hostinger support.')
+  if (d.openBasedirSet && d.openBasedirCoversDir === false) r.push('This host blocks PHP from reading above public_html (open_basedir). Easiest fix: move vh-config.php into the protected folder public_html/api/private/ (visitors cannot open anything in it), then reload this page. Alternatively widen open_basedir under hPanel → Advanced → PHP Configuration.')
+  else if (!d.dirReadable && d.dirExists) r.push('The folder exists but the server is not allowed to read it. Move vh-config.php into the protected folder public_html/api/private/ and reload, or check the folder permissions in File Manager (755 for folders).')
   else if (!d.dirExists && !d.openBasedirSet) r.push('That folder does not exist on the server. Check the domain folder name in File Manager.')
   else if (!d.dirExists && d.openBasedirCoversDir !== false) r.push('The server cannot see that folder (it may not exist, or it may be blocked). Compare the path with File Manager.')
   if (!r.length) r.push(`The folder is readable but contains no file named vh-config.php. Create it there: ${target}.`)
+  if (d.openBasedirSet && !d.dirReadable && !d.privateFolderReady) r.push('The protected folder public_html/api/private/ is not on the server yet; it arrives with the next deploy.')
   return r
 }
 

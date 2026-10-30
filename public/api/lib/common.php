@@ -11,13 +11,17 @@ const MARKET_CONDITIONS = ['new' => 'New / handmade', 'used' => 'Used'];
 const MARKET_LISTING_DAYS = 90;
 const MARKET_MAX_PRICE = 500000;
 
-/** Where the settings file may live, best first. Always outside the web folder. */
+/**
+ * Where the settings file may live, best first: outside the web folder (best), then the protected folder api/private
+ * inside it for hosts that do not let PHP read above the web folder. Never the public part of the web folder.
+ */
 function vh_cfg_candidates(): array {
     $c = [];
     if ($e = getenv('VH_CONFIG')) $c[] = $e;
     $c[] = dirname(__DIR__, 3) . '/vh-config.php';
     $dr = rtrim((string)($_SERVER['DOCUMENT_ROOT'] ?? ''), '/');
     if ($dr !== '') $c[] = dirname($dr) . '/vh-config.php';
+    $c[] = dirname(__DIR__) . '/private/vh-config.php';
     return array_values(array_unique($c));
 }
 
@@ -77,6 +81,7 @@ function vh_cfg_diagnose(): array {
         'similarFile' => $similar,
         'fileInWebFolder' => @file_exists($web),
         'fileOneLevelTooHigh' => $tooHigh !== '' && @file_exists($tooHigh),
+        'privateFolderReady' => @is_dir(dirname(__DIR__) . '/private') && @is_file(dirname(__DIR__) . '/private/.htaccess'),
     ];
 }
 
@@ -84,11 +89,17 @@ function vh_cfg_diagnose(): array {
 function vh_cfg_error_line(): int { vh_cfg(); return (int)($GLOBALS['vh_cfg_error_line'] ?? 0); }
 
 function vh_data_dir(): string {
-    $d = vh_cfg()['data_dir'] ?? (dirname(__DIR__, 3) . '/vh-data');
-    if (!is_dir($d)) @mkdir($d, 0700, true);
-    if (!is_dir($d) || !is_writable($d)) {
-        $d = sys_get_temp_dir() . '/vh-data';
-        if (!is_dir($d)) @mkdir($d, 0700, true);
+    // Private data: the configured folder, else beside the web folder, else the protected folder inside it (hosts that
+    // block PHP above the web folder), and only as a last resort the temporary folder (which may be wiped).
+    $dirs = [];
+    if (!empty(vh_cfg()['data_dir'])) $dirs[] = (string)vh_cfg()['data_dir'];
+    $dirs[] = dirname(__DIR__, 3) . '/vh-data';
+    $dirs[] = dirname(__DIR__) . '/private/data';
+    $dirs[] = sys_get_temp_dir() . '/vh-data';
+    $d = '';
+    foreach ($dirs as $d) {
+        if (!@is_dir($d)) @mkdir($d, 0700, true);
+        if (@is_dir($d) && @is_writable($d)) return $d;
     }
     return $d;
 }
