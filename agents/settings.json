@@ -1,1 +1,5 @@
-{ "provider": "auto", "verifierProvider": "auto" }
+{
+    "provider": "auto",
+    "verifierProvider": "anthropic",
+    "updated": "2026-10-30"
+}
