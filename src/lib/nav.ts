@@ -11,9 +11,12 @@ export const NAV_GROUPS: NavGroup[] = [
   { label: 'Arts & Crafts', blurb: 'Music, dance and traditional objects', items: [d('music', 'Music & Instruments'), d('dance', 'Dance & Performing Arts'), d('heritage', 'Heritage Items & Crafts')] },
 ]
 
+/** Trip-planning links; shown in the menu only (not on the home topic grid). */
+export const NAV_PLAN: NavGroup = {
+  label: 'Plan your trip', blurb: 'Districts, festivals, travel and stories',
+  items: [{ href: '/kerala', label: 'Kerala & 14 districts' }, { href: '/events', label: 'Festivals & events' }, { href: '/travel', label: 'Travel planner' }, { href: '/services', label: 'Local services directory' }, { href: '/stories', label: 'Traveller stories' }],
+}
+
 export const NAV_LINKS = [
-  { href: '/kerala', label: 'Districts' },
-  { href: '/events', label: 'Festivals' },
-  { href: '/stories', label: 'Stories' },
-  { href: '/travel', label: 'Travel' },
+  { href: '/marketplace', label: 'Marketplace' },
 ]

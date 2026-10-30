@@ -37,7 +37,9 @@ Tune behaviour by editing the prompts. No code change is needed.
 **You only need one API key.** The agents pick the cheapest provider that has a key, in this order: **xAI (Grok) → OpenAI → Anthropic**.
 The default model for each is listed in `agents/models.json` (edit it there when a provider renames a model; names and prices change, so check each provider's pricing page).
 If you add a second key, the Verifier automatically uses a *different* provider from the writer, which makes the fact-check more independent.
-To force a choice, set the GitHub variable `AGENT_PROVIDER` (and optionally `AGENT_MODEL`).
+To choose a provider, use the **toggle in the admin page** (Run agents tab): a saved default for the scheduled runs, plus an override for a single manual run. The choice is saved in `agents/settings.json` (`provider` for the Scout and Enricher, `verifierProvider` for the Verifier; each is `auto`, `xai`, `openai` or `anthropic`).
+
+Order of precedence for the Scout and Enricher: `<ROLE>_PROVIDER` variable > this run's choice or the `AGENT_PROVIDER` variable > saved default in `agents/settings.json` > automatic. For the Verifier: `VERIFIER_PROVIDER` > its saved choice > automatic, which picks a *different* vendor from the writer when a second key exists, so the fact-checker is not the model marking its own work. A chosen provider with no API key fails immediately with a clear message, before any money is spent.
 Cost caution: cheaper models make more mistakes. The Verifier and your approval catch them; judge cost per *approved* entry.
 
 ## Choosing providers and models (Anthropic, OpenAI, xAI/Grok)
@@ -63,6 +65,9 @@ OpenAI and xAI run through the OpenAI SDK and the Responses API with the provide
 **About "free":** none of these APIs has a dependable free tier for this kind of use. xAI has at times offered monthly credits for organisations that opt into data sharing, and some providers offer limited free allowances, but terms change and I cannot verify them from here. Check each provider's pricing and data terms page. Everything the agents send is public information about places, so data sharing is low-risk here, but do not send private data. Cheaper models mean more "needs edit" and "reject" results from the Verifier and more review work for you; judge cost per *approved entry*, not per call.
 
 **Not yet verified live:** the OpenAI and xAI adapters are tested against a fake local Responses API only (request shapes, citation harvesting, budget cap, routing). xAI's web search and structured-output support, and how well either provider's search opens specific pages for claim checking, need a first live run. Start with `verify` on one slug and read the report.
+
+## Photos
+After each run the workflow fetches open-licence photos from Wikimedia Commons for drafts that have none (`scripts/fetch-commons-images.mjs --drafts`) and includes them in the pull request, so drafts arrive publishable once a human has checked the photos. If no suitable photo is found the entry stays unpublishable until one is added.
 
 ## Running
 ```bash

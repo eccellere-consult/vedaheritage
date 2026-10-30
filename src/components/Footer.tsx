@@ -31,6 +31,8 @@ export default function Footer() {
                 ['/discover/dance', 'Music & Dance'],
                 ['/discover/astrology', 'Astrology & Jyotisha'],
                 ['/discover/weddings', 'Weddings & Life Rituals'],
+                ['/services', 'Local Services Directory'],
+                ['/marketplace', 'Heritage Marketplace'],
                 ['/stories', 'Traveller Stories'],
                 ['/travel', 'Kerala Travel Planner'],
                 ['/stay', 'Stay with us'],

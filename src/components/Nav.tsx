@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NAV_GROUPS, NAV_LINKS } from '@/lib/nav'
+import { NAV_GROUPS, NAV_LINKS, NAV_PLAN } from '@/lib/nav'
+
+const MENU = [...NAV_GROUPS, NAV_PLAN]
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
@@ -23,7 +25,7 @@ export default function Nav() {
 
           {/* Desktop nav */}
           <nav className="hidden xl:flex items-center gap-4 whitespace-nowrap" aria-label="Main">
-            {NAV_GROUPS.map(g => (
+            {MENU.map(g => (
               <div key={g.label} className="relative group">
                 <button type="button" className="nav-link whitespace-nowrap inline-flex items-center gap-1" aria-haspopup="true">
                   {g.label} <span aria-hidden className="text-[10px]">▾</span>
@@ -58,7 +60,7 @@ export default function Nav() {
       {/* Mobile menu */}
       {open && (
         <div className="xl:hidden bg-surface border-t border-accent/20 px-4 pb-6 max-h-[80vh] overflow-y-auto">
-          {NAV_GROUPS.map(g => (
+          {MENU.map(g => (
             <div key={g.label} className="py-3 border-b border-accent/10">
               <p className="section-label mb-1">{g.label}</p>
               {g.items.map(i => (

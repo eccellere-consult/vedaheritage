@@ -12,6 +12,7 @@ import PlaceList from '@/components/PlaceList'
 import Timeline from '@/components/Timeline'
 import EntryImages from '@/components/EntryImages'
 import OfficialLinks from '@/components/OfficialLinks'
+import ContactsBlock from '@/components/services/ContactsBlock'
 
 type Props = { params: Promise<{ category: string; slug: string }> }
 
@@ -203,6 +204,8 @@ export default async function EntryPage({ params }: Props) {
             <p className="text-ink-mid mb-3">Veda Heritage in Vavvakkavu, Kollam is a traditional Kerala home base for exploring the region.</p>
             <a href={WA.enquiry} target="_blank" rel="noopener noreferrer" className="btn-primary text-xs">Ask about a stay</a>
           </div>
+
+          <ContactsBlock entry={e} />
 
           <section className="mt-14" aria-labelledby="stories">
             <h2 id="stories" className="section-title mb-4">Traveller notes &amp; stories</h2>

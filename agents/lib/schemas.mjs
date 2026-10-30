@@ -5,6 +5,14 @@ const Category = z.enum(CATEGORIES)
 const Source = z.object({ label: z.string(), url: z.string() })
 const PlaceOut = z.object({ name: z.string(), district: z.string(), kind: z.string().nullable(), note: z.string(), url: z.string().nullable() })
 
+// An official contact for a place, taken from a page that was actually retrieved.
+const ContactOut = z.object({
+  label: z.string(),
+  kind: z.enum(['tourism-office', 'temple-office', 'transport-enquiry', 'emergency', 'hospital', 'police', 'other']),
+  phone: z.string().nullable(), email: z.string().nullable(), website: z.string().nullable(), address: z.string().nullable(),
+  sourceUrl: z.string(),
+})
+
 // ---- Scout ---------------------------------------------------------------
 export const ScoutOut = z.object({
   candidates: z.array(z.object({
@@ -53,6 +61,8 @@ export const EntryOut = z.object({
     buyingTips: z.array(z.string()),
   }).nullable(),
   officialLinks: z.array(Source).nullable(),
+  // Official contacts only (temple administration, tourism department, transport enquiries, emergency). Never private businesses.
+  contacts: z.array(ContactOut).nullable(),
   coordinates: z.object({ lat: z.number(), lng: z.number() }).nullable(),
   tags: z.array(z.string()),
   sources: z.array(Source),
@@ -90,7 +100,7 @@ export const VerifyOut = z.object({
 const cleanPlace = p => ({ name: p.name, district: p.district, ...(p.kind ? { kind: p.kind } : {}), note: p.note, ...(p.url ? { url: p.url } : {}) })
 
 // Convert Enricher output to the on-disk entry (drops nulls, adds fixed fields).
-export function toEntryFile(out, { category, slug, date, sources }) {
+export function toEntryFile(out, { category, slug, date, sources, contacts = [] }) {
   const e = {
     slug, category, name: out.name,
     ...(out.malayalamName ? { malayalamName: out.malayalamName } : {}),
@@ -105,6 +115,7 @@ export function toEntryFile(out, { category, slug, date, sources }) {
       whereToSee: out.heritage.whereToSee.map(cleanPlace), whereToBuy: out.heritage.whereToBuy.map(cleanPlace), experiences: out.heritage.experiences.map(cleanPlace),
       buyingTips: out.heritage.buyingTips } } : {}),
     ...(out.officialLinks?.length ? { officialLinks: out.officialLinks } : {}),
+    ...(contacts.length ? { contacts: contacts.map(c => ({ label: c.label, kind: c.kind, ...(c.phone ? { phone: c.phone } : {}), ...(c.email ? { email: c.email } : {}), ...(c.website ? { website: c.website } : {}), ...(c.address ? { address: c.address } : {}), sourceUrl: c.sourceUrl, verifiedOn: date })) } : {}),
     ...(out.coordinates ? { coordinates: out.coordinates } : {}),
     images: [], tags: out.tags, sources,
     status: 'draft', lastVerified: date,

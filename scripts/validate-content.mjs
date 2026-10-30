@@ -11,6 +11,9 @@ const CATEGORIES = ['temples', 'places', 'beaches', 'backwaters', 'heritage', 'a
 const STATEWIDE = new Set(['heritage', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical'])
 const STATUSES = ['draft', 'approved']
 const STORY_TYPES = ['Experience', 'Folklore I heard', 'Travel tip']
+const CONTACT_KINDS = ['tourism-office', 'temple-office', 'transport-enquiry', 'emergency', 'hospital', 'police', 'other']
+const PHONE_RE = /^(\+?\d[\d\s().-]{5,18}\d)$/
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const errors = []
 const slugs = new Set()
 
@@ -56,6 +59,15 @@ for (const cat of CATEGORIES) {
       if (cat !== 'heritage' && !hr) { /* optional for traditions */ } else if (!hr || !okPlaces(hr.whereToSee) || !okPlaces(hr.whereToBuy) || !okPlaces(hr.experiences) || !isArr(hr.buyingTips)) fail(rel, 'heritage {whereToSee[], whereToBuy[], experiences[] (each name, district, note), buyingTips[]} required')
     } else if (!tr || !isArr(tr.byTrain) || !isArr(tr.byBus)) fail(rel, 'travel {byTrain[], byBus[]} required (byWater, byAir optional)')
     if (d.officialLinks && d.officialLinks.some(l => !isStr(l.label) || !/^https:\/\//.test(l.url || ''))) fail(rel, 'officialLinks must be [{label, url (https)}]')
+    for (const c of d.contacts || []) {
+      if (!isStr(c.label) || !CONTACT_KINDS.includes(c.kind)) fail(rel, `contacts: each needs a label and kind (${CONTACT_KINDS})`)
+      if (!c.phone && !c.email && !c.website) fail(rel, `contacts "${c.label}": needs a phone, email or website`)
+      if (c.phone && !PHONE_RE.test(c.phone)) fail(rel, `contacts "${c.label}": phone looks wrong (${c.phone})`)
+      if (c.email && !EMAIL_RE.test(c.email)) fail(rel, `contacts "${c.label}": email looks wrong`)
+      if (c.website && !/^https:\/\/[^\s]+$/.test(c.website)) fail(rel, `contacts "${c.label}": website must be https`)
+      if (!/^https:\/\//.test(c.sourceUrl || '')) fail(rel, `contacts "${c.label}": needs the official sourceUrl (https) it was taken from`)
+      if (!isIsoDate(c.verifiedOn)) fail(rel, `contacts "${c.label}": verifiedOn must be an ISO date`)
+    }
     if (!Array.isArray(d.images) || d.images.length > 2) fail(rel, 'images must be an array of at most 2')
     for (const im of d.images || []) {
       for (const f of ['src', 'alt', 'credit', 'license', 'sourceUrl']) if (!isStr(im[f])) fail(rel, `image missing ${f}`)
@@ -110,8 +122,88 @@ for (const { rel, name, data: s } of load('stories')) {
   if (s.entrySlug && !slugs.has(`${s.entryCategory}/${s.entrySlug}`)) fail(rel, 'entrySlug does not match any entry')
 }
 
+const LISTING_CATS = ['lamps-brassware', 'textiles', 'furniture-woodwork', 'art-crafts', 'musical-instruments', 'books-prints', 'other-traditional']
+const LISTING_STATUSES = ['approved', 'sold', 'removed']
+let listingCount = 0
+for (const { rel, name, data: l } of load('listings')) {
+  listingCount++
+  if (l.id !== name) fail(rel, `id "${l.id}" must match filename "${name}"`)
+  if (!/^\d{8}-[0-9a-f]{8}$/.test(l.id || '')) fail(rel, 'id must look like 20261029-1a2b3c4d')
+  if (!LISTING_STATUSES.includes(l.status)) fail(rel, `status must be one of ${LISTING_STATUSES}`)
+  if (!LISTING_CATS.includes(l.category)) fail(rel, `category must be one of ${LISTING_CATS}`)
+  if (!['new', 'used'].includes(l.condition)) fail(rel, 'condition must be new or used')
+  if (!Number.isInteger(l.priceInr) || l.priceInr < 1 || l.priceInr > 500000) fail(rel, 'priceInr must be a whole number from 1 to 500000')
+  if (!isStr(l.title) || l.title.length < 5 || l.title.length > 90) fail(rel, 'title must be 5–90 chars')
+  if (!isStr(l.description) || l.description.length < 40 || l.description.length > 1500) fail(rel, 'description must be 40–1500 chars')
+  for (const f of ['district', 'sellerFirstName']) if (!isStr(l[f])) fail(rel, `missing ${f}`)
+  if (!isIsoDate(l.listedOn) || !isIsoDate(l.expiresOn) || l.expiresOn < l.listedOn) fail(rel, 'listedOn and expiresOn must be ISO dates, expiry after listing')
+  if (!Array.isArray(l.photos) || l.photos.length < 1 || l.photos.length > 3) fail(rel, 'photos must be 1–3')
+  for (const ph of l.photos || []) {
+    if (!isStr(ph.alt)) fail(rel, 'photo needs alt text')
+    if (!fileExists(ph.src)) fail(rel, `photo file not found in public/: ${ph.src}`)
+  }
+  // Privacy guard: seller contact details must never reach the public repo. Scan free-text fields only
+  // (ids, dates and photo filenames contain long digit runs that are not phone numbers).
+  const text = [l.title, l.description, l.district, l.sellerFirstName, ...(l.photos || []).map(ph => ph.alt)].filter(Boolean).join(' ')
+  if ('contactEmail' in l || 'contactPhone' in l || /[\w.+-]+@[\w-]+\.[\w.]+|(?<!\d)\+?\d[\d\s-]{8,}\d/.test(text)) fail(rel, 'listing appears to contain an email address, phone number or contact field; remove it')
+}
+
+// ---- Service-provider directory (see docs/DIRECTORY_MODEL.md) -------------------------------
+const P_TYPES = { guide: [true, true], transport: [false, true], stay: [true, true], wellness: [true, false], crafts: [false, true], food: [false, true], learning: [false, true], 'travel-desk': [true, true] } // [needs credential, may be sponsored]
+const P_DISTRICTS = ['Thiruvananthapuram', 'Kollam', 'Pathanamthitta', 'Alappuzha', 'Kottayam', 'Idukki', 'Ernakulam', 'Thrissur', 'Palakkad', 'Malappuram', 'Kozhikode', 'Wayanad', 'Kannur', 'Kasaragod']
+const AD_FLAGS = [/\b(best|no\.? ?1|number one|#1|top[- ]rated|finest|greatest|unbeatable|world[- ]class|leading)\b/i, /\b(cheapest|lowest price|guaranteed?|100 ?%|risk[- ]free|money[- ]back)\b/i, /\b(cure[sd]?|treats?|heals?|remed(y|ies)|therapeutic|diseases?|diabetes|cancer|arthritis|infertility)\b/i, /\b(miracle|secret|magic|spell|black magic|vashikaran)\b/i, /\b(click here|limited offer|hurry|act now)\b/i]
+const SPONSOR_MAX_DAYS = 90, SPONSOR_MAX_PER_DISTRICT_TYPE = 3
+const LINKISH = /https?:\/\/|www\.|\b[a-z0-9-]+\.(com|in|net|org|co|io|me|ly)\b/i
+const PRIVATE_KEYS = ['contactPerson', 'contactPersonPhone', 'credentialNumber', 'tokenHash', 'emailVerified']
+const providers = []
+for (const { rel, name, data: p } of load('providers')) {
+  providers.push({ rel, p })
+  if (p.id !== name || !/^\d{8}-[0-9a-f]{8}$/.test(p.id || '')) fail(rel, `id must look like 20261029-1a2b3c4d and match the filename`)
+  if (!['approved', 'suspended', 'removed'].includes(p.status)) fail(rel, 'status must be approved, suspended or removed')
+  if (!P_TYPES[p.type]) fail(rel, `type must be one of ${Object.keys(P_TYPES)}`)
+  if (!isStr(p.name) || p.name.length < 3 || p.name.length > 80) fail(rel, 'name must be 3–80 chars')
+  if (!Array.isArray(p.districts) || p.districts.length < 1 || p.districts.length > 3 || p.districts.some(d => !P_DISTRICTS.includes(d))) fail(rel, 'districts must be 1–3 valid Kerala districts')
+  if (!isStr(p.summary) || p.summary.length < 40 || p.summary.length > 200) fail(rel, 'summary must be 40–200 chars')
+  if (LINKISH.test(p.summary || '') || LINKISH.test(p.name || '')) fail(rel, 'no web links in name or summary')
+  if ([AD_FLAGS[2], AD_FLAGS[3]].some(re => re.test(`${p.name} ${p.summary}`))) fail(rel, 'summary contains a health, miracle or occult claim')
+  if (!PHONE_RE.test(p.phone || '')) fail(rel, 'phone looks wrong')
+  if (!EMAIL_RE.test(p.email || '')) fail(rel, 'email looks wrong')
+  if (p.website && !/^https:\/\/[^\s]+$/.test(p.website)) fail(rel, 'website must be https')
+  if (P_TYPES[p.type]?.[0] && !isStr(p.credentialLabel)) fail(rel, 'this type needs a credentialLabel (registration or licence type)')
+  if (!isIsoDate(p.verifiedOn) || !isIsoDate(p.reverifyBy) || p.reverifyBy <= p.verifiedOn) fail(rel, 'verifiedOn and reverifyBy must be ISO dates, reverifyBy later')
+  for (const k of PRIVATE_KEYS) if (k in p) fail(rel, `private field "${k}" must never be committed`)
+  const sp = p.sponsored
+  if (sp) {
+    if (!P_TYPES[p.type]?.[1]) fail(rel, 'this type of service may not be sponsored')
+    if (!isStr(sp.headline) || sp.headline.length < 5 || sp.headline.length > 60) fail(rel, 'sponsored.headline must be 5–60 chars')
+    if (!isStr(sp.line) || sp.line.length < 15 || sp.line.length > 140) fail(rel, 'sponsored.line must be 15–140 chars')
+    if (LINKISH.test(`${sp.headline} ${sp.line}`)) fail(rel, 'no web links in sponsored text')
+    if (AD_FLAGS.some(re => re.test(`${sp.headline} ${sp.line}`))) fail(rel, 'sponsored text has a claim that is not allowed (ranking, price, guarantee, health, miracle, pressure)')
+    if (!isIsoDate(sp.from) || !isIsoDate(sp.until) || sp.until < sp.from) fail(rel, 'sponsored.from/until must be ISO dates in order')
+    else {
+      if ((Date.parse(sp.until) - Date.parse(sp.from)) / 86400000 > SPONSOR_MAX_DAYS) fail(rel, `a sponsorship may run at most ${SPONSOR_MAX_DAYS} days`)
+      if (sp.until > p.reverifyBy) fail(rel, 'sponsorship may not run past reverifyBy')
+    }
+    if (p.status !== 'approved') fail(rel, 'only approved providers can carry a sponsorship')
+  }
+}
+// Cap: at most N concurrently sponsored providers of one type in one district.
+for (const d of P_DISTRICTS) for (const t of Object.keys(P_TYPES)) {
+  const sp = providers.filter(({ p }) => p.sponsored && p.status === 'approved' && p.type === t && p.districts?.includes(d))
+  for (const { p } of sp) {
+    const n = sp.filter(({ p: o }) => o.sponsored.from <= p.sponsored.from && o.sponsored.until >= p.sponsored.from).length
+    if (n > SPONSOR_MAX_PER_DISTRICT_TYPE) { fail(`providers/${p.id}.json`, `more than ${SPONSOR_MAX_PER_DISTRICT_TYPE} concurrently sponsored ${t} providers in ${d}`); break }
+  }
+}
+// Duplicates among live listings.
+const seen = new Map()
+for (const { rel, p } of providers) {
+  if (p.status === 'removed') continue
+  for (const key of [`email:${String(p.email).toLowerCase()}`, `phone:${String(p.phone).replace(/\D/g, '')}`]) { if (seen.has(key)) fail(rel, `duplicate of ${seen.get(key)} (${key})`); else seen.set(key, rel) }
+}
+
 if (errors.length) {
   console.error(`\n✖ ${errors.length} content problem(s):\n` + errors.map(e => '  - ' + e).join('\n'))
   process.exit(1)
 }
-console.log(`✔ content valid (${slugs.size} entries, ${districtNames.size} districts)`)
+console.log(`✔ content valid (${slugs.size} entries, ${districtNames.size} districts, ${listingCount} listings, ${providers.length} providers)`)

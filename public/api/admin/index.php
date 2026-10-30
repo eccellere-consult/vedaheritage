@@ -24,14 +24,15 @@ function tree_index(): array {
     $c = cache_get('tree', 60);
     if ($c) return $c;
     $t = gh_ok(gh('GET', '/repos/' . repo() . '/git/trees/main', null, ['recursive' => '1']), 'read tree');
-    $entries = []; $evidence = [];
+    $entries = []; $evidence = []; $providers = [];
     $cats = implode('|', CATS);
     foreach ($t['tree'] ?? [] as $n) {
         if (($n['type'] ?? '') !== 'blob') continue;
         if (preg_match('~^src/content/(' . $cats . ')/([a-z0-9-]+)\.json$~', $n['path'], $m)) $entries[] = ['cat' => $m[1], 'slug' => $m[2], 'path' => $n['path'], 'sha' => $n['sha']];
         elseif (preg_match('~^agents/evidence/([a-z0-9-]+)\.json$~', $n['path'], $m)) $evidence[$m[1]] = $n['sha'];
+        elseif (preg_match('~^src/content/providers/(\d{8}-[0-9a-f]{8})\.json$~', $n['path'], $m)) $providers[$m[1]] = $n['sha'];
     }
-    $out = ['entries' => $entries, 'evidence' => $evidence, 'head' => $t['sha'] ?? ''];
+    $out = ['entries' => $entries, 'evidence' => $evidence, 'providers' => $providers, 'head' => $t['sha'] ?? ''];
     cache_put('tree', $out);
     return $out;
 }
@@ -229,7 +230,9 @@ try {
             $max = (string)($inp['max'] ?? '3'); if (!preg_match('/^([1-9]|10)$/', $max)) json_out(400, ['error' => 'Max must be 1 to 10.']);
             $bud = (string)($inp['budget'] ?? '5'); if (!preg_match('/^([1-9]|1[0-9]|20)$/', $bud)) json_out(400, ['error' => 'Budget must be 1 to 20 USD.']);
             $slugs = (string)($inp['slugs'] ?? ''); if ($slugs !== '' && !preg_match('/^[a-z0-9-]+(,[a-z0-9-]+){0,9}$/', $slugs)) json_out(400, ['error' => 'Slugs must be comma-separated.']);
-            $send = ['command' => $cmd, 'max' => $max, 'budget' => $bud] + ($slugs !== '' ? ['slugs' => $slugs] : []);
+            $pv = (string)($inp['provider'] ?? 'saved'); $vv = (string)($inp['verifier'] ?? 'saved');
+            foreach ([$pv, $vv] as $x) if (!in_array($x, ['saved', 'auto', 'xai', 'openai', 'anthropic'], true)) json_out(400, ['error' => 'Bad provider.']);
+            $send = ['command' => $cmd, 'max' => $max, 'budget' => $bud, 'provider' => $pv, 'verifier' => $vv] + ($slugs !== '' ? ['slugs' => $slugs] : []);
             $file = 'content-agents.yml';
         } elseif ($w === 'fetch-images') {
             $slug = (string)($inp['slug'] ?? ''); if ($slug !== '' && !valid_slug($slug)) json_out(400, ['error' => 'Bad slug.']);
@@ -256,6 +259,240 @@ try {
         $v = curl_exec($ch); $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
         if ($v !== false && $code === 200) $live = trim(substr((string)$v, 0, 200));
         json_out(200, ['main' => substr($head['sha'], 0, 7), 'mainMessage' => strtok($head['commit']['message'] ?? '', "\n"), 'liveVersion' => $live, 'liveOk' => $code === 200, 'runs' => array_slice($runs, 0, 8)]);
+    }
+
+
+    // ------------------------------------------------------------ marketplace
+    case 'market': {
+        $subs = []; foreach (glob(market_dir('submissions') . '/*.json') ?: [] as $f) { $d = json_file($f); if ($d) $subs[] = $d; }
+        usort($subs, fn($x, $y) => strcmp($y['created'] ?? '', $x['created'] ?? ''));
+        $byId = []; foreach ($subs as $d) $byId[$d['id']] = $d;
+        $pending = []; $live = [];
+        foreach ($subs as $d) {
+            $row = ['id' => $d['id'], 'title' => $d['title'], 'category' => MARKET_CATEGORIES[$d['category']] ?? $d['category'], 'condition' => $d['condition'], 'price' => $d['priceInr'],
+                'district' => $d['district'], 'created' => $d['created'], 'status' => $d['status'], 'photos' => count($d['photos'] ?? [])];
+            if ($d['status'] === 'pending') {
+                $row += ['description' => $d['description'], 'sellerName' => $d['sellerName'], 'contactEmail' => $d['contactEmail'] ?? '', 'contactPhone' => $d['contactPhone'] ?? '',
+                    'blockers' => listing_blockers($d), 'flags' => market_flags($d['title'] . ' ' . $d['description'])];
+                $pending[] = $row;
+            } elseif (in_array($d['status'], ['approved', 'sold'], true)) $live[] = $row;
+        }
+        $enq = []; foreach (glob(market_dir('enquiries') . '/*.json') ?: [] as $f) { $e = json_file($f); if ($e && ($e['status'] ?? '') === 'open') {
+            $s = $byId[$e['listingId']] ?? null;
+            $enq[] = $e + ['seller' => $s ? ['name' => $s['sellerName'], 'email' => $s['contactEmail'] ?? '', 'phone' => $s['contactPhone'] ?? ''] : null]; } }
+        usort($enq, fn($x, $y) => strcmp($y['created'], $x['created']));
+        json_out(200, ['pending' => $pending, 'live' => $live, 'enquiries' => $enq]);
+    }
+
+    case 'market_photo': {
+        $id = $_GET['id'] ?? ''; $n = (int)($_GET['n'] ?? 0);
+        if (!valid_id($id) || $n < 1 || $n > 3) json_out(400, ['error' => 'Bad request.']);
+        $f = market_dir('photos') . "/$id-$n.jpg";
+        if (!is_file($f)) json_out(404, ['error' => 'Not found.']);
+        header('Content-Type: image/jpeg'); header('Cache-Control: private, no-store'); header('X-Content-Type-Options: nosniff');
+        readfile($f); exit;
+    }
+
+    case 'market_decide': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $d = need_str($in, 'decision', 10);
+        if (!valid_id($id) || !in_array($d, ['approve', 'reject'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('submissions') . "/$id.json"; $sub = json_file($path);
+        if (!$sub || $sub['status'] !== 'pending') json_out(404, ['error' => 'No pending submission with that id.']);
+        if ($d === 'reject') {
+            foreach ($sub['photos'] as $p) @unlink(market_dir('photos') . '/' . basename($p));
+            $sub = ['id' => $id, 'status' => 'rejected', 'created' => $sub['created'], 'title' => $sub['title'], 'category' => $sub['category'], 'condition' => $sub['condition'], 'priceInr' => $sub['priceInr'], 'district' => $sub['district'], 'photos' => [], 'rejected' => gmdate('c')];
+            save_json($path, $sub); audit('market-reject', ['listing' => $id]);
+            json_out(200, ['ok' => true, 'message' => 'Rejected. The seller\'s contact details and photos were deleted.']);
+        }
+        $blockers = listing_blockers($sub);
+        if ($blockers) json_out(422, ['error' => 'Cannot publish yet.', 'blockers' => $blockers]);
+        $flags = market_flags($sub['title'] . ' ' . $sub['description']);
+        if ($flags && empty($in['override'])) json_out(409, ['error' => 'This listing needs a second look.', 'flags' => $flags, 'needsOverride' => true]);
+        $files = []; $photos = [];
+        foreach ($sub['photos'] as $i => $p) {
+            $bytes = @file_get_contents(market_dir('photos') . '/' . basename($p));
+            if ($bytes === false) json_out(500, ['error' => 'A photo file is missing on the server.']);
+            $dest = "public/images/marketplace/$id-" . ($i + 1) . '.jpg';
+            $files[$dest] = ['b64' => base64_encode($bytes)];
+            $photos[] = ['src' => '/images/marketplace/' . basename($dest), 'alt' => $sub['title'] . ' (photo ' . ($i + 1) . ')'];
+        }
+        $listing = ['id' => $id, 'title' => $sub['title'], 'category' => $sub['category'], 'condition' => $sub['condition'], 'priceInr' => $sub['priceInr'],
+            'description' => $sub['description'], 'district' => $sub['district'], 'sellerFirstName' => $sub['sellerName'], 'photos' => $photos,
+            'listedOn' => gmdate('Y-m-d'), 'expiresOn' => gmdate('Y-m-d', time() + MARKET_LISTING_DAYS * 86400), 'status' => 'approved'];
+        $files["src/content/listings/$id.json"] = ['text' => json_encode($listing, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"];
+        gh_commit_files($files, 'Publish marketplace listing: ' . $sub['title'] . ' (admin)');
+        $sub['status'] = 'approved'; $sub['approved'] = gmdate('c'); save_json($path, $sub);
+        audit('market-approve', ['listing' => $id, 'override' => !empty($in['override'])]);
+        json_out(200, ['ok' => true, 'message' => 'Published. The listing goes live after the next rebuild (a few minutes).']);
+    }
+
+    case 'market_status': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $to = need_str($in, 'status', 10);
+        if (!valid_id($id) || !in_array($to, ['sold', 'removed'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('submissions') . "/$id.json"; $sub = json_file($path);
+        if (!$sub || !in_array($sub['status'], ['approved', 'sold'], true)) json_out(404, ['error' => 'No live listing with that id.']);
+        $file = "src/content/listings/$id.json"; $f = gh_file($file, 'main');
+        if (!$f) json_out(404, ['error' => 'Listing file not found on main.']);
+        $listing = json_decode($f['text'], true);
+        if (!is_array($listing)) json_out(422, ['error' => 'Listing file is not valid JSON.']);
+        $listing['status'] = $to;
+        $files = [$file => ['text' => json_encode($listing, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]];
+        gh_commit_files($files, ($to === 'sold' ? 'Mark sold: ' : 'Remove listing: ') . $listing['title'] . ' (admin)');
+        if ($to === 'removed') { $sub['contactEmail'] = ''; $sub['contactPhone'] = ''; }
+        $sub['status'] = $to; save_json($path, $sub);
+        audit('market-' . $to, ['listing' => $id]);
+        json_out(200, ['ok' => true, 'message' => $to === 'sold' ? 'Marked sold.' : 'Removed. The seller contact details were deleted.']);
+    }
+
+    case 'market_enquiry_done': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('enquiries') . "/$id.json"; $e = json_file($path);
+        if (!$e) json_out(404, ['error' => 'Not found.']);
+        // Data minimisation: once introduced, keep the record but drop the buyer's contact details.
+        $e['status'] = 'introduced'; $e['contactEmail'] = ''; $e['contactPhone'] = ''; $e['message'] = ''; $e['done'] = gmdate('c');
+        save_json($path, $e); audit('market-enquiry-done', ['enquiry' => $id]);
+        json_out(200, ['ok' => true]);
+    }
+
+    // ------------------------------------------------------------ service-provider directory
+    case 'prov': {
+        $subs = []; foreach (glob(market_dir('providers') . '/*.json') ?: [] as $f) { $d = json_file($f); if ($d) $subs[] = $d; }
+        usort($subs, fn($x, $y) => strcmp($y['created'] ?? '', $x['created'] ?? ''));
+        $queue = []; $live = []; $today = gmdate('Y-m-d'); $checked = 0;
+        $pub = []; foreach (tree_index()['providers'] as $pid => $sha) { $pj = blob_json($sha); if ($pj) $pub[$pid] = $pj; }
+        foreach ($subs as $d) {
+            if ($d['status'] === 'pending') {
+                $site = null;
+                if (!empty($d['website']) && $checked++ < 10) $site = website_check($d['website']);
+                $txt = $d['name'] . ' ' . $d['summary'];
+                $dups = []; foreach ($subs as $o) if ($o['id'] !== $d['id'] && !in_array($o['status'], ['rejected', 'removed'], true) && (($o['email'] ?? '') === $d['email'] || ($o['phone'] ?? '') === $d['phone'])) $dups[] = $o['name'];
+                $queue[] = ['id' => $d['id'], 'name' => $d['name'], 'type' => PROVIDER_TYPES[$d['type']][0] ?? $d['type'], 'typeKey' => $d['type'], 'districts' => $d['districts'], 'summary' => $d['summary'],
+                    'phone' => $d['phone'], 'email' => $d['email'], 'website' => $d['website'], 'address' => $d['address'], 'credentialKind' => $d['credentialKind'], 'credentialNumber' => $d['credentialNumber'],
+                    'contactPerson' => $d['contactPerson'], 'contactPersonPhone' => $d['contactPersonPhone'], 'created' => $d['created'], 'emailVerified' => !empty($d['emailVerified']), 'emailSent' => !empty($d['emailSent']),
+                    'needsCredential' => PROVIDER_TYPES[$d['type']][1] ?? false, 'site' => $site, 'emailMatchesSite' => $site && email_domain($d['email']) === host_of($d['website']),
+                    'flags' => provider_flags($txt), 'duplicates' => $dups];
+            } elseif (in_array($d['status'], ['approved', 'suspended'], true)) {
+                $p = $pub[$d['id']] ?? null;
+                $live[] = ['id' => $d['id'], 'name' => $d['name'], 'type' => $d['type'], 'typeLabel' => PROVIDER_TYPES[$d['type']][0] ?? $d['type'], 'districts' => $d['districts'], 'status' => $p['status'] ?? $d['status'],
+                    'verifiedOn' => $p['verifiedOn'] ?? null, 'reverifyBy' => $p['reverifyBy'] ?? null, 'due' => isset($p['reverifyBy']) && $p['reverifyBy'] <= gmdate('Y-m-d', time() + 30 * 86400), 'sponsored' => $p['sponsored'] ?? null,
+                    'sponsorable' => PROVIDER_TYPES[$d['type']][2] ?? false, 'phone' => $d['phone'], 'email' => $d['email']];
+            }
+        }
+        $reports = []; foreach (glob(market_dir('reports') . '/*.json') ?: [] as $f) { $r = json_file($f); if ($r && ($r['status'] ?? '') === 'open') $reports[] = $r; }
+        usort($reports, fn($x, $y) => strcmp($y['created'], $x['created']));
+        json_out(200, ['queue' => $queue, 'live' => $live, 'reports' => $reports]);
+    }
+
+    case 'prov_decide': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $d = need_str($in, 'decision', 10);
+        if (!valid_id($id) || !in_array($d, ['approve', 'reject'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('providers') . "/$id.json"; $sub = json_file($path);
+        if (!$sub || $sub['status'] !== 'pending') json_out(404, ['error' => 'No pending application with that id.']);
+        if ($d === 'reject') {
+            $sub = ['id' => $id, 'status' => 'rejected', 'created' => $sub['created'], 'name' => $sub['name'], 'type' => $sub['type'], 'rejected' => gmdate('c'), 'note' => clean_text($in['note'] ?? '', 200)];
+            save_json($path, $sub); audit('prov-reject', ['provider' => $id]);
+            json_out(200, ['ok' => true, 'message' => 'Rejected. The applicant\'s private details were deleted.']);
+        }
+        $checks = is_array($in['checks'] ?? null) ? $in['checks'] : [];
+        $site = !empty($sub['website']) ? website_check($sub['website']) : null;
+        $blockers = provider_blockers($sub, $checks, $site);
+        if ($blockers) json_out(422, ['error' => 'Cannot publish yet.', 'blockers' => $blockers]);
+        $flags = provider_flags($sub['name'] . ' ' . $sub['summary']);
+        if (!empty($sub['website']) && $site && !$site['sameHost']) $flags[] = 'The website redirects to a different domain (' . $site['finalHost'] . ')';
+        if ($flags && empty($in['override'])) json_out(409, ['error' => 'This application needs a second look.', 'flags' => $flags, 'needsOverride' => true]);
+        $today = gmdate('Y-m-d'); $pubJson = provider_public($sub, $today);
+        gh_commit_files(["src/content/providers/$id.json" => ['text' => json_encode($pubJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], 'Add directory listing: ' . $sub['name'] . ' (admin)');
+        $sub['status'] = 'approved'; $sub['approved'] = gmdate('c'); $sub['verification'] = ['emailLink' => !empty($sub['emailVerified']), 'emailManual' => !empty($checks['emailManual']), 'phone' => true, 'credential' => !empty($checks['credential']), 'website' => $site['ok'] ?? null, 'on' => $today];
+        save_json($path, $sub); audit('prov-approve', ['provider' => $id, 'override' => !empty($in['override'])]);
+        json_out(200, ['ok' => true, 'message' => 'Verified and published. It goes live after the next rebuild (a few minutes).']);
+    }
+
+    case 'prov_sponsor': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        $sub = json_file(market_dir('providers') . "/$id.json");
+        if (!$sub || $sub['status'] !== 'approved') json_out(404, ['error' => 'Only a verified, live provider can be sponsored.']);
+        if (!(PROVIDER_TYPES[$sub['type']][2] ?? false)) json_out(422, ['error' => 'This type of service cannot be advertised (health-related advertising is regulated).']);
+        $file = "src/content/providers/$id.json"; $f = gh_file($file, 'main'); if (!$f) json_out(404, ['error' => 'Listing file not found on main.']);
+        $pj = json_decode($f['text'], true); if (!is_array($pj) || ($pj['status'] ?? '') !== 'approved') json_out(422, ['error' => 'The listing is not live.']);
+        if (($pj['reverifyBy'] ?? '') < gmdate('Y-m-d')) json_out(422, ['error' => 'Verification has expired. Re-verify the provider first.']);
+        if (!empty($in['clear'])) {
+            unset($pj['sponsored']);
+            gh_commit_files([$file => ['text' => json_encode($pj, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], 'End sponsorship: ' . $pj['name'] . ' (admin)');
+            audit('prov-sponsor-clear', ['provider' => $id]); json_out(200, ['ok' => true, 'message' => 'Sponsorship ended.']);
+        }
+        $head = clean_text($in['headline'] ?? '', 60); $line = clean_text($in['line'] ?? '', 140);
+        $from = (string)($in['from'] ?? ''); $until = (string)($in['until'] ?? '');
+        $okDate = fn($d) => (bool)preg_match('/^\d{4}-\d{2}-\d{2}$/', $d) && strtotime($d) !== false;
+        $errs = [];
+        if (mb_strlen($head) < 5) $errs[] = 'Headline must be 5 to 60 characters.';
+        if (mb_strlen($line) < 15) $errs[] = 'Description must be 15 to 140 characters.';
+        if (has_link($head . ' ' . $line)) $errs[] = 'No web links in the advert text; the provider\'s listed website is used.';
+        if (!$okDate($from) || !$okDate($until) || $until < $from) $errs[] = 'Dates must be valid, with the end on or after the start.';
+        elseif ((strtotime($until) - strtotime($from)) / 86400 > SPONSOR_MAX_DAYS) $errs[] = 'A sponsorship can run for at most ' . SPONSOR_MAX_DAYS . ' days.';
+        elseif ($until > $pj['reverifyBy']) $errs[] = 'The sponsorship cannot run past the verification expiry (' . $pj['reverifyBy'] . ').';
+        $af = provider_flags($head . ' ' . $line); foreach ($af as $x) $errs[] = 'Advert wording not allowed: ' . $x . '.';
+        if ($errs) json_out(422, ['error' => 'Cannot sponsor yet.', 'blockers' => $errs]);
+        $others = []; foreach (tree_index()['providers'] as $pid => $sha) { $o = blob_json($sha); if ($o) $others[] = $o; }
+        $cand = $pj; $cand['sponsored'] = ['from' => $from, 'until' => $until, 'headline' => $head, 'line' => $line];
+        $hit = sponsor_cap_hit($cand, $others);
+        if ($hit) json_out(422, ['error' => 'Cannot sponsor yet.', 'blockers' => ["All " . SPONSOR_MAX_PER_DISTRICT_TYPE . " sponsored slots for this type in $hit are taken for those dates."]]);
+        gh_commit_files([$file => ['text' => json_encode($cand, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], 'Sponsor ' . $pj['name'] . ' ' . $from . ' to ' . $until . ' (admin)');
+        audit('prov-sponsor', ['provider' => $id, 'from' => $from, 'until' => $until]);
+        json_out(200, ['ok' => true, 'message' => 'Sponsored. It shows labelled as sponsored after the next rebuild.']);
+    }
+
+    case 'prov_status': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $to = need_str($in, 'status', 12);
+        if (!valid_id($id) || !in_array($to, ['suspended', 'removed', 'approved', 'reverified'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('providers') . "/$id.json"; $sub = json_file($path);
+        if (!$sub || !in_array($sub['status'], ['approved', 'suspended'], true)) json_out(404, ['error' => 'No live provider with that id.']);
+        $file = "src/content/providers/$id.json"; $f = gh_file($file, 'main'); if (!$f) json_out(404, ['error' => 'Listing file not found on main.']);
+        $pj = json_decode($f['text'], true); if (!is_array($pj)) json_out(422, ['error' => 'Listing file is not valid JSON.']);
+        if ($to === 'reverified') {
+            if (empty($in['confirmed'])) json_out(422, ['error' => 'Confirm that you called the business and re-checked the details.']);
+            $today = gmdate('Y-m-d'); $pj['verifiedOn'] = $today; $pj['reverifyBy'] = gmdate('Y-m-d', time() + REVERIFY_DAYS * 86400); $pj['status'] = 'approved'; $sub['status'] = 'approved';
+        } else { $pj['status'] = $to; if ($to !== 'approved') unset($pj['sponsored']); $sub['status'] = $to === 'removed' ? 'removed' : ($to === 'suspended' ? 'suspended' : 'approved'); }
+        gh_commit_files([$file => ['text' => json_encode($pj, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], ucfirst($to) . ': ' . $pj['name'] . ' (admin)');
+        if ($to === 'removed') foreach (['contactPerson', 'contactPersonPhone', 'credentialNumber', 'phone', 'email', 'tokenHash'] as $k) $sub[$k] = '';
+        save_json($path, $sub); audit('prov-' . $to, ['provider' => $id]);
+        json_out(200, ['ok' => true, 'message' => $to === 'reverified' ? 'Re-verified for another 12 months.' : ($to === 'removed' ? 'Removed. Private details deleted.' : 'Updated.')]);
+    }
+
+    case 'prov_report_done': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('reports') . "/$id.json"; $r = json_file($path); if (!$r) json_out(404, ['error' => 'Not found.']);
+        $r['status'] = 'closed'; $r['contactEmail'] = ''; $r['details'] = mb_substr($r['details'], 0, 0); $r['closed'] = gmdate('c');
+        save_json($path, $r); audit('prov-report-done', ['report' => $id]); json_out(200, ['ok' => true]);
+    }
+
+    // ------------------------------------------------------------ which AI the agents use
+    case 'agent_settings': {
+        $f = gh_file('agents/settings.json', 'main'); $cfgJ = $f ? json_decode($f['text'], true) : [];
+        if (!is_array($cfgJ)) $cfgJ = [];
+        $last = gh_file('agents/reports/latest.md', 'main'); $lastRun = null;
+        if ($last && preg_match('/^_Run:.*$/m', $last['text'], $m)) $lastRun = trim($m[0], "_ \r\n");
+        // Which API keys exist? Needs the token's optional "Secrets: read" permission; otherwise unknown (null).
+        $keys = null; $r = gh('GET', '/repos/' . repo() . '/actions/secrets', null, ['per_page' => 100]);
+        if ($r[0] === 200 && is_array($r[1])) { $names = array_column($r[1]['secrets'] ?? [], 'name'); $keys = ['xai' => in_array('XAI_API_KEY', $names, true), 'openai' => in_array('OPENAI_API_KEY', $names, true), 'anthropic' => in_array('ANTHROPIC_API_KEY', $names, true)]; }
+        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'lastRun' => $lastRun, 'keys' => $keys]);
+    }
+
+    case 'agent_settings_save': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $ok = ['auto', 'xai', 'openai', 'anthropic'];
+        $prov = (string)($in['provider'] ?? ''); $ver = (string)($in['verifierProvider'] ?? '');
+        if (!in_array($prov, $ok, true) || !in_array($ver, $ok, true)) json_out(400, ['error' => 'Choose auto, xai, openai or anthropic.']);
+        $body = json_encode(['provider' => $prov, 'verifierProvider' => $ver, 'updated' => gmdate('Y-m-d')], JSON_PRETTY_PRINT) . "\n";
+        gh_commit_files(['agents/settings.json' => ['text' => $body]], "Agents use $prov (verifier: $ver) (admin)");
+        audit('agent-settings', ['provider' => $prov, 'verifier' => $ver]);
+        json_out(200, ['ok' => true, 'message' => 'Saved. The next scheduled or manual run uses this choice.']);
     }
 
     case 'activity': {
