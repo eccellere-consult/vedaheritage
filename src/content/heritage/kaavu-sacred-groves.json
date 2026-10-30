@@ -112,7 +112,24 @@
       "Never buy plants or seeds taken from a grove."
     ]
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/kaavu-sacred-groves-1.jpg",
+      "alt": "Kammadam Kaavu is a sacred grove situated in Kasargode, the northern most state of Kerala, India. This grove is more than 50 acres in area and believed to be th",
+      "credit": "Deepa Chandran2014",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E0%B4%95%E0%B4%AE%E0%B5%8D%E0%B4%AE%E0%B4%BE%E0%B4%9F%E0%B4%82_%E0%B4%95%E0%B4%BE%E0%B4%B5%E0%B5%8D_(Kammadam_Kaavu).jpg"
+    },
+    {
+      "src": "/images/discover/kaavu-sacred-groves-2.jpg",
+      "alt": "Kammadam Kaavu is a sacred grove situated in Kasargode, the northern most state of Kerala, India. This grove is more than 50 acres in area and believed to be th",
+      "credit": "Deepa Chandran2014",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E0%B4%95%E0%B4%AE%E0%B5%8D%E0%B4%AE%E0%B4%BE%E0%B4%9F%E0%B4%82_%E0%B4%95%E0%B4%BE%E0%B4%B5%E0%B5%8D_(Kammadam_Kaavu_).jpg"
+    }
+  ],
   "tags": [
     "heritage",
     "Kerala",
