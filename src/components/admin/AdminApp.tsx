@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-const API = '/api/admin/'
+// Explicit file name: a folder URL only works if the server's DirectoryIndex lists index.php.
+const API = '/api/admin/index.php'
 type Json = Record<string, any>
 type Tab = 'overview' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
 const TABS: [Tab, string][] = [['overview', 'Overview'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
@@ -30,10 +31,12 @@ export default function AdminApp() {
   const [tab, setTab] = useState<Tab>('overview')
   const [msg, setMsg] = useState<{ text: string; bad?: boolean } | null>(null)
   const [err, setErr] = useState('')
+  const [code, setCode] = useState(0)
 
   const load = useCallback(async () => {
     const r = await api('status')
-    if (!r.ok) { setErr(r.data.error || 'Admin service unavailable.'); setPhase('error'); return }
+    if (!r.ok) { setErr(r.data.error || ''); setCode(r.status); setPhase('error'); return }
+    if (r.data.configError) { setErr(`The file vh-config.php has a typing mistake near line ${r.data.configError}. Open it in Hostinger File Manager and compare it with docs/ADMIN.md: every line ends with a comma, text is inside single quotes, and the file starts with <?php return [ and ends with ];`); setCode(200); setPhase('error'); return }
     if (!r.data.configured) { setPhase('setup'); return }
     if (r.data.authed) { csrf = r.data.csrf; setPhase('app') } else setPhase('login')
   }, [])
@@ -42,7 +45,21 @@ export default function AdminApp() {
   const say = (text: string, bad = false) => setMsg({ text, bad })
 
   if (phase === 'loading') return <p className="text-ink-mid">Loading…</p>
-  if (phase === 'error') return <div className="card"><h1 className="font-serif text-2xl mb-2">Admin unavailable</h1><p className="text-ink-mid text-sm">{err}</p></div>
+  if (phase === 'error') return (
+    <div className="card space-y-3">
+      <h1 className="font-serif text-2xl">Admin unavailable</h1>
+      <p className="text-ink-mid text-sm">{err || 'The admin service did not answer correctly.'}{code ? ` (server said ${code})` : ''}</p>
+      <div className="text-sm text-ink-mid">
+        <p className="font-medium text-ink mb-1">How to find the cause (about 2 minutes)</p>
+        <p>Open <a className="underline text-primary" href="/api/admin/index.php?a=status">/api/admin/index.php?a=status</a> in a new tab. You should see a short line of text starting with <code>{'{"authed"'}</code>.</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li><strong>Not found (404):</strong> the latest deploy has not reached Hostinger yet. Wait a few minutes, then check hPanel → Git shows a green deploy.</li>
+          <li><strong>Forbidden (403):</strong> the site&apos;s .htaccess is out of date. Deploy again.</li>
+          <li><strong>Blank page or &quot;error 500&quot;:</strong> usually a typing mistake in <code>vh-config.php</code>, or PHP older than 7.4. Check the file, and the PHP version under hPanel → Advanced → PHP Configuration.</li>
+        </ul>
+      </div>
+    </div>
+  )
   if (phase === 'setup') return <Setup needsHash={true} />
   if (phase === 'login') return <Login onDone={(t: string) => { csrf = t; setPhase('app') }} />
 

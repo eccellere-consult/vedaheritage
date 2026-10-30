@@ -69,6 +69,7 @@ function check_state(string $sha): array {
 if ($a === 'status') {
     $authed = is_authed();
     json_out(200, [
+        'configError' => vh_cfg_error_line() ?: null,
         'authed' => $authed, 'csrf' => $authed ? ($_SESSION['csrf'] ?? '') : '',
         'configured' => (bool)(cfg()['admin_password_hash'] ?? '') && (bool)(cfg()['admin_github_token'] ?? (cfg()['github_token'] ?? '')),
         'needsHash' => !(cfg()['admin_password_hash'] ?? ''),

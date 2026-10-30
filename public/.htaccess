@@ -4,7 +4,7 @@ Options -Indexes
 RedirectMatch 404 /\.(git|ftp-deploy)
 
 # Handle trailing slash static exports from Next.js
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 
 # Custom 404
 ErrorDocument 404 /404/index.html

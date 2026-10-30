@@ -36,16 +36,26 @@ GitHub → your profile picture → Settings → Developer settings → Personal
 Open `https://www.vedaheritage.co.in/admin/`. It shows "Admin setup". Type a passphrase of **14 or more characters** (four or more random words is ideal). Click **Make my code** and copy the long line starting `$2y$`. Nothing is stored.
 
 **Step 3. Add both to `vh-config.php`.**
-Hostinger hPanel → File Manager → open `domains/vedaheritage.co.in/` (the folder **above** `public_html`). Edit `vh-config.php` (it exists if story intake is set up; otherwise create it). Add these keys inside the `return [ ... ];`:
+Hostinger hPanel → File Manager → open `domains/vedaheritage.co.in/` (the folder **above** `public_html`, not inside it). Edit `vh-config.php`, or create it if it does not exist. The whole file must look like this (keep the first and last lines, the single quotes and the commas):
 
 ```php
-'admin_github_token'  => 'github_pat_PASTE_TOKEN_HERE',
-'repo'                => 'eccellere-consult/vedaheritage',
-'admin_password_hash' => 'PASTE_THE_$2y$_CODE_HERE',
+<?php return [
+  'repo'                => 'eccellere-consult/vedaheritage',
+  'admin_github_token'  => 'github_pat_PASTE_TOKEN_HERE',
+  'admin_password_hash' => 'PASTE_THE_$2y$_CODE_HERE',
+];
 ```
-Keep the single quotes. Save.
+If the file already has lines for story intake (`github_token`, `notify_email`), keep them and add yours before the final `];`. Save.
 
 **Step 4. Log in** at `/admin/`. If you see "Incorrect password", re-copy the code (Step 2) without spaces.
+
+## If you see "Admin unavailable"
+Open `https://www.vedaheritage.co.in/api/admin/index.php?a=status` in a new tab. You should see one line starting with `{"configError"` or `{"authed"`.
+- **Page not found (404):** the latest deploy has not reached Hostinger. Check GitHub → Actions for a green "Build and publish site", then hPanel → Git for a green deploy.
+- **Forbidden (403) on `/admin/` but the line above works:** the site's `.htaccess` is out of date (it must say `DirectoryIndex index.html index.php`). Deploy the latest version, or edit `public_html/.htaccess` in File Manager and change that one line.
+- **Blank page or "error 500":** a typing mistake in `vh-config.php` (a missing quote or comma), or PHP older than 7.4. Compare the file with the example in Step 3 and check hPanel → Advanced → PHP Configuration.
+- **`"configured":false` and a `configError` number:** `vh-config.php` has a typing mistake near that line.
+- **`"configured":false` with no error:** the three lines in Step 3 are missing or in the wrong file (it must be in the folder above `public_html`).
 
 ## Security notes
 - **Password only** was chosen. Use a long unique passphrase and a password manager. Adding an authenticator-app code later is a small change if you want it.

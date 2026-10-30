@@ -15,9 +15,16 @@ function vh_cfg(): array {
     static $c = null;
     if ($c !== null) return $c;
     $path = getenv('VH_CONFIG') ?: dirname(__DIR__, 3) . '/vh-config.php';
-    $c = is_file($path) ? require $path : [];
+    $c = [];
+    if (is_file($path)) {
+        try { $c = require $path; }
+        catch (Throwable $e) { $GLOBALS['vh_cfg_error_line'] = (int)$e->getLine(); $c = []; } // a typing mistake in the file must not crash the site
+    }
     return is_array($c) ? $c : [];
 }
+
+/** Line number of a syntax error in vh-config.php, or 0. (Never expose the message: it can quote a secret.) */
+function vh_cfg_error_line(): int { vh_cfg(); return (int)($GLOBALS['vh_cfg_error_line'] ?? 0); }
 
 function vh_data_dir(): string {
     $d = vh_cfg()['data_dir'] ?? (dirname(__DIR__, 3) . '/vh-data');
