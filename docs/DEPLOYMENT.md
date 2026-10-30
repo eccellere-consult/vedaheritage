@@ -23,6 +23,17 @@ You do this once. Labels in hPanel can differ slightly; the idea is the same.
    leave Secret blank, choose **Just the push event**, tick Active, **Add webhook**.
 5. **Check.** Open `https://www.vedaheritage.co.in/version.txt`. It shows a long code (the build ID). Open the home page and press Ctrl+F5.
 
+## Keep your private settings across deploys (one-time, about 10 minutes)
+The hPanel Git pull replaces the web folder, so any file that is not in Git, such as the admin settings file `vh-config.php`, can disappear on a deploy. The fix is to let GitHub upload the site itself and never touch private files.
+
+1. hPanel > **Files > FTP Accounts** > create an account whose folder is this site's web folder (usually `/public_html`). Note the host name, user name and password.
+2. GitHub > repository **Settings > Secrets and variables > Actions > Secrets** > add `FTP_HOST`, `FTP_USER`, `FTP_PASSWORD`, and `FTP_DIR` (the web folder as the FTP account sees it, e.g. `/public_html`, or `.` if the account starts inside it).
+3. **First run is a rehearsal:** under **Variables** add `FTP_DRY_RUN` = `true`, then run **Build and publish site** (Actions > Run workflow). The log lists what would be uploaded or removed. Check it looks right, then delete the variable.
+4. hPanel > **Advanced > Git**: remove the auto-deployment entry (otherwise the Git pull still replaces the folder).
+5. Create `vh-config.php` once (admin page > setup). From now on deploys leave it alone. Protected paths: `api/private/`, `vh-config.php`, `vh-data/`, `.well-known/`, `cgi-bin/`, `.htpasswds/`, `error_log`.
+
+The step is skipped while the secrets are not set, so nothing changes until you add them. Pages removed from the site (for example a deleted guide) are removed from the server by the same sync.
+
 ## Before you merge: wait for green
 Every pull request runs a check called **Checks** (content valid, tests pass, site builds). On the PR page, near the bottom, you see either
 **"All checks have passed"** (green, safe to merge) or a red cross (click **Details** to see what failed). Don't merge on red.
@@ -51,4 +62,4 @@ GitHub > Actions > latest run > **Artifacts > site-build**: download the zip. In
 ## Notes
 - The repository is public. Never store passwords, API keys or the business plan in it. Keys belong in GitHub **Settings > Secrets**.
 - `public/.htaccess` hides any `/.git` path from visitors.
-- The old FTP secrets (`FTP_HOST`, `FTP_USER`, `FTP_PASSWORD`) are no longer used and can be deleted from GitHub > Settings > Secrets and variables > Actions.
+- The FTP secrets are used by the optional upload step described above; leave them unset if you rely on hPanel Git alone.
