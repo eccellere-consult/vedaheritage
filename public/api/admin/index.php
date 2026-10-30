@@ -68,9 +68,17 @@ function check_state(string $sha): array {
 // ---------------------------------------------------------------- public actions
 if ($a === 'status') {
     $authed = is_authed();
+    // Names of the settings still absent from vh-config.php (never their values).
+    $missing = [];
+    if (!preg_match('~^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$~', (string)(cfg()['repo'] ?? ''))) $missing[] = 'repo';
+    if (!(cfg()['admin_github_token'] ?? (cfg()['github_token'] ?? ''))) $missing[] = 'admin_github_token';
+    if (!(cfg()['admin_password_hash'] ?? '')) $missing[] = 'admin_password_hash';
     json_out(200, [
+        'configError' => vh_cfg_error_line() ?: null,
+        'config' => vh_cfg_where(),
         'authed' => $authed, 'csrf' => $authed ? ($_SESSION['csrf'] ?? '') : '',
-        'configured' => (bool)(cfg()['admin_password_hash'] ?? '') && (bool)(cfg()['admin_github_token'] ?? (cfg()['github_token'] ?? '')),
+        'configured' => !$missing,
+        'missing' => $missing,
         'needsHash' => !(cfg()['admin_password_hash'] ?? ''),
     ]);
 }

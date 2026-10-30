@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-const API = '/api/admin/'
+// Explicit file name: a folder URL only works if the server's DirectoryIndex lists index.php.
+const API = '/api/admin/index.php'
 type Json = Record<string, any>
 type Tab = 'overview' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
 const TABS: [Tab, string][] = [['overview', 'Overview'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
@@ -30,11 +31,15 @@ export default function AdminApp() {
   const [tab, setTab] = useState<Tab>('overview')
   const [msg, setMsg] = useState<{ text: string; bad?: boolean } | null>(null)
   const [err, setErr] = useState('')
+  const [code, setCode] = useState(0)
+  const [missing, setMissing] = useState<string[]>([])
+  const [where, setWhere] = useState<{ found: boolean; looked: string[] } | null>(null)
 
   const load = useCallback(async () => {
     const r = await api('status')
-    if (!r.ok) { setErr(r.data.error || 'Admin service unavailable.'); setPhase('error'); return }
-    if (!r.data.configured) { setPhase('setup'); return }
+    if (!r.ok) { setErr(r.data.error || ''); setCode(r.status); setPhase('error'); return }
+    if (r.data.configError) { setErr(`The file vh-config.php has a typing mistake near line ${r.data.configError}. Open it in Hostinger File Manager and compare it with docs/ADMIN.md: every line ends with a comma, text is inside single quotes, and the file starts with <?php return [ and ends with ];`); setCode(200); setPhase('error'); return }
+    if (!r.data.configured) { setMissing(r.data.missing || []); setWhere(r.data.config || null); setPhase('setup'); return }
     if (r.data.authed) { csrf = r.data.csrf; setPhase('app') } else setPhase('login')
   }, [])
   useEffect(() => { load() }, [load])
@@ -42,8 +47,22 @@ export default function AdminApp() {
   const say = (text: string, bad = false) => setMsg({ text, bad })
 
   if (phase === 'loading') return <p className="text-ink-mid">Loading…</p>
-  if (phase === 'error') return <div className="card"><h1 className="font-serif text-2xl mb-2">Admin unavailable</h1><p className="text-ink-mid text-sm">{err}</p></div>
-  if (phase === 'setup') return <Setup needsHash={true} />
+  if (phase === 'error') return (
+    <div className="card space-y-3">
+      <h1 className="font-serif text-2xl">Admin unavailable</h1>
+      <p className="text-ink-mid text-sm">{err || 'The admin service did not answer correctly.'}{code ? ` (server said ${code})` : ''}</p>
+      <div className="text-sm text-ink-mid">
+        <p className="font-medium text-ink mb-1">How to find the cause (about 2 minutes)</p>
+        <p>Open <a className="underline text-primary" href="/api/admin/index.php?a=status">/api/admin/index.php?a=status</a> in a new tab. You should see a short line of text starting with <code>{'{"authed"'}</code>.</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li><strong>Not found (404):</strong> the latest deploy has not reached Hostinger yet. Wait a few minutes, then check hPanel → Git shows a green deploy.</li>
+          <li><strong>Forbidden (403):</strong> the site&apos;s .htaccess is out of date. Deploy again.</li>
+          <li><strong>Blank page or &quot;error 500&quot;:</strong> usually a typing mistake in <code>vh-config.php</code>, or PHP older than 7.4. Check the file, and the PHP version under hPanel → Advanced → PHP Configuration.</li>
+        </ul>
+      </div>
+    </div>
+  )
+  if (phase === 'setup') return <Setup missing={missing} where={where} />
   if (phase === 'login') return <Login onDone={(t: string) => { csrf = t; setPhase('app') }} />
 
   return (
@@ -71,21 +90,32 @@ export default function AdminApp() {
   )
 }
 
-function Setup({ needsHash }: { needsHash: boolean }) {
+function Setup({ missing, where }: { missing: string[]; where: { found: boolean; looked: string[] } | null }) {
   const [pw, setPw] = useState(''); const [hash, setHash] = useState(''); const [e, setE] = useState('')
+  const needsHash = missing.includes('admin_password_hash')
+  const items: [string, string][] = [['repo', "'repo' (the GitHub repository name)"], ['admin_github_token', "'admin_github_token' (the GitHub token)"], ['admin_password_hash', "'admin_password_hash' (your password code)"]]
   return (
-    <div className="card max-w-xl">
-      <h1 className="font-serif text-2xl mb-2">Admin setup</h1>
-      <p className="text-sm text-ink-mid mb-4">The admin is not configured on this server yet. Follow <strong>docs/ADMIN.md</strong>. Step 2 uses this box to turn your chosen password into a code you paste into <code>vh-config.php</code>. The password is never stored.</p>
+    <div className="card max-w-xl space-y-4">
+      <h1 className="font-serif text-2xl">Admin setup</h1>
+      <p className="text-sm text-ink-mid">The admin service is running, but <code>vh-config.php</code> on the server is still missing some settings. All three must be present before you can log in. Steps are in <strong>docs/ADMIN.md</strong>.</p>
+      {where && (
+        <div className={`text-sm border px-3 py-2 ${where.found ? 'border-primary/30 bg-primary/10' : 'border-red-300 bg-red-50 text-red-800'}`}>
+          {where.found ? '✔ The server found vh-config.php.' : '✖ The server cannot find vh-config.php.'}
+          {!where.found && <> It looks for the file at <code>{where.looked[0]}</code>, in the folder that also contains <code>public_html</code>. Check the file name and folder in File Manager.</>}
+        </div>
+      )}
+      <ul className="text-sm space-y-1">{items.map(([k, l]) => <li key={k}>{missing.includes(k) ? '✖' : '✔'} <span className={missing.includes(k) ? 'text-ink' : 'text-ink-mid'}>{l}</span></li>)}</ul>
       {needsHash && !hash && (
         <form onSubmit={async ev => { ev.preventDefault(); setE(''); const r = await api('setup', { password: pw }); if (r.ok) setHash(r.data.hash); else setE(r.data.error || 'Failed') }}>
+          <p className="text-sm text-ink-mid mb-2">Make your password code here. The password itself is never stored.</p>
           <label className="block text-sm mb-1" htmlFor="pw">Choose a passphrase (14+ characters)</label>
           <input id="pw" type="password" autoComplete="new-password" value={pw} onChange={x => setPw(x.target.value)} className="w-full border border-accent/30 px-3 py-2 mb-3" />
           <button className="btn-primary text-xs" disabled={pw.length < 14}>Make my code</button>
         </form>
       )}
-      {e && <p className="text-sm text-red-700 mt-3">{e}</p>}
-      {hash && <><p className="text-sm mb-2">Copy this whole line into <code>vh-config.php</code> as <code>admin_password_hash</code>:</p><textarea readOnly rows={3} className="w-full border border-accent/30 p-2 text-xs font-mono" value={hash} onFocus={x => x.currentTarget.select()} /></>}
+      {e && <p className="text-sm text-red-700">{e}</p>}
+      {hash && <><p className="text-sm">Copy this whole line into <code>vh-config.php</code> as <code>admin_password_hash</code>, then reload this page:</p><textarea readOnly rows={3} className="w-full border border-accent/30 p-2 text-xs font-mono" value={hash} onFocus={x => x.currentTarget.select()} /></>}
+      {!needsHash && <p className="text-sm text-ink-mid">Your password code is in place. Add the items marked ✖, save the file, then reload this page.</p>}
     </div>
   )
 }

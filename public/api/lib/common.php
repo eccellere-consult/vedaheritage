@@ -11,13 +11,38 @@ const MARKET_CONDITIONS = ['new' => 'New / handmade', 'used' => 'Used'];
 const MARKET_LISTING_DAYS = 90;
 const MARKET_MAX_PRICE = 500000;
 
+/** Where the settings file may live, best first. Always outside the web folder. */
+function vh_cfg_candidates(): array {
+    $c = [];
+    if ($e = getenv('VH_CONFIG')) $c[] = $e;
+    $c[] = dirname(__DIR__, 3) . '/vh-config.php';
+    $dr = rtrim((string)($_SERVER['DOCUMENT_ROOT'] ?? ''), '/');
+    if ($dr !== '') $c[] = dirname($dr) . '/vh-config.php';
+    return array_values(array_unique($c));
+}
+
+/** Last three path parts, e.g. "domains/vedaheritage.co.in/vh-config.php" (no account or server names). */
+function vh_short_path(string $p): string { return implode('/', array_slice(explode('/', trim($p, '/')), -3)); }
+
 function vh_cfg(): array {
     static $c = null;
     if ($c !== null) return $c;
-    $path = getenv('VH_CONFIG') ?: dirname(__DIR__, 3) . '/vh-config.php';
-    $c = is_file($path) ? require $path : [];
+    $c = [];
+    foreach (vh_cfg_candidates() as $path) {
+        if (!is_file($path)) continue;
+        $GLOBALS['vh_cfg_path'] = $path;
+        try { $c = require $path; }
+        catch (Throwable $e) { $GLOBALS['vh_cfg_error_line'] = (int)$e->getLine(); $c = []; } // a typing mistake must not crash the site
+        break;
+    }
     return is_array($c) ? $c : [];
 }
+
+/** Whether a settings file was found, and where we looked (shortened). */
+function vh_cfg_where(): array { vh_cfg(); return ['found' => !empty($GLOBALS['vh_cfg_path']), 'looked' => array_map('vh_short_path', vh_cfg_candidates())]; }
+
+/** Line number of a syntax error in vh-config.php, or 0. (Never expose the message: it can quote a secret.) */
+function vh_cfg_error_line(): int { vh_cfg(); return (int)($GLOBALS['vh_cfg_error_line'] ?? 0); }
 
 function vh_data_dir(): string {
     $d = vh_cfg()['data_dir'] ?? (dirname(__DIR__, 3) . '/vh-data');
