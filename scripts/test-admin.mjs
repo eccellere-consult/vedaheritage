@@ -259,6 +259,25 @@ try {
   ok(nfJson.config?.found === false && nfJson.config.looked[0] === 'domains/example.org/vh-config.php' && nfJson.missing?.length === 3, 'a missing vh-config.php is reported with where the server looked (shortened, no account names)')
   ok(dj.config?.found === true, 'a present vh-config.php is reported as found')
   ok(brkJson.configured === false && Number(brkJson.configError) > 0 && brkJson.missing?.length === 3, 'a typing mistake in vh-config.php gives a clear status (line number and the names of missing settings, no secrets) instead of crashing')
+
+  // ---------------------------------------------------------------- "why is vh-config.php not found" diagnostics
+  const probe = (cfgPath, ini = []) => { const r = spawnSync('php', [...ini.flatMap(i => ['-d', i]), '-r', '$_GET["a"]="status"; $_SERVER["REQUEST_METHOD"]="GET"; require "public/api/admin/index.php";'], { env: { ...process.env, VH_CONFIG: cfgPath }, encoding: 'utf8' }); try { return JSON.parse(r.stdout) } catch { return { raw: r.stdout, err: r.stderr } } }
+  const dg = fs.mkdtempSync(path.join(os.tmpdir(), 'vh-diag-')); fs.mkdirSync(path.join(dg, 'site'))
+  const emptyDir = probe(path.join(dg, 'site', 'vh-config.php')).config?.diag
+  ok(emptyDir?.dirExists === true && emptyDir.dirReadable === true && emptyDir.similarFile === null && emptyDir.fileInWebFolder === false && emptyDir.phpOk === true, 'diagnostic: an empty, readable folder is reported as such (create the file there)')
+  fs.writeFileSync(path.join(dg, 'site', 'vh-config.php.txt'), 'x')
+  ok(probe(path.join(dg, 'site', 'vh-config.php')).config?.diag?.similarFile === 'vh-config.php.txt', 'diagnostic: a look-alike name such as vh-config.php.txt is spotted')
+  fs.writeFileSync(path.join(dg, 'vh-config.php'), 'x')
+  ok(probe(path.join(dg, 'site', 'vh-config.php')).config?.diag?.fileOneLevelTooHigh === true, 'diagnostic: a file one folder too high is spotted')
+  const gone = probe(path.join(dg, 'nothere', 'vh-config.php')).config?.diag
+  ok(gone?.dirExists === false && gone.dirReadable === false && gone.openBasedirSet === false, 'diagnostic: a missing folder is reported as missing, not as blocked')
+  const blocked = probe(path.join(dg, 'site', 'vh-config.php'), ['open_basedir=' + process.cwd()]).config?.diag
+  ok(blocked?.openBasedirSet === true && blocked.openBasedirCoversDir === false && blocked.dirReadable === false, 'diagnostic: a folder PHP is blocked from reading (open_basedir) is reported as blocked')
+  const web = path.resolve('public/vh-config.php'); fs.writeFileSync(web, '<?php return [];')
+  try { ok(probe(path.join(dg, 'site', 'vh-config.php')).config?.diag?.fileInWebFolder === true, 'diagnostic: a file inside the web folder is spotted (and never loaded)') } finally { fs.rmSync(web, { force: true }) }
+  const none = JSON.stringify(probe(path.join(dg, 'site', 'vh-config.php')))
+  ok(!none.includes(dg) && !none.includes(os.tmpdir()), 'diagnostics never reveal absolute paths')
+  fs.rmSync(dg, { recursive: true, force: true })
   if (!process.env.ADMIN_HOLD) {
     cookie = ''; csrf = ''
     let last; for (let i = 0; i < 5; i++) last = await call('login', { method: 'POST', body: { password: 'bad' + i } })

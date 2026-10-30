@@ -54,6 +54,7 @@ Open `https://www.vedaheritage.co.in/api/admin/index.php?a=status` in a new tab.
 - **Page not found (404):** the latest deploy has not reached Hostinger. Check GitHub → Actions for a green "Build and publish site", then hPanel → Git for a green deploy.
 - **Forbidden (403) on `/admin/` but the line above works:** the site's `.htaccess` is out of date (it must say `DirectoryIndex index.html index.php`). Deploy the latest version, or edit `public_html/.htaccess` in File Manager and change that one line.
 - **Blank page or "error 500":** a typing mistake in `vh-config.php` (a missing quote or comma), or PHP older than 7.4. Compare the file with the example in Step 3 and check hPanel → Advanced → PHP Configuration.
+- **The setup page says "The server cannot find vh-config.php":** it now also says why. It can report that the file sits inside `public_html` (wrong, move it up) or one folder too high, that it has a look-alike name such as `vh-config.php.txt`, that the folder does not exist, that PHP is blocked from reading the folder (`open_basedir` or permissions; fix under hPanel → Advanced → PHP Configuration, or ask Hostinger support), or that PHP is older than 7.4. The same facts are in `…/api/admin/index.php?a=status` under `config.diag` (yes/no values only; no file contents or full paths).
 - **`"configured":false` and a `configError` number:** `vh-config.php` has a typing mistake near that line.
 - **`"configured":false` with no error:** the three lines in Step 3 are missing or in the wrong file (it must be in the folder above `public_html`).
 
