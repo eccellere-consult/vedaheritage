@@ -250,11 +250,11 @@ try {
   // ---------------------------------------------------------------- deployment guards (Apache cannot run here, so check the files)
   ok(/^DirectoryIndex\s+.*index\.php/m.test(fs.readFileSync('public/.htaccess', 'utf8')), 'public/.htaccess lets a folder URL serve index.php (the admin API lives in a folder)')
   ok(/const API = '\/api\/admin\/index\.php'/.test(fs.readFileSync('src/components/admin/AdminApp.tsx', 'utf8')), 'the admin page calls the API by its explicit file name, not a folder URL')
-  const direct = await fetch('http://127.0.0.1:18911/api/admin/index.php?a=status'); ok(direct.status === 200 && (await direct.json()).configured === true, 'the status endpoint answers at its explicit file name')
+  const direct = await fetch('http://127.0.0.1:18911/api/admin/index.php?a=status'); const dj = await direct.json(); ok(direct.status === 200 && dj.configured === true && dj.missing.length === 0, 'the status endpoint answers at its explicit file name')
   fs.writeFileSync(path.join(tmp, 'broken-config.php'), "<?php return [\n  'repo' => 'a/b'\n  'admin_password_hash' => 'x',\n];\n")
   const brk = spawnSync('php', ['-r', '$_GET["a"]="status"; $_SERVER["REQUEST_METHOD"]="GET"; require "public/api/admin/index.php";'], { env: { ...process.env, VH_CONFIG: path.join(tmp, 'broken-config.php') }, encoding: 'utf8' })
   let brkJson = {}; try { brkJson = JSON.parse(brk.stdout) } catch {}
-  ok(brkJson.configured === false && Number(brkJson.configError) > 0 && !brk.stdout.includes('admin_password_hash'), 'a typing mistake in vh-config.php gives a clear status (line number only) instead of crashing')
+  ok(brkJson.configured === false && Number(brkJson.configError) > 0 && brkJson.missing?.length === 3, 'a typing mistake in vh-config.php gives a clear status (line number and the names of missing settings, no secrets) instead of crashing')
   if (!process.env.ADMIN_HOLD) {
     cookie = ''; csrf = ''
     let last; for (let i = 0; i < 5; i++) last = await call('login', { method: 'POST', body: { password: 'bad' + i } })
