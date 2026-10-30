@@ -1,166 +1,166 @@
 {
-  "slug": "aranmula-parthasarathy-temple",
-  "category": "temples",
-  "name": "Aranmula Parthasarathy Temple",
-  "district": "Pathanamthitta",
-  "tagline": "Riverside Krishna temple on the Pamba linked to the Aranmula boat race",
-  "summary": "Riverside Krishna temple (Parthasarathy) in Aranmula, Pathanamthitta, known for the annual Aranmula boat race and traditional Kerala architecture with wood carvings and 18th-century murals.",
-  "description": [
-    "The Aranmula Parthasarathy Temple stands on the southern bank of the Pamba River in Aranmula village, Pathanamthitta district. Dedicated to Lord Krishna as Parthasarathy (Arjuna’s charioteer), it follows Kerala temple architecture with a circular sanctum, sloping roofs, and four entrance towers. The central idol is a 6 ft (approx. 1.8 m) standing Vishnu image, the tallest Krishna idol in Kerala.",
-    "Intricate wood carvings on the roof and pillars depict scenes from the Ramayana and Mahabharata; wall paintings date to the early 18th century. The temple is one of the 108 Divya Desams revered in the Nalayira Divya Prabandham and forms part of a group of five ancient Vishnu shrines in the region traditionally linked to the Pandavas.",
-    "The site also stores the Thanka Anki (golden attire) for Sabarimala Ayyappan during the Mandala season and serves as a stop for the Thiruvabharanam procession."
-  ],
-  "history": {
-    "significance": "One of Kerala’s five Mahabharata-associated Vishnu temples and a Divya Desam; the boat race and Valla Sadya rituals tie directly to its legends and sustain living traditions.",
-    "timeline": [
-      {
-        "period": "By tradition",
-        "event": "Installed by Pandava prince Arjuna after the Mahabharata war"
-      },
-      {
-        "period": "Early 18th century",
-        "event": "Wall paintings created"
-      },
-      {
-        "period": "1972",
-        "event": "Modern snake-boat race component formally added to the festival programme"
-      },
-      {
-        "period": "1978",
-        "event": "Kerala government briefly declared the event a sports meet; religious elements restored around 2000"
-      },
-      {
-        "period": "Annual",
-        "event": "Uthrattathi day in Chingam (August–September) marks the boat race and idol dedication anniversary"
-      }
+    "slug": "aranmula-parthasarathy-temple",
+    "category": "temples",
+    "name": "Aranmula Parthasarathy Temple",
+    "district": "Pathanamthitta",
+    "tagline": "Riverside Krishna temple on the Pamba linked to the Aranmula boat race",
+    "summary": "Riverside Krishna temple (Parthasarathy) in Aranmula, Pathanamthitta, known for the annual Aranmula boat race and traditional Kerala architecture with wood carvings and 18th-century murals.",
+    "description": [
+        "The Aranmula Parthasarathy Temple stands on the southern bank of the Pamba River in Aranmula village, Pathanamthitta district. Dedicated to Lord Krishna as Parthasarathy (Arjuna’s charioteer), it follows Kerala temple architecture with a circular sanctum, sloping roofs, and four entrance towers. The central idol is a 6 ft (approx. 1.8 m) standing Vishnu image, the tallest Krishna idol in Kerala.",
+        "Intricate wood carvings on the roof and pillars depict scenes from the Ramayana and Mahabharata; wall paintings date to the early 18th century. The temple is one of the 108 Divya Desams revered in the Nalayira Divya Prabandham and forms part of a group of five ancient Vishnu shrines in the region traditionally linked to the Pandavas.",
+        "The site also stores the Thanka Anki (golden attire) for Sabarimala Ayyappan during the Mandala season and serves as a stop for the Thiruvabharanam procession."
     ],
-    "keyFacts": [
-      "Administered by the Travancore Devaswom Board",
-      "Open daily approximately 4 am–11 am and 5 pm–8 pm (confirm locally)"
-    ]
-  },
-  "folklore": {
-    "title": "Pandavas and the feast-boat rescue",
-    "story": [
-      "Tradition holds that the five Pandavas each built a Vishnu temple on the Pamba banks after crowning Parikshit; Arjuna constructed the Aranmula shrine to atone for killing Karna against dharma.",
-      "The idol was transported on a raft of six bamboos (“Aranmula”), giving the village its name. Another account links the name to a bamboo pole separating at Mulavoor Kadavu.",
-      "The boat race commemorates the rescue of the Thiruvona Thoni (feast boat) carrying provisions for the temple’s Onam sadya, attacked by marauders; neighbouring families arrived in snake boats to protect it."
+    "history": {
+        "significance": "One of Kerala’s five Mahabharata-associated Vishnu temples and a Divya Desam; the boat race and Valla Sadya rituals tie directly to its legends and sustain living traditions.",
+        "timeline": [
+            {
+                "period": "By tradition",
+                "event": "Installed by Pandava prince Arjuna after the Mahabharata war"
+            },
+            {
+                "period": "Early 18th century",
+                "event": "Wall paintings created"
+            },
+            {
+                "period": "1972",
+                "event": "Modern snake-boat race component formally added to the festival programme"
+            },
+            {
+                "period": "1978",
+                "event": "Kerala government briefly declared the event a sports meet; religious elements restored around 2000"
+            },
+            {
+                "period": "Annual",
+                "event": "Uthrattathi day in Chingam (August–September) marks the boat race and idol dedication anniversary"
+            }
+        ],
+        "keyFacts": [
+            "Administered by the Travancore Devaswom Board",
+            "Open daily approximately 4 am–11 am and 5 pm–8 pm (confirm locally)"
+        ]
+    },
+    "folklore": {
+        "title": "Pandavas and the feast-boat rescue",
+        "story": [
+            "Tradition holds that the five Pandavas each built a Vishnu temple on the Pamba banks after crowning Parikshit; Arjuna constructed the Aranmula shrine to atone for killing Karna against dharma.",
+            "The idol was transported on a raft of six bamboos (“Aranmula”), giving the village its name. Another account links the name to a bamboo pole separating at Mulavoor Kadavu.",
+            "The boat race commemorates the rescue of the Thiruvona Thoni (feast boat) carrying provisions for the temple’s Onam sadya, attacked by marauders; neighbouring families arrived in snake boats to protect it."
+        ],
+        "note": "Versions differ on exact details of the raft or attack, but all centre on devotion to Krishna and community protection of the feast."
+    },
+    "spiritual": {
+        "summary": "The temple is a Vaishnava Divya Desam where Vishnu is worshipped as Parthasarathy in Vishvarupa form, also revered as Annadana Prabhu. It also holds Ayyappan-related items, reflecting shared devotional practices.",
+        "experiences": [
+            {
+                "title": "Observe daily poojas and Valla Sadya",
+                "text": "Observe daily poojas and the elaborate Valla Sadya feast (mid-August to early October)"
+            },
+            {
+                "title": "Witness Garuda Vahanam and boat race",
+                "text": "Witness the Garuda Vahanam procession during the annual utsavam or the boat race as a votive offering"
+            }
+        ],
+        "bestFor": "Hindu pilgrims seeking darshan, Thulabaram offerings, or participation in utsavams; respectful visitors of any background may observe rituals from outside the sanctum",
+        "mindfulTips": [
+            "Dress modestly (traditional attire preferred)",
+            "Remove footwear before entering temple premises",
+            "Maintain silence during rituals",
+            "Avoid photography inside the sanctum"
+        ]
+    },
+    "highlights": [
+        "Intricate Kerala-style wood carvings and early-18th-century murals",
+        "Annual Aranmula Uthrattathi Vallamkali (boat race) on the Pamba",
+        "Valla Sadya ritual feast with up to 64 dishes served to oarsmen",
+        "Connection to Sabarimala traditions via stored ornaments and processions"
     ],
-    "note": "Versions differ on exact details of the raft or attack, but all centre on devotion to Krishna and community protection of the feast."
-  },
-  "spiritual": {
-    "summary": "The temple is a Vaishnava Divya Desam where Vishnu is worshipped as Parthasarathy in Vishvarupa form, also revered as Annadana Prabhu. It also holds Ayyappan-related items, reflecting shared devotional practices.",
-    "experiences": [
-      {
-        "title": "Observe daily poojas and Valla Sadya",
-        "text": "Observe daily poojas and the elaborate Valla Sadya feast (mid-August to early October)"
-      },
-      {
-        "title": "Witness Garuda Vahanam and boat race",
-        "text": "Witness the Garuda Vahanam procession during the annual utsavam or the boat race as a votive offering"
-      }
+    "visitorInfo": {
+        "bestTime": "Onam season (August–September) for the boat race and feasts; year-round for darshan. Confirm festival dates locally as they follow the Malayalam calendar.",
+        "howToReach": "By road from major Kerala towns; nearest railway station Chengannur (approx. 10 km); Trivandrum International Airport approx. 117–128 km.",
+        "etiquette": [
+            "Modest dress covering shoulders and knees",
+            "No photography in restricted areas",
+            "Maintain silence and follow priest instructions",
+            "Footwear prohibited inside"
+        ],
+        "duration": "1–2 hours for darshan; longer during festivals"
+    },
+    "travel": {
+        "byTrain": [
+            "Nearest station Chengannur (CGY), approx. 10 km"
+        ],
+        "byBus": [
+            "KSRTC and local buses serve Aranmula; major hubs in Pathanamthitta and Chengannur"
+        ],
+        "byWater": [
+            "Direct access via Pamba River ghats at the temple"
+        ],
+        "byAir": [
+            "Trivandrum International Airport, approx. 117–128 km"
+        ]
+    },
+    "officialLinks": [
+        {
+            "label": "Kerala Tourism",
+            "url": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy"
+        },
+        {
+            "label": "Kerala Tourism - Aranmula Vallamkali",
+            "url": "https://www.keralatourism.org/event/aranmula-vallamkali/34/"
+        }
     ],
-    "bestFor": "Hindu pilgrims seeking darshan, Thulabaram offerings, or participation in utsavams; respectful visitors of any background may observe rituals from outside the sanctum",
-    "mindfulTips": [
-      "Dress modestly (traditional attire preferred)",
-      "Remove footwear before entering temple premises",
-      "Maintain silence during rituals",
-      "Avoid photography inside the sanctum"
-    ]
-  },
-  "highlights": [
-    "Intricate Kerala-style wood carvings and early-18th-century murals",
-    "Annual Aranmula Uthrattathi Vallamkali (boat race) on the Pamba",
-    "Valla Sadya ritual feast with up to 64 dishes served to oarsmen",
-    "Connection to Sabarimala traditions via stored ornaments and processions"
-  ],
-  "visitorInfo": {
-    "bestTime": "Onam season (August–September) for the boat race and feasts; year-round for darshan. Confirm festival dates locally as they follow the Malayalam calendar.",
-    "howToReach": "By road from major Kerala towns; nearest railway station Chengannur (approx. 10 km); Trivandrum International Airport approx. 117–128 km.",
-    "etiquette": [
-      "Modest dress covering shoulders and knees",
-      "No photography in restricted areas",
-      "Maintain silence and follow priest instructions",
-      "Footwear prohibited inside"
+    "coordinates": {
+        "lat": 9.328,
+        "lng": 76.687614
+    },
+    "images": [
+        {
+            "src": "/images/discover/aranmula-parthasarathy-temple-1.jpg",
+            "alt": "Gopuram of the Aranmula Parthasarathy Temple, Pathanamthitta District, Kerala, South India",
+            "credit": "Gnoeee",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aranmula_Parthasarathy_Temple_(2).jpg"
+        }
     ],
-    "duration": "1–2 hours for darshan; longer during festivals"
-  },
-  "travel": {
-    "byTrain": [
-      "Nearest station Chengannur (CGY), approx. 10 km"
+    "tags": [
+        "temples",
+        "pathanamthitta",
+        "krishna",
+        "boat-race",
+        "divya-desam",
+        "heritage-village"
     ],
-    "byBus": [
-      "KSRTC and local buses serve Aranmula; major hubs in Pathanamthitta and Chengannur"
+    "sources": [
+        {
+            "label": "Kerala Tourism",
+            "url": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy"
+        },
+        {
+            "label": "Wikipedia - Aranmula Parthasarathy Temple",
+            "url": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple"
+        },
+        {
+            "label": "Aranmula Boat Race",
+            "url": "https://aranmulaboatrace.com/pages/313131/history"
+        },
+        {
+            "label": "Wikipedia - Aranmula Uthrattadi Vallamkali",
+            "url": "https://en.wikipedia.org/wiki/Aranmula_Uthrattadi_Vallamkali"
+        },
+        {
+            "label": "Kerala Tourism - Vallamkali event",
+            "url": "https://www.keralatourism.org/event/aranmula-vallamkali/34/"
+        },
+        {
+            "label": "Kerala Tourism PDF",
+            "url": "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1530873659-0.pdf"
+        },
+        {
+            "label": "Bharat Temples",
+            "url": "https://www.bharattemples.com/aranmula-parthasarathy-temple-pathanamthitta-kerala/"
+        }
     ],
-    "byWater": [
-      "Direct access via Pamba River ghats at the temple"
-    ],
-    "byAir": [
-      "Trivandrum International Airport, approx. 117–128 km"
-    ]
-  },
-  "officialLinks": [
-    {
-      "label": "Kerala Tourism",
-      "url": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy"
-    },
-    {
-      "label": "Kerala Tourism - Aranmula Vallamkali",
-      "url": "https://www.keralatourism.org/event/aranmula-vallamkali/34/"
-    }
-  ],
-  "coordinates": {
-    "lat": 9.328,
-    "lng": 76.687614
-  },
-  "images": [
-    {
-      "src": "/images/discover/aranmula-parthasarathy-temple-1.jpg",
-      "alt": "Gopuram of the Aranmula Parthasarathy Temple, Pathanamthitta District, Kerala, South India",
-      "credit": "Gnoeee",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aranmula_Parthasarathy_Temple_(2).jpg"
-    }
-  ],
-  "tags": [
-    "temples",
-    "pathanamthitta",
-    "krishna",
-    "boat-race",
-    "divya-desam",
-    "heritage-village"
-  ],
-  "sources": [
-    {
-      "label": "Kerala Tourism",
-      "url": "https://www.keralatourism.org/temples/pathanamthitta/aranmula-parthasarathy"
-    },
-    {
-      "label": "Wikipedia - Aranmula Parthasarathy Temple",
-      "url": "https://en.wikipedia.org/wiki/Aranmula_Parthasarathy_Temple"
-    },
-    {
-      "label": "Aranmula Boat Race",
-      "url": "https://aranmulaboatrace.com/pages/313131/history"
-    },
-    {
-      "label": "Wikipedia - Aranmula Uthrattadi Vallamkali",
-      "url": "https://en.wikipedia.org/wiki/Aranmula_Uthrattadi_Vallamkali"
-    },
-    {
-      "label": "Kerala Tourism - Vallamkali event",
-      "url": "https://www.keralatourism.org/event/aranmula-vallamkali/34/"
-    },
-    {
-      "label": "Kerala Tourism PDF",
-      "url": "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1530873659-0.pdf"
-    },
-    {
-      "label": "Bharat Temples",
-      "url": "https://www.bharattemples.com/aranmula-parthasarathy-temple-pathanamthitta-kerala/"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-10-29"
+    "status": "approved",
+    "lastVerified": "2026-10-30"
 }
