@@ -33,7 +33,7 @@ export default function AdminApp() {
   const [err, setErr] = useState('')
   const [code, setCode] = useState(0)
   const [missing, setMissing] = useState<string[]>([])
-  const [where, setWhere] = useState<{ found: boolean; looked: string[] } | null>(null)
+  const [where, setWhere] = useState<Where | null>(null)
 
   const load = useCallback(async () => {
     const r = await api('status')
@@ -90,7 +90,28 @@ export default function AdminApp() {
   )
 }
 
-function Setup({ missing, where }: { missing: string[]; where: { found: boolean; looked: string[] } | null }) {
+interface Diag { phpOk: boolean; dirExists: boolean; dirReadable: boolean; openBasedirSet: boolean; openBasedirCoversDir: boolean | null; similarFile: string | null; fileInWebFolder: boolean; fileOneLevelTooHigh: boolean; privateFolderReady?: boolean }
+interface Where { found: boolean; looked: string[]; diag?: Diag }
+
+/** Plain-language reason the settings file was not found, most specific first. */
+function whyNotFound(w: Where): string[] {
+  const d = w.diag, target = w.looked[0]
+  if (!d) return []
+  const r: string[] = []
+  if (!d.phpOk) r.push('This server runs PHP older than 7.4. In hPanel go to Advanced → PHP Configuration and choose 8.1 or newer.')
+  if (d.fileInWebFolder) r.push('A vh-config.php sits inside public_html. That is the wrong place (the web folder is public and the file is never read from there). Move it up one level, into the folder that contains public_html.')
+  if (d.fileOneLevelTooHigh) r.push(`A vh-config.php sits one folder too high. Move it down into ${target.replace('/vh-config.php', '')}.`)
+  if (d.similarFile) r.push(`There is a file named "${d.similarFile}". Rename it to exactly vh-config.php (no .txt, no spaces, a hyphen not an underscore).`)
+  if (d.openBasedirSet && d.openBasedirCoversDir === false) r.push('This host blocks PHP from reading above public_html (open_basedir). Easiest fix: move vh-config.php into the protected folder public_html/api/private/ (visitors cannot open anything in it), then reload this page. Alternatively widen open_basedir under hPanel → Advanced → PHP Configuration.')
+  else if (!d.dirReadable && d.dirExists) r.push('The folder exists but the server is not allowed to read it. Move vh-config.php into the protected folder public_html/api/private/ and reload, or check the folder permissions in File Manager (755 for folders).')
+  else if (!d.dirExists && !d.openBasedirSet) r.push('That folder does not exist on the server. Check the domain folder name in File Manager.')
+  else if (!d.dirExists && d.openBasedirCoversDir !== false) r.push('The server cannot see that folder (it may not exist, or it may be blocked). Compare the path with File Manager.')
+  if (!r.length) r.push(`The folder is readable but contains no file named vh-config.php. Create it there: ${target}.`)
+  if (d.openBasedirSet && !d.dirReadable && !d.privateFolderReady) r.push('The protected folder public_html/api/private/ is not on the server yet; it arrives with the next deploy.')
+  return r
+}
+
+function Setup({ missing, where }: { missing: string[]; where: Where | null }) {
   const [pw, setPw] = useState(''); const [hash, setHash] = useState(''); const [e, setE] = useState('')
   const needsHash = missing.includes('admin_password_hash')
   const items: [string, string][] = [['repo', "'repo' (the GitHub repository name)"], ['admin_github_token', "'admin_github_token' (the GitHub token)"], ['admin_password_hash', "'admin_password_hash' (your password code)"]]
@@ -101,7 +122,8 @@ function Setup({ missing, where }: { missing: string[]; where: { found: boolean;
       {where && (
         <div className={`text-sm border px-3 py-2 ${where.found ? 'border-primary/30 bg-primary/10' : 'border-red-300 bg-red-50 text-red-800'}`}>
           {where.found ? '✔ The server found vh-config.php.' : '✖ The server cannot find vh-config.php.'}
-          {!where.found && <> It looks for the file at <code>{where.looked[0]}</code>, in the folder that also contains <code>public_html</code>. Check the file name and folder in File Manager.</>}
+          {!where.found && <> It looks for the file at <code>{where.looked[0]}</code>, in the folder that also contains <code>public_html</code>.</>}
+          {!where.found && <ul className="list-disc pl-5 mt-2 space-y-1">{whyNotFound(where).map(t => <li key={t}>{t}</li>)}</ul>}
         </div>
       )}
       <ul className="text-sm space-y-1">{items.map(([k, l]) => <li key={k}>{missing.includes(k) ? '✖' : '✔'} <span className={missing.includes(k) ? 'text-ink' : 'text-ink-mid'}>{l}</span></li>)}</ul>

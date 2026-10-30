@@ -11,13 +11,17 @@ const MARKET_CONDITIONS = ['new' => 'New / handmade', 'used' => 'Used'];
 const MARKET_LISTING_DAYS = 90;
 const MARKET_MAX_PRICE = 500000;
 
-/** Where the settings file may live, best first. Always outside the web folder. */
+/**
+ * Where the settings file may live, best first: outside the web folder (best), then the protected folder api/private
+ * inside it for hosts that do not let PHP read above the web folder. Never the public part of the web folder.
+ */
 function vh_cfg_candidates(): array {
     $c = [];
     if ($e = getenv('VH_CONFIG')) $c[] = $e;
     $c[] = dirname(__DIR__, 3) . '/vh-config.php';
     $dr = rtrim((string)($_SERVER['DOCUMENT_ROOT'] ?? ''), '/');
     if ($dr !== '') $c[] = dirname($dr) . '/vh-config.php';
+    $c[] = dirname(__DIR__) . '/private/vh-config.php';
     return array_values(array_unique($c));
 }
 
@@ -38,18 +42,64 @@ function vh_cfg(): array {
     return is_array($c) ? $c : [];
 }
 
-/** Whether a settings file was found, and where we looked (shortened). */
-function vh_cfg_where(): array { vh_cfg(); return ['found' => !empty($GLOBALS['vh_cfg_path']), 'looked' => array_map('vh_short_path', vh_cfg_candidates())]; }
+/**
+ * Whether a settings file was found, and where we looked (shortened). When it was not found, also value-free facts about
+ * WHY: folder missing or blocked, a look-alike file name, or the file sitting one folder too far in or out.
+ */
+function vh_cfg_where(): array {
+    vh_cfg();
+    $found = !empty($GLOBALS['vh_cfg_path']);
+    $out = ['found' => $found, 'looked' => array_map('vh_short_path', vh_cfg_candidates())];
+    if (!$found) $out['diag'] = vh_cfg_diagnose();
+    return $out;
+}
+
+/** Facts only (booleans and fixed look-alike names); never file contents, absolute paths or other file names. */
+function vh_cfg_diagnose(): array {
+    $first = vh_cfg_candidates()[0] ?? '';
+    $dir = $first !== '' ? dirname($first) : '';
+    $ob = (string)ini_get('open_basedir');
+    $covers = null;
+    if ($ob !== '' && $dir !== '') {
+        $covers = false;
+        foreach (explode(PATH_SEPARATOR, $ob) as $p) { $p = rtrim($p, '/'); if ($p !== '' && strpos($dir . '/', $p . '/') === 0) { $covers = true; break; } }
+    }
+    $h = $dir !== '' ? @opendir($dir) : false;
+    $readable = $h !== false; if ($h) closedir($h);
+    $similar = null;
+    if ($readable) foreach (['vh-config.php.txt', 'vh_config.php', 'vh-config.PHP', 'Vh-config.php', 'vh-config.php.php', 'vh-config (1).php', 'vh-config.php ', 'vh-config.txt', 'vh-config'] as $v) {
+        if (@file_exists($dir . '/' . $v)) { $similar = $v; break; }
+    }
+    $web = dirname(__DIR__, 2) . '/vh-config.php';      // inside the web folder: wrong, and never read
+    $tooHigh = $dir !== '' ? dirname($dir) . '/vh-config.php' : '';
+    return [
+        'phpOk' => PHP_VERSION_ID >= 70400,
+        'dirExists' => $dir !== '' && @is_dir($dir),
+        'dirReadable' => $readable,
+        'openBasedirSet' => $ob !== '',
+        'openBasedirCoversDir' => $covers,
+        'similarFile' => $similar,
+        'fileInWebFolder' => @file_exists($web),
+        'fileOneLevelTooHigh' => $tooHigh !== '' && @file_exists($tooHigh),
+        'privateFolderReady' => @is_dir(dirname(__DIR__) . '/private') && @is_file(dirname(__DIR__) . '/private/.htaccess'),
+    ];
+}
 
 /** Line number of a syntax error in vh-config.php, or 0. (Never expose the message: it can quote a secret.) */
 function vh_cfg_error_line(): int { vh_cfg(); return (int)($GLOBALS['vh_cfg_error_line'] ?? 0); }
 
 function vh_data_dir(): string {
-    $d = vh_cfg()['data_dir'] ?? (dirname(__DIR__, 3) . '/vh-data');
-    if (!is_dir($d)) @mkdir($d, 0700, true);
-    if (!is_dir($d) || !is_writable($d)) {
-        $d = sys_get_temp_dir() . '/vh-data';
-        if (!is_dir($d)) @mkdir($d, 0700, true);
+    // Private data: the configured folder, else beside the web folder, else the protected folder inside it (hosts that
+    // block PHP above the web folder), and only as a last resort the temporary folder (which may be wiped).
+    $dirs = [];
+    if (!empty(vh_cfg()['data_dir'])) $dirs[] = (string)vh_cfg()['data_dir'];
+    $dirs[] = dirname(__DIR__, 3) . '/vh-data';
+    $dirs[] = dirname(__DIR__) . '/private/data';
+    $dirs[] = sys_get_temp_dir() . '/vh-data';
+    $d = '';
+    foreach ($dirs as $d) {
+        if (!@is_dir($d)) @mkdir($d, 0700, true);
+        if (@is_dir($d) && @is_writable($d)) return $d;
     }
     return $d;
 }

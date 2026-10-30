@@ -27,3 +27,10 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Server settings and secrets must never be committed (they live outside the web folder on Hostinger)
+vh-config.php
+public/vh-config.php
+vh-data/
+public/api/private/vh-config.php
+public/api/private/data/
