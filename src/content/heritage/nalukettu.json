@@ -144,7 +144,24 @@
       "If commissioning a home, work with a master carpenter and an architect experienced in thachu shastra."
     ]
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/nalukettu-1.jpg",
+      "alt": "This is an image of Cultural Fashion or Adornment from",
+      "credit": "Pitchoon76",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Traditional_Moroccan_shoes_called_%22babouches%22.JPG"
+    },
+    {
+      "src": "/images/discover/nalukettu-2.jpg",
+      "alt": "Illuminated facade of a restaurant serving traditional food and showing baskets of fresh vegetables at the entrance, Yūrakuchō , Chiyoda , Tokyo , Japan .",
+      "credit": "Basile Morin",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Illuminated_facade_of_a_restaurant_serving_traditional_food_with_fresh_vegetables_in_Chiyoda,_Tokyo.jpg"
+    }
+  ],
   "tags": [
     "heritage",
     "Kerala",
