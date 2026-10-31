@@ -1,10 +1,10 @@
 {
-  "provider": "openai",
-  "verifierProvider": "anthropic",
-  "updated": "2026-10-30",
-  "autoPublish": true,
-  "autoPublishExclude": [
-    "medical",
-    "healing"
-  ]
+    "provider": "openai",
+    "verifierProvider": "xai",
+    "updated": "2026-10-31",
+    "autoPublish": true,
+    "autoPublishExclude": [
+        "medical",
+        "healing"
+    ]
 }
