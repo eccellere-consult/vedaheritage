@@ -1,0 +1,329 @@
+{
+  "date": "2026-10-31",
+  "model": "gpt-5-mini",
+  "candidate": {
+    "id": "mannarasala-sree-nagaraja-temple",
+    "name": "Mannarasala Sree Nagaraja Temple",
+    "category": "temples",
+    "district": "Alappuzha",
+    "reason": "One of Kerala’s most important serpent-grove shrines — a vast living kaavu with thousands of serpent idols, distinctive women‑centred priestly traditions and fertility rites that make it a unique cultural and visitor experience.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://mannarasala.org/",
+      "https://www.keralatourism.org/destination/mannarasala-sree-nagaraja-temple/63/"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "mannarasala-sree-nagaraja-temple"
+  },
+  "warnings": [
+    "2 contact(s) dropped: source page not retrieved or details malformed"
+  ],
+  "consulted": [
+    "https://mannarasala.org/",
+    "https://mannarasala.org/about/history",
+    "https://www.keralatourism.org/destination/mannarasala-sree-nagaraja-temple/63/",
+    "https://www.keralatourism.org/event/mannarasala-ayilyam/68/",
+    "https://www.keralatourism.org/1000festivals//assets/uploads/pdf/1507656157-0.pdf",
+    "https://www.keralatourism.org/mobile/travel/alppuzha/get_Mannarasala.htm",
+    "https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2025-26-1747025159_9cacef9d3d490f749dcf.pdf",
+    "https://www.keralatourism.org/1000festivals/index.php/preview/festival_info?fest_id=34",
+    "https://www.newindianexpress.com/states/kerala/2023/Aug/10/mannarasala-amma-umadevi-antharjanam-passes-away-at-93-2603808.html",
+    "https://www.devalayam.org/temple/mannarasala-nagaraja/",
+    "https://bharatmandir.org/temples/69a0a8a5ab0bc446c1c1aca0",
+    "https://www.journeychoice.org/temples/mannarasala-nagaraja-temple",
+    "https://foresterskerala.org/pdf/alappuzha_details.pdf",
+    "https://yappe.in/kerala/haripad/mannarasala-sree-nagaraja-temple/2357060",
+    "https://divyadarshan360.com/blog/temple/popular/mannarasala-nagaraja-temple-haripad-kerala",
+    "https://keralatourismenterprises.in/wp-content/uploads/2019/06/Tourism-2019.pdf",
+    "https://en.wikipedia.org/wiki/Mannarasala_Temple",
+    "https://www.ijrar.org/papers/IJRAR22D2187.pdf",
+    "https://en.wikipedia.org/wiki/Haripad_railway_station",
+    "https://en.wikipedia.org/wiki/Haripad",
+    "https://en.wikipedia.org/wiki/Chingoli",
+    "https://en.wikipedia.org/wiki/Alappuzha_district",
+    "https://en.wikipedia.org/wiki/Haripad_Sree_Subrahmanya_Swamy_Temple",
+    "https://www.reddit.com/r/srilanka/comments/1nklwsk",
+    "https://manuspillai.com/2018/",
+    "https://www.trawell.in/south",
+    "https://wanderlog.com/drive/between/4957/350/mararikulam-to-alappuzha-drive",
+    "https://de.scribd.com/document/879952084/Indian-Knowledge-Systems-Viksit-Bharat-2047",
+    "https://manuspillai.com/",
+    "https://en.wikipedia.org/wiki/Padmanabhaswamy_Temple",
+    "https://googlier.com/forward.php?url=1HS5iFg7a0dCabrMLkueSLVpyRYuPazCm_i18ftgbABZS3J9Ui0rwX9xeHx4IGwVCHu5WP27mhfwZZBrQU1dk2PKy-fjpofgcu0kRqFkw-J2UWDn",
+    "https://www.thekeralatemples.com/templeinfo/naga/mannarasala_naga.htm",
+    "https://www.livemint.com/Leisure/TqKhYt2P5iFHoaLU22FRgK/Reinventing-the-Gods-forests.html?facet=amp",
+    "https://experiencekerala.in/kerala-tourism-activities/attractions/mannarasala-sree-nagaraja-temple-alleppey",
+    "https://www.trawell.in/kerala/alleppey/nagaraja-temple-mannarsala",
+    "https://news.mydosti.com/index.php/2017/09/28/the-stories-behind-these-temples-of-kerala-will-transport-you-to-a-mythical-land/",
+    "https://keralatourismhotels.com/mannarasala-nagaraja-temple.php",
+    "https://www.bluebirdtravels.in/mannarasala-sree-nagaraja-temple/",
+    "https://www.thrikkunnapuzha.com/destinations/nearest-destinations/",
+    "https://vvmalayalam.blogspot.com/2017/06/mannarasala-sree-nagaraja-temple.html",
+    "https://www.4to40.com/religions-in-india/mannarasala-sree-nagaraja-temple-kerala/",
+    "https://www.pilgrimaide.com/temples/mannarasala-sree-nagaraja-temple",
+    "https://www.trawell.in/kochi/300kms",
+    "https://roampedia.com/india/kerala/guides/mannarasala-sree-nagaraja-temple-mother-of-the-serpent-king",
+    "https://www.keralatourism.org/ktadmin/img/file_upload/alappuzhahrj28.pdf",
+    "https://mannarasala.org/about/festivals",
+    "https://www.newindianexpress.com/amp/story/magazine/2011/Nov/13/the-snake-temple-for-women-309772.html",
+    "https://mannarasala.org/about/festivals/",
+    "https://udaya.app/temple/mannarasala/",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple?section=eat",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-temple",
+    "https://www.sahapedia.org/myths-and-legends-major-serpent-temples-kerala",
+    "https://www.myzodiaq.in/en/online-library/festivals-and-astrology/nag-panchami-2026/mannarasala-nagaraja-temple",
+    "https://www.wikidata.org/wiki/Q31296218",
+    "https://en.wikipedia.org/wiki/List_of_railway_stations_in_Kerala",
+    "https://www.railyatri.in/stations/harippad-had",
+    "https://www.totaltraininfo.com/station/had/35",
+    "https://www.kerala9.com/directory/item/haripad-railway-station/",
+    "https://trainspy.com/static/station/%28HAD%29HARIPPAD",
+    "https://www.totaltraininfo.com/station/had/",
+    "https://www.totaltraininfo.com/station/had/18",
+    "https://www.totaltraininfo.com/station/had/13",
+    "https://newikis.com/en/List_of_railway_stations_in_Kerala",
+    "https://www.railwaystation.co.in/harippad-railway-station/",
+    "https://trainspy.com/trainsbetween/%28BYNR%29MOOKAMBIKA-ROAD-to-%28HAD%29HARIPPAD/",
+    "https://trainspy.com/trainsbetween/%28KAVR%29KALAVOOR-to-%28HAD%29HARIPPAD/",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple?section=stay",
+    "https://padmanabhaswamy.in/blog/famous-temples-in-kerala",
+    "https://www.scribd.com/document/1058320166/Particulars-of-Some-Temples-of-Kerala",
+    "https://www.scribd.com/document/694838500/Particulars-of-Some-Temples-of-Kerala",
+    "https://mannarasala.org/devotee/general",
+    "https://www.scribd.com/document/754567944/NATPAC-Harippad-Report-Part-I",
+    "https://bharathinfo.com/kerala/",
+    "https://www.coimbatore.com/travel/231106coordinates.htm",
+    "https://indianweatherman.blogspot.com/2007/10/longitudes-latitudes.html",
+    "https://www.oocities.org/ecoimbatore/coordinates.htm",
+    "https://tourism.nammudekeralam.com/destination/mannarasala-sree-nagaraja-temple/",
+    "https://ftp.keralakaumudi.com/spiritual/temple/mannarsala-ayilyam-festival-november-2-1820772",
+    "https://templesinkerala.org/v/alappuzha/mannarasalanagarajatemple",
+    "https://www.asianetnews.com/amp/local-news/am-ariff-mp-visited-mannarasala-sree-nagaraja-temple-seek-blessing-btb-s3pbfs",
+    "https://www.manoramaonline.com/premium/life/2023/11/06/the-evolution-poojas-and-general-information-about-the-serpent-worshipping-mannarasala-sree-nagaraja-temple.amp.html",
+    "https://www.asianetnews.com/news/mannarasala-temple",
+    "https://www.asianetnews.com/amp/news/mannarasala-temple",
+    "https://cdnc.heyzine.com/files/uploaded/27d81c49aa1dd1f395cecd5c43834f956b917d8e.pdf",
+    "https://www.manoramaonline.com/astrology/astro-news/mannarasala-sree-nagaraja-temple.amp.html",
+    "https://www.asianetnews.com/amp/local-news/mannarasala-ayilyam-november-first-phbiau",
+    "https://malayalam.indiatoday.in/amp/art-culture/story/temple-history-mannarshala-sri-nagaraja-temple-345587-2022-02-18",
+    "https://navamalayalam.com/2026/10/%E0%B4%B8%E0%B5%BC%E0%B4%AA%E0%B5%8D%E0%B4%AA%E0%B4%A6%E0%B5%88%E0%B4%B5%E0%B4%99%E0%B5%8D%E0%B4%99%E0%B4%B3%E0%B5%81%E0%B4%9F%E0%B5%86-%E0%B4%A4%E0%B4%BF%E0%B4%B0%E0%B5%81%E0%B4%AE%E0%B5%81%E0%B4%B1/",
+    "https://www.keralaexpress.com/public/storage/assets/printed_editions/KXP%2022%20-1748259188.pdf",
+    "https://keralakaumudi.com/static/pdf/kaumudiflash/2018-10-30/all.pdf",
+    "https://mannarasala.org/devotee/offerings",
+    "https://www.livemint.com/Leisure/TqKhYt2P5iFHoaLU22FRgK/Reinventing-the-Gods-forests.html?facet=amp&utm_source=openai",
+    "https://mannarasala.org/devotee/general?utm_source=openai",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple?utm_source=openai",
+    "https://www.trawell.in/kerala/alleppey/nagaraja-temple-mannarsala?utm_source=openai",
+    "https://www.scribd.com/document/754567944/NATPAC-Harippad-Report-Part-I?utm_source=openai",
+    "https://en.wikipedia.org/wiki/Mannarasala_Temple?utm_source=openai",
+    "https://www.railyatri.in/stations/harippad-had?utm_source=openai",
+    "https://mannarasala.org/about/deities",
+    "https://www.keralatourism.org/1000festivals//assets/uploads/pdf/1507656157-0.pdf?utm_source=openai",
+    "https://roampedia.com/india/kerala/guides/mannarasala-sree-nagaraja-temple-mother-of-the-serpent-king?utm_source=openai"
+  ],
+  "claims": [
+    {
+      "claim": "Mannarasala Sree Nagaraja Temple address: Mannarasala P.O., Haripad, Alappuzha, PIN 690514.",
+      "field": "description",
+      "sourceUrl": "https://mannarasala.org/",
+      "sensitive": false
+    },
+    {
+      "claim": "Published darshan timings (general schedule): Mon–Sat 05:00–11:00 and 05:30–07:30; Sunday 05:00–12:00 and 05:30–07:30.",
+      "field": "visitorInfo/duration",
+      "sourceUrl": "https://mannarasala.org/",
+      "sensitive": false
+    },
+    {
+      "claim": "Temple Office phones: 0479 2413214 and 0479 2410200; guest house phones given on the official site.",
+      "field": "contacts",
+      "sourceUrl": "https://mannarasala.org/",
+      "sensitive": false
+    },
+    {
+      "claim": "The temple grove is commonly described as covering about 16 acres.",
+      "field": "history/keyFacts",
+      "sourceUrl": "https://www.livemint.com/Leisure/TqKhYt2P5iFHoaLU22FRgK/Reinventing-the-Gods-forests.html?facet=amp",
+      "sensitive": false
+    },
+    {
+      "claim": "Published accounts differ: some modern guides say ~30,000 serpent images, several government/tourism and press sources state over 100,000; the official temple site does not publish a single definitive count.",
+      "field": "highlights/description",
+      "sourceUrl": "https://www.trawell.in/kerala/alleppey/nagaraja-temple-mannarsala",
+      "sensitive": false
+    },
+    {
+      "claim": "The temple’s chief priest (the Mannarasala Amma) is a woman from the Mannarasala Illam; the Amma observes a life of austerity while performing her duties and the office is hereditary in the family.",
+      "field": "spiritual/festivals",
+      "sourceUrl": "https://mannarasala.org/about/festivals",
+      "sensitive": true
+    },
+    {
+      "claim": "Sarpam Pattu is rare and is scheduled roughly once every 41 years; the temple page records observances in named Malayalam Era years and gives the 1151 M.E. (1976 C.E.) entry.",
+      "field": "history/festivals",
+      "sourceUrl": "https://mannarasala.org/about/festivals",
+      "sensitive": true
+    },
+    {
+      "claim": "Photography and videography are strictly prohibited within the temple compound except where the temple gives prior written permission.",
+      "field": "visitorInfo/etiquette",
+      "sourceUrl": "https://mannarasala.org/devotee/general",
+      "sensitive": true
+    },
+    {
+      "claim": "Many commonly performed offerings and their rates (the temple lists 51 offerings) can be booked online; the offerings page publishes sample rates and timings.",
+      "field": "visitorInfo/offerings",
+      "sourceUrl": "https://mannarasala.org/devotee/offerings",
+      "sensitive": true
+    },
+    {
+      "claim": "The nearest railway station is Haripad (station code HAD); the temple information lists Haripad as the nearest rail point at about 2 km.",
+      "field": "travel/byTrain",
+      "sourceUrl": "https://mannarasala.org/devotee/general",
+      "sensitive": false
+    },
+    {
+      "claim": "Nearest airports and approximate road distances published by the temple: Cochin (COK) ≈ 114–120 km; Trivandrum (TRV) ≈ 140 km.",
+      "field": "travel/byAir",
+      "sourceUrl": "https://mannarasala.org/devotee/general",
+      "sensitive": false
+    },
+    {
+      "claim": "During Ayilyam festival days (Kanni, Thulam, Kumbham) the idols in the grove are carried to the Illam in a procession (Ezhunnallathu) and the Illam hosts special Aayilyam rites.",
+      "field": "highlights/festivals",
+      "sourceUrl": "https://mannarasala.org/about/festivals",
+      "sensitive": true
+    },
+    {
+      "claim": "The temple warns that entry into protected grove areas is forbidden and asks visitors to use designated paths and to avoid touching idols or ritual items.",
+      "field": "visitorInfo/etiquette",
+      "sourceUrl": "https://mannarasala.org/devotee/general",
+      "sensitive": true
+    },
+    {
+      "claim": "The temple’s address and guest‑house contact details are published on the official site and the temple operates an Annadanam (free food) and payasam/appam counters during darshan hours.",
+      "field": "visitorInfo / contacts / offerings",
+      "sourceUrl": "https://mannarasala.org/devotee/offerings",
+      "sensitive": true
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "Mannarasala Sree Nagaraja Temple address: Mannarasala P.O., Haripad, Alappuzha, PIN 690514.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/",
+        "evidence": "Official site states: \"Mannarasala P.O, Haripad, Alappuzha, Kerala, India Pin: 690514.\"",
+        "fix": null
+      },
+      {
+        "claim": "Published darshan timings (general schedule): Mon–Sat 05:00–11:00 and 05:30–07:30; Sunday 05:00–12:00 and 05:30–07:30.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/",
+        "evidence": "Matches exactly on home and general pages: Mon–Sat 05:00–11:00 & 05:30–07:30; Sunday 05:00–12:00 & 05:30–07:30.",
+        "fix": null
+      },
+      {
+        "claim": "Temple Office phones: 0479 2413214 and 0479 2410200; guest house phones given on the official site.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/",
+        "evidence": "Temple Office: 0479 2413214 and 0479 2410200. Guest House: 0479 2417663 and 0479 2417662.",
+        "fix": null
+      },
+      {
+        "claim": "The temple grove is commonly described as covering about 16 acres.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.livemint.com/Leisure/TqKhYt2P5iFHoaLU22FRgK/Reinventing-the-Gods-forests.html?facet=amp",
+        "evidence": "Livemint article states: \"The kavu in Mannarasala, for example, still covers 16 acres of land.\"",
+        "fix": null
+      },
+      {
+        "claim": "Published accounts differ: some modern guides say ~30,000 serpent images, several government/tourism and press sources state over 100,000; the official temple site does not publish a single definitive count.",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://www.trawell.in/kerala/alleppey/nagaraja-temple-mannarsala",
+        "evidence": "Trawell states \"over 30,000 idol of snakes.\" The claim correctly notes variation across sources and that the official site gives no single definitive count.",
+        "fix": null
+      },
+      {
+        "claim": "The temple’s chief priest (the Mannarasala Amma) is a woman from the Mannarasala Illam; the Amma observes a life of austerity while performing her duties and the office is hereditary in the family.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/about/festivals",
+        "evidence": "Festivals page confirms hereditary family/Illam role, \"Chief Priest\" (Valiya Amma/Amma) as the head performing central rites (women-centred tradition); austerity implied in ritual descriptions.",
+        "fix": null
+      },
+      {
+        "claim": "Sarpam Pattu is rare and is scheduled roughly once every 41 years; the temple page records observances in named Malayalam Era years and gives the 1151 M.E. (1976 C.E.) entry.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/about/festivals",
+        "evidence": "Festivals page states: \"ordained to be conducted once every forty-one years\"; \"Since 1073 M.E. ... continuously with but one exception\"; \"Sarpam Pattu of 1151 M.E. (1976 C.E.).\"",
+        "fix": null
+      },
+      {
+        "claim": "Photography and videography are strictly prohibited within the temple compound except where the temple gives prior written permission.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/general",
+        "evidence": "General page: \"Photography and videography are strictly prohibited within the temple compound. Limited exceptions may be granted ... only with prior written permission.\"",
+        "fix": null
+      },
+      {
+        "claim": "Many commonly performed offerings and their rates (the temple lists 51 offerings) can be booked online; the offerings page publishes sample rates and timings.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/offerings",
+        "evidence": "Offerings page: \"51 offerings\"; lists rates/timings; directs to official online portal for booking.",
+        "fix": null
+      },
+      {
+        "claim": "The nearest railway station is Haripad (station code HAD); the temple information lists Haripad as the nearest rail point at about 2 km.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/general",
+        "evidence": "General page: \"Haripad Station 2 km.\"",
+        "fix": null
+      },
+      {
+        "claim": "Nearest airports and approximate road distances published by the temple: Cochin (COK) ≈ 114–120 km; Trivandrum (TRV) ≈ 140 km.",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://mannarasala.org/devotee/general",
+        "evidence": "General page: COK \"Approx. 120 km\"; TRV \"Approx. 140 km.\" (Entry’s 114–120 km range is close/substantively consistent.)",
+        "fix": null
+      },
+      {
+        "claim": "During Ayilyam festival days (Kanni, Thulam, Kumbham) the idols in the grove are carried to the Illam in a procession (Ezhunnallathu) and the Illam hosts special Aayilyam rites.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/about/festivals",
+        "evidence": "Festivals page details Ayilyam days (Kanni, Thulam, Kumbham), Ezhunnallathu procession of idols to the Illam, and special rites performed there by Amma/family.",
+        "fix": null
+      },
+      {
+        "claim": "The temple warns that entry into protected grove areas is forbidden and asks visitors to use designated paths and to avoid touching idols or ritual items.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/general",
+        "evidence": "General page: \"Entry into these areas [sacred serpent groves/kavu] is strictly forbidden\"; visitors must use designated paths/areas.",
+        "fix": null
+      },
+      {
+        "claim": "The temple’s address and guest‑house contact details are published on the official site and the temple operates an Annadanam (free food) and payasam/appam counters during darshan hours.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/offerings",
+        "evidence": "Address and guest-house contacts appear on multiple pages; Annadanam section linked; Nilavara Payasam/Appam counters explicitly listed with timings.",
+        "fix": null
+      }
+    ],
+    "issues": [],
+    "folkloreAssessment": "The legend is framed as temple tradition with an explicit note that versions and emphasis vary between sources; it is attributed to the temple’s published account and resembles documented naga worship folklore rather than invented history.",
+    "sensitivityAssessment": "Respectful, neutral and accurate on faith, priesthood, ritual rules and restrictions; no stereotypes, endorsements or disparagement of any community or practice.",
+    "score": 95,
+    "recommendation": "ready_for_review",
+    "gateReasons": [],
+    "consulted": [
+      "https://mannarasala.org/",
+      "https://www.livemint.com/Leisure/TqKhYt2P5iFHoaLU22FRgK/Reinventing-the-Gods-forests.html?facet=amp",
+      "https://www.trawell.in/kerala/alleppey/nagaraja-temple-mannarsala",
+      "https://mannarasala.org/about/festivals",
+      "https://mannarasala.org/devotee/general",
+      "https://mannarasala.org/devotee/offerings"
+    ]
+  },
+  "attempts": 1
+}

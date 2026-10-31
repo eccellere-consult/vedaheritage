@@ -40,5 +40,52 @@
     "status": "drafted",
     "foundOn": "2026-10-29",
     "slug": "oachira-parabrahma-temple"
+  },
+  {
+    "id": "mannarasala-sree-nagaraja-temple",
+    "name": "Mannarasala Sree Nagaraja Temple",
+    "category": "temples",
+    "district": "Alappuzha",
+    "reason": "One of Kerala’s most important serpent-grove shrines — a vast living kaavu with thousands of serpent idols, distinctive women‑centred priestly traditions and fertility rites that make it a unique cultural and visitor experience.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://mannarasala.org/",
+      "https://www.keralatourism.org/destination/mannarasala-sree-nagaraja-temple/63/"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "mannarasala-sree-nagaraja-temple"
+  },
+  {
+    "id": "vaikom-mahadeva-temple",
+    "name": "Vaikom Mahadeva Temple",
+    "category": "temples",
+    "district": "Kottayam",
+    "reason": "An ancient and architecturally notable Shiva temple that is also the focal site of the 1924–25 Vaikom Satyagraha, allowing a guide to link temple ritual and art with Kerala’s modern social‑reform history.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/kottayam/vaikom-mahadeva",
+      "https://vaikommunicipality.lsgkerala.gov.in/en/history",
+      "https://www.keralatourism.org/sreenarayanaguru/social-reform/vaikom-satyagraha"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "vaikom-mahadeva-temple"
+  },
+  {
+    "id": "kumarakom-bird-sanctuary-vembanad-lake",
+    "name": "Kumarakom Bird Sanctuary (Vembanad Lake)",
+    "category": "backwaters",
+    "district": "Kottayam",
+    "reason": "A flagship backwater destination and protected bird sanctuary on Vembanad Lake offering rich birdwatching, boat‑based visitor experiences and responsible‑tourism initiatives that complement Alappuzha backwater coverage.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://kottayam.nic.in/en/bird-sanctuary/",
+      "https://www.keralatourism.org/destination/kumarakom-bird-sanctuary/525/?trk=article-ssr-frontend-pulse_little-text-block",
+      "https://www.dtpckottayam.com/destination/kumarakom-bird-sanctuary"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "kumarakom-bird-sanctuary-vembanad-lake"
   }
 ]

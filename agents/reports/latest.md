@@ -2,28 +2,43 @@
 
 Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
 
-### Events calendar: 17 upcoming event(s)
+### Scout: 3 new candidate(s)
 
-Dates come from pages the agent retrieved. Check each link before merging.
+- P1 **Mannarasala Sree Nagaraja Temple** (temples, Alappuzha) — One of Kerala’s most important serpent-grove shrines — a vast living kaavu with thousands of serpent idols, distinctive women‑centred priestly traditions and fertility rites that make it a unique cultural and visitor experience.
+- P1 **Vaikom Mahadeva Temple** (temples, Kottayam) — An ancient and architecturally notable Shiva temple that is also the focal site of the 1924–25 Vaikom Satyagraha, allowing a guide to link temple ritual and art with Kerala’s modern social‑reform history.
+- P1 **Kumarakom Bird Sanctuary (Vembanad Lake)** (backwaters, Kottayam) — A flagship backwater destination and protected bird sanctuary on Vembanad Lake offering rich birdwatching, boat‑based visitor experiences and responsible‑tourism initiatives that complement Alappuzha backwater coverage.
 
-**New (17)**
-- **Pulinkunnu Boat Race (Champions Boat League)** · 2026-10-31 · Pulinkunnu, Pamba River, Alappuzha · dates published · https://eventbuzzer.in/events/pulinkunnu-boat-race-2026 https://www.keralatourism.org/champions-boat-league/match-schedule
-- **Mannarasala Ayilyam Festival (Sree Nagaraja Temple)** · 2026-10-30 to 2026-11-02 · Sree Nagaraja Temple, Mannarasala, Alappuzha · dates published · https://www.manoramaonline.com/district-news/alappuzha/2026/10/30/mannarasala-ayilyam-festival-dates.html
-- **Parumala Perunnal (St. Peter & St. Paul’s Church)** · 2026-10-26 to 2026-11-02 · St. Peter & St. Paul’s Church, Parumala, Pathanamthitta · dates published · https://malayalam.samayam.com/latest-news/kerala-news/124th-parumala-thirumeni-perunnal-from-october-26-to-november-second-2026/articleshow/135168491.cms https://keralist.com/event/parumala-perunnal
-- **Kainakary Boat Race (Champions Boat League)** · 2026-11-07 · Kainakary, Alappuzha · dates published · https://www.keralatourism.org/champions-boat-league/match-schedule https://kumarakom.com/news/champions-boat-league-2026-schedule-venues-dates
-- **Sabarimala — Mandala Pooja season (Sabarimala opening for Mandala)** · 2026-11-16 to 2026-12-27 · Sabarimala (Sree Ayyappa Temple), Pathanamthitta · dates published · https://www.sabarimalaonline.in/
-- **Kalpathi Ratholsavam (Kalpathi Chariot Festival)** · 2026-11-14 to 2026-11-16 · Sree Viswanatha Swamy Temple, Kalpathi, Palakkad · dates published · https://www.incredibleindia.gov.in/en/festivals-and-events/kerala/kalpathi-ratholsavam https://www.keralatourism.org/festivalcalendar/
-- **Kayamkulam Boat Race (Champions Boat League)** · 2026-11-14 · Kayamkulam, Alappuzha · dates published · https://www.keralatourism.org/champions-boat-league/match-schedule https://kumarakom.com/news/champions-boat-league-2026-schedule-venues-dates
-- **President’s Trophy Boat Race (Ashtamudi)** · 2026-11-21 · Ashtamudi Lake, Kollam · dates published · https://www.keralatourism.org/champions-boat-league/match-schedule https://www.thuzhathaalam.com/en
-- **Guruvayur Ekadasi (Sri Krishna Temple)** · 2026-11-21 · Guruvayur Sri Krishna Temple, Thrissur · dates published · https://www.keralatourism.org/festivalcalendar/ https://www.yatrigo.com/events/guruvayur-ekadasi
-- **Theyyam season (North Malabar ritual performances)** · 2026-11-01 to 2027-05-31 · Various shrines in North Malabar (Kannur & Kasaragod), Kannur & Kasaragod · usual dates, confirm before travelling · https://hiddenmantra.com/theyyam-calendar/
-- **Attukal Pongala (Attukal Bhagavathy Temple)** · 2027-02-14 to 2027-02-23 · Attukal Bhagavathy Temple, Attukal, Thiruvananthapuram · usual dates, confirm before travelling · https://www.gohub.com/tr/events/attukal-pongala https://www.gohub.com/events/attukal-pongala
-- **Thrissur Pooram** · 2027-04-17 to 2027-04-18 · Vadakkunnathan Temple / Thekkinkadu Maidan, Thrissur, Thrissur · dates published · https://solonomads.com/guides/india/thrissur-pooram https://www.keralatourism.org/festivalcalendar/
-- **Vishu (Malayalam New Year)** · 2027-04-15 · Statewide (best observed at temples and traditional households), Kerala · dates published · https://malayalacalendar.com/calendar/2027/
-- **Karkidaka Chikitsa (Ayurveda monsoon treatment period)** · 2027-07-17 to 2027-08-16 · Statewide (Ayurvedic centres: Kottakkal, Varkala, Kovalam, Wayanad, etc.), Kerala · usual dates, confirm before travelling · https://roampedia.com/india/kerala/guides/kerala-ayurveda-wellness
-- **Nehru Trophy Boat Race (Punnamada Lake, Alappuzha) — (usual rule: second Saturday of August)** · 2027-08-14 · Punnamada Lake (Alappuzha), Alappuzha · usual dates, confirm before travelling · https://www.utsav.gov.in/view-event/nehru-trophy-boat-race https://www.keralatourism.org/event/nehru-trophy-boat-race/433/
-- **Onam (Ten-day festival; Thiruvonam main day)** · 2027-09-03 to 2027-09-12 · Statewide (major events in Alappuzha for boat-races and floral decorations), Kerala · dates published · https://kaalpanchang.com/onam https://malayalacalendar.com/calendar/2027/
-- **Sabarimala — Makaravilakku / Makara Jyothi phase (Makaravilakku season)** · 2026-12-30 to 2027-01-20 · Sabarimala (Sree Ayyappa Temple), Pathanamthitta · dates published · https://www.sabarimalaonline.in/ https://swamisharanam.in/en/sabarimala-divine-manual-2026
+### Enriched entries (3)
 
+- ✅ ready for review — **Mannarasala Sree Nagaraja Temple** (`temples/mannarasala-sree-nagaraja-temple`, Alappuzha) · score 95 · claims: 12 supported, 2 partial, 0 contradicted, 0 unverifiable
+  - warnings: 2 contact(s) dropped: source page not retrieved or details malformed
+  - folklore: The legend is framed as temple tradition with an explicit note that versions and emphasis vary between sources; it is attributed to the temple’s published account and resembles documented naga worship folklore rather than invented history.
+  - sensitivity: Respectful, neutral and accurate on faith, priesthood, ritual rules and restrictions; no stereotypes, endorsements or disparagement of any community or practice.
+- ✅ ready for review — **Vaikom Sree Mahadeva Temple** (`temples/vaikom-mahadeva-temple`, Kottayam) · score 85 · claims: 10 supported, 2 partial, 0 contradicted, 0 unverifiable
+  - folklore: The legend is framed as tradition, attributed to temple pages and presented with hedging ('Legend has it', 'Belief is that'). It resembles documented local lore rather than invention.
+  - sensitivity: Respectful and accurate on religious practice, social history and etiquette; no stereotypes or endorsements.
+- ✅ ready for review — **Kumarakom Bird Sanctuary (Vembanad Lake)** (`backwaters/kumarakom-bird-sanctuary-vembanad-lake`, Kottayam) · score 95 · claims: 10 supported, 0 partial, 0 contradicted, 0 unverifiable
+  - folklore: The legend is appropriately framed as not having a single documented sanctuary legend, with variations noted by family and guide; no invention presented as established history.
+  - sensitivity: Respectful, neutral and accurate on faith, community and practice; no stereotypes, endorsement or disparagement.
 
-_Run: 3.8 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier anthropic/claude-opus-5-5_
+_Run: 22.5 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+
+### Published automatically
+
+- **Kumarakom Bird Sanctuary (Vembanad Lake)** (backwaters, Kottayam). Review it on the site; edit, unpublish or delete if anything is wrong.
+
+### Kept as drafts
+
+- Mannarasala Sree Nagaraja Temple: no photo yet
+- Oachira Parabrahma Temple: fact-check says needs_edit; fact-check flagged: 1 claim(s) not checked; score 76 < 80; no photo yet
+- Sabarimala Sree Dharma Sastha Temple: no fact-check recorded; no photo yet
+- Vaikom Sree Mahadeva Temple: no photo yet
+- Varkala Beach (Papanasam): no fact-check recorded; no photo yet
+- Kasavu and Kerala Handloom: no fact-check recorded; no photo yet
+- Kettuvallam — the Rice Barge: no fact-check recorded; no photo yet
+- Nilavilakku — the Kerala Standing Lamp: no fact-check recorded; no photo yet
+- Pathayam — the Kerala Granary Chest: no fact-check recorded; no photo yet
+- Uruli — Kerala Bell-Metal Cookware: no fact-check recorded; no photo yet
+- Karkidakam: the Monsoon Rejuvenation Season: no fact-check recorded; no photo yet
+- Panchakarma in Kerala: no fact-check recorded; no photo yet
+
