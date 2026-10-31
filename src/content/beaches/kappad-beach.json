@@ -90,7 +90,24 @@
     "lat": 11.3811,
     "lng": 75.7194
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/kappad-beach-1.jpg",
+      "alt": "Kappad Beach",
+      "credit": "Gannu03",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kappad_4.jpg"
+    },
+    {
+      "src": "/images/discover/kappad-beach-2.jpg",
+      "alt": "Kappad Beach",
+      "credit": "Gannu03",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kappad_3.jpg"
+    }
+  ],
   "tags": [
     "beach",
     "Kozhikode",
