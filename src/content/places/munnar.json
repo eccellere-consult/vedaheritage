@@ -98,7 +98,24 @@
     "lat": 10.0889,
     "lng": 77.0595
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/munnar-1.jpg",
+      "alt": "Incredible south!",
+      "credit": "Olga Manomi",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Munnar,Idukki_district.jpg"
+    },
+    {
+      "src": "/images/discover/munnar-2.jpg",
+      "alt": "Tea plantations in Chinnakanal in Idukki district , Kerala . Taken from National Highway 85 .",
+      "credit": "Pkukreti7",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Munnar_Tea_estate.jpg"
+    }
+  ],
   "tags": [
     "hill station",
     "tea",
