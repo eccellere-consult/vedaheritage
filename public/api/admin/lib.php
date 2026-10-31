@@ -221,6 +221,7 @@ function draft_row(array $e, ?array $ev, array $where): array {
         'slug' => $e['slug'] ?? '', 'category' => $e['category'] ?? '', 'name' => $e['name'] ?? '', 'district' => $e['district'] ?? '',
         'status' => $e['status'] ?? '', 'where' => $where, 'images' => count($e['images'] ?? []), 'sources' => count($e['sources'] ?? []),
         'blockers' => publish_blockers($e), 'verification' => evidence_summary($ev),
+        'autoPublished' => $e['autoPublished'] ?? null, 'reviewed' => ($e['reviewed'] ?? null) === true,
     ];
 }
 

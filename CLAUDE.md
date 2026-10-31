@@ -21,7 +21,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 (green + teal on navy); confirm exact eccare.in values with the owner and change them in the Tailwind config only.
 **Content:** JSON in `src/content/<category>/<slug>.json`, categories: temples, places, beaches, backwaters, heritage, ayurveda; plus `districts/` and `kerala/overview.json`.
 Every entry has history, folklore (framed as tradition, never as fact), spiritual/cultural meaning, visitor etiquette, sources. Validate with `npm run validate`.
-Only `status: "approved"` publishes. Agents and Claude write **drafts only**; a human approves.
+Only `status: "approved"` publishes. Two modes, chosen by the owner with a toggle in the admin (`agents/settings.json` `autoPublish`): **review first** (agents write drafts, a human approves) and **publish automatically** (entries that pass every gate go live and the owner reviews on the site). Automatic publishing never covers `medical` or `healing`, anything the fact-checker flags, anything without a credited photo, or anything the content-safety check (`agents/lib/safety.mjs`: adult content, child exploitation, illegal or harmful material) flags. Claude itself still writes drafts only.
 **Accuracy:** no invented shops, addresses, prices, timings or dates. Cite retrieved sources. Say "confirm before travelling".
 **Tone:** friendly, professional, direct; simple present tense; executive-ready; SEO-aware (unique title and 50–200 char description per page).
 **Directory:** official contacts only from retrieved official pages; providers verified and re-verified yearly; ads capped, labelled, text-only, never for health services; private details never committed.

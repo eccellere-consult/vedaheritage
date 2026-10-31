@@ -14,6 +14,7 @@ import EntryImages from '@/components/EntryImages'
 import OfficialLinks from '@/components/OfficialLinks'
 import ContactsBlock from '@/components/services/ContactsBlock'
 import RecipeBlock from '@/components/RecipeBlock'
+import OwnerBar from '@/components/admin/OwnerBar'
 
 type Props = { params: Promise<{ category: string; slug: string }> }
 
@@ -107,6 +108,9 @@ export default async function EntryPage({ params }: Props) {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {cautionFor(e.category) && (
             <p role="note" className="rounded-lg border border-accent/30 bg-accent-pale px-4 py-3 text-sm text-ink mb-6"><span className="font-medium">Please note: </span>{cautionFor(e.category)}</p>
+          )}
+          {e.autoPublished && e.reviewed !== true && (
+            <p role="note" className="rounded-lg border border-accent/30 bg-white px-4 py-3 text-sm text-ink mb-6"><span className="font-medium">Editor review pending: </span>research agents drafted this guide from the sources listed below. An editor has not read it yet. Confirm details before you travel.</p>
           )}
           <EntryImages images={e.images} />
           {e.description.map((p, i) => <p key={i} className="text-ink-mid leading-relaxed mb-4">{p}</p>)}
@@ -245,6 +249,7 @@ export default async function EntryPage({ params }: Props) {
           </div>
         </section>
       )}
+      <OwnerBar category={e.category} slug={e.slug} autoPublished={e.autoPublished} reviewed={e.reviewed} />
     </>
   )
 }

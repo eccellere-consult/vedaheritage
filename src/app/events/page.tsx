@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { KERALA_EVENTS, EVENT_TYPE_COLOURS, EventType } from '@/data/events'
+import { EventOwnerTools } from '@/components/admin/OwnerBar'
 import { planningWindows, formatRange, getCalendar, CalendarEvent } from '@/lib/events'
 
 export const metadata: Metadata = {
@@ -25,6 +26,7 @@ function Upcoming({ title, blurb, events }: { title: string; blurb: string; even
               {e.certainty === 'confirmed' ? 'Dates published by the organiser.' : 'Usual dates: confirm before travelling.'}{' '}
               {e.sources.slice(0, 2).map((s, i) => <a key={i} className="underline text-primary mr-2" href={s.url} target="_blank" rel="noopener noreferrer">{s.label}</a>)}
             </p>
+            <EventOwnerTools id={e.id} />
           </div>
         ))}
       </div>

@@ -14,6 +14,10 @@ on:
 permissions:
   contents: write
 
+env:
+  FTP_HOST: ${{ secrets.FTP_HOST }}
+  FTP_DIR: ${{ secrets.FTP_DIR }}
+
 concurrency:
   group: deploy
   cancel-in-progress: false
@@ -62,6 +66,31 @@ jobs:
           git commit -q -m "Build of ${SHA}"
           git push --force "https://x-access-token:${TOKEN}@github.com/${REPO}.git" deploy
           echo "Published build ${SHA} to branch 'deploy'."
+
+      - name: Upload to Hostinger over FTPS, keeping your private files (only when the FTP secrets are set)
+        # Why: the hPanel Git pull replaces the web folder, so a settings file placed there disappears on every deploy.
+        # This step syncs the built site and never deletes the protected paths below (settings, private data, server folders).
+        # Needs repository secrets FTP_HOST, FTP_USER, FTP_PASSWORD and FTP_DIR (the site's web folder, e.g. /public_html).
+        # Set the variable FTP_DRY_RUN to true for a first run that only lists what would change.
+        if: env.FTP_HOST != '' && env.FTP_DIR != ''
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          DRY: ${{ vars.FTP_DRY_RUN == 'true' && '--dry-run' || '' }}
+        run: |
+          test -f out/index.html || { echo "out/index.html missing; refusing to sync"; exit 1; }
+          sudo apt-get install -y lftp >/dev/null
+          lftp -u "$FTP_USER","$FTP_PASSWORD" "$FTP_HOST" <<EOF
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set net:max-retries 3
+          set net:timeout 30
+          mirror -R --delete --parallel=4 --only-newer $DRY \
+            -x '^api/private/' -x '^vh-config\.php$' -x '^vh-data/' -x '^\.well-known/' -x '^cgi-bin/' -x '^\.htpasswds/' -x '^error_log$' -x '^\.ftpquota$' \
+            out "$FTP_DIR"
+          bye
+          EOF
+          echo "Synced out/ to $FTP_DIR (private files kept)."
 
       - name: Check that the live site shows this build
         id: verify

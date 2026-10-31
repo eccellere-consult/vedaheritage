@@ -1,8 +1,10 @@
 name: Content agents (Scout → Enricher → Verifier)
 
-# Runs twice a week, just before your Monday and Thursday review (01:00 IST),
-# or on demand. Opens ONE pull request of DRAFT entries; nothing is published
-# until a human sets status "approved" and merges.
+# Runs twice a week (01:00 IST Monday and Thursday), or on demand.
+# Two modes, switched in the admin (Run agents > How does agent work reach the site?):
+#   review first: opens ONE pull request of DRAFT entries; nothing is public until a human approves.
+#   publish automatically: entries that pass every check go straight to main and the site deploys;
+#   the owner reviews on the site (edit, mark reviewed, unpublish, delete). Health topics and anything flagged stay drafts.
 
 on:
   schedule:
@@ -37,6 +39,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 concurrency:
   group: content-agents
@@ -89,21 +92,39 @@ jobs:
         # Open-licence photos from Wikimedia Commons, credited. A human checks each one in the pull request.
         continue-on-error: true
         run: node scripts/fetch-commons-images.mjs --drafts
+      - name: Publish entries that pass every check (only when automatic publishing is on)
+        run: node scripts/auto-publish.mjs
       - name: Validate content
         run: node scripts/validate-content.mjs
-      - name: Open pull request
+      - name: Publish to the site, or open a pull request
+        # autoPublish true (admin > Run agents): commit to main and trigger the deploy; the owner reviews on the site.
+        # autoPublish false, or anything fails (build, push): open ONE pull request for review, as before.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
         run: |
           if [ -z "$(git status --porcelain)" ]; then echo "No changes."; exit 0; fi
-          branch="agents/$(date +%Y%m%d-%H%M)"
           git config user.name "veda-content-bot"
           git config user.email "content-bot@users.noreply.github.com"
-          git checkout -b "$branch"
-          # Stage only paths that exist: git fails (exit 128) on a missing path, and a fresh checkout has no empty folders.
+          auto=$(node -e "try{console.log(JSON.parse(require('fs').readFileSync('agents/settings.json','utf8')).autoPublish===true?'yes':'no')}catch(e){console.log('no')}")
           for p in src/content public/images/discover agents/queue agents/evidence agents/reports; do [ -e "$p" ] && git add -A "$p"; done
-          git commit -m "content: agent-drafted entries for review"
+          git commit -m "content: agent-drafted entries"
+          if [ "$auto" = "yes" ] && [ "$BASE_BRANCH" = "main" ]; then
+            if npm run build >/tmp/build.log 2>&1; then
+              for i in 1 2 3; do
+                if git push origin HEAD:main; then
+                  gh workflow run deploy.yml --ref main && echo "Published; deploy started."
+                  exit 0
+                fi
+                git pull --rebase origin main || break
+              done
+              echo "Push to main failed; opening a pull request instead."
+            else
+              tail -30 /tmp/build.log; echo "Build failed; opening a pull request instead."
+            fi
+          fi
+          branch="agents/$(date +%Y%m%d-%H%M)"
+          git checkout -b "$branch"
           git push origin "$branch"
           { cat agents/reports/latest.md; printf '\n\n### Photos\nOpen-licence photos from Wikimedia Commons were added automatically where found. Check that each one shows the right place before approving. Entries with no photo cannot be published.\n'; } > /tmp/pr-body.md
           gh pr create --base "$BASE_BRANCH" --head "$branch" \

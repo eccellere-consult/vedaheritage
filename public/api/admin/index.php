@@ -154,12 +154,12 @@ try {
         audit('logout'); $_SESSION = []; session_destroy(); json_out(200, ['ok' => true]);
 
     case 'overview': {
-        $ix = tree_index(); $draft = 0; $approved = 0;
-        foreach ($ix['entries'] as $e) { $d = blob_json($e['sha']); if (($d['status'] ?? '') === 'approved') $approved++; else $draft++; }
+        $ix = tree_index(); $draft = 0; $approved = 0; $toReview = 0;
+        foreach ($ix['entries'] as $e) { $d = blob_json($e['sha']); if (($d['status'] ?? '') === 'approved') { $approved++; if (!empty($d['autoPublished']) && ($d['reviewed'] ?? null) !== true) $toReview++; } else $draft++; }
         $prs = gh_ok(gh('GET', '/repos/' . repo() . '/pulls', null, ['state' => 'open', 'per_page' => 30]), 'list PRs');
         $iss = gh_ok(gh('GET', '/repos/' . repo() . '/issues', null, ['labels' => 'story-submission', 'state' => 'open', 'per_page' => 50]), 'list stories');
         $stories = count(array_filter($iss, fn($i) => empty($i['pull_request']) && !in_array('approved', array_column($i['labels'] ?? [], 'name'), true)));
-        json_out(200, ['drafts' => $draft, 'approved' => $approved, 'openPrs' => count($prs), 'stories' => $stories]);
+        json_out(200, ['drafts' => $draft, 'approved' => $approved, 'toReview' => $toReview, 'openPrs' => count($prs), 'stories' => $stories]);
     }
 
     case 'drafts': {
@@ -322,6 +322,66 @@ try {
             'Add own photo to ' . ($e['name'] ?? $slug) . ' (admin)', $branch);
         audit('photo-upload', ['entry' => "$cat/$slug", 'branch' => $branch, 'bytes' => strlen($bin)]);
         json_out(200, ['ok' => true, 'message' => $branch === 'main' ? 'Photo attached. The site rebuilds in a few minutes.' : 'Photo attached to the batch. Reload the review to see it.']);
+    }
+
+    // ---- Owner tools used from the live site: edit, mark reviewed, delete (entries) and remove an event.
+    case 'entry_save': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cat = need_str($in, 'category', 30); $slug = need_str($in, 'slug', 80);
+        if (!in_array($cat, CATS, true) || !valid_slug($slug) || !is_array($in['entry'] ?? null)) json_out(400, ['error' => 'Bad request.']);
+        $path = "src/content/$cat/$slug.json"; $f = gh_file($path, 'main');
+        if (!$f) json_out(404, ['error' => 'Entry not found.']);
+        $old = json_decode($f['text'], true); $e = $in['entry'];
+        if (($e['slug'] ?? '') !== $slug || ($e['category'] ?? '') !== $cat) json_out(422, ['error' => 'The slug and category cannot be changed.']);
+        if (!is_array($old) || !isset($e['name']) || !is_string($e['name']) || trim($e['name']) === '') json_out(422, ['error' => 'The entry needs a name.']);
+        $e['status'] = $old['status'] ?? 'draft';
+        $judge = $e; $judge['status'] = 'draft';
+        if ($b = publish_blockers($judge)) json_out(422, ['error' => 'Cannot save: ' . implode(' ', $b)]);
+        $e['lastVerified'] = gmdate('Y-m-d'); $e['reviewed'] = true;
+        $txt = json_encode($e, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
+        if (strlen($txt) > 200000) json_out(422, ['error' => 'Entry is too large.']);
+        gh_commit_files([$path => ['text' => $txt]], 'Edit ' . $e['name'] . ' (admin)');
+        audit('entry-save', ['entry' => "$cat/$slug"]);
+        json_out(200, ['ok' => true, 'message' => 'Saved and marked reviewed. The site rebuilds and shows it in a few minutes.']);
+    }
+
+    case 'entry_reviewed': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cat = need_str($in, 'category', 30); $slug = need_str($in, 'slug', 80);
+        if (!in_array($cat, CATS, true) || !valid_slug($slug)) json_out(400, ['error' => 'Bad request.']);
+        $path = "src/content/$cat/$slug.json"; $f = gh_file($path, 'main'); $e = $f ? json_decode($f['text'], true) : null;
+        if (!is_array($e)) json_out(404, ['error' => 'Entry not found.']);
+        $e['reviewed'] = true;
+        gh_commit_files([$path => ['text' => json_encode($e, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], 'Mark ' . ($e['name'] ?? $slug) . ' reviewed (admin)');
+        audit('entry-reviewed', ['entry' => "$cat/$slug"]);
+        json_out(200, ['ok' => true, 'message' => 'Marked as reviewed. The "not yet reviewed" note disappears after the next rebuild.']);
+    }
+
+    case 'entry_delete': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cat = need_str($in, 'category', 30); $slug = need_str($in, 'slug', 80);
+        if (!in_array($cat, CATS, true) || !valid_slug($slug)) json_out(400, ['error' => 'Bad request.']);
+        $path = "src/content/$cat/$slug.json"; $f = gh_file($path, 'main'); $e = $f ? json_decode($f['text'], true) : null;
+        if (!is_array($e)) json_out(404, ['error' => 'Entry not found.']);
+        $del = [$path => null];
+        if (gh_file("agents/evidence/$slug.json", 'main')) $del["agents/evidence/$slug.json"] = null;
+        foreach (($e['images'] ?? []) as $im) if (is_array($im) && preg_match('~^/images/discover/' . preg_quote($slug, '~') . '-[A-Za-z0-9._-]+$~', $im['src'] ?? '')) $del['public' . $im['src']] = null;
+        gh_commit_files($del, 'Delete ' . ($e['name'] ?? $slug) . ' (admin)');
+        audit('entry-delete', ['entry' => "$cat/$slug", 'files' => count($del)]);
+        json_out(200, ['ok' => true, 'message' => 'Deleted. The page disappears after the next rebuild. The agents will not re-add it.']);
+    }
+
+    case 'event_delete': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 120); $path = 'src/content/events/calendar.json';
+        $f = gh_file($path, 'main'); $c = $f ? json_decode($f['text'], true) : null;
+        if (!is_array($c) || !is_array($c['events'] ?? null)) json_out(404, ['error' => 'No events calendar.']);
+        $keep = array_values(array_filter($c['events'], fn($x) => ($x['id'] ?? '') !== $id));
+        if (count($keep) === count($c['events'])) json_out(404, ['error' => 'Event not found.']);
+        $c['events'] = $keep;
+        gh_commit_files([$path => ['text' => json_encode($c, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], 'Remove an event (admin)');
+        audit('event-delete', ['id' => $id]);
+        json_out(200, ['ok' => true, 'message' => 'Removed. The Events page updates after the next rebuild.']);
     }
 
     case 'merge_pr': {
@@ -633,18 +693,24 @@ try {
         // Which API keys exist? Needs the token's optional "Secrets: read" permission; otherwise unknown (null).
         $keys = null; $r = gh('GET', '/repos/' . repo() . '/actions/secrets', null, ['per_page' => 100]);
         if ($r[0] === 200 && is_array($r[1])) { $names = array_column($r[1]['secrets'] ?? [], 'name'); $keys = ['xai' => in_array('XAI_API_KEY', $names, true), 'openai' => in_array('OPENAI_API_KEY', $names, true), 'anthropic' => in_array('ANTHROPIC_API_KEY', $names, true)]; }
-        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'lastRun' => $lastRun, 'keys' => $keys]);
+        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'autoPublish' => ($cfgJ['autoPublish'] ?? false) === true, 'autoPublishExclude' => $cfgJ['autoPublishExclude'] ?? ['medical', 'healing'], 'lastRun' => $lastRun, 'keys' => $keys]);
     }
 
     case 'agent_settings_save': {
         if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
         $ok = ['auto', 'xai', 'openai', 'anthropic'];
-        $prov = (string)($in['provider'] ?? ''); $ver = (string)($in['verifierProvider'] ?? '');
+        $f = gh_file('agents/settings.json', 'main'); $cur = $f ? json_decode($f['text'], true) : [];
+        if (!is_array($cur)) $cur = [];
+        $prov = (string)($in['provider'] ?? ($cur['provider'] ?? 'auto')); $ver = (string)($in['verifierProvider'] ?? ($cur['verifierProvider'] ?? 'auto'));
         if (!in_array($prov, $ok, true) || !in_array($ver, $ok, true)) json_out(400, ['error' => 'Choose auto, xai, openai or anthropic.']);
-        $body = json_encode(['provider' => $prov, 'verifierProvider' => $ver, 'updated' => gmdate('Y-m-d')], JSON_PRETTY_PRINT) . "\n";
-        gh_commit_files(['agents/settings.json' => ['text' => $body]], "Agents use $prov (verifier: $ver) (admin)");
-        audit('agent-settings', ['provider' => $prov, 'verifier' => $ver]);
-        json_out(200, ['ok' => true, 'message' => 'Saved. The next scheduled or manual run uses this choice.']);
+        $auto = array_key_exists('autoPublish', $in) ? ($in['autoPublish'] === true) : (($cur['autoPublish'] ?? false) === true);
+        $cur['provider'] = $prov; $cur['verifierProvider'] = $ver; $cur['autoPublish'] = $auto; $cur['updated'] = gmdate('Y-m-d');
+        if (!isset($cur['autoPublishExclude']) || !is_array($cur['autoPublishExclude'])) $cur['autoPublishExclude'] = ['medical', 'healing'];
+        gh_commit_files(['agents/settings.json' => ['text' => json_encode($cur, JSON_PRETTY_PRINT) . "\n"]], "Agents use $prov (verifier: $ver), " . ($auto ? 'publish automatically' : 'review before publishing') . ' (admin)');
+        audit('agent-settings', ['provider' => $prov, 'verifier' => $ver, 'autoPublish' => $auto]);
+        json_out(200, ['ok' => true, 'autoPublish' => $auto, 'message' => $auto
+            ? 'Saved. From the next run, entries that pass every check go live on their own and you review them on the site.'
+            : 'Saved. From the next run, agent work waits for your approval under Review agent work.']);
     }
 
     case 'activity': {

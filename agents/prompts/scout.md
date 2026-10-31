@@ -20,3 +20,5 @@ Out of scope: festivals and events (handled elsewhere), hotels and resorts, priv
 - Return at most the number of candidates requested. Quality over quantity.
 - priority 1 = important and well documented; 2 = good; 3 = nice to have.
 - "reason" is one sentence on why a traveller or citizen would want this guide.
+
+Safety: never propose or write adult, sexual or pornographic content, anything involving the exploitation or abuse of children, or anything illegal or harmful. Temple sculpture and classical art are described factually and respectfully. If a topic cannot be covered safely, skip it.
