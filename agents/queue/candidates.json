@@ -40,5 +40,53 @@
     "status": "drafted",
     "foundOn": "2026-10-29",
     "slug": "oachira-parabrahma-temple"
+  },
+  {
+    "id": "vaikom-mahadeva-temple",
+    "name": "Vaikom Mahadeva Temple",
+    "category": "temples",
+    "district": "Kottayam",
+    "reason": "An ancient and architecturally important Shiva temple known as 'Dakshina Kasi', central to local ritual life and the historic Vaikom Satyagraha, making it a high‑interest visitor and heritage subject.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/destination/siva-temple-vaikom/474/?utm_source=openai",
+      "https://vaikommunicipality.lsgkerala.gov.in/en/history",
+      "https://www.keralatourism.org/responsible-tourism/destination/vaikom/5"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "vaikom-mahadeva-temple"
+  },
+  {
+    "id": "mannarasala-sree-nagaraja-temple",
+    "name": "Mannarasala Sree Nagaraja Temple",
+    "category": "temples",
+    "district": "Alappuzha",
+    "reason": "Kerala’s best‑known serpent shrine set inside a living kavu with distinctive naga worship and female priest traditions, offering a unique ritual and heritage experience.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/destination/mannarasala-sree-nagaraja-temple/63/",
+      "https://www.devalayam.org/temple/mannarasala-nagaraja/",
+      "https://kerala.me/destinations/pilgrim_centres/hindu_pilgrimage/sreenagaraja_temple"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "mannarasala-sree-nagaraja-temple"
+  },
+  {
+    "id": "attukal-bhagavathy-temple",
+    "name": "Attukal Bhagavathy Temple",
+    "category": "temples",
+    "district": "Thiruvananthapuram",
+    "reason": "A major urban Bhagavathy shrine famous for its strong ritual identity and the large public Pongala observance, important for understanding Kerala’s popular devotional practices.",
+    "priority": 2,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+      "https://www.attukal.org/",
+      "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "attukal-bhagavathy-temple"
   }
 ]

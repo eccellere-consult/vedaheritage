@@ -1,0 +1,302 @@
+{
+  "date": "2026-10-31",
+  "model": "gpt-5-mini",
+  "candidate": {
+    "id": "mannarasala-sree-nagaraja-temple",
+    "name": "Mannarasala Sree Nagaraja Temple",
+    "category": "temples",
+    "district": "Alappuzha",
+    "reason": "Kerala’s best‑known serpent shrine set inside a living kavu with distinctive naga worship and female priest traditions, offering a unique ritual and heritage experience.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/destination/mannarasala-sree-nagaraja-temple/63/",
+      "https://www.devalayam.org/temple/mannarasala-nagaraja/",
+      "https://kerala.me/destinations/pilgrim_centres/hindu_pilgrimage/sreenagaraja_temple"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "mannarasala-sree-nagaraja-temple"
+  },
+  "warnings": [
+    "1 source(s) dropped: URL was not actually retrieved",
+    "4 contact(s) dropped: source page not retrieved or details malformed"
+  ],
+  "consulted": [
+    "https://mannarasala.org/",
+    "https://www.keralatourism.org/destination/mannarasala-sree-nagaraja-temple/63/",
+    "https://mannarasala.org/devotee/general",
+    "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1507656157-0.pdf",
+    "https://www.keralatourism.org/kerala-article/2011/mannarasala-temple-harippad/135",
+    "https://kerala.me/destinations/pilgrim_centres/hindu_pilgrimage/sreenagaraja_temple",
+    "https://www.keralatourism.org/1000festivals//assets/uploads/pdf/1507656157-0.pdf",
+    "https://www.dtpcalappuzha.com/destination/mannarasala-sree-nagaraja-temple",
+    "https://www.keralatourism.org/1000festivals/index.php/preview/festival_info?fest_id=34",
+    "https://www.keralatourism.org/ktadmin/img/file_upload/alappuzhahrj28.pdf",
+    "https://mannarasala.org/about/amma/",
+    "https://censusindia.gov.in/nada/index.php/catalog/642/download/2216/DH_2011_3211_PART_A_DCHB_ALAPPUZHA.pdf",
+    "https://tourism.nammudekeralam.com/destination/mannarasala-sree-nagaraja-temple/",
+    "https://www.waze.com/live-map/directions/in/kl/haripad/mannarasala-sree-nagaraja-temple?to=place.ChIJJcRIT3yfCDsRzTC-Kwg91hM",
+    "https://mannarasala.org/devotee/kannikka/",
+    "https://www.devalayam.org/temple/mannarasala-nagaraja/",
+    "https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2025-26-1747025159_9cacef9d3d490f749dcf.pdf",
+    "https://en.wikipedia.org/wiki/Mannarasala_Temple",
+    "https://en.wikipedia.org/wiki/Nagaraja",
+    "https://en.wikipedia.org/wiki/Haripad",
+    "https://en.wikipedia.org/wiki/List_of_Hindu_temples_in_Kerala",
+    "https://en.wikipedia.org/wiki/Alappuzha_district",
+    "https://en.wikipedia.org/wiki/Temple_festivals_of_Kerala",
+    "https://www.reddit.com/r/alappuzha/comments/1sxp4dm/need_phone_number_of_ambalapuzha_temple/",
+    "https://mannarasala.org/about/festivals",
+    "https://mannarasala.org/about/festivals/",
+    "https://www.researchgate.net/publication/373945447_The_Pulluvans_Sacred_Serpents_and_Performative_Healing_in_Kerala",
+    "https://www.researchgate.net/publication/398772761_Nature_Narratives_Environmental_and_Contemporary_Discourse_in_Literature",
+    "https://dokumen.pub/snakes-people-and-spirits-volume-one-traditional-eastern-africa-in-its-broader-context-1nbsped-9781527542921-9781527537675.html",
+    "https://www.scribd.com/document/1000701688/Caste-in-Everyday-Life-Experience-and-Affect-in-Indian-Society",
+    "https://thenamesdictionary.com/references-for/the-worship-of-the-serpent",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple?section=do",
+    "https://roampedia.com/india/kerala/guides/mannarasala-sree-nagaraja-temple-mother-of-the-serpent-king",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-temple?section=stay",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-temple?section=eat",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple",
+    "https://navrangindia.blogspot.com/2026/06/mannarasala-sree-nagaraja-temple-of.html",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple?section=eat",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-temple",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple?section=stay",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-temple?section=do",
+    "https://manushi.in/issues/issue-124/",
+    "https://en.wikipedia.org/wiki/Haripad_railway_station",
+    "https://www.journeychoice.org/temples/mannarasala-nagaraja-temple",
+    "https://www.cholantours.com/india/kerala/mannarasala-nagaraja-temple",
+    "https://www.keralatourism.holiday/blog/mannarasala-ayilyam-2019/",
+    "https://scr.indianrailways.gov.in/cris/uploads/files/1372939938373-Station_index.pdf",
+    "https://www.cholantours.com/blog/mannarasala-ayilyam/",
+    "https://tamilandvedas.com/2023/11/18/%E0%AE%85%E0%AE%A4%E0%AE%BF%E0%AE%9A%E0%AE%AF-%E0%AE%AA%E0%AE%BE%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AF%8D-%E0%AE%95%E0%AF%8B%E0%AE%B5%E0%AE%BF%E0%AE%B2%E0%AF%8D-part-7-post-12/",
+    "https://en.wikipedia.org/wiki/List_of_railway_stations_in_Kerala",
+    "https://alldistancebetween.com/in/distance-between/haripad-railway-station-mannarasala-shri-nagaraja-temple-806675a3263ccbc1e3ba828598b45a1d/",
+    "https://www.railyatri.in/stations/harippad-had",
+    "https://www.thenamesdictionary.com/references-for/thiruvananthapuram-railway-division",
+    "https://airial.travel/attractions/india/haripad/mannarasala-sree-nagaraja-temple-Vatb-8IX",
+    "https://en.bharatpedia.org/wiki/Haripad_railway_station",
+    "https://vvmalayalam.blogspot.com/2017/06/mannarasala-sree-nagaraja-temple.html",
+    "https://www.kerala9.com/directory/item/haripad-railway-station/",
+    "https://en.wikipedia.org/wiki/Alappuzha_railway_station",
+    "https://mvd.kerala.gov.in/sites/default/files/2025-01/Decision%2030.10.2024.%20PDF_0.pdf",
+    "https://en.wikipedia.org/wiki/Kayamkulam_Junction_railway_station",
+    "https://en.wikipedia.org/wiki/List_of_railway_stations_in_India",
+    "https://en.wikipedia.org/wiki/Thuravoor_railway_station",
+    "https://templesofkerala.org/alappuzhafest/mannarasalaayilyamsreenagarajatemple.html",
+    "https://www.scribd.com/document/883527212/1507656157-0",
+    "https://nammudekeralam.com/location/ksrtc-harippad-bus-station-depot-haripad-alappuzha/",
+    "https://www.waze.com/live-map/directions/in/kl/haripad/ksrtc-bus-station-complex-haripad?to=place.ChIJPe-6p-EfBjsREMvOXt6giEE",
+    "https://document.kerala.gov.in/Porteddata/extensionpdf/documents/10180/eede6f17-7881-4073-a7bb-a259d31cdca8.pdf",
+    "https://www.keralatourism.org/1000festivals//assets/uploads/pdf/1507657308-0.pdf",
+    "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1507657308-0.pdf",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala",
+    "https://onlineidukki.com/listing/ksrtc-haripad/",
+    "https://www.diyabus.com/boarding-places",
+    "https://www.onlineksrtcswift.com/contact_us",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/business/ksrtc-haripad-bus-station",
+    "https://www.scribd.com/document/754567944/NATPAC-Harippad-Report-Part-I",
+    "https://admin.ksfe.com/uploads/ANNUAL_REPORT_2016_17_757825bc00.pdf",
+    "https://www.liyastours.in/boarding-places",
+    "https://mapcarta.com/36064068",
+    "https://en.wikipedia.org/wiki/KSRTC_Terminal_Complex_Thiruvalla",
+    "https://en.wikipedia.org/wiki/Alappuzha",
+    "https://app.wanderlog.com/list/geoCategory/99128/best-art-galleries-in-thiruvananthapuram-trivandrum",
+    "https://wanderlog.com/drive/between/1473/722/kutch-to-pushkar-drive",
+    "https://wanderlog.com/drive/between/1473/91/kutch-to-udaipur-drive",
+    "https://abcdocz.com/doc/314450/version-10.7-revised-november-21--2013-discover-abroad",
+    "https://wanderlog.com/list/geoCategory/172975/best-street-markets-in-mount-abu",
+    "https://wanderlog.com/drive/between/91/1473/udaipur-to-kutch-drive",
+    "https://patents.google.com/patent/US20220179665A1/en",
+    "https://wanderlog.com/drive/between/91/3187/udaipur-to-mandvi-drive",
+    "https://alappuzha.nic.in/en/departments/",
+    "https://cmo.kerala.gov.in/office_level_en.php?hLksnAQSMZXsU41QGNxvYUILmC=ZGlkPTQzJmxldmVsX2lkPTUmb2ZmaWNlX2lkPWJlYzhlNTMwLTcyZjAtNDBmMi1iNWExLWY4MGQ5ODRlM2I0Ng%3D%3D",
+    "https://www.nehrutrophy.nic.in/pages-en-IN/contacts.php",
+    "https://ecostat.kerala.gov.in/publication-detail/kerala-tourism-statistics-2018",
+    "https://ecostat.kerala.gov.in/publication-detail/kerala-tourism-statistics-2019",
+    "https://travelthroughkerala.blogspot.com/p/kerala-tourism-information-offices-in.html",
+    "https://www.kerala9.com/directory/item/district-tourism-promotion-council-alappuzha/",
+    "https://www.kerala9.com/directory/cat/tourism-offices-alappuzha/",
+    "https://www.keralatourism.org/kerala-article/2024/thottapalli-alappuzha/1373",
+    "https://pop.cmo.kerala.gov.in/office_level.php?hLksnAQSMZXsU41QGNxvYUILmC=ZGlkPTQzJmxldmVsX2lkPTUmb2ZmaWNlX2lkPWJlYzhlNTMwLTcyZjAtNDBmMi1iNWExLWY4MGQ5ODRlM2I0NiZmZD1Ub3VyaXNtK0RlcGFydG1lbnQ%3D",
+    "https://www.kerala9.com/directory/cat/tourism-offices/",
+    "https://www.keralatourism.org/campaigns/kerala365/alappuzha-houseboat-kerala",
+    "https://www.keralatourism.org/tourismstatistics/tourist_statistics_2019_book20210306071249.pdf",
+    "https://city.webindia123.com/d-t/kerala/alappuzha/haripad-taluk-hospital/132/",
+    "https://www.vedantajp-en.com/headquarters-and-branches-links/branches-inside-india/",
+    "https://www.scribd.com/document/715571471/Database-Kerala-Region",
+    "https://www.scribd.com/doc/39281383/All-India-Network-Hospitals-as-on-17-mAR-2010",
+    "https://mannarasala.org/about/history",
+    "https://mannarasala.org/about/amma",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-temple?section=do&utm_source=openai",
+    "https://www.keralatourism.org/1000festivals//assets/uploads/pdf/1507656157-0.pdf?utm_source=openai",
+    "https://www.journeychoice.org/temples/mannarasala-nagaraja-temple?utm_source=openai",
+    "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1507656157-0.pdf?utm_source=openai",
+    "https://www.keralatourism.org/destination/mannarasala-sree-nagaraja-temple/63/?utm_source=openai",
+    "https://alappuzha.nic.in/en/departments/?utm_source=openai",
+    "https://nammudekeralam.com/location/ksrtc-harippad-bus-station-depot-haripad-alappuzha/?utm_source=openai",
+    "https://en.wikipedia.org/wiki/Haripad_railway_station?utm_source=openai",
+    "https://www.nehrutrophy.nic.in/pages-en-IN/contacts.php?utm_source=openai",
+    "https://city.webindia123.com/d-t/kerala/alappuzha/haripad-taluk-hospital/132/?utm_source=openai",
+    "https://roampedia.com/india/kerala/alappuzha/haripad-and-mannarasala/place/mannarasala-sree-nagaraja-temple?utm_source=openai"
+  ],
+  "claims": [
+    {
+      "claim": "Mannarasala Sree Nagaraja Temple is at Mannarasala P.O., Haripad, Alappuzha, PIN 690514.",
+      "field": "description",
+      "sourceUrl": "https://mannarasala.org/",
+      "sensitive": false
+    },
+    {
+      "claim": "Temple office phone numbers are 0479 2413214 and 0479 2410200; guest house phones are 0479 2417663 and 0479 2417662; email info@mannarasala.org.",
+      "field": "contacts",
+      "sourceUrl": "https://mannarasala.org/",
+      "sensitive": false
+    },
+    {
+      "claim": "Daily darshan times and scheduled Amma darshan are published on the temple site (darshan schedule may change; confirm before travel).",
+      "field": "visitorInfo",
+      "sourceUrl": "https://mannarasala.org/devotee/general",
+      "sensitive": true
+    },
+    {
+      "claim": "The Mannarasala Amma (Valia Amma) is the temple’s hereditary female ritual head; the temple’s site names the Amma on its Amma page.",
+      "field": "highlights",
+      "sourceUrl": "https://mannarasala.org/about/amma/",
+      "sensitive": true
+    },
+    {
+      "claim": "Photography and videography are strictly prohibited within the temple compound except with prior written permission.",
+      "field": "visitorInfo",
+      "sourceUrl": "https://mannarasala.org/devotee/general",
+      "sensitive": true
+    },
+    {
+      "claim": "The temple’s main festivals centre on Ayilyam (Ashlesha) star days in Kanni, Thulam and Kumbham; Thulam Ayilyam is the major Mannarasala festival.",
+      "field": "visitorInfo",
+      "sourceUrl": "https://mannarasala.org/about/festivals/",
+      "sensitive": false
+    },
+    {
+      "claim": "Sarpam Pattu is recorded in the temple’s festival history and an observance is noted for 1151 M.E. (1976 C.E.).",
+      "field": "history",
+      "sourceUrl": "https://mannarasala.org/about/festivals/",
+      "sensitive": false
+    },
+    {
+      "claim": "Nearest railway station: Haripad (station code HAD); distance from station to temple is approximately 2–3 km.",
+      "field": "travel",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Haripad_railway_station",
+      "sensitive": false
+    },
+    {
+      "claim": "The temple provides authorised vazhipad stalls and requests that devotees use only authorised ritual items.",
+      "field": "visitorInfo",
+      "sourceUrl": "https://mannarasala.org/devotee/general",
+      "sensitive": true
+    },
+    {
+      "claim": "Approximate coordinates of the temple are 9.28975°N, 76.445667°E (published in public sources).",
+      "field": "coordinates",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Mannarasala_Temple",
+      "sensitive": false
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "Mannarasala Sree Nagaraja Temple is at Mannarasala P.O., Haripad, Alappuzha, PIN 690514.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/",
+        "evidence": "Homepage footer states the address exactly as “Mannarasala P.O, Haripad, Alappuzha, Kerala, India Pin: 690514.”",
+        "fix": null
+      },
+      {
+        "claim": "Temple office phone numbers are 0479 2413214 and 0479 2410200; guest house phones are 0479 2417663 and 0479 2417662; email info@mannarasala.org.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/",
+        "evidence": "Homepage and general information page list the temple office phones (0479 2413214, 0479 2410200), guest-house phones (0479 2417663, 0479 2417662), and email (info@mannarasala.org) verbatim.",
+        "fix": null
+      },
+      {
+        "claim": "Daily darshan times and scheduled Amma darshan are published on the temple site (darshan schedule may change; confirm before travel).",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/general",
+        "evidence": "The /devotee/general page publishes explicit daily temple darshan and Amma darshan timings, with a clear note that they “may be subject to change” on festival/special days and that devotees should confirm in advance.",
+        "fix": null
+      },
+      {
+        "claim": "The Mannarasala Amma (Valia Amma) is the temple’s hereditary female ritual head; the temple’s site names the Amma on its Amma page.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/about/amma/",
+        "evidence": "The /about/amma/ page states that the highest ritual authority belongs to the Mannarasala Amma (Valia Amma), a Brahmin woman of the hereditary family, per a divine decree that “Mother herself must offer me worship,” passed to the senior-most lady. It names the current Amma.",
+        "fix": null
+      },
+      {
+        "claim": "Photography and videography are strictly prohibited within the temple compound except with prior written permission.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/general",
+        "evidence": "The /devotee/general page states: “Photography and videography are strictly prohibited within the temple compound. Limited exceptions may be granted … only with prior written permission to the temple authorities.”",
+        "fix": null
+      },
+      {
+        "claim": "The temple’s main festivals centre on Ayilyam (Ashlesha) star days in Kanni, Thulam and Kumbham; Thulam Ayilyam is the major Mannarasala festival.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/about/festivals/",
+        "evidence": "The festivals page states that the main celebrations centre on Ayilyam days in Kanni, Thulam and Kumbham, and explicitly calls Thulam Ayilyam “the temple’s most majestic festival.”",
+        "fix": null
+      },
+      {
+        "claim": "Sarpam Pattu is recorded in the temple’s festival history and an observance is noted for 1151 M.E. (1976 C.E.).",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/about/festivals/",
+        "evidence": "The festivals page records that Sarpam Pattu has been observed since 1073 M.E. (with one exception) and notes that “the Sarpam Pattu of 1151 M.E. (1976 C.E.) captured widespread public devotion.”",
+        "fix": null
+      },
+      {
+        "claim": "Nearest railway station: Haripad (station code HAD); distance from station to temple is approximately 2–3 km.",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Haripad_railway_station",
+        "evidence": "The cited Wikipedia page confirms the station name, location (Haripad, Alappuzha) and code HAD. The 2–3 km distance is not stated on the Wikipedia page itself but appears on the temple’s own site (“Haripad Station 2 km”).",
+        "fix": "Cite the temple site for the distance detail rather than the Wikipedia page."
+      },
+      {
+        "claim": "The temple provides authorised vazhipad stalls and requests that devotees use only authorised ritual items.",
+        "verdict": "supported",
+        "sourceUrl": "https://mannarasala.org/devotee/general",
+        "evidence": "The /devotee/general page states that only items from “authorized temple stall[s]” / “Devaswom-operated vazhipad stalls” are permitted and that external/counterfeit items are not allowed.",
+        "fix": null
+      },
+      {
+        "claim": "Approximate coordinates of the temple are 9.28975°N, 76.445667°E (published in public sources).",
+        "verdict": "supported",
+        "sourceUrl": "https://en.wikipedia.org/wiki/Mannarasala_Temple",
+        "evidence": "The Wikipedia page gives the coordinates exactly as 9.289750°N 76.445667°E (matching the claimed figures to the displayed precision).",
+        "fix": null
+      }
+    ],
+    "issues": [
+      {
+        "severity": "minor",
+        "field": "travel",
+        "problem": "Claim 8 cites Wikipedia for the 2–3 km distance, but that detail is absent from the Wikipedia page and comes from the temple site.",
+        "suggestion": "Update the source citation for the distance to the temple’s own site."
+      }
+    ],
+    "folkloreAssessment": "The folklore section consistently presents the origin story as temple tradition and notes that versions differ among local retellings; it is not presented as established history.",
+    "sensitivityAssessment": "No issues identified with framing of faith, community roles or ritual practice; descriptions remain neutral and factual.",
+    "score": 92,
+    "recommendation": "ready_for_review",
+    "gateReasons": [],
+    "consulted": [
+      "https://mannarasala.org/",
+      "https://mannarasala.org/devotee/general",
+      "https://mannarasala.org/about/amma/",
+      "https://mannarasala.org/about/festivals/",
+      "https://en.wikipedia.org/wiki/Haripad_railway_station",
+      "https://en.wikipedia.org/wiki/Mannarasala_Temple"
+    ]
+  },
+  "attempts": 1
+}
