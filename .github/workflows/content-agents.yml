@@ -97,7 +97,8 @@ jobs:
       - name: Validate content
         run: node scripts/validate-content.mjs
       - name: Publish to the site, or open a pull request
-        # autoPublish true (admin > Run agents): commit to main and trigger the deploy; the owner reviews on the site.
+        # autoPublish true (admin > Run agents): run ALL the pull-request checks, then commit to main and trigger the deploy;
+        # the owner reviews on the site.
         # autoPublish false, or anything fails (build, push): open ONE pull request for review, as before.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -106,21 +107,25 @@ jobs:
           if [ -z "$(git status --porcelain)" ]; then echo "No changes."; exit 0; fi
           git config user.name "veda-content-bot"
           git config user.email "content-bot@users.noreply.github.com"
+          # The same checks the pull-request check runs: content, agent tests, admin tests, types, build.
+          checks() { { node scripts/validate-content.mjs && npm run agents:test && npm run admin:test && npx tsc --noEmit && npx next build; } >/tmp/checks.log 2>&1; }
           auto=$(node -e "try{console.log(JSON.parse(require('fs').readFileSync('agents/settings.json','utf8')).autoPublish===true?'yes':'no')}catch(e){console.log('no')}")
           for p in src/content public/images/discover agents/queue agents/evidence agents/reports; do [ -e "$p" ] && git add -A "$p"; done
           git commit -m "content: agent-drafted entries"
           if [ "$auto" = "yes" ] && [ "$BASE_BRANCH" = "main" ]; then
-            if npm run build >/tmp/build.log 2>&1; then
+            if checks; then
               for i in 1 2 3; do
                 if git push origin HEAD:main; then
                   gh workflow run deploy.yml --ref main && echo "Published; deploy started."
                   exit 0
                 fi
-                git pull --rebase origin main || break
+                # main moved while we worked: bring it in, then run every check again on the combined result
+                if ! git pull --rebase origin main; then git rebase --abort; echo "Conflict with main."; break; fi
+                checks || { tail -40 /tmp/checks.log; break; }
               done
-              echo "Push to main failed; opening a pull request instead."
+              echo "Could not publish directly; opening a pull request instead."
             else
-              tail -30 /tmp/build.log; echo "Build failed; opening a pull request instead."
+              tail -40 /tmp/checks.log; echo "A check failed; opening a pull request instead."
             fi
           fi
           branch="agents/$(date +%Y%m%d-%H%M)"
