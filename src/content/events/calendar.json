@@ -1,1 +1,359 @@
-{ "updated": null, "events": [] }
+{
+  "updated": "2026-10-31",
+  "events": [
+    {
+      "id": "parumala-perunnal-st-peter-and-st-paul-s-church-2026-10-26",
+      "name": "Parumala Perunnal (St. Peter & St. Paul’s Church)",
+      "type": "Festival",
+      "start": "2026-10-26",
+      "end": "2026-11-02",
+      "place": "St. Peter & St. Paul’s Church, Parumala",
+      "district": "Pathanamthitta",
+      "summary": "Multi-day Perunnal commemorating St. Geevarghese Mar Gregorios with liturgies and processions — visitors can observe large community services and processional traditions.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "malayalam.samayam.com",
+          "url": "https://malayalam.samayam.com/latest-news/kerala-news/124th-parumala-thirumeni-perunnal-from-october-26-to-november-second-2026/articleshow/135168491.cms"
+        },
+        {
+          "label": "keralist.com",
+          "url": "https://keralist.com/event/parumala-perunnal"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "mannarasala-ayilyam-festival-sree-nagaraja-temple-2026-10-30",
+      "name": "Mannarasala Ayilyam Festival (Sree Nagaraja Temple)",
+      "type": "Temple festival",
+      "start": "2026-10-30",
+      "end": "2026-11-02",
+      "place": "Sree Nagaraja Temple, Mannarasala",
+      "district": "Alappuzha",
+      "summary": "Annual Ayilyam observances at the serpent shrine of Mannarasala featuring special pujas and rituals — culturally distinctive and of interest to visitors wanting to observe Kerala temple traditions.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "manoramaonline.com",
+          "url": "https://www.manoramaonline.com/district-news/alappuzha/2026/10/30/mannarasala-ayilyam-festival-dates.html"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "pulinkunnu-boat-race-champions-boat-league-2026-10-31",
+      "name": "Pulinkunnu Boat Race (Champions Boat League)",
+      "type": "Boat race",
+      "start": "2026-10-31",
+      "end": "2026-10-31",
+      "place": "Pulinkunnu, Pamba River",
+      "district": "Alappuzha",
+      "summary": "A Champions Boat League vallamkali (snake-boat) race at Pulinkunnu — a lively backwaters spectacle ideal for visitors wanting the traditional boat-race atmosphere.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "eventbuzzer.in",
+          "url": "https://eventbuzzer.in/events/pulinkunnu-boat-race-2026"
+        },
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/champions-boat-league/match-schedule"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "theyyam-season-north-malabar-ritual-performances-2026-11-01",
+      "name": "Theyyam season (North Malabar ritual performances)",
+      "type": "Cultural",
+      "start": "2026-11-01",
+      "end": "2027-05-31",
+      "place": "Various shrines in North Malabar (Kannur & Kasaragod)",
+      "district": "Kannur & Kasaragod",
+      "summary": "Seasonal Theyyam performances (living-ritual theatre) across North Malabar temples — a unique cultural experience for visitors wanting ritual dance/performance traditions.",
+      "certainty": "expected",
+      "sources": [
+        {
+          "label": "hiddenmantra.com",
+          "url": "https://hiddenmantra.com/theyyam-calendar/"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "kainakary-boat-race-champions-boat-league-2026-11-07",
+      "name": "Kainakary Boat Race (Champions Boat League)",
+      "type": "Boat race",
+      "start": "2026-11-07",
+      "end": "2026-11-07",
+      "place": "Kainakary",
+      "district": "Alappuzha",
+      "summary": "A Champions Boat League race in Kuttanad (Kainakary) — a classic backwater vallamkali event suitable for combining with houseboat/backwater tours.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/champions-boat-league/match-schedule"
+        },
+        {
+          "label": "kumarakom.com",
+          "url": "https://kumarakom.com/news/champions-boat-league-2026-schedule-venues-dates"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "kalpathi-ratholsavam-kalpathi-chariot-festival-2026-11-14",
+      "name": "Kalpathi Ratholsavam (Kalpathi Chariot Festival)",
+      "type": "Temple festival",
+      "start": "2026-11-14",
+      "end": "2026-11-16",
+      "place": "Sree Viswanatha Swamy Temple, Kalpathi",
+      "district": "Palakkad",
+      "summary": "Traditional ratholsavam (chariot procession) at Kalpathi temple featuring processions and temple rituals — visually engaging for visitors interested in Kerala temple festivals.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "incredibleindia.gov.in",
+          "url": "https://www.incredibleindia.gov.in/en/festivals-and-events/kerala/kalpathi-ratholsavam"
+        },
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/festivalcalendar/"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "kayamkulam-boat-race-champions-boat-league-2026-11-14",
+      "name": "Kayamkulam Boat Race (Champions Boat League)",
+      "type": "Boat race",
+      "start": "2026-11-14",
+      "end": "2026-11-14",
+      "place": "Kayamkulam",
+      "district": "Alappuzha",
+      "summary": "Champions Boat League race at Kayamkulam — another opportunity to see competitive vallamkali alongside Kerala’s backwater scenery.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/champions-boat-league/match-schedule"
+        },
+        {
+          "label": "kumarakom.com",
+          "url": "https://kumarakom.com/news/champions-boat-league-2026-schedule-venues-dates"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "sabarimala-mandala-pooja-season-sabarimala-opening-for-mandala-2026-11-16",
+      "name": "Sabarimala — Mandala Pooja season (Sabarimala opening for Mandala)",
+      "type": "Temple festival",
+      "start": "2026-11-16",
+      "end": "2026-12-27",
+      "place": "Sabarimala (Sree Ayyappa Temple)",
+      "district": "Pathanamthitta",
+      "summary": "The 41-day Mandala pilgrimage season at Sabarimala with large pilgrim flows and special poojas; visitors may observe pilgrimage rituals (darshan/visit rules managed by the temple authorities).",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "sabarimalaonline.in",
+          "url": "https://www.sabarimalaonline.in/"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "guruvayur-ekadasi-sri-krishna-temple-2026-11-21",
+      "name": "Guruvayur Ekadasi (Sri Krishna Temple)",
+      "type": "Temple festival",
+      "start": "2026-11-21",
+      "end": "2026-11-21",
+      "place": "Guruvayur Sri Krishna Temple",
+      "district": "Thrissur",
+      "summary": "Ekadasi observance at Guruvayur Temple — an important temple day when visitors can observe traditional worship and temple activity.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/festivalcalendar/"
+        },
+        {
+          "label": "yatrigo.com",
+          "url": "https://www.yatrigo.com/events/guruvayur-ekadasi"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "president-s-trophy-boat-race-ashtamudi-2026-11-21",
+      "name": "President’s Trophy Boat Race (Ashtamudi)",
+      "type": "Boat race",
+      "start": "2026-11-21",
+      "end": "2026-11-21",
+      "place": "Ashtamudi Lake",
+      "district": "Kollam",
+      "summary": "High-profile vallamkali event at Ashtamudi backwaters (President’s Trophy) — popular with visitors and often promoted by Kerala Tourism.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/champions-boat-league/match-schedule"
+        },
+        {
+          "label": "thuzhathaalam.com",
+          "url": "https://www.thuzhathaalam.com/en"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "sabarimala-makaravilakku-makara-jyothi-phase-makaravilakku-season-2026-12-30",
+      "name": "Sabarimala — Makaravilakku / Makara Jyothi phase (Makaravilakku season)",
+      "type": "Temple festival",
+      "start": "2026-12-30",
+      "end": "2027-01-20",
+      "place": "Sabarimala (Sree Ayyappa Temple)",
+      "district": "Pathanamthitta",
+      "summary": "The Makaravilakku phase of the Sabarimala pilgrimage season culminating in Makara Jyothi (Makara Sankranti) — major pilgrimage rituals and large pilgrim presence.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "sabarimalaonline.in",
+          "url": "https://www.sabarimalaonline.in/"
+        },
+        {
+          "label": "swamisharanam.in",
+          "url": "https://swamisharanam.in/en/sabarimala-divine-manual-2026"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "attukal-pongala-attukal-bhagavathy-temple-2027-02-14",
+      "name": "Attukal Pongala (Attukal Bhagavathy Temple)",
+      "type": "Temple festival",
+      "start": "2027-02-14",
+      "end": "2027-02-23",
+      "place": "Attukal Bhagavathy Temple, Attukal",
+      "district": "Thiruvananthapuram",
+      "summary": "Annual Attukal festival with the world-famous Pongala (women’s offering) as the main highlight — thousands of women prepare the offering; visitors often come to respectfully observe the scale and devotion.",
+      "certainty": "expected",
+      "sources": [
+        {
+          "label": "gohub.com",
+          "url": "https://www.gohub.com/tr/events/attukal-pongala"
+        },
+        {
+          "label": "gohub.com",
+          "url": "https://www.gohub.com/events/attukal-pongala"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "vishu-malayalam-new-year-2027-04-15",
+      "name": "Vishu (Malayalam New Year)",
+      "type": "Festival",
+      "start": "2027-04-15",
+      "end": "2027-04-15",
+      "place": "Statewide (best observed at temples and traditional households)",
+      "district": "Kerala",
+      "summary": "Malayalam New Year celebrated with Vishukkani arrangements and traditional feasts (sadya) — a good date to observe Kerala household and temple customs.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "malayalacalendar.com",
+          "url": "https://malayalacalendar.com/calendar/2027/"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "thrissur-pooram-2027-04-17",
+      "name": "Thrissur Pooram",
+      "type": "Temple festival",
+      "start": "2027-04-17",
+      "end": "2027-04-18",
+      "place": "Vadakkunnathan Temple / Thekkinkadu Maidan, Thrissur",
+      "district": "Thrissur",
+      "summary": "Kerala’s iconic Pooram with ilanjithara melam percussion, caparisoned elephants and kudamattam umbrella-exchanges — a major cultural spectacle for visitors who plan early.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "solonomads.com",
+          "url": "https://solonomads.com/guides/india/thrissur-pooram"
+        },
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/festivalcalendar/"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "karkidaka-chikitsa-ayurveda-monsoon-treatment-period-2027-07-17",
+      "name": "Karkidaka Chikitsa (Ayurveda monsoon treatment period)",
+      "type": "Wellness",
+      "start": "2027-07-17",
+      "end": "2027-08-16",
+      "place": "Statewide (Ayurvedic centres: Kottakkal, Varkala, Kovalam, Wayanad, etc.)",
+      "district": "Kerala",
+      "summary": "Traditional Karkidaka (monsoon) period recommended for Ayurvedic rejuvenation treatments — many centres offer seasonal programmes aimed at wellness-seeking visitors.",
+      "certainty": "expected",
+      "sources": [
+        {
+          "label": "roampedia.com",
+          "url": "https://roampedia.com/india/kerala/guides/kerala-ayurveda-wellness"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "nehru-trophy-boat-race-punnamada-lake-alappuzha-usual-rule-second-saturday-of-au-2027-08-14",
+      "name": "Nehru Trophy Boat Race (Punnamada Lake, Alappuzha) — (usual rule: second Saturday of August)",
+      "type": "Boat race",
+      "start": "2027-08-14",
+      "end": "2027-08-14",
+      "place": "Punnamada Lake (Alappuzha)",
+      "district": "Alappuzha",
+      "summary": "Kerala’s famous single-day snake-boat race at Punnamada — a major backwaters event typically held on the second Saturday of August and popular with visitors during the season.",
+      "certainty": "expected",
+      "sources": [
+        {
+          "label": "utsav.gov.in",
+          "url": "https://www.utsav.gov.in/view-event/nehru-trophy-boat-race"
+        },
+        {
+          "label": "keralatourism.org",
+          "url": "https://www.keralatourism.org/event/nehru-trophy-boat-race/433/"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    },
+    {
+      "id": "onam-ten-day-festival-thiruvonam-main-day-2027-09-03",
+      "name": "Onam (Ten-day festival; Thiruvonam main day)",
+      "type": "Festival",
+      "start": "2027-09-03",
+      "end": "2027-09-12",
+      "place": "Statewide (major events in Alappuzha for boat-races and floral decorations)",
+      "district": "Kerala",
+      "summary": "Kerala’s principal harvest/homecoming festival with pookalam, sadya and local events; Thiruvonam (main day) is on 2027-09-12 — an excellent period to experience statewide cultural traditions.",
+      "certainty": "confirmed",
+      "sources": [
+        {
+          "label": "kaalpanchang.com",
+          "url": "https://kaalpanchang.com/onam"
+        },
+        {
+          "label": "malayalacalendar.com",
+          "url": "https://malayalacalendar.com/calendar/2027/"
+        }
+      ],
+      "lastChecked": "2026-10-31"
+    }
+  ]
+}
