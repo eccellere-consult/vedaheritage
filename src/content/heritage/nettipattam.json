@@ -120,7 +120,16 @@
       "Ask for packing for air travel."
     ]
   },
-  "images": [],
+  "images": [
+    {
+      "src": "/images/discover/nettipattam-1.jpg",
+      "alt": "A night view of Thrissur Pooram festival showing decorated elephants (nettipattam), traditional parasols, and a brightly illuminated temple in Thrissur, Kerala,",
+      "credit": "Stories By Anija Jalan",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E2%80%9CDazzling_Thrissur_Pooram_night_with_caparisoned_elephants_and_illuminated_temple,_Kerala%E2%80%9D.jpg"
+    }
+  ],
   "tags": [
     "heritage",
     "Kerala",
