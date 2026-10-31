@@ -89,8 +89,11 @@ jobs:
           fi
           node agents/run.mjs "${args[@]}"
       - name: Find licensed images for the new drafts
-        # Open-licence photos from Wikimedia Commons, credited. A human checks each one in the pull request.
+        # Open-licence photos from Wikimedia Commons, then Openverse (strict guardrails), credited. A human checks each one in the pull request.
         continue-on-error: true
+        env:
+          OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+          OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
         run: node scripts/fetch-commons-images.mjs --drafts
       - name: Publish entries that pass every check (only when automatic publishing is on)
         run: node scripts/auto-publish.mjs

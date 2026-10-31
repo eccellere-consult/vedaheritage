@@ -12,7 +12,7 @@
     "agents:enrich": "node agents/run.mjs enrich",
     "agents:verify": "node agents/run.mjs verify",
     "agents:pipeline": "node agents/run.mjs pipeline",
-    "agents:test": "node agents/test/mock-pipeline.test.mjs && node agents/test/providers.test.mjs && node agents/test/autopublish.test.mjs",
+    "agents:test": "node agents/test/mock-pipeline.test.mjs && node agents/test/providers.test.mjs && node agents/test/autopublish.test.mjs && node agents/test/openverse.test.mjs",
     "admin:test": "node scripts/test-admin.mjs"
   },
   "dependencies": {
