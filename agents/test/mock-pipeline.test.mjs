@@ -75,9 +75,10 @@ assert.equal(toEntryFile({ ...base, recipe: { ...rec, method: ['1'] } }, { categ
 console.log('✔ agent pipeline (mock) passed')
 
 // Events agent: only dated, sourced, upcoming events are kept; a rerun updates in place
+const calPath = path.join(tmp, 'src/content/events/calendar.json')
+fs.writeFileSync(calPath, JSON.stringify({ updated: null, events: [] }))   // the repo's real calendar must not leak into this test
 r = run('events')
 assert.equal(r.status, 0, r.stderr || r.stdout)
-const calPath = path.join(tmp, 'src/content/events/calendar.json')
 let cal = JSON.parse(fs.readFileSync(calPath, 'utf8'))
 assert.deepEqual(cal.events.map(e => e.name).sort(), ['Mock Boat Race', 'Mock Temple Utsavam'], 'unsourced, past and bad-date events are dropped')
 assert.ok(cal.events.every(e => e.sources.every(s => s.url.startsWith('https://example.org/'))), 'only retrieved sources survive')
