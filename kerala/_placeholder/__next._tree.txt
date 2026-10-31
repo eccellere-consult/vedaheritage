@@ -1,0 +1,2 @@
+:HL["/_next/static/chunks/14vbtpx19eeq6.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"kerala","param":null,"prefetchHints":0,"slots":{"children":{"name":"district","param":{"type":"d","key":"_placeholder","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"klfqIVkw0x9SW9zRaOor-"}
