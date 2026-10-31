@@ -1,152 +1,152 @@
 {
-  "slug": "nettipattam",
-  "category": "heritage",
-  "name": "Nettipattam — the Elephant Caparison",
-  "malayalamName": "നെറ്റിപ്പട്ടം",
-  "district": "Thrissur",
-  "tagline": "The gold-coloured face ornament worn by festival elephants",
-  "summary": "Nettipattam, the ornate caparison of Kerala's festival elephants: history, craftsmanship, Thrissur Pooram and where to see and buy a replica.",
-  "description": [
-    "A nettipattam is the large, gold-coloured ornament fixed over a festival elephant's forehead. It is made of copper or brass plates, with a pattern of lotus petals and bells, and finished with tassels.",
-    "Elephants wearing nettipattam, with bells at their necks and decorated tusks, lead temple processions across Kerala, most famously at Thrissur Pooram."
-  ],
-  "history": {
-    "significance": "A sign of temple pageantry, tying craft, ritual and the culture of the elephant in Kerala.",
-    "timeline": [
-      {
-        "period": "Ancient–medieval",
-        "event": "Elephants are used in temple rituals and royal processions across South India."
-      },
-      {
-        "period": "Early modern",
-        "event": "Elaborate caparisons are made by craft families for temple festivals."
-      },
-      {
-        "period": "Contemporary",
-        "event": "Festival demand for nettipattam supports craft families; regulations govern the treatment of captive elephants."
-      }
+    "slug": "nettipattam",
+    "category": "heritage",
+    "name": "Nettipattam — the Elephant Caparison",
+    "malayalamName": "നെറ്റിപ്പട്ടം",
+    "district": "Thrissur",
+    "tagline": "The gold-coloured face ornament worn by festival elephants",
+    "summary": "Nettipattam, the ornate caparison of Kerala's festival elephants: history, craftsmanship, Thrissur Pooram and where to see and buy a replica.",
+    "description": [
+        "A nettipattam is the large, gold-coloured ornament fixed over a festival elephant's forehead. It is made of copper or brass plates, with a pattern of lotus petals and bells, and finished with tassels.",
+        "Elephants wearing nettipattam, with bells at their necks and decorated tusks, lead temple processions across Kerala, most famously at Thrissur Pooram."
     ],
-    "keyFacts": [
-      "Nettipattam are fitted by experienced handlers and mahouts; the elephant is treated as part of the temple.",
-      "Thrissur Pooram (April–May) is the most famous elephant festival, with a procession of decorated elephants.",
-      "Kerala has laws and guidelines governing the use of captive elephants in festivals.",
-      "Replica nettipattam are sold as decorative wall pieces."
-    ]
-  },
-  "folklore": {
-    "title": "The Elephant and the Temple",
-    "story": [
-      "The elephant is regarded as a carrier of the deity at festivals. Temples say the tradition of decorating the animal is a mark of honour, with the nettipattam placed over the forehead on the morning of the procession.",
-      "Craft families recall that new designs were commissioned by temple committees and rival temple groups, which led to the competitive artistry visible at Thrissur Pooram."
-    ],
-    "note": "Accounts vary by temple; consult temple committees."
-  },
-  "spiritual": {
-    "summary": "For many people the sight of decorated elephants at dawn is a moving link to temple devotion.",
-    "experiences": [
-      {
-        "title": "Thrissur Pooram",
-        "text": "Watch from a safe public area as the processions form; arrive early and respect barricades."
-      },
-      {
-        "title": "Visit the elephant sanctuary",
-        "text": "Punnathur Kotta near Guruvayur houses temple elephants (verify visiting rules and animal welfare)."
-      }
-    ],
-    "bestFor": "Festival travellers and photographers.",
-    "mindfulTips": [
-      "Keep a safe distance from elephants.",
-      "Do not feed or touch the elephants.",
-      "Respect animal welfare guidelines."
-    ]
-  },
-  "highlights": [
-    "Gold-coloured forehead ornament",
-    "Thrissur Pooram",
-    "Temple elephant processions",
-    "Brass and copper craft"
-  ],
-  "visitorInfo": {
-    "bestTime": "Festival season January to May; Thrissur Pooram falls in April–May (check dates).",
-    "howToReach": "Thrissur is on the main rail line; the Pooram is held on the Thekkinkadu Maidan around the Vadakkunnathan Temple.",
-    "etiquette": [
-      "Do not approach or touch elephants.",
-      "Follow police crowd instructions at festivals.",
-      "Do not use flash near the animals."
-    ],
-    "duration": "Full day"
-  },
-  "heritage": {
-    "localName": "നെറ്റിപ്പട്ടം (nettipattam)",
-    "materials": "Copper or brass plates, gold-coloured plating, bells, tassels",
-    "whereToSee": [
-      {
-        "name": "Thrissur Pooram, Vadakkunnathan Temple",
-        "district": "Thrissur",
-        "note": "Annual festival with processions of decorated elephants."
-      }
-    ],
-    "whereToBuy": [
-      {
-        "name": "Surabhi — Handicrafts Development Corporation of Kerala emporiums",
-        "kind": "emporium",
-        "district": "Statewide",
-        "note": "State-run emporiums selling metalcraft, wood carving, coir and handloom; good for fixed-price first purchases."
-      },
-      {
-        "name": "Kairali — Kerala State Handicrafts Apex Co-operative Society emporiums",
-        "kind": "cooperative",
-        "district": "Statewide",
-        "note": "Government-linked craft emporiums in major towns; fixed prices and craft-certified items."
-      },
-      {
-        "name": "Thrissur craft shops",
-        "kind": "market",
-        "district": "Thrissur",
-        "note": "Replica nettipattam are sold as decorative pieces; ask for a written bill and check craftsmanship."
-      }
-    ],
-    "experiences": [
-      {
-        "name": "Punnathur Kotta Elephant Sanctuary",
-        "district": "Thrissur",
-        "kind": "cultural-centre",
-        "note": "Elephant sanctuary near Guruvayur; check welfare standards and visiting hours."
-      }
-    ],
-    "buyingTips": [
-      "Buy replicas only; ritual caparisons are not for sale.",
-      "Check weight and plating; handmade pieces are heavy.",
-      "Ask for packing for air travel."
-    ]
-  },
-  "images": [
-    {
-      "src": "/images/discover/nettipattam-1.jpg",
-      "alt": "A night view of Thrissur Pooram festival showing decorated elephants (nettipattam), traditional parasols, and a brightly illuminated temple in Thrissur, Kerala,",
-      "credit": "Stories By Anija Jalan",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E2%80%9CDazzling_Thrissur_Pooram_night_with_caparisoned_elephants_and_illuminated_temple,_Kerala%E2%80%9D.jpg"
-    }
-  ],
-  "tags": [
-    "heritage",
-    "Kerala",
-    "traditional craft",
-    "nettipattam",
-    "Thrissur"
-  ],
-  "sources": [
-    {
-      "label": "Kerala Tourism — official site",
-      "url": "https://www.keralatourism.org/"
+    "history": {
+        "significance": "A sign of temple pageantry, tying craft, ritual and the culture of the elephant in Kerala.",
+        "timeline": [
+            {
+                "period": "Ancient–medieval",
+                "event": "Elephants are used in temple rituals and royal processions across South India."
+            },
+            {
+                "period": "Early modern",
+                "event": "Elaborate caparisons are made by craft families for temple festivals."
+            },
+            {
+                "period": "Contemporary",
+                "event": "Festival demand for nettipattam supports craft families; regulations govern the treatment of captive elephants."
+            }
+        ],
+        "keyFacts": [
+            "Nettipattam are fitted by experienced handlers and mahouts; the elephant is treated as part of the temple.",
+            "Thrissur Pooram (April–May) is the most famous elephant festival, with a procession of decorated elephants.",
+            "Kerala has laws and guidelines governing the use of captive elephants in festivals.",
+            "Replica nettipattam are sold as decorative wall pieces."
+        ]
     },
-    {
-      "label": "Thrissur Pooram — Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Thrissur_Pooram"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-10-28"
+    "folklore": {
+        "title": "The Elephant and the Temple",
+        "story": [
+            "The elephant is regarded as a carrier of the deity at festivals. Temples say the tradition of decorating the animal is a mark of honour, with the nettipattam placed over the forehead on the morning of the procession.",
+            "Craft families recall that new designs were commissioned by temple committees and rival temple groups, which led to the competitive artistry visible at Thrissur Pooram."
+        ],
+        "note": "Accounts vary by temple; consult temple committees."
+    },
+    "spiritual": {
+        "summary": "For many people the sight of decorated elephants at dawn is a moving link to temple devotion.",
+        "experiences": [
+            {
+                "title": "Thrissur Pooram",
+                "text": "Watch from a safe public area as the processions form; arrive early and respect barricades."
+            },
+            {
+                "title": "Visit the elephant sanctuary",
+                "text": "Punnathur Kotta near Guruvayur houses temple elephants (verify visiting rules and animal welfare)."
+            }
+        ],
+        "bestFor": "Festival travellers and photographers.",
+        "mindfulTips": [
+            "Keep a safe distance from elephants.",
+            "Do not feed or touch the elephants.",
+            "Respect animal welfare guidelines."
+        ]
+    },
+    "highlights": [
+        "Gold-coloured forehead ornament",
+        "Thrissur Pooram",
+        "Temple elephant processions",
+        "Brass and copper craft"
+    ],
+    "visitorInfo": {
+        "bestTime": "Festival season January to May; Thrissur Pooram falls in April–May (check dates).",
+        "howToReach": "Thrissur is on the main rail line; the Pooram is held on the Thekkinkadu Maidan around the Vadakkunnathan Temple.",
+        "etiquette": [
+            "Do not approach or touch elephants.",
+            "Follow police crowd instructions at festivals.",
+            "Do not use flash near the animals."
+        ],
+        "duration": "Full day"
+    },
+    "heritage": {
+        "localName": "നെറ്റിപ്പട്ടം (nettipattam)",
+        "materials": "Copper or brass plates, gold-coloured plating, bells, tassels",
+        "whereToSee": [
+            {
+                "name": "Thrissur Pooram, Vadakkunnathan Temple",
+                "district": "Thrissur",
+                "note": "Annual festival with processions of decorated elephants."
+            }
+        ],
+        "whereToBuy": [
+            {
+                "name": "Surabhi — Handicrafts Development Corporation of Kerala emporiums",
+                "kind": "emporium",
+                "district": "Statewide",
+                "note": "State-run emporiums selling metalcraft, wood carving, coir and handloom; good for fixed-price first purchases."
+            },
+            {
+                "name": "Kairali — Kerala State Handicrafts Apex Co-operative Society emporiums",
+                "kind": "cooperative",
+                "district": "Statewide",
+                "note": "Government-linked craft emporiums in major towns; fixed prices and craft-certified items."
+            },
+            {
+                "name": "Thrissur craft shops",
+                "kind": "market",
+                "district": "Thrissur",
+                "note": "Replica nettipattam are sold as decorative pieces; ask for a written bill and check craftsmanship."
+            }
+        ],
+        "experiences": [
+            {
+                "name": "Punnathur Kotta Elephant Sanctuary",
+                "district": "Thrissur",
+                "kind": "cultural-centre",
+                "note": "Elephant sanctuary near Guruvayur; check welfare standards and visiting hours."
+            }
+        ],
+        "buyingTips": [
+            "Buy replicas only; ritual caparisons are not for sale.",
+            "Check weight and plating; handmade pieces are heavy.",
+            "Ask for packing for air travel."
+        ]
+    },
+    "images": [
+        {
+            "src": "/images/discover/nettipattam-1.jpg",
+            "alt": "A night view of Thrissur Pooram festival showing decorated elephants (nettipattam), traditional parasols, and a brightly illuminated temple in Thrissur, Kerala,",
+            "credit": "Stories By Anija Jalan",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+            "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E2%80%9CDazzling_Thrissur_Pooram_night_with_caparisoned_elephants_and_illuminated_temple,_Kerala%E2%80%9D.jpg"
+        }
+    ],
+    "tags": [
+        "heritage",
+        "Kerala",
+        "traditional craft",
+        "nettipattam",
+        "Thrissur"
+    ],
+    "sources": [
+        {
+            "label": "Kerala Tourism — official site",
+            "url": "https://www.keralatourism.org/"
+        },
+        {
+            "label": "Thrissur Pooram — Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Thrissur_Pooram"
+        }
+    ],
+    "status": "approved",
+    "lastVerified": "2026-10-31"
 }
