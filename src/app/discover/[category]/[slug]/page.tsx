@@ -249,7 +249,7 @@ export default async function EntryPage({ params }: Props) {
           </div>
         </section>
       )}
-      <OwnerBar category={e.category} slug={e.slug} autoPublished={e.autoPublished} reviewed={e.reviewed} />
+      <OwnerBar category={e.category} slug={e.slug} autoPublished={e.autoPublished} reviewed={e.reviewed} imageStatus={e.imageStatus} />
     </>
   )
 }

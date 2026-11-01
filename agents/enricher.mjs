@@ -2,8 +2,9 @@
 import { EntryOut, toEntryFile } from './lib/schemas.mjs'
 import { prompt, slugify, today } from './lib/util.mjs'
 
-export async function enrich(llm, cand, { feedback = null, previous = null } = {}) {
-  const system = prompt('enricher')
+export async function enrich(llm, cand, { feedback = null, previous = null, quick = false } = {}) {
+  // quick = first-level coverage: top few results only, medium effort, no thoroughness loop (see agents/prompts/quick.md)
+  const system = prompt('enricher') + (quick ? '\n\n' + prompt('quick') : '')
   const brief = [
     `Write the guide entry for: ${cand.name}`,
     `Category: ${cand.category}. District: ${cand.district}.`,
@@ -16,13 +17,13 @@ export async function enrich(llm, cand, { feedback = null, previous = null } = {
     : ''
 
   const { text, urls } = await llm.research({
-    system, effort: 'high', search: feedback ? 6 : 10, fetch: feedback ? 6 : 10, label: 'enrich', ctx: { name: cand.name },
+    system, effort: quick ? 'medium' : 'high', search: quick ? 5 : feedback ? 6 : 10, fetch: quick ? 4 : feedback ? 6 : 10, label: 'enrich', ctx: { name: cand.name },
     user: `${brief}${revise}\n\nResearch thoroughly. Finish with detailed notes: each fact with the URL it came from.`,
   })
   const allowed = new Set([...urls, ...(cand.sourceUrls || [])])
 
   const out = await llm.extract({
-    label: 'enrich', system, effort: 'high', maxTokens: 32000,
+    label: 'enrich', system, effort: quick ? 'medium' : 'high', maxTokens: quick ? 16000 : 32000,
     ctx: { name: cand.name, district: cand.district, urls: [...urls] },
     user: `${brief}${revise}\n\n## Research notes\n${text}\n\n## URLs actually retrieved (sources, officialLinks and claim URLs must come from this list)\n${[...allowed].join('\n')}\n\nWrite the complete entry.`,
     schema: EntryOut,

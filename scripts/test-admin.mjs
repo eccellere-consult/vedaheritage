@@ -155,6 +155,27 @@ try {
   ok(svT.s === 200 && setj.autoPublish === true && setj.autoPublishExclude.join() === 'medical,healing' && setj.provider === 'auto', 'the publish-automatically toggle is saved and keeps the other settings')
   const svF = await call('agent_settings_save', { method: 'POST', body: { autoPublish: false, provider: 'openai' } })
   ok(svF.s === 200 && JSON.parse(commits[commits.length - 1].tree[0].content).autoPublish === false && JSON.parse(commits[commits.length - 1].tree[0].content).provider === 'openai', 'and switched back off'); delete files['agents/settings.json']
+  // ---------------------------------------------------------------- stop switch, topic register
+  const cg = await call('control_get'); ok(cg.s === 200 && cg.d.control.state === 'running' && cg.d.runs.length === 4, 'control panel reports running state and the four agent jobs')
+  const lastC = () => JSON.parse(commits[commits.length - 1].tree[0].content)
+  ok((await call('control_set', { method: 'POST', body: { action: 'pause', reason: 'testing' } })).s === 200 && lastC().state === 'paused' && lastC().reason === 'testing', 'pause all is saved to agents/control.json')
+  const gate1 = await call('run_workflow', { method: 'POST', body: { workflow: 'sprint', inputs: {} } })
+  ok(gate1.s === 409 && /paused/.test(gate1.d.error), 'a paused state blocks every manual agent start in the backend')
+  ok((await call('control_set', { method: 'POST', body: { action: 'resume' } })).s === 200 && lastC().state === 'running', 'resume')
+  const nd = dispatches.length
+  ok((await call('run_workflow', { method: 'POST', body: { workflow: 'sprint', inputs: { minutes: '150', max: '40', budget: '20' } } })).s === 200 && dispatches.length === nd + 1 && dispatches.at(-1).p.endsWith('/sprint.yml/dispatches') && dispatches.at(-1).b.inputs.minutes === '150', 'a sprint can be started when running')
+  ok((await call('run_workflow', { method: 'POST', body: { workflow: 'sprint', inputs: { minutes: '5' } } })).s === 400, 'sprint inputs are validated')
+  const kl = await call('control_set', { method: 'POST', body: { action: 'kill', reason: 'emergency' } })
+  ok(kl.s === 200 && lastC().state === 'killed' && /Kill switch on/.test(kl.d.message), 'kill switch is saved')
+  ok((await call('run_workflow', { method: 'POST', body: { workflow: 'events', inputs: {} } })).s === 409 && (await call('control_set', { method: 'POST', body: { action: 'resume' } })).s === 409, 'while killed nothing starts and a plain resume is refused')
+  ok((await call('control_set', { method: 'POST', body: { action: 'reset' } })).s === 400 && (await call('control_set', { method: 'POST', body: { action: 'reset', confirm: true } })).s === 200 && lastC().state === 'running', 'reset needs explicit confirmation')
+  ok((await call('control_set', { method: 'POST', body: { action: 'job', job: 'sprint', enabled: false } })).s === 200 && lastC().agents.sprint === false && (await call('run_workflow', { method: 'POST', body: { workflow: 'sprint', inputs: {} } })).s === 409, 'a single job can be switched off')
+  await call('control_set', { method: 'POST', body: { action: 'job', job: 'sprint', enabled: true } })
+  ok((await call('control_set', { method: 'POST', body: { action: 'job', job: '../x', enabled: true } })).s === 400, 'unknown jobs are refused')
+  ok((await call('topic_add', { method: 'POST', body: { name: 'Test Topic One', category: 'temples', district: 'Kollam', priority: 1 } })).s === 200 && lastC().topics[0].id === 'test-topic-one' && lastC().topics[0].status === 'todo', 'a topic can be added to the register')
+  ok((await call('topic_add', { method: 'POST', body: { name: 'Test Topic One', category: 'temples' } })).s === 409 && (await call('topic_add', { method: 'POST', body: { name: 'Bad', category: 'nope' } })).s === 400, 'duplicates and bad categories are refused')
+  ok((await call('topic_set', { method: 'POST', body: { id: 'test-topic-one', status: 'skipped' } })).s === 200 && lastC().topics[0].status === 'skipped' && (await call('control_get')).d.counts.skipped === 1, 'a topic can be skipped and the dashboard counts it')
+  delete files['agents/control.json']; delete files['agents/registers/topics.json']
   const pl = await call('prs'); ok(pl.d.prs.map(p => p.checks).join() === 'passed,failed,needs_approval', 'PR list reports check state')
   ok((await call('merge_pr', { method: 'POST', body: { number: 2 } })).s === 422 && (await call('merge_pr', { method: 'POST', body: { number: 3 } })).s === 422 && !merged.length, 'red and unapproved PRs cannot be merged')
   ok((await call('merge_pr', { method: 'POST', body: { number: 1 } })).s === 200 && merged[0] === 1, 'green PR merges')

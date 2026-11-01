@@ -13,6 +13,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 - `docs/DIRECTORY_MODEL.md` — contacts and services directory: three tiers, verification, advertising caps, risks, legal checklist.
 - `docs/MARKETPLACE.md` — moderated classifieds: flow, where data lives (contact details are private), rules, pre-launch legal checklist.
 - `docs/ADMIN.md` — the admin page: what it does, one-time setup, security notes.
+- `docs/SPRINT.md` — the fast content sprint (prototype): stop switch, topic register, what is and is not built.
 
 ## Standards (keep consistent)
 **Design:** tokens live only in `tailwind.config.ts` — `primary` (green `#1D6A3A`), `accent` (teal `#1A6B72`; `accent-light` for text on dark),
@@ -21,7 +22,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 (green + teal on navy); confirm exact eccare.in values with the owner and change them in the Tailwind config only.
 **Content:** JSON in `src/content/<category>/<slug>.json`, categories: temples, places, beaches, backwaters, heritage, ayurveda; plus `districts/` and `kerala/overview.json`.
 Every entry has history, folklore (framed as tradition, never as fact), spiritual/cultural meaning, visitor etiquette, sources. Validate with `npm run validate`.
-Only `status: "approved"` publishes. Two modes, chosen by the owner with a toggle in the admin (`agents/settings.json` `autoPublish`): **review first** (agents write drafts, a human approves) and **publish automatically** (entries that pass every gate go live and the owner reviews on the site). Automatic publishing never covers `medical` or `healing`, anything the fact-checker flags, anything without a credited photo, or anything the content-safety check (`agents/lib/safety.mjs`: adult content, child exploitation, illegal or harmful material) flags. Claude itself still writes drafts only.
+Only `status: "approved"` publishes. Two modes, chosen by the owner with a toggle in the admin (`agents/settings.json` `autoPublish`): **review first** (agents write drafts, a human approves) and **publish automatically** (entries that pass every gate go live and the owner reviews on the site). Automatic publishing never covers `medical` or `healing`, anything the fact-checker flags, anything without a credited photo, or anything the content-safety check (`agents/lib/safety.mjs`: adult content, child exploitation, illegal or harmful material) flags. Claude itself still writes drafts only. The content sprint (`agents/sprint.mjs`) is the main content route; the old Scout > Enricher > Verifier chain is paused. Every agent honours the stop switch in `agents/control.json`.
 **Accuracy:** no invented shops, addresses, prices, timings or dates. Cite retrieved sources. Say "confirm before travelling".
 **Tone:** friendly, professional, direct; simple present tense; executive-ready; SEO-aware (unique title and 50–200 char description per page).
 **Directory:** official contacts only from retrieved official pages; providers verified and re-verified yearly; ads capped, labelled, text-only, never for health services; private details never committed.

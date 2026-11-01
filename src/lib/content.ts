@@ -296,6 +296,8 @@ export interface Entry {
   lastVerified: string         // ISO date
   autoPublished?: string       // ISO date the agents published it without prior human approval
   reviewed?: boolean           // false until the owner has read it on the site (edit or Mark reviewed)
+  imageStatus?: 'needed'       // live without a photo until one is added
+  editorial?: { flow?: string; status: string; note?: string; checkedOn?: string }  // internal; never shown to visitors
 }
 
 export interface Story {

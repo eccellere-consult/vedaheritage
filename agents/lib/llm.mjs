@@ -142,6 +142,7 @@ export function createLLM({ mock = false, provider = 'anthropic', model, budget 
 }
 
 // ---------------------------------------------------------------- mock -----
+let mockEnrichCalls = 0
 function createMock(state, consulted) {
   const U = 'https://example.org/'
   return {
@@ -172,6 +173,8 @@ function createMock(state, consulted) {
         ] }
       }
       if (label === 'enrich') {
+        // test hook: flip the stop switch while a run is in flight
+        if (process.env.MOCK_KILL_AFTER && ++mockEnrichCalls > Number(process.env.MOCK_KILL_AFTER)) fs.writeFileSync(process.env.CONTROL_FILE, JSON.stringify({ state: 'killed', reason: 'test' }))
         const a = ctx.urls?.[0] || `${U}a`, b = ctx.urls?.[1] || `${U}b`
         return {
           name: ctx.name, malayalamName: null, district: ctx.district,
@@ -185,12 +188,12 @@ function createMock(state, consulted) {
           visitorInfo: { bestTime: 'Winter', howToReach: 'By road', etiquette: ['Dress modestly.'], duration: null },
           travel: { byTrain: ['Nearest station X'], byBus: ['KSRTC Y'], byWater: null, byAir: null },
           officialLinks: null, heritage: null, coordinates: null, recipe: null, eat: null, tags: ['mock', 'test'],
-          contacts: [
+          contacts: /CLEAN/.test(ctx.name || '') ? [] : [
             { label: 'Mock temple office', kind: 'temple-office', phone: '+91 479 2300000', email: null, website: null, address: null, sourceUrl: a },
             { label: 'Invented contact', kind: 'other', phone: '+91 99999 00000', email: null, website: null, address: null, sourceUrl: 'https://not-consulted.example/c' },
             { label: 'Malformed contact', kind: 'other', phone: 'call us', email: null, website: null, address: null, sourceUrl: b },
           ],
-          sources: [{ label: 'A', url: a }, { label: 'B', url: b }, { label: 'Hallucinated', url: 'https://not-consulted.example/x' }],
+          sources: [{ label: 'A', url: a }, { label: 'B', url: b }, ...(/CLEAN/.test(ctx.name || '') ? [] : [{ label: 'Hallucinated', url: 'https://not-consulted.example/x' }])],
           claims: [{ claim: 'Founded in 1900', field: 'history.timeline', sourceUrl: a, sensitive: false }, { claim: 'Dress modestly', field: 'visitorInfo.etiquette', sourceUrl: b, sensitive: true }],
         }
       }

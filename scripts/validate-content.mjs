@@ -87,7 +87,7 @@ for (const cat of CATEGORIES) {
       for (const f of ['src', 'alt', 'credit', 'license', 'sourceUrl']) if (!isStr(im[f])) fail(rel, `image missing ${f}`)
       if (isStr(im.src) && !fileExists(im.src)) fail(rel, `image file not found in public/: ${im.src}`)
     }
-    if (d.status === 'approved' && (d.images || []).length < 1) fail(rel, 'approved entries need ≥ 1 licensed, credited image')
+    if (d.status === 'approved' && (d.images || []).length < 1 && d.imageStatus !== 'needed') fail(rel, 'approved entries need ≥ 1 licensed, credited image (or imageStatus "needed" while a photo is awaited)')
     if (!isArr(d.highlights, 3)) fail(rel, 'need at least 3 highlights')
     const v = d.visitorInfo
     if (!v || !isStr(v.bestTime) || !isStr(v.howToReach) || !isArr(v.etiquette)) fail(rel, 'visitorInfo {bestTime, howToReach, etiquette[]} required')

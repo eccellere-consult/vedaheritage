@@ -1,0 +1,80 @@
+name: Content sprint (fast first-level coverage)
+
+# PROTOTYPE of the content-acceleration plan. One research pass and one drafting call per topic from the topic register
+# (agents/registers/topics.json), no scout and no verifier chain. Runs in three slices; after each slice the new pages get
+# photos (Wikimedia Commons, then Openverse) or an image placeholder, qualifying pages are published per the admin switch,
+# and the work is saved. The admin stop switch (agents/control.json) is checked before every topic, every write and every
+# publish.
+
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: 'Total time budget in minutes (120 to 180 recommended)'
+        default: '150'
+      max:
+        description: 'Max topics per slice'
+        default: '40'
+      budget:
+        description: 'Hard spend cap in USD for this run'
+        default: '20'
+      provider:
+        description: 'AI provider (saved = use the default saved in the admin page)'
+        type: choice
+        options: [saved, auto, xai, openai, anthropic]
+        default: saved
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: content-sprint
+  cancel-in-progress: false
+
+jobs:
+  sprint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 210
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Stop switch (admin pause / kill)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/agent-guard.mjs sprint
+      - name: Sprint in three slices (draft, photos, publish, save)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+          OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+          AGENT_PROVIDER: ${{ (inputs.provider != '' && inputs.provider != 'saved') && inputs.provider || vars.AGENT_PROVIDER }}
+          AGENT_MODEL: ${{ vars.AGENT_MODEL }}
+          ENRICHER_PROVIDER: ${{ vars.ENRICHER_PROVIDER }}
+          ENRICHER_MODEL: ${{ vars.ENRICHER_MODEL }}
+          OPENAI_PRICE_IN_PER_M: ${{ vars.OPENAI_PRICE_IN_PER_M }}
+          OPENAI_PRICE_OUT_PER_M: ${{ vars.OPENAI_PRICE_OUT_PER_M }}
+          XAI_PRICE_IN_PER_M: ${{ vars.XAI_PRICE_IN_PER_M }}
+          XAI_PRICE_OUT_PER_M: ${{ vars.XAI_PRICE_OUT_PER_M }}
+          MINUTES: ${{ inputs.minutes || '150' }}
+          MAX: ${{ inputs.max || '40' }}
+          BUDGET: ${{ inputs.budget || '20' }}
+        run: |
+          slice=$(( (MINUTES + 2) / 3 ))
+          for i in 1 2 3; do
+            node scripts/agent-guard.mjs sprint || { echo "Stopped by the admin switch."; exit 1; }
+            node agents/run.mjs sprint --minutes "$slice" --max "$MAX" --budget "$BUDGET" || true
+            node scripts/fetch-commons-images.mjs --drafts || true
+            node scripts/auto-publish.mjs
+            bash scripts/publish-changes.sh sprint "content: sprint slice $i" "sprint/" "Content sprint slice $i" src/content public/images/discover agents/registers agents/reports || exit 1
+          done

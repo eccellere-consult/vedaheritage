@@ -1,0 +1,12 @@
+{
+  "state": "running",
+  "reason": "",
+  "by": "",
+  "updated": null,
+  "agents": {
+    "content-agents": false,
+    "sprint": true,
+    "events": true,
+    "fetch-images": true
+  }
+}

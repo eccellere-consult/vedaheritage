@@ -1,4 +1,4 @@
-// Orchestrator.  node agents/run.mjs <scout|enrich|verify|pipeline|events> [options]
+// Orchestrator.  node agents/run.mjs <scout|enrich|verify|pipeline|events|sprint> [options]
 //   --mock            use deterministic fixtures (no API key, no network)
 //   --max N           scout: max new candidates (default 8); enrich: max entries (default 3)
 //   --slug a,b        verify: only these slugs        --drafts   verify: all draft entries
@@ -11,6 +11,7 @@ import { scout } from './scout.mjs'
 import { enrich } from './enricher.mjs'
 import { verify, summarizeFixes } from './verifier.mjs'
 import { events } from './events.mjs'
+import { sprint } from './sprint.mjs'
 
 const args = process.argv.slice(2)
 const cmd = args[0]
@@ -97,8 +98,8 @@ async function runVerify(llm) {
 }
 
 async function main() {
-  if (!['scout', 'enrich', 'verify', 'pipeline', 'events'].includes(cmd)) {
-    console.error('usage: node agents/run.mjs <scout|enrich|verify|pipeline|events> [--mock] [--max N] [--slug a,b] [--drafts] [--budget USD]')
+  if (!['scout', 'enrich', 'verify', 'pipeline', 'events', 'sprint'].includes(cmd)) {
+    console.error('usage: node agents/run.mjs <scout|enrich|verify|pipeline|events|sprint> [--mock] [--max N] [--slug a,b] [--drafts] [--budget USD]')
     process.exit(2)
   }
   // Each role can use a different provider/model: SCOUT_*, ENRICHER_*, VERIFIER_* (or AGENT_*).
@@ -120,6 +121,14 @@ async function main() {
       await runEnrich(llm, vllm, Number(opt('max', 3)))
     }
     if (cmd === 'verify') await runVerify(vllm)
+    if (cmd === 'sprint') {
+      const r = await sprint(llm, { minutes: Number(opt('minutes', 150)), max: Number(opt('max', 200)), topicIds: opt('topics', '') ? opt('topics', '').split(',') : null })
+      add(`### Content sprint: ${r.created} page(s) created in ${r.minutes} min`, '',
+        `Attempted ${r.attempted} · created ${r.created} · already had a page ${r.exists} · need a fact check ${r.needsFactCheck} · failed ${r.failed} · topics still to do ${r.leftover}`, '', ...r.lines, '')
+      if (r.stopped) add(`⛔ Stopped by the admin switch: ${r.stopped}. Nothing further was written.`, '')
+      else if (r.timeUp) add('⏱ Time budget reached; the remaining topics wait for the next run. This is not the full topic list.', '')
+      console.log(`sprint: +${r.created}, exists ${r.exists}, failed ${r.failed}, left ${r.leftover}${r.stopped ? ', STOPPED' : ''}`)
+    }
     if (cmd === 'events') {
       const r = await events(scoutLLM)
       const line = e => `**${e.name}** · ${e.start === e.end ? e.start : `${e.start} to ${e.end}`} · ${e.place}, ${e.district} · ${e.certainty === 'confirmed' ? 'dates published' : 'usual dates, confirm before travelling'} · ${e.sources.map(s => s.url).join(' ')}`

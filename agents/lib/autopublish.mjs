@@ -17,17 +17,23 @@ export function decide(entry, evidence, policy, { fileExists = () => true } = {}
   if (!policy.enabled) why.push('automatic publishing is off')
   if (entry.status !== 'draft') why.push('not a draft')
   if (policy.exclude.includes(entry.category)) why.push(`${entry.category} entries always wait for a human`)
-  const v = evidence?.verification
-  if (!v) why.push('no fact-check recorded')
-  else {
-    if (v.recommendation !== 'ready_for_review') why.push(`fact-check says ${v.recommendation}`)
-    if ((v.gateReasons || []).length) why.push(`fact-check flagged: ${v.gateReasons.join('; ')}`)
-    if ((v.results || []).some(r => r.verdict === 'contradicted')) why.push('a claim was contradicted by its source')
+  // Two routes: the content sprint's plain editorial status (deterministic checks), or an independent fact-check (evidence).
+  const ed = entry.editorial, viaSprint = ed?.flow === 'sprint'
+  if (viaSprint) {
+    if (ed.status !== 'ready') why.push(`editorial status is ${ed.status}${ed.note ? ` (${ed.note})` : ''}`)
+  } else {
+    const v = evidence?.verification
+    if (!v) why.push('no fact-check recorded')
+    else {
+      if (v.recommendation !== 'ready_for_review') why.push(`fact-check says ${v.recommendation}`)
+      if ((v.gateReasons || []).length) why.push(`fact-check flagged: ${v.gateReasons.join('; ')}`)
+      if ((v.results || []).some(r => r.verdict === 'contradicted')) why.push('a claim was contradicted by its source')
+    }
   }
   const unsafe = safetyHits({ ...entry, status: undefined })
   if (unsafe.length) why.push(`content-safety check: ${unsafe.join('; ')}`)
   const imgs = Array.isArray(entry.images) ? entry.images : []
-  if (!imgs.length) why.push('no photo yet')
+  if (!imgs.length) { if (!viaSprint) why.push('no photo yet') }   // sprint pages may go live with an image placeholder
   else if (imgs.some(i => !['src', 'alt', 'credit', 'license', 'sourceUrl'].every(f => i?.[f]) || !fileExists(i.src))) why.push('a photo is missing its credit or file')
   const okSrc = (entry.sources || []).filter(s => s?.label && /^https:\/\//.test(s.url || ''))
   if (okSrc.length < 2) why.push('fewer than 2 sources')
@@ -38,5 +44,6 @@ export function decide(entry, evidence, policy, { fileExists = () => true } = {}
 }
 
 export function publish(entry, today) {
-  return { ...entry, status: 'approved', lastVerified: today, autoPublished: today, reviewed: false }
+  const noPhoto = !(entry.images || []).length
+  return { ...entry, status: 'approved', lastVerified: today, autoPublished: today, reviewed: false, ...(noPhoto ? { imageStatus: 'needed' } : {}) }
 }
