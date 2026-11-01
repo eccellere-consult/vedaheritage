@@ -1,0 +1,311 @@
+{
+  "date": "2026-10-31",
+  "model": "gpt-5-mini",
+  "candidate": {
+    "id": "attukal-bhagavathy-temple",
+    "name": "Attukal Bhagavathy Temple",
+    "category": "temples",
+    "district": "Thiruvananthapuram",
+    "reason": "A major urban Bhagavathy shrine famous for its strong ritual identity and the large public Pongala observance, important for understanding Kerala’s popular devotional practices.",
+    "priority": 2,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+      "https://www.attukal.org/",
+      "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "attukal-bhagavathy-temple"
+  },
+  "warnings": [
+    "1 source(s) dropped: URL was not actually retrieved",
+    "1 contact(s) dropped: source page not retrieved or details malformed"
+  ],
+  "consulted": [
+    "https://www.guinnessworldrecords.com/world-records/largest-annual-gathering-of-women?fb_comment_id=775544872481459_885013898201222",
+    "https://www.attukal.org/",
+    "https://booking.attukal.in/Default.aspx",
+    "https://www.attukal.org/index.htm",
+    "https://rajeev.in/News/Sabarimala_Temple_Row/PIL_May022016.pdf",
+    "https://roampedia.com/india/kerala/guides/attukal-bhagavathy-temple-crowd-record",
+    "https://attukal.org/terms",
+    "https://haindavakeralam.com/attukal-pongala-march-hk12287",
+    "https://haindavakeralam.com/more-than-25-lakh-women-offer-hk12247",
+    "https://newsonair.gov.in/kerala-witnesses-one-of-worlds-largest-women-gatherings-for-attukal-pongala/",
+    "https://www.newindianexpress.com/galleries/2018/Mar/02/kerala-celebrates-the-largest-womens-gathering-attukal-pongala-101303.html",
+    "https://www.eoilisbon.gov.in/docs/16251391391%20e.pdf",
+    "https://utsav.gov.in/view-event/attukal-pongala-1",
+    "https://en.wikipedia.org/wiki/Attukal_Pongala",
+    "https://en.wikipedia.org/wiki/Pongala",
+    "https://www.tnpscthervupettagam.com/assets/home/media/general/doc/March_02_-_English1.pdf",
+    "https://schoolwiki.kite.kerala.gov.in/images/d/d3/41099-klm-2020.pdf",
+    "https://en.wikipedia.org/wiki/Attukal",
+    "https://iqac.keralauniversity.ac.in/docs/UoK_International_Brochure.pdf",
+    "https://igmlnet.uohyd.ac.in/docs/hi-res/hcu_images/TH13100.pdf",
+    "https://en.wikipedia.org/wiki/Attukal_Temple",
+    "https://www.youtube.com/watch?v=6NUpT4ZeiBY",
+    "https://www.youtube.com/watch?v=1yLXunoLsTE",
+    "https://en.wikipedia.org/wiki/Thiruvananthapuram",
+    "https://www.reddit.com/r/Trivandrum/comments/1jdcvv0",
+    "https://en.wikipedia.org/wiki/Kodungallur_Sree_Kurumba_Bhagavathy_Temple",
+    "https://www.reddit.com/r/Trivandrum/comments/1uqmqtm/shopping_and_travel_suggestions_during_deepavali/",
+    "https://www.rediff.com/news/report/new-record-for-kerala-all-women-temple/20091017.htm",
+    "https://www.guinnessworldrecords.com.br/world-records/largest-annual-gathering-of-women",
+    "https://ycmou.ac.in/media/publication/ycmou_book/RVV_YB_128.pdf",
+    "https://www.gvk.com/media/pdf/GVK%20WORLD%20January%20to%20March%202020.pdf",
+    "https://roampedia.com/india/kerala/thiruvananthapuram/thiruvananthapuram-city/guides/thiruvananthapuram-attukal-pongala-numbers",
+    "https://timesofindia.indiatimes.com/city/thiruvananthapuram/thousands-perform-pongala-ritual-at-attukal-temple/articleshow/7527112.cms",
+    "https://timesofindia.indiatimes.com/city/thiruvananthapuram/devotees-brave-heat-to-offer-pongala/articleshow/68086867.cms",
+    "https://oldworldwandering.com/2011/02/21/one-minute-at-attukal-pongala/",
+    "https://www.newindianexpress.com/amp/story/galleries/2018/Mar/02/kerala-celebrates-the-largest-womens-gathering-attukal-pongala-101303.html",
+    "https://roampedia.com/india/kerala/thiruvananthapuram/thiruvananthapuram-city/place/attukal-bhagavathy-temple",
+    "https://www.hindustantimes.com/india-news/amid-coronavirus-threat-lakhs-of-women-perform-attukal-pongala-festival-in-kerala/story-ykYNtpTLG5o0IiqbeedXeO.html",
+    "https://thanaltrust.org/wp-content/uploads/2020/07/Methodology-for-following-Green-Protocol-in-religious-festivals.pdf",
+    "https://en.wikipedia.org/wiki/Seva_Bharati",
+    "https://www.evuraan.info/malayalam/work/archives/archive-2010-07.shtml",
+    "https://www.manoramaonline.com/district-news/thiruvananthapuram/2025/03/06/attukal-pongala-festival-thiruvananthapuram.html",
+    "https://www.expresskerala.com/news/attukal-pongala-festival.html",
+    "https://www.manoramaonline.com/astrology/indepth/attukal-pongala-2025.html",
+    "https://malayalam.nativeplanet.com/travel-guide/birth-star-temple-attukal-bhagavathy-temple-for-avittam-nakshatram-details-in-malayalam-007507.html",
+    "https://www.manoramaonline.com/news/latest-news/2025/03/13/attukal-pongala-2025-live-updates.html",
+    "https://www.manoramaonline.com/district-news/thiruvananthapuram/2025/03/06/attukal-pongala-festival-thiruvananthapuram.amp.html",
+    "https://www.youtube.com/watch?v=WBg0fN2zyts",
+    "https://www.manoramaonline.com/news/latest-news/2026/03/02/attukal-temple-trust-president-v-sobha-interview-pongala.html",
+    "https://malayalam.nativeplanet.com/travel-guide/mysterious-customs-attukal-bhagavathy-temple-002501.html",
+    "https://malayalam.oneindia.com/news/kerala/thiruvanathapuram-all-sets-offer-ponagala-aattukal-bagavathy-166716.html",
+    "https://malayalam-live.blogspot.com/2019/02/?action=toggle&dir=open&toggle=MONTHLY-1425196800000&toggleopen=MONTHLY-1549008000000&widgetId=BlogArchive1&widgetType=BlogArchive",
+    "https://spiritualkerala.blogspot.com/",
+    "https://www.vanitha.in/celluloid/movies/2026/04/28/mohanlal-38-wedding-anniversary-news.html",
+    "https://timesofindia.indiatimes.com/city/thiruvananthapuram/lakhs-of-women-set-for-attukal-pongala/articleshow/68074105.cms",
+    "https://haindavakeralam.com/attukal-pongala-break-its-own-hk14755",
+    "https://www.telegraphindia.com/india/pongala-lesson-in-quick-clean-up/cid/1510597",
+    "https://thesouthfirst.com/keralam/attukal-pongala-returns-after-two-covid-years-lakhs-of-women-descend-on-thiruvananthapuram-city/",
+    "https://cag.gov.in/uploads/old_reports/union/union_compliance/2007_2008/Civil/Report_no_2/chap_10.pdf",
+    "https://divyadarshan360.com/blog/temple/popular/attukal-bhagavathy-temple-thiruvananthapuram",
+    "https://marvelofcreations.blogspot.com/2020/10/attukal-bhagwathy-amman-temple.html",
+    "https://trivandrum2go.in/venue/attukal-bhagavathy-temple",
+    "https://indiankanoon.org/doc/92824205/",
+    "https://saiindia.gov.in/uploads/old_reports/state/Nagaland/rep_2000/chapter3.pdf",
+    "https://sooperkanoon.com/case/947996/sonia-associates-vs-b-b-sabharwal",
+    "https://cag.gov.in/uploads/old_reports/state/Punjab/rep_2004/civil_chap4.pdf",
+    "https://courtkutchehry.com/judgements/915598/sonia-associates-appellant-hash-bb-sabharwal-and-another-respondent",
+    "https://saiindia.gov.in/uploads/old_reports/state/Karnataka/rep_2003/civil_ch3.pdf",
+    "https://cag.gov.in/uploads/old_reports/state/Nagaland/rep_2001/chap3_civil.pdf",
+    "https://cag.gov.in/uploads/old_reports/state/Assam/rep_2002/civil_chap6.pdf",
+    "https://www.newindianexpress.com/cities/thiruvananthapuram/2026/Mar/03/sacred-offerings-and-rituals-to-mark-attukal-pongala-today",
+    "https://www.newindianexpress.com/amp/story/cities/thiruvananthapuram/2026/Mar/03/attukal-pongala-concludes-with-massive-participation",
+    "https://www.newindianexpress.com/topic/attukal-pongala-2026",
+    "https://www.thestatesman.com/page/1110?afdt=m-fdt0w4lX8KEwjvz5ydlZugAhUDEZ0KHWZI2QAQBhgDIAAwkaXzDlCRpfMOUI_KoxtQgsOUKVDtz60p&search=",
+    "https://thesouthfirst.com/health/heat-fire-and-now-infections-kerala-strengthens-health-safety-net-for-pongala-in-capital/",
+    "https://www.newindianexpress.com/cities/thiruvananthapuram/2026/Mar/07/waste-management-after-attukal-pongala-kicks-up-row-in-tpuram-no-effective-plan-claims-oppn",
+    "https://www.thenewsminute.com/kerala/devotion-meets-harmony-mosque-church-join-attukal-pongala-in-kerala",
+    "https://english.metrovaartha.com/amp/story/news/kerala/kerala-woman-who-suffered-burns-during-attukal-pongala-dies-in-hospital",
+    "https://organiser.org/2026/03/04/342674/bharat/pm-modi-extends-attukal-pongala-wishes-says-this-festival-has-a-special-importance-for-our-nari-shakti/",
+    "https://www.calcuttanews.net/news/278900023/pm-modi-extends-attukal-pongala-wishes-says-this-festival-has-a-special-importance-for-our-nari-shakti",
+    "https://enewsx.com/article/keralas-pluralistic-spirit-interfaith-harmony-at-attukal-pongala.103768/",
+    "https://enewsx.com/article/attukal-bhagavathy-temple-festival-tradition-civic-coordination-and-a-lunar-eclipse.103675/",
+    "https://www.redbus.in/trains/stations/thiruvananthapuram-central-trivandrum-tvc",
+    "https://railsathi.com/thiruvananthpuram/",
+    "https://www.indiatrainstatus.com/station/tvc-thiruvananthapuram-central",
+    "https://utsstationqrcode.com/thiruvananthapuram-central-railway-station-qr-code/",
+    "https://www.acronymsmeanings.com/references-for/central-office-code-protection",
+    "https://www.travelkhana.com/travelkhana/utilities/station-trains/tvc-thiruvananthapuram-central",
+    "https://www.junctionunbox.com/trivandrum-central-railway-station/",
+    "https://commons.wikimedia.org/wiki/Category%3AThiruvananthapuram_Central_railway_station",
+    "https://travelindia-guide.com/cities/thiruvananthapuram/",
+    "https://www.trainspnrstatus.com/station/TVC",
+    "https://visitindia.co/padmanabhaswamy-temple-trivandrum/",
+    "https://way4i.com/thiruvananthapuram-transport-hub/",
+    "https://en.wikipedia.org/wiki/Thampanoor",
+    "https://www.youtube.com/watch?v=D3Y5VLtn0SI",
+    "https://mospi.gov.in/sites/default/files/announcements/Awareness%20of%20National%20emegency.....pdf",
+    "https://mospi.gov.in/sites/default/files/announcements/Awareness%20of%20National%20emegency.....pdf?download=1",
+    "https://play.google.com/store/apps/details?id=in.cdac.ners.psa.mobile.android.national",
+    "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2162546",
+    "https://rideplanner.in/routes/kashmir-kanyakumari/emergency",
+    "https://amitshah.co.in/media/pdf_data/1756791175-110255.pdf",
+    "https://worldhotlines.org/country/in",
+    "https://lotsotravel.com/india",
+    "https://www.gstimes.in/why-india-adopted-112-as-its-universal-emergency-number/",
+    "https://www.scribd.com/document/1031683436/4th-Week-1",
+    "https://www.allemergencynum.com/about-112/",
+    "https://buzzinbharat.online/emergency_contacts",
+    "https://www.scitechsociety.com/what-are-the-challenges-of-women-safety-in-india/",
+    "https://sarkarilist.in/emergency-phone-number-list/",
+    "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1684546&lang=2&reg=48",
+    "https://www.dailyheadlinestoday.com/media-webp/2023-03/ht.pdf",
+    "https://gokshetra.com/attukal-bhagavathy-temple-darshan-guide/",
+    "https://shreedwarkadhish.in/temples/kerala/attukal-temple-thiruvananthapuram.html",
+    "https://roampedia.com/india/kerala/thiruvananthapuram/thiruvananthapuram-city/place/attukal-bhagavathy-temple?section=do",
+    "https://hindumandiryatra.com/article/attukal-bhagavathy-temple-nearby-temples-and-attractions-day-trip-ideas",
+    "https://tirumalatirupationline.com/attukal-bhagavathi-temple-vip-darshan-cost-online-book-timings/",
+    "https://hindumandiryatra.com/article/attukal-bhagavathy-temple-solo-traveler-tips-budget-stay-and-local-experiences",
+    "https://hindumandiryatra.com/article/attukal-temple",
+    "https://hindumandiryatra.com/article/attukal-bhagavathy-temple-spiritual-experience-rituals-darshan-and-what-to-expect",
+    "https://indiatourblog.com/what-to-wear-in-india/",
+    "https://irisholidays.com/keralatourism/famous-temples-in-kerala/",
+    "https://hindumandiryatra.com/article/attukal-bhagavathy-temple-temple-food-and-prasadam-what-to-try",
+    "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+    "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple"
+  ],
+  "claims": [
+    {
+      "claim": "Attukal Bhagavathy Temple stands in the Attukal / Manacaud area of Thiruvananthapuram city.",
+      "field": "description",
+      "sourceUrl": "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+      "sensitive": false
+    },
+    {
+      "claim": "The presiding deity is venerated as Attukal Bhagavathy (a form of Bhadrakali) and is locally associated with Kannaki.",
+      "field": "history.keyFacts",
+      "sourceUrl": "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+      "sensitive": false
+    },
+    {
+      "claim": "The Attukal Pongala ritual is performed primarily by women who cook pongala on temporary hearths set out across the city; the offering day is part of the temple’s multi‑day mahotsavam in Kumbham (roughly Feb–Mar).",
+      "field": "description / spiritual",
+      "sourceUrl": "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple",
+      "sensitive": true
+    },
+    {
+      "claim": "Contemporary press and widely cited sources report an Attukal Pongala turnout of about 2.5 million women on 10 March 2009; archived and country‑variant Guinness pages and many press reports cite this figure, though the live Guinness page has changed over time.",
+      "field": "history.timeline",
+      "sourceUrl": "https://www.guinnessworldrecords.com/world-records/largest-annual-gathering-of-women?fb_comment_id=775544872481459_885013898201222",
+      "sensitive": false
+    },
+    {
+      "claim": "Press accounts also widely report a very large turnout around 23 February 1997 (commonly quoted as ~1.5 million); this 1997 figure is widely reported but does not appear in the present Guinness entry and should be treated as widely reported rather than as a currently verifiable Guinness certification.",
+      "field": "history.timeline",
+      "sourceUrl": "https://roampedia.com/india/kerala/guides/attukal-bhagavathy-temple-crowd-record",
+      "sensitive": false
+    },
+    {
+      "claim": "The Attukal temple trust publishes an official booking / vazhipadu portal (booking.attukal.in) and lists contact numbers and counters on its official site; confirm availability, fees and booking rules on the portal or with the temple office before travel.",
+      "field": "history.keyFacts / spiritual.mindfulTips",
+      "sourceUrl": "https://booking.attukal.in/Default.aspx",
+      "sensitive": true
+    },
+    {
+      "claim": "Temple contact numbers (including +91‑471‑2456456 and +91‑471‑2463130) and the office address are listed on the temple’s official terms/contact page.",
+      "field": "contacts",
+      "sourceUrl": "https://attukal.org/terms",
+      "sensitive": true
+    },
+    {
+      "claim": "Nearest major railhead is Thiruvananthapuram Central (station code TVC), about 2–3 km from Attukal.",
+      "field": "travel.byTrain",
+      "sourceUrl": "https://www.redbus.in/trains/stations/thiruvananthapuram-central-trivandrum-tvc",
+      "sensitive": false
+    },
+    {
+      "claim": "Nearest airport is Thiruvananthapuram International Airport (TRV), approximately 4–6 km from the temple.",
+      "field": "travel.byAir",
+      "sourceUrl": "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple",
+      "sensitive": false
+    },
+    {
+      "claim": "During Pongala and large festival days, streets across the city become offering grounds and civic, police and municipal directions (traffic and access) change substantially; visitors must follow official directives on the day.",
+      "field": "spiritual.mindfulTips / visitorInfo.etiquette",
+      "sourceUrl": "https://www.newindianexpress.com/galleries/2018/Mar/02/kerala-celebrates-the-largest-womens-gathering-attukal-pongala-101303.html",
+      "sensitive": true
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "Attukal Bhagavathy Temple stands in the Attukal / Manacaud area of Thiruvananthapuram city.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+        "evidence": "Attukal temple, located at the heart of Thiruvananthapuram city in Attukal.",
+        "fix": null
+      },
+      {
+        "claim": "The presiding deity is venerated as Attukal Bhagavathy (a form of Bhadrakali) and is locally associated with Kannaki.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+        "evidence": "Goddess Bhadrakali (Kannaki) as the main deity.",
+        "fix": null
+      },
+      {
+        "claim": "The Attukal Pongala ritual is performed primarily by women who cook pongala on temporary hearths set out across the city; the offering day is part of the temple’s multi‑day mahotsavam in Kumbham (roughly Feb–Mar).",
+        "verdict": "supported",
+        "sourceUrl": "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple",
+        "evidence": "the renowned Attukal Ponkala festival, a ritual performed exclusively by women… making the entire city and surroundings a festival venue… February–March (Kumbham/Makaram–Kumbham).",
+        "fix": null
+      },
+      {
+        "claim": "Contemporary press and widely cited sources report an Attukal Pongala turnout of about 2.5 million women on 10 March 2009; archived and country‑variant Guinness pages and many press reports cite this figure, though the live Guinness page has changed over time.",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://www.guinnessworldrecords.com/world-records/largest-annual-gathering-of-women?fb_comment_id=775544872481459_885013898201222",
+        "evidence": "Guinness World Records lists the largest annual gathering of women as 2.5 million, achieved… on 10 March 2009 (Roampedia analysis of entry).",
+        "fix": "Cite Roampedia or archived Guinness reference instead of the dead direct link."
+      },
+      {
+        "claim": "Press accounts also widely report a very large turnout around 23 February 1997 (commonly quoted as ~1.5 million); this 1997 figure is widely reported but does not appear in the present Guinness entry and should be treated as widely reported rather than as a currently verifiable Guinness certification.",
+        "verdict": "supported",
+        "sourceUrl": "https://roampedia.com/india/kerala/guides/attukal-bhagavathy-temple-crowd-record",
+        "evidence": "an earlier entry, dated 23 February 1997 and usually quoted at 1.5 million… but which does not appear in the record Guinness publishes today.",
+        "fix": null
+      },
+      {
+        "claim": "The Attukal temple trust publishes an official booking / vazhipadu portal (booking.attukal.in) and lists contact numbers and counters on its official site; confirm availability, fees and booking rules on the portal or with the temple office before travel.",
+        "verdict": "supported",
+        "sourceUrl": "https://booking.attukal.in/Default.aspx",
+        "evidence": "Live official vazhipadu portal showing VAZHIPADU BOOKING categories and links to attukal.org.",
+        "fix": null
+      },
+      {
+        "claim": "Temple contact numbers (including +91‑471‑2456456 and +91‑471‑2463130) and the office address are listed on the temple’s official terms/contact page.",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://attukal.org/terms",
+        "evidence": "+91 471 246 3130 confirmed on DTPC page; +91-471-2456456 and /terms page content not retrieved.",
+        "fix": "Verify second phone number from an accessible source; note DTPC confirmation for one number."
+      },
+      {
+        "claim": "Nearest major railhead is Thiruvananthapuram Central (station code TVC), about 2–3 km from Attukal.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.redbus.in/trains/stations/thiruvananthapuram-central-trivandrum-tvc",
+        "evidence": "Station code TVC confirmed; DTPC cross-source gives 2.9 km (within range).",
+        "fix": null
+      },
+      {
+        "claim": "Nearest airport is Thiruvananthapuram International Airport (TRV), approximately 4–6 km from the temple.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple",
+        "evidence": "Thiruvananthapuram International Airport, about 5.1 km.",
+        "fix": null
+      },
+      {
+        "claim": "During Pongala and large festival days, streets across the city become offering grounds and civic, police and municipal directions (traffic and access) change substantially; visitors must follow official directives on the day.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.newindianexpress.com/galleries/2018/Mar/02/kerala-celebrates-the-largest-womens-gathering-attukal-pongala-101303.html",
+        "evidence": "The ritual is performed by lining up on either side of the roads in the city and its suburbs… making the entire city and surroundings a festival venue.",
+        "fix": null
+      }
+    ],
+    "issues": [
+      {
+        "severity": "minor",
+        "field": "contacts",
+        "problem": "One listed phone number (+91-471-2456456) and the /terms page content could not be retrieved from the cited source.",
+        "suggestion": "Replace unverifiable contact with the confirmed DTPC-sourced number or add a secondary accessible source."
+      }
+    ],
+    "folkloreAssessment": "Properly framed as local devotional tradition with explicit hedging that versions vary and the Kannaki identification is not presented as established historical fact.",
+    "sensitivityAssessment": "Accurate, neutral and respectful on the gendered nature of the Pongala ritual, crowd logistics and devotional practices; no stereotypes or endorsements.",
+    "score": 85,
+    "recommendation": "needs_edit",
+    "gateReasons": [],
+    "consulted": [
+      "https://booking.attukal.in/Default.aspx",
+      "https://www.dtpcthiruvananthapuram.com/destination/attukal-bhagavathy-temple",
+      "https://attukal.org/terms",
+      "https://www.redbus.in/trains/stations/thiruvananthapuram-central-trivandrum-tvc",
+      "https://www.guinnessworldrecords.com/world-records/largest-annual-gathering-of-women?fb_comment_id=775544872481459_885013898201222",
+      "https://www.newindianexpress.com/galleries/2018/Mar/02/kerala-celebrates-the-largest-womens-gathering-attukal-pongala-101303.html",
+      "https://www.keralatourism.org/temples/thiruvananthapuram/attukal-bhagavathy",
+      "https://roampedia.com/india/kerala/guides/attukal-bhagavathy-temple-crowd-record"
+    ]
+  },
+  "attempts": 3
+}

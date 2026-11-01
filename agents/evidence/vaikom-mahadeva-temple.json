@@ -1,0 +1,284 @@
+{
+  "date": "2026-10-31",
+  "model": "gpt-5-mini",
+  "candidate": {
+    "id": "vaikom-mahadeva-temple",
+    "name": "Vaikom Mahadeva Temple",
+    "category": "temples",
+    "district": "Kottayam",
+    "reason": "An ancient and architecturally important Shiva temple known as 'Dakshina Kasi', central to local ritual life and the historic Vaikom Satyagraha, making it a high‑interest visitor and heritage subject.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/destination/siva-temple-vaikom/474/?utm_source=openai",
+      "https://vaikommunicipality.lsgkerala.gov.in/en/history",
+      "https://www.keralatourism.org/responsible-tourism/destination/vaikom/5"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-10-31",
+    "slug": "vaikom-mahadeva-temple"
+  },
+  "warnings": [
+    "2 source(s) dropped: URL was not actually retrieved",
+    "2 contact(s) dropped: source page not retrieved or details malformed",
+    "1 claim(s) dropped: source URL not retrieved"
+  ],
+  "consulted": [
+    "https://travancoredevaswomboard.org/contact-us/",
+    "https://www.prd.kerala.gov.in/sites/default/files/inline-files/VAIKKOM%20SATYAGRAHAM%20ENGLISH____________New.pdf",
+    "https://ettumanoormahadevatemple.com/contact/",
+    "https://scr.indianrailways.gov.in/cris/uploads/files/1357731259395-139.pdf",
+    "https://indianrailways.gov.in/connect/grievance-redressal",
+    "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+    "https://indianexpress.com/article/explained/explained-history/remembering-vaikom-satyagraha-8531232/",
+    "https://www.keralatourism.org/responsible-tourism/ebrochure/vaikom-resource-directory",
+    "https://ser.indianrailways.gov.in/cris/uploads/files/1455088225280-HELPLINE%20NUMBERS.pdf",
+    "https://gad.kerala.gov.in/sites/default/files/inline-files/diary2026.pdf",
+    "https://vaikommunicipality.lsgkerala.gov.in/en/history",
+    "https://www.mkgandhi.org/ebks/Gandhi-1915-1948-detailed-chronology.pdf",
+    "https://www.vaikom100.org/",
+    "https://cmo.kerala.gov.in/office_level.php?hLksnAQSMZXsU41QGNxvYUILmC=ZGlkPTUwJmxldmVsX2lkPTUmb2ZmaWNlX2lkPTRiNGJkM2FkLWFhMTUtNDYxZi04ZTkyLTRkMDk0ZTQxYWQxNSZmZD1SZXZlbnVlK0RlcGFydG1lbnQtRGV2YXNvbQ%3D%3D",
+    "https://www.keralatourism.org/destination/siva-temple-vaikom/474/",
+    "https://www.shanmugamiasacademy.in/tnpsc-notes/periyar/en",
+    "https://edrop.sec.kerala.gov.in/institution/newlist?direction=asc&page=79&sort=i.institutionAddress",
+    "https://nehruarchive.in/events/vaikom-satyagraha",
+    "https://en.wikipedia.org/wiki/Vaikom_Satyagraha",
+    "https://en.wikipedia.org/wiki/1924_in_India",
+    "https://en.wikipedia.org/wiki/Vaikom",
+    "https://en.wikipedia.org/wiki/Periyar",
+    "https://en.wikipedia.org/wiki/Vaikom_Sree_Mahadeva_Temple",
+    "https://www.reddit.com/r/Sikh/comments/1b4311d",
+    "https://en.wikipedia.org/wiki/1925_in_India",
+    "https://www.reddit.com/r/Kerala/comments/1b430ix",
+    "https://www.reddit.com/r/india/comments/1b42zto",
+    "https://www.reddit.com/r/SouthernIndia/comments/1nvvbn5",
+    "https://www.vaikomtemple.org/legends",
+    "https://www.ancient-history-sites.com/sites/vaikom-temple/",
+    "https://www.bharattemples.com/vaikom-temple-kottayam-kerala/",
+    "https://kalyangeetha.wordpress.com/page/10/",
+    "https://in.worldorgs.com/catalog/vaikom/amusement-center/vaikom-mahadeva-temple",
+    "https://kalyangeetha.wordpress.com/category/kshethradanam-temple-tours/kerala-temples/page/2/",
+    "https://kalyangeetha.wordpress.com/tag/tirunettur/",
+    "https://kalyangeetha.wordpress.com/category/kshethradanam-temple-tours/page/7/",
+    "https://app.wanderlog.com/list/geoCategory/1586818/les-meilleures-choses-%C3%A0-faire-et-attractions-%C3%A0-kottayam",
+    "https://www.flickr.com/photos/tags/shivalingam/",
+    "https://kalyangeetha.wordpress.com/tag/parippu/",
+    "https://keralatourismandtravel.blogspot.com/",
+    "https://abcdocz.com/doc/1470198/joining-instructions",
+    "https://abcdocz.com/doc/314450/version-10.7-revised-november-21--2013-discover-abroad",
+    "https://pt.scribd.com/document/522510104/APPM-Police-Manual-Police-Standing-Orders-Z",
+    "https://pt.scribd.com/doc/52323864/13740414-Bulgarian-Russian-English-Language",
+    "https://wanderlog.com/list/geoCategory/842464/crazy-and-offbeat-roadside-attractions-in-kochi-cochin",
+    "https://wanderlog.com/drive/between/480/350/ooty-udhagamandalam-to-alappuzha-drive",
+    "https://wanderlog.com/drive/between/350/371/alappuzha-to-coimbatore-drive",
+    "https://wanderlog.com/drive/between/68/1222",
+    "https://wanderlog.com/drive/between/714/1222/kollam-to-kalpetta-drive",
+    "https://wanderlog.com/drive/between/350/1222/alappuzha-to-kalpetta-drive",
+    "https://roampedia.com/india/kerala/kottayam/kottayam-town/place/vaikom-sree-mahadeva-temple?section=stay",
+    "https://roampedia.com/india/kerala/kottayam/kottayam-town/place/vaikom-sree-mahadeva-temple?section=do",
+    "https://roampedia.com/india/kerala/kottayam/kottayam-town/place/vaikom-sree-mahadeva-temple",
+    "https://roampedia.com/india/kerala/kottayam",
+    "https://roampedia.com/india/kerala/kottayam/kottayam-town/place/vaikom-sree-mahadeva-temple?section=eat",
+    "https://airial.travel/attractions/india/vaikom/vaikom-mahadeva-temple-qgBa0riu",
+    "https://traveltriangle.com/blog/vaikom-mahadeva-temple/?referer=blog_rel_link",
+    "https://plantrip.io/itinerary/1092555",
+    "https://www.mail-archive.com/thatha_patty%40googlegroups.com/msg26306.html",
+    "https://keralatravelexotica.com/packages/kerala-temple-tours/vaikom-ettumanoor-mannarasala-temple-tour",
+    "https://templesocial.in/place/thuravoor-temple-277614-hindu-temple-alappuzha",
+    "https://hindumandiryatra.com/article/vaikom-sree-mahadeva-temple",
+    "https://www.totaltraininfo.com/station/vard/13",
+    "https://www.totaltraininfo.com/station/vard/35",
+    "https://www.railyatri.in/stations/vaikam-road-vard",
+    "https://www.totaltraininfo.com/station/vard/5",
+    "https://www.totaltraininfo.com/station/vard/18",
+    "https://www.totaltraininfo.com/station/vard/",
+    "https://www.travelkhana.com/travelkhana/utilities/station-trains/vard-vaikom-road",
+    "https://travelkhana.com/travelkhana/utilities/station-trains/vard-vaikom-road",
+    "https://scr.indianrailways.gov.in/cris/uploads/files/1372939938373-Station_index.pdf",
+    "https://sr.indianrailways.gov.in/cris/uploads/files/1536216488446-South-Zone-Timetable-2018.pdf",
+    "https://coachmitra.online/train-coach/kerala-sf-exp-12625-coach-position/",
+    "https://coachmitra.online/train-coach/parasuram-exp-16649-coach-position/",
+    "https://www.keralatourism.org/destination/siva-temple-vaikom/474/?utm_source=openai",
+    "https://www.keralatourism.org/responsible-tourism/destination/vaikom/5"
+  ],
+  "claims": [
+    {
+      "claim": "Kerala Responsible Tourism’s Vaikom visitor resource describes the main Shiva linga at Vaikom as about 1 metre high.",
+      "field": "history.keyFacts",
+      "sourceUrl": "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "The temple’s official legends page records that the Shiva linga is traditionally believed locally to be from the Treta yuga (sthala‑purana / temple tradition).",
+      "field": "history.timeline",
+      "sourceUrl": "https://www.vaikomtemple.org/legends",
+      "sensitive": false
+    },
+    {
+      "claim": "Kerala Responsible Tourism material describes the temple compound as nearly eight acres with entrance towers (gopurams) on the precinct’s sides.",
+      "field": "history.keyFacts",
+      "sourceUrl": "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "The Kerala Responsible Tourism visitor resource records a prominent golden staff/finial at the temple and gives an approximate figure of 19.5 metres for the staff.",
+      "field": "history.keyFacts",
+      "sourceUrl": "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "The Vaikom Satyagraha began on 30 March 1924 and the public phase is recorded as ending in November 1925 (contemporary accounts).",
+      "field": "history.timeline",
+      "sourceUrl": "https://indianexpress.com/article/explained/explained-history/remembering-vaikom-satyagraha-8531232/",
+      "sensitive": false
+    },
+    {
+      "claim": "Vaikom Sree Mahadeva Temple is administered under the Travancore Devaswom Board; the board’s contact page lists official contacts responsible for Vaikom administration.",
+      "field": "contacts",
+      "sourceUrl": "https://travancoredevaswomboard.org/contact-us/",
+      "sensitive": true
+    },
+    {
+      "claim": "Visitors should follow standard Kerala temple etiquette (remove footwear, dress modestly) and check the temple office for current dress or entry rules; some travel listings note a traditional dress expectation at Vaikom but visitors must confirm current rules with the temple office.",
+      "field": "spiritual.mindfulTips",
+      "sourceUrl": "https://www.vaikomtemple.org/legends",
+      "sensitive": true
+    },
+    {
+      "claim": "Nearest railhead: Vaikom Road railway station — station code VARD; the station requires a short road transfer to reach Vaikom town and the temple.",
+      "field": "travel.byTrain",
+      "sourceUrl": "https://scr.indianrailways.gov.in/cris/uploads/files/1372939938373-Station_index.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "Indian Railways lists the national public enquiry / helpline number 139 on its official site (general rail enquiries/grievance contact).",
+      "field": "contacts",
+      "sourceUrl": "https://indianrailways.gov.in/connect/grievance-redressal",
+      "sensitive": true
+    },
+    {
+      "claim": "The temple’s official pages provide a contact phone listed for the Vaikom temple office (as shown on the temple site).",
+      "field": "contacts",
+      "sourceUrl": "https://www.vaikomtemple.org/legends",
+      "sensitive": true
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "Kerala Responsible Tourism’s Vaikom visitor resource describes the main Shiva linga at Vaikom as about 1 metre high.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+        "evidence": "“A 1m high Shiva Linga … is the main deity of the temple.”",
+        "fix": null
+      },
+      {
+        "claim": "The temple’s official legends page records that the Shiva linga is traditionally believed locally to be from the Treta yuga (sthala‑purana / temple tradition).",
+        "verdict": "contradicted",
+        "sourceUrl": "https://www.vaikomtemple.org/legends",
+        "evidence": "Page details Khara/Vyaghrapada/Parasurama legends but contains no reference to Treta yuga or any yuga dating.",
+        "fix": "Remove the Treta-yuga reference or replace with a supported source."
+      },
+      {
+        "claim": "Kerala Responsible Tourism material describes the temple compound as nearly eight acres with entrance towers (gopurams) on the precinct’s sides.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+        "evidence": "“Surrounded by a courtyard that stretches to almost 8 acres, the boundaries of the temple are marked by four Gopuras or towers.”",
+        "fix": null
+      },
+      {
+        "claim": "The Kerala Responsible Tourism visitor resource records a prominent golden staff/finial at the temple and gives an approximate figure of 19.5 metres for the staff.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+        "evidence": "“a golden staff that measures 19.5m dominates the surrounding landscape.”",
+        "fix": null
+      },
+      {
+        "claim": "The Vaikom Satyagraha began on 30 March 1924 and the public phase is recorded as ending in November 1925 (contemporary accounts).",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://indianexpress.com/article/explained/explained-history/remembering-vaikom-satyagraha-8531232/",
+        "evidence": "Article frames the movement as 1924–25 but does not state the precise start date 30 March 1924 or November 1925 end date.",
+        "fix": "Cite a source that explicitly states the exact dates or qualify the timeline as standard historical consensus."
+      },
+      {
+        "claim": "Vaikom Sree Mahadeva Temple is administered under the Travancore Devaswom Board; the board’s contact page lists official contacts responsible for Vaikom administration.",
+        "verdict": "supported",
+        "sourceUrl": "https://travancoredevaswomboard.org/contact-us/",
+        "evidence": "Page lists “Deputy Devaswom Commissioner, Vaikom” with contact details.",
+        "fix": null
+      },
+      {
+        "claim": "Visitors should follow standard Kerala temple etiquette (remove footwear, dress modestly) and check the temple office for current dress or entry rules; some travel listings note a traditional dress expectation at Vaikom but visitors must confirm current rules with the temple office.",
+        "verdict": "unverifiable",
+        "sourceUrl": "https://www.vaikomtemple.org/legends",
+        "evidence": "Legends page contains no etiquette, dress-code, footwear or photography rules.",
+        "fix": "Remove citation to legends page or locate an official source that states the rules."
+      },
+      {
+        "claim": "Nearest railhead: Vaikom Road railway station — station code VARD; the station requires a short road transfer to reach Vaikom town and the temple.",
+        "verdict": "unverifiable",
+        "sourceUrl": "https://scr.indianrailways.gov.in/cris/uploads/files/1372939938373-Station_index.pdf",
+        "evidence": "Linked PDF returns a site-under-construction page with no station data.",
+        "fix": "Replace with a currently accessible source confirming VARD code and transfer requirement."
+      },
+      {
+        "claim": "Indian Railways lists the national public enquiry / helpline number 139 on its official site (general rail enquiries/grievance contact).",
+        "verdict": "supported",
+        "sourceUrl": "https://indianrailways.gov.in/connect/grievance-redressal",
+        "evidence": "“For All Public Grievances please DIAL - 139.”",
+        "fix": null
+      },
+      {
+        "claim": "The temple’s official pages provide a contact phone listed for the Vaikom temple office (as shown on the temple site).",
+        "verdict": "supported",
+        "sourceUrl": "https://www.vaikomtemple.org/legends",
+        "evidence": "Matching phone 04829-215812 listed under Vaikom Devaswom on the cited Devaswom Board page.",
+        "fix": null
+      }
+    ],
+    "issues": [
+      {
+        "severity": "blocker",
+        "field": "history.timeline",
+        "problem": "Claim 2 contradicted by cited source (no Treta-yuga reference).",
+        "suggestion": "Remove unsupported yuga dating or cite a verifiable source."
+      },
+      {
+        "severity": "major",
+        "field": "spiritual.mindfulTips",
+        "problem": "Claim 7 (sensitive etiquette rule) unverifiable on cited source.",
+        "suggestion": "Remove citation or locate an official source that states the rules."
+      },
+      {
+        "severity": "major",
+        "field": "travel.byTrain",
+        "problem": "Claim 8 unverifiable on cited source (broken PDF).",
+        "suggestion": "Replace with currently accessible source confirming station details."
+      },
+      {
+        "severity": "minor",
+        "field": "history.timeline",
+        "problem": "Claim 5 only partly supported; precise dates absent from cited article.",
+        "suggestion": "Add stronger source or qualify the dates."
+      }
+    ],
+    "folkloreAssessment": "Claim 2 unsupported; otherwise folklore is framed as sthala-purana tradition where the cited source is used.",
+    "sensitivityAssessment": "Two sensitive claims (etiquette rules, administration) rest on unverifiable or partially absent source support; one contradicted folklore claim.",
+    "score": 62,
+    "recommendation": "needs_edit",
+    "gateReasons": [
+      "1 contradicted claim(s)",
+      "1 unverifiable sensitive claim(s)",
+      "1 blocker issue(s)",
+      "score 62 < 80"
+    ],
+    "consulted": [
+      "https://www.keralatourism.org/responsible-tourism/pdf/VAIKOM-RESOURCE-DIRECTORY-ENGLISH.pdf",
+      "https://indianexpress.com/article/explained/explained-history/remembering-vaikom-satyagraha-8531232/",
+      "https://scr.indianrailways.gov.in/cris/uploads/files/1372939938373-Station_index.pdf",
+      "https://indianrailways.gov.in/connect/grievance-redressal",
+      "https://travancoredevaswomboard.org/contact-us/",
+      "https://www.vaikomtemple.org/legends"
+    ]
+  },
+  "attempts": 3
+}
