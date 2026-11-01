@@ -1,12 +1,13 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import PhotoUploadBase from './PhotoUpload'
 
 // Explicit file name: a folder URL only works if the server's DirectoryIndex lists index.php.
 const API = '/api/admin/index.php'
 type Json = Record<string, any>
-type Tab = 'overview' | 'review' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
-const TABS: [Tab, string][] = [['overview', 'Overview'], ['review', 'Review agent work'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
+type Tab = 'overview' | 'sprint' | 'review' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
+const TABS: [Tab, string][] = [['overview', 'Overview'], ['sprint', 'Content sprint'], ['review', 'Review agent work'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
 
 let csrf = ''
 async function api(a: string, body?: Json, query = ''): Promise<{ ok: boolean; status: number; data: Json }> {
@@ -79,6 +80,7 @@ export default function AdminApp() {
       </div>
       {msg && <p role="status" className={`mb-4 px-4 py-3 text-sm border ${msg.bad ? 'bg-red-50 border-red-300 text-red-800' : 'bg-primary/10 border-primary/30 text-ink'}`}>{msg.text}</p>}
       {tab === 'overview' && <Overview go={setTab} />}
+      {tab === 'sprint' && <Sprint say={say} />}
       {tab === 'review' && <Review say={say} />}
       {tab === 'drafts' && <Drafts say={say} />}
       {tab === 'market' && <Market say={say} />}
@@ -193,34 +195,91 @@ function Overview({ go }: { go: (t: Tab) => void }) {
   )
 }
 
-/** Pick a photo you took, type the credit, attach it to a guide. The browser shrinks and re-encodes it (no GPS or camera data survives). */
-function PhotoUpload({ category, slug, number, say, onDone }: { category: string; slug: string; number?: number; say: (t: string, bad?: boolean) => void; onDone: () => void }) {
-  const [open, setOpen] = useState(false); const [file, setFile] = useState<File | null>(null); const [credit, setCredit] = useState(''); const [alt, setAlt] = useState(''); const [busy, setBusy] = useState(false)
-  async function shrink(f: File): Promise<string> {
-    const bmp = await createImageBitmap(f); const k = Math.min(1, 1600 / Math.max(bmp.width, bmp.height))
-    const cv = document.createElement('canvas'); cv.width = Math.round(bmp.width * k); cv.height = Math.round(bmp.height * k)
-    cv.getContext('2d')!.drawImage(bmp, 0, 0, cv.width, cv.height)
-    return cv.toDataURL('image/jpeg', 0.85)
+/** Wrapper: the shared uploader, wired to this page's API helper. */
+function PhotoUpload(props: { category: string; slug: string; number?: number; say: (t: string, bad?: boolean) => void; onDone: () => void }) {
+  return <PhotoUploadBase {...props} post={(a: string, body: { [k: string]: unknown }) => api(a, body)} />
+}
+
+const JOB_INFO: Record<string, string> = { sprint: 'Content sprint: fast first-level pages', events: 'Weekly events calendar', 'fetch-images': 'Find licensed photos', 'content-agents': 'Old slow chain (Scout, Enricher, Verifier): paused' }
+
+function Sprint({ say }: { say: (t: string, bad?: boolean) => void }) {
+  const { data, err, reload } = useLoad('control_get'); const st = useLoad('agent_settings')
+  const [f, setF] = useState({ minutes: '150', max: '40', budget: '20' }); const [flt, setFlt] = useState({ status: '', category: '' })
+  const [nt, setNt] = useState({ name: '', category: 'temples', district: 'Kerala', priority: '2' })
+  const c = data?.control; const state = c?.state || 'running'
+  const act = async (a: string, extra: Json = {}, confirmText?: string) => {
+    if (confirmText && !window.confirm(confirmText)) return
+    const r = await api('control_set', { action: a, ...extra }); say(r.ok ? r.data.message : r.data.error, !r.ok); reload()
   }
-  async function send() {
-    if (!file) return say('Choose a picture first.', true)
-    setBusy(true)
-    try {
-      const image = await shrink(file)
-      const r = await api('photo_upload', { category, slug, number, image, credit, alt })
-      say(r.ok ? r.data.message : r.data.error, !r.ok)
-      if (r.ok) { setOpen(false); setFile(null); setCredit(''); setAlt(''); onDone() }
-    } catch { say('That file could not be read as a picture. Try a JPEG or PNG.', true) }
-    setBusy(false)
-  }
-  if (!open) return <button className="btn-outline text-xs" onClick={() => setOpen(true)}>Upload your own photo</button>
-  const inp = 'border border-accent/30 px-2 py-1 text-sm w-full'
+  const start = async () => { const r = await api('run_workflow', { workflow: 'sprint', inputs: { ...f, provider: 'saved' } }); say(r.ok ? 'Sprint started. It saves and publishes after each of three slices.' : r.data.error, !r.ok); reload() }
+  const auto = st.data?.autoPublish === true
+  const topics: Json[] = (data?.topics || []).filter((t: Json) => (!flt.status || t.status === flt.status) && (!flt.category || t.category === flt.category))
+  const cats = Array.from(new Set((data?.topics || []).map((t: Json) => t.category))) as string[]
+  const inp = 'border border-accent/30 px-2 py-1 text-sm bg-white'
+  const tone = state === 'running' ? 'ok' : state === 'paused' ? 'warn' : 'bad'
   return (
-    <div className="mt-2 p-3 border border-accent/30 space-y-2 w-full text-sm">
-      <label className="block">Picture you took<input type="file" accept="image/jpeg,image/png" className="block mt-1" onChange={e => setFile(e.target.files?.[0] || null)} /></label>
-      <label className="block">Credit (shown under the photo, e.g. &quot;Photo: Your Name&quot;)<input className={inp} value={credit} maxLength={120} onChange={e => setCredit(e.target.value)} /></label>
-      <label className="block">What it shows (for screen readers)<input className={inp} value={alt} maxLength={200} onChange={e => setAlt(e.target.value)} /></label>
-      <div className="flex gap-2"><button className="btn-primary text-xs disabled:opacity-40" disabled={busy || !file || credit.trim().length < 2 || alt.trim().length < 5} onClick={send}>{busy ? 'Uploading…' : 'Attach photo'}</button><button className="btn-outline text-xs" onClick={() => setOpen(false)}>Cancel</button></div>
+    <div className="space-y-6">
+      {err && <p className="text-red-700 text-sm">{err}</p>}{!data && !err && <p className="text-ink-mid">Loading…</p>}
+      {data && <>
+        <div className={`card border-2 ${state === 'killed' ? 'border-red-600' : state === 'paused' ? 'border-amber-500' : 'border-primary'}`}>
+          <div className="flex flex-wrap items-center gap-3 mb-3"><h2 className="font-serif text-xl">Agent controls</h2>{badge(state === 'running' ? 'agents running' : state === 'paused' ? 'all agents paused' : 'KILL SWITCH ON', tone)}</div>
+          <p className="text-sm text-ink-mid mb-3">The switch is enforced in the backend: every agent checks it before starting, before each topic, before every write and before publishing. {c?.reason && <>Reason: {c.reason}. </>}{c?.updated && <>Changed {new Date(c.updated).toLocaleString()}.</>}</p>
+          <div className="flex flex-wrap gap-2">
+            {state === 'running' && <button className="btn-outline text-xs" onClick={() => act('pause', {}, 'Pause all agents? Running jobs stop at their next safe step and nothing new starts.')}>Pause all</button>}
+            {state === 'paused' && <button className="btn-primary text-xs" onClick={() => act('resume')}>Resume all</button>}
+            {state !== 'killed' && <button className="text-xs px-3 py-2 bg-red-700 text-white" onClick={() => act('kill', {}, 'KILL SWITCH: cancel every running agent job and block all writes and publishing until you reset it?')}>Kill switch</button>}
+            {state === 'killed' && <button className="btn-primary text-xs" onClick={() => act('reset', { confirm: true }, 'Reset the kill switch and allow agents to run again? Old queued work will not restart by itself.')}>Reset kill switch</button>}
+          </div>
+        </div>
+
+        <div className="card">
+          <h2 className="font-serif text-xl mb-3">Agents and jobs</h2>
+          <table className="w-full text-sm"><thead><tr className="text-left text-ink-mid"><th className="py-1">Job</th><th>Status</th><th>Last run</th><th></th></tr></thead><tbody>{(data.runs as Json[]).map(r => (
+            <tr key={r.job} className="border-t border-accent/10"><td className="py-1.5">{JOB_INFO[r.job] || r.job}</td>
+              <td>{!r.enabled ? badge('off', 'warn') : r.status && r.status !== 'completed' ? badge(r.status, 'warn') : r.conclusion ? badge(r.conclusion, r.conclusion === 'success' ? 'ok' : 'bad') : badge('idle', 'ok')}</td>
+              <td className="text-ink-mid text-xs">{r.when ? new Date(r.when).toLocaleString() : 'never'} {r.url && <a className="underline text-primary" href={r.url} target="_blank" rel="noopener noreferrer">log</a>}</td>
+              <td><button className="btn-outline text-xs" onClick={() => act('job', { job: r.job, enabled: !r.enabled })}>{r.enabled ? 'Switch off' : 'Switch on'}</button></td></tr>))}</tbody></table>
+        </div>
+
+        <div className="card">
+          <h2 className="font-serif text-xl mb-1">Run a content sprint</h2>
+          <p className="text-sm text-ink-mid mb-3">One research pass and one drafting call per topic from the register below, three slices with photos and publishing after each. Pages whose checks pass go live per the publishing switch; pages with thin evidence wait as drafts; pages without a photo go live with a placeholder you can fill later. It stops cleanly at the time limit and never claims the whole list is done when it is not.</p>
+          <div className="flex flex-wrap gap-3 items-end text-sm mb-3">
+            <label>Minutes (60 to 180)<input className={inp + ' block w-24'} value={f.minutes} onChange={e => setF({ ...f, minutes: e.target.value })} /></label>
+            <label>Topics per slice<input className={inp + ' block w-24'} value={f.max} onChange={e => setF({ ...f, max: e.target.value })} /></label>
+            <label>Spend cap USD<input className={inp + ' block w-24'} value={f.budget} onChange={e => setF({ ...f, budget: e.target.value })} /></label>
+            <button className="btn-primary text-xs disabled:opacity-40" disabled={state !== 'running'} onClick={start}>Start sprint</button>
+          </div>
+          <p className="text-sm text-ink-mid">Publishing: {badge(auto ? 'publish automatically' : 'review first', auto ? 'ok' : 'warn')} <button className="underline text-primary text-xs ml-2" onClick={async () => { if (!window.confirm(auto ? 'Switch to review first? New pages will wait for your approval.' : 'Publish automatically? Pages that pass every check go live; health topics and flagged pages still wait.')) return; const r = await api('agent_settings_save', { autoPublish: !auto }); say(r.ok ? r.data.message : r.data.error, !r.ok); st.reload() }}>change</button></p>
+        </div>
+
+        <div className="card">
+          <h2 className="font-serif text-xl mb-3">Progress</h2>
+          <div className="flex flex-wrap gap-2 mb-3 text-sm">{Object.entries(data.counts as Record<string, number>).map(([k, v]) => <span key={k}>{badge(`${k}: ${v}`, k === 'failed' ? 'bad' : k === 'todo' ? 'warn' : 'ok')}</span>)}{badge(`pages needing a photo: ${data.needsImage}`, data.needsImage ? 'warn' : 'ok')}{badge(`pages needing a fact check: ${data.needsFactCheck}`, data.needsFactCheck ? 'warn' : 'ok')}</div>
+          {data.report && <details><summary className="cursor-pointer text-sm text-primary">Last run report</summary><pre className="whitespace-pre-wrap text-xs text-ink-mid mt-2 max-h-72 overflow-auto">{data.report}</pre></details>}
+        </div>
+
+        <div className="card">
+          <h2 className="font-serif text-xl mb-3">Topic register ({data.topics.length})</h2>
+          <div className="flex flex-wrap gap-2 mb-3 text-sm">
+            <select className={inp} value={flt.status} onChange={e => setFlt({ ...flt, status: e.target.value })}><option value="">any status</option>{['todo', 'done', 'exists', 'failed', 'skipped'].map(x => <option key={x}>{x}</option>)}</select>
+            <select className={inp} value={flt.category} onChange={e => setFlt({ ...flt, category: e.target.value })}><option value="">any category</option>{cats.map(x => <option key={x}>{x}</option>)}</select>
+          </div>
+          <div className="max-h-96 overflow-auto"><table className="w-full text-sm"><tbody>{topics.map(t => (
+            <tr key={t.id} className="border-t border-accent/10"><td className="py-1.5">{t.name}<span className="block text-xs text-ink-mid">{t.category} · {t.district} · priority {t.priority}{t.lastResult ? ` · ${t.lastResult}` : ''}</span></td>
+              <td>{badge(t.status, t.status === 'failed' ? 'bad' : t.status === 'todo' ? 'warn' : 'ok')}</td>
+              <td className="text-right whitespace-nowrap">{t.slug && <a className="underline text-primary text-xs mr-2" href={`/discover/${t.category}/${t.slug}/`} target="_blank" rel="noopener noreferrer">open</a>}
+                {t.status !== 'todo' && t.status !== 'done' && t.status !== 'exists' && <button className="btn-outline text-xs" onClick={async () => { const r = await api('topic_set', { id: t.id, status: 'todo' }); say(r.ok ? r.data.message : r.data.error, !r.ok); reload() }}>Retry</button>}
+                {t.status === 'todo' && <button className="btn-outline text-xs" onClick={async () => { const r = await api('topic_set', { id: t.id, status: 'skipped' }); say(r.ok ? r.data.message : r.data.error, !r.ok); reload() }}>Skip</button>}</td></tr>))}</tbody></table></div>
+          <div className="flex flex-wrap gap-2 items-end mt-4 text-sm border-t border-accent/10 pt-4">
+            <label>New topic<input className={inp + ' block w-64'} value={nt.name} onChange={e => setNt({ ...nt, name: e.target.value })} /></label>
+            <label>Category<select className={inp + ' block'} value={nt.category} onChange={e => setNt({ ...nt, category: e.target.value })}>{['temples', 'places', 'beaches', 'backwaters', 'heritage', 'ayurveda', 'vedic', 'healing', 'plants', 'cultivation', 'music', 'dance', 'astrology', 'weddings', 'medical', 'food', 'muthassi', 'crafts', 'artisans', 'wear'].map(x => <option key={x}>{x}</option>)}</select></label>
+            <label>District<input className={inp + ' block w-36'} value={nt.district} onChange={e => setNt({ ...nt, district: e.target.value })} /></label>
+            <label>Priority<select className={inp + ' block'} value={nt.priority} onChange={e => setNt({ ...nt, priority: e.target.value })}><option value="1">1 high</option><option value="2">2</option><option value="3">3 low</option></select></label>
+            <button className="btn-primary text-xs" disabled={nt.name.trim().length < 3} onClick={async () => { const r = await api('topic_add', { ...nt, priority: Number(nt.priority) }); say(r.ok ? r.data.message : r.data.error, !r.ok); if (r.ok) { setNt({ ...nt, name: '' }); reload() } }}>Add topic</button>
+          </div>
+        </div>
+      </>}
     </div>
   )
 }

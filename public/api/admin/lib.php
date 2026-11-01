@@ -191,7 +191,8 @@ function publish_blockers(array $e): array {
     $b = [];
     if (($e['status'] ?? '') !== 'draft') $b[] = 'Entry is not a draft.';
     $imgs = $e['images'] ?? [];
-    if (!is_array($imgs) || count($imgs) < 1) $b[] = 'Needs at least 1 licensed, credited image (use "Find images").';
+    if ((!is_array($imgs) || count($imgs) < 1) && ($e['imageStatus'] ?? '') === 'needed') { /* awaiting a photo: allowed, shows no image */ }
+    elseif (!is_array($imgs) || count($imgs) < 1) $b[] = 'Needs at least 1 licensed, credited image (use "Find images").';
     else foreach ($imgs as $im) foreach (['src', 'alt', 'credit', 'license', 'sourceUrl'] as $f) if (empty($im[$f])) { $b[] = "An image is missing its $f."; break 2; }
     $src = $e['sources'] ?? [];
     $okSrc = array_filter(is_array($src) ? $src : [], fn($s) => is_array($s) && !empty($s['label']) && preg_match('~^https://~', $s['url'] ?? ''));

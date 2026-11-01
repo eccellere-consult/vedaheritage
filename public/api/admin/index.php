@@ -89,6 +89,39 @@ function review_card(array $e, ?array $ev, string $fileStatus, string $head): ar
     ];
 }
 
+
+// ---------------------------------------------------------------- agent stop switch (agents/control.json on main)
+const AGENT_JOBS = ['sprint' => 'sprint.yml', 'events' => 'events.yml', 'fetch-images' => 'fetch-images.yml', 'content-agents' => 'content-agents.yml'];
+
+function control_read(): array {
+    $f = gh_file('agents/control.json', 'main'); $c = $f ? json_decode($f['text'], true) : [];
+    if (!is_array($c)) $c = [];
+    $c['state'] = in_array($c['state'] ?? '', ['running', 'paused', 'killed'], true) ? $c['state'] : 'running';
+    $c['agents'] = is_array($c['agents'] ?? null) ? $c['agents'] : [];
+    return $c + ['reason' => '', 'by' => '', 'updated' => null];
+}
+
+function control_write(array $c, string $msg): void {
+    $c['updated'] = gmdate('c');
+    gh_commit_files(['agents/control.json' => ['text' => json_encode($c, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n"]], $msg);
+}
+
+/** Refuse to start an agent job while paused/killed or while that job is switched off. */
+function control_gate(string $job): void {
+    $c = control_read();
+    if ($c['state'] !== 'running') json_out(409, ['error' => 'Agents are ' . $c['state'] . '. Resume them under Content sprint before starting a run.']);
+    if (($c['agents'][$job] ?? true) === false) json_out(409, ['error' => ucfirst($job) . ' is switched off. Switch it on under Content sprint first.']);
+}
+
+function cancel_active_runs(): int {
+    $n = 0;
+    foreach (AGENT_JOBS as $wf) foreach (['in_progress', 'queued'] as $st) {
+        $r = gh('GET', '/repos/' . repo() . "/actions/workflows/$wf/runs", null, ['status' => $st, 'per_page' => 10]);
+        foreach (($r[1]['workflow_runs'] ?? []) as $x) { $c = gh('POST', '/repos/' . repo() . '/actions/runs/' . (int)$x['id'] . '/cancel'); if ($c[0] < 300) $n++; }
+    }
+    return $n;
+}
+
 function check_state(string $sha): array {
     $r = gh_ok(gh('GET', '/repos/' . repo() . "/commits/$sha/check-runs", null, ['per_page' => 50]), 'read checks');
     $runs = $r['check_runs'] ?? [];
@@ -432,6 +465,7 @@ try {
         if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
         $w = need_str($in, 'workflow', 40); $inp = is_array($in['inputs'] ?? null) ? $in['inputs'] : [];
         $send = [];
+        if (isset(AGENT_JOBS[$w])) control_gate($w);   // the stop switch beats every manual start
         if ($w === 'content-agents') {
             $cmd = $inp['command'] ?? 'pipeline';
             if (!in_array($cmd, ['pipeline', 'scout', 'enrich', 'verify'], true)) json_out(400, ['error' => 'Bad command.']);
@@ -446,6 +480,12 @@ try {
             $slug = (string)($inp['slug'] ?? ''); if ($slug !== '' && !valid_slug($slug)) json_out(400, ['error' => 'Bad slug.']);
             $send = ($slug !== '' ? ['slug' => $slug] : []) + ['force' => !empty($inp['force']) ? 'true' : 'false'];
             $file = 'fetch-images.yml';
+        } elseif ($w === 'sprint') {
+            $min = (string)($inp['minutes'] ?? '150'); if (!preg_match('/^(6[0-9]|[7-9][0-9]|1[0-7][0-9]|180)$/', $min)) json_out(400, ['error' => 'Minutes must be 60 to 180.']);
+            $max = (string)($inp['max'] ?? '40'); if (!preg_match('/^([1-9]|[1-9][0-9]|1[0-9][0-9])$/', $max)) json_out(400, ['error' => 'Max topics per slice must be 1 to 199.']);
+            $bud = (string)($inp['budget'] ?? '20'); if (!preg_match('/^([1-9]|[1-3][0-9]|40)$/', $bud)) json_out(400, ['error' => 'Budget must be 1 to 40 USD.']);
+            $pv = (string)($inp['provider'] ?? 'saved'); if (!in_array($pv, ['saved', 'auto', 'xai', 'openai', 'anthropic'], true)) json_out(400, ['error' => 'Bad provider.']);
+            $send = ['minutes' => $min, 'max' => $max, 'budget' => $bud, 'provider' => $pv]; $file = 'sprint.yml';
         } elseif ($w === 'events') {
             $pv = (string)($inp['provider'] ?? 'saved');
             if (!in_array($pv, ['saved', 'auto', 'xai', 'openai', 'anthropic'], true)) json_out(400, ['error' => 'Bad provider.']);
@@ -460,7 +500,7 @@ try {
 
     case 'site': {
         $runs = [];
-        foreach (['deploy.yml', 'content-agents.yml', 'events.yml', 'fetch-images.yml'] as $wf) {
+        foreach (['deploy.yml', 'sprint.yml', 'content-agents.yml', 'events.yml', 'fetch-images.yml'] as $wf) {
             $r = gh('GET', '/repos/' . repo() . "/actions/workflows/$wf/runs", null, ['per_page' => 3]);
             foreach (($r[1]['workflow_runs'] ?? []) as $x) $runs[] = ['workflow' => $wf, 'status' => $x['status'], 'conclusion' => $x['conclusion'], 'when' => $x['created_at'], 'url' => $x['html_url'], 'sha' => substr($x['head_sha'], 0, 7), 'event' => $x['event']];
         }
@@ -711,6 +751,75 @@ try {
         json_out(200, ['ok' => true, 'autoPublish' => $auto, 'message' => $auto
             ? 'Saved. From the next run, entries that pass every check go live on their own and you review them on the site.'
             : 'Saved. From the next run, agent work waits for your approval under Review agent work.']);
+    }
+
+    // ---- Content sprint prototype: stop switch, topic register, dashboard data.
+    case 'control_get': {
+        $c = control_read(); $runs = [];
+        foreach (AGENT_JOBS as $job => $wf) {
+            $r = gh('GET', '/repos/' . repo() . "/actions/workflows/$wf/runs", null, ['per_page' => 3]);
+            $x = ($r[1]['workflow_runs'] ?? [])[0] ?? null;
+            $runs[] = ['job' => $job, 'file' => $wf, 'enabled' => ($c['agents'][$job] ?? true) !== false, 'status' => $x['status'] ?? null, 'conclusion' => $x['conclusion'] ?? null, 'when' => $x['created_at'] ?? null, 'url' => $x['html_url'] ?? null];
+        }
+        $tf = gh_file('agents/registers/topics.json', 'main'); $reg = $tf ? json_decode($tf['text'], true) : [];
+        $topics = is_array($reg['topics'] ?? null) ? $reg['topics'] : [];
+        $counts = []; foreach ($topics as $t) { $k = $t['status'] ?? 'todo'; $counts[$k] = ($counts[$k] ?? 0) + 1; }
+        $ix = tree_index(); $needsImage = 0; $needsCheck = 0;
+        foreach ($ix['entries'] as $e) { $d = blob_json($e['sha']); if (!$d) continue;
+            if (($d['status'] ?? '') === 'approved' && empty($d['images'])) $needsImage++;
+            if (($d['editorial']['status'] ?? '') === 'needs_fact_check') $needsCheck++; }
+        $rep = gh_file('agents/reports/latest.md', 'main');
+        json_out(200, ['control' => $c, 'runs' => $runs, 'counts' => $counts, 'topics' => $topics, 'needsImage' => $needsImage, 'needsFactCheck' => $needsCheck,
+            'report' => $rep ? substr($rep['text'], 0, 6000) : '']);
+    }
+
+    case 'control_set': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $act = need_str($in, 'action', 12); $c = control_read();
+        $reason = substr(trim(strip_tags((string)($in['reason'] ?? ''))), 0, 120);
+        if ($act === 'pause' && $c['state'] === 'running') { $c['state'] = 'paused'; $msg = 'Pause all agents'; }
+        elseif ($act === 'resume' && $c['state'] === 'paused') { $c['state'] = 'running'; $c['reason'] = ''; $msg = 'Resume all agents'; }
+        elseif ($act === 'kill') { $c['state'] = 'killed'; $msg = 'KILL SWITCH: stop all agents'; }
+        elseif ($act === 'reset' && $c['state'] === 'killed') {
+            if (empty($in['confirm'])) json_out(400, ['error' => 'Resetting the kill switch needs confirmation.']);
+            $c['state'] = 'running'; $c['reason'] = ''; $msg = 'Reset kill switch';
+        } elseif ($act === 'job') {
+            $job = need_str($in, 'job', 20); if (!isset(AGENT_JOBS[$job])) json_out(400, ['error' => 'Unknown job.']);
+            $c['agents'][$job] = !empty($in['enabled']); $msg = ($c['agents'][$job] ? 'Switch on ' : 'Switch off ') . $job; $act = 'job:' . $job;
+        } else json_out(409, ['error' => "Cannot $act while agents are " . $c['state'] . '.']);
+        if (in_array($act, ['pause', 'kill'], true)) $c['reason'] = $reason;
+        $c['by'] = 'admin';
+        control_write($c, "$msg (admin)");
+        $cancelled = ($act === 'kill') ? cancel_active_runs() : 0;
+        audit('control', ['action' => $act, 'state' => $c['state'], 'cancelledRuns' => $cancelled]);
+        json_out(200, ['ok' => true, 'state' => $c['state'], 'cancelledRuns' => $cancelled, 'message' => $act === 'kill'
+            ? "Kill switch on. $cancelled running job(s) cancelled. Nothing more is written or published until you reset it." : 'Saved.']);
+    }
+
+    case 'topic_add': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $name = trim(strip_tags(need_str($in, 'name', 120))); $cat = need_str($in, 'category', 30); $dist = trim(strip_tags((string)($in['district'] ?? 'Kerala'))) ?: 'Kerala';
+        $pri = max(1, min(3, (int)($in['priority'] ?? 2)));
+        if (!in_array($cat, CATS, true) || strlen($name) < 3) json_out(400, ['error' => 'Give a topic name and a category.']);
+        $tf = gh_file('agents/registers/topics.json', 'main'); $reg = $tf ? json_decode($tf['text'], true) : ['version' => 1, 'topics' => []];
+        if (!is_array($reg) || !is_array($reg['topics'] ?? null)) $reg = ['version' => 1, 'topics' => []];
+        $id = trim(preg_replace('~[^a-z0-9]+~', '-', strtolower($name)), '-'); $id = substr($id, 0, 80);
+        foreach ($reg['topics'] as $t) if (($t['id'] ?? '') === $id) json_out(409, ['error' => 'That topic is already in the register.']);
+        $reg['topics'][] = ['id' => $id, 'name' => $name, 'category' => $cat, 'district' => substr($dist, 0, 60), 'priority' => $pri, 'status' => 'todo', 'slug' => null, 'lastRun' => null, 'lastResult' => null, 'editorial' => null, 'nextReview' => null, 'imageStatus' => null, 'note' => ''];
+        gh_commit_files(['agents/registers/topics.json' => ['text' => json_encode($reg, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], "Add topic $name (admin)");
+        audit('topic-add', ['id' => $id]); json_out(200, ['ok' => true, 'message' => 'Added. The next sprint picks it up.']);
+    }
+
+    case 'topic_set': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 80); $st = need_str($in, 'status', 10);
+        if (!in_array($st, ['todo', 'skipped'], true)) json_out(400, ['error' => 'Bad status.']);
+        $tf = gh_file('agents/registers/topics.json', 'main'); $reg = $tf ? json_decode($tf['text'], true) : null;
+        if (!is_array($reg) || !is_array($reg['topics'] ?? null)) json_out(404, ['error' => 'No topic register.']);
+        $hit = false; foreach ($reg['topics'] as &$t) if (($t['id'] ?? '') === $id) { $t['status'] = $st; $hit = true; } unset($t);
+        if (!$hit) json_out(404, ['error' => 'Topic not found.']);
+        gh_commit_files(['agents/registers/topics.json' => ['text' => json_encode($reg, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], "Topic $id: $st (admin)");
+        audit('topic-set', ['id' => $id, 'status' => $st]); json_out(200, ['ok' => true, 'message' => $st === 'todo' ? 'Queued for the next sprint.' : 'Skipped.']);
     }
 
     case 'activity': {

@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import PhotoUpload from './PhotoUpload'
 
 const API = '/api/admin/index.php'
 type Json = Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -27,7 +28,7 @@ function useOwner(): string | null {
 const btn = 'px-3 py-1.5 text-xs border border-white/40 hover:bg-white/10 disabled:opacity-40'
 
 /** Owner tools on a live guide page: edit, mark reviewed, unpublish, delete. */
-export default function OwnerBar({ category, slug, autoPublished, reviewed }: { category: string; slug: string; autoPublished?: string; reviewed?: boolean }) {
+export default function OwnerBar({ category, slug, autoPublished, reviewed, imageStatus }: { category: string; slug: string; autoPublished?: string; reviewed?: boolean; imageStatus?: string }) {
   const csrf = useOwner(); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false)
   const [edit, setEdit] = useState<Json | null>(null); const [raw, setRaw] = useState(false); const [json, setJson] = useState('')
   if (!csrf) return null
@@ -59,6 +60,8 @@ export default function OwnerBar({ category, slug, autoPublished, reviewed }: { 
         {needsReview && <button className={btn} disabled={busy} onClick={() => run('entry_reviewed')}>Mark reviewed</button>}
         <button className={btn} disabled={busy} onClick={() => run('set_status', { status: 'draft' }, 'Unpublish this page? It goes back to drafts and disappears from the site.')}>Unpublish</button>
         <button className={btn} disabled={busy} onClick={() => run('entry_delete', {}, 'Delete this page and its photos for good?')}>Delete</button>
+        {imageStatus === 'needed' && <span className="bg-amber-500/20 border border-amber-300/50 px-2 py-1">No photo yet</span>}
+        <span className="bg-white text-ink px-1"><PhotoUpload category={category} slug={slug} say={(t: string) => setMsg(t)} onDone={() => setMsg('Photo attached. The page updates after the next rebuild.')} post={(a: string, body: { [k: string]: unknown }) => call(a, csrf as string, body)} /></span>
         <a className={btn} href="/admin/">Admin</a>
         {msg && <span className="ml-2" role="status">{msg}</span>}
       </div>

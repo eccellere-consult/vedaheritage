@@ -45,6 +45,9 @@ Published-by-agent pages show visitors "Editor review pending" until you edit th
 ### Where photos come from
 Wikimedia Commons first, then Openverse (Creative Commons photos, including Flickr) when Commons has none. Only commercial-use licences with a named creator are accepted, and the credit appears under the photo. The photo's text must name the place, and GPS and camera data are removed. A page still needs at least one credited photo before it can go live automatically. You can always add your own with **Upload your own photo**.
 
+### Content sprint and the stop switch (prototype)
+The **Content sprint** tab holds the pause, kill and per-job switches, the sprint launcher, progress counts and the topic register. See `docs/SPRINT.md`.
+
 ### Your own photos
 The browser shrinks the picture to 1600 px and re-encodes it as JPEG, and the server re-encodes it again, so GPS and camera data are removed. The credit you type is shown under the photo, with the licence "Own photo, used with the photographer's permission". Only upload pictures you took or may publish.
 
