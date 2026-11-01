@@ -343,7 +343,7 @@ function Drafts({ say }: { say: (t: string, bad?: boolean) => void }) {
     }
     say([r.data.error, ...(r.data.blockers || [])].filter(Boolean).join(' · '), true)
   }
-  async function findImages(e: Json) { const r = await api('run_workflow', { workflow: 'fetch-images', inputs: { slug: e.slug } }); say(r.ok ? 'Image search started. A pull request with photos appears in a few minutes; merge it under Pull requests, then publish.' : r.data.error, !r.ok) }
+  async function findImages(e: Json) { const r = await api('run_workflow', { workflow: 'fetch-images', inputs: { slug: e.slug } }); say(r.ok ? 'Image search started. In publish-automatically mode the page goes live once a photo passes every check; in review-first mode a pull request with the photos appears in a few minutes.' : r.data.error, !r.ok) }
   return (
     <div>
       <div className="flex gap-2 mb-4">{(['draft', 'approved'] as const).map(k => <button key={k} onClick={() => setShow(k)} className={`px-3 py-1 text-sm border ${show === k ? 'bg-ink text-white border-ink' : 'bg-white border-accent/30 text-ink-mid'}`}>{k === 'draft' ? 'Drafts' : 'Published'}</button>)}</div>
@@ -690,7 +690,7 @@ function Agents({ say }: { say: (t: string, bad?: boolean) => void }) {
       <div className="space-y-6">
         <div className="card">
           <h2 className="font-serif text-xl mb-1">Find licensed images</h2>
-          <p className="text-sm text-ink-mid mb-4">Searches Wikimedia Commons for open-licence photos and opens a pull request. Check each photo before merging. The agents run does this automatically for new drafts.</p>
+          <p className="text-sm text-ink-mid mb-4">Searches Wikimedia Commons, then Openverse (Creative Commons photos, strict licence, relevance and safety checks), for open-licence photos. In publish-automatically mode, entries that then pass every check go live; otherwise it opens a pull request to check. The agents run does this automatically for new drafts.</p>
           <label className="text-sm block mb-1" htmlFor="is">Entry slug (blank = all entries with fewer than 2 images)</label>
           <input id="is" className={inp + ' mb-3'} value={im.slug} onChange={e => setIm({ ...im, slug: e.target.value })} />
           <label className="text-sm flex gap-2 mb-3"><input type="checkbox" checked={im.force} onChange={e => setIm({ ...im, force: e.target.checked })} /> Replace existing images</label>

@@ -3,11 +3,14 @@
 // Output is a CANDIDATE set: the entry stays "draft" and a human approves the
 // images (right place? authentic? good quality?) in the pull request.
 //
-// Usage: node scripts/fetch-commons-images.mjs [--only <slug>] [--force] [--drafts]
+// When Commons has too few, Openverse (Creative Commons photos, e.g. Flickr) fills the gap under strict guardrails
+// (agents/lib/openverse.mjs). Disable with --no-openverse. Optional env OPENVERSE_CLIENT_ID / OPENVERSE_CLIENT_SECRET.
+// Usage: node scripts/fetch-commons-images.mjs [--only <slug>] [--force] [--drafts] [--no-openverse]
 // Needs network access to commons.wikimedia.org / upload.wikimedia.org.
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { openverseToken, pickOpenverse, searchOpenverse, stripJpegMetadata } from '../agents/lib/openverse.mjs'
 
 const UA = 'VedaHeritageContentBot/1.0 (https://www.vedaheritage.co.in; stay@vedaheritage.co.in)'
 const API = 'https://commons.wikimedia.org/w/api.php'
@@ -54,6 +57,8 @@ async function main() {
   const args = process.argv.slice(2)
   const only = args.includes('--only') ? args[args.indexOf('--only') + 1] : null
   const force = args.includes('--force')
+  const useOpenverse = !args.includes('--no-openverse') && process.env.OPENVERSE !== '0'
+  const token = useOpenverse ? await openverseToken().catch(() => null) : null
   const draftsOnly = args.includes('--drafts')   // only entries still in draft (used by the agents workflow)
   const root = path.join(process.cwd(), 'src', 'content')
   const outDir = path.join(process.cwd(), 'public', 'images', 'discover')
@@ -69,7 +74,12 @@ async function main() {
       if (draftsOnly && e.status !== 'draft') continue
       if (!force && (e.images || []).length >= 2) continue
       const query = e.district && e.district !== 'Statewide' ? `${e.name} ${e.district}` : `${e.name} Kerala`
-      const picks = pickImages(await search(query), 2 - (force ? 0 : (e.images || []).length))
+      const need = 2 - (force ? 0 : (e.images || []).length)
+      const picks = pickImages(await search(query), need).map(c => ({ ...c, via: 'commons' }))
+      if (useOpenverse && picks.length < need) {
+        try { picks.push(...pickOpenverse(await searchOpenverse(`${e.name} Kerala`, { ua: UA, token }), e, need - picks.length).map(c => ({ ...c, via: 'openverse' }))) }
+        catch (err) { console.log(`  ! Openverse unavailable (${err.message})`) }
+      }
       if (!picks.length) { console.log(`– ${e.slug}: no suitable licensed image found`); continue }
       const images = force ? [] : [...(e.images || [])]
       for (const c of picks) {
@@ -77,8 +87,15 @@ async function main() {
         const dest = `/images/discover/${e.slug}-${n}.jpg`
         const res = await fetch(c.url, { headers: { 'User-Agent': UA } })
         if (!res.ok) { console.log(`  ! download failed ${c.url}`); continue }
-        fs.writeFileSync(path.join(process.cwd(), 'public', dest), Buffer.from(await res.arrayBuffer()))
+        let bytes = Buffer.from(await res.arrayBuffer())
+        if (c.via === 'openverse') {
+          // Originals can carry GPS and camera data, and could be anything: accept only a modest JPEG, then strip its metadata.
+          if (bytes.length > 8_000_000) { console.log(`  ! too large ${c.url}`); continue }
+          try { bytes = stripJpegMetadata(bytes) } catch { console.log(`  ! not a usable JPEG ${c.url}`); continue }
+        }
+        fs.writeFileSync(path.join(process.cwd(), 'public', dest), bytes)
         images.push({ src: dest, alt: c.alt || `${e.name}, ${e.district}, Kerala`, credit: c.credit, license: c.license, ...(c.licenseUrl ? { licenseUrl: c.licenseUrl } : {}), sourceUrl: c.sourceUrl })
+        if (c.via === 'openverse') console.log(`  + Openverse photo for ${e.slug}: ${c.license}, ${c.credit}`)
       }
       e.images = images
       fs.writeFileSync(file, JSON.stringify(e, null, 2) + '\n')

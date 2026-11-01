@@ -1,8 +1,9 @@
 name: Fetch licensed images
 
-# Finds openly licensed Wikimedia Commons photos for entries with fewer than 2
-# images and opens a PR. A human must check each photo is authentic and shows
-# the right place before merging.
+# Finds openly licensed photos (Wikimedia Commons first, then Openverse under strict guardrails) for entries with
+# fewer than 2 images. Then, per the admin switch (Run agents > How does agent work reach the site?):
+#   publish automatically: entries that now pass every gate go live and the site deploys;
+#   review first: opens ONE pull request and a human checks each photo before merging.
 
 on:
   workflow_dispatch:
@@ -18,6 +19,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   fetch:
@@ -27,8 +29,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Fetch images from Wikimedia Commons
+          cache: 'npm'
+      - run: npm ci
+      - name: Fetch images (Wikimedia Commons, then Openverse)
         env:
+          OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
+          OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
           SLUG: ${{ inputs.slug }}
           FORCE: ${{ inputs.force }}
         run: |
@@ -36,21 +42,46 @@ jobs:
           [ -n "$SLUG" ] && args+=(--only "$SLUG")
           [ "$FORCE" = "true" ] && args+=(--force)
           node scripts/fetch-commons-images.mjs "${args[@]}"
-      - name: Validate
+      - name: Publish entries that pass every check (only when automatic publishing is on)
+        run: node scripts/auto-publish.mjs
+      - name: Validate content
         run: node scripts/validate-content.mjs
-      - name: Open pull request
+      - name: Publish to the site, or open a pull request
+        # autoPublish true (admin > Run agents): run ALL the pull-request checks, then commit to main and trigger the deploy;
+        # the owner reviews on the site.
+        # autoPublish false, or anything fails (build, push): open ONE pull request for review, as before.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
         run: |
-          if [ -z "$(git status --porcelain)" ]; then echo "No new images found."; exit 0; fi
-          branch="images/$(date +%Y%m%d-%H%M%S)"
+          if [ -z "$(git status --porcelain)" ]; then echo "No changes."; exit 0; fi
           git config user.name "veda-content-bot"
           git config user.email "content-bot@users.noreply.github.com"
+          # The same checks the pull-request check runs: content, agent tests, admin tests, types, build.
+          checks() { { node scripts/validate-content.mjs && npm run agents:test && npm run admin:test && npx tsc --noEmit && npx next build; } >/tmp/checks.log 2>&1; }
+          auto=$(node -e "try{console.log(JSON.parse(require('fs').readFileSync('agents/settings.json','utf8')).autoPublish===true?'yes':'no')}catch(e){console.log('no')}")
+          for p in src/content public/images/discover agents/reports; do [ -e "$p" ] && git add -A "$p"; done
+          git commit -m "content: add licensed images"
+          if [ "$auto" = "yes" ] && [ "$BASE_BRANCH" = "main" ]; then
+            if checks; then
+              for i in 1 2 3; do
+                if git push origin HEAD:main; then
+                  gh workflow run deploy.yml --ref main && echo "Published; deploy started."
+                  exit 0
+                fi
+                # main moved while we worked: bring it in, then run every check again on the combined result
+                if ! git pull --rebase origin main; then git rebase --abort; echo "Conflict with main."; break; fi
+                checks || { tail -40 /tmp/checks.log; break; }
+              done
+              echo "Could not publish directly; opening a pull request instead."
+            else
+              tail -40 /tmp/checks.log; echo "A check failed; opening a pull request instead."
+            fi
+          fi
+          branch="images/$(date +%Y%m%d-%H%M)"
           git checkout -b "$branch"
-          git add -A src/content public/images/discover
-          git commit -m "content: add licensed candidate images from Wikimedia Commons"
           git push origin "$branch"
+          printf 'Candidate photos with credit and licence recorded (Wikimedia Commons, or Openverse under strict guardrails). Check each: right place, authentic, good quality, attribution shown. Remove any that are not suitable before merging.\n' > /tmp/pr-body.md
           gh pr create --base "$BASE_BRANCH" --head "$branch" \
-            --title "Review candidate images (Wikimedia Commons)" \
-            --body "Candidate photos with credit and licence recorded. Check each: right place, authentic, good quality, attribution shown. Remove any that are not suitable before merging."
+            --title "Review candidate images ($(date +%F))" \
+            --body-file /tmp/pr-body.md

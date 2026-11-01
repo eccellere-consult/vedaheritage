@@ -42,6 +42,9 @@ Published-by-agent pages show visitors "Editor review pending" until you edit th
 
 **Owner bar:** log in at `/admin/`, then open any guide on the live site. A bar at the bottom shows **Edit**, **Mark reviewed**, **Unpublish**, **Delete** and **Admin**. On the Events page each event has **Remove event**. The Overview tile "Auto-published, to review" counts pages you have not reviewed. Edits and deletes rebuild the site in a few minutes. A deleted page is not re-added by the agents.
 
+### Where photos come from
+Wikimedia Commons first, then Openverse (Creative Commons photos, including Flickr) when Commons has none. Only commercial-use licences with a named creator are accepted, and the credit appears under the photo. The photo's text must name the place, and GPS and camera data are removed. A page still needs at least one credited photo before it can go live automatically. You can always add your own with **Upload your own photo**.
+
 ### Your own photos
 The browser shrinks the picture to 1600 px and re-encodes it as JPEG, and the server re-encodes it again, so GPS and camera data are removed. The credit you type is shown under the photo, with the licence "Own photo, used with the photographer's permission". Only upload pictures you took or may publish.
 
