@@ -1,0 +1,270 @@
+{
+  "date": "2026-11-01",
+  "model": "gpt-5-mini",
+  "candidate": {
+    "id": "kalari-chikitsa-kalari-marma-and-traditional-kalari-healing",
+    "name": "Kalari chikitsa (Kalari marma and traditional Kalari healing)",
+    "category": "healing",
+    "district": "Kerala",
+    "reason": "The traditional Kalari healing arts (marma chikitsa, uzhichil, chavutti thirumal) form an active, visitable therapeutic‑cultural tradition closely linked with Kalaripayattu training centres across Kerala.",
+    "priority": 2,
+    "sourceUrls": [
+      "https://www.keralatourism.org/kalaripayattu/kalari-treatment/protocol",
+      "https://www.kalarigram.org/treatment"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-11-01",
+    "slug": "kalari-chikitsa-kalari-marma-and-traditional-kalari-healing"
+  },
+  "warnings": [
+    "4 source(s) dropped: URL was not actually retrieved",
+    "3 contact(s) dropped: source page not retrieved or details malformed",
+    "4 claim(s) dropped: source URL not retrieved"
+  ],
+  "consulted": [
+    "https://www.indiascienceandtechnology.gov.in/research/development-kalari-vedic-treatment-protocol-and-research-centres-recovery-disabling-stroke-india?language=en%3Ffield_area_id%3D2440",
+    "https://www.isrctn.com/ISRCTN68137638",
+    "https://ccras.nic.in/services/clinical-research/",
+    "https://www.isrctn.com/pdf/ISRCTN68137638",
+    "https://www.amrita.edu/center/acara/",
+    "https://www.isrctn.com/pdf/68137638",
+    "https://www.jpsionline.com/articles/ayurvedic-management-of-stroke-with-special-reference-to-left-temporoparietal-lobe-gliosis-a-case-report.pdf",
+    "https://www.nature.com/articles/s41599-025-04721-2",
+    "https://admin.amritahospitals.org/sites/default/files/amrita-neuro-sciences-2025.pdf",
+    "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=200336",
+    "https://www.indiascienceandtechnology.gov.in/research/ayurvedic-treatment-rehabilitation-ischemic-stroke-patient-india-randomized-controlled-trial-study?field_area_id=2440",
+    "https://www.amritavirtualacademy.com/courses/guided-practices-library",
+    "https://www.ism.kerala.gov.in/eng/index.php/punarjani-1-1",
+    "https://www.ncbi.nlm.nih.gov/books/NBK622028/",
+    "https://pubmed.ncbi.nlm.nih.gov/41379724/",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC6598790/",
+    "https://en.wikipedia.org/wiki/Kalaripayattu",
+    "https://www.keralatourism.org/kalaripayattu/kalari-treatment/marmavidya-marmas",
+    "https://www.keralatourism.org/kalaripayattu/kalari-treatment",
+    "https://www.ssmdayurvediccollege.com/digital_library/books/Marma%20Shastra.pdf",
+    "https://ijrar.org/papers/IJRAR19K9166.pdf",
+    "https://www.researchgate.net/publication/368607482_EXPLORING_THE_POTENTIALS_OF_THE_INTANGIBLE_ARTFORM_KALARIPAYATTU_AND_KALARI_CHIKITSA",
+    "https://vaidheeswaran.com/about/",
+    "https://www.scribd.com/document/1017084884/13-IJRAR-Kalari19K9166",
+    "https://es.scribd.com/document/447083361/Ayurveda-Bioenergetica-Marma-Shastra-pdf",
+    "https://theartexpres.blogspot.com/2022/09/",
+    "https://112.gov.in/faq",
+    "https://112.gov.in/",
+    "https://112.gov.in/about",
+    "https://mospi.gov.in/sites/default/files/announcements/Awareness%20of%20National%20emegency.....pdf",
+    "https://www.mha.gov.in/sites/default/files/WomenSafetyDivision_SheRakshaVol1_30052019pdf.pdf",
+    "https://112.gov.in/features",
+    "https://nia.mha.gov.in/en?trk=public_post_main-feed-card-text",
+    "https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=2116557&lang=2&reg=3",
+    "https://play.google.com/store/apps/details?hl=en_US&id=in.cdac.ners.psa.mobile.android.national",
+    "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=154070&lang=1&reg=3",
+    "https://112.gov.in/faq?lang=hi",
+    "https://www.mha.gov.in/sites/default/files/2023-07/SheRakshaHindi_27072023.pdf",
+    "https://msdma.gov.in/feedback.html",
+    "https://www.soar.org.in/national-helplines",
+    "https://police.py.gov.in/Other%20Units%20-%20Profile%20updated%20as%20on%20Junl%202022/CCR%20-%20ERSS%20Helpline%20%26%20Emergency%20Contact.pdf",
+    "https://www.voicehearers.org/support-resources/india/",
+    "https://www.mha.gov.in/sites/default/files/2023-07/SheRakshaEnglish_27072023.pdf",
+    "https://en.wikipedia.org/wiki/112_%28emergency_telephone_number%29",
+    "https://www.smcinsurance.com/health-insurance/bajaj-health-insurance/network-hospitals/kerala/",
+    "https://www.turtlemintinsurance.com/health-insurance/tata-aig/network-hospitals/ernakulam/",
+    "https://www.globalcarehealth.com/contactus",
+    "https://pt.scribd.com/document/362570798/FHPL-Network-Hospitals",
+    "https://www.ctsfellow.com/?specialty=Congenital",
+    "https://www.collegedhundo.com/collages.asp?var=all",
+    "https://www.mymedicplus.com/hospitals/india/",
+    "https://college4u.in/",
+    "https://www.amrita.edu/admissions/fellowship/",
+    "https://www.amrita.edu/events/amritacon-2022/",
+    "https://www.amrita.edu/program/b-sc-nuclear-medicine-technology-b-sc-nmt/",
+    "https://www.amrita.edu/events/two-day-cme-on-artificial-intelligence-and-machine-learning-in-medicine/",
+    "https://www.amrita.edu/iqac/",
+    "https://www.amrita.edu/events/ascend-2026/",
+    "https://www.amrita.edu/events/spasht/",
+    "https://www.amrita.edu/school/pharmacy/",
+    "https://www.amrita.edu/events/cme-on-from-bench-to-bedside-in-nephrology/",
+    "https://www.amrita.edu/department/department-of-forensic-medicine-toxicology/",
+    "https://www.amrita.edu/program/b-tech-artificial-intelligence-ai-and-data-science-medical-engineering/",
+    "https://www.amrita.edu/news/national-conference-on-healthcare-management-held-at-amrita-institute-of-medical-sciences/",
+    "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=104909",
+    "https://customercarelink.com/en/karnataka-state-road-transport-corp-ksrtc-enquiry-numbers/",
+    "https://complaintinfo.com/k-complaints/kerala-ksrtc-complaint-number.html",
+    "https://complaintinfo.com/k-complaints/ksrtc-complaints-online.html",
+    "https://www.dharwadhubli.com/?Itemid=19&direction=ASC&limit=20&limitstart=1540&option=com_userlist&orderby=usertype",
+    "https://complaintinfo.com/k-complaints/kerala-state-rtc-complaints.html",
+    "https://www.citizennest.com/guide/train-running-status-check",
+    "https://citizennest.com/guide/train-running-status-check",
+    "https://www.travelkhana.com/travelkhana/indian-railways-time-table",
+    "https://complaintinfo.com/k-complaints/kerala-ksrtc-complaints.html",
+    "https://complaintinfo.com/k-complaints/ksrtc-complaints-kerala.html",
+    "https://wiki.kru.org/article/how-to-know-train-status/",
+    "https://www.takingcharge.csh.umn.edu/where-ayurveda-come-from",
+    "https://link.springer.com/content/pdf/10.1007/s00383-025-06003-z.pdf",
+    "https://www.scribd.com/document/905507886/Incremental-SS-Translation",
+    "https://tibetanbuddhistencyclopedia.com/en/index.php/Ayurveda",
+    "https://rupabhaty.home.blog/2021/05/07/fascinating-evidence-of-beginning-of-lengthier-monsoons-and-winters-from-susruta-sa%E1%B9%83hita/",
+    "https://unumatma.wordpress.com/2026/07/12/ayurveda-2/",
+    "https://cavac.at/cavacopedia/Ayurveda",
+    "https://www.matribhumisamachar.in/2026/10/sushruta-ancient-indian-surgeon-sushruta-samhita.html",
+    "https://indiawiki.org/Ayurveda.html",
+    "https://www.indiancentury.com/hist2.htm",
+    "https://en.bharatpedia.org/w/index.php?action=view&title=Panchakarma",
+    "https://satyori.com/ancient-sciences/sushrutas-surgery/",
+    "https://sundayguardianlive.com/opinion/how-must-we-remember-sushrutas-contribution-234335/amp/",
+    "https://journals.ekb.eg/article_464577_b1ec6ef44099a38930ef2216460bf9fe.pdf",
+    "https://www.actacademy.in/img/image-1/Emerging%20Trends%20in%20Therapeutic%20Agents%20from%20Medicinal%20Plants.pdf",
+    "https://www.thehomoeopathy.com/uploads/publications/publication_Annexure-9-a-.pdf",
+    "https://nano-ntp.com/index.php/nano/article/download/4428/3404/8511",
+    "https://aptiwfn.com/images/pdf/2024_Sept_WFNL.pdf",
+    "https://www.reddit.com/r/scienceisdope/comments/14iinze",
+    "https://www.keralatourism.org/kalaripayattu/kalari-treatment/protocol",
+    "https://www.kalarigram.org/treatment"
+  ],
+  "claims": [
+    {
+      "claim": "Kerala Tourism describes marmashastra (marma science) as part of Shalyatantra and notes its role in Kalaripayattu training.",
+      "field": "history.keyFacts",
+      "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment/marmavidya-marmas",
+      "sensitive": false
+    },
+    {
+      "claim": "Kerala Tourism and practitioner materials describe marma mapping and marmavidya as central elements taught alongside Kalari training.",
+      "field": "description, history.keyFacts",
+      "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment/marmavidya-marmas",
+      "sensitive": false
+    },
+    {
+      "claim": "Common Kalari therapies include thaila lepanam (oil application), kai uzhichil (hand oil massage) and chavutti/chavutti thirumal (rope‑supported foot massage).",
+      "field": "history.keyFacts, highlights",
+      "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment",
+      "sensitive": false
+    },
+    {
+      "claim": "Many active kalari schools and clinics in Kerala advertise marma/kalari treatment and residential therapeutic programmes (example providers: Kalarigram, Athma Kalari, Dhanurveda Kovalam, ENS Kalari).",
+      "field": "description, visitorInfo",
+      "sourceUrl": "https://www.kalarigram.org/treatment",
+      "sensitive": false
+    },
+    {
+      "claim": "A DST / IndiaScience project listing names a 2024–2027 project to develop a Kalari‑Vedic treatment protocol and research centres for stroke rehabilitation (implementing agency named).",
+      "field": "history.timeline",
+      "sourceUrl": "https://www.indiascienceandtechnology.gov.in/research/development-kalari-vedic-treatment-protocol-and-research-centres-recovery-disabling-stroke-india?language=en%3Ffield_area_id%3D2440",
+      "sensitive": false
+    },
+    {
+      "claim": "Contemporary clinical and observational research engages with traditional oil and massage therapies in neurological rehabilitation (example: PMC article on Ayurvedic massage in post‑stroke patients, 2019).",
+      "field": "history.timeline",
+      "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6598790/",
+      "sensitive": false
+    },
+    {
+      "claim": "Safety note: marma manipulations and chavutti can be forceful and should be performed only by experienced practitioners; obtain medical clearance for fractures, bleeding disorders, pregnancy and major cardiovascular disease before treatment.",
+      "field": "spiritual.mindfulTips",
+      "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment/protocol",
+      "sensitive": true
+    },
+    {
+      "claim": "National emergency number in India is 112 (Emergency Response Support System); travellers are advised to use it for police, ambulance and fire emergencies.",
+      "field": "contacts",
+      "sourceUrl": "https://112.gov.in/faq",
+      "sensitive": true
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "Kerala Tourism describes marmashastra (marma science) as part of Shalyatantra and notes its role in Kalaripayattu training.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment/marmavidya-marmas",
+        "evidence": "Marmashastra or the science of Marmas is part of Shalyatantra... This science has a very significant role to play in Kalaripayattu training and is taught alongside Verumkai prayogam.",
+        "fix": null
+      },
+      {
+        "claim": "Kerala Tourism and practitioner materials describe marma mapping and marmavidya as central elements taught alongside Kalari training.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment/marmavidya-marmas",
+        "evidence": "Details 108/107 marmas by tradition and region, names/consequences, and explicit teaching of Marmavidya alongside training with strict limits.",
+        "fix": null
+      },
+      {
+        "claim": "Common Kalari therapies include thaila lepanam (oil application), kai uzhichil (hand oil massage) and chavutti/chavutti thirumal (rope-supported foot massage).",
+        "verdict": "supported",
+        "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment",
+        "evidence": "Dedicated sections on Thaila Lepanam, Kai Uzhichil (with dosha variations), and Chavitti Uzhichil (rope-supported foot massage by experienced asan).",
+        "fix": null
+      },
+      {
+        "claim": "Many active kalari schools and clinics in Kerala advertise marma/kalari treatment and residential therapeutic programmes (example providers: Kalarigram, Athma Kalari, Dhanurveda Kovalam, ENS Kalari).",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://www.kalarigram.org/treatment",
+        "evidence": "Kalarigram page confirms active Kalari Marma Chikitsa services for injuries, rehab and stroke recovery; does not list the other named providers.",
+        "fix": "Remove or separately verify the specific example providers beyond Kalarigram."
+      },
+      {
+        "claim": "A DST / IndiaScience project listing names a 2024–2027 project to develop a Kalari-Vedic treatment protocol and research centres for stroke rehabilitation (implementing agency named).",
+        "verdict": "supported",
+        "sourceUrl": "https://www.indiascienceandtechnology.gov.in/research/development-kalari-vedic-treatment-protocol-and-research-centres-recovery-disabling-stroke-india?language=en%3Ffield_area_id%3D2440",
+        "evidence": "Exact project title, 2024–2027 timeline, PI Dr. Vivek Nambiar (Amrita), implementing agency Amrita Institute of Medical Science, focus on Kalari-Vedic protocol and centres for stroke recovery.",
+        "fix": null
+      },
+      {
+        "claim": "Contemporary clinical and observational research engages with traditional oil and massage therapies in neurological rehabilitation (example: PMC article on Ayurvedic massage in post-stroke patients, 2019).",
+        "verdict": "supported",
+        "sourceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6598790/",
+        "evidence": "2018/2019 prospective study on Ayurvedic massage (Abhyanga + steam) as adjunct to PT in post-stroke patients for flaccidity, spasticity and locomotion outcomes.",
+        "fix": null
+      },
+      {
+        "claim": "Safety note: marma manipulations and chavutti can be forceful and should be performed only by experienced practitioners; obtain medical clearance for fractures, bleeding disorders, pregnancy and major cardiovascular disease before treatment.",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://www.keralatourism.org/kalaripayattu/kalari-treatment/protocol",
+        "evidence": "Protocol page states marma treatment is potentially dangerous, only disciplined students should learn it, and attacking marmas should be used only in life-threatening situations.",
+        "fix": "Revise safety checklist to match source wording or cite an additional clinical/medical source for the specific contraindications listed."
+      },
+      {
+        "claim": "National emergency number in India is 112 (Emergency Response Support System); travellers are advised to use it for police, ambulance and fire emergencies.",
+        "verdict": "unverifiable",
+        "sourceUrl": "https://112.gov.in/faq",
+        "evidence": "Tool failed to retrieve page content; no verification possible from the cited source.",
+        "fix": "Remove or replace with a verified official source confirming 112 as national emergency number."
+      }
+    ],
+    "issues": [
+      {
+        "severity": "major",
+        "field": "spiritual.mindfulTips",
+        "problem": "Sensitive safety claim only partly supported by cited source; precise medical-clearance list is absent.",
+        "suggestion": "Revise to source wording or add verified medical reference."
+      },
+      {
+        "severity": "major",
+        "field": "contacts",
+        "problem": "Unverifiable sensitive claim on national emergency number.",
+        "suggestion": "Remove claim or cite a confirmed official source."
+      },
+      {
+        "severity": "minor",
+        "field": "description, visitorInfo",
+        "problem": "Specific example providers beyond Kalarigram not evidenced by cited page.",
+        "suggestion": "Remove unverified provider names or add supporting sources."
+      }
+    ],
+    "folkloreAssessment": "Framed as living local traditions with explicit note that ritual details, marma counts and origin tales vary by school and region; attributed to lineage accounts and Kerala Tourism/Kalarigram rather than presented as established history.",
+    "sensitivityAssessment": "Respectful on ritual elements and guru transmission; however, two sensitive claims (forceful procedures/medical clearance and emergency number) are only partly supported or unverifiable, requiring correction before publication.",
+    "score": 68,
+    "recommendation": "needs_edit",
+    "gateReasons": [
+      "1 unverifiable sensitive claim(s)",
+      "3 claim(s) not checked",
+      "score 68 < 80"
+    ],
+    "consulted": [
+      "https://www.keralatourism.org/kalaripayattu/kalari-treatment/marmavidya-marmas",
+      "https://www.keralatourism.org/kalaripayattu/kalari-treatment",
+      "https://www.kalarigram.org/treatment",
+      "https://www.indiascienceandtechnology.gov.in/research/development-kalari-vedic-treatment-protocol-and-research-centres-recovery-disabling-stroke-india?language=en%3Ffield_area_id%3D2440",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC6598790/"
+    ]
+  },
+  "attempts": 3
+}

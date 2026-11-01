@@ -88,5 +88,50 @@
     "status": "drafted",
     "foundOn": "2026-10-31",
     "slug": "attukal-bhagavathy-temple"
+  },
+  {
+    "id": "chottanikkara-bhagavathy-temple",
+    "name": "Chottanikkara Bhagavathy Temple",
+    "category": "temples",
+    "district": "Ernakulam",
+    "reason": "A major Devi shrine near Kochi, renowned for its living ritual calendar and traditional healing legend (exorcism/mental‑health rituals), with large pilgrimage traffic and visitor facilities.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/temples/ernakulam/chottanikkara",
+      "https://cochindevaswomboard.org/"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-11-01",
+    "slug": "chottanikkara-bhagavathy-temple"
+  },
+  {
+    "id": "kuttanad-below-sea-level-paddy-cultivation",
+    "name": "Kuttanad — below‑sea‑level paddy cultivation",
+    "category": "cultivation",
+    "district": "Alappuzha",
+    "reason": "The unique below‑sea‑level agricultural landscape (Kuttanad) is a living heritage of boat‑based rice farming, distinctive crop calendars and adaptive irrigation practices that visitors can experience in rural tours.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/",
+      "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-11-01",
+    "slug": "kuttanad-below-sea-level-paddy-cultivation"
+  },
+  {
+    "id": "kalari-chikitsa-kalari-marma-and-traditional-kalari-healing",
+    "name": "Kalari chikitsa (Kalari marma and traditional Kalari healing)",
+    "category": "healing",
+    "district": "Kerala",
+    "reason": "The traditional Kalari healing arts (marma chikitsa, uzhichil, chavutti thirumal) form an active, visitable therapeutic‑cultural tradition closely linked with Kalaripayattu training centres across Kerala.",
+    "priority": 2,
+    "sourceUrls": [
+      "https://www.keralatourism.org/kalaripayattu/kalari-treatment/protocol",
+      "https://www.kalarigram.org/treatment"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-11-01",
+    "slug": "kalari-chikitsa-kalari-marma-and-traditional-kalari-healing"
   }
 ]

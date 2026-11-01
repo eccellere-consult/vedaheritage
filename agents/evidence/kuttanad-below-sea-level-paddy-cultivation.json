@@ -1,0 +1,273 @@
+{
+  "date": "2026-11-01",
+  "model": "gpt-5-mini",
+  "candidate": {
+    "id": "kuttanad-below-sea-level-paddy-cultivation",
+    "name": "Kuttanad — below‑sea‑level paddy cultivation",
+    "category": "cultivation",
+    "district": "Alappuzha",
+    "reason": "The unique below‑sea‑level agricultural landscape (Kuttanad) is a living heritage of boat‑based rice farming, distinctive crop calendars and adaptive irrigation practices that visitors can experience in rural tours.",
+    "priority": 1,
+    "sourceUrls": [
+      "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/",
+      "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf"
+    ],
+    "status": "drafted",
+    "foundOn": "2026-11-01",
+    "slug": "kuttanad-below-sea-level-paddy-cultivation"
+  },
+  "warnings": [
+    "5 source(s) dropped: URL was not actually retrieved",
+    "3 contact(s) dropped: source page not retrieved or details malformed",
+    "4 claim(s) dropped: source URL not retrieved"
+  ],
+  "consulted": [
+    "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en",
+    "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+    "https://igmlnet.uohyd.ac.in/docs/hi-res/hcu_images/TH13101.pdf",
+    "https://www.keralatourism.org/kumarakom/thanneermukkom-bund-kuttanad.php",
+    "https://irrigation.kerala.gov.in/thanneermukkom",
+    "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf",
+    "https://conference.cusat.ac.in/xmlui/bitstream/handle/purl/5401/T-2445.pdf?sequence=1",
+    "https://scr.indianrailways.gov.in/cris/uploads/files/1372939938373-Station_index.pdf",
+    "https://sr.indianrailways.gov.in/uploads/files/1439288315883-Categorisation%20of%20stations.pdf",
+    "https://malayalam.samayam.com/latest-news/kerala-news/thanneermukkom-bund-history-and-kuttanad-tourism/amp_articleshow/107584798.cms",
+    "https://indianwetlands.in/view-wetland/?profile=MjE1OQ%3D%3D",
+    "https://en.wikipedia.org/wiki/Thanneermukkom_Bund",
+    "https://www.protectedplanet.net/900778",
+    "https://www.newindianexpress.com/amp/story/states/kerala/2018/May/12/thanneermukkom-bund-a-farmers-landmark-passes-into-keralas-history-1813503.html",
+    "https://www.onmanorama.com/news/kerala/2020/08/01/thottappally-spillway-opened-to-prevent-flooding-kuttanad.html",
+    "https://www.researchgate.net/publication/286321691_HUMAN_IMPACT_ON_KUTTANAD_WETLAND_ECOSYSTEM_-AN_OVERVIEW?_sg=T3G5-khb6o8NwWWVHBoubehhtZHcIIJHpv28vE025XNHcUzMBYZaMU5ZDThU9mDXL39NaFM0lWo2L186-DdEldtopOGMLvgo7Y3zUY53oro",
+    "https://en.wikipedia.org/wiki/Ambalappuzha_railway_station",
+    "https://kottayam.nic.in/en/public-utility/railway-station-kottayam/",
+    "https://www.muhamma.com/boating-at-thanneermukkom-bund/",
+    "https://en.wikipedia.org/wiki/Changanasseri_railway_station",
+    "https://timesofindia.indiatimes.com/city/kochi/plans-to-modernize-spillway-bund-in-kuttanad-get-stuck/articleshow/23763274.cms",
+    "https://en.wikipedia.org/wiki/Kottayam_railway_station",
+    "https://en.wikipedia.org/wiki/Alappuzha_railway_station",
+    "https://en.wikipedia.org/wiki/Timeline_of_Kerala",
+    "https://www.reddit.com/r/indianrailways/comments/1hqwzq1",
+    "https://www.reddit.com/r/SSCCGL/comments/1eyej1u",
+    "https://www.reddit.com/r/SSC_CGL_Beginners/comments/1eyeilm",
+    "https://www.reddit.com/r/SSC_Exams/comments/1eyeivm",
+    "https://www.reddit.com/r/ssc/comments/1eyej8m",
+    "https://south-asia.wetlands.org/download/3895/?tmstv=1777993711",
+    "https://abs.nls.ac.in/wp-content/uploads/2018/03/Handbook-on-Biological-Diversity-ABS.pdf",
+    "https://abs.nls.ac.in/wp-content/uploads/2018/12/UNDP_Handbook_1.pdf",
+    "https://sandrp.in/2020/03/03/ramsar-wetlands-in-crisis-south-india/",
+    "https://south-asia.wetlands.org/download/3895/?tmstv=1780180887",
+    "https://wiki.openstreetmap.org/wiki/Ramsar_site",
+    "https://en.wikipedia.org/wiki/List_of_Ramsar_sites_in_India",
+    "https://dashamlav.com/kb/india/ramsar-sites/vembanad-kol-wetland/",
+    "https://blog.cafunsta.com/list-of-ramsar-sites-in-india/",
+    "https://www.researchgate.net/profile/Subrata-Singh/publication/263563988_Conservation_Across_Landscapes_India%27s_Approaches_to_Biodiversity_Governance/links/0a85e53b406c71b366000000/Conservation-Across-Landscapes-Indias-Approaches-to-Biodiversity-Governance.pdf",
+    "https://www.civilsdaily.com/ramsar-sites-in-india/",
+    "https://studentsdisha.in/75-ramsar-sites-in-india-pdf/",
+    "https://www.gktoday.in/ramsar-convention/",
+    "https://newikis.com/en/List_of_Ramsar_sites_in_India",
+    "https://doczz.net/doc/8802811/conservation-and-management-of-lakes",
+    "https://www.thedailyjagran.com/education/ramsar-sites-in-india-2025-updated-check-complete-statewise-list-names-designation-date-area-10257076",
+    "https://www.learnthrupractice.com/upsc-ncert/geography/india-drainage-rivers/11-lakes_of_india",
+    "https://indiabiowatch.com/wetlands/vembanad-kol-wetland",
+    "https://www.wisdomlib.org/uploads/journals/ayushdhara/vol-9-issue-3-may-june-2022/956-741-2042.pdf",
+    "https://en.wikipedia.org/wiki/Kerala_backwaters",
+    "https://en.wikipedia.org/wiki/Vembanad",
+    "https://cess.ac.in/wp-content/uploads/2023/12/Monograph-No.19.pdf",
+    "https://wgbis.ces.iisc.ac.in/biodiversity/sahyadri_enews/newsletter/Issue88/bibliography.html",
+    "https://cess.unical.in/wp-content/uploads/2023/12/Monograph-No.19.pdf",
+    "https://swak.kerala.gov.in/images/downloads/MAP_Vembanad%20Kol%20Rev%20May%202017%281%29.pdf",
+    "https://www.ramsar.org/sites/default/files/documents/library/all_sc52_docs_04may2016_e.pdf",
+    "https://www.scribd.com/document/928723438/1354bcf3-3749-4596-be4e-8f278743bdc7",
+    "https://www.researchgate.net/publication/374164386_A_Rapid_Assessment_of_Vembanad-Kol_Ramsar_Site_-_Current_Status_Climate_Change_Impact_Conservation_Measures_Tourism_Potential",
+    "https://w.mangrovesforthefuture.org/assets/Repository/Documents/Wetlands-International-SGP-Final-report.pdf",
+    "https://www.scribd.com/document/985465317/Monograph19JeenaKolestudy-1",
+    "https://fliphtml5.com/ldggi/psei/KOL_WETLANDS/",
+    "https://swak.kerala.gov.in/index.php/about-us/state-wet-land-authority",
+    "https://www.researchgate.net/publication/228854373_Understanding_the_Kole_Lands_in_Kerala_as_A_Multiple_Use_Wetland_Ecosystem",
+    "https://www.scribd.com/document/364943370/Conservation-and-Wise-Use-of-Vembanad-Kol",
+    "https://fr.scribd.com/document/843265278/sitelist",
+    "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2328132&lang=1&reg=3",
+    "https://www.iasgyan.in/daily-current-affairs/ramsar-list",
+    "https://www.indianrail.gov.in/7days_avlpress_rjy.html",
+    "https://www.indianrail.gov.in/mail_express_trn_list.html",
+    "https://indianrail.gov.in/7days_avlpress_vskp.html",
+    "https://www.indianrail.gov.in/7days_avlpress_vskp.html",
+    "https://www.indianrail.gov.in/avlpress_rou.html",
+    "https://indianrail.gov.in/mail_express_trn_list.html",
+    "https://www.indianrail.gov.in/avlpress_vskp.html",
+    "https://www.indianrail.gov.in/mail_express_trn_list.html?StaticPage=index.html&locale=hi",
+    "https://www.bharatsangraha.com/regions/travancore-kuttanad/how-to-reach",
+    "https://govtcollegekariavattom.ac.in/wp-content/uploads/sites/25/2024/05/2020-21-merged.pdf",
+    "https://timesofindia.indiatimes.com/city/kozhikode/rain-fury-in-kerala-two-die-one-missing-in-alappuzha/amp_articleshow/77436738.cms",
+    "https://www.newindianexpress.com/states/kerala/2019/aug/10/kerala-rains-ksrtc-suspend-service-through-alappuzha-ndash-changanassery-road-2016998.html",
+    "https://www.researchgate.net/publication/364227126_THE_LINKAGE_BETWEEN_PHYSICAL_GEOGRAPHICAL_CONDITIONS_AND_MODE_OF_TRANSPORTATION_A_CASE_STUDY_FROM_ALAPPUZHA_AND_KOTTAYAM_DISTRICTS_KERALA",
+    "https://roampedia.com/india/kerala/alappuzha/kuttanad?section=do",
+    "https://www.newindianexpress.com/amp/story/states/kerala/2019/Aug/10/kerala-rains-ksrtc-suspend-service-through-alappuzha-ndash-changanassery-road-2016998.html",
+    "https://lsgd.kerala.gov.in/wp-content/uploads/lsgd_orders_pdf/go20250711_39627.pdf",
+    "https://newikis.com/en/Alappuzha",
+    "https://lsgd.kerala.gov.in/orders_and_circulars/%E0%B4%AE%E0%B5%81%E0%B4%96%E0%B5%8D%E0%B4%AF%E0%B4%AE%E0%B4%A8%E0%B5%8D%E0%B4%A4%E0%B5%8D%E0%B4%B0%E0%B4%BF%E0%B4%AF%E0%B5%81%E0%B4%9F%E0%B5%86-%E0%B4%A4%E0%B4%A6%E0%B5%8D%E0%B4%A6%E0%B5%87-47/",
+    "https://infokontak.com/en/Alappuzha",
+    "https://newikis.com/en/Alappuzha_district",
+    "https://timesofindia.indiatimes.com/city/kochi/rain-kuttanad-region-remains-waterlogged/articleshow/121606489.cms",
+    "https://x.xlrd.org/x/en.wikipedia.org/wiki/Alappuzha",
+    "https://en.wikipedia.org/wiki/Alappuzha",
+    "https://www.celsgd.kerala.gov.in/celsgd/pdf/rate%20revision%20CMLRRP%202.0%20-%20583%20works6c52.pdf",
+    "https://site.outlookindia.com/traveller/ot-getaway-guides/alappuzha_life_in_slow_motion/",
+    "https://www.scribd.com/document/932216185/14th-Five-Year-Plan-22-27-English",
+    "https://exploringkerala.com/destinations/alleppey-backwaters",
+    "https://www.myalleppey.com/alleppey-travel-guide",
+    "https://roampedia.com/india/kerala/alappuzha/kuttanad/place/kuttanad?section=eat",
+    "https://www.scribd.com/document/1057400207/SummaryDocument",
+    "https://www.scribd.com/document/974416560/SOUTH-KERALA",
+    "https://www.scribd.com/document/572123363/Kerala-Annual-Plans",
+    "https://www.researchgate.net/publication/281631681_A_Study_on_Inland_Water_Transportation_in_Kochi_City_Region",
+    "https://roampedia.com/india/kerala/alappuzha/kuttanad/place/kuttanad",
+    "https://www.scribd.com/document/728889251/Economic-Review-2023-Vol-1",
+    "https://www.scribd.com/document/1075369863/Dh-2011-3211-Part-a-Dchb-Alappuzha",
+    "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/"
+  ],
+  "claims": [
+    {
+      "claim": "FAO designated the Kuttanad Below Sea Level Farming System as a Globally Important Agricultural Heritage System (GIAHS) in 2013.",
+      "field": "history.timeline",
+      "sourceUrl": "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en",
+      "sensitive": false
+    },
+    {
+      "claim": "Thottappally Spillway construction was completed in 1958.",
+      "field": "history.timeline",
+      "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "Thanneermukkom bund/regulator was built in stages in the 1960s–1970s; phased works and later modernization are recorded by the Kerala Irrigation Department and state planning materials.",
+      "field": "history.timeline / highlights",
+      "sourceUrl": "https://irrigation.kerala.gov.in/thanneermukkom",
+      "sensitive": false
+    },
+    {
+      "claim": "Padasekharams are dewatered prior to sowing using motor tharas (engine platforms) and pump systems; the 2019 State Planning Board review notes significant flood damage to many motor tharas in 2018 and recommends urgent replacement.",
+      "field": "description / history.keyFacts / visitorInfo.etiquette",
+      "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+      "sensitive": true
+    },
+    {
+      "claim": "Nearest railway stations and official station codes commonly used by travellers are: Alappuzha (ALLP); Ambalappuzha (AMPA); Changanassery (CGY); Kottayam (KTYM).",
+      "field": "travel.byTrain",
+      "sourceUrl": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "Kerala declared Kuttanad a Special Agricultural Zone (SAZ) for paddy in 2017, as recorded in the State Planning Board report.",
+      "field": "history.timeline / history.keyFacts",
+      "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+      "sensitive": false
+    },
+    {
+      "claim": "Many engine platforms (motor tharas) and petty/para dewatering systems were damaged by the 2018 floods and the Planning Board recommended urgent replacement or modernization.",
+      "field": "history.timeline / history.keyFacts",
+      "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+      "sensitive": true
+    },
+    {
+      "claim": "State Water Transport Department (SWTD) ferries and DTPC‑arranged village boat services operate from the Alappuzha boat jetty to Kuttanad villages and kayal islands; many visitors use local shikara/canoe trips for narrow canals.",
+      "field": "travel.byWater",
+      "sourceUrl": "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/",
+      "sensitive": false
+    }
+  ],
+  "verification": {
+    "results": [
+      {
+        "claim": "FAO designated the Kuttanad Below Sea Level Farming System as a Globally Important Agricultural Heritage System (GIAHS) in 2013.",
+        "verdict": "supported",
+        "sourceUrl": "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en",
+        "evidence": "Page states GIAHS since 2013 for the Kuttanad Below Sea Level Farming System.",
+        "fix": null
+      },
+      {
+        "claim": "Thottappally Spillway construction was completed in 1958.",
+        "verdict": "unverifiable",
+        "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+        "evidence": "PDF discusses Thottappally Spillway in flood management context but does not state a 1958 completion date.",
+        "fix": "Remove or replace 1958 date with a source that confirms the completion year."
+      },
+      {
+        "claim": "Thanneermukkom bund/regulator was built in stages in the 1960s–1970s; phased works and later modernization are recorded by the Kerala Irrigation Department and state planning materials.",
+        "verdict": "supported",
+        "sourceUrl": "https://irrigation.kerala.gov.in/thanneermukkom",
+        "evidence": "Page states construction in three phases: Vechoor side 1965, Thanneermukkom side 1975, with coffer dam and later modernization.",
+        "fix": null
+      },
+      {
+        "claim": "Padasekharams are dewatered prior to sowing using motor tharas (engine platforms) and pump systems; the 2019 State Planning Board review notes significant flood damage to many motor tharas in 2018 and recommends urgent replacement.",
+        "verdict": "supported",
+        "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+        "evidence": "Describes dewatering with pumps/oil engines/electric motors and 2018 flood damage to infrastructure with recommendations for repairs and modernization.",
+        "fix": null
+      },
+      {
+        "claim": "Nearest railway stations and official station codes commonly used by travellers are: Alappuzha (ALLP); Ambalappuzha (AMPA); Changanassery (CGY); Kottayam (KTYM).",
+        "verdict": "unverifiable",
+        "sourceUrl": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf",
+        "evidence": "URL returns a Site Under Construction page; station codes cannot be confirmed.",
+        "fix": "Replace or remove station codes or use a verified current source."
+      },
+      {
+        "claim": "Kerala declared Kuttanad a Special Agricultural Zone (SAZ) for paddy in 2017, as recorded in the State Planning Board report.",
+        "verdict": "unverifiable",
+        "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+        "evidence": "PDF does not contain an explicit statement declaring Kuttanad a Special Agricultural Zone in 2017.",
+        "fix": "Remove 2017 SAZ claim or cite a source that directly supports the declaration."
+      },
+      {
+        "claim": "Many engine platforms (motor tharas) and petty/para dewatering systems were damaged by the 2018 floods and the Planning Board recommended urgent replacement or modernization.",
+        "verdict": "supported",
+        "sourceUrl": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+        "evidence": "Confirms 2018 flood damage to dewatering and bund-related assets with recommendations for urgent repairs, replacement and modernization.",
+        "fix": null
+      },
+      {
+        "claim": "State Water Transport Department (SWTD) ferries and DTPC‑arranged village boat services operate from the Alappuzha boat jetty to Kuttanad villages and kayal islands; many visitors use local shikara/canoe trips for narrow canals.",
+        "verdict": "partly_supported",
+        "sourceUrl": "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/",
+        "evidence": "Page describes Kuttanad as best experienced by boat/houseboat and notes waterway importance but does not explicitly detail SWTD ferries, DTPC village boats or shikara services from Alappuzha jetty.",
+        "fix": "Revise to general boat access language supported by the source."
+      }
+    ],
+    "issues": [
+      {
+        "severity": "major",
+        "field": "history.timeline",
+        "problem": "1958 date for Thottappally Spillway and 2017 SAZ declaration lack support from cited source.",
+        "suggestion": "Remove unsupported dates/claims or replace with verifiable sources."
+      },
+      {
+        "severity": "major",
+        "field": "travel.byTrain",
+        "problem": "Cited railway PDF link is broken and station codes cannot be verified.",
+        "suggestion": "Remove codes or provide a working verified source."
+      },
+      {
+        "severity": "minor",
+        "field": "travel.byWater",
+        "problem": "Boat services description is more specific than the cited tourism page supports.",
+        "suggestion": "Broaden wording to match source content."
+      }
+    ],
+    "folkloreAssessment": "Framed appropriately as local oral traditions that vary by village; no single founding legend presented as fact; hedged with reference to official sources focusing on hydrology and institutions.",
+    "sensitivityAssessment": "Neutral, permission-based guidance on religious sites, fields and machinery; no stereotypes, endorsements or disparagement of communities or practices.",
+    "score": 72,
+    "recommendation": "needs_edit",
+    "gateReasons": [
+      "score 72 < 80"
+    ],
+    "consulted": [
+      "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en",
+      "https://irrigation.kerala.gov.in/thanneermukkom",
+      "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf",
+      "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/"
+    ]
+  },
+  "attempts": 3
+}

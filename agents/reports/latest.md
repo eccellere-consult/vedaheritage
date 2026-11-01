@@ -1,33 +1,35 @@
-## Discover Kerala content agents — 2026-10-31
+## Discover Kerala content agents — 2026-11-01
 
 Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
 
 ### Scout: 3 new candidate(s)
 
-- P1 **Vaikom Mahadeva Temple** (temples, Kottayam) — An ancient and architecturally important Shiva temple known as 'Dakshina Kasi', central to local ritual life and the historic Vaikom Satyagraha, making it a high‑interest visitor and heritage subject.
-- P1 **Mannarasala Sree Nagaraja Temple** (temples, Alappuzha) — Kerala’s best‑known serpent shrine set inside a living kavu with distinctive naga worship and female priest traditions, offering a unique ritual and heritage experience.
-- P2 **Attukal Bhagavathy Temple** (temples, Thiruvananthapuram) — A major urban Bhagavathy shrine famous for its strong ritual identity and the large public Pongala observance, important for understanding Kerala’s popular devotional practices.
+- P1 **Chottanikkara Bhagavathy Temple** (temples, Ernakulam) — A major Devi shrine near Kochi, renowned for its living ritual calendar and traditional healing legend (exorcism/mental‑health rituals), with large pilgrimage traffic and visitor facilities.
+- P1 **Kuttanad — below‑sea‑level paddy cultivation** (cultivation, Alappuzha) — The unique below‑sea‑level agricultural landscape (Kuttanad) is a living heritage of boat‑based rice farming, distinctive crop calendars and adaptive irrigation practices that visitors can experience in rural tours.
+- P2 **Kalari chikitsa (Kalari marma and traditional Kalari healing)** (healing, Kerala) — The traditional Kalari healing arts (marma chikitsa, uzhichil, chavutti thirumal) form an active, visitable therapeutic‑cultural tradition closely linked with Kalaripayattu training centres across Kerala.
 
 ### Enriched entries (3)
 
-- 🟡 NEEDS HUMAN EDIT — **Vaikom Mahadeva Temple** (`temples/vaikom-mahadeva-temple`, Kottayam) · score 62 · claims: 6 supported, 1 partial, 1 contradicted, 2 unverifiable
-  - warnings: 2 source(s) dropped: URL was not actually retrieved; 2 contact(s) dropped: source page not retrieved or details malformed; 1 claim(s) dropped: source URL not retrieved
-  - gates: 1 contradicted claim(s); 1 unverifiable sensitive claim(s); 1 blocker issue(s); score 62 < 80
-  - [blocker] history.timeline: Claim 2 contradicted by cited source (no Treta-yuga reference).
-  - [major] spiritual.mindfulTips: Claim 7 (sensitive etiquette rule) unverifiable on cited source.
-  - [major] travel.byTrain: Claim 8 unverifiable on cited source (broken PDF).
-  - folklore: Claim 2 unsupported; otherwise folklore is framed as sthala-purana tradition where the cited source is used.
-  - sensitivity: Two sensitive claims (etiquette rules, administration) rest on unverifiable or partially absent source support; one contradicted folklore claim.
-- ✅ ready for review — **Mannarasala Sree Nagaraja Temple** (`temples/mannarasala-sree-nagaraja-temple`, Alappuzha) · score 92 · claims: 9 supported, 1 partial, 0 contradicted, 0 unverifiable
-  - warnings: 1 source(s) dropped: URL was not actually retrieved; 4 contact(s) dropped: source page not retrieved or details malformed
-  - folklore: The folklore section consistently presents the origin story as temple tradition and notes that versions differ among local retellings; it is not presented as established history.
-  - sensitivity: No issues identified with framing of faith, community roles or ritual practice; descriptions remain neutral and factual.
-- 🟡 NEEDS HUMAN EDIT — **Attukal Bhagavathy Temple** (`temples/attukal-bhagavathy-temple`, Thiruvananthapuram) · score 85 · claims: 8 supported, 2 partial, 0 contradicted, 0 unverifiable
-  - warnings: 1 source(s) dropped: URL was not actually retrieved; 1 contact(s) dropped: source page not retrieved or details malformed
-  - folklore: Properly framed as local devotional tradition with explicit hedging that versions vary and the Kannaki identification is not presented as established historical fact.
-  - sensitivity: Accurate, neutral and respectful on the gendered nature of the Pongala ritual, crowd logistics and devotional practices; no stereotypes or endorsements.
+- ✅ ready for review — **Chottanikkara Bhagavathy Temple** (`temples/chottanikkara-bhagavathy-temple`, Ernakulam) · score 95 · claims: 8 supported, 1 partial, 0 contradicted, 0 unverifiable
+  - warnings: 2 source(s) dropped: URL was not actually retrieved; 3 contact(s) dropped: source page not retrieved or details malformed; 4 claim(s) dropped: source URL not retrieved
+  - folklore: The entry frames the Kannappan/Vilwamangalam origin story explicitly as local tradition with varying versions, hedged as 'commonly cited traditional narrative rather than verifiable historical fact' and attributes sources; it matches documented temple lore without presenting it as history.
+  - sensitivity: Respectful, neutral and accurate on devotional practices, healing rites and dress/ritual rules; sensitive claims are directly supported by sources and include appropriate visitor guidance without endorsement or stereotype.
+- 🟡 NEEDS HUMAN EDIT — **Kuttanad — below‑sea‑level paddy cultivation** (`cultivation/kuttanad-below-sea-level-paddy-cultivation`, Alappuzha) · score 72 · claims: 4 supported, 1 partial, 0 contradicted, 3 unverifiable
+  - warnings: 5 source(s) dropped: URL was not actually retrieved; 3 contact(s) dropped: source page not retrieved or details malformed; 4 claim(s) dropped: source URL not retrieved
+  - gates: score 72 < 80
+  - [major] history.timeline: 1958 date for Thottappally Spillway and 2017 SAZ declaration lack support from cited source.
+  - [major] travel.byTrain: Cited railway PDF link is broken and station codes cannot be verified.
+  - folklore: Framed appropriately as local oral traditions that vary by village; no single founding legend presented as fact; hedged with reference to official sources focusing on hydrology and institutions.
+  - sensitivity: Neutral, permission-based guidance on religious sites, fields and machinery; no stereotypes, endorsements or disparagement of communities or practices.
+- 🟡 NEEDS HUMAN EDIT — **Kalari chikitsa (Kalari marma and traditional Kalari healing)** (`healing/kalari-chikitsa-kalari-marma-and-traditional-kalari-healing`, Kerala) · score 68 · claims: 5 supported, 2 partial, 0 contradicted, 1 unverifiable
+  - warnings: 4 source(s) dropped: URL was not actually retrieved; 3 contact(s) dropped: source page not retrieved or details malformed; 4 claim(s) dropped: source URL not retrieved
+  - gates: 1 unverifiable sensitive claim(s); 3 claim(s) not checked; score 68 < 80
+  - [major] spiritual.mindfulTips: Sensitive safety claim only partly supported by cited source; precise medical-clearance list is absent.
+  - [major] contacts: Unverifiable sensitive claim on national emergency number.
+  - folklore: Framed as living local traditions with explicit note that ritual details, marma counts and origin tales vary by school and region; attributed to lineage accounts and Kerala Tourism/Kalarigram rather than presented as established history.
+  - sensitivity: Respectful on ritual elements and guru transmission; however, two sensitive claims (forceful procedures/medical clearance and emergency number) are only partly supported or unverifiable, requiring correction before publication.
 
-_Run: 19.1 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+_Run: 22.9 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
 
 ### Published automatically
 
@@ -36,6 +38,7 @@ _Run: 19.1 min · ~$0.00 model spend (estimate; excludes web-search tool fees) �
 ### Kept as drafts
 
 - Attukal Bhagavathy Temple: fact-check says needs_edit
+- Chottanikkara Bhagavathy Temple: no photo yet
 - Mannarasala Sree Nagaraja Temple: no photo yet
 - Oachira Parabrahma Temple: fact-check says needs_edit; fact-check flagged: 1 claim(s) not checked; score 76 < 80; no photo yet
 - Sabarimala Sree Dharma Sastha Temple: no fact-check recorded; no photo yet
@@ -48,23 +51,6 @@ _Run: 19.1 min · ~$0.00 model spend (estimate; excludes web-search tool fees) �
 - Uruli — Kerala Bell-Metal Cookware: no fact-check recorded; no photo yet
 - Karkidakam: the Monsoon Rejuvenation Season: no fact-check recorded; no photo yet
 - Panchakarma in Kerala: no fact-check recorded; no photo yet
+- Kalari chikitsa (Kalari marma and traditional Kalari healing): healing entries always wait for a human; fact-check says needs_edit; fact-check flagged: 1 unverifiable sensitive claim(s); 3 claim(s) not checked; score 68 < 80; no photo yet
+- Kuttanad — below‑sea‑level paddy cultivation: fact-check says needs_edit; fact-check flagged: score 72 < 80; no photo yet
 
-### Events calendar: 28 upcoming event(s)
-
-Dates come from pages the agent retrieved. Check each link before merging.
-
-**New (11)**
-- **Sabarimala — Mandala Pooja season (Sree Ayyappa Temple)** · 2026-11-16 to 2026-12-27 · Sabarimala (Sree Ayyappa Temple), Pathanamthitta · dates published · https://ayyappatemple.in/temple-calendar.html https://www.keralatourism.org/sabarimala/when-to-visit https://pilgrimora.com/sabarimala/opening-dates-timings/
-- **Guruvayur Ekadasi (Vrischikam Ekadasi)** · 2026-11-21 · Guruvayur Sri Krishna Temple, Guruvayur, Thrissur · dates published · https://guruvayurtemple.org/guruvayur-calendar-2026/
-- **President’s Trophy Boat Race (Ashtamudi Lake)** · 2026-11-21 · Ashtamudi Lake, Kollam · dates published · https://www.keralatourism.org/champions-boat-league/ https://www.keralatourism.org/champions-boat-league/match-schedule
-- **International Film Festival of Kerala (IFFK), Thiruvananthapuram** · 2026-12-11 to 2026-12-18 · Thiruvananthapuram (city venues), Thiruvananthapuram · dates published · https://trivandrum2go.in/iffk-trivandrum
-- **Cochin Carnival (Fort Kochi / Kochi New Year carnival)** · 2026-12-23 to 2027-01-01 · Fort Kochi / Kochi, Ernakulam · dates published · https://southindiatourpackages.com/kerala-festivals-2026-2027/
-- **Sabarimala — Makaravilakku / Makara Jyothi phase** · 2026-12-30 to 2027-01-20 · Sabarimala (Sree Ayyappa Temple), Pathanamthitta · dates published · https://pilgrimora.com/sabarimala/opening-dates-timings/ https://ayyappatemple.in/temple-calendar.html https://www.keralatourism.org/sabarimala/when-to-visit
-- **Attukal Pongala (Attukal Bhagavathy Temple) — ten-day festival (Pongala main day)** · 2027-02-14 to 2027-02-23 · Attukal Bhagavathy Temple, Attukal, Thiruvananthapuram · dates published · https://padmanabhaswamy.in/blog/attukal-pongala https://keralacalendar.in/festivals/attukal-pongala/
-- **Thrissur Pooram (Vadakkunnathan Temple / Thekkinkadu Maidan)** · 2027-04-17 to 2027-04-18 · Vadakkunnathan Temple / Thekkinkadu Maidan, Thrissur, Thrissur · dates published · https://keralacalendar.in/festivals/thrissur-pooram/ https://panchangtime.com/festivals/thrissur-pooram/yearly/2027
-- **Karkidaka Chikitsa (Ayurveda monsoon treatment season)** · 2027-07-17 to 2027-08-16 · Statewide (Ayurvedic centres such as Kottakkal, Varkala, Kovalam, Wayanad, etc.), Kerala · usual dates, confirm before travelling · https://ayurveda-kerala.org/blog/karkidaka-chikitsa-ayurveda-monsoon-treatment/
-- **Nehru Trophy Boat Race (Punnamada Lake, Alappuzha) — expected date rule** · 2027-08-14 · Punnamada Lake, Alappuzha, Alappuzha · usual dates, confirm before travelling · https://en.wikipedia.org/wiki/Nehru_Trophy_Boat_Race?utm_source=openai
-- **Onam (ten-day celebrations; Thiruvonam main day)** · 2027-09-03 to 2027-09-12 · Statewide (major events in Alappuzha, Thrissur, Thiruvananthapuram), Kerala · usual dates, confirm before travelling · https://www.bhaktiras.net/festivals/onam/?utm_source=openai
-
-
-_Run: 5.1 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
