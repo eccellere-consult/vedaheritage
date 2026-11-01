@@ -2,11 +2,11 @@
     "state": "paused",
     "reason": "",
     "by": "admin",
-    "updated": "2026-11-01T12:59:37+00:00",
+    "updated": "2026-11-01T12:59:40+00:00",
     "agents": {
         "content-agents": false,
         "sprint": false,
-        "events": true,
+        "events": false,
         "fetch-images": true
     }
 }
