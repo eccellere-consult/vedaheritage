@@ -2,11 +2,11 @@
     "state": "running",
     "reason": "",
     "by": "admin",
-    "updated": "2026-11-03T16:34:16+00:00",
+    "updated": "2026-11-03T16:34:26+00:00",
     "agents": {
         "content-agents": false,
         "sprint": true,
         "events": true,
-        "fetch-images": false
+        "fetch-images": true
     }
 }
