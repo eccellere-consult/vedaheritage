@@ -6,8 +6,8 @@ import PhotoUploadBase from './PhotoUpload'
 // Explicit file name: a folder URL only works if the server's DirectoryIndex lists index.php.
 const API = '/api/admin/index.php'
 type Json = Record<string, any>
-type Tab = 'overview' | 'sprint' | 'review' | 'drafts' | 'market' | 'providers' | 'prs' | 'stories' | 'agents' | 'activity'
-const TABS: [Tab, string][] = [['overview', 'Overview'], ['sprint', 'Content sprint'], ['review', 'Review agent work'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
+type Tab = 'overview' | 'sprint' | 'review' | 'drafts' | 'market' | 'providers' | 'bookings' | 'prs' | 'stories' | 'agents' | 'activity'
+const TABS: [Tab, string][] = [['overview', 'Overview'], ['sprint', 'Content sprint'], ['review', 'Review agent work'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['bookings', 'Bookings'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
 
 let csrf = ''
 async function api(a: string, body?: Json, query = ''): Promise<{ ok: boolean; status: number; data: Json }> {
@@ -85,6 +85,7 @@ export default function AdminApp() {
       {tab === 'drafts' && <Drafts say={say} />}
       {tab === 'market' && <Market say={say} />}
       {tab === 'providers' && <Providers say={say} />}
+      {tab === 'bookings' && <Bookings say={say} />}
       {tab === 'prs' && <Prs say={say} />}
       {tab === 'stories' && <Stories say={say} />}
       {tab === 'agents' && <Agents say={say} />}
@@ -790,6 +791,112 @@ function Activity() {
       <table className="w-full text-sm"><tbody>{(data?.events || []).map((e: Json, i: number) => (
         <tr key={i} className="border-t border-accent/10 align-top"><td className="py-1.5 pr-3 text-ink-mid whitespace-nowrap">{e.t ? new Date(e.t).toLocaleString() : ''}</td><td className="pr-3 font-medium">{e.e}</td><td className="text-ink-mid break-all">{[e.entry, e.pr && `#${e.pr}`, e.issue && `#${e.issue}`, e.workflow, e.to, e.ip].filter(Boolean).join(' · ')}</td></tr>
       ))}</tbody></table>
+    </div>
+  )
+}
+
+
+// ---------------------------------------------------------------- Bookings (locked until approvals are recorded)
+function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
+  const { data, err, reload } = useLoad('bk_overview')
+  const [fee, setFee] = useState({ feeMode: 'percent', feeValue: '1', gstRate: '18' }); const [loaded, setLoaded] = useState(false)
+  const [month, setMonth] = useState(new Date().toISOString().slice(0, 7)); const [sheet, setSheet] = useState<Json | null>(null)
+  const [draft, setDraft] = useState<Record<string, Json>>({}); const [part, setPart] = useState<Record<string, Json>>({})
+  const [vals, setVals] = useState<Record<string, string>>({}); const [refs, setRefs] = useState<Record<string, string>>({})
+  const inp = 'border border-accent/30 px-2 py-1 text-sm bg-white'
+  useEffect(() => { if (data && !loaded) { setFee({ feeMode: data.fee.mode, feeValue: String(data.fee.value), gstRate: String(data.gstRate) }); setLoaded(true) } }, [data, loaded])
+  const post = async (a: string, body: Json, then?: () => void) => { const r = await api(a, body); say(r.ok ? (r.data.message || 'Done.') : (r.data.blockers ? `${r.data.error} ${r.data.blockers.join(' ')}` : r.data.error), !r.ok); reload(); if (r.ok) then?.() ; return r }
+  const caps: Json[] = data?.caps || []; const enq = caps.find(c => c.id === 'enquiries'); const com = caps.find(c => c.id === 'commission')
+  const loadSheet = async () => { const r = await api('bk_settlement', undefined, `&month=${month}`); if (r.ok) setSheet(r.data); else { setSheet(null); say(r.data.error, true) } }
+  const csv = () => { if (!sheet) return; const u = URL.createObjectURL(new Blob([sheet.csv], { type: 'text/csv' })); const a = document.createElement('a'); a.href = u; a.download = `settlement-${sheet.month}.csv`; a.click(); URL.revokeObjectURL(u) }
+  const feeLabel = (f: Json | null) => !f ? 'default' : f.mode === 'flat' ? `Rs ${f.value} per booking` : `${f.value}%`
+  if (err) return <p className="text-red-700 text-sm">{err}</p>
+  if (!data) return <p className="text-ink-mid">Loading…</p>
+  return (
+    <div className="space-y-8">
+      <div className="card">
+        <h2 className="font-serif text-xl mb-1">Bookings</h2>
+        <p className="text-sm text-ink-mid">{enq?.open ? 'Partner enquiries are ON: travellers can send requests to the partners you switched on.' : <><strong>Locked.</strong> Nothing on the site accepts a booking request until you record the approvals below and switch a capability on. Travellers see nothing while it is locked.</>}</p>
+      </div>
+
+      <div className="space-y-4">
+        {caps.map(c => { const d = draft[c.id] || { checklist: c.checked, evidence: c.evidence }
+          const save = () => post('bk_cap_save', { cap: c.id, checklist: d.checklist, evidence: d.evidence })
+          return (
+            <div key={c.id} className="card">
+              <div className="flex flex-wrap items-center gap-2 mb-1"><h3 className="font-serif text-lg">{c.label}</h3>
+                {!c.buildable ? badge('not built yet', 'mute') : c.open ? badge('ON', 'ok') : c.missing.length === 0 ? badge('ready to switch on', 'warn') : badge('locked', 'bad')}</div>
+              <p className="text-sm text-ink-mid mb-3">{c.about}</p>
+              <ul className="space-y-1 mb-3">{Object.entries(c.checklist as Record<string, string>).map(([k, label]) => (
+                <li key={k}><label className="text-sm flex gap-2 items-start"><input type="checkbox" className="mt-1" checked={!!d.checklist[k]} onChange={e => setDraft({ ...draft, [c.id]: { ...d, checklist: { ...d.checklist, [k]: e.target.checked } } })} />{label}</label></li>))}</ul>
+              {Object.entries(c.evidenceFields as Record<string, string>).map(([k, label]) => (
+                <label key={k} className="text-sm block mb-2">{label}<input className={inp + ' block w-full mt-1'} value={d.evidence[k] || ''} onChange={e => setDraft({ ...draft, [c.id]: { ...d, evidence: { ...d.evidence, [k]: e.target.value } } })} /></label>))}
+              {c.missing.length > 0 && <p className="text-xs text-amber-800 mb-2">Still needed: {c.missing.join(' · ')}</p>}
+              <div className="flex gap-2"><button className="btn-outline text-xs" onClick={save}>Save</button>
+                {c.open ? <button className="btn-outline text-xs" onClick={() => post('bk_cap_set', { cap: c.id, enabled: false })}>Switch off</button>
+                  : <button className="btn-primary text-xs disabled:opacity-40" disabled={!c.buildable || c.missing.length > 0} onClick={() => post('bk_cap_set', { cap: c.id, enabled: true })}>Switch on</button>}</div>
+            </div>) })}
+      </div>
+
+      <div className="card">
+        <h3 className="font-serif text-lg mb-1">Your fee</h3>
+        <p className="text-sm text-ink-mid mb-3">A small fee keeps you attractive to partners. Choose a percentage of the booking value, or a flat amount per completed booking. A partner can have its own fee below. Computed in code; earlier bookings keep the fee they were completed with.</p>
+        <div className="flex flex-wrap gap-3 items-end text-sm">
+          <label>Fee type<select className={inp + ' block'} value={fee.feeMode} onChange={e => setFee({ ...fee, feeMode: e.target.value })}><option value="percent">Percentage of booking value</option><option value="flat">Flat amount per booking</option></select></label>
+          <label>{fee.feeMode === 'flat' ? 'Rupees per booking (0 to 5000)' : 'Percent (0 to 20)'}<input className={inp + ' block w-32'} value={fee.feeValue} onChange={e => setFee({ ...fee, feeValue: e.target.value })} /></label>
+          <label>GST on the fee, %<input className={inp + ' block w-24'} value={fee.gstRate} onChange={e => setFee({ ...fee, gstRate: e.target.value })} /></label>
+          <button className="btn-outline text-xs" onClick={() => post('bk_settings', { feeMode: fee.feeMode, feeValue: Number(fee.feeValue), gstRate: Number(fee.gstRate) })}>Save fee</button>
+        </div>
+      </div>
+
+      <div className="card overflow-x-auto">
+        <h3 className="font-serif text-lg mb-1">Partners (verified stays and transport)</h3>
+        <p className="text-sm text-ink-mid mb-3">Add providers in the Directory tab first. A partner needs a signed agreement and a registration check before it can take requests.</p>
+        {!data.partners.length && <p className="text-sm text-ink-mid">No verified stays or transport providers yet.</p>}
+        <table className="w-full text-sm"><tbody>{data.partners.map((p: Json) => { const d = part[p.id] || { partner: p.partner, agreementOn: p.agreementOn, registrationChecked: p.registrationChecked, feeMode: p.fee?.mode || 'percent', feeValue: p.fee ? String(p.fee.value) : '' }
+          const set = (x: Json) => setPart({ ...part, [p.id]: { ...d, ...x } })
+          return (
+            <tr key={p.id} className="border-t border-accent/20 align-top"><td className="py-2 pr-3"><p className="font-medium">{p.name}</p><p className="text-xs text-ink-mid">{p.typeLabel} · {p.districts.join(', ')} · fee: {feeLabel(p.fee)}</p>{p.live && badge('live partner', 'ok')}</td>
+              <td className="py-2 pr-3"><label className="block text-xs">Agreement signed<input type="date" className={inp + ' block'} value={d.agreementOn} onChange={e => set({ agreementOn: e.target.value })} /></label></td>
+              <td className="py-2 pr-3"><label className="text-xs flex gap-1 items-center"><input type="checkbox" checked={d.registrationChecked} onChange={e => set({ registrationChecked: e.target.checked })} />Registration / permit checked</label>
+                <label className="text-xs flex gap-1 items-center mt-1"><input type="checkbox" checked={d.partner} onChange={e => set({ partner: e.target.checked })} />Switch on as partner</label></td>
+              <td className="py-2 pr-3 text-xs"><select className={inp} value={d.feeMode} onChange={e => set({ feeMode: e.target.value })}><option value="percent">%</option><option value="flat">Rs flat</option></select> <input className={inp + ' w-20'} placeholder="default" value={d.feeValue} onChange={e => set({ feeValue: e.target.value })} /></td>
+              <td className="py-2"><button className="btn-outline text-xs" onClick={() => post('bk_partner_set', { id: p.id, partner: d.partner, agreementOn: d.agreementOn, registrationChecked: d.registrationChecked, feeMode: d.feeMode, feeValue: d.feeValue === '' ? '' : Number(d.feeValue) })}>Save</button></td></tr>) })}</tbody></table>
+      </div>
+
+      <div className="card">
+        <h3 className="font-serif text-lg mb-3">Booking requests</h3>
+        {!data.bookings.length && <p className="text-sm text-ink-mid">No requests yet.</p>}
+        <ul className="space-y-3">{data.bookings.map((b: Json) => (
+          <li key={b.id} className="border-t border-accent/20 pt-3 text-sm">
+            <div className="flex flex-wrap items-center gap-2"><strong>{b.ref}</strong>{badge(b.status, b.status === 'completed' ? 'ok' : b.status === 'cancelled' || b.status === 'declined' ? 'mute' : 'warn')}<span>{b.providerName} · {b.checkIn} to {b.checkOut} · {b.people} people</span></div>
+            {b.contactEmail || b.contactPhone ? <p className="text-xs text-ink-mid mt-1">{b.name}: {b.contactPhone} {b.contactEmail}</p> : <p className="text-xs text-ink-mid mt-1">Traveller details deleted.</p>}
+            {b.message && <p className="text-xs text-ink-mid whitespace-pre-line mt-1">{b.message}</p>}
+            {b.commissionInr != null && <p className="text-xs mt-1">Fee recorded: Rs {b.commissionInr}{b.valueInr ? ` on Rs ${b.valueInr}` : ''}{b.settled ? ' · settled' : ''}</p>}
+            {['new', 'sent', 'confirmed'].includes(b.status) && (
+              <div className="flex flex-wrap gap-2 items-center mt-2">
+                {['new', 'sent'].includes(b.status) && <button className="btn-outline text-xs" onClick={() => post('bk_send', { id: b.id })}>{b.status === 'new' ? 'Send to partner' : 'Send again'}</button>}
+                {b.status !== 'confirmed' && <button className="btn-outline text-xs" onClick={() => post('bk_status', { id: b.id, status: 'confirmed' })}>Partner confirmed</button>}
+                <input className={inp + ' w-28'} placeholder="Booking value Rs" value={vals[b.id] || ''} onChange={e => setVals({ ...vals, [b.id]: e.target.value })} />
+                <button className="btn-primary text-xs" onClick={() => post('bk_status', { id: b.id, status: 'completed', valueInr: vals[b.id] ? Number(vals[b.id]) : undefined })}>Completed</button>
+                <button className="btn-outline text-xs" onClick={() => { if (window.confirm('Cancel this request? The traveller details are deleted.')) post('bk_status', { id: b.id, status: 'cancelled' }) }}>Cancel</button>
+              </div>)}
+          </li>))}</ul>
+      </div>
+
+      <div className="card">
+        <h3 className="font-serif text-lg mb-1">Monthly settlement sheet</h3>
+        {!com?.open ? <p className="text-sm text-ink-mid">Locked until "Commission ledger and monthly settlement" is switched on above.</p> : (
+          <>
+            <div className="flex gap-2 items-end text-sm mb-3"><label>Month<input type="month" className={inp + ' block'} value={month} onChange={e => setMonth(e.target.value)} /></label><button className="btn-outline text-xs" onClick={loadSheet}>Show</button>{sheet && <button className="btn-outline text-xs" onClick={csv}>Download CSV for your accountant</button>}</div>
+            {sheet && (
+              <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="text-left text-xs text-ink-mid"><th className="pr-3">Partner</th><th className="pr-3">Bookings</th><th className="pr-3">Value</th><th className="pr-3">Fee</th><th className="pr-3">GST {sheet.gstRate}%</th><th className="pr-3">Total due</th><th>Settled</th></tr></thead>
+                <tbody>{sheet.rows.map((r: Json) => (<tr key={r.providerId} className="border-t border-accent/20"><td className="pr-3 py-1">{r.provider}</td><td className="pr-3">{r.bookings}</td><td className="pr-3">{r.valueInr}</td><td className="pr-3">{r.commissionInr}</td><td className="pr-3">{r.gstInr}</td><td className="pr-3">{r.totalDueInr}</td>
+                  <td>{r.settled ? badge('settled', 'ok') : <span className="flex gap-1"><input className={inp + ' w-28'} placeholder="Invoice / UTR" value={refs[r.providerId] || ''} onChange={e => setRefs({ ...refs, [r.providerId]: e.target.value })} /><button className="btn-outline text-xs" onClick={async () => { await post('bk_settle', { providerId: r.providerId, month: sheet.month, reference: refs[r.providerId] || '' }); loadSheet() }}>Mark settled</button></span>}</td></tr>))}
+                  {!sheet.rows.length && <tr><td className="py-2 text-ink-mid" colSpan={7}>No completed bookings in this month.</td></tr>}</tbody></table>
+                <p className="text-xs text-ink-mid mt-2">Totals: fee Rs {sheet.totals.commissionInr}, GST Rs {sheet.totals.gstInr}, due Rs {sheet.totals.totalDueInr}. Ask your accountant to confirm GST treatment.</p></div>)}
+          </>)}
+      </div>
     </div>
   )
 }
