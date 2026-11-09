@@ -1,0 +1,117 @@
+{
+  "slug": "marari-beach",
+  "category": "beaches",
+  "name": "Marari Beach",
+  "district": "Alappuzha",
+  "format": "lite",
+  "tagline": "Quiet winter beach — low-key stays, palm-fringed sands and local seafood",
+  "summary": "Marari Beach is a peacefully palm-fringed shore at Mararikulam, Alappuzha — ideal for a low-key winter stay focused on sunsets, backwater side trips and fresh coastal seafood.",
+  "description": [
+    "Marari Beach sits beside the fishing village of Mararikulam in Alappuzha district. It offers a long, open shoreline framed by coconut palms and a much quieter atmosphere than nearby town beaches.",
+    "Visitors choose Marari for relaxed stays (small resorts, Ayurvedic and homestay options), slow sunsets, and easy access to houseboat/backwater trips from Alappuzha. The local scene emphasises fresh coastal seafood and simple village restaurants as much as resort dining.",
+    "Winter (post-monsoon) weather brings clear skies and calm seas, making November–March the most pleasant months for beach walks, early-morning fishing-boat views and day trips to Alleppey backwaters."
+  ],
+  "highlights": [
+    "Long, quiet palm-fringed shoreline — ideal for walks and sunsets",
+    "Village atmosphere with fishing boats and local seafood",
+    "Small resorts and Ayurvedic/wellness stays for low-key relaxation",
+    "Close to Alappuzha backwaters — easy day trips and houseboats",
+    "Good winter weather (November–March) — dry, pleasant and calm seas"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Marari Beach lies at Mararikulam and is known for a gentle, uncrowded coastline rather than beaches with heavy tourist traffic. The place grew as a calm alternative to busier beaches and as a base for combining beach time with the Alappuzha backwaters."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Walk the long shoreline at sunrise or sunset, watch local fishermen and palm-lined vistas, and relax at a small resort or homestay. Many visitors combine a Marari stay with a short houseboat or backwater cruise from Alappuzha.",
+        "Try Ayurvedic treatments or yoga sessions offered at several properties. Take short local rides to nearby villages and markets to sample fresh catch and watch village life."
+      ]
+    },
+    {
+      "heading": "Seafood and dining",
+      "body": [
+        "Local seafood is a highlight: small village eateries and resort beach-grills serve fresh, regional dishes. Expect simple coastal preparations and catch-of-the-day menus; ask hosts or your resort for current recommendations.",
+        "For a low-key food experience, eat where locals go on the main road near the beach entrance or dine at resort restaurants that offer curated coastal menus and beachside meals."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Best time is the dry winter season (November–March) when skies are clearer and temperatures are pleasant. December to February are busiest — book ahead if you prefer a particular resort or Ayurvedic centre.",
+        "Sea conditions vary by season; do not assume safe swimming year-round — check with your host or local lifeguards before entering the water. Confirm transport and activity bookings before you travel."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-11-02",
+      "text": "Travel guides and local tourism pages refreshed details for Marari as a quiet beach base close to Alappuzha (updated guides and visitor notes).",
+      "url": "https://www.raahzo.com/city/marari"
+    },
+    {
+      "date": "2026-10-12",
+      "text": "Local guide and Casa Marari update seasonal advice: November–March is the most reliable period for dry, calm beach weather at Marari.",
+      "url": "https://www.casamarari.com/guides/best-time-to-visit-marari/"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November–March (post-monsoon winter = dry, pleasant and calm seas)",
+    "howToReach": "Marari sits beside Mararikulam village, about 11 km from Alappuzha (Alleppey). Reach by road from Alappuzha or Kochi; Mararikulam has a local railway halt (Mararikulam MAKM). Nearest major airport: Kochi (Cochin) — confirm onward transport and schedules before travel.",
+    "etiquette": [
+      "Book stays early for December–January; winter is peak season for weather and availability.",
+      "Ask locally before swimming — sea conditions and lifeguard cover vary by season.",
+      "Try small roadside eateries for authentic seafood; request the catch-of-the-day preparation.",
+      "Confirm any Ayurvedic treatment or wellness bookings in advance and check what’s included."
+    ]
+  },
+  "coordinates": {
+    "lat": 9.602527,
+    "lng": 76.299877
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "beach",
+    "alappuzha",
+    "mararikulam",
+    "seafood",
+    "ayurveda",
+    "quiet"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Marari Beach",
+      "url": "https://www.keralatourism.org/destination/marari-beach/613//"
+    },
+    {
+      "label": "Casa Marari — Best time to visit Marari",
+      "url": "https://www.casamarari.com/guides/best-time-to-visit-marari/"
+    },
+    {
+      "label": "Wikipedia — Marari Beach",
+      "url": "https://en.wikipedia.org/wiki/Marari_Beach"
+    },
+    {
+      "label": "Backwater Holidays — Marari Beach guide",
+      "url": "https://www.backwaterholidays.in/blog/marari-beach-alleppey"
+    },
+    {
+      "label": "CGH Earth — Marari factsheet",
+      "url": "https://www.cghearth.com/uploads/FactsheetFile/20210903130243pm_2_mararibeachfactsheet.pdf"
+    },
+    {
+      "label": "keralatourism.org",
+      "url": "https://www.keralatourism.org/where-to-stay/marari-beach/613"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

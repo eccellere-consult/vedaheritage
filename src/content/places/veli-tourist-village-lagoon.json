@@ -1,0 +1,104 @@
+{
+  "slug": "veli-tourist-village-lagoon",
+  "category": "places",
+  "name": "Veli Tourist Village (Veli Lagoon)",
+  "district": "Thiruvananthapuram",
+  "format": "lite",
+  "tagline": "Lagoon gardens, floating bridge and calm evening promenades by the sea",
+  "summary": "Veli Tourist Village sits where Veli Lake meets the Arabian Sea, offering gardens, pedal-boating, a floating café and an easy evening promenade—pleasant in Kerala's winter months.",
+  "description": [
+    "Veli Tourist Village occupies the estuarine edge where Veli Lake (Veli Kayal) opens into the Arabian Sea. The site combines landscaped gardens, a floating bridge to the beach, play areas and small water-activity facilities that make it a popular picnic and family spot near Thiruvananthapuram.",
+    "The lagoon setting gives visitors both backwater calm and sea views in one place; there are pedal boats, a children's park, sculptures by Kanayi Kunhiraman and a floating café run by tourism authorities. Walkways and seating make it especially pleasant for late-afternoon and evening strolls.",
+    "The village is close to the city and airport, so it is easy as a half-day outing or an evening stop. Visitors looking for quiet lagoon views, short boat rides, or a breezy seaside walk find Veli an accessible, low-effort addition to a Kovalam–Varkala circuit."
+  ],
+  "highlights": [
+    "Landscape gardens beside the Veli lagoon",
+    "Floating bridge linking the garden to Veli Beach",
+    "Pedal/paddle boating and small boat hire on the lagoon",
+    "Children’s park, floating café and public seating",
+    "Easy evening promenade with lagoon + sea views"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Veli Tourist Village is a development around the mouth of Veli Lake where the freshwater lagoon meets the Arabian Sea. The site is managed as a public picnic and leisure area with gardens, play zones and small water-activity facilities maintained by local tourism bodies."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Stroll the landscaped gardens and cross the floating bridge to the beach for combined lagoon-and-sea scenery. Short pedal-boat rides and supervised small-boat trips explore the calm inner waters; sculptures and children’s play equipment make it family-friendly.",
+        "Evening promenades along the waterfront are popular when winds are gentle—watch fishermen, feeding birds and the changing light on the lagoon. The floating café and nearby stalls offer simple snacks; for longer visits combine Veli with nearby Aakkulam or Shankumugham."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Kerala Tourism lists the main entrance timing as 08:00–18:30 and publishes modest entry fees (adult and child categories); confirm current hours, activity availability and ticketing before you travel. Boat rides, horse rides and the miniature train (when running) usually charge extra.",
+        "Veli is a short drive (about 10–12 km) from central Thiruvananthapuram and close to the airport; it works well as a half-day or evening outing. Facilities are basic—use local transport or private vehicle for best flexibility and confirm any seasonal service schedules in advance."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-09-30",
+      "text": "A new solar-powered passenger‑cum‑tourism boat service on the Parvathy Puthanar, linking Veli and Kadinamkulam, is inaugurated; initial services and fare details were published at launch.",
+      "url": "https://www.manoramaonline.com/district-news/thiruvananthapuram/2026/09/30/veli-kadinamkulam-solar-boat-inauguration.html"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November–February (cool, drier months—pleasant evenings and walks)",
+    "howToReach": "About 10–12 km from Thiruvananthapuram city; reachable by local bus, auto-rickshaw or taxi. Close to the international airport and short drive from Kochuveli rail station—confirm local connections for the last mile.",
+    "etiquette": [
+      "Confirm boat, miniature-train and floating-café timings before you go—services run seasonally and may change.",
+      "Evening sea breezes can be cool in winter—carry a light layer for sunset walks.",
+      "Respect local fishing areas and avoid entering open sea when tides are high; supervise children near water.",
+      "Carry small change for entry fees, rides and stall food; facilities are public and basic."
+    ]
+  },
+  "coordinates": {
+    "lat": 8.5097611,
+    "lng": 76.8882917
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "lagoon",
+    "promenade",
+    "boating",
+    "family-friendly",
+    "trivandrum"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Veli Tourist Village (destination page with timings and fees)",
+      "url": "https://www.keralatourism.org/destination/veli-tourist-village/232/"
+    },
+    {
+      "label": "District Thiruvananthapuram — Veli Tourist Village (official district page)",
+      "url": "https://trivandrum.nic.in/en/tourist-place/veli-tourist-village/"
+    },
+    {
+      "label": "Manorama Online — Veli‑Kadinamkulam solar boat service inauguration (2026-09-30)",
+      "url": "https://www.manoramaonline.com/district-news/thiruvananthapuram/2026/09/30/veli-kadinamkulam-solar-boat-inauguration.html"
+    },
+    {
+      "label": "Times of India — report on Veli transport hub and solar boat service (2026-09-30",
+      "url": "https://timesofindia.indiatimes.com/city/thiruvananthapuram/veli-to-be-developed-as-major-transport-hub-c-p-john/amp_articleshow/134600394.cms"
+    },
+    {
+      "label": "Wikipedia — Veli Lake (coordinates and lake background)",
+      "url": "https://en.wikipedia.org/wiki/Veli_Lake"
+    },
+    {
+      "label": "DTPC Thiruvananthapuram — Veli Beach / Veli Tourist Village",
+      "url": "https://www.dtpcthiruvananthapuram.com/destination/veli-beach"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

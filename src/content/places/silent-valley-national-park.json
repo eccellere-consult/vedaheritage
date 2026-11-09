@@ -1,0 +1,113 @@
+{
+  "slug": "silent-valley-national-park",
+  "category": "places",
+  "name": "Silent Valley National Park",
+  "district": "Palakkad",
+  "format": "lite",
+  "tagline": "Pristine Western Ghats rainforest — a dry-season window for guided treks and wildlife viewing",
+  "summary": "Silent Valley is a protected evergreen rainforest in Palakkad (Nilgiri Biosphere). Dry months give clearer views of wildlife; visits are by guided, permit-only treks from Mukkali.",
+  "description": [
+    "Silent Valley National Park preserves one of the last tracts of undisturbed tropical evergreen forest in the Western Ghats. The park protects rare species and an intact canopy ecosystem that was saved from a proposed dam in the 1970s.",
+    "Because access is tightly controlled, visitors enter on forest-department guided trips that concentrate at the Sairandhri viewpoint and short trails along the Kunthipuzha (Kunthi) river. The experience is low-impact and education-focused rather than a commercial safari.",
+    "During the drier months the forest understorey thins slightly, water sources concentrate wildlife and bird movements, and leeches are fewer — making December–April a particularly good window for guided treks and wildlife watching. Bookings and an official guide from the Mukkali forest office are mandatory; confirm details before you travel."
+  ],
+  "highlights": [
+    "Intact tropical evergreen canopy and the Kunthipuzha river gorge",
+    "Home to endemic species such as the lion-tailed macaque and many rare amphibians and insects",
+    "Entry only via Kerala Forest Department trips from Mukkali (Sairandhri programme)",
+    "Dry-season (Dec–Apr) treks improve visibility — animals concentrate near water",
+    "Active biodiversity surveys — recent odonate (dragonfly) surveys added new records"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Silent Valley sits inside the Nilgiri Biosphere and is internationally recognised for its biodiversity and intact rainforest. The park’s protection followed the successful “Save Silent Valley” movement; the area remains a conservation priority for the Kerala Forest Department.",
+        "The park is ecologically important as a near-pristine evergreen block that links several neighbouring reserves and supports specialized, often range-restricted species."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "The standard visitor programme is the forest-department jeep/bus trip from Mukkali to the Sairandhri viewpoint, followed by a short guided nature walk toward the river. Expect birdwatching, canopy views, river scenes and chances to hear (and sometimes see) species such as the lion-tailed macaque, Malabar pied hornbill and many forest birds.",
+        "Longer, low-impact hikes are possible in designated buffer-zone trails and eco-camps organised through the forest department or local eco-development committees. Wildlife sightings in evergreen rainforest are often subtle — look for movement along river edges, listen for calls, and rely on an experienced guide."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Book in advance with the Kerala Forest Department’s Mukkali office; entry to the core is permit-only and numbers are limited. Most visitors base themselves at Mukkali or Mannarkkad (or Palakkad) the night before to start early.",
+        "Best practical window: December–April (dry season) when trails are firmer, leeches are less active and animals concentrate at water — improving viewing during guided treks. Still carry a light rain layer: weather in the Ghats can be changeable, and the department may alter access for safety or conservation reasons."
+      ]
+    },
+    {
+      "heading": "Conservation & etiquette",
+      "body": [
+        "Visits are tightly managed to minimise impact: stay with your guide, follow the route, keep noise low, do not feed wildlife and carry out any non-biodegradable waste. The park’s rules are there to protect sensitive species and the forest’s long-term health.",
+        "Support local conservation by choosing official forest-department programmes and local eco-camps; confirm fees, timing and permitted activities at Mukkali before you travel."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2025-10-15",
+      "text": "A three-day odonate (dragonfly and damselfly) survey in Silent Valley recorded numerous species and reported six species newly recorded in the park, expanding its known odonate list.",
+      "url": "https://www.onmanorama.com/news/kerala/2025/10/15/silent-valley-butterfly-survey.html"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "December to April (drier months — better visibility and fewer leeches for guided treks)",
+    "howToReach": "Reach Palakkad or Mannarkkad by road/rail, continue to Mukkali (forest gate) and join an official Kerala Forest Department jeep/bus for the Sairandhri guided programme; prior booking at Mukkali is mandatory.",
+    "etiquette": [
+      "Book permits and eco-trek slots with the Mukkali forest office well ahead; slots are limited.",
+      "Carry binoculars, sturdy closed shoes, a light rain layer and cash (connectivity is patchy and many counters prefer cash).",
+      "Respect the guide and route — no off-trail hiking or river bathing in the core; keep noise low to avoid disturbing wildlife.",
+      "Even in dry months, pack basic first-aid and any personal medication; nearest larger hospitals are in Mannarkkad and Palakkad."
+    ]
+  },
+  "coordinates": {
+    "lat": 11.143703,
+    "lng": 76.420572
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "palakkad",
+    "national park",
+    "rainforest",
+    "trekking",
+    "wildlife",
+    "ecotourism"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Forest Department — National Parks (Silent Valley)",
+      "url": "https://forest.kerala.gov.in/en/national-parks/"
+    },
+    {
+      "label": "Kerala Tourism — Silent Valley National Park (Sairandhri / visits)",
+      "url": "https://www.keralatourism.org/malabar/silent-valley-national-park/39"
+    },
+    {
+      "label": "Palakkad district — Silent Valley overview",
+      "url": "https://palakkad.nic.in/en/silent-valley/"
+    },
+    {
+      "label": "Onmanorama — Silent Valley survey records odonate species (2025-10-15)",
+      "url": "https://www.onmanorama.com/news/kerala/2025/10/15/silent-valley-butterfly-survey.html"
+    },
+    {
+      "label": "Parks and Wildlife India — Silent Valley guide (season, visits)",
+      "url": "https://www.parksandwildlifeindia.com/parks/silent-valley-national-park"
+    },
+    {
+      "label": "Visitor guide / practical booking notes (example: The Invincible India guide to ",
+      "url": "https://theinvincibleindia.in/silent-valley-national-park-guide/"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "st-angelo-s-fort-kannur",
+  "category": "places",
+  "name": "St. Angelo's Fort (Kannur)",
+  "district": "Kannur",
+  "format": "lite",
+  "tagline": "Triangular laterite fort with wide sea views — best explored in the cool months",
+  "summary": "St. Angelo's Fort (Kannur) is a 16th‑century Portuguese coastal fort that offers sea views, laterite ramparts and easy heritage walks; visit in the cool, dry months for comfortable coastal exploring.",
+  "description": [
+    "St. Angelo's Fort (also called Kannur Fort) is a triangular laterite fort on a headland facing the Arabian Sea. Built by the Portuguese in the early 1500s and later held by the Dutch, Arakkal rulers and the British, the fort is a visible marker of Kerala's maritime and colonial past.",
+    "The fort matters as an intact coastal bastion and a centrally protected monument managed under the Archaeological Survey of India. Its ramparts, small gun‑ports and grassy glacis give strong views over Mapilla Bay, Dharmadam Island and the town harbour.",
+    "Visitors get short, comfortable heritage walks around the outer walls, seaside viewpoints and photo opportunities at sunset. The site sits close to Kannur town — combine the fort with the Arakkal Museum, Payyambalam Park or the cliff walk for a compact heritage loop."
+  ],
+  "highlights": [
+    "Triangular laterite battlements built by the Portuguese (early 1500s)",
+    "Panoramic views of Mapilla Bay, Dharmadam Island and the Arabian Sea",
+    "Gun‑ports, ramparts and grassy forecourt ideal for short heritage walks",
+    "Centrally protected monument under the Archaeological Survey of India",
+    "Close to Kannur town — easy to pair with Arakkal Museum and Payyambalam Park"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "St. Angelo's Fort dates to the Portuguese period (built in 1505 under Dom Francisco de Almeida) and later passed to the Dutch in the 17th century; the Arakkal family and then the British also controlled it in subsequent centuries. The fort’s fabric and layout reflect its coastal defence role and changing colonial hands.",
+        "The fort is listed as a centrally protected monument under the Archaeological Survey of India (Thrissur Circle). Its laterite walls, narrow embrasures and triangular plan make it one of Kerala’s better‑known European forts."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Walk the outer ramparts for sweeping sea views and look for gun‑ports and embrasures that hint at the fort’s military past. The grassy forecourt and seaside escarpments are pleasant for short coastal walks and photography.",
+        "Explore nearby heritage stops: the Arakkal Museum (local ruling family), Payyambalam Park and the Kannur lighthouse zone are within a short drive or walk. Use the fort as a compact stop on a half‑day Kannur cultural loop."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "The fort sits close to central Kannur (near the cantonment and hospital areas). Nearest railhead is Kannur Railway Station; Kannur International Airport is the closest airport. There is no need for long walks to reach the fort — bring sun protection for daytime visits and light layers for the sea breeze.",
+        "Facilities, opening hours and any entry rules are set by the ASI/local authorities and can change; confirm before you travel. Do not climb fragile sections of wall and follow signboards or ASI guidance on site."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-06-05",
+      "text": "Archaeological Survey of India issued a tender for annual repairs (MCEW/CAM) to St. Angelo Fort for the 2026–27 work year (small conservation/maintenance items listed).",
+      "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/55853115/FF2EAD6D-ACEA-4C69-A82F-DBE070542B37/129530/51292901/5bf2a431-1f8a-4754-b50f-3a34e1612f03"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November to February (cool, dry — comfortable for coastal walks and sunset views)",
+    "howToReach": "Kannur Railway Station is about 2–3 km; Kannur International Airport is roughly 35 km. The fort sits near the Kannur cantonment/Mapilla Bay and is easily reached by taxi, autorickshaw or a short local bus/tuk‑tuk ride from central Kannur.",
+    "etiquette": [
+      "Confirm current opening hours, entry fee and photography rules with local authorities or ASI before you travel.",
+      "Wear comfortable shoes — ramparts and laterite steps can be uneven; bring sun protection and a light wind layer near the sea.",
+      "Respect ASI signboards and avoid leaning on or removing stones; fragile areas may be under conservation work.",
+      "Combine the visit with Arakkal Museum and Payyambalam Park for a fuller half‑day in Kannur."
+    ]
+  },
+  "coordinates": {
+    "lat": 11.85378,
+    "lng": 75.37243
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "kannur",
+    "fort",
+    "coastal",
+    "heritage-walks",
+    "portuguese-history",
+    "laterite"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — St. Angelo Fort (destination page)",
+      "url": "https://www.keralatourism.org/destination/st-angelo-fort-kannur/83/"
+    },
+    {
+      "label": "DTPC Kannur — Saint Angelo's Fort",
+      "url": "https://www.dtpckannur.com/destination/saint-angelos-fort"
+    },
+    {
+      "label": "Archaeological Survey of India — List of Centrally Protected Monuments (Thrissur",
+      "url": "https://asi.nic.in/admin/whatsnew/download/585"
+    },
+    {
+      "label": "TenderDetail — ASI tender: Annual repairs to St. Angelo Fort (published 2026-06-",
+      "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/55853115/FF2EAD6D-ACEA-4C69-A82F-DBE070542B37/129530/51292901/5bf2a431-1f8a-4754-b50f-3a34e1612f03"
+    },
+    {
+      "label": "Wikidata — St. Angelo Fort (coordinates and summary)",
+      "url": "https://www.wikidata.org/wiki/Q2663176"
+    },
+    {
+      "label": "keralatourism.org",
+      "url": "https://www.keralatourism.org/kerala-article/2020/kannur-fort-where-history-sleeps/1019"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

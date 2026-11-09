@@ -1,0 +1,107 @@
+{
+  "slug": "paliam-palace-chendamangalam",
+  "category": "heritage",
+  "name": "Paliam Palace (Paliam Kovilakam)",
+  "district": "Ernakulam",
+  "format": "lite",
+  "tagline": "Restored Paliam complex on the Muziris heritage trail",
+  "summary": "A restored Paliam family palace and nalukettu in Chendamangalam, preserved as part of the Muziris Heritage Project. Visit for coastal Kerala architecture, family archives and nearby heritage sites.",
+  "description": [
+    "Paliam Palace (also called Paliam Kovilakam) is the historic residence of the Paliath Achans, the hereditary prime ministers of the Kingdom of Cochin. The complex includes the grand nalukettu (Paliam Nalukettu) and ancillary buildings that showcase traditional Kerala domestic architecture.",
+    "The site matters as a living record of local politics, domestic life and the social history of the Cochin state; the palace and nalukettu display documents, furniture and artefacts tied to the Paliam family and their role in regional history.",
+    "Visitors get a close look at timber architecture, inner courtyards, the speech-pedestal (prasanga peedam) and museum displays maintained under the Muziris Heritage Project. The palace sits within a compact Chendamangalam heritage cluster that includes a restored synagogue, Kottayil Kovilakam and handloom centres.",
+    "The complex remains linked to the Paliam family and the Muziris project; some sections are run as museums while others may be reserved for family functions, so confirm access before you travel."
+  ],
+  "highlights": [
+    "Large traditional nalukettu and inner courtyard architecture",
+    "Historic documents, family archives and period furniture",
+    "Prasanga peedam (speech pedestal) linked to the Paliath Achans",
+    "Part of the Muziris Heritage Project — easy walk to synagogue and Kottayil Kovilakam",
+    "Conservation work and interpretation by heritage teams and architects"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "The Paliam complex is the ancestral seat of the Paliath family (Paliath Achans), who served as prime ministers and military leaders to the Kochi rulers from the 17th century. The buildings combine local Kerala carpentry with colonial-era influences and evolved over centuries as the family’s administrative and domestic centre.",
+        "The state and heritage organisations present the palace and the adjacent nalukettu as museum spaces under the Muziris Heritage Project while the family retains ceremonial use of some parts. The site sits in Chendamangalam, a compact heritage village of synagogues, temples, a church and traditional weavers."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Walk the main nalukettu courtyard to study the timber beams, tiled roofs and ventilated verandahs that typify upper-caste Kerala houses. Museum rooms display family letters, portraits, household items and interpretation panels that explain the Paliam role in Cochin politics.",
+        "Combine your visit with the restored Chendamangalam Synagogue, Kottayil Kovilakam hillock and local handloom centres. The short heritage walk around the village gives the best sense of the cultural mix (Jewish, Christian, Hindu and Muslim sites) that defines Chendamangalam."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Paliam Palace is reachable by road from North Paravur and Kochi; the nearest railheads are Aluva (about 19 km) and Ernakulam (about 29–31 km). Cochin International Airport (Nedumbassery) is roughly 22–25 km away depending on route. Hire a taxi for the final leg or join a Muziris heritage tour.",
+        "Opening access can vary: museum sections are managed under the Muziris project, but parts of the complex remain reserved for family ceremonies and private events. Confirm opening times and any guided-walk schedules before you travel."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-11-09",
+      "text": "Kerala Tourism lists Paliam Nalukettu and Paliam Palace as active museum sites within the Muziris Heritage Project and includes them in current Muziris heritage walk materials.",
+      "url": "https://www.keralatourism.org/muziris/museums"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "October–February (dry, pleasant weather for walking and photography)",
+    "howToReach": "By road via North Paravur from Kochi; nearest railheads Aluva (~19 km) or Ernakulam (~29–31 km); Cochin International Airport (Nedumbassery) ~22–25 km. Taxi/auto from North Paravur covers the last stretch.",
+    "etiquette": [
+      "Confirm opening hours and guided-walk schedules with Muziris/kerala tourism before visiting — parts of the complex may be closed for family events.",
+      "Combine the palace visit with Chendamangalam Synagogue and Kottayil Kovilakam for a compact half-day heritage circuit.",
+      "Wear comfortable shoes for uneven courtyards and respect any no-photography or restricted-area notices inside museum rooms.",
+      "Support local weavers and craft sellers in the village; ask permission before photographing people."
+    ]
+  },
+  "coordinates": {
+    "lat": 10.174617,
+    "lng": 76.232808
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "muziris",
+    "nalukettu",
+    "palace",
+    "heritage",
+    "ernakulam",
+    "museum"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Muziris museums / Paliam Nalukettu",
+      "url": "https://www.keralatourism.org/muziris/museums"
+    },
+    {
+      "label": "Chendamangalam Grama Panchayat — Paliam Palace page",
+      "url": "https://chendamangalampanchayat.lsgkerala.gov.in/en/node/31"
+    },
+    {
+      "label": "Benny Kuriakose — The Revival of Paliam Palace (conservation note)",
+      "url": "https://www.bennykuriakose.com/post/the-revival-of-paliam-palace"
+    },
+    {
+      "label": "Paliam (family) — history and site notes",
+      "url": "https://paliam.in/history/"
+    },
+    {
+      "label": "Wikimedia Commons — Paliam Palace photo with GPS coordinates",
+      "url": "https://commons.wikimedia.org/wiki/File:Paliam_Palace_in_Chendamangalam_01.jpg"
+    },
+    {
+      "label": "CZMP / district report (location listing with coordinates)",
+      "url": "https://niyamadarsi.com/uploads/articles/7/Draft_for_hearing_-CZMP_2021-_CRZ_2019_report_-updated_-_Ernakualm_district.pdf"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}
