@@ -28,7 +28,7 @@ git commit -q -m "$msg" || { echo "Nothing to commit."; exit 0; }
 if [ "$base" = "main" ]; then
   for i in 1 2 3; do
     if git push origin HEAD:main; then gh workflow run deploy.yml --ref main && echo "Published; deploy started."; exit 0; fi
-    git pull -q --rebase origin main || { git rebase --abort; break; }
+    git pull -q --rebase -X theirs origin main || { git rebase --abort; break; }   # on a clash in content files, keep the page this run just wrote
   done
 fi
 branch="${SHIP_JOB:-fill}/$(date +%Y%m%d-%H%M%S)"
