@@ -150,6 +150,21 @@ function createMock(state, consulted) {
     async research({ label = '', ctx = {} }) {
       const urls = new Set([`${U}a-${label}`, `${U}b-${label}`])
       urls.forEach(u => consulted.add(u)); state.calls++
+      if (label === 'fill') {
+        if (/BROKEN/.test(ctx.name || '')) return { text: 'sorry, no json here', urls }
+        const d = new Date(Date.now() - 20 * 864e5).toISOString().slice(0, 10)
+        return { urls, text: 'Here you go:\n```json\n' + JSON.stringify({
+          name: ctx.name, district: ctx.district || 'Kollam', tagline: `A quick guide to ${ctx.name}`,
+          summary: `${ctx.name} is a mock-generated lite page used to test the simple fill route end to end.`,
+          description: ['Mock paragraph one.', 'Mock paragraph two.'], highlights: ['One', 'Two', 'Three'],
+          sections: [{ heading: 'Background', body: ['Mock background.'] }, { heading: 'Plan your visit', body: ['Mock plan.'] }],
+          latest: [{ date: d, text: 'A mock recent update about opening hours.', url: `${U}a-fill` }, { date: '2999-01-01', text: 'A date in the future must be dropped.' }],
+          bestTime: 'Winter', howToReach: 'By road', tips: ['Dress modestly.'], tags: ['mock', 'test'], coordinates: { lat: 9.0, lng: 76.6 },
+          sources: /NOSRC/.test(ctx.name || '') ? [] : [{ label: 'A', url: `${U}a-fill` }, { label: 'Bad', url: 'http://insecure.example/x' }],
+        }) + '\n```', urls: /NOSRC/.test(ctx.name || '') ? new Set() : urls }
+      }
+      if (label === 'refresh') return { urls, text: JSON.stringify({ latest: [{ date: new Date().toISOString().slice(0, 10), text: `Mock news for ${ctx.name}: a new timing was announced.`, url: `${U}a-refresh` }] }) }
+      if (label === 'discover') return { urls, text: JSON.stringify({ topics: [{ name: 'Mock Discovered Beach', category: 'beaches', district: 'Kannur', note: 'trending' }, { name: 'Padmanabhaswamy Temple', category: 'temples', district: 'Thiruvananthapuram', note: 'dup' }, { name: 'Bad Category Thing', category: 'nonsense', district: 'Kollam', note: '' }] }) }
       return { text: `notes for ${ctx.name || label}`, urls }
     },
     async extract({ label, ctx = {} }) {

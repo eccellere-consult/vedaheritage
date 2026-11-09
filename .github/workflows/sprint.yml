@@ -1,23 +1,24 @@
-name: Content sprint (fast first-level coverage)
+name: Fill content (simple, autonomous)
 
-# PROTOTYPE of the content-acceleration plan. One research pass and one drafting call per topic from the topic register
-# (agents/registers/topics.json), no scout and no verifier chain. Runs in three slices; after each slice the new pages get
-# photos (Wikimedia Commons, then Openverse) or an image placeholder, qualifying pages are published per the admin switch,
-# and the work is saved. The admin stop switch (agents/control.json) is checked before every topic, every write and every
-# publish.
+# The simple content route. One grounded web-search call per page, no verifier chain, no strict schema.
+# Runs every day on its own: finds what Kerala readers want now, writes new pages (live when publishing is automatic),
+# then refreshes the stalest pages with dated "what's new" items. The admin stop switch is checked first.
+# Manual run: Actions > Fill content, or "Start sprint" in the admin.
 
 on:
+  schedule:
+    - cron: '20 2 * * *'
   workflow_dispatch:
     inputs:
       minutes:
-        description: 'Total time budget in minutes (120 to 180 recommended)'
-        default: '150'
+        description: 'Total time budget in minutes'
+        default: '90'
       max:
-        description: 'Max topics per slice'
+        description: 'Max new pages this run'
         default: '40'
       budget:
         description: 'Hard spend cap in USD for this run'
-        default: '20'
+        default: '10'
       provider:
         description: 'AI provider (saved = use the default saved in the admin page)'
         type: choice
@@ -36,7 +37,7 @@ concurrency:
 jobs:
   sprint:
     runs-on: ubuntu-latest
-    timeout-minutes: 210
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -48,7 +49,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/agent-guard.mjs sprint
-      - name: Sprint in three slices (draft, photos, publish, save)
+      - name: Fill new pages, refresh stale ones, ship
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -56,8 +57,6 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
-          OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
-          OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
           AGENT_PROVIDER: ${{ (inputs.provider != '' && inputs.provider != 'saved') && inputs.provider || vars.AGENT_PROVIDER }}
           AGENT_MODEL: ${{ vars.AGENT_MODEL }}
           ENRICHER_PROVIDER: ${{ vars.ENRICHER_PROVIDER }}
@@ -66,15 +65,12 @@ jobs:
           OPENAI_PRICE_OUT_PER_M: ${{ vars.OPENAI_PRICE_OUT_PER_M }}
           XAI_PRICE_IN_PER_M: ${{ vars.XAI_PRICE_IN_PER_M }}
           XAI_PRICE_OUT_PER_M: ${{ vars.XAI_PRICE_OUT_PER_M }}
-          MINUTES: ${{ inputs.minutes || '150' }}
+          MINUTES: ${{ inputs.minutes || '90' }}
           MAX: ${{ inputs.max || '40' }}
-          BUDGET: ${{ inputs.budget || '20' }}
+          BUDGET: ${{ inputs.budget || '10' }}
         run: |
-          slice=$(( (MINUTES + 2) / 3 ))
-          for i in 1 2 3; do
-            node scripts/agent-guard.mjs sprint || { echo "Stopped by the admin switch."; exit 1; }
-            node agents/run.mjs sprint --minutes "$slice" --max "$MAX" --budget "$BUDGET" || true
-            node scripts/fetch-commons-images.mjs --drafts || true
-            node scripts/auto-publish.mjs
-            bash scripts/publish-changes.sh sprint "content: sprint slice $i" "sprint/" "Content sprint slice $i" src/content public/images/discover agents/registers agents/reports || exit 1
-          done
+          node agents/run.mjs fill --minutes "$MINUTES" --max "$MAX" --budget "$BUDGET" || true
+          cp agents/reports/latest.md /tmp/fill-report.md 2>/dev/null || true
+          node agents/run.mjs refresh --max 20 --minutes 25 --budget "$BUDGET" || true
+          cat /tmp/fill-report.md agents/reports/latest.md > /tmp/both.md 2>/dev/null && cp /tmp/both.md agents/reports/latest.md || true
+          bash scripts/ship.sh "content: fill $(date +%F)" src/content agents/registers agents/reports

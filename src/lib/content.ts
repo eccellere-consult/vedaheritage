@@ -258,20 +258,24 @@ export interface Entry {
   tagline: string
   summary: string              // 50–200 chars — used as meta description
   description: string[]        // paragraphs
-  history: {
+  history?: {                  // absent on "lite" pages
     significance: string
     timeline: { period: string; event: string }[]
     keyFacts: string[]
   }
-  folklore: { title: string; story: string[]; note?: string }
-  spiritual: {
+  folklore?: { title: string; story: string[]; note?: string }
+  spiritual?: {
     summary: string
     experiences: { title: string; text: string }[]
     bestFor: string
     mindfulTips: string[]
   }
+  format?: 'lite'              // quick pages from the fill route: sections + dated updates, not independently fact-checked
+  sections?: { heading: string; body: string[] }[]
+  latest?: { date: string; text: string; url?: string }[]   // what is new, newest first
+  updated?: string             // ISO date the page was last refreshed
   highlights: string[]
-  visitorInfo: {
+  visitorInfo?: {
     bestTime: string
     howToReach: string
     etiquette: string[]

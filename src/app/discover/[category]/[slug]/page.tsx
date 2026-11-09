@@ -132,6 +132,24 @@ export default async function EntryPage({ params }: Props) {
 
           {e.recipe && <RecipeBlock recipe={e.recipe} name={e.name} />}
 
+          {e.latest && e.latest.length > 0 && (
+            <section className="mt-10 rounded-lg border border-accent/30 bg-white p-5" aria-labelledby="latest">
+              <p className="section-label">What's new</p>
+              <h2 id="latest" className="font-serif text-xl text-ink mb-3">Latest on {e.name}</h2>
+              <ul className="space-y-2 text-sm text-ink-mid">{e.latest.map(l => (
+                <li key={l.date + l.text}><span className="font-medium text-primary">{new Date(l.date).toLocaleDateString('en-IN', { month: 'short', year: 'numeric', ...(l.date.length > 7 ? { day: 'numeric' } : {}) })}:</span> {l.text}{l.url && <> <a href={l.url} target="_blank" rel="noopener noreferrer" className="underline">Source</a></>}</li>
+              ))}</ul>
+            </section>
+          )}
+
+          {e.sections?.map(sec => (
+            <section key={sec.heading} className="mt-10">
+              <h2 className="section-title mb-3">{sec.heading}</h2>
+              {sec.body.map((p, i) => <p key={i} className="text-ink-mid leading-relaxed mb-3">{p}</p>)}
+            </section>
+          ))}
+
+          {e.history && (
           <section className="mt-12" aria-labelledby="history">
             <p className="section-label">History &amp; significance</p>
             <h2 id="history" className="section-title mb-3">Why {e.name} matters</h2>
@@ -140,14 +158,18 @@ export default async function EntryPage({ params }: Props) {
             <h3 className="font-serif text-xl text-ink mt-8 mb-2">Good to know</h3>
             <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid">{e.history.keyFacts.map(f => <li key={f}>{f}</li>)}</ul>
           </section>
+          )}
 
+          {e.folklore && (
           <section className="mt-12 bg-accent-pale border-l-4 border-accent p-6 md:p-8" aria-labelledby="folklore">
             <p className="section-label">Legend &amp; folklore</p>
             <h2 id="folklore" className="font-serif text-2xl text-ink mb-3">{e.folklore.title}</h2>
             {e.folklore.story.map((p, i) => <p key={i} className="text-ink-mid leading-relaxed mb-3">{p}</p>)}
             {e.folklore.note && <p className="text-xs text-ink-mid/70 italic mt-2">{e.folklore.note}</p>}
           </section>
+          )}
 
+          {e.spiritual && (
           <section className="mt-12" aria-labelledby="spiritual">
             <p className="section-label">{isTradition(e.category) || e.category === 'heritage' ? 'Cultural & spiritual meaning' : 'Spiritual experience'}</p>
             <h2 id="spiritual" className="section-title mb-3">{isTradition(e.category) || e.category === 'heritage' ? 'What it means' : 'The inner journey'}</h2>
@@ -163,6 +185,7 @@ export default async function EntryPage({ params }: Props) {
             <p className="text-sm text-ink-mid mt-4"><span className="font-medium text-primary">Best for:</span> {e.spiritual.bestFor}</p>
             <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid mt-2">{e.spiritual.mindfulTips.map(t => <li key={t}>{t}</li>)}</ul>
           </section>
+          )}
 
           {e.heritage && (
             <section className="mt-12 space-y-10" aria-labelledby="where">
@@ -188,14 +211,16 @@ export default async function EntryPage({ params }: Props) {
             </section>
           )}
 
+          {e.visitorInfo && (<>
           <h2 className="section-title mt-12 mb-4">Plan your visit</h2>
           <dl className="grid sm:grid-cols-2 gap-4 text-sm">
             <div className="card !p-4"><dt className="font-medium text-primary">Best time</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.bestTime}</dd></div>
             <div className="card !p-4"><dt className="font-medium text-primary">How to reach</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.howToReach}</dd></div>
             {e.visitorInfo.duration && <div className="card !p-4"><dt className="font-medium text-primary">Suggested time</dt><dd className="text-ink-mid mt-1">{e.visitorInfo.duration}</dd></div>}
           </dl>
-          <h3 className="font-serif text-xl text-ink mt-6 mb-2">Etiquette &amp; good to know</h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid">{e.visitorInfo.etiquette.map(t => <li key={t}>{t}</li>)}</ul>
+          {e.visitorInfo.etiquette.length > 0 && <><h3 className="font-serif text-xl text-ink mt-6 mb-2">Etiquette &amp; good to know</h3>
+          <ul className="list-disc pl-5 space-y-1 text-sm text-ink-mid">{e.visitorInfo.etiquette.map(t => <li key={t}>{t}</li>)}</ul></>}
+          </>)}
 
           {e.travel && (
           <section className="mt-12" aria-labelledby="getting-there">
@@ -218,7 +243,7 @@ export default async function EntryPage({ params }: Props) {
           )}
 
           <p className="text-xs text-ink-mid/70 mt-8">
-            Last verified {new Date(e.lastVerified).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}. Timings, fees and dates change — confirm with the venue before travelling.
+            {e.format === 'lite' ? 'Updated' : 'Last verified'} {new Date(e.updated || e.lastVerified).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}.{e.format === 'lite' && ' Compiled quickly from recent web sources and not yet independently checked.'} Timings, fees and dates change — confirm with the venue before travelling.
             Sources: {e.sources.map((s, i) => (
               <span key={s.url}>{i > 0 && ', '}<a href={s.url} rel="noopener noreferrer" target="_blank" className="underline">{s.label}</a></span>
             ))}.

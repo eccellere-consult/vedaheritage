@@ -44,6 +44,21 @@ for (const cat of CATEGORIES) {
     slugs.add(`${cat}/${d.slug}`)
     if (!STATUSES.includes(d.status)) fail(rel, `status must be one of ${STATUSES}`)
     for (const f of ['name', 'district', 'tagline']) if (!isStr(d[f])) fail(rel, `missing ${f}`)
+    if (d.format === 'lite') {   // quick pages from the fill route: light rules, not independently fact-checked
+      if (!isStr(d.summary) || d.summary.length < 30 || d.summary.length > 220) fail(rel, 'lite: summary must be 30–220 chars')
+      if (!isArr(d.description)) fail(rel, 'lite: description must be a non-empty array of paragraphs')
+      if (!isArr(d.highlights, 2)) fail(rel, 'lite: need at least 2 highlights')
+      if (!isArr(d.tags, 2)) fail(rel, 'lite: need at least 2 tags')
+      if (!isIsoDate(d.updated) || !isIsoDate(d.lastVerified)) fail(rel, 'lite: updated and lastVerified must be ISO dates')
+      if (!Array.isArray(d.sections) || d.sections.some(x => !isStr(x.heading) || !isArr(x.body))) fail(rel, 'lite: sections must be [{heading, body[]}]')
+      if (d.latest !== undefined && (!Array.isArray(d.latest) || d.latest.some(x => !isStr(x.date) || Number.isNaN(Date.parse(x.date)) || !isStr(x.text) || (x.url && !/^https:\/\//.test(x.url))))) fail(rel, 'lite: latest must be [{date, text, url?}]')
+      if (d.visitorInfo && (!isStr(d.visitorInfo.bestTime) || !isStr(d.visitorInfo.howToReach) || !Array.isArray(d.visitorInfo.etiquette))) fail(rel, 'lite: visitorInfo needs bestTime, howToReach, etiquette[]')
+      if (!Array.isArray(d.sources) || !d.sources.length || d.sources.some(x => !isStr(x.label) || !/^https:\/\//.test(x.url || ''))) fail(rel, 'lite: need at least 1 source [{label, url (https)}]')
+      if (d.coordinates && (typeof d.coordinates.lat !== 'number' || typeof d.coordinates.lng !== 'number')) fail(rel, 'coordinates must be numeric lat/lng')
+      if (!Array.isArray(d.images) || d.images.length > 2) fail(rel, 'images must be an array of at most 2')
+      for (const im of d.images || []) { for (const f of ['src', 'alt', 'credit', 'license', 'sourceUrl']) if (!isStr(im[f])) fail(rel, `image missing ${f}`); if (isStr(im.src) && !fileExists(im.src)) fail(rel, `image file not found in public/: ${im.src}`) }
+      continue
+    }
     if (!isStr(d.summary) || d.summary.length < 50 || d.summary.length > 200) fail(rel, 'summary must be 50–200 chars (used as meta description)')
     if (!isArr(d.description)) fail(rel, 'description must be a non-empty array of paragraphs')
     if (!d.folklore || !isStr(d.folklore.title) || !isArr(d.folklore.story)) fail(rel, 'folklore {title, story[]} is required on every entry')
