@@ -79,8 +79,24 @@
     "lat": 10.21298,
     "lng": 76.202428
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/cheraman-juma-masjid-kodungallur-1.jpg",
+      "alt": "Cheraman Juma Mosque at Kodungallur, Thrissur district in the state of Kerala.",
+      "credit": "Pinakpani",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheraman_Juma_Mosque_at_Kodungallur,_Thrissur_district_in_the_state_of_Kerala._02.jpg"
+    },
+    {
+      "src": "/images/discover/cheraman-juma-masjid-kodungallur-2.jpg",
+      "alt": "Cheraman Juma Mosque at Kodungallur, Thrissur district in the state of Kerala.",
+      "credit": "Pinakpani",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheraman_Juma_Mosque_at_Kodungallur,_Thrissur_district_in_the_state_of_Kerala._04.jpg"
+    }
+  ],
   "tags": [
     "muziris",
     "mosque",

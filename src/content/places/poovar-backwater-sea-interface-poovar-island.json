@@ -56,8 +56,24 @@
     "lat": 8.3175,
     "lng": 77.07139
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/poovar-backwater-sea-interface-poovar-island-1.jpg",
+      "alt": "A rock that is shaped like an elephant when seen from a certain angle",
+      "credit": "Maskaravivek",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elephant_Rock_Poovar_Island.jpg"
+    },
+    {
+      "src": "/images/discover/poovar-backwater-sea-interface-poovar-island-2.jpg",
+      "alt": "This is the picture of boats riding with tourists through the canals around the Poovar Island of Kerala.",
+      "credit": "Bliss Vallabhassery",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boats_at_Poovar_Island.jpg"
+    }
+  ],
   "tags": [
     "backwaters",
     "estuary",

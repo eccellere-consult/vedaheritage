@@ -76,8 +76,24 @@
     "lat": 9.61861,
     "lng": 76.385
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/pathiramanal-island-vembanad-backwater-islet-1.jpg",
+      "alt": "Pathiramanal island at Alappuzha",
+      "credit": "Siyaulhaque",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pathiramanal_island_at_Alappuzha_2.jpg"
+    },
+    {
+      "src": "/images/discover/pathiramanal-island-vembanad-backwater-islet-2.jpg",
+      "alt": "Pathiramanal island at Alappuzha",
+      "credit": "Siyaulhaque",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pathiramanal_island_at_Alappuzha_23.jpg"
+    }
+  ],
   "tags": [
     "backwaters",
     "birding",

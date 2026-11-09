@@ -63,8 +63,24 @@
       "Respect looms and workspaces — ask before photographing weavers at work and avoid disturbing the process."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kuthampully-handloom-1.jpg",
+      "alt": "Explore a traditional weaving workshop in Oaxaca, showcasing handlooms and colorful yarn spools.",
+      "credit": "Miguel González via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-weaving-workshop-in-oaxaca-mexico-33703937/"
+    },
+    {
+      "src": "/images/discover/kuthampully-handloom-2.jpg",
+      "alt": "Detailed view of traditional handloom weaving process with vivid red thread.",
+      "credit": "Andreas Suwardy via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-handloom-weaving-with-red-thread-40524483/"
+    }
+  ],
   "tags": [
     "handloom",
     "saree",

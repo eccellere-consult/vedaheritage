@@ -77,8 +77,24 @@
       "Arrive early for the muhurtham; the core ritual is short and important to witness."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kerala-hindu-wedding-rituals-1.jpg",
+      "alt": "A vibrant Indian wedding in Kottayam, Kerala, featuring traditional attire and rituals.",
+      "credit": "Anoop VS via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/a-man-and-woman-are-standing-in-front-of-a-wedding-ceremony-21302422/"
+    },
+    {
+      "src": "/images/discover/kerala-hindu-wedding-rituals-2.jpg",
+      "alt": "woman, rituals, tradition, bali, indonesia, hindu, culture, custom, lombok, bali, bali, bali, bali, bali, indonesia, hindu, hindu, hindu, lombok",
+      "credit": "18531141 via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/woman-rituals-tradition-bali-7790612/"
+    }
+  ],
   "tags": [
     "weddings",
     "kerala",

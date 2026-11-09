@@ -69,8 +69,16 @@
     "lat": 11.859505,
     "lng": 75.3755041
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/arakkal-kettu-arakkal-museum-1.jpg",
+      "alt": "Arakkal kettu museum - kannur city",
+      "credit": "നിരക്ഷരൻ",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arakkal_Kettu_museum-_kannur.jpg"
+    }
+  ],
   "tags": [
     "kannur",
     "arakkal",

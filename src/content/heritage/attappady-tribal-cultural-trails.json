@@ -85,8 +85,16 @@
     "lat": 11.10889,
     "lng": 76.55222
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/attappady-tribal-cultural-trails-1.jpg",
+      "alt": "zuni, nature, native american, indian, native, american, southwest, history, united, states, historic, turquoise, silver, jewelry, traditional, craftsmanship, h",
+      "credit": "sarakgraves via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/zuni-native-american-indian-native-2535675/"
+    }
+  ],
   "tags": [
     "tribal",
     "attappady",

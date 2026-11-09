@@ -65,8 +65,24 @@
     "lat": 10.1661,
     "lng": 76.4389
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kalady-adi-shankaracharya-s-birthplace-1.jpg",
+      "alt": "Periyar River, view to SW from Kalady Bridge, Ernakulam Distt, Kerala, India",
+      "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Periyar_SW_Kalady_Bridge_Ernakulam_Dec22_A7C_04820.jpg"
+    },
+    {
+      "src": "/images/discover/kalady-adi-shankaracharya-s-birthplace-2.jpg",
+      "alt": "Pump house for water supply scheme, Periyar river NE from bridge, Kalady, Ernakulam distt, Kerala, India. \" UWSS to Angamaly, ARWSS to Kothakulangara South & Ma",
+      "credit": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but please mention me as the author. I would much appreciate if you send me an email tagooty@yahoo.com or write on my talk page , for my information. Please contact me before commercial use. Please do not upload an edited image here without consulting me. I would like to make corrections only at my own source to ensure that the changes improve the image and are preserved. Otherwise you may upload an edited image with a new name. Please use one of the templates derivative or extract .",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pump_House_Periyar_NE_Kalady_Bridge_Ernakulam_Dec22_A7C_04841.jpg"
+    }
+  ],
   "tags": [
     "pilgrimage",
     "temples",

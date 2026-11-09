@@ -71,8 +71,24 @@
     "lat": 10.529627,
     "lng": 76.684012
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/nelliyampathy-hills-tea-orchards-and-viewpoints-1.jpg",
+      "alt": "Nelliyampathy Hill Station, palakkad",
+      "credit": "Jaseem Hamza",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelliyampathy_Hill_Station,_palakkad_-_panoramio.jpg"
+    },
+    {
+      "src": "/images/discover/nelliyampathy-hills-tea-orchards-and-viewpoints-2.jpg",
+      "alt": "Nelliyampathy Hill Station, palakkad",
+      "credit": "Jaseem Hamza",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nelliyampathy_Hill_Station,_palakkad_-_panoramio_(3).jpg"
+    }
+  ],
   "tags": [
     "palakkad",
     "nelliampathy",

@@ -64,8 +64,24 @@
     "lat": 11.748292,
     "lng": 75.486134
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/thalassery-fort-colonial-heritage-and-circus-history-1.jpg",
+      "alt": "Views from and around Thalasserry fort - Tellicherry fort, Kerala, India",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Views_from_and_around_Thalasserry_fort_-_Tellicherry_fort,_Kerala,_India_(64).jpg"
+    },
+    {
+      "src": "/images/discover/thalassery-fort-colonial-heritage-and-circus-history-2.jpg",
+      "alt": "Views from and around Thalasserry fort - Tellicherry fort, Kerala, India",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Views_from_and_around_Thalasserry_fort_-_Tellicherry_fort,_Kerala,_India_(87).jpg"
+    }
+  ],
   "tags": [
     "fort",
     "colonial",

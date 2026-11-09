@@ -67,8 +67,24 @@
     "lat": 9.85,
     "lng": 76.35
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/vembanad-kol-wetlands-birding-and-backwater-trails-1.jpg",
+      "alt": "Scenic view of a traditional houseboat on Vembanad Lake surrounded by blooming lotus flowers and palm trees.",
+      "credit": "Mohit Khare via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/houseboat-on-vembanad-lake-with-lotus-flowers-37185468/"
+    },
+    {
+      "src": "/images/discover/vembanad-kol-wetlands-birding-and-backwater-trails-2.jpg",
+      "alt": "A breathtaking sunrise over tranquil wetlands in Thiruvananthapuram, Kerala, India, with a motorcyclist silhouetted.",
+      "credit": "Kevin via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/sunrise-over-wetlands-in-thiruvananthapuram-india-30023581/"
+    }
+  ],
   "tags": [
     "backwaters",
     "birding",

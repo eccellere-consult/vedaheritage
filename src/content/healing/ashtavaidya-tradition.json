@@ -1,114 +1,130 @@
 {
-    "slug": "ashtavaidya-tradition",
-    "category": "healing",
-    "name": "Ashtavaidya tradition",
-    "district": "Kerala",
-    "format": "lite",
-    "tagline": "Kerala’s classical physician lineages — mastery of the eight branches of Ayurveda",
-    "summary": "A scholar–physician tradition from Kerala whose hereditary families trained as masters of the eight branches (ashtanga) of classical Ayurveda; now practiced by a few lineages and preserved in…",
-    "description": [
-        "The Ashtavaidya tradition is a classical Ayurvedic scholar–physician culture from Kerala in which selected Namboothiri families trained for generations in the eight branches (ashtanga) of Ayurveda and kept a strong textual, clinical and botanical knowledge base.",
-        "Its practitioners historically learned by long gurukula-style apprenticeship (textual study, field knowledge of medicinal plants and clinical apprenticeship) and produced commentaries, compendia and bespoke formulations that shaped Kerala Ayurveda.",
-        "Today the tradition survives in a small number of family lineages and in institutions, clinics and archives that document and continue aspects of the practice while engaging with modern medicine and manufacturing.",
-        "Visitors interested in medical history and living heritage find manuscripts, family museums, teaching clinics and continuing practitioners who demonstrate classical diagnosis, herbal pharmacy and traditional therapies (confirm availability before you travel)."
-    ],
-    "highlights": [
-        "Mastery of the eight classical branches (ashtanga) of Ayurveda",
-        "Long gurukula apprenticeship combining Sanskrit texts, reasoning and field botany",
-        "Surviving family lineages such as Alathiyoor, Thaikkattu (Vaidyaratnam), Pulamanthole and others",
-        "Documented oral-history archive and academic studies (NCBS/PMC)",
-        "Institutions and museums in Thrissur and Malabar that preserve manuscripts and practice",
-        "Living tradition adapting to modern clinics, research and scaled manufacturing"
-    ],
-    "sections": [
-        {
-            "heading": "Background",
-            "body": [
-                "Ashtavaidyas are hereditary physician families in Kerala traditionally regarded as masters of the eight branches of Ayurveda; their training emphasised study of classical texts (especially the Ashtāngahrdayam), mastery of Sanskrit, traditional logic and long clinical apprenticeship. (historical and ethnographic documentation available in academic archives).",
-                "Scholars report that the Ashtavaidya culture once numbered many families; later counts identify eight surviving Ashtavaidya family names and only a subset remain active in clinical practice today. Modern research projects have recorded extensive oral histories with senior practitioners to preserve techniques and perspectives as the tradition adapts to contemporary medicine."
-            ]
-        },
-        {
-            "heading": "What to see and do",
-            "body": [
-                "Visit family-run clinics and traditional pharmacies (for example institutions associated with Thaikkattu/Vaidyaratnam and SNA) to see classical formulations, museum displays and manuscript collections (opening and visitor arrangements vary—confirm in advance).",
-                "Seek talks, demonstrations or archives: the NCBS 'living history' interviews and scholarly papers describe in-depth practices and are useful preparatory reading; some Ashtavaidya physicians also lecture at Ayurvedic colleges and offer supervised clinical observation.",
-                "If you wish to experience treatment, book directly with a named physician or established institution; Ashtavaidya therapy is clinical and personalised — avoid commercial ‘quick-fix’ packages and consult a qualified practitioner about safety, especially alongside other medicines."
-            ]
-        },
-        {
-            "heading": "Plan your visit",
-            "body": [
-                "Ashtavaidya-related sites and clinics are concentrated in central Kerala (Thrissur, parts of Malabar). Plan visits around clinic timetables and institutional museum hours; phone or email to request permission for museum or archive visits and for appointments.",
-                "Travel light and expect to observe clinical consultations and herbal pharmacy work rather than tourist-style displays. Respect clinical privacy and the families’ rules about photography, manuscripts and ritual items; always ask before photographing or handling objects."
-            ]
-        }
-    ],
-    "latest": [
-        {
-            "date": "2026-09-03",
-            "text": "SNA Oushadhasala published a feature on the Ashtavaidya heritage and its online product range, highlighting how some Ashtavaidya-linked pharmacies present traditional formulations to modern consumers.",
-            "url": "https://www.snaoushadhasala.com/blog/ashtavaidya-ayurveda-the-traditional-ayurvedic-heritage-of-kerala-Fn9JG5"
-        },
-        {
-            "date": "2026-06-13",
-            "text": "The English Wikipedia Ashtavaidya page was updated in mid‑June 2026 and summarises family names, training methods and the current status of surviving Ashtavaidya families (useful quick reference; follow up with primary sources for research).",
-            "url": "https://en.wikipedia.org/wiki/Ashtavaidya"
-        },
-        {
-            "date": "2026-06-01",
-            "text": "Profile pieces and interviews in 2026 highlighted Ashtavaidya representatives such as Alathiyoor Narayanan Nambi as active teachers and clinicians bridging family tradition and formal Ayurvedic education.",
-            "url": "https://vayonadha.com/the-legacy-of-ashtavaidyan-dr-alathiyoor-narayanan-nambi-a-living-tradition-of-ayurveda-from-kerala/"
-        }
-    ],
-    "visitorInfo": {
-        "bestTime": "Year‑round; avoid heavy monsoon travel (typically June–September) if you plan museum and road travel.",
-        "howToReach": "Fly into Kochi (Cochin) or Kozhikode airports, then travel by train or road to central Kerala (Thrissur, nearby Malappuram) where many Ashtavaidya families and institutions are based; contact clinics or museums in advance and confirm appointments.",
-        "etiquette": [
-            "Book appointments and request permission before visiting clinics, manuscript collections or family museums.",
-            "Respect clinical privacy and ask before photographing or handling manuscripts, ritual items or medicines.",
-            "Treatments are personalised clinical procedures—discuss concurrent medicines and medical conditions with the physician beforehand.",
-            "Use reputable institutions (established family clinics, research centres or colleges) rather than unverified commercial packages."
-        ]
+  "slug": "ashtavaidya-tradition",
+  "category": "healing",
+  "name": "Ashtavaidya tradition",
+  "district": "Kerala",
+  "format": "lite",
+  "tagline": "Kerala’s classical physician lineages — mastery of the eight branches of Ayurveda",
+  "summary": "A scholar–physician tradition from Kerala whose hereditary families trained as masters of the eight branches (ashtanga) of classical Ayurveda; now practiced by a few lineages and preserved in…",
+  "description": [
+    "The Ashtavaidya tradition is a classical Ayurvedic scholar–physician culture from Kerala in which selected Namboothiri families trained for generations in the eight branches (ashtanga) of Ayurveda and kept a strong textual, clinical and botanical knowledge base.",
+    "Its practitioners historically learned by long gurukula-style apprenticeship (textual study, field knowledge of medicinal plants and clinical apprenticeship) and produced commentaries, compendia and bespoke formulations that shaped Kerala Ayurveda.",
+    "Today the tradition survives in a small number of family lineages and in institutions, clinics and archives that document and continue aspects of the practice while engaging with modern medicine and manufacturing.",
+    "Visitors interested in medical history and living heritage find manuscripts, family museums, teaching clinics and continuing practitioners who demonstrate classical diagnosis, herbal pharmacy and traditional therapies (confirm availability before you travel)."
+  ],
+  "highlights": [
+    "Mastery of the eight classical branches (ashtanga) of Ayurveda",
+    "Long gurukula apprenticeship combining Sanskrit texts, reasoning and field botany",
+    "Surviving family lineages such as Alathiyoor, Thaikkattu (Vaidyaratnam), Pulamanthole and others",
+    "Documented oral-history archive and academic studies (NCBS/PMC)",
+    "Institutions and museums in Thrissur and Malabar that preserve manuscripts and practice",
+    "Living tradition adapting to modern clinics, research and scaled manufacturing"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Ashtavaidyas are hereditary physician families in Kerala traditionally regarded as masters of the eight branches of Ayurveda; their training emphasised study of classical texts (especially the Ashtāngahrdayam), mastery of Sanskrit, traditional logic and long clinical apprenticeship. (historical and ethnographic documentation available in academic archives).",
+        "Scholars report that the Ashtavaidya culture once numbered many families; later counts identify eight surviving Ashtavaidya family names and only a subset remain active in clinical practice today. Modern research projects have recorded extensive oral histories with senior practitioners to preserve techniques and perspectives as the tradition adapts to contemporary medicine."
+      ]
     },
-    "images": [],
-    "imageStatus": "needed",
-    "tags": [
-        "ayurveda",
-        "traditional medicine",
-        "ashtavaidya",
-        "kerala",
-        "healing"
-    ],
-    "sources": [
-        {
-            "label": "The Ashtavaidya physicians of Kerala: A tradition in transition (Journal of Ayur",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3117315/"
-        },
-        {
-            "label": "NCBS — History of Indian Healing Traditions (Ashtavaidya project description)",
-            "url": "https://news.ncbs.res.in/archivednews/story/history-indian-healing-traditions"
-        },
-        {
-            "label": "Ashtavaidya — Wikipedia (overview, family names, training)",
-            "url": "https://en.wikipedia.org/wiki/Ashtavaidya"
-        },
-        {
-            "label": "Vaidyaratnam (Thaikkattussery) — Ashtavaidya family site and museum information",
-            "url": "https://old.vaidyaratnammooss.com/"
-        },
-        {
-            "label": "SNA Oushadhasala — blog: Ashtavaidya Ayurveda (2026‑09‑03)",
-            "url": "https://www.snaoushadhasala.com/blog/ashtavaidya-ayurveda-the-traditional-ayurvedic-heritage-of-kerala-Fn9JG5"
-        },
-        {
-            "label": "Vayonadha — profile: Alathiyoor Narayanan Nambi (June 1, 2026)",
-            "url": "https://vayonadha.com/the-legacy-of-ashtavaidyan-dr-alathiyoor-narayanan-nambi-a-living-tradition-of-ayurveda-from-kerala/"
-        }
-    ],
-    "updated": "2026-11-09",
-    "lastVerified": "2026-11-09",
-    "status": "approved",
-    "autoPublished": "2026-11-09",
-    "reviewed": false
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Visit family-run clinics and traditional pharmacies (for example institutions associated with Thaikkattu/Vaidyaratnam and SNA) to see classical formulations, museum displays and manuscript collections (opening and visitor arrangements vary—confirm in advance).",
+        "Seek talks, demonstrations or archives: the NCBS 'living history' interviews and scholarly papers describe in-depth practices and are useful preparatory reading; some Ashtavaidya physicians also lecture at Ayurvedic colleges and offer supervised clinical observation.",
+        "If you wish to experience treatment, book directly with a named physician or established institution; Ashtavaidya therapy is clinical and personalised — avoid commercial ‘quick-fix’ packages and consult a qualified practitioner about safety, especially alongside other medicines."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Ashtavaidya-related sites and clinics are concentrated in central Kerala (Thrissur, parts of Malabar). Plan visits around clinic timetables and institutional museum hours; phone or email to request permission for museum or archive visits and for appointments.",
+        "Travel light and expect to observe clinical consultations and herbal pharmacy work rather than tourist-style displays. Respect clinical privacy and the families’ rules about photography, manuscripts and ritual items; always ask before photographing or handling objects."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-09-03",
+      "text": "SNA Oushadhasala published a feature on the Ashtavaidya heritage and its online product range, highlighting how some Ashtavaidya-linked pharmacies present traditional formulations to modern consumers.",
+      "url": "https://www.snaoushadhasala.com/blog/ashtavaidya-ayurveda-the-traditional-ayurvedic-heritage-of-kerala-Fn9JG5"
+    },
+    {
+      "date": "2026-06-13",
+      "text": "The English Wikipedia Ashtavaidya page was updated in mid‑June 2026 and summarises family names, training methods and the current status of surviving Ashtavaidya families (useful quick reference; follow up with primary sources for research).",
+      "url": "https://en.wikipedia.org/wiki/Ashtavaidya"
+    },
+    {
+      "date": "2026-06-01",
+      "text": "Profile pieces and interviews in 2026 highlighted Ashtavaidya representatives such as Alathiyoor Narayanan Nambi as active teachers and clinicians bridging family tradition and formal Ayurvedic education.",
+      "url": "https://vayonadha.com/the-legacy-of-ashtavaidyan-dr-alathiyoor-narayanan-nambi-a-living-tradition-of-ayurveda-from-kerala/"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "Year‑round; avoid heavy monsoon travel (typically June–September) if you plan museum and road travel.",
+    "howToReach": "Fly into Kochi (Cochin) or Kozhikode airports, then travel by train or road to central Kerala (Thrissur, nearby Malappuram) where many Ashtavaidya families and institutions are based; contact clinics or museums in advance and confirm appointments.",
+    "etiquette": [
+      "Book appointments and request permission before visiting clinics, manuscript collections or family museums.",
+      "Respect clinical privacy and ask before photographing or handling manuscripts, ritual items or medicines.",
+      "Treatments are personalised clinical procedures—discuss concurrent medicines and medical conditions with the physician beforehand.",
+      "Use reputable institutions (established family clinics, research centres or colleges) rather than unverified commercial packages."
+    ]
+  },
+  "images": [
+    {
+      "src": "/images/discover/ashtavaidya-tradition-1.jpg",
+      "alt": "Women in traditional attire participate in outdoor cooking festival.",
+      "credit": "PREM GS via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/street-festival-with-traditional-cooking-event-31154802/"
+    },
+    {
+      "src": "/images/discover/ashtavaidya-tradition-2.jpg",
+      "alt": "A child receives traditional Kathakali makeup, showcasing cultural art in Kerala, India.",
+      "credit": "Athul Haritha via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-kathakali-makeup-application-in-kerala-31253410/"
+    }
+  ],
+  "tags": [
+    "ayurveda",
+    "traditional medicine",
+    "ashtavaidya",
+    "kerala",
+    "healing"
+  ],
+  "sources": [
+    {
+      "label": "The Ashtavaidya physicians of Kerala: A tradition in transition (Journal of Ayur",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3117315/"
+    },
+    {
+      "label": "NCBS — History of Indian Healing Traditions (Ashtavaidya project description)",
+      "url": "https://news.ncbs.res.in/archivednews/story/history-indian-healing-traditions"
+    },
+    {
+      "label": "Ashtavaidya — Wikipedia (overview, family names, training)",
+      "url": "https://en.wikipedia.org/wiki/Ashtavaidya"
+    },
+    {
+      "label": "Vaidyaratnam (Thaikkattussery) — Ashtavaidya family site and museum information",
+      "url": "https://old.vaidyaratnammooss.com/"
+    },
+    {
+      "label": "SNA Oushadhasala — blog: Ashtavaidya Ayurveda (2026‑09‑03)",
+      "url": "https://www.snaoushadhasala.com/blog/ashtavaidya-ayurveda-the-traditional-ayurvedic-heritage-of-kerala-Fn9JG5"
+    },
+    {
+      "label": "Vayonadha — profile: Alathiyoor Narayanan Nambi (June 1, 2026)",
+      "url": "https://vayonadha.com/the-legacy-of-ashtavaidyan-dr-alathiyoor-narayanan-nambi-a-living-tradition-of-ayurveda-from-kerala/"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
 }

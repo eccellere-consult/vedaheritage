@@ -67,8 +67,24 @@
     "lat": 12.517,
     "lng": 75.333
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/ranipuram-hills-kasargod-trekking-and-shola-forests-1.jpg",
+      "alt": "Ranipuram is a hill station and a tourist Center in the Indian state of Kerala. Situated in the Vellarikundu taluk, Kasargod District - Leech",
+      "credit": "Rajeshodayanchal",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ranipuram-hill-station-kasaragod-Leech.jpg"
+    },
+    {
+      "src": "/images/discover/ranipuram-hills-kasargod-trekking-and-shola-forests-2.jpg",
+      "alt": "Ranipuram is a hill station and a tourist Center in the Indian state of Kerala. Situated in the Vellarikundu taluk, Kasargod District.",
+      "credit": "Rajeshodayanchal",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ranipuram-hill-station-kasaragod-22.jpg"
+    }
+  ],
   "tags": [
     "trekking",
     "shola forests",

@@ -73,8 +73,24 @@
     "lat": 11.18,
     "lng": 75.81
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/dhow-uru-museum-beypore-1.jpg",
+      "alt": "A traditional wooden dhow docked at a sunny harbor in Doha, Qatar.",
+      "credit": "Natalya Rostun via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-dhow-at-doha-harbor-33677750/"
+    },
+    {
+      "src": "/images/discover/dhow-uru-museum-beypore-2.jpg",
+      "alt": "A serene view of traditional wooden dhows docked at a Middle Eastern port with a motorboat passing by.",
+      "credit": "Aneesh Thazhathethil via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-dhows-in-middle-eastern-port-38283363/"
+    }
+  ],
   "tags": [
     "maritime",
     "shipbuilding",

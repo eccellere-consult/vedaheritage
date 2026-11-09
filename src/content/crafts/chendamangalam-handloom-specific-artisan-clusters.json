@@ -61,8 +61,24 @@
     "lat": 10.1797,
     "lng": 76.2097
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/chendamangalam-handloom-specific-artisan-clusters-1.jpg",
+      "alt": "Close-up of a traditional handloom weaving a colorful textile in a rural setting.",
+      "credit": "Silvanus Solomon via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/handmade-scarf-in-a-village-24738158/"
+    },
+    {
+      "src": "/images/discover/chendamangalam-handloom-specific-artisan-clusters-2.jpg",
+      "alt": "Detailed view of traditional handloom weaving process with vivid red thread.",
+      "credit": "Andreas Suwardy via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-handloom-weaving-with-red-thread-40524483/"
+    }
+  ],
   "tags": [
     "handloom",
     "weaving",

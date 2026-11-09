@@ -73,8 +73,16 @@
     "lat": 10.226833,
     "lng": 76.198425
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kodungallur-bhagavathy-temple-1.jpg",
+      "alt": "People engaged in a colorful Hindu festival ritual in Kodungallur, India.",
+      "credit": "Kiran D'signz via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/kodungallur-bharani-17114250/"
+    }
+  ],
   "tags": [
     "bhadrakali",
     "festival",

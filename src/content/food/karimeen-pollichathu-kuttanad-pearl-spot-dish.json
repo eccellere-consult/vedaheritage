@@ -55,8 +55,16 @@
       "Take care when extracting meat around the backbone — the fish is served whole and bones are present."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/karimeen-pollichathu-kuttanad-pearl-spot-dish-1.jpg",
+      "alt": "karimeen, kerala cuisine, healthy, nutrition, fresh, vitamins, organic, beet, food, nature, fish, fish fry, fish roasted, brown fish, brown fishing",
+      "credit": "pratyksh via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/karimeen-kerala-cuisine-healthy-3688474/"
+    }
+  ],
   "tags": [
     "karimeen",
     "backwater",

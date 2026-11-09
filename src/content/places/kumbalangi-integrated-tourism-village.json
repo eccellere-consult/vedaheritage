@@ -71,8 +71,24 @@
     "lat": 9.88,
     "lng": 76.29
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kumbalangi-integrated-tourism-village-1.jpg",
+      "alt": "popeye village, malta, architecture, travel, tourism, scenery, village, nature, color, landscape, holiday, sea, adventure, anchor bay, summer, hill",
+      "credit": "Magdalenalena via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/popeye-village-malta-architecture-4158038/"
+    },
+    {
+      "src": "/images/discover/kumbalangi-integrated-tourism-village-2.jpg",
+      "alt": "hallstatt, austria, mountain lake, lake, alps, summer, tourism, vacations, upper austria, village, mountain, nature, boat, hallstatt, austria, austria, austria,",
+      "credit": "Julius_Silver via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/hallstatt-austria-mountain-lake-3609863/"
+    }
+  ],
   "tags": [
     "sustainable",
     "backwaters",

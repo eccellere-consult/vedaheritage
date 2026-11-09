@@ -67,8 +67,24 @@
     "lat": 9.80324,
     "lng": 76.78244
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/ilaveezha-poonchira-sunrise-sunset-valley-1.jpg",
+      "alt": "Ilaveezha Poonchira valley",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ilaveezha_Poonchira_2021.jpg"
+    },
+    {
+      "src": "/images/discover/ilaveezha-poonchira-sunrise-sunset-valley-2.jpg",
+      "alt": "Ilaveezha Poonchira",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ilaveezha_Poonchira_2021_P2.jpg"
+    }
+  ],
   "tags": [
     "sunrise",
     "photography",

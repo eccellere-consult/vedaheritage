@@ -67,8 +67,16 @@
     "lat": 11.139333,
     "lng": 75.831222
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kadalundi-bird-sanctuary-1.jpg",
+      "alt": "Spot-billed pelicans perched on a nest platform at Uppalapadu Bird Sanctuary, Andhra Pradesh.",
+      "credit": "AK Photography via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/spot-billed-pelicans-nesting-in-uppalapadu-sanctuary-37938064/"
+    }
+  ],
   "tags": [
     "birdwatching",
     "migratory-birds",

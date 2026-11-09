@@ -73,8 +73,24 @@
     "lat": 11.17151,
     "lng": 75.80611
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/beypore-uru-shipbuilding-1.jpg",
+      "alt": "A traditional wooden cargo ship sailing in open waters under a clear sky.",
+      "credit": "Jeffry Surianto via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-wooden-cargo-ship-in-open-sea-36341642/"
+    },
+    {
+      "src": "/images/discover/beypore-uru-shipbuilding-2.jpg",
+      "alt": "Monochrome photo of a traditional wooden ship under construction at Kuta Beach, Bali.",
+      "credit": "Dwidiyo Hanung via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/wooden-ship-on-beach-in-bali-indonesia-15135340/"
+    }
+  ],
   "tags": [
     "artisans",
     "maritime",

@@ -81,8 +81,24 @@
       "Confirm dates with local panchayat or agri‑tourism organisers — seasons vary with monsoon timing."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/pokkali-rice-farming-1.jpg",
+      "alt": "rice field, paddy field, agriculture, farming, farm, nature, green, rice field, agriculture, agriculture, agriculture, agriculture, agriculture, farming, farm",
+      "credit": "ignartonosbg via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/rice-field-paddy-field-agriculture-7890204/"
+    },
+    {
+      "src": "/images/discover/pokkali-rice-farming-2.jpg",
+      "alt": "rice, grain, plant, food, harvest, hand, agriculture, farming, cultivation, organic, plantation, landscape, nature, burundi, bujumbura, rice, rice, rice, rice, ",
+      "credit": "consolersafari via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/rice-grain-plant-food-harvest-7176354/"
+    }
+  ],
   "tags": [
     "agriculture",
     "traditional",

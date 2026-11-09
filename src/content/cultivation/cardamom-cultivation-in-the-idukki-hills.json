@@ -76,8 +76,24 @@
       "For sustainable travel, favour smallholder-run homestays or cooperative tours that return income locally."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/cardamom-cultivation-in-the-idukki-hills-1.jpg",
+      "alt": "canola fields, green, rolling hills, rapeseed, crops, farming, swellendam, cultivation, harvest, yellow fields, agriculture, green, crops, farming, agriculture,",
+      "credit": "stevepb via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/canola-fields-green-rolling-hills-1911392/"
+    },
+    {
+      "src": "/images/discover/cardamom-cultivation-in-the-idukki-hills-2.jpg",
+      "alt": "tea plantation, green hills, landscape design, farming, mountains, nature, eco-friendly, sunlight, vegetation, rural area, tranquility, dawn, tea leaves, tea cu",
+      "credit": "ignartonosbg via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/tea-plantation-green-hills-10376527/"
+    }
+  ],
   "tags": [
     "cardamom",
     "spices",

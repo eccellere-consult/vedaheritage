@@ -61,8 +61,16 @@
     "lat": 8.5097611,
     "lng": 76.8882917
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/veli-tourist-village-lagoon-1.jpg",
+      "alt": "Beachfront village bustling with tourists, vibrant buildings, and palm trees on a sunny day.",
+      "credit": "KR Mohaniyan via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/people-on-beach-5245473/"
+    }
+  ],
   "tags": [
     "lagoon",
     "promenade",

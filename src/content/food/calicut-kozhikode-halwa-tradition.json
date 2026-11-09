@@ -69,8 +69,16 @@
       "Ask shopkeepers before photographing inside production areas or kitchens."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/calicut-kozhikode-halwa-tradition-1.jpg",
+      "alt": "A vibrant photo of traditional Indian dessert Gajar Halwa served in a silver cup on a multicolored background.",
+      "credit": "Jack Baghel via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/close-up-of-gajorer-halwa-dessert-20446409/"
+    }
+  ],
   "tags": [
     "food",
     "sweets",

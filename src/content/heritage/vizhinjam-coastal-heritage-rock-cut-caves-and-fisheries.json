@@ -83,8 +83,24 @@
     "lat": 8.38255,
     "lng": 76.99148
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/vizhinjam-coastal-heritage-rock-cut-caves-and-fisheries-1.jpg",
+      "alt": "Explore the natural beauty of a coastal cave with rocky formations and ocean view.",
+      "credit": "Quang Nguyen Vinh via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/grotto-on-seashore-6871969/"
+    },
+    {
+      "src": "/images/discover/vizhinjam-coastal-heritage-rock-cut-caves-and-fisheries-2.jpg",
+      "alt": "A serene coastal scene featuring a blue boat near rock caves on a sandy beach.",
+      "credit": "Quang Nguyen Vinh via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/small-boat-docked-on-shore-by-cave-entra-6871990/"
+    }
+  ],
   "tags": [
     "vizhinjam",
     "rock-cut",

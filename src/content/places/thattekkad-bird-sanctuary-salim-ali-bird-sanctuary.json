@@ -64,8 +64,24 @@
     "lat": 10.133333,
     "lng": 76.683333
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/thattekkad-bird-sanctuary-salim-ali-bird-sanctuary-1.jpg",
+      "alt": "An early morning panoramic view of Salim Ali bird sanctuary in Goa",
+      "credit": "Rajiv98761",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dr_Salim_Ali_Bird_Sanctuary.jpg"
+    },
+    {
+      "src": "/images/discover/thattekkad-bird-sanctuary-salim-ali-bird-sanctuary-2.jpg",
+      "alt": "Indian Pitta from Thattekad Bird Sanctuary, Kerala, India.",
+      "credit": "Gannu03",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Indian_Pitta_from_Thattekad_Bird_Sanctuary_13.jpg"
+    }
+  ],
   "tags": [
     "birding",
     "thattekkad",

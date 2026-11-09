@@ -69,8 +69,24 @@
     "lat": 8.95,
     "lng": 77.06667
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/thenmala-eco-tourism-india-s-planned-ecotourism-project-1.jpg",
+      "alt": "Thenmala ecotourism, Kollam, Kerala",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thenmala_ecotourism_2.jpg"
+    },
+    {
+      "src": "/images/discover/thenmala-eco-tourism-india-s-planned-ecotourism-project-2.jpg",
+      "alt": "Thenmala ecotourism, Kollam, Kerala",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thenmala_ecotourism_park_02.jpg"
+    }
+  ],
   "tags": [
     "ecotourism",
     "thenmala",

@@ -69,8 +69,24 @@
     "lat": 11.94538,
     "lng": 76.06153
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/tholpetty-range-wayanad-wildlife-safaris-1.jpg",
+      "alt": "Wayanad Wildlife Sanctuary, Tholpetty Range",
+      "credit": "Jaseem Hamza",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wayanad_Wildlife_Sanctuary,_Tholpetty_Range_-_panoramio.jpg"
+    },
+    {
+      "src": "/images/discover/tholpetty-range-wayanad-wildlife-safaris-2.jpg",
+      "alt": "Wayanad Wildlife Sanctuary, Tholpetty Range",
+      "credit": "Jaseem Hamza",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wayanad_Wildlife_Sanctuary,_Tholpetty_Range_-_panoramio_(26).jpg"
+    }
+  ],
   "tags": [
     "wayanad",
     "wildlife",
