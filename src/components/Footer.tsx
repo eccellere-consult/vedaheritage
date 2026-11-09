@@ -27,6 +27,7 @@ const GROUPS: { title: string; links: [string, string][] }[] = [
   {
     title: 'Plan and connect',
     links: [
+      ['/itinerary', 'Itinerary Planner'],
       ['/travel', 'Kerala Travel Planner'],
       ['/events', 'Festivals & Events'],
       ['/services', 'Local Services Directory'],

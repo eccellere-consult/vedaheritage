@@ -26,6 +26,10 @@ export default function TravelPage() {
       <PageHero label="Plan Your Journey" title="Kerala Travel Planner" subtitle="Official links for tickets, live status, government-run stays and tourism information." />
       <section className="py-14 bg-surface">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="card !p-5 flex flex-wrap items-center justify-between gap-3">
+            <div><p className="font-serif text-xl text-ink">Build your trip plan</p><p className="text-sm text-ink-mid">Pick places and festivals, arrange them day by day, share or print the plan.</p></div>
+            <Link href="/itinerary/" className="btn-primary text-xs">Open the itinerary planner</Link>
+          </div>
           {(['Tourism', 'Train', 'Bus', 'Water', 'Temples'] as const).map(g => (
             <div key={g}>
               <h2 className="font-serif text-2xl text-ink mb-3">{g === 'Tourism' ? 'Tourism & stays' : g === 'Temples' ? 'Temples & pilgrimage' : g === 'Water' ? 'Ferries & backwaters' : g === 'Bus' ? 'Buses (KSRTC)' : 'Trains'}</h2>
