@@ -7,7 +7,7 @@
 
 ## Built (phase 2): the bookings module, LOCKED by default
 Everything below exists in the software but does nothing until you open it. Admin, **Bookings** tab. Travellers see no booking form while it is locked.
-- **Capability gates.** Four capabilities, each with a checklist and evidence field (for example grievance officer, GSTIN). A capability can be switched on only when every item is ticked and the evidence is recorded; the server enforces this, not just the screen. Changing the evidence switches it off again until it is complete.
+- **Capability gates.** Five capabilities (enquiries, commission, stays, rides, payments), each with a checklist and evidence field (for example grievance officer, GSTIN). A capability can be switched on only when every item is ticked and the evidence is recorded; the server enforces this, not just the screen. Changing the evidence switches it off again until it is complete.
   - *Partner enquiries and booking references*: travellers send a request to a verified partner and get a reference such as `VH-2611-K7QD`. A person checks it and sends it to the partner. Payment is on site.
   - *Commission ledger and monthly settlement*: records the fee on completed bookings and builds a monthly sheet per partner with GST on the fee, as CSV, and lets you mark a month settled with an invoice reference.
   - *Online payments with split commission* and *Cab and auto dispatch*: shown as **not built**. They stay locked even with every box ticked, because the software for them does not exist yet.
@@ -21,10 +21,22 @@ Everything below exists in the software but does nothing until you open it. Admi
 2. In Bookings, record the approvals and evidence for "Partner enquiries", save, switch on. Add partners (agreement date, registration checked, switch on).
 3. When your accountant is ready, record GSTIN and approvals for "Commission", switch on, choose the fee.
 
-### Decision: pay on site, fee invoiced monthly (no online payments)
-Travellers pay the partner directly on site. Veda Heritage earns its fee by invoicing each partner once a month from the settlement sheet (fee plus GST on the fee). This avoids holding traveller money, so no payment-aggregator integration, refund handling or split settlement is needed, and the "Online payments" capability stays locked and unbuilt on purpose. Razorpay (or another aggregator) can be revisited later; if so, the software still has to be written (orders, signature checks, webhooks, refunds, Route split) and the approvals listed in the admin apply.
+### Phase 3 (built, locked): stays, rides and Razorpay payments
+Decision update: online payment at booking is now built. Pay-on-site with a monthly invoice still works and is used automatically whenever online payments are switched off.
+- **Stays** (`/stays/`): partners list rooms (nightly rate, sleeps, units, blocked nights) in Bookings. Travellers pick dates, see the price (computed on the server), and book. A room is held for 30 minutes while the traveller pays; two travellers cannot take the last room.
+- **Rides** (`/rides/`): one platform rate card (base, per km, minimum, night surcharge) set in Bookings. Fare = distance between two fixed points (straight line x 1.35) on the card: an ESTIMATE, labelled as such. The request goes to every partner that runs that vehicle in the pickup district; the first to accept on a private link gets it. The traveller receives the driver's details and a 4-digit trip code; the driver starts the trip with the code and completes it. No live GPS tracking.
+- **Payments**: Razorpay Checkout. Our server creates the order from its own price, verifies the payment signature, and also listens to the webhook (so a closed tab never loses a payment; replays are ignored). The partner's share (amount minus your fee, GST on the fee, and any TCS/TDS you set) becomes a HELD transfer to the partner's Razorpay linked account and is released when the stay or trip is completed (or by you). Refunds (full or part) reverse the partner transfer. Admin buttons: Release payout, Retry payout transfer, Refund.
+- **Everything stays locked until switched on** in the Bookings tab. Payments additionally need: the keys in `vh-config.php`, Partner enquiries and Commission switched on, and the approvals recorded.
 
-Monthly routine: at month end open Bookings, Monthly settlement sheet, pick the month, download the CSV, give it to your accountant to raise one invoice per partner, then record the invoice number with Mark settled. The partner tells you (or you confirm with them) the booking value when a booking is completed; a flat fee needs no value.
+#### Razorpay setup (one time)
+1. In `vh-config.php` (never in the repository) add:
+   `'razorpay_key_id' => 'rzp_live_...', 'razorpay_key_secret' => '...', 'razorpay_webhook_secret' => '...'`. Start with TEST keys.
+2. In the Razorpay dashboard, set the webhook URL to `https://www.vedaheritage.co.in/api/razorpay-webhook.php`, with the same secret, and subscribe to `payment.captured`, `order.paid` and `refund.processed`.
+3. Create a Route linked account for each partner and paste its `acc_...` ID in Bookings, partner, "payout account".
+4. Make a test booking with test keys end to end (stay and ride), including a refund, before using live keys.
+
+#### Not verified here
+The code was tested against a mock of the Razorpay API (amounts, held transfers, signatures, webhooks, refunds), not against Razorpay itself. Razorpay's Route, transfer and hold behaviour and field names must be checked in test mode before going live. The statutory deductions (TCS under GST, TDS) default to 0; set them only with your accountant.
 
 ## Not built, and why (needs your decision)
 1. **Commission of 0.5 to 1 percent on pay-on-site bookings.** The site cannot see money that changes hands on site, so the fee depends on trust: a written agreement with each provider, a booking reference per enquiry, a monthly self-reported settlement and the right to audit. Expect leakage (guest and provider simply agree a direct deal). Also, 0.5 to 1 percent is far below what booking platforms charge (typically 10 to 20 percent for stays), so it will not fund development. Better options: a flat fee per confirmed booking, or 5 to 10 percent only on stays Veda Heritage arranges itself.

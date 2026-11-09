@@ -11,13 +11,14 @@ const inp = 'w-full border border-ink/20 rounded px-3 py-2 text-sm bg-white focu
  */
 export default function BookingRequest({ summary, start, days }: { summary: string; start: string; days: number }) {
   const [partners, setPartners] = useState<Partner[] | null>(null)
+  const [caps, setCaps] = useState<{ stays: boolean; rides: boolean }>({ stays: false, rides: false })
   const [openForm, setOpenForm] = useState(false)
   const [busy, setBusy] = useState(false); const [err, setErr] = useState(''); const [ref, setRef] = useState('')
   const [f, setF] = useState({ providerId: '', name: '', phone: '', email: '', checkIn: '', checkOut: '', people: '2', message: '', consent: false, website: '' })
 
   useEffect(() => {
     let live = true
-    fetch('/api/booking-status.php', { cache: 'no-store' }).then(r => r.json()).then(j => { if (live && j?.open && Array.isArray(j.partners) && j.partners.length) setPartners(j.partners) }).catch(() => { /* locked or offline: show nothing */ })
+    fetch('/api/booking-status.php', { cache: 'no-store' }).then(r => r.json()).then(j => { if (!live) return; if (j?.caps) setCaps({ stays: !!j.caps.stays, rides: !!j.caps.rides }); if (j?.open && Array.isArray(j.partners) && j.partners.length) setPartners(j.partners) }).catch(() => { /* locked or offline: show nothing */ })
     return () => { live = false }
   }, [])
   useEffect(() => {
@@ -26,7 +27,9 @@ export default function BookingRequest({ summary, start, days }: { summary: stri
     setF(p => ({ ...p, checkIn: p.checkIn || start, checkOut: p.checkOut || end, message: p.message || summary }))
   }, [openForm, start, days, summary])
 
-  if (!partners) return null
+  if (!partners && !caps.stays && !caps.rides) return null
+  const links = (caps.stays || caps.rides) && <div className="flex flex-wrap gap-2 mb-3">{caps.stays && <a className="btn-primary text-xs" href="/stays/">Book a stay</a>}{caps.rides && <a className="btn-primary text-xs" href="/rides/">Book a cab or auto</a>}</div>
+  if (!partners) return <div className="mt-4 border-t border-ink/10 pt-4">{links}</div>
   const stays = partners.filter(p => p.type === 'stay'), rides = partners.filter(p => p.type !== 'stay')
   const submit = async (e: React.FormEvent) => {
     e.preventDefault(); setBusy(true); setErr('')
@@ -41,6 +44,7 @@ export default function BookingRequest({ summary, start, days }: { summary: stri
 
   return (
     <div className="mt-4 border-t border-ink/10 pt-4">
+      {links}
       {ref ? (
         <p role="status" className="text-sm text-primary">Request sent. Your reference is <strong>{ref}</strong>. We check it and pass it to the partner, who confirms directly with you. You pay the partner on site.</p>
       ) : !openForm ? (

@@ -3,7 +3,7 @@
 // Reads are GET, writes are POST with the session CSRF token. See docs/ADMIN.md.
 define('VH_ADMIN', 1);
 require __DIR__ . '/lib.php';
-require_once __DIR__ . '/../lib/bookings.php';
+require_once __DIR__ . '/../lib/commerce.php';
 
 $a = preg_replace('/[^a-z_]/', '', $_GET['a'] ?? '');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -848,10 +848,15 @@ try {
         foreach (bk_providers() as $p) if (in_array($p['status'] ?? '', ['approved', 'suspended'], true) && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true))
             $partners[] = ['id' => $p['id'], 'name' => $p['name'], 'type' => $p['type'], 'typeLabel' => PROVIDER_TYPES[$p['type']][0], 'districts' => $p['districts'], 'status' => $p['status'],
                 'partner' => !empty($p['booking']['partner']), 'agreementOn' => $p['booking']['agreementOn'] ?? '', 'registrationChecked' => !empty($p['booking']['registrationChecked']),
-                'fee' => bk_fee_clean($p['booking']['feeMode'] ?? null, $p['booking']['feeValue'] ?? null), 'live' => bk_partner_ok($p)];
-        $items = []; foreach (glob(bk_dir('items') . '/*.json') ?: [] as $f) { $b = json_file($f); if ($b) $items[] = $b; }
+                'fee' => bk_fee_clean($p['booking']['feeMode'] ?? null, $p['booking']['feeValue'] ?? null), 'live' => bk_partner_ok($p), 'inventory' => $p['inventory'] ?? new stdClass()];
+        $items = []; foreach (glob(bk_dir('items') . '/*.json') ?: [] as $f) { $b = json_file($f); if (!$b) continue;
+            // Abandoned payments: a stay hold that ran out, or a ride left unpaid for two days, is closed and its traveller details are deleted.
+            if (($b['status'] ?? '') === 'pay_pending' && ((($b['kind'] ?? '') === 'stay' && ($b['holdUntil'] ?? 0) < time()) || (($b['kind'] ?? '') === 'ride' && strtotime($b['created']) < time() - 2 * 86400))) {
+                $b['status'] = 'expired'; foreach (['contactEmail', 'contactPhone', 'message'] as $k) $b[$k] = ''; save_json($f, $b); }
+            $items[] = $b; }
         usort($items, fn($x, $y) => strcmp($y['created'], $x['created']));
-        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate']]);
+        foreach ($items as &$it) unset($it['payTokenHash'], $it['dispatch'], $it['otp']); unset($it);
+        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate'], 'tcsPercent' => $cfg['tcsPercent'], 'tdsPercent' => $cfg['tdsPercent'], 'rideRates' => $cfg['rideRates'], 'vehicles' => RIDE_VEHICLES, 'rzpKeys' => rzp_keys_ok()]);
     }
 
     case 'bk_cap_save': {
@@ -884,8 +889,60 @@ try {
         $fee = bk_fee_clean($in['feeMode'] ?? null, $in['feeValue'] ?? null);
         if (!$fee) json_out(400, ['error' => 'Choose a percentage (0 to 20) or a flat amount per booking (0 to 5000 rupees).']);
         if (!is_numeric($g) || $g < 0 || $g > 40) json_out(400, ['error' => 'GST rate must be 0 to 40 percent.']);
-        $cfg['fee'] = $fee; $cfg['gstRate'] = round((float)$g, 2); unset($cfg['commissionRate']); bk_save($cfg); audit('bk-settings', ['fee' => $fee['mode'] . ':' . $fee['value']]);
-        json_out(200, ['ok' => true, 'message' => 'Saved: ' . bk_fee_label($fee) . '. Bookings completed from now use it; earlier ones keep theirs.']);
+        $tcs = $in['tcsPercent'] ?? 0; $tds = $in['tdsPercent'] ?? 0;
+        if (!is_numeric($tcs) || $tcs < 0 || $tcs > 10 || !is_numeric($tds) || $tds < 0 || $tds > 10) json_out(400, ['error' => 'TCS and TDS must be 0 to 10 percent. Set them only on your accountant\'s advice.']);
+        if (isset($in['rideRates'])) {
+            if (!is_array($in['rideRates'])) json_out(400, ['error' => 'Bad ride rates.']);
+            $rr = [];
+            foreach (RIDE_VEHICLES as $k => $_) {
+                $r = $in['rideRates'][$k] ?? null; if ($r === null) continue;
+                foreach (['baseInr' => [0, 2000], 'perKmInr' => [0, 200], 'minInr' => [0, 5000], 'nightPct' => [0, 100]] as $f => $lim)
+                    if (!is_numeric($r[$f] ?? null) || $r[$f] < $lim[0] || $r[$f] > $lim[1]) json_out(400, ['error' => "Ride rate $k: $f must be a number from {$lim[0]} to {$lim[1]}."]);
+                $rr[$k] = ['baseInr' => (float)$r['baseInr'], 'perKmInr' => (float)$r['perKmInr'], 'minInr' => (float)$r['minInr'], 'nightPct' => (float)$r['nightPct']];
+            }
+            $cfg['rideRates'] = $rr;
+        }
+        $cfg['fee'] = $fee; $cfg['gstRate'] = round((float)$g, 2); $cfg['tcsPercent'] = round((float)$tcs, 2); $cfg['tdsPercent'] = round((float)$tds, 2); unset($cfg['commissionRate']); bk_save($cfg); audit('bk-settings', ['fee' => $fee['mode'] . ':' . $fee['value']]);
+        json_out(200, ['ok' => true, 'message' => 'Saved: ' . bk_fee_label($fee) . '. New bookings use it; earlier ones keep theirs.']);
+    }
+
+    case 'bk_inventory_set': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('providers') . "/$id.json"; $p = json_file($path);
+        if (!$p || !in_array($p['type'] ?? '', BK_PARTNER_TYPES, true)) json_out(404, ['error' => 'No stay or transport provider with that id.']);
+        $inv = is_array($p['inventory'] ?? null) ? $p['inventory'] : [];
+        if (array_key_exists('razorpayAccountId', $in)) {
+            $acc = trim((string)$in['razorpayAccountId']); if ($acc !== '' && !preg_match('/^acc_[A-Za-z0-9]{8,30}$/', $acc)) json_out(400, ['error' => 'A Razorpay linked account ID looks like acc_AbCd1234EfGh.']);
+            $inv['razorpayAccountId'] = $acc;
+        }
+        if ($p['type'] === 'stay' && isset($in['rooms'])) {
+            if (!is_array($in['rooms']) || count($in['rooms']) > 20) json_out(400, ['error' => 'Up to 20 rooms.']);
+            $rooms = []; $ids = [];
+            foreach ($in['rooms'] as $r) {
+                $rid = preg_replace('/[^a-z0-9-]/', '', strtolower((string)($r['id'] ?? ''))); $nm = clean_text($r['name'] ?? '', 60);
+                if ($rid === '' || $nm === '' || isset($ids[$rid])) json_out(400, ['error' => 'Each room needs a unique id and a name.']);
+                if (!is_numeric($r['rateInr'] ?? null) || $r['rateInr'] < 1 || $r['rateInr'] > 200000) json_out(400, ['error' => "Room $nm: the nightly rate must be 1 to 200000 rupees."]);
+                if (!is_numeric($r['capacity'] ?? null) || $r['capacity'] < 1 || $r['capacity'] > 30 || !is_numeric($r['count'] ?? 1) || $r['count'] < 1 || $r['count'] > 50) json_out(400, ['error' => "Room $nm: capacity 1 to 30, units 1 to 50."]);
+                $ids[$rid] = 1; $rooms[] = ['id' => $rid, 'name' => $nm, 'capacity' => (int)$r['capacity'], 'count' => (int)($r['count'] ?? 1), 'rateInr' => round((float)$r['rateInr'], 2)];
+            }
+            $inv['rooms'] = $rooms;
+            $bl = []; foreach (($in['blocked'] ?? []) as $rid => $days) { if (!isset($ids[$rid])) continue; $bl[$rid] = array_values(array_unique(array_filter(array_map('strval', (array)$days), fn($d) => preg_match('/^\d{4}-\d{2}-\d{2}$/', $d)))); sort($bl[$rid]); }
+            $inv['blocked'] = $bl;
+        }
+        if ($p['type'] === 'transport' && isset($in['vehicles'])) $inv['vehicles'] = array_values(array_intersect(array_keys(RIDE_VEHICLES), (array)$in['vehicles']));
+        $p['inventory'] = $inv; save_json($path, $p); audit('bk-inventory', ['provider' => $id]);
+        json_out(200, ['ok' => true, 'message' => 'Saved.']);
+    }
+
+    case 'bk_pay_action': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $act = need_str($in, 'action', 10); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        if (!bk_open('payments')) json_out(403, ['error' => 'Online payments are locked.']);
+        if ($act === 'release') { [$ok, $m] = pay_release($id); audit('bk-release', ['id' => $id, 'ok' => $ok]); json_out($ok ? 200 : 422, $ok ? ['ok' => true, 'message' => $m] : ['error' => $m]); }
+        if ($act === 'refund') { $amt = ($in['amountInr'] ?? '') === '' || ($in['amountInr'] ?? null) === null ? null : (is_numeric($in['amountInr']) ? (float)$in['amountInr'] : -1); [$ok, $m] = pay_refund($id, $amt); audit('bk-refund', ['id' => $id, 'ok' => $ok]); json_out($ok ? 200 : 422, $ok ? ['ok' => true, 'message' => $m] : ['error' => $m]); }
+        if ($act === 'retry') { $b = bk_load($id); if (!$b) json_out(404, ['error' => 'Not found.']); $b = pay_transfer($b); json_out(200, ['ok' => true, 'message' => !empty($b['payment']['transferId']) ? 'Payout transfer created.' : 'The transfer could not be created yet. Check the partner account ID.']); }
+        json_out(400, ['error' => 'Unknown action.']);
     }
 
     case 'bk_partner_set': {
@@ -933,7 +990,7 @@ try {
             $v = $in['valueInr'] ?? null; $hasV = is_numeric($v) && $v > 0;
             if ($v !== null && $v !== '' && (!is_numeric($v) || $v < 0 || $v > 5000000)) json_out(422, ['error' => 'The booking value must be a number in rupees.']);
             if ($hasV) $b['valueInr'] = round((float)$v, 2);
-            if (bk_open('commission', $cfg)) {
+            if (bk_open('commission', $cfg) && ($b['payment']['mode'] ?? '') !== 'online') {
                 $p = json_file(market_dir('providers') . '/' . $b['providerId'] . '.json');
                 $fee = $p ? bk_fee_for($p, $cfg) : $cfg['fee'];
                 if ($fee['mode'] === 'percent' && !$hasV) json_out(422, ['error' => 'Enter the booking value in rupees (the partner confirms it). The fee is a percentage of it.']);
@@ -944,6 +1001,7 @@ try {
         $b['status'] = $to; $b['note'] = clean_text($in['note'] ?? ($b['note'] ?? ''), 300);
         if (in_array($to, ['completed', 'cancelled', 'declined'], true)) foreach (['contactEmail', 'contactPhone', 'message'] as $k) $b[$k] = '';   // data minimisation: keep the reference, drop the traveller's details
         save_json($path, $b); audit('bk-status', ['ref' => $b['ref'], 'to' => $to]);
+        if ($to === 'completed' && !empty($b['payment']['transferId']) && !empty($b['payment']['payoutHeld'])) pay_release($id);
         json_out(200, ['ok' => true, 'commissionInr' => $b['commissionInr'] ?? null, 'message' => 'Updated.' . (in_array($to, ['completed', 'cancelled', 'declined'], true) ? ' The traveller\'s contact details were deleted.' : '')]);
     }
 

@@ -799,12 +799,12 @@ function Activity() {
 // ---------------------------------------------------------------- Bookings (locked until approvals are recorded)
 function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
   const { data, err, reload } = useLoad('bk_overview')
-  const [fee, setFee] = useState({ feeMode: 'percent', feeValue: '1', gstRate: '18' }); const [loaded, setLoaded] = useState(false)
+  const [fee, setFee] = useState({ feeMode: 'percent', feeValue: '1', gstRate: '18', tcsPercent: '0', tdsPercent: '0' }); const [rates, setRates] = useState<Record<string, Json>>({}); const [inv, setInv] = useState<Record<string, Json>>({}); const [loaded, setLoaded] = useState(false)
   const [month, setMonth] = useState(new Date().toISOString().slice(0, 7)); const [sheet, setSheet] = useState<Json | null>(null)
   const [draft, setDraft] = useState<Record<string, Json>>({}); const [part, setPart] = useState<Record<string, Json>>({})
   const [vals, setVals] = useState<Record<string, string>>({}); const [refs, setRefs] = useState<Record<string, string>>({})
   const inp = 'border border-accent/30 px-2 py-1 text-sm bg-white'
-  useEffect(() => { if (data && !loaded) { setFee({ feeMode: data.fee.mode, feeValue: String(data.fee.value), gstRate: String(data.gstRate) }); setLoaded(true) } }, [data, loaded])
+  useEffect(() => { if (data && !loaded) { setFee({ feeMode: data.fee.mode, feeValue: String(data.fee.value), gstRate: String(data.gstRate), tcsPercent: String(data.tcsPercent ?? 0), tdsPercent: String(data.tdsPercent ?? 0) }); setRates(Object.fromEntries(Object.entries(data.rideRates || {}).map(([k, v]: [string, any]) => [k, { baseInr: String(v.baseInr), perKmInr: String(v.perKmInr), minInr: String(v.minInr), nightPct: String(v.nightPct) }]))); setLoaded(true) } }, [data, loaded])
   const post = async (a: string, body: Json, then?: () => void) => { const r = await api(a, body); say(r.ok ? (r.data.message || 'Done.') : (r.data.blockers ? `${r.data.error} ${r.data.blockers.join(' ')}` : r.data.error), !r.ok); reload(); if (r.ok) then?.() ; return r }
   const caps: Json[] = data?.caps || []; const enq = caps.find(c => c.id === 'enquiries'); const com = caps.find(c => c.id === 'commission')
   const loadSheet = async () => { const r = await api('bk_settlement', undefined, `&month=${month}`); if (r.ok) setSheet(r.data); else { setSheet(null); say(r.data.error, true) } }
@@ -825,7 +825,7 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
           return (
             <div key={c.id} className="card">
               <div className="flex flex-wrap items-center gap-2 mb-1"><h3 className="font-serif text-lg">{c.label}</h3>
-                {!c.buildable ? badge('not built yet', 'mute') : c.open ? badge('ON', 'ok') : c.missing.length === 0 ? badge('ready to switch on', 'warn') : badge('locked', 'bad')}</div>
+                {!c.buildable ? badge('not built yet', 'mute') : c.id === 'payments' && !data.rzpKeys ? badge('Razorpay keys missing in vh-config.php', 'bad') : c.open ? badge('ON', 'ok') : c.missing.length === 0 ? badge('ready to switch on', 'warn') : badge('locked', 'bad')}</div>
               <p className="text-sm text-ink-mid mb-3">{c.about}</p>
               <ul className="space-y-1 mb-3">{Object.entries(c.checklist as Record<string, string>).map(([k, label]) => (
                 <li key={k}><label className="text-sm flex gap-2 items-start"><input type="checkbox" className="mt-1" checked={!!d.checklist[k]} onChange={e => setDraft({ ...draft, [c.id]: { ...d, checklist: { ...d.checklist, [k]: e.target.checked } } })} />{label}</label></li>))}</ul>
@@ -845,8 +845,15 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
           <label>Fee type<select className={inp + ' block'} value={fee.feeMode} onChange={e => setFee({ ...fee, feeMode: e.target.value })}><option value="percent">Percentage of booking value</option><option value="flat">Flat amount per booking</option></select></label>
           <label>{fee.feeMode === 'flat' ? 'Rupees per booking (0 to 5000)' : 'Percent (0 to 20)'}<input className={inp + ' block w-32'} value={fee.feeValue} onChange={e => setFee({ ...fee, feeValue: e.target.value })} /></label>
           <label>GST on the fee, %<input className={inp + ' block w-24'} value={fee.gstRate} onChange={e => setFee({ ...fee, gstRate: e.target.value })} /></label>
-          <button className="btn-outline text-xs" onClick={() => post('bk_settings', { feeMode: fee.feeMode, feeValue: Number(fee.feeValue), gstRate: Number(fee.gstRate) })}>Save fee</button>
+          <label>TCS held from payouts, %<input className={inp + ' block w-24'} value={fee.tcsPercent} onChange={e => setFee({ ...fee, tcsPercent: e.target.value })} /></label>
+          <label>TDS held from payouts, %<input className={inp + ' block w-24'} value={fee.tdsPercent} onChange={e => setFee({ ...fee, tdsPercent: e.target.value })} /></label>
         </div>
+        <p className="text-xs text-ink-mid mt-2">TCS and TDS apply to online payments only and are held back from the partner payout. Leave both at 0 unless your accountant tells you the rates.</p>
+        <h4 className="font-medium text-sm mt-4 mb-1">Ride rate card (one for all partners; partners accept it in their agreement)</h4>
+        <div className="space-y-2">{Object.entries(data.vehicles || {}).map(([k, label]) => { const r = rates[k] || { baseInr: '', perKmInr: '', minInr: '', nightPct: '' }; const set = (x: Json) => setRates({ ...rates, [k]: { ...r, ...x } }); return (
+          <div key={k} className="flex flex-wrap gap-2 items-end text-xs"><span className="w-44 font-medium">{label as string}</span>
+            {([['baseInr', 'Base Rs'], ['perKmInr', 'Per km Rs'], ['minInr', 'Minimum Rs'], ['nightPct', 'Night +%']] as const).map(([f, l]) => <label key={f}>{l}<input className={inp + ' block w-24'} value={r[f]} onChange={e => set({ [f]: e.target.value })} /></label>)}</div>) })}</div>
+        <button className="btn-outline text-xs mt-3" onClick={() => post('bk_settings', { feeMode: fee.feeMode, feeValue: Number(fee.feeValue), gstRate: Number(fee.gstRate), tcsPercent: Number(fee.tcsPercent), tdsPercent: Number(fee.tdsPercent), rideRates: Object.fromEntries(Object.entries(rates).filter(([, v]) => v.baseInr !== '').map(([k, v]) => [k, { baseInr: Number(v.baseInr), perKmInr: Number(v.perKmInr), minInr: Number(v.minInr), nightPct: Number(v.nightPct) }])) })}>Save fee and rates</button>
       </div>
 
       <div className="card overflow-x-auto">
@@ -862,6 +869,21 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
                 <label className="text-xs flex gap-1 items-center mt-1"><input type="checkbox" checked={d.partner} onChange={e => set({ partner: e.target.checked })} />Switch on as partner</label></td>
               <td className="py-2 pr-3 text-xs"><select className={inp} value={d.feeMode} onChange={e => set({ feeMode: e.target.value })}><option value="percent">%</option><option value="flat">Rs flat</option></select> <input className={inp + ' w-20'} placeholder="default" value={d.feeValue} onChange={e => set({ feeValue: e.target.value })} /></td>
               <td className="py-2"><button className="btn-outline text-xs" onClick={() => post('bk_partner_set', { id: p.id, partner: d.partner, agreementOn: d.agreementOn, registrationChecked: d.registrationChecked, feeMode: d.feeMode, feeValue: d.feeValue === '' ? '' : Number(d.feeValue) })}>Save</button></td></tr>) })}</tbody></table>
+        {data.partners.map((p: Json) => { const cur = inv[p.id] || { razorpayAccountId: p.inventory?.razorpayAccountId || '', rooms: (p.inventory?.rooms || []).map((r: Json) => ({ ...r, rateInr: String(r.rateInr), capacity: String(r.capacity), count: String(r.count) })), blocked: Object.fromEntries(Object.entries(p.inventory?.blocked || {}).map(([k, v]: [string, any]) => [k, (v as string[]).join(', ')])), vehicles: p.inventory?.vehicles || [] }
+          const set = (x: Json) => setInv({ ...inv, [p.id]: { ...cur, ...x } })
+          return (
+          <details key={p.id} className="border-t border-accent/20 mt-3 pt-2 text-sm"><summary className="cursor-pointer text-primary">{p.name}: {p.type === 'stay' ? 'rooms, rates and blocked dates' : 'vehicles'}, payout account</summary>
+            <div className="space-y-2 mt-2">
+              <label className="text-xs block">Razorpay linked account ID (for online payouts, looks like acc_AbCd1234EfGh)<input className={inp + ' block w-64 mt-1'} value={cur.razorpayAccountId} onChange={e => set({ razorpayAccountId: e.target.value })} /></label>
+              {p.type === 'transport' && <div className="flex gap-3 text-xs">Runs: {Object.entries(data.vehicles || {}).map(([k, label]) => <label key={k} className="flex gap-1 items-center"><input type="checkbox" checked={cur.vehicles.includes(k)} onChange={e => set({ vehicles: e.target.checked ? [...cur.vehicles, k] : cur.vehicles.filter((x: string) => x !== k) })} />{label as string}</label>)}</div>}
+              {p.type === 'stay' && <>{cur.rooms.map((r: Json, i: number) => (
+                <div key={i} className="flex flex-wrap gap-2 items-end text-xs border border-accent/20 p-2">
+                  {([['id', 'Id (a-z, 0-9, -)'], ['name', 'Room name'], ['capacity', 'Sleeps'], ['count', 'Units'], ['rateInr', 'Rs per night']] as const).map(([f, l]) => <label key={f}>{l}<input className={inp + ' block ' + (f === 'name' ? 'w-40' : 'w-24')} value={r[f]} onChange={e => set({ rooms: cur.rooms.map((x: Json, j: number) => j === i ? { ...x, [f]: e.target.value } : x) })} /></label>)}
+                  <label>Blocked nights (YYYY-MM-DD, comma separated)<input className={inp + ' block w-64'} value={cur.blocked[r.id] || ''} onChange={e => set({ blocked: { ...cur.blocked, [r.id]: e.target.value } })} /></label>
+                  <button className="text-xs underline" onClick={() => set({ rooms: cur.rooms.filter((_: Json, j: number) => j !== i) })}>Remove room</button></div>))}
+                <button className="btn-outline text-xs" onClick={() => set({ rooms: [...cur.rooms, { id: '', name: '', capacity: '2', count: '1', rateInr: '' }] })}>Add a room</button></>}
+              <div><button className="btn-primary text-xs" onClick={() => post('bk_inventory_set', { id: p.id, razorpayAccountId: cur.razorpayAccountId, ...(p.type === 'stay' ? { rooms: cur.rooms.map((r: Json) => ({ ...r, capacity: Number(r.capacity), count: Number(r.count), rateInr: Number(r.rateInr) })), blocked: Object.fromEntries(Object.entries(cur.blocked).map(([k, v]) => [k, String(v).split(',').map(x => x.trim()).filter(Boolean)])) } : { vehicles: cur.vehicles }) })}>Save {p.type === 'stay' ? 'rooms' : 'vehicles'} and account</button></div>
+            </div></details>) })}
       </div>
 
       <div className="card">
@@ -872,7 +894,14 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
             <div className="flex flex-wrap items-center gap-2"><strong>{b.ref}</strong>{badge(b.status, b.status === 'completed' ? 'ok' : b.status === 'cancelled' || b.status === 'declined' ? 'mute' : 'warn')}<span>{b.providerName} · {b.checkIn} to {b.checkOut} · {b.people} people</span></div>
             {b.contactEmail || b.contactPhone ? <p className="text-xs text-ink-mid mt-1">{b.name}: {b.contactPhone} {b.contactEmail}</p> : <p className="text-xs text-ink-mid mt-1">Traveller details deleted.</p>}
             {b.message && <p className="text-xs text-ink-mid whitespace-pre-line mt-1">{b.message}</p>}
-            {b.commissionInr != null && <p className="text-xs mt-1">Fee recorded: Rs {b.commissionInr}{b.valueInr ? ` on Rs ${b.valueInr}` : ''}{b.settled ? ' · settled' : ''}</p>}
+            {b.kind && b.kind !== 'enquiry' && <p className="text-xs mt-1">{b.kind === 'ride' ? 'Ride' : 'Stay'} · Rs {b.amountInr ?? b.valueInr} · {b.payment?.mode === 'online' ? `online (${b.payment.status}${b.payment.payoutHeld ? ', payout held' : b.payment.payoutReleasedOn ? ', payout released' : ''})` : 'pay on site'}{b.feeInr != null ? ` · fee ${b.feeInr} + GST ${b.gstInr}, partner gets ${b.partnerShareInr}` : ''}{b.driver ? ` · driver ${b.driver.name} ${b.driver.vehicleNo}` : ''}</p>}
+            {b.payment?.status === 'paid' && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {b.payment.payoutHeld && <button className="btn-outline text-xs" onClick={() => post('bk_pay_action', { id: b.id, action: 'release' })}>Release partner payout</button>}
+                {b.payment.transferId ? null : <button className="btn-outline text-xs" onClick={() => post('bk_pay_action', { id: b.id, action: 'retry' })}>Retry payout transfer</button>}
+                <button className="btn-outline text-xs" onClick={() => { const a = window.prompt('Refund amount in rupees (leave empty to refund everything left)'); if (a === null) return; post('bk_pay_action', { id: b.id, action: 'refund', amountInr: a === '' ? '' : Number(a) }) }}>Refund</button>
+              </div>)}
+            {b.commissionInr != null && !b.payment?.mode && <p className="text-xs mt-1">Fee recorded: Rs {b.commissionInr}{b.valueInr ? ` on Rs ${b.valueInr}` : ''}{b.settled ? ' · settled' : ''}</p>}
             {['new', 'sent', 'confirmed'].includes(b.status) && (
               <div className="flex flex-wrap gap-2 items-center mt-2">
                 {['new', 'sent'].includes(b.status) && <button className="btn-outline text-xs" onClick={() => post('bk_send', { id: b.id })}>{b.status === 'new' ? 'Send to partner' : 'Send again'}</button>}
