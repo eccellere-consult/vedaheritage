@@ -1,11 +1,48 @@
 import Link from 'next/link'
 import { WA, SITE } from '@/lib/config'
 
+const GROUPS: { title: string; links: [string, string][] }[] = [
+  {
+    title: 'Discover Kerala',
+    links: [
+      ['/discover', 'Discover Kerala'],
+      ['/kerala', 'Kerala History & Districts'],
+      ['/discover/vedic', 'Vedic Heritage & Mantras'],
+      ['/discover/muthassi', 'Muthassi Stories'],
+      ['/discover/dance', 'Music & Dance'],
+      ['/discover/astrology', 'Astrology & Jyotisha'],
+      ['/discover/weddings', 'Weddings & Life Rituals'],
+    ],
+  },
+  {
+    title: 'Living heritage',
+    links: [
+      ['/discover/healing', 'Healing & Ayurvedic Plants'],
+      ['/discover/medical', 'Medical & Wellness Tourism'],
+      ['/discover/food', 'Kerala Food & Recipes'],
+      ['/discover/crafts', 'Handicrafts & Artisans'],
+      ['/discover/wear', 'Traditional Wear'],
+    ],
+  },
+  {
+    title: 'Plan and connect',
+    links: [
+      ['/travel', 'Kerala Travel Planner'],
+      ['/events', 'Festivals & Events'],
+      ['/services', 'Local Services Directory'],
+      ['/marketplace', 'Heritage Marketplace'],
+      ['/stories', 'Traveller Stories'],
+      ['/blog', 'Blog'],
+      ['/stay', 'Stay with us'],
+    ],
+  },
+]
+
 export default function Footer() {
   return (
     <footer className="bg-ink text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-12">
 
           {/* Brand */}
           <div>
@@ -18,43 +55,32 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Quick links */}
-          <div>
+          {/* Quick links: two columns of grouped links, so the footer stays short */}
+          <div className="lg:col-span-3 md:col-span-2">
             <p className="section-label text-accent-light/70 mb-4">Explore</p>
-            <div className="flex flex-col gap-2">
-              {[
-                ['/discover', 'Discover Kerala'],
-                ['/kerala', 'Kerala History & Districts'],
-                ['/discover/vedic', 'Vedic Heritage & Mantras'],
-                ['/discover/healing', 'Healing & Ayurvedic Plants'],
-                ['/discover/medical', 'Medical & Wellness Tourism'],
-                ['/discover/food', 'Kerala Food & Recipes'],
-                ['/discover/muthassi', 'Muthassi Stories'],
-                ['/discover/dance', 'Music & Dance'],
-                ['/discover/astrology', 'Astrology & Jyotisha'],
-                ['/discover/weddings', 'Weddings & Life Rituals'],
-                ['/discover/crafts', 'Handicrafts & Artisans'],
-                ['/discover/wear', 'Traditional Wear'],
-                ['/services', 'Local Services Directory'],
-                ['/marketplace', 'Heritage Marketplace'],
-                ['/stories', 'Traveller Stories'],
-                ['/travel', 'Kerala Travel Planner'],
-                ['/stay', 'Stay with us'],
-                ['/events', 'Festivals & Events'],
-                ['/blog', 'Blog'],
-              ].map(([href, label]) => (
-                <Link key={href} href={href} className="text-white/60 text-sm hover:text-accent-light transition-colors">
-                  {label}
-                </Link>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-8">
+              {GROUPS.map(g => (
+                <div key={g.title} className="min-w-0">
+                  <p className="text-white/90 text-xs tracking-[0.15em] uppercase mb-3">{g.title}</p>
+                  <div className="flex flex-col gap-2">
+                    {g.links.map(([href, label]) => (
+                      <Link key={href} href={href} className="text-white/60 text-sm hover:text-accent-light transition-colors">
+                        {label}
+                      </Link>
+                    ))}
+                    {g.title === 'Plan and connect' && (
+                      <a
+                        href="https://www.airbnb.co.in/h/stay-near-amritapuri"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/60 text-sm hover:text-accent-light transition-colors"
+                      >
+                        Book on Airbnb ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
               ))}
-              <a
-                href="https://www.airbnb.co.in/h/stay-near-amritapuri"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/60 text-sm hover:text-accent-light transition-colors"
-              >
-                Book on Airbnb ↗
-              </a>
             </div>
           </div>
 
