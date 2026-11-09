@@ -14,7 +14,7 @@ const topic = (name, category = 'temples') => ({ id: name.toLowerCase().replace(
 const put = (f, v) => fs.writeFileSync(path.join(tmp, f), JSON.stringify(v))
 const j = f => JSON.parse(fs.readFileSync(path.join(tmp, f), 'utf8'))
 put('agents/registers/topics.json', { version: 1, topics: [topic('Fill Mock Temple'), topic('Fill Mock Healer', 'healing'), topic('BROKEN Mock'), topic('NOSRC Mock'), topic('Padmanabhaswamy Temple')] })
-put('agents/settings.json', { autoPublish: true, autoPublishExclude: ['medical', 'healing'] })
+put('agents/settings.json', { autoPublish: true, autoPublishExclude: ['medical', 'healing'], coverage: { enabled: false } })
 const ctl = path.join(tmp, 'control.json'); put('control.json', { state: 'running' })
 const run = (args, env = {}) => spawnSync('node', ['agents/run.mjs', ...args, '--mock'], { cwd: tmp, encoding: 'utf8', env: { ...process.env, CONTROL_FILE: ctl, ...env } })
 

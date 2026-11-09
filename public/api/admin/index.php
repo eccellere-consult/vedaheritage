@@ -726,6 +726,11 @@ try {
     }
 
     // ------------------------------------------------------------ which AI the agents use
+    case 'coverage_get': {
+        $f = gh_file('agents/registers/coverage.json', 'main'); $c = $f ? json_decode($f['text'], true) : null;
+        json_out(200, ['coverage' => is_array($c) ? $c : null, 'districts' => DISTRICTS]);
+    }
+
     case 'agent_settings': {
         $f = gh_file('agents/settings.json', 'main'); $cfgJ = $f ? json_decode($f['text'], true) : [];
         if (!is_array($cfgJ)) $cfgJ = [];
@@ -737,7 +742,7 @@ try {
         $fs = gh_file('agents/registers/fill-state.json', 'main'); $fillState = $fs ? json_decode($fs['text'], true) : null;
         $qf = gh_file('agents/registers/quality.json', 'main'); $quality = $qf ? json_decode($qf['text'], true) : null;
         if (is_array($quality)) $quality['flagged'] = array_slice($quality['flagged'] ?? [], 0, 25);
-        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'autoPublish' => ($cfgJ['autoPublish'] ?? false) === true, 'autoPublishExclude' => $cfgJ['autoPublishExclude'] ?? ['medical', 'healing'], 'fill' => array_merge(['everyDays' => 7, 'budget' => 5, 'max' => 40, 'minutes' => 90], is_array($cfgJ['fill'] ?? null) ? $cfgJ['fill'] : []), 'lastRun' => $lastRun, 'keys' => $keys, 'fillState' => is_array($fillState) ? $fillState : null, 'quality' => is_array($quality) ? $quality : null]);
+        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'autoPublish' => ($cfgJ['autoPublish'] ?? false) === true, 'autoPublishExclude' => $cfgJ['autoPublishExclude'] ?? ['medical', 'healing'], 'fill' => array_merge(['everyDays' => 7, 'budget' => 5, 'max' => 40, 'minutes' => 90], is_array($cfgJ['fill'] ?? null) ? $cfgJ['fill'] : []), 'coverage' => array_merge(['enabled' => true, 'perCategory' => 30, 'perDistrictMin' => 2], is_array($cfgJ['coverage'] ?? null) ? $cfgJ['coverage'] : []), 'lastRun' => $lastRun, 'keys' => $keys, 'fillState' => is_array($fillState) ? $fillState : null, 'quality' => is_array($quality) ? $quality : null]);
     }
 
     case 'agent_settings_save': {
@@ -756,6 +761,16 @@ try {
                 $fl[$k] = (int)$v;
             }
             $cur['fill'] = $fl;
+        }
+        if (isset($in['coverage']) && is_array($in['coverage'])) {
+            $cv = array_merge(['enabled' => true, 'perCategory' => 30, 'perDistrictMin' => 2], is_array($cur['coverage'] ?? null) ? $cur['coverage'] : []);
+            if (array_key_exists('enabled', $in['coverage'])) $cv['enabled'] = $in['coverage']['enabled'] === true;
+            foreach (['perCategory' => [1, 100], 'perDistrictMin' => [0, 10]] as $k => $r) {
+                if (!array_key_exists($k, $in['coverage'])) continue;
+                $v = $in['coverage'][$k]; if (!is_numeric($v) || (int)$v != $v || $v < $r[0] || $v > $r[1]) json_out(400, ['error' => "$k must be a whole number from {$r[0]} to {$r[1]}."]);
+                $cv[$k] = (int)$v;
+            }
+            $cur['coverage'] = $cv;
         }
         $cur['provider'] = $prov; $cur['verifierProvider'] = $ver; $cur['autoPublish'] = $auto; $cur['updated'] = gmdate('Y-m-d');
         if (!isset($cur['autoPublishExclude']) || !is_array($cur['autoPublishExclude'])) $cur['autoPublishExclude'] = ['medical', 'healing'];

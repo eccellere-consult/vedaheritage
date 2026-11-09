@@ -257,6 +257,7 @@ function Sprint({ say }: { say: (t: string, bad?: boolean) => void }) {
           </div>
           {(() => { const fsx = st.data?.fillState, cap = Number(f.budget) * 0.8; const cpp = fsx?.costPerPage; return (
             <p className="text-sm text-ink-mid mb-2">{cpp ? <>Last run: {fsx.pages} page(s), about ${fsx.usd} (${cpp} per page{fsx.estimated ? ', rough estimate' : ''}). With a ${f.budget} cap, expect about {Math.max(0, Math.min(Number(f.max), Math.floor(cap / cpp)))} new page(s) per run before the cap stops it.</> : 'No cost data yet. After the first run this shows the real cost per page and how many pages the cap allows.'}</p>) })()}
+          <Coverage st={st} say={say} />
           {st.data?.quality && (
             <details className="text-sm text-ink-mid mb-2"><summary className="cursor-pointer text-primary">Quality check: {st.data.quality.flaggedCount} of {st.data.quality.checked} quick pages flagged</summary>
               <ul className="list-disc pl-5 mt-2 space-y-1">{(st.data.quality.flagged || []).map((q: Json) => <li key={q.category + q.slug}><a className="underline" href={`/discover/${q.category}/${q.slug}/`} target="_blank" rel="noopener noreferrer">{q.name}</a>: {q.flags.join(', ')}</li>)}</ul>
@@ -927,5 +928,33 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
           </>)}
       </div>
     </div>
+  )
+}
+
+
+// ---------------------------------------------------------------- Coverage matrix: guides per category and district
+function Coverage({ st, say }: { st: { data: Json | null; reload: () => void }; say: (t: string, bad?: boolean) => void }) {
+  const { data } = useLoad('coverage_get'); const c = data?.coverage; const cfg = st.data?.coverage || { enabled: true, perCategory: 30, perDistrictMin: 2 }
+  const [f, setF] = useState({ perCategory: '30', perDistrictMin: '2' }); const [loaded, setLoaded] = useState(false)
+  useEffect(() => { if (st.data?.coverage && !loaded) { setF({ perCategory: String(st.data.coverage.perCategory), perDistrictMin: String(st.data.coverage.perDistrictMin) }); setLoaded(true) } }, [st.data, loaded])
+  const save = async (extra: Json = {}) => { const r = await api('agent_settings_save', { coverage: { perCategory: Number(f.perCategory), perDistrictMin: Number(f.perDistrictMin), ...extra } }); say(r.ok ? 'Saved. The next run plans toward these targets.' : r.data.error, !r.ok); if (r.ok) st.reload() }
+  const cats = c ? Object.entries(c.categories as Record<string, Json>).sort((a, b) => (b[1].need - a[1].need)) : []
+  const tone = (n: number, min: number) => n >= min ? 'bg-primary/15 text-primary' : n > 0 ? 'bg-amber-100 text-amber-900' : 'bg-red-50 text-red-800'
+  return (
+    <details className="text-sm mb-3" open>
+      <summary className="cursor-pointer text-primary">Coverage target: {c ? `${c.pagesTotal} guides, ${c.pagesNeeded} short of ${c.perCategory} per category` : 'no data yet (appears after the next run)'}</summary>
+      <div className="mt-2 space-y-2">
+        <p className="text-xs text-ink-mid">Each run plans topics for the thinnest categories first, writes them, and records this table. A district with nothing real for a category is marked "none" and not asked again, never padded with invented topics.</p>
+        <div className="flex flex-wrap gap-3 items-end text-xs">
+          <label>Guides per category<input className="border border-accent/30 px-2 py-1 block w-24" value={f.perCategory} onChange={e => setF({ ...f, perCategory: e.target.value })} /></label>
+          <label>Min per district (where real)<input className="border border-accent/30 px-2 py-1 block w-24" value={f.perDistrictMin} onChange={e => setF({ ...f, perDistrictMin: e.target.value })} /></label>
+          <label className="flex gap-1 items-center"><input type="checkbox" checked={cfg.enabled !== false} onChange={e => save({ enabled: e.target.checked })} />Plan from coverage</label>
+          <button className="btn-outline text-xs" onClick={() => save()}>Save targets</button>
+        </div>
+        {c && <div className="overflow-x-auto"><table className="text-xs border-collapse"><thead><tr><th className="text-left pr-2">Category</th><th className="px-1">Total</th>{(data.districts as string[]).map(d => <th key={d} className="px-1 font-normal" title={d}>{d.slice(0, 4)}</th>)}</tr></thead>
+          <tbody>{cats.map(([k, r]) => <tr key={k}><td className="pr-2 py-0.5">{k}</td><td className={`px-1 text-center ${r.total >= c.perCategory ? 'bg-primary/15 text-primary' : 'bg-amber-100 text-amber-900'}`}>{r.total}/{c.perCategory}</td>
+            {(data.districts as string[]).map(d => <td key={d} className={`px-1 text-center ${(r.none || []).includes(d) ? 'bg-ink/5 text-ink-mid' : tone(r.districts[d], c.perDistrictMin)}`} title={(r.none || []).includes(d) ? 'nothing real here' : ''}>{(r.none || []).includes(d) ? '–' : r.districts[d]}</td>)}</tr>)}</tbody></table></div>}
+      </div>
+    </details>
   )
 }

@@ -163,6 +163,9 @@ function createMock(state, consulted) {
           sources: /NOSRC/.test(ctx.name || '') ? [] : [{ label: 'A', url: `${U}a-fill` }, { label: 'Bad', url: 'http://insecure.example/x' }],
         }) + '\n```', urls: /NOSRC/.test(ctx.name || '') ? new Set() : urls }
       }
+      if (label === 'coverage') return { urls, text: JSON.stringify({ topics: [
+        { name: `Mock ${ctx.name} One`, district: 'Wayanad', note: 'a mock topic for the coverage planner' }, { name: `Mock ${ctx.name} Two`, district: 'Wayanad', note: 'another' },
+        { name: 'Padmanabhaswamy Temple', district: 'Thiruvananthapuram', note: 'already exists, must be skipped' }, { name: `Mock ${ctx.name} Three`, district: 'Narnia', note: 'unknown district becomes Kerala' }], none: ['Idukki', 'Atlantis'] }) }
       if (label === 'refresh') return { urls, text: JSON.stringify({ latest: [{ date: new Date().toISOString().slice(0, 10), text: `Mock news for ${ctx.name}: a new timing was announced.`, url: `${U}a-refresh` }] }) }
       if (label === 'discover') return { urls, text: JSON.stringify({ topics: [{ name: 'Mock Discovered Beach', category: 'beaches', district: 'Kannur', note: 'trending' }, { name: 'Padmanabhaswamy Temple', category: 'temples', district: 'Thiruvananthapuram', note: 'dup' }, { name: 'Bad Category Thing', category: 'nonsense', district: 'Kollam', note: '' }] }) }
       return { text: `notes for ${ctx.name || label}`, urls }

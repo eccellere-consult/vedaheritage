@@ -4,6 +4,7 @@
 import fs from 'fs'
 import { Stopped, assertRunning } from './lib/control.mjs'
 import { BudgetExceeded, readSettings } from './lib/llm.mjs'
+import { planCoverage, writeCoverage } from './coverage.mjs'
 import { safetyHits } from './lib/safety.mjs'
 import { CATEGORIES, QUEUE, entryFile, existingEntries, normName, prompt, readJson, slugify, today, writeJson } from './lib/util.mjs'
 
@@ -91,19 +92,29 @@ export async function fill(llm, { minutes = 150, max = 40, concurrency = 4, topi
   const stats = { attempted: 0, created: 0, exists: 0, failed: 0, discovered: 0, stopped: null, timeUp: false, leftover: 0, lines: [], needsFactCheck: 0 }
   const have = new Set([...existingEntries().map(e => normName(e.name)), ...readJson(QUEUE, []).map(c => normName(c.name))])
 
-  // Autonomous: when the register is nearly empty, ask the model what Kerala readers want right now.
-  if (!topicIds && reg.topics.filter(t => t.status === 'todo').length < discoverBelow) {
-    try {
-      const { data } = await askJson(llm, prompt('discover'), `Today is ${today()}. Allowed categories: ${CATEGORIES.join(', ')}.\nGive 40 topics.\nAlready covered or queued (skip): ${[...have].slice(0, 400).join(', ')}`, { label: 'discover', name: 'discover' }, 8 * 60_000, 8)
-      const known = new Set([...have, ...reg.topics.map(t => normName(t.name))])
-      for (const t of Array.isArray(data.topics) ? data.topics : []) {
-        const name = str(t?.name, 120), category = CATEGORIES.includes(t?.category) ? t.category : null
-        if (!name || !category || known.has(normName(name))) continue
-        known.add(normName(name)); stats.discovered++
-        reg.topics.push({ id: slugify(name), name, category, district: str(t.district, 60) || 'Kerala', priority: 2, status: 'todo', slug: null, lastRun: null, lastResult: null, editorial: null, nextReview: null, imageStatus: null, note: str(t.note, 160) })
-      }
-      writeJson(TOPICS, reg)
-    } catch (e) { stats.lines.push(`- ⚠️ finding new topics failed: ${e.message.slice(0, 120)}`) }
+  // Autonomous topic planning. Coverage first: aim for the per-category and per-district targets (agents/coverage.mjs). When the
+  // queue still runs low (or coverage is switched off), fall back to asking what Kerala readers want right now.
+  const todoCount = () => reg.topics.filter(t => t.status === 'todo').length
+  if (!topicIds && todoCount() < Math.max(discoverBelow, max)) {
+    if ((settings.coverage || {}).enabled !== false) {
+      try {
+        const c = await planCoverage(llm, { maxCategories: 6, assert: () => assertRunning('sprint') })
+        stats.discovered += c.added; stats.lines.push(...c.lines); reg.topics = readJson(TOPICS, { topics: [] }).topics
+      } catch (e) { if (e instanceof Stopped) stats.stopped = e.message; else stats.lines.push(`- ⚠️ coverage planning failed: ${e.message.slice(0, 120)}`) }
+    }
+    if (!stats.stopped && todoCount() < discoverBelow) {
+      try {
+        const { data } = await askJson(llm, prompt('discover'), `Today is ${today()}. Allowed categories: ${CATEGORIES.join(', ')}.\nGive 40 topics.\nAlready covered or queued (skip): ${[...have].slice(0, 400).join(', ')}`, { label: 'discover', name: 'discover' }, 8 * 60_000, 8)
+        const known = new Set([...have, ...reg.topics.map(t => normName(t.name))])
+        for (const t of Array.isArray(data.topics) ? data.topics : []) {
+          const name = str(t?.name, 120), category = CATEGORIES.includes(t?.category) ? t.category : null
+          if (!name || !category || known.has(normName(name))) continue
+          known.add(normName(name)); stats.discovered++
+          reg.topics.push({ id: slugify(name), name, category, district: str(t.district, 60) || 'Kerala', priority: 2, status: 'todo', slug: null, lastRun: null, lastResult: null, editorial: null, nextReview: null, imageStatus: null, note: str(t.note, 160) })
+        }
+        writeJson(TOPICS, reg)
+      } catch (e) { stats.lines.push(`- ⚠️ finding new topics failed: ${e.message.slice(0, 120)}`) }
+    }
   }
 
   const todo = reg.topics.filter(t => (topicIds ? topicIds.includes(t.id) : t.status === 'todo')).sort((a, b) => a.priority - b.priority).slice(0, max)
@@ -132,6 +143,7 @@ export async function fill(llm, { minutes = 150, max = 40, concurrency = 4, topi
     writeJson(TOPICS, reg)
   }, () => !!stats.stopped || now() >= deadline)
   writeJson(TOPICS, reg)
+  try { writeCoverage(settings) } catch { /* the matrix is a convenience */ }
   stats.leftover = reg.topics.filter(t => t.status === 'todo').length
   stats.minutes = Math.round((now() - (deadline - minutes * 60_000)) / 600) / 100
   return stats
