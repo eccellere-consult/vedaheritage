@@ -1,8 +1,8 @@
 {
-    "state": "paused",
+    "state": "running",
     "reason": "",
     "by": "admin",
-    "updated": "2026-11-03T18:35:36+00:00",
+    "updated": "2026-11-09T01:56:37+00:00",
     "agents": {
         "content-agents": false,
         "sprint": true,
