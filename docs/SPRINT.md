@@ -13,3 +13,5 @@
 **Guardrails kept:** admin stop switch (`agents/control.json`), content-safety screen (`agents/lib/safety.mjs`), `medical` and `healing` stay drafts, the site build must pass. Pages are labelled "not yet independently checked"; the owner bar on each page edits or deletes.
 
 **Not done:** photos (run Find images separately; pages show a placeholder until then), AI fact-checking, version history.
+
+**Skill file:** `docs/skills/vedaheritage-content-acceleration.skill.md` (version 2) is the portable description of this system with the learnings. Photos: `fetch-images.yml` runs in parallel and uses Commons, Openverse, Pexels, Pixabay and Unsplash (free keys as GitHub secrets). Quality flags: `scripts/content-bar.mjs`.

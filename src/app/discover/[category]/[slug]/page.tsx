@@ -243,7 +243,7 @@ export default async function EntryPage({ params }: Props) {
           )}
 
           <p className="text-xs text-ink-mid/70 mt-8">
-            {e.format === 'lite' ? 'Updated' : 'Last verified'} {new Date(e.updated || e.lastVerified).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}.{e.format === 'lite' && ' Compiled quickly from recent web sources and not yet independently checked.'} Timings, fees and dates change — confirm with the venue before travelling.
+            {e.format === 'lite' ? 'Updated' : 'Last verified'} {new Date(e.updated || e.lastVerified).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}.{e.format === 'lite' && (e.reviewed === true ? ` Compiled by AI from recent web sources; reviewed by an editor${e.reviewedOn ? ` on ${new Date(e.reviewedOn).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}` : ''}.` : ' Compiled by AI from recent web sources; not yet reviewed by an editor.')} Timings, fees and dates change — confirm with the venue before travelling.
             Sources: {e.sources.map((s, i) => (
               <span key={s.url}>{i > 0 && ', '}<a href={s.url} rel="noopener noreferrer" target="_blank" className="underline">{s.label}</a></span>
             ))}.

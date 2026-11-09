@@ -1,13 +1,18 @@
 name: Fetch licensed images
 
-# Finds openly licensed photos (Wikimedia Commons first, then Openverse under strict guardrails) for entries with
-# fewer than 2 images. Then, per the admin switch (Run agents > How does agent work reach the site?):
+# Runs in PARALLEL with the content fill (own concurrency group). Finds free-to-use photos for entries with fewer than
+# 2 images: Wikimedia Commons, then Openverse, then Pexels / Pixabay / Unsplash when their API keys are set. Weekly, or on demand. Then, per the admin switch (Run agents > How does agent work reach the site?):
 #   publish automatically: entries that now pass every gate go live and the site deploys;
 #   review first: opens ONE pull request and a human checks each photo before merging.
 
 on:
+  schedule:
+    - cron: '40 3 * * 1'
   workflow_dispatch:
     inputs:
+      limit:
+        description: 'Max entries per run (blank = 60)'
+        required: false
       slug:
         description: 'Only this entry slug (optional)'
         required: false
@@ -21,9 +26,14 @@ permissions:
   pull-requests: write
   actions: write
 
+concurrency:
+  group: fetch-images
+  cancel-in-progress: false
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,58 +45,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/agent-guard.mjs fetch-images
-      - name: Fetch images (Wikimedia Commons, then Openverse)
+      - name: Fetch images (Commons, Openverse, Pexels, Pixabay, Unsplash)
         env:
           OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
           OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          LIMIT: ${{ inputs.limit }}
           SLUG: ${{ inputs.slug }}
           FORCE: ${{ inputs.force }}
         run: |
           args=()
           [ -n "$SLUG" ] && args+=(--only "$SLUG")
           [ "$FORCE" = "true" ] && args+=(--force)
+          args+=(--limit "${LIMIT:-60}")
           node scripts/fetch-commons-images.mjs "${args[@]}"
-      - name: Publish entries that pass every check (only when automatic publishing is on)
-        run: node scripts/auto-publish.mjs
-      - name: Validate content
-        run: node scripts/validate-content.mjs
-      - name: Publish to the site, or open a pull request
-        # autoPublish true (admin > Run agents): run ALL the pull-request checks, then commit to main and trigger the deploy;
-        # the owner reviews on the site.
-        # autoPublish false, or anything fails (build, push): open ONE pull request for review, as before.
+      - name: Validate, build, publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_BRANCH: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}
-        run: |
-          if [ -z "$(git status --porcelain)" ]; then echo "No changes."; exit 0; fi
-          git config user.name "veda-content-bot"
-          git config user.email "content-bot@users.noreply.github.com"
-          # The same checks the pull-request check runs: content, agent tests, admin tests, types, build.
-          checks() { { node scripts/validate-content.mjs && npm run agents:test && npm run admin:test && npx tsc --noEmit && npx next build; } >/tmp/checks.log 2>&1; }
-          GITHUB_TOKEN=$GH_TOKEN node scripts/agent-guard.mjs fetch-images || { echo "Stopped by the admin; nothing is published."; exit 1; }
-          auto=$(node -e "try{console.log(JSON.parse(require('fs').readFileSync('agents/settings.json','utf8')).autoPublish===true?'yes':'no')}catch(e){console.log('no')}")
-          for p in src/content public/images/discover agents/reports; do [ -e "$p" ] && git add -A "$p"; done
-          git commit -m "content: add licensed images"
-          if [ "$auto" = "yes" ] && [ "$BASE_BRANCH" = "main" ]; then
-            if checks; then
-              for i in 1 2 3; do
-                if git push origin HEAD:main; then
-                  gh workflow run deploy.yml --ref main && echo "Published; deploy started."
-                  exit 0
-                fi
-                # main moved while we worked: bring it in, then run every check again on the combined result
-                if ! git pull --rebase origin main; then git rebase --abort; echo "Conflict with main."; break; fi
-                checks || { tail -40 /tmp/checks.log; break; }
-              done
-              echo "Could not publish directly; opening a pull request instead."
-            else
-              tail -40 /tmp/checks.log; echo "A check failed; opening a pull request instead."
-            fi
-          fi
-          branch="images/$(date +%Y%m%d-%H%M)"
-          git checkout -b "$branch"
-          git push origin "$branch"
-          printf 'Candidate photos with credit and licence recorded (Wikimedia Commons, or Openverse under strict guardrails). Check each: right place, authentic, good quality, attribution shown. Remove any that are not suitable before merging.\n' > /tmp/pr-body.md
-          gh pr create --base "$BASE_BRANCH" --head "$branch" \
-            --title "Review candidate images ($(date +%F))" \
-            --body-file /tmp/pr-body.md
+          SHIP_JOB: fetch-images
+        run: bash scripts/ship.sh 'Add free-to-use photos' src/content public/images/discover agents/reports

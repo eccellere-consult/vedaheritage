@@ -5,12 +5,14 @@
 //
 // When Commons has too few, Openverse (Creative Commons photos, e.g. Flickr) fills the gap under strict guardrails
 // (agents/lib/openverse.mjs). Disable with --no-openverse. Optional env OPENVERSE_CLIENT_ID / OPENVERSE_CLIENT_SECRET.
-// Usage: node scripts/fetch-commons-images.mjs [--only <slug>] [--force] [--drafts] [--no-openverse]
+// Then, if keys exist, free stock marketplaces fill the gap: Pexels, Pixabay, Unsplash (agents/lib/stock.mjs). Disable with --no-stock.
+// Usage: node scripts/fetch-commons-images.mjs [--only <slug>] [--force] [--drafts] [--no-openverse] [--no-stock] [--limit N]
 // Needs network access to commons.wikimedia.org / upload.wikimedia.org.
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { openverseToken, pickOpenverse, searchOpenverse, stripJpegMetadata } from '../agents/lib/openverse.mjs'
+import { pickStock, reportUnsplashUse, searchStock, stockProviders } from '../agents/lib/stock.mjs'
 
 const UA = 'VedaHeritageContentBot/1.0 (https://www.vedaheritage.co.in; stay@vedaheritage.co.in)'
 const API = 'https://commons.wikimedia.org/w/api.php'
@@ -58,6 +60,8 @@ async function main() {
   const only = args.includes('--only') ? args[args.indexOf('--only') + 1] : null
   const force = args.includes('--force')
   const useOpenverse = !args.includes('--no-openverse') && process.env.OPENVERSE !== '0'
+  const providers = args.includes('--no-stock') ? [] : stockProviders()
+  const limit = args.includes('--limit') ? Number(args[args.indexOf('--limit') + 1]) : Infinity
   const token = useOpenverse ? await openverseToken().catch(() => null) : null
   const draftsOnly = args.includes('--drafts')   // only entries still in draft (used by the agents workflow)
   const root = path.join(process.cwd(), 'src', 'content')
@@ -73,12 +77,18 @@ async function main() {
       if (only && e.slug !== only) continue
       if (draftsOnly && e.status !== 'draft') continue
       if (!force && (e.images || []).length >= 2) continue
+      if (changed >= limit) continue
       const query = e.district && e.district !== 'Statewide' ? `${e.name} ${e.district}` : `${e.name} Kerala`
       const need = 2 - (force ? 0 : (e.images || []).length)
       const picks = pickImages(await search(query), need).map(c => ({ ...c, via: 'commons' }))
       if (useOpenverse && picks.length < need) {
         try { picks.push(...pickOpenverse(await searchOpenverse(`${e.name} Kerala`, { ua: UA, token }), e, need - picks.length).map(c => ({ ...c, via: 'openverse' }))) }
         catch (err) { console.log(`  ! Openverse unavailable (${err.message})`) }
+      }
+      for (const prov of providers) {
+        if (picks.length >= need) break
+        try { picks.push(...pickStock(prov, await searchStock(prov, `${e.name} Kerala`, { ua: UA }), e, need - picks.length).map(c => ({ ...c, via: 'stock' }))) }
+        catch (err) { console.log(`  ! ${prov} unavailable (${err.message})`) }
       }
       if (!picks.length) { console.log(`– ${e.slug}: no suitable licensed image found`); continue }
       const images = force ? [] : [...(e.images || [])]
@@ -88,16 +98,18 @@ async function main() {
         const res = await fetch(c.url, { headers: { 'User-Agent': UA } })
         if (!res.ok) { console.log(`  ! download failed ${c.url}`); continue }
         let bytes = Buffer.from(await res.arrayBuffer())
-        if (c.via === 'openverse') {
+        if (c.via === 'openverse' || c.via === 'stock') {
           // Originals can carry GPS and camera data, and could be anything: accept only a modest JPEG, then strip its metadata.
           if (bytes.length > 8_000_000) { console.log(`  ! too large ${c.url}`); continue }
           try { bytes = stripJpegMetadata(bytes) } catch { console.log(`  ! not a usable JPEG ${c.url}`); continue }
         }
         fs.writeFileSync(path.join(process.cwd(), 'public', dest), bytes)
         images.push({ src: dest, alt: c.alt || `${e.name}, ${e.district}, Kerala`, credit: c.credit, license: c.license, ...(c.licenseUrl ? { licenseUrl: c.licenseUrl } : {}), sourceUrl: c.sourceUrl })
-        if (c.via === 'openverse') console.log(`  + Openverse photo for ${e.slug}: ${c.license}, ${c.credit}`)
+        if (c.via !== 'commons') console.log(`  + ${c.via} photo for ${e.slug}: ${c.license}, ${c.credit}`)
+        if (c.via === 'stock') await reportUnsplashUse(c)
       }
       e.images = images
+      if (images.length) delete e.imageStatus
       fs.writeFileSync(file, JSON.stringify(e, null, 2) + '\n')
       console.log(`✔ ${e.slug}: ${images.length} image(s)`)
       changed++

@@ -190,6 +190,13 @@ function valid_slug(string $s): bool { return (bool)preg_match('/^[a-z0-9][a-z0-
 function publish_blockers(array $e): array {
     $b = [];
     if (($e['status'] ?? '') !== 'draft') $b[] = 'Entry is not a draft.';
+    if (($e['format'] ?? '') === 'lite') {   // quick pages from the fill route: light rules, same as scripts/validate-content.mjs
+        $src = array_filter(is_array($e['sources'] ?? null) ? $e['sources'] : [], fn($s) => is_array($s) && !empty($s['label']) && preg_match('~^https://~', $s['url'] ?? ''));
+        if (count($src) < 1) $b[] = 'Needs at least 1 source.';
+        $sum = (string)($e['summary'] ?? ''); if (strlen($sum) < 30 || strlen($sum) > 220) $b[] = 'Summary must be 30 to 220 characters.';
+        if (empty($e['description'])) $b[] = 'Missing description.';
+        return $b;
+    }
     $imgs = $e['images'] ?? [];
     if ((!is_array($imgs) || count($imgs) < 1) && ($e['imageStatus'] ?? '') === 'needed') { /* awaiting a photo: allowed, shows no image */ }
     elseif (!is_array($imgs) || count($imgs) < 1) $b[] = 'Needs at least 1 licensed, credited image (use "Find images").';

@@ -50,6 +50,7 @@ for (const cat of CATEGORIES) {
       if (!isArr(d.highlights, 2)) fail(rel, 'lite: need at least 2 highlights')
       if (!isArr(d.tags, 2)) fail(rel, 'lite: need at least 2 tags')
       if (!isIsoDate(d.updated) || !isIsoDate(d.lastVerified)) fail(rel, 'lite: updated and lastVerified must be ISO dates')
+      for (const k of ['ownerEdited', 'reviewedOn']) if (d[k] !== undefined && !isIsoDate(d[k])) fail(rel, `lite: ${k} must be an ISO date`)
       if (!Array.isArray(d.sections) || d.sections.some(x => !isStr(x.heading) || !isArr(x.body))) fail(rel, 'lite: sections must be [{heading, body[]}]')
       if (d.latest !== undefined && (!Array.isArray(d.latest) || d.latest.some(x => !isStr(x.date) || Number.isNaN(Date.parse(x.date)) || !isStr(x.text) || (x.url && !/^https:\/\//.test(x.url))))) fail(rel, 'lite: latest must be [{date, text, url?}]')
       if (d.visitorInfo && (!isStr(d.visitorInfo.bestTime) || !isStr(d.visitorInfo.howToReach) || !Array.isArray(d.visitorInfo.etiquette))) fail(rel, 'lite: visitorInfo needs bestTime, howToReach, etiquette[]')
