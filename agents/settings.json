@@ -1,7 +1,7 @@
 {
     "provider": "openai",
     "verifierProvider": "xai",
-    "updated": "2026-10-31",
+    "updated": "2026-11-09",
     "autoPublish": true,
     "autoPublishExclude": [
         "medical",
