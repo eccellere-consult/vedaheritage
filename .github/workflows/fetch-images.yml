@@ -36,6 +36,8 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ vars.CONTENT_BASE_BRANCH || 'main' }}   # newest main, not the commit that was current when the run was queued
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
