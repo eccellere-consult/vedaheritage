@@ -15,3 +15,6 @@
 **Not done:** photos (run Find images separately; pages show a placeholder until then), AI fact-checking, version history.
 
 **Skill file:** `docs/skills/vedaheritage-content-acceleration.skill.md` (version 2) is the portable description of this system with the learnings. Photos: `fetch-images.yml` runs in parallel and uses Commons, Openverse, Pexels, Pixabay and Unsplash (free keys as GitHub secrets). Quality flags: `scripts/content-bar.mjs`.
+
+## Coverage target (30 guides per category, 2 to 3 per district)
+`agents/coverage.mjs` measures guides per category and district (written to `agents/registers/coverage.json`, shown in the admin Fill content card as a table). Each run, when the queue is short, it asks the model for specific, real topics for the thinnest categories (6 per run) and queues them, then the fill route writes them. A district with nothing real for a category (for example a beach in a landlocked district) is recorded in `coverage-none.json` and not asked again: the target is never met by inventing topics. Targets are editable in the admin (Fill content, Coverage). Stand at 145 guides against about 600 for 20 categories; the pace is set by the per-run cap, pages and frequency (see the cost per page the admin shows after a run).

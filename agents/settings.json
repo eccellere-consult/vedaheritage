@@ -12,5 +12,10 @@
         "budget": 5,
         "max": 40,
         "minutes": 90
+    },
+    "coverage": {
+        "enabled": true,
+        "perCategory": 30,
+        "perDistrictMin": 2
     }
 }

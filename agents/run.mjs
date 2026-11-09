@@ -1,4 +1,4 @@
-// Orchestrator.  node agents/run.mjs <scout|enrich|verify|pipeline|events|sprint|fill|refresh> [options]
+// Orchestrator.  node agents/run.mjs <scout|enrich|verify|pipeline|events|sprint|fill|refresh|coverage> [options]
 //   --mock            use deterministic fixtures (no API key, no network)
 //   --max N           scout: max new candidates (default 8); enrich: max entries (default 3)
 //   --slug a,b        verify: only these slugs        --drafts   verify: all draft entries
@@ -12,6 +12,7 @@ import { enrich } from './enricher.mjs'
 import { verify, summarizeFixes } from './verifier.mjs'
 import { events } from './events.mjs'
 import { fill, refresh } from './fill.mjs'
+import { planCoverage, writeCoverage } from './coverage.mjs'
 
 const args = process.argv.slice(2)
 const cmd = args[0]
@@ -98,7 +99,7 @@ async function runVerify(llm) {
 }
 
 async function main() {
-  if (!['scout', 'enrich', 'verify', 'pipeline', 'events', 'sprint', 'fill', 'refresh'].includes(cmd)) {
+  if (!['scout', 'enrich', 'verify', 'pipeline', 'events', 'sprint', 'fill', 'refresh', 'coverage'].includes(cmd)) {
     console.error('usage: node agents/run.mjs <scout|enrich|verify|pipeline|events|sprint|fill|refresh> [--mock] [--max N] [--slug a,b] [--drafts] [--budget USD]')
     process.exit(2)
   }
@@ -122,7 +123,7 @@ async function main() {
     }
     if (cmd === 'verify') await runVerify(vllm)
     if (cmd === 'sprint' || cmd === 'fill') {
-      const r = await fill(llm, { minutes: Number(opt('minutes', 150)), max: Number(opt('max', 40)), concurrency: Number(opt('concurrency', 4)), topicIds: opt('topics', '') ? opt('topics', '').split(',') : null })
+      const r = await fill(llm, { minutes: Number(opt('minutes', 150)), max: Number(opt('max', 40)), concurrency: Number(opt('concurrency', process.env.FILL_CONCURRENCY || 4)), topicIds: opt('topics', '') ? opt('topics', '').split(',') : null })
       if (!mock) {
         const prev = readJson('agents/registers/fill-state.json', {})
         const usd = Math.round(budget.usd * 1000) / 1000
@@ -133,6 +134,12 @@ async function main() {
       if (r.stopped) add(`⛔ Stopped: ${r.stopped}.`, '')
       else if (r.timeUp) add('⏱ Time budget reached; the rest waits for the next run.', '')
       console.log(`fill: +${r.created}, exists ${r.exists}, failed ${r.failed}, discovered ${r.discovered}, left ${r.leftover}${r.stopped ? ', STOPPED' : ''}`)
+    }
+    if (cmd === 'coverage') {
+      const r = flag('report-only') ? { added: 0, lines: [] } : await planCoverage(llm, { maxCategories: Number(opt('max-categories', 20)) })
+      const c = writeCoverage()
+      add(`### Coverage: ${c.pagesTotal} pages, ${c.pagesNeeded} short of the target (${c.perCategory} per category)`, '', ...r.lines, '')
+      console.log(`coverage: ${c.pagesTotal} pages, need ${c.pagesNeeded}, planned +${r.added}`)
     }
     if (cmd === 'refresh') {
       const r = await refresh(llm, { max: Number(opt('max', 15)), minutes: Number(opt('minutes', 60)), concurrency: Number(opt('concurrency', 4)) })

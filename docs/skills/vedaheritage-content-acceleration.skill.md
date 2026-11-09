@@ -21,6 +21,9 @@ Version 1 kept a research call, a drafting call, a strict full-format schema, a 
 
 Schedule: the workflow checks daily and `scripts/fill-plan.mjs` runs it every N days (default 7). Cap, pages, minutes and N are editable in the admin (Content sprint > Fill content). Start now runs once on demand.
 
+### Coverage planning
+Target: 30 guides per category and 2 to 3 per district where the district has something real. `agents/coverage.mjs` computes a category-by-district matrix, plans specific topics for the thinnest categories (one call each, 6 per run), remembers districts with nothing real, and the admin shows the matrix with editable targets. Never pad a cell with an invented topic.
+
 ## 3. The lite page format
 `slug, category, name, district, format:"lite", tagline, summary (30-220 chars), description[], highlights[], sections[{heading, body[]}] (3-5), latest[{date, text, url?}], visitorInfo? {bestTime, howToReach, etiquette[]}, tags, coordinates? (Kerala bounds only), sources[{label,url}], images[], imageStatus?, updated, lastVerified, status, autoPublished?, reviewed?, reviewedOn?, ownerEdited?`.
 Old full-format pages stay as they are. The page template shows each section only when present.
