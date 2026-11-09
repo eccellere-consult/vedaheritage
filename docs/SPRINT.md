@@ -8,7 +8,7 @@
 3. `refresh` re-checks the stalest live pages (10+ days) and adds dated news to `latest`.
 4. `scripts/ship.sh` drops any new page the validator rejects, builds the site, pushes to `main` and starts the deploy.
 
-**Runs:** daily at 02:20 UTC (`.github/workflows/sprint.yml`), or press Start sprint in the admin. Defaults: 90 minutes, 40 pages, 10 USD cap.
+**Runs:** weekly by default. The workflow checks daily and `scripts/fill-plan.mjs` lets it run only every N days. Cap (default 5 USD per run, shared 80/20 between new pages and refresh), pages, minutes and N are editable in the admin (Content sprint > Fill content > Save schedule, stored in `agents/settings.json` `fill`). Start now runs it once on demand.
 
 **Guardrails kept:** admin stop switch (`agents/control.json`), content-safety screen (`agents/lib/safety.mjs`), `medical` and `healing` stay drafts, the site build must pass. Pages are labelled "not yet independently checked"; the owner bar on each page edits or deletes.
 

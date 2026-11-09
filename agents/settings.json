@@ -6,5 +6,11 @@
     "autoPublishExclude": [
         "medical",
         "healing"
-    ]
+    ],
+    "fill": {
+        "everyDays": 7,
+        "budget": 5,
+        "max": 40,
+        "minutes": 90
+    }
 }

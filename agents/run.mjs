@@ -123,6 +123,7 @@ async function main() {
     if (cmd === 'verify') await runVerify(vllm)
     if (cmd === 'sprint' || cmd === 'fill') {
       const r = await fill(llm, { minutes: Number(opt('minutes', 150)), max: Number(opt('max', 40)), concurrency: Number(opt('concurrency', 4)), topicIds: opt('topics', '') ? opt('topics', '').split(',') : null })
+      if (!mock) writeJson('agents/registers/fill-state.json', { lastRun: new Date().toISOString() })
       add(`### Content fill: ${r.created} page(s) created in ${r.minutes} min`, '',
         `Attempted ${r.attempted} · created ${r.created} · already had a page ${r.exists} · failed ${r.failed} · new topics found ${r.discovered} · topics still to do ${r.leftover}`, '', ...r.lines, '')
       if (r.stopped) add(`⛔ Stopped: ${r.stopped}.`, '')
