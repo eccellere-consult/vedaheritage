@@ -481,9 +481,9 @@ try {
             $send = ($slug !== '' ? ['slug' => $slug] : []) + ['force' => !empty($inp['force']) ? 'true' : 'false'];
             $file = 'fetch-images.yml';
         } elseif ($w === 'sprint') {
-            $min = (string)($inp['minutes'] ?? '150'); if (!preg_match('/^(6[0-9]|[7-9][0-9]|1[0-7][0-9]|180)$/', $min)) json_out(400, ['error' => 'Minutes must be 60 to 180.']);
+            $min = (string)($inp['minutes'] ?? '90'); if (!preg_match('/^([1-9][0-9]|1[0-7][0-9]|180)$/', $min)) json_out(400, ['error' => 'Minutes must be 10 to 180.']);
             $max = (string)($inp['max'] ?? '40'); if (!preg_match('/^([1-9]|[1-9][0-9]|1[0-9][0-9])$/', $max)) json_out(400, ['error' => 'Max topics per slice must be 1 to 199.']);
-            $bud = (string)($inp['budget'] ?? '20'); if (!preg_match('/^([1-9]|[1-3][0-9]|40)$/', $bud)) json_out(400, ['error' => 'Budget must be 1 to 40 USD.']);
+            $bud = (string)($inp['budget'] ?? '5'); if (!preg_match('/^([1-9]|[1-3][0-9]|40)$/', $bud)) json_out(400, ['error' => 'Budget must be 1 to 40 USD.']);
             $pv = (string)($inp['provider'] ?? 'saved'); if (!in_array($pv, ['saved', 'auto', 'xai', 'openai', 'anthropic'], true)) json_out(400, ['error' => 'Bad provider.']);
             $send = ['minutes' => $min, 'max' => $max, 'budget' => $bud, 'provider' => $pv]; $file = 'sprint.yml';
         } elseif ($w === 'events') {
@@ -733,7 +733,7 @@ try {
         // Which API keys exist? Needs the token's optional "Secrets: read" permission; otherwise unknown (null).
         $keys = null; $r = gh('GET', '/repos/' . repo() . '/actions/secrets', null, ['per_page' => 100]);
         if ($r[0] === 200 && is_array($r[1])) { $names = array_column($r[1]['secrets'] ?? [], 'name'); $keys = ['xai' => in_array('XAI_API_KEY', $names, true), 'openai' => in_array('OPENAI_API_KEY', $names, true), 'anthropic' => in_array('ANTHROPIC_API_KEY', $names, true)]; }
-        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'autoPublish' => ($cfgJ['autoPublish'] ?? false) === true, 'autoPublishExclude' => $cfgJ['autoPublishExclude'] ?? ['medical', 'healing'], 'lastRun' => $lastRun, 'keys' => $keys]);
+        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'autoPublish' => ($cfgJ['autoPublish'] ?? false) === true, 'autoPublishExclude' => $cfgJ['autoPublishExclude'] ?? ['medical', 'healing'], 'fill' => array_merge(['everyDays' => 7, 'budget' => 5, 'max' => 40, 'minutes' => 90], is_array($cfgJ['fill'] ?? null) ? $cfgJ['fill'] : []), 'lastRun' => $lastRun, 'keys' => $keys]);
     }
 
     case 'agent_settings_save': {
@@ -744,6 +744,15 @@ try {
         $prov = (string)($in['provider'] ?? ($cur['provider'] ?? 'auto')); $ver = (string)($in['verifierProvider'] ?? ($cur['verifierProvider'] ?? 'auto'));
         if (!in_array($prov, $ok, true) || !in_array($ver, $ok, true)) json_out(400, ['error' => 'Choose auto, xai, openai or anthropic.']);
         $auto = array_key_exists('autoPublish', $in) ? ($in['autoPublish'] === true) : (($cur['autoPublish'] ?? false) === true);
+        if (isset($in['fill']) && is_array($in['fill'])) {
+            $fl = is_array($cur['fill'] ?? null) ? $cur['fill'] : [];
+            foreach (['everyDays' => [1, 30], 'budget' => [1, 20], 'max' => [1, 100], 'minutes' => [10, 180]] as $k => $r) {
+                if (!array_key_exists($k, $in['fill'])) continue;
+                $v = $in['fill'][$k]; if (!is_numeric($v) || (int)$v != $v || $v < $r[0] || $v > $r[1]) json_out(400, ['error' => "$k must be a whole number from {$r[0]} to {$r[1]}."]);
+                $fl[$k] = (int)$v;
+            }
+            $cur['fill'] = $fl;
+        }
         $cur['provider'] = $prov; $cur['verifierProvider'] = $ver; $cur['autoPublish'] = $auto; $cur['updated'] = gmdate('Y-m-d');
         if (!isset($cur['autoPublishExclude']) || !is_array($cur['autoPublishExclude'])) $cur['autoPublishExclude'] = ['medical', 'healing'];
         gh_commit_files(['agents/settings.json' => ['text' => json_encode($cur, JSON_PRETTY_PRINT) . "\n"]], "Agents use $prov (verifier: $ver), " . ($auto ? 'publish automatically' : 'review before publishing') . ' (admin)');

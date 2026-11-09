@@ -7,18 +7,18 @@ name: Fill content (simple, autonomous)
 
 on:
   schedule:
-    - cron: '20 2 * * *'
+    - cron: '20 2 * * *'   # checks daily; scripts/fill-plan.mjs runs it only every N days (admin setting, default 7)
   workflow_dispatch:
     inputs:
       minutes:
         description: 'Total time budget in minutes'
-        default: '90'
+        default: ''
       max:
-        description: 'Max new pages this run'
-        default: '40'
+        description: 'Max new pages (blank = admin setting)'
+        default: ''
       budget:
-        description: 'Hard spend cap in USD for this run'
-        default: '10'
+        description: 'Spend cap in USD (blank = admin setting)'
+        default: ''
       provider:
         description: 'AI provider (saved = use the default saved in the admin page)'
         type: choice
@@ -45,11 +45,21 @@ jobs:
           node-version: '20'
           cache: 'npm'
       - run: npm ci
+      - name: Is a run due?
+        id: plan
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          IN_MINUTES: ${{ inputs.minutes }}
+          IN_MAX: ${{ inputs.max }}
+          IN_BUDGET: ${{ inputs.budget }}
+        run: node scripts/fill-plan.mjs
       - name: Stop switch (admin pause / kill)
+        if: steps.plan.outputs.run == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/agent-guard.mjs sprint
       - name: Fill new pages, refresh stale ones, ship
+        if: steps.plan.outputs.run == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -65,12 +75,13 @@ jobs:
           OPENAI_PRICE_OUT_PER_M: ${{ vars.OPENAI_PRICE_OUT_PER_M }}
           XAI_PRICE_IN_PER_M: ${{ vars.XAI_PRICE_IN_PER_M }}
           XAI_PRICE_OUT_PER_M: ${{ vars.XAI_PRICE_OUT_PER_M }}
-          MINUTES: ${{ inputs.minutes || '90' }}
-          MAX: ${{ inputs.max || '40' }}
-          BUDGET: ${{ inputs.budget || '10' }}
+          MINUTES: ${{ steps.plan.outputs.minutes }}
+          MAX: ${{ steps.plan.outputs.max }}
+          BUDGET: ${{ steps.plan.outputs.budget }}
         run: |
-          node agents/run.mjs fill --minutes "$MINUTES" --max "$MAX" --budget "$BUDGET" || true
+          FILL_B=$(awk -v b="$BUDGET" 'BEGIN{print b*0.8}'); REF_B=$(awk -v b="$BUDGET" 'BEGIN{print b*0.2}')
+          node agents/run.mjs fill --minutes "$MINUTES" --max "$MAX" --budget "$FILL_B" || true
           cp agents/reports/latest.md /tmp/fill-report.md 2>/dev/null || true
-          node agents/run.mjs refresh --max 20 --minutes 25 --budget "$BUDGET" || true
+          node agents/run.mjs refresh --max 20 --minutes 25 --budget "$REF_B" || true
           cat /tmp/fill-report.md agents/reports/latest.md > /tmp/both.md 2>/dev/null && cp /tmp/both.md agents/reports/latest.md || true
           bash scripts/ship.sh "content: fill $(date +%F)" src/content agents/registers agents/reports

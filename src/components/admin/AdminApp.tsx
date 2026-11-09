@@ -204,14 +204,16 @@ const JOB_INFO: Record<string, string> = { sprint: 'Content sprint: fast first-l
 
 function Sprint({ say }: { say: (t: string, bad?: boolean) => void }) {
   const { data, err, reload } = useLoad('control_get'); const st = useLoad('agent_settings')
-  const [f, setF] = useState({ minutes: '150', max: '40', budget: '20' }); const [flt, setFlt] = useState({ status: '', category: '' })
+  const [f, setF] = useState({ minutes: '90', max: '40', budget: '5', everyDays: '7' }); const [loaded, setLoaded] = useState(false); const [flt, setFlt] = useState({ status: '', category: '' })
   const [nt, setNt] = useState({ name: '', category: 'temples', district: 'Kerala', priority: '2' })
   const c = data?.control; const state = c?.state || 'running'
   const act = async (a: string, extra: Json = {}, confirmText?: string) => {
     if (confirmText && !window.confirm(confirmText)) return
     const r = await api('control_set', { action: a, ...extra }); say(r.ok ? r.data.message : r.data.error, !r.ok); reload()
   }
-  const start = async () => { const r = await api('run_workflow', { workflow: 'sprint', inputs: { ...f, provider: 'saved' } }); say(r.ok ? 'Sprint started. It saves and publishes after each of three slices.' : r.data.error, !r.ok); reload() }
+  const start = async () => { const r = await api('run_workflow', { workflow: 'sprint', inputs: { minutes: f.minutes, max: f.max, budget: f.budget, provider: 'saved' } }); say(r.ok ? 'Started. New pages are saved and published when the run ends.' : r.data.error, !r.ok); reload() }
+  useEffect(() => { const x = st.data?.fill; if (x && !loaded) { setF({ minutes: String(x.minutes), max: String(x.max), budget: String(x.budget), everyDays: String(x.everyDays) }); setLoaded(true) } }, [st.data, loaded])
+  const saveSchedule = async () => { const r = await api('agent_settings_save', { fill: { everyDays: Number(f.everyDays), budget: Number(f.budget), max: Number(f.max), minutes: Number(f.minutes) } }); say(r.ok ? 'Saved. The automatic run uses these numbers from now on.' : r.data.error, !r.ok); if (r.ok) st.reload() }
   const auto = st.data?.autoPublish === true
   const topics: Json[] = (data?.topics || []).filter((t: Json) => (!flt.status || t.status === flt.status) && (!flt.category || t.category === flt.category))
   const cats = Array.from(new Set((data?.topics || []).map((t: Json) => t.category))) as string[]
@@ -242,13 +244,15 @@ function Sprint({ say }: { say: (t: string, bad?: boolean) => void }) {
         </div>
 
         <div className="card">
-          <h2 className="font-serif text-xl mb-1">Run a content sprint</h2>
-          <p className="text-sm text-ink-mid mb-3">One research pass and one drafting call per topic from the register below, three slices with photos and publishing after each. Pages whose checks pass go live per the publishing switch; pages with thin evidence wait as drafts; pages without a photo go live with a placeholder you can fill later. It stops cleanly at the time limit and never claims the whole list is done when it is not.</p>
+          <h2 className="font-serif text-xl mb-1">Fill content</h2>
+          <p className="text-sm text-ink-mid mb-3">One web-search call per page. Finds new topics itself, writes pages that go live per the publishing switch, then adds dated news to the stalest pages. It runs automatically on the schedule below; Start now runs it once on demand. Pages are quick and not independently checked.</p>
           <div className="flex flex-wrap gap-3 items-end text-sm mb-3">
-            <label>Minutes (60 to 180)<input className={inp + ' block w-24'} value={f.minutes} onChange={e => setF({ ...f, minutes: e.target.value })} /></label>
-            <label>Topics per slice<input className={inp + ' block w-24'} value={f.max} onChange={e => setF({ ...f, max: e.target.value })} /></label>
-            <label>Spend cap USD<input className={inp + ' block w-24'} value={f.budget} onChange={e => setF({ ...f, budget: e.target.value })} /></label>
-            <button className="btn-primary text-xs disabled:opacity-40" disabled={state !== 'running'} onClick={start}>Start sprint</button>
+            <label>Run every (days)<input className={inp + ' block w-24'} value={f.everyDays} onChange={e => setF({ ...f, everyDays: e.target.value })} /></label>
+            <label>Spend cap USD per run<input className={inp + ' block w-24'} value={f.budget} onChange={e => setF({ ...f, budget: e.target.value })} /></label>
+            <label>New pages per run<input className={inp + ' block w-24'} value={f.max} onChange={e => setF({ ...f, max: e.target.value })} /></label>
+            <label>Minutes per run<input className={inp + ' block w-24'} value={f.minutes} onChange={e => setF({ ...f, minutes: e.target.value })} /></label>
+            <button className="btn-outline text-xs" onClick={saveSchedule}>Save schedule</button>
+            <button className="btn-primary text-xs disabled:opacity-40" disabled={state !== 'running'} onClick={start}>Start now</button>
           </div>
           <p className="text-sm text-ink-mid">Publishing: {badge(auto ? 'publish automatically' : 'review first', auto ? 'ok' : 'warn')} <button className="underline text-primary text-xs ml-2" onClick={async () => { if (!window.confirm(auto ? 'Switch to review first? New pages will wait for your approval.' : 'Publish automatically? Pages that pass every check go live; health topics and flagged pages still wait.')) return; const r = await api('agent_settings_save', { autoPublish: !auto }); say(r.ok ? r.data.message : r.data.error, !r.ok); st.reload() }}>change</button></p>
         </div>
