@@ -1,0 +1,101 @@
+{
+  "slug": "onam-sadya",
+  "category": "food",
+  "name": "Onam Sadya",
+  "district": "Kerala",
+  "format": "lite",
+  "tagline": "Kerala's grand vegetarian harvest feast, served on a banana leaf",
+  "summary": "Onam Sadya is the elaborate vegetarian banquet served across Kerala during Onam, featuring 20–28+ dishes on a banana leaf and rich regional variations.",
+  "description": [
+    "Onam Sadya is the traditional multi-course vegetarian banquet prepared for Onam, Kerala’s harvest festival. The feast is served on a banana leaf and brings together a large variety of curries, pickles, chips and payasams in a set order that balances flavours and textures. ([keralatourism.org](https://www.keralatourism.org/onam/ona-sadya/sadya?utm_source=openai))",
+    "Sadya is a social and culinary ritual: families and communities prepare it together, and the meal symbolises abundance, hospitality and the return of the legendary king Mahabali. The number of items commonly served ranges from around 20 to 28 or more, with regional differences across Kerala. ([keralatourism.org](https://www.keralatourism.org/faq/what-is-kerala-sadya-and-what-is-special-about-it?utm_source=openai))",
+    "Visitors get a highly sensory experience—colourful pookalams (flower carpets), traditional dress, and the slow, ritualised serving and eating on the banana leaf. Modern hotels and restaurants also offer organised sadya meals for visitors, but homemade and community sadya remain the most authentic. ([keralatourism.org](https://www.keralatourism.org/onam/ona-sadya/sadya?utm_source=openai))"
+  ],
+  "highlights": [
+    "Served on a fresh banana leaf in a fixed order",
+    "Wide range of dishes: sambar, avial, olan, kichadi, pachadi, erissery and multiple payasams",
+    "Strong regional variations—north, central and south Kerala styles",
+    "Rituals around serving, lamp-lighting and 'ants’ sadya' customs",
+    "Often served communally during Onam and other celebrations"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Sadya (literally 'banquet') is Kerala’s signature vegetarian feast served at Onam and other important events. It draws on local seasonal vegetables, coconut and rice-based staples and reflects Kerala’s harvest culture. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Sadya?utm_source=openai))",
+        "The feast has ritual rules: a special serving for Ganapathy and Mahabali is placed first, a lamp is lit in the kannimoola (south‑west corner), and the food is arranged and served in a customary sequence so flavours complement one another. ([keralatourism.org](https://www.keralatourism.org/onam/ona-sadya/sadya-method-of-serving?utm_source=openai))"
+      ]
+    },
+    {
+      "heading": "What to see and do (menu and customs)",
+      "body": [
+        "A typical Onam Sadya includes pappadam and chips, pickles, inji curry, thoran, avial, olan, erissery, kootu curry, kaalan/kalan variants, sambar, rasam, parippu (dal with ghee) and several payasams (ada pradhaman, palada, semiya, etc.). Regional menus shift ingredients and the number of payasams. ([keralatourism.org](https://www.keralatourism.org/onam/ona-sadya/sadya?utm_source=openai))",
+        "Watch how dishes are served: elders or designated servers often add portions in an order that alternates rich and tangy flavours; many people finish with kalan or a curd‑based dish before payasam. Eating with the right hand on the leaf, following local etiquette, completes the experience. ([keralatourism.org](https://www.keralatourism.org/onam/ona-sadya/sadya-method-of-serving?utm_source=openai))"
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Onam falls in the Malayalam month of Chingam (August–September) and is the ideal time to experience sadya in homes, temples and hotels across Kerala. Large hotels and many restaurants sell organised sadya meals during the festival—book in advance for peak days. ([keralatourism.org](https://www.keralatourism.org/onam/ona-sadya/sadya?utm_source=openai))",
+        "For the most authentic experience, attend community or temple sadya (vallam‑sadya and aranmula-style feast events are famed) or share a family celebration if invited. Confirm timings and reservations in advance when trying a restaurant sadya. ([keralatourism.org](https://www.keralatourism.org/onam/ona-sadya/sadya?utm_source=openai))"
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-08-24",
+      "text": "Kerala Tourism promoted an expanded Onam Tourism Week (scheduled Aug 24–30, 2026) with emphasis on welcoming visitors to pookalam, cultural shows and authentic Onam Sadya experiences.",
+      "url": "https://www.keralatourism.org/kerala-article/2026/onam-as-a-global-cultural-experience/1484"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "Onam season (Malayalam month Chingam — August–September); festival peak days are best for the full sadya experience.",
+    "howToReach": "Onam Sadya is available statewide; reach major centres like Kochi, Thiruvananthapuram and Thrissur by air, rail or road and join local Onam events or book a hotel sadya in advance.",
+    "etiquette": [
+      "Confirm sadya bookings ahead during Onam—hotels and caterers fill up fast.",
+      "Eat with your right hand and follow local serving order; leave the narrow end of the banana leaf pointing left.",
+      "If you have dietary restrictions, ask before the meal—Onam sadya is traditionally vegetarian, but regional variants and catering options exist.",
+      "Bring a hearty appetite—sadya is served in multiple rounds and includes several rich payasams."
+    ]
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "onam",
+    "sadya",
+    "kerala-food",
+    "festival-food",
+    "vegetarian"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Onasadya (sadya page)",
+      "url": "https://www.keralatourism.org/onam/ona-sadya/sadya"
+    },
+    {
+      "label": "Kerala Tourism — Kerala Sadya FAQ",
+      "url": "https://www.keralatourism.org/faq/what-is-kerala-sadya-and-what-is-special-about-it"
+    },
+    {
+      "label": "Kerala Tourism — Sadya serving guidelines",
+      "url": "https://www.keralatourism.org/onam/ona-sadya/sadya-method-of-serving"
+    },
+    {
+      "label": "Kerala Tourism — Onam as a global cultural experience (2026)",
+      "url": "https://www.keralatourism.org/kerala-article/2026/onam-as-a-global-cultural-experience/1484"
+    },
+    {
+      "label": "Wikipedia — Sadya",
+      "url": "https://en.wikipedia.org/wiki/Sadya"
+    },
+    {
+      "label": "keralatourism.org",
+      "url": "https://www.keralatourism.org/faq/what-are-the-highlights-of-onam-celebration"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

@@ -1,0 +1,118 @@
+{
+  "slug": "kovalam-beach",
+  "category": "beaches",
+  "name": "Kovalam Beach",
+  "district": "Thiruvananthapuram",
+  "format": "lite",
+  "tagline": "Kerala’s classic crescent of sandy beaches, lighthouse and sunsets",
+  "summary": "Three crescent beaches near Thiruvananthapuram — Lighthouse, Hawah and Samudra — offering swimming, water sports, cafés and panoramic sunset views, with easy airport access.",
+  "description": [
+    "Kovalam is a seaside resort and a set of three crescent beaches (Lighthouse, Hawah/Eve’s and Samudra) on the Arabian Sea, about 12–16 km from Thiruvananthapuram city. The Vizhinjam lighthouse and the rocky headlands give the shoreline its dramatic look.",
+    "Kovalam matters as one of Kerala’s oldest and best‑known beach destinations — it draws domestic and international visitors for sunbathing, swimming, light water sports, Ayurvedic treatments and evening promenades. The mix of lively Lighthouse Beach and quieter Samudra Beach suits different travel styles.",
+    "Visitors find cafés, shops and a range of accommodation from guesthouses to luxury resorts. Expect vivid sunsets, fishermen bringing ashore boats, and easy day trips to Thiruvananthapuram city sights and nearby Vizhinjam attractions.",
+    "Infrastructure and maintenance have been under discussion in recent years; confirm services (lifeguards, water sports, parking and night lighting) with local operators or Kerala Tourism before you travel."
+  ],
+  "highlights": [
+    "Lighthouse Beach with the Vizhinjam/Trivandrum lighthouse and panoramic views",
+    "Hawah (Eve’s) Beach: rocky promontory and a quieter bay used by fishermen",
+    "Samudra Beach: quieter stretch for solitude and seaside walks",
+    "Easy access from Thiruvananthapuram International Airport (about 15–16 km)",
+    "Sunsets, seafood cafés, Ayurvedic treatments and local crafts nearby"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Kovalam rose to international attention in the 20th century as a beach resort and remains one of Kerala’s signature coastal destinations. The three adjacent beaches form the familiar crescent shoreline and are separated by rocky outcrops that shelter small bays.",
+        "The neighborhood includes tourist infrastructure, small fishing communities, resorts and the Vizhinjam lighthouse on a hillock that gives Lighthouse Beach its name."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Swim and sunbathe at Lighthouse Beach (the most visited stretch) and explore quieter Samudra Beach for a more peaceful walk. Watch fishermen land their boats and take photos from the rocky promontories at low tide.",
+        "Try short water‑sports offered by licensed operators (confirm availability and safety standards), sample coastal Kerala cuisine at beachside cafés, and consider an Ayurvedic massage or treatment at one of the local clinics.",
+        "Combine a visit with short trips to Thiruvananthapuram city (Padmanabhaswamy Temple, Napier Museum) or the Vizhinjam marine aquarium and port area. Climb to the lighthouse area for panoramic coastline views."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Best travel time is the dry, pleasant season — November through February — when temperatures are comfortable and rainfall is low. The monsoon (June–September) brings heavy rains and rough seas; many beach services reduce operations during this period.",
+        "Kovalam is very near Thiruvananthapuram International Airport (about 15–16 km) and the city railhead. Local buses, taxis and autorickshaws reach the beach; parking is available but can be limited during peak season. Confirm the availability of evening amenities and safety (lighting, lifeguards) before planning late‑night visits.",
+        "Respect local customs: dress modestly away from resort stretches, avoid littering, follow instructions from lifeguards and boat operators, and negotiate tuk‑tuk fares or use metered taxis/ride apps."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-10-12",
+      "text": "Local reporting notes more than 200 streetlights along Kovalam’s beach stretches remained non-functional, raising concerns about visitor safety and night‑time infrastructure.",
+      "url": "https://www.kovalam.com/news/kovalam-beach-streetlights-not-working"
+    },
+    {
+      "date": "2026-08-18",
+      "text": "Times of India reports the state government preparing a fresh 'Integrated Tourism Development Project' for Kovalam to address infrastructure, lighting, cleanliness and tourist assistance.",
+      "url": "https://timesofindia.indiatimes.com/city/thiruvananthapuram/kovalam-revival-gets-a-fresh-blueprint-as-udf-govt-plans-integrated-tourism-project/articleshow/133326974.cms"
+    },
+    {
+      "date": "2026-02-14",
+      "text": "A previously approved Rs 93‑crore Kovalam revival project remained stalled after bids for a temporary refurbishment failed to qualify, causing further delays to planned upgrades.",
+      "url": "https://timesofindia.indiatimes.com/city/thiruvananthapuram/kovalam-beach-makeover-hits-fresh-delay-as-bids-fall-flat/articleshow/128318274.cms"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November to February (cool, dry); avoid the heavy monsoon months (June–September).",
+    "howToReach": "Thiruvananthapuram International Airport is the nearest (about 15–16 km); taxis and app‑cabs take 20–40 minutes depending on traffic. Thiruvananthapuram Central railway station connects by taxi or bus (approx 30–45 minutes).",
+    "etiquette": [
+      "Confirm lifeguard and water‑sports availability before entering the sea; currents can be strong at times.",
+      "Carry cash small notes for vendors; many beach stalls accept cards but signal can be patchy.",
+      "Wear modest clothing when moving away from resort areas and while visiting nearby temples.",
+      "Check local notices for beach maintenance or lighting issues after sunset; some public lighting has been reported non‑functional."
+    ]
+  },
+  "coordinates": {
+    "lat": 8.4004,
+    "lng": 76.9787
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "beaches",
+    "lighthouse",
+    "thiruvananthapuram",
+    "sunset",
+    "swimming"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Kovalam Beach",
+      "url": "https://www.keralatourism.org/destination/kovalam-beach/236/"
+    },
+    {
+      "label": "Incredible India — Kovalam",
+      "url": "https://www.incredibleindia.gov.in/en/kerala/kovalam"
+    },
+    {
+      "label": "Wikipedia — Kovalam",
+      "url": "https://en.wikipedia.org/wiki/Kovalam"
+    },
+    {
+      "label": "Times of India — Kovalam revival blueprint (Aug 18, 2026)",
+      "url": "https://timesofindia.indiatimes.com/city/thiruvananthapuram/kovalam-revival-gets-a-fresh-blueprint-as-udf-govt-plans-integrated-tourism-project/articleshow/133326974.cms"
+    },
+    {
+      "label": "Times of India — Kovalam makeover delay (Feb 14, 2026)",
+      "url": "https://timesofindia.indiatimes.com/city/thiruvananthapuram/kovalam-beach-makeover-hits-fresh-delay-as-bids-fall-flat/articleshow/128318274.cms"
+    },
+    {
+      "label": "Kovalam.com — local news on beach streetlights (Oct 12, 2026)",
+      "url": "https://www.kovalam.com/news/kovalam-beach-streetlights-not-working"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

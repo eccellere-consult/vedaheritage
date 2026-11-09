@@ -1,0 +1,99 @@
+{
+  "slug": "appam-and-stew",
+  "category": "food",
+  "name": "Appam and Stew",
+  "district": "Kerala",
+  "format": "lite",
+  "tagline": "Lacy rice hoppers with a pale, coconut‑milk stew — Kerala’s classic breakfast pairing",
+  "summary": "Appam (fermented rice hoppers) served with a mild coconut‑milk stew (ishtu) is a beloved Kerala breakfast and Christian‑community specialty, eaten year‑round.",
+  "description": [
+    "Appam are bowl‑shaped fermented rice pancakes with lacy, crisp edges and a soft, springy centre. The batter typically mixes soaked rice, cooked rice or rice flour, coconut and a leavening agent (traditionally toddy or yeast).",
+    "The usual accompaniment is Kerala stew or ishtu: a pale, gently‑spiced curry finished with coconut milk and often made with vegetables, chicken or mutton. The stew emphasises whole warm spices (cardamom, cloves, cinnamon) and avoids heavy chilli or turmeric so the coconut stays bright.",
+    "The pairing matters culturally and gastronomically: central‑Kerala Christian kitchens popularised the combination and it appears at breakfast, festive tables and family meals. For visitors, it is a soft, fragrant, easy‑to‑eat introduction to Kerala’s rice‑and‑coconut cuisine."
+  ],
+  "highlights": [
+    "Appam: fermented rice batter, lacy edges and a pillowy centre",
+    "Ishtu (stew): pale, coconut‑milk curry finished off‑heat to avoid splitting",
+    "Commonly made with vegetables, chicken or mutton; gentle whole spices",
+    "Traditionally linked to Kerala’s Syrian Christian kitchens",
+    "Best eaten freshly made — appam is often cooked to order"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Appam and the pale coconut stew (ishtu) come from Kerala’s rice‑and‑coconut culinary tradition and are strongly associated with the state’s Christian communities. The word ishtu is a Malayalam adaptation of the English word “stew,” reflecting colonial-era exchanges; toddy was traditionally used to ferment appam batter where available. Sources note both local and wider south‑Indian connections for appam and its relatives across Sri Lanka and Southeast Asia."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Try freshly made appam from a hotel breakfast, a family kitchen or a roadside thattukada — the batter is poured into a rounded iron pan (appachatti) and each hopper cooks in a few minutes. Order the stew warm, with the thick coconut milk added at the end so it stays silky.",
+        "Look for variations: vegetable stew (carrot, potato, beans, pearl onions), chicken ishtu, or mutton; chefs may adjust technique (longer yeast ferment, two‑stage coconut‑milk finish) for deeper flavour."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Appam with stew is available across Kerala year‑round; central Kerala towns (Kochi, Kottayam) are especially associated with the Syrian Christian table where ishtu appears regularly. Ask for appam cooked to order and the stew finished off the heat.",
+        "Dietary notes: appam batter can be vegan (rice + coconut + yeast/toddy). Stews are easily adapted — vegetarian/vegan stews are common, and chicken or mutton versions are widely available. Confirm ingredients if you have allergies or dietary restrictions."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2025-11-06",
+      "text": "Lonely Planet’s inclusion of Kerala’s culinary culture among the world’s best experiences (reported by NDTV) highlights iconic pairings such as appam with stew."
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "Year‑round; best enjoyed fresh for breakfast or at festival meals (Onam season Aug–Sep is notable for Kerala spreads).",
+    "howToReach": "Appam and stew are widely available across Kerala — try hotel breakfasts, family‑run restaurants, coastal town thattukadas and Christian‑community eateries in central Kerala (Kochi, Kottayam).",
+    "etiquette": [
+      "Eat appam immediately after it is cooked — the contrast between the crisp rim and soft centre is best fresh.",
+      "If you can’t get toddy, use yeast — allow the batter to ferment until visibly bubbly (overnight or several hours) for the characteristic tang.",
+      "Stew is finished with thick coconut milk off the heat to avoid splitting; ask for the thick milk to be stirred in at the end.",
+      "Vegetarian and vegan ishtu options are common — ask for a vegetable stew if you avoid meat."
+    ]
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "breakfast",
+    "rice",
+    "coconut",
+    "syrian-christian",
+    "kerala"
+  ],
+  "sources": [
+    {
+      "label": "Appam — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Appam"
+    },
+    {
+      "label": "Kerala Tourism — Appam (photo/entry)",
+      "url": "https://www.keralatourism.org/photo-gallery/appam-breakfast-dish/2887/"
+    },
+    {
+      "label": "Not Just Stew — Appam and stew (recipe and notes)",
+      "url": "https://notjuststew.com/d/AS-22/appam-stew/"
+    },
+    {
+      "label": "NDTV — Kerala's culinary culture ranked among best travel experiences (Nov 6, 20",
+      "url": "https://www.ndtv.com/travel/keralas-culinary-culture-ranked-among-worlds-best-travel-experiences-for-2026-9584850"
+    },
+    {
+      "label": "Provenance / The Indian Canon — Kerala Stew (ishtu) notes",
+      "url": "https://provenance.kitchen/canon/indian/the-canonical-dishes/south-indian-tamil-kerala/kerala-stew-pale-coconut-milk-vegetable-curry"
+    },
+    {
+      "label": "keralokam.com",
+      "url": "https://keralokam.com/food/appam-stew/"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

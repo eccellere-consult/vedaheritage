@@ -1,0 +1,109 @@
+{
+  "slug": "mattancherry-palace",
+  "category": "places",
+  "name": "Mattancherry Palace",
+  "district": "Ernakulam",
+  "format": "lite",
+  "tagline": "16th‑century 'Dutch Palace' — Kerala murals, royal portraits and a compact museum in Mattancherry",
+  "summary": "Mattancherry Palace (the Dutch Palace) is a 16th‑century Kerala‑style royal building famed for its mural paintings, portraits of the Kochi rajas and a small archaeological museum.",
+  "description": [
+    "Mattancherry Palace, popularly called the Dutch Palace, is a 16th‑century royal building in Mattancherry, Kochi. Built by the Portuguese for the Raja of Cochin and later renovated by the Dutch, the palace blends traditional Kerala nālukettu architecture with colonial alterations.",
+    "The palace houses fine Kerala mural paintings (mythological scenes from the Ramayana, Mahabharata and Puranas), portraits and objects connected with the Kochi royal family, and an archaeological site museum. Its compact galleries give a concentrated view of regional court culture and temple art.",
+    "Visitors come for the murals and the historic setting and to combine the visit with neighbouring Jew Town and the Paradesi Synagogue. The building is a protected heritage monument and often appears on Kochi heritage walking routes."
+  ],
+  "highlights": [
+    "Substantial 16th–17th century Kerala mural paintings",
+    "Royal portraits and regalia of the Kochi rajas",
+    "Nālukettu (central courtyard) plan with later Dutch renovations",
+    "Located beside Jew Town and the Paradesi Synagogue — easy to combine",
+    "Nearby Water Metro and improved public facilities for visitors"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "The palace dates to the mid‑16th century when Portuguese traders built it for the Raja of Cochin; the Dutch carried out significant renovation and extension in the 17th century. Over centuries the palace served for coronations and court ceremonies and later became a museum under heritage authorities."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "See the mural cycles on the palace walls and ceilings — detailed scenes from the Ramayana, Mahabharata and local legends — and the painted portraits of the Kochi rulers. The archaeological site museum inside displays regalia, arms, inscriptions and other artefacts connected to the royal household.",
+        "Stroll the courtyard and the exterior architecture to appreciate the fusion of Kerala traditional design with European influences. After the palace, walk along Jew Town’s antique shops and visit the Paradesi Synagogue to complete the Mattancherry heritage circuit."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Mattancherry lies within the Fort Kochi/Mattancherry heritage area and is simple to combine with other nearby attractions. Check official timings and weekly closures before you go; on most current listings the palace is closed one day a week (confirm locally).",
+        "Use the Kochi Water Metro (High Court–Mattancherry route) or local taxis and buses from Ernakulam. Wear comfortable shoes—the palace is compact but streets around Jew Town are best explored on foot."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-11-01",
+      "text": "A renovated public comfort station in Mattancherry near the heritage strip is reported ready for public opening on November 1, 2026, improving visitor sanitation facilities near the palace and Jew Town.",
+      "url": "https://urbanacres.in/mattancherry-comfort-station-ready-after-years-of-public-pressure/"
+    },
+    {
+      "date": "2025-10-11",
+      "text": "Kochi Water Metro launched the Mattancherry terminal (High Court–Willingdon Island–Mattancherry corridor), giving direct water access to the heritage precinct and easing visitor transfers.",
+      "url": "https://www.newindianexpress.com/amp/story/cities/kochi/2025/Oct/09/mattancherry-willingdon-island-terminals-to-be-opened-on-october-11"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November to February (cooler, drier and easier for walking)",
+    "howToReach": "By road from Ernakulam city (short taxi or bus ride); nearest major stations are Ernakulam Junction/Ernakulam Town; Cochin International Airport is ~40–45 km. The Kochi Water Metro serves Mattancherry (High Court–Mattancherry route) for a scenic option.",
+    "etiquette": [
+      "Confirm opening day and hours before you travel — the palace has a weekly closure day and may close on public holidays.",
+      "Photography rules vary (some interiors or murals may restrict flash); follow on‑site instructions to protect the paintings.",
+      "Combine the visit with Jew Town and the Paradesi Synagogue; wear comfortable shoes for narrow streets.",
+      "Carry water and a hat during hot months; the palace interior is compact and best viewed in cooler hours."
+    ]
+  },
+  "coordinates": {
+    "lat": 9.95826985700006,
+    "lng": 76.259358997
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "museums",
+    "heritage",
+    "murals",
+    "kochi",
+    "architecture"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Mattancherry Palace",
+      "url": "https://www.keralatourism.org/destination/mattancherry-palace-kochi/178/"
+    },
+    {
+      "label": "IGNCA — Mural paintings of Mattancherry Palace (detail)",
+      "url": "https://ignca.gov.in/Asi_data/88324.pdf"
+    },
+    {
+      "label": "UNESCO Tentative List — Mattancherry Palace, Ernakulam, Kerala",
+      "url": "https://whc.unesco.org/en/tentativelists/1092"
+    },
+    {
+      "label": "The New Indian Express — Mattancherry, Willingdon Island terminals to be opened ",
+      "url": "https://www.newindianexpress.com/amp/story/cities/kochi/2025/Oct/09/mattancherry-willingdon-island-terminals-to-be-opened-on-october-11"
+    },
+    {
+      "label": "UrbanAcres — Mattancherry comfort station ready to open (Nov 1, 2026)",
+      "url": "https://urbanacres.in/mattancherry-comfort-station-ready-after-years-of-public-pressure/"
+    },
+    {
+      "label": "List of Monuments of National Importance in Kerala (coordinates & listing)",
+      "url": "https://en.wikipedia.org/wiki/List_of_Monuments_of_National_Importance_in_Kerala"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

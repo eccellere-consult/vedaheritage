@@ -1,0 +1,102 @@
+{
+  "slug": "jyotisha-and-panchangam-in-kerala",
+  "category": "astrology",
+  "name": "Jyotisha and Panchangam in Kerala",
+  "district": "Kerala",
+  "format": "lite",
+  "tagline": "How Kerala reads time, festivals and auspicious moments",
+  "summary": "Kerala's jyotisha (traditional astrology) and the panchangam (almanac) combine sidereal astronomy and local rules to fix tithis, nakshatras, muhurta and festival dates used across the state.",
+  "description": [
+    "Jyotisha is the classical Indian system of astronomy-astrology; in Kerala it is used practically through the panchangam (panjika) — the day-by-day almanac that lists tithi, nakshatra, yoga, karana and vara plus sunrise, muhurta and inauspicious windows.",
+    "Kerala follows the Kollam era (Kollavarsham) — a sidereal solar reckoning whose year begins on Chingam 1 (mid‑August) — while many festival and ritual dates depend on the panchangam's lunar tithi and nakshatra readings.",
+    "Panchangams in Kerala appear as printed panjika books and as modern digital services; they are used to choose wedding muhurths, temple rites, ancestral tarpan, festival dates (Onam, Vishu, Karkidaka Vavu, Thrissur Pooram) and daily temple timings.",
+    "Visitors get a window into Kerala’s calendar culture: reading festival timing, watching temple offices and priests consult the panchangam, buying local panjika booklets or checking location‑specific online panchang tools."
+  ],
+  "highlights": [
+    "The five limbs: tithi, vara, nakshatra, yoga and karana",
+    "Kerala uses the Kollam era (Kollavarsham) — a sidereal solar calendar",
+    "Local rule differences (e.g., aparahna rule) sometimes shift Malayalam month starts",
+    "Panchangam guides festival dates, muhurta, Rahu-Kaal and other daily windows",
+    "Available as traditional printed panjika and modern apps/web panchangams"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Jyotisha in Kerala is the practical marriage of sidereal astronomy and ritual practice. The panchangam is the everyday output: a daily sheet or page listing the five limbs (tithi, vara, nakshatra, yoga, karana), sunrise/sunset and time-windows used for auspicious or avoided actions.",
+        "Kerala’s civil and temple dates normally use the Kollam era (Kollavarsham), a sidereal solar calendar that scholars date to 825 CE; local traditions and historical accounts give several origin stories, presented as tradition rather than fact."
+      ]
+    },
+    {
+      "heading": "How the panchangam is made (brief)",
+      "body": [
+        "Modern panchangams compute planetary and lunar longitudes from astronomical ephemerides, convert tropical to sidereal positions (Lahiri ayanamsa is common) and derive tithis (12° steps of Moon–Sun longitude), nakshatras (27 × 13°20′ divisions) and karanas (half‑tithis).",
+        "Regional rules matter: Kerala almanacs apply the aparahna rule and certain temple conventions when fixing the day for a festival or month start; different publishers (vakya/traditional versus drik/astronomical) may show small timing differences, so people often check the edition used by a temple or family."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Buy or browse a local panjika (booklet) at bookstores and temple offices; newspapers and major Kerala publishers print annual panjika editions. Online, Kerala-rooted services and national digital panchangams provide city-specific daily panchang data and muhurta calculators.",
+        "Visit temple offices or major temple festivals to see the panchangam in use: priests, tantris and temple administrators consult the almanac for ritual timing. You can also ask at a temple office for the printed panjika or a recommended local jyotishi (astrologer) — always observe temple etiquette."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "If you travel to Kerala for a festival or ritual, confirm the date with the temple or organiser in advance — different almanac traditions can shift a date by hours. For personal muhurta planning bring exact birth data (date, time, place) and consult a recognized astrologer if you need formal chart work.",
+        "Use location-specific panchang tools (choose the city or coordinates) rather than a generic national table: sunrise-based tithi (udaya tithi) and regional conventions determine the right day for many observances in Kerala."
+      ]
+    }
+  ],
+  "latest": [],
+  "visitorInfo": {
+    "bestTime": "Year-round; check the panchangam for specific festival dates (Onam, Vishu, Karkidaka Vavu, Thrissur Pooram) before you travel.",
+    "howToReach": "Panchangam information and printed panjika are available across Kerala — find them in temple offices, local bookstores and newspaper stalls; major digital panchang services let you choose any Kerala city for location‑specific timings.",
+    "etiquette": [
+      "Always confirm festival dates and muhurta with the temple or panjika publisher you plan to follow — local rules can change the date.",
+      "When asking for astrological help, bring exact birth time and birthplace; be respectful and clear about fees before the consultation.",
+      "At temples, follow local dress and behaviour codes when accompanying priests or viewing rituals scheduled by the panchangam."
+    ]
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "jyotisha",
+    "panchangam",
+    "kerala",
+    "calendar",
+    "astrology"
+  ],
+  "sources": [
+    {
+      "label": "Udaya — How the calculations work (panchangam, aparahna rule, Kollavarsham)",
+      "url": "https://udaya.app/method/"
+    },
+    {
+      "label": "Malayalam calendar (Kollam era) — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Malayalam_calendar"
+    },
+    {
+      "label": "Malayalam Panchangam — explanation and month rules (HinduCalculator)",
+      "url": "https://hinducalculator.com/malayalam-panchangam/"
+    },
+    {
+      "label": "Panchang glossary and terms (Goodera glossary)",
+      "url": "https://goodera.in/glossary/"
+    },
+    {
+      "label": "Prokerala — Malayalam/Kerala panchang and digital panjika services (publisher in",
+      "url": "https://www.prokerala.com/astrology/panchang/"
+    },
+    {
+      "label": "mail-archive.com",
+      "url": "https://www.mail-archive.com/thatha_patty%40googlegroups.com/msg29093.html"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

@@ -1,0 +1,108 @@
+{
+  "slug": "cherai-beach",
+  "category": "beaches",
+  "name": "Cherai Beach",
+  "district": "Ernakulam",
+  "format": "lite",
+  "tagline": "Long golden-sand beach and dolphin‑spotting near Kochi",
+  "summary": "A long sandy beach on Vypeen island near Kochi, popular for swimming, dolphin sightings and Chinese fishing nets; an easy day trip from Kochi but check local access before you travel.",
+  "description": [
+    "Cherai Beach is a long stretch of golden sand on Vypeen (Vypin) island north of Kochi. It combines open-sea surf, a palm‑fringed shoreline and the backwater scenery that makes this part of Ernakulam distinctive, and visitors often see dolphins offshore and traditional Chinese fishing nets nearby. ([keralatourism.org](https://www.keralatourism.org/destination/cherai-beach-kochi/179/))",
+    "The beach is a popular local and weekend destination with several resorts and homestays along the road into Cherai; the drive passes low-lying paddy fields and coconut groves. It is used for swimming where conditions allow, but sections can be affected by erosion and seasonal high tides. ([ernakulam.nic.in](https://ernakulam.nic.in/en/tourist-place/cherai-beach/))",
+    "Infrastructure and small-scale tourism works are underway in the Vypeen beach circuit (Kuzhippilly–Cherai–Munambam) to improve walkways, shelters and basic facilities, but coastal changes mean access and services can change quickly — confirm before you travel. ([indialive.net](https://indialive.net/%E2%82%B92-97-crore-beach-circuit-project-to-link-kuzhipilly-cherai-and-munambam/?utm_source=openai))"
+  ],
+  "highlights": [
+    "Long, shallow sandy shoreline good for relaxed swimming (when flagged safe).",
+    "Frequent dolphin sightings from the beach and short boat trips.",
+    "Traditional Chinese fishing nets and coastal village life.",
+    "Easy day trip from Kochi with several nearby resorts and homestays.",
+    "Part of a local beach‑circuit upgrade linking Kuzhippilly, Cherai and Munambam."
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Cherai lies on Vypeen island and has grown into one of the better‑known beach escapes for Kochi residents and visitors. The shoreline blends sea and backwater scenery and is valued for sunsets, local seafood and village atmosphere. ([keralatourism.org](https://www.keralatourism.org/destination/cherai-beach-kochi/179/))"
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Swim and sunbathe where the lifeguard flag permits; take early‑morning or late‑afternoon walks along the long beach. Dolphin‑spotting trips operate from the area when conditions are good. Look for Chinese fishing nets and visit nearby Pallippuram Fort and local temples and churches on Vypeen for short cultural detours. ([keralatourism.org](https://www.keralatourism.org/kochi/cherai-beach-kochi.php))"
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Nearest major transport hubs: Cochin (Kochi) city centre is about 22–26 km by road; Nedumbassery (Cochin) International Airport is roughly 20 km away and Ernakulam Junction railway station about 26 km. The common route is a ferry to Vypeen island from Kochi and then a short local bus or auto to Cherai Junction. Confirm current beach access and safety conditions before you travel. ([ernakulam.nic.in](https://ernakulam.nic.in/en/tourist-place/cherai-beach/))"
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-07-14",
+      "text": "District authorities restrict visitor access after severe beach erosion and damaged walkways raised safety concerns; access remains controlled — confirm before you travel.",
+      "url": "https://www.manoramanews.com/nattuvartha/central/2026/07/14/cherai-beach-closed-safety-concerns.amp.html"
+    },
+    {
+      "date": "2026-03-01",
+      "text": "Work begins on a Vypeen beach‑circuit project linking Kuzhippilly, Cherai and Munambam to upgrade walkways, shelters and basic facilities.",
+      "url": "https://indialive.net/%E2%82%B92-97-crore-beach-circuit-project-to-link-kuzhipilly-cherai-and-munambam/"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "October–March (post‑monsoon and winter); avoid the heavy monsoon months when sea conditions are rough. ([keralatourism.org](https://www.keralatourism.org/destination/cherai-beach-kochi/179/))",
+    "howToReach": "From Kochi: ferry to Vypeen island then local bus/auto to Cherai Junction; by road from Ernakulam (22–26 km). Nearest airport: Cochin International (Nedumbassery) ~20 km; nearest major rail: Ernakulam Junction ~26 km. Confirm ferry and local bus schedules. ([ernakulam.nic.in](https://ernakulam.nic.in/en/tourist-place/cherai-beach/))",
+    "etiquette": [
+      "Check local beach access and lifeguard/flag status before entering the water — access was restricted after erosion in July 2026. ([manoramanews.com](https://www.manoramanews.com/nattuvartha/central/2026/07/14/cherai-beach-closed-safety-concerns.amp.html))",
+      "Book accommodation in advance on busy weekends; many homestays and small resorts line the approach road.",
+      "Respect local vendors and avoid collecting large quantities of shells or disturbing fishing gear.",
+      "If you plan dolphin trips or watersports, use licensed operators and ask for safety briefings."
+    ]
+  },
+  "coordinates": {
+    "lat": 10.125357,
+    "lng": 76.183705
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "beach",
+    "kochi",
+    "vypin",
+    "swimming",
+    "dolphins",
+    "coastal tourism"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Cherai Beach",
+      "url": "https://www.keralatourism.org/destination/cherai-beach-kochi/179/"
+    },
+    {
+      "label": "Ernakulam District — CHERAI BEACH (How to reach)",
+      "url": "https://ernakulam.nic.in/en/tourist-place/cherai-beach/"
+    },
+    {
+      "label": "Onmanorama news — Cherai Beach access restricted (2026-07-14)",
+      "url": "https://www.manoramanews.com/nattuvartha/central/2026/07/14/cherai-beach-closed-safety-concerns.amp.html"
+    },
+    {
+      "label": "Kerala Fisheries CZMP PDF (coordinates and coastal data)",
+      "url": "https://fisheries.kerala.gov.in/sites/default/files/inline-files/CZMP-Fisheries-min_1.pdf"
+    },
+    {
+      "label": "IndiaLive — ₹2.97 crore beach circuit project to link Kuzhippilly, Cherai and Mu",
+      "url": "https://indialive.net/%E2%82%B92-97-crore-beach-circuit-project-to-link-kuzhipilly-cherai-and-munambam/"
+    },
+    {
+      "label": "keralatourism.org",
+      "url": "https://www.keralatourism.org/muziris/beaches/cherai"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

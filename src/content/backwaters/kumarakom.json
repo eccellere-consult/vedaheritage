@@ -1,0 +1,122 @@
+{
+  "slug": "kumarakom",
+  "category": "backwaters",
+  "name": "Kumarakom",
+  "district": "Kottayam",
+  "format": "lite",
+  "tagline": "Kerala's classic backwater village on Vembanad Lake",
+  "summary": "Kumarakom is a cluster of islands on Lake Vembanad known for houseboat cruises, lakeside resorts and the Kumarakom Bird Sanctuary—ideal for birdwatching and calm backwater experiences.",
+  "description": [
+    "Kumarakom sits on the eastern banks of Vembanad Lake in Kottayam district and is one of Kerala’s best-known backwater destinations. It combines mangroves, paddy fields, narrow canals and a network of houseboat routes that attract leisure travellers.",
+    "The village matters for both nature and culture: the Kumarakom Bird Sanctuary draws resident and migratory waterbirds, while the backwaters support traditional livelihoods and hospitality businesses from small homestays to luxury resorts.",
+    "Visitors come for overnight houseboat cruises, early-morning birdwatching, lakeside resort stays and slow village walks. The place rewards travellers who want calm scenery, photography and simple food experiences tied to local produce."
+  ],
+  "highlights": [
+    "Houseboat cruises on Vembanad Lake",
+    "Kumarakom Bird Sanctuary — migratory birds in winter",
+    "Lakeside resorts and Ayurvedic centres",
+    "Mangrove-lined canals and village scenery",
+    "Access to Kuttanad ricelands and boat races (seasonal)"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Kumarakom is a small village built on a cluster of islets along Lake Vembanad, the largest lake in Kerala. It forms part of the Vembanad–Kol wetland system and has been developed as a special tourism zone emphasizing backwater and eco-tourism.",
+        "Local life revolves around the lake: fishing, coir, rice cultivation in Kuttanad and water transport shape the landscape that tourists now explore by houseboat and short motorboat cruises."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Take an overnight or day houseboat cruise to drift past paddy fields, coconut groves and mangroves; morning and late‑afternoon light are best for photography.",
+        "Visit the Kumarakom Bird Sanctuary for resident birds and winter migrants (peak migratory season is about November–February). Smaller activities include village walks, canoe rides, visiting local markets and trying Kerala seafood and stew at lakeside cafés.",
+        "Stay at a lakeside resort or family-run homestay to combine comfort with easy access to short boat trips and Ayurvedic treatments."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Best season is the dry, pleasant months from November to March (November–February is peak for migratory birds). Monsoon months bring heavy rain and limited boating; some operators pause services during peak monsoon.",
+        "Kumarakom offers a range of accommodation from budget homestays to luxury resorts; book houseboats and popular resorts in advance during peak season. Confirm boat routes and pickup points with your operator before you travel."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-10-15",
+      "text": "A new evening/sunset cruise service on Vembanad Lake (Sea Kuttanad) begins, adding a low-cost sunset option for backwater sightseeing."
+    },
+    {
+      "date": "2026-07-04",
+      "text": "Kerala’s Water Transport Department launches a new solar-powered boat for backwater tourism in the Kottayam/Kumarakom area to promote cleaner lake cruising.",
+      "url": "https://www.onmanorama.com/news/kerala/2026/07/04/kumarakom-solar-boat-launch-kerala-water-transport-tourism.html"
+    },
+    {
+      "date": "2026-05-15",
+      "text": "ITC Hotels signs definitive agreement to acquire The Zuri Kumarakom resort, marking a major luxury-sector investment in Kumarakom.",
+      "url": "https://www.itchotels.com/in/en/corporate/media-room/media-releases---reports/2026/ITC-Hotels-set-to-acquire-a-Luxury-Resort-along-the-Iconic-backwaters-of-Kumarakom-Kerala"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November to March (peak November–February for migratory birds)",
+    "howToReach": "Nearest airport: Cochin International Airport (about 70–80 km). Nearest major railhead: Kottayam railway station (roughly 13–16 km). Road access from Kottayam and Kochi connects via state highways; most visitors combine air/rail with a short taxi transfer or pre-arranged resort pickup.",
+    "etiquette": [
+      "Book houseboats and popular resorts in advance for November–February peak season.",
+      "Plan early-morning birdwatching outings (migratory season Nov–Feb) and carry binoculars and a light rain jacket in shoulder seasons.",
+      "Avoid single-use plastic on the lake and follow guides’ advice about wildlife disturbance—keep quiet near the bird sanctuary."
+    ]
+  },
+  "coordinates": {
+    "lat": 9.595,
+    "lng": 76.43028
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "backwaters",
+    "houseboats",
+    "birdwatching",
+    "vembanad",
+    "wetlands"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Kumarakom",
+      "url": "https://www.keralatourism.org/kumarakom"
+    },
+    {
+      "label": "Kumarakom Bird Sanctuary — Kerala Tourism",
+      "url": "https://www.keralatourism.org/destination/kumarakom-bird-sanctuary/525/"
+    },
+    {
+      "label": "Kottayam district — Vembanad Lake / Bird Sanctuary",
+      "url": "https://kottayam.nic.in/en/tourist-place/bird-sanctuary-kumarakom/"
+    },
+    {
+      "label": "ITC Hotels media release — acquisition of The Zuri Kumarakom (2026-05-15)",
+      "url": "https://www.itchotels.com/in/en/corporate/media-room/media-releases---reports/2026/ITC-Hotels-set-to-acquire-a-Luxury-Resort-along-the-Iconic-backwaters-of-Kumarakom-Kerala"
+    },
+    {
+      "label": "Onmanorama — solar boat launch (2026-07-04)",
+      "url": "https://www.onmanorama.com/news/kerala/2026/07/04/kumarakom-solar-boat-launch-kerala-water-transport-tourism.html"
+    },
+    {
+      "label": "Kumarakom news roundup — kumarakom.com (local tourism news Oct–Nov 2026)",
+      "url": "https://kumarakom.com/news"
+    },
+    {
+      "label": "Wikipedia — Kumarakom (coordinates, background)",
+      "url": "https://en.wikipedia.org/wiki/Kumarakom"
+    },
+    {
+      "label": "Swadesh Darshan 2.0 – Kumarakom masterplan / tourism RFP (distance and planning)",
+      "url": "https://tourism.gov.in/sites/default/files/2023-01/pdmcrfp.pdf"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

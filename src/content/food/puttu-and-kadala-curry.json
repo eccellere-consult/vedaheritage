@@ -1,0 +1,113 @@
+{
+  "slug": "puttu-and-kadala-curry",
+  "category": "food",
+  "name": "Puttu and Kadala Curry",
+  "district": "Kerala",
+  "format": "lite",
+  "tagline": "Kerala’s classic steamed rice and black‑chickpea breakfast",
+  "summary": "Puttu and kadala curry is Kerala’s iconic breakfast: steamed rice cylinders layered with coconut served with a spiced black‑chickpea (kadala) coconut gravy.",
+  "description": [
+    "Puttu is a cylinder of steamed coarse rice flour layered with freshly grated coconut. Kadala (black chickpeas) curry is a dark, aromatic gravy built on roasted coconut, shallots and warm spices.",
+    "The pairing appears in homes, roadside breakfast stalls, homestays and hotels across Kerala. It balances the soft, subtly sweet rice cake with a hearty, spicy, coconut‑forward curry.",
+    "For visitors, puttu and kadala offer an easy, vegetarian introduction to Kerala’s use of coconut, roasted spice pastes and simple steaming techniques. Many responsible‑tourism food units and local kitchens list it as a staple breakfast."
+  ],
+  "highlights": [
+    "Puttu: steamed rice flour cylinders layered with grated coconut",
+    "Kadala: black chickpeas in a roasted‑coconut, shallot and spice gravy",
+    "Served hot at breakfast; commonly paired with ripe banana",
+    "Found in homes, street stalls, hotels and Kerala Tourism homely‑food units",
+    "Vegetarian, filling and widely available across Kerala"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Puttu and kadala is a daily breakfast tradition in Kerala. Puttu makers (puttu kutti) steam the layered rice flour and coconut into short cylindrical portions.",
+        "Kadala curry (kala chana) uses soaked black chickpeas cooked until tender, then finished in a gravy enriched with roasted coconut, curry leaves and local spices."
+      ]
+    },
+    {
+      "heading": "Ingredients and taste",
+      "body": [
+        "Key ingredients for puttu are coarse rice flour, salt, water and grated coconut; kadala uses black chickpeas, coconut, shallots/garlic, red chilli and coriander/other spices.",
+        "The taste contrast is central: puttu is mild and slightly sweet from coconut; kadala is deep, spicy and nutty where roasted coconut provides body and colour."
+      ]
+    },
+    {
+      "heading": "How it is made",
+      "body": [
+        "Puttu dough is moistened to a crumbly texture, layered with grated coconut in a cylindrical steamer, then steamed until set. The method keeps the grains separate and light.",
+        "Kadala curry begins with pressure‑cooking soaked chickpeas. Separately, fresh coconut is lightly roasted with spices and shallots and ground into a coarse paste that is sautéed and combined with the cooked chickpeas to make a thick, flavourful gravy."
+      ]
+    },
+    {
+      "heading": "Where to try & plan your visit",
+      "body": [
+        "Look for puttu and kadala at breakfast stalls, small local restaurants (often called 'puttu kada'), homestays and hotel breakfasts all over Kerala. Responsible‑tourism food units also list the dish on menus.",
+        "If you want a homely experience, ask at local guesthouses or a district food unit; a simple roadside plate with a banana gives a very authentic taste. Confirm opening times with the eatery before you go."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-09-08",
+      "text": "Recipe guide and method note published emphasising the roasted‑coconut technique that gives traditional kadala its deep colour and aroma.",
+      "url": "https://kachighaani.com/blogs/recipes/puttu-kadala-curry"
+    },
+    {
+      "date": "2026-07-06",
+      "text": "Feature article highlights puttu and kadala as Kerala’s most recognisable breakfast, noting its presence in homes, roadside eateries, hotels and homestays.",
+      "url": "https://thewfy.com/puttu-and-kadala-curry-the-best-authentic-kerala-breakfast/"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "All year; best enjoyed hot at breakfast or on cool monsoon mornings.",
+    "howToReach": "Available across Kerala: order at breakfast stalls, small eateries, hotels and responsible‑tourism homely‑food units. Ask locals for a nearby puttu‑kada or check your homestay menu.",
+    "etiquette": [
+      "Ask for soft puttu (freshly steamed) — texture matters.",
+      "Try with a ripe nendran banana on the side for a classic sweet‑savory contrast.",
+      "Kadala varies in heat; ask for milder spice if you prefer less chilli.",
+      "If you have coconut or legume allergies, confirm ingredients before ordering."
+    ]
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "breakfast",
+    "kerala",
+    "vegetarian",
+    "rice",
+    "chickpeas"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Recipe: Puttu and Kadala",
+      "url": "https://www.keralatourism.org/kerala-food/puttu-kadala/43//"
+    },
+    {
+      "label": "Kottayam district (Government of Kerala) — Puttu and Kadala Curry",
+      "url": "https://kottayam.nic.in/en/culinary-delight/puttu-and-kadala-curry/"
+    },
+    {
+      "label": "The WFY — Puttu And Kadala Curry: The Best Authentic Kerala Breakfast (feature, ",
+      "url": "https://thewfy.com/puttu-and-kadala-curry-the-best-authentic-kerala-breakfast/"
+    },
+    {
+      "label": "KachiGhaani — Puttu and Kadala Curry recipe (2026-09-08)",
+      "url": "https://kachighaani.com/blogs/recipes/puttu-kadala-curry"
+    },
+    {
+      "label": "Puttu — Wikipedia (overview of puttu and common pairings)",
+      "url": "https://en.wikipedia.org/wiki/Puttu"
+    },
+    {
+      "label": "dfe.gov.in",
+      "url": "https://dfe.gov.in/uploads/documents/flavours_of_the_indian_food_coimbatore.pdf"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}
