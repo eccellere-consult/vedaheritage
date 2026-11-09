@@ -36,6 +36,13 @@ const f = path.join(tmp, 'src/content/temples/fill-mock-temple.json'); const e =
 r = run(['refresh', '--max', '5']); assert.equal(r.status, 0, r.stderr || r.stdout)
 const fresh = j('src/content/temples/fill-mock-temple.json'); assert.ok(fresh.latest[0].text.startsWith('Mock news'), 'newest item first'); assert.notEqual(fresh.updated, '2026-01-01')
 
+// owner edits are safe: refresh changes only latest/updated and never touches an owner-edited page's own words
+{ const f2 = path.join(tmp, 'src/content/temples/fill-mock-temple.json'); const e2 = j('src/content/temples/fill-mock-temple.json')
+  Object.assign(e2, { updated: '2026-01-01', ownerEdited: '2026-02-02', reviewed: true, reviewedOn: '2026-02-02', summary: 'The owner rewrote this summary by hand so it stays exactly as written.' }); fs.writeFileSync(f2, JSON.stringify(e2))
+  assert.equal(run(['refresh', '--max', '5']).status, 0)
+  const after = j('src/content/temples/fill-mock-temple.json')
+  assert.equal(after.summary, e2.summary); assert.equal(after.ownerEdited, '2026-02-02'); assert.deepEqual(after.sections, e2.sections); assert.deepEqual(after.description, e2.description) }
+
 // stop switch
 put('agents/registers/topics.json', { version: 1, topics: [topic('Stopped Mock Temple')] }); put('control.json', { state: 'paused', reason: 'test' })
 r = run(['sprint', '--minutes', '5']); assert.ok(!fs.existsSync(path.join(tmp, 'src/content/temples/stopped-mock-temple.json')), 'nothing is written while paused')

@@ -254,6 +254,12 @@ function Sprint({ say }: { say: (t: string, bad?: boolean) => void }) {
             <button className="btn-outline text-xs" onClick={saveSchedule}>Save schedule</button>
             <button className="btn-primary text-xs disabled:opacity-40" disabled={state !== 'running'} onClick={start}>Start now</button>
           </div>
+          {(() => { const fsx = st.data?.fillState, cap = Number(f.budget) * 0.8; const cpp = fsx?.costPerPage; return (
+            <p className="text-sm text-ink-mid mb-2">{cpp ? <>Last run: {fsx.pages} page(s), about ${fsx.usd} (${cpp} per page{fsx.estimated ? ', rough estimate' : ''}). With a ${f.budget} cap, expect about {Math.max(0, Math.min(Number(f.max), Math.floor(cap / cpp)))} new page(s) per run before the cap stops it.</> : 'No cost data yet. After the first run this shows the real cost per page and how many pages the cap allows.'}</p>) })()}
+          {st.data?.quality && (
+            <details className="text-sm text-ink-mid mb-2"><summary className="cursor-pointer text-primary">Quality check: {st.data.quality.flaggedCount} of {st.data.quality.checked} quick pages flagged</summary>
+              <ul className="list-disc pl-5 mt-2 space-y-1">{(st.data.quality.flagged || []).map((q: Json) => <li key={q.category + q.slug}><a className="underline" href={`/discover/${q.category}/${q.slug}/`} target="_blank" rel="noopener noreferrer">{q.name}</a>: {q.flags.join(', ')}</li>)}</ul>
+            </details>)}
           <p className="text-sm text-ink-mid">Publishing: {badge(auto ? 'publish automatically' : 'review first', auto ? 'ok' : 'warn')} <button className="underline text-primary text-xs ml-2" onClick={async () => { if (!window.confirm(auto ? 'Switch to review first? New pages will wait for your approval.' : 'Publish automatically? Pages that pass every check go live; health topics and flagged pages still wait.')) return; const r = await api('agent_settings_save', { autoPublish: !auto }); say(r.ok ? r.data.message : r.data.error, !r.ok); st.reload() }}>change</button></p>
         </div>
 

@@ -370,7 +370,7 @@ try {
         $e['status'] = $old['status'] ?? 'draft';
         $judge = $e; $judge['status'] = 'draft';
         if ($b = publish_blockers($judge)) json_out(422, ['error' => 'Cannot save: ' . implode(' ', $b)]);
-        $e['lastVerified'] = gmdate('Y-m-d'); $e['reviewed'] = true;
+        $e['lastVerified'] = gmdate('Y-m-d'); $e['reviewed'] = true; $e['reviewedOn'] = gmdate('Y-m-d'); $e['ownerEdited'] = gmdate('Y-m-d');   // ownerEdited: agents never rewrite this page
         $txt = json_encode($e, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n";
         if (strlen($txt) > 200000) json_out(422, ['error' => 'Entry is too large.']);
         gh_commit_files([$path => ['text' => $txt]], 'Edit ' . $e['name'] . ' (admin)');
@@ -384,7 +384,7 @@ try {
         if (!in_array($cat, CATS, true) || !valid_slug($slug)) json_out(400, ['error' => 'Bad request.']);
         $path = "src/content/$cat/$slug.json"; $f = gh_file($path, 'main'); $e = $f ? json_decode($f['text'], true) : null;
         if (!is_array($e)) json_out(404, ['error' => 'Entry not found.']);
-        $e['reviewed'] = true;
+        $e['reviewed'] = true; $e['reviewedOn'] = gmdate('Y-m-d');
         gh_commit_files([$path => ['text' => json_encode($e, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], 'Mark ' . ($e['name'] ?? $slug) . ' reviewed (admin)');
         audit('entry-reviewed', ['entry' => "$cat/$slug"]);
         json_out(200, ['ok' => true, 'message' => 'Marked as reviewed. The "not yet reviewed" note disappears after the next rebuild.']);
@@ -733,7 +733,10 @@ try {
         // Which API keys exist? Needs the token's optional "Secrets: read" permission; otherwise unknown (null).
         $keys = null; $r = gh('GET', '/repos/' . repo() . '/actions/secrets', null, ['per_page' => 100]);
         if ($r[0] === 200 && is_array($r[1])) { $names = array_column($r[1]['secrets'] ?? [], 'name'); $keys = ['xai' => in_array('XAI_API_KEY', $names, true), 'openai' => in_array('OPENAI_API_KEY', $names, true), 'anthropic' => in_array('ANTHROPIC_API_KEY', $names, true)]; }
-        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'autoPublish' => ($cfgJ['autoPublish'] ?? false) === true, 'autoPublishExclude' => $cfgJ['autoPublishExclude'] ?? ['medical', 'healing'], 'fill' => array_merge(['everyDays' => 7, 'budget' => 5, 'max' => 40, 'minutes' => 90], is_array($cfgJ['fill'] ?? null) ? $cfgJ['fill'] : []), 'lastRun' => $lastRun, 'keys' => $keys]);
+        $fs = gh_file('agents/registers/fill-state.json', 'main'); $fillState = $fs ? json_decode($fs['text'], true) : null;
+        $qf = gh_file('agents/registers/quality.json', 'main'); $quality = $qf ? json_decode($qf['text'], true) : null;
+        if (is_array($quality)) $quality['flagged'] = array_slice($quality['flagged'] ?? [], 0, 25);
+        json_out(200, ['provider' => $cfgJ['provider'] ?? 'auto', 'verifierProvider' => $cfgJ['verifierProvider'] ?? 'auto', 'autoPublish' => ($cfgJ['autoPublish'] ?? false) === true, 'autoPublishExclude' => $cfgJ['autoPublishExclude'] ?? ['medical', 'healing'], 'fill' => array_merge(['everyDays' => 7, 'budget' => 5, 'max' => 40, 'minutes' => 90], is_array($cfgJ['fill'] ?? null) ? $cfgJ['fill'] : []), 'lastRun' => $lastRun, 'keys' => $keys, 'fillState' => is_array($fillState) ? $fillState : null, 'quality' => is_array($quality) ? $quality : null]);
     }
 
     case 'agent_settings_save': {

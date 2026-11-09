@@ -5,7 +5,8 @@
 set -u
 msg="$1"; shift
 base="${BASE_BRANCH:-main}"
-GITHUB_TOKEN="${GH_TOKEN:-}" node scripts/agent-guard.mjs sprint || { echo "Stopped by the admin; nothing is published."; exit 1; }
+job="${SHIP_JOB:-sprint}"
+GITHUB_TOKEN="${GH_TOKEN:-}" node scripts/agent-guard.mjs "$job" || { echo "Stopped by the admin; nothing is published."; exit 1; }
 [ -z "$(git status --porcelain)" ] && { echo "No changes."; exit 0; }
 for round in 1 2 3; do
   out=$(node scripts/validate-content.mjs 2>&1) && break
@@ -19,6 +20,7 @@ for round in 1 2 3; do
   done
 done
 node scripts/validate-content.mjs >/dev/null 2>&1 || { echo "Validation still failing."; exit 1; }
+node scripts/content-bar.mjs || true
 npx next build >/tmp/build.log 2>&1 || { tail -40 /tmp/build.log; echo "Site build failed; not publishing."; exit 1; }
 git config user.name "veda-content-bot"; git config user.email "content-bot@users.noreply.github.com"
 for p in "$@"; do [ -e "$p" ] && git add -A "$p"; done
@@ -29,6 +31,6 @@ if [ "$base" = "main" ]; then
     git pull -q --rebase origin main || { git rebase --abort; break; }
   done
 fi
-branch="fill/$(date +%Y%m%d-%H%M%S)"
+branch="${SHIP_JOB:-fill}/$(date +%Y%m%d-%H%M%S)"
 git checkout -q -b "$branch" && git push origin "$branch" || exit 1
 gh pr create --base "$base" --head "$branch" --title "$msg" --body-file agents/reports/latest.md 2>/dev/null || gh pr create --base "$base" --head "$branch" --title "$msg" --body "Automated content fill."

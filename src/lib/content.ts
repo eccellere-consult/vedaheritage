@@ -299,6 +299,8 @@ export interface Entry {
   status: ContentStatus
   lastVerified: string         // ISO date
   autoPublished?: string       // ISO date the agents published it without prior human approval
+  reviewedOn?: string          // ISO date the owner marked it reviewed
+  ownerEdited?: string         // ISO date the owner last edited it; agents never rewrite an edited page
   reviewed?: boolean           // false until the owner has read it on the site (edit or Mark reviewed)
   imageStatus?: 'needed'       // live without a photo until one is added
   editorial?: { flow?: string; status: string; note?: string; checkedOn?: string }  // internal; never shown to visitors
