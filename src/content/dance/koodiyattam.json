@@ -68,8 +68,24 @@
       "Respect that Koodiyattam is a living ritual tradition with caste and community histories — approach with curiosity and cultural sensitivity."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/koodiyattam-1.jpg",
+      "alt": "The first ever Kutiyattam performance outside Kerala - Madras ( Chennai ), 1962 . Guru Nātyāchārya Vidūshakaratnam Padma Shri Māni Mādhava Chākyār as Ravana , M",
+      "credit": "Sreekanthv at English Wikipedia",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thoranayudham-_Madras1.jpg"
+    },
+    {
+      "src": "/images/discover/koodiyattam-2.jpg",
+      "alt": "Kutiyattam, also spelled koodiyattam, is one of several forms of historic Hindu temple theatre found in Kerala and Tamil Nadu. It is a group performance by two ",
+      "credit": "tomislav medak",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_Kutiyattam_scene_performed_at_Irinjalakuda_Thrissur_district_Kerala.jpg"
+    }
+  ],
   "tags": [
     "dance",
     "theatre",

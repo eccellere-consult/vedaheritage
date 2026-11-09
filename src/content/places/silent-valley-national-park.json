@@ -69,8 +69,24 @@
     "lat": 11.143703,
     "lng": 76.420572
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/silent-valley-national-park-1.jpg",
+      "alt": "Aularches miliaris , Coffee locust, is a colorful grasshopper belonging to the family Pyrgomorphidae found in South and Southeast Asia. The bright warning colou",
+      "credit": "Jeevan Jose, Kerala, India",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aularches_miliaris-Silent_Valley-2016-08-13-001.jpg"
+    },
+    {
+      "src": "/images/discover/silent-valley-national-park-2.jpg",
+      "alt": "Orthetrum glaucum , Blue Marsh Hawk, is a dragonfly in the family Libellulidae . It is a widespread species, common across much of tropical and subtropical Asia",
+      "credit": "Jeevan Jose, Kerala, India",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Orthetrum_glaucum-Silent_Valley-2016-08-14-003.jpg"
+    }
+  ],
   "tags": [
     "palakkad",
     "national park",

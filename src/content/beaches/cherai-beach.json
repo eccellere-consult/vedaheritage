@@ -64,8 +64,24 @@
     "lat": 10.125357,
     "lng": 76.183705
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/cherai-beach-1.jpg",
+      "alt": "Cherai beach",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cherai_beach_2022_pano.jpg"
+    },
+    {
+      "src": "/images/discover/cherai-beach-2.jpg",
+      "alt": "Cherai beach",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cherai_beach_2022.jpg"
+    }
+  ],
   "tags": [
     "beach",
     "kochi",

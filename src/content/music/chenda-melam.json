@@ -70,8 +70,24 @@
       "If you want hands‑on learning, contact local gurus or performing-arts centres in advance."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/chenda-melam-1.jpg",
+      "alt": "செண்டை மேளம்",
+      "credit": "Thamizhpparithi Maari",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chenda_melam_performance.jpg"
+    },
+    {
+      "src": "/images/discover/chenda-melam-2.jpg",
+      "alt": "Ganesh Chaturthi celebration at Trivandrum, Kerala India 2009",
+      "credit": "Thejas Panarkandy",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ganesh_Chaturthi_parade_chenda_melam_Trivandrum_India_2009.jpg"
+    }
+  ],
   "tags": [
     "music",
     "percussion",

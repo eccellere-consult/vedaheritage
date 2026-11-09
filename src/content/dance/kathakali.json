@@ -64,8 +64,24 @@
       "Confirm show dates and start times with the venue before you travel."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kathakali-1.jpg",
+      "alt": "This media was uploaded as part of Wiki Loves Folklore 2024 international photographic contest.",
+      "credit": "Shagil Kannur",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kathakali_of_Kerala_at_Nishagandhi_dance_festival_2024_(266).jpg"
+    },
+    {
+      "src": "/images/discover/kathakali-2.jpg",
+      "alt": "Kathakali, Folk of Kerala",
+      "credit": "Ashwin Geet Dsa",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kathakali_at_alvas2.jpg"
+    }
+  ],
   "tags": [
     "dance",
     "classical",

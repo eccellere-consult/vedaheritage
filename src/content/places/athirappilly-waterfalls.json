@@ -70,8 +70,24 @@
     "lat": 10.28861,
     "lng": 76.54833
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/athirappilly-waterfalls-1.jpg",
+      "alt": "Athirappalli Waterfalls, Thrissur, Kerala, India. Photo clicked during Monsoon season.",
+      "credit": "Pranchiyettan",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Athirappalli_Waterfalls,_Thrissur,_Kerala.jpg"
+    },
+    {
+      "src": "/images/discover/athirappilly-waterfalls-2.jpg",
+      "alt": "waterfall at Athirapilly, Thrissur , Kerala",
+      "credit": "mujeebcpy",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Athirappilly_water_falls,_Thrissur_kerala_.jpg"
+    }
+  ],
   "tags": [
     "waterfall",
     "thrissur",

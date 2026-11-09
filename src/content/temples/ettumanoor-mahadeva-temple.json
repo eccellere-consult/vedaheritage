@@ -68,8 +68,24 @@
     "lat": 9.676907,
     "lng": 76.559572
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/ettumanoor-mahadeva-temple-1.jpg",
+      "alt": "The Ettumanoor Mahadeva temple is a Shiva temple in Kottayam, Kerala. The current temple is from the 16th century, rebuilt with support from several South India",
+      "credit": "Ms Sarah Welch",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:009242022_Ettumanoor_Mahadeva_temple,_Kottayam_Kerala_115.jpg"
+    },
+    {
+      "src": "/images/discover/ettumanoor-mahadeva-temple-2.jpg",
+      "alt": "The Ettumanoor Mahadeva temple is a Shiva temple in Kottayam, Kerala. The current temple is from the 16th century, rebuilt with support from several South India",
+      "credit": "Ms Sarah Welch",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:009242022_Ettumanoor_Mahadeva_temple,_Kottayam_Kerala_099.jpg"
+    }
+  ],
   "tags": [
     "kottayam",
     "shiva",

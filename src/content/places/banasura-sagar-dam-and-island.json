@@ -62,8 +62,24 @@
     "lat": 11.673154,
     "lng": 75.957409
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/banasura-sagar-dam-and-island-1.jpg",
+      "alt": "Banasura Sagar Dam, Wayanad",
+      "credit": "Dinesh Valke from Thane, India",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Banasura_Sagar_Dam,_Wayanad_(49161473796).jpg"
+    },
+    {
+      "src": "/images/discover/banasura-sagar-dam-and-island-2.jpg",
+      "alt": "Banasura Sagar Dam Wayanad",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Banasura_Sagar_Dam_Wayanad.jpg"
+    }
+  ],
   "tags": [
     "wayanad",
     "boating",

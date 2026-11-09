@@ -71,8 +71,24 @@
     "lat": 9.595,
     "lng": 76.43028
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kumarakom-1.jpg",
+      "alt": "Bay Island Driftwood Museum, Kumarakom",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bay_Island_Driftwood_Museum,_Kumarakom.jpg"
+    },
+    {
+      "src": "/images/discover/kumarakom-2.jpg",
+      "alt": "Bay Island Driftwood Museum, Kumarakom",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bay_Island_Driftwood_Museum,_Kumarakom_03.jpg"
+    }
+  ],
   "tags": [
     "backwaters",
     "houseboats",

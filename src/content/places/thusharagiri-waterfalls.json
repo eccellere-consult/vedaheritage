@@ -76,8 +76,24 @@
     "lat": 11.4725667,
     "lng": 76.0537306
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/thusharagiri-waterfalls-1.jpg",
+      "alt": "Cashew tree at Thusharagiri Falls",
+      "credit": "Rainer Halama",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thusharagiri_Falls-WUS06330.jpg"
+    },
+    {
+      "src": "/images/discover/thusharagiri-waterfalls-2.jpg",
+      "alt": "Thusharagiri Falls",
+      "credit": "Rainer Halama",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Thusharagiri_Falls-WUS06321.jpg"
+    }
+  ],
   "tags": [
     "waterfalls",
     "trekking",

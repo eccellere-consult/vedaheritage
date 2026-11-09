@@ -68,8 +68,24 @@
     "lat": 12.5842449,
     "lng": 74.979776
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/ananthapura-lake-temple-1.jpg",
+      "alt": "Ananthapura Lake Temple , Kasaragod district , crocodile",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ananthapura_temple_Kasaragod,_crocodile.jpg"
+    },
+    {
+      "src": "/images/discover/ananthapura-lake-temple-2.jpg",
+      "alt": "Ananthapura temple Kasaragod, crocodile pond",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ananthapura_temple_Kasaragod,_crocodile_pond.jpg"
+    }
+  ],
   "tags": [
     "kasaragod",
     "lake temple",

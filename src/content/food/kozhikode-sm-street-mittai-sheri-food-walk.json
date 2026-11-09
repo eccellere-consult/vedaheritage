@@ -62,8 +62,16 @@
     "lat": 11.25056,
     "lng": 75.78167
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kozhikode-sm-street-mittai-sheri-food-walk-1.jpg",
+      "alt": "കേരളത്തിലെ കോഴിക്കോട് ജില്ലയിലെ പ്രശസ്തമായ തെരുവാണ് മിഠായിത്തെരുവ്",
+      "credit": "Sai K shanmugam",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mittayi_Theruvu.jpg"
+    }
+  ],
   "tags": [
     "street food",
     "halwa",

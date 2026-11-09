@@ -69,8 +69,24 @@
       "Combine the camp with Adavi coracle rides or nearby waterfalls to make a full half‑ or full‑day trip."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/konni-elephant-training-centre-1.jpg",
+      "alt": "Baby Elephant at Konni Elephant Training Centre, Pathanamthitta, Kerala.",
+      "credit": "Gannu03",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baby_Elephant_at_Konni_Elephant_Training_Centre_05.jpg"
+    },
+    {
+      "src": "/images/discover/konni-elephant-training-centre-2.jpg",
+      "alt": "Elephant at Konni Elephant Training Centre, Pathanamthitta, Kerala.",
+      "credit": "Gannu03",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elephant_at_Konni_Elephant_Training_Centre_04.jpg"
+    }
+  ],
   "tags": [
     "elephants",
     "konni",

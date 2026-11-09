@@ -58,8 +58,24 @@
       "Bring a hearty appetite—sadya is served in multiple rounds and includes several rich payasams."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/onam-sadya-1.jpg",
+      "alt": "Kerala sadya on Onam day 2023",
+      "credit": "Gnoeee",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kerala_Onam_Sadya.jpg"
+    },
+    {
+      "src": "/images/discover/onam-sadya-2.jpg",
+      "alt": "Onam Special...",
+      "credit": "Anila Sudish",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Onam_Special_Kerala_Sadya....JPG"
+    }
+  ],
   "tags": [
     "onam",
     "sadya",

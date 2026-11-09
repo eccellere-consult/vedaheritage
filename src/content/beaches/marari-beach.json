@@ -73,8 +73,24 @@
     "lat": 9.602527,
     "lng": 76.299877
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/marari-beach-1.jpg",
+      "alt": "Chethi Beach",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chethi_Beach.jpg"
+    },
+    {
+      "src": "/images/discover/marari-beach-2.jpg",
+      "alt": "Chethi Beach, Mararikkulam, Alappuzha",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chethi_Beach_06.jpg"
+    }
+  ],
   "tags": [
     "beach",
     "alappuzha",

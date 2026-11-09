@@ -73,8 +73,24 @@
     "lat": 11.6193,
     "lng": 76.2106
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/wayanad-heritage-museum-1.jpg",
+      "alt": "Photos from Wayanad Heritage Museum Ambalavayal 2019 - by Vinayaraj Name -Herostone - വീരക്കല്ല് Source -Collected from Roadside Period -AD 13-14th century Mate",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Artifacts_of_Wayanad_Heritage_Museum,_Ambalavayal_(27).jpg"
+    },
+    {
+      "src": "/images/discover/wayanad-heritage-museum-2.jpg",
+      "alt": "Photos from Wayanad Heritage Museum Ambalavayal 2019 - by Vinayaraj",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Artifacts_of_Wayanad_Heritage_Museum,_Ambalavayal_(193).jpg"
+    }
+  ],
   "tags": [
     "wayanad",
     "tribal-heritage",

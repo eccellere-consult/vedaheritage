@@ -59,8 +59,24 @@
       "If you join a workshop, wear comfortable, modest clothing and bring a small towel or shawl for floor practice."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/mohiniyattam-1.jpg",
+      "alt": "Mohiniyattam, (Malayalam: മോഹിനിയാട്ടം), is one of the famous classical dances of India that developed and remained popular in the state of Kerala.",
+      "credit": "Shagil Kannur",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mohiniyattam_at_Kerala_state_school_kalothsavam_2019.jpg"
+    },
+    {
+      "src": "/images/discover/mohiniyattam-2.jpg",
+      "alt": "Mohiniyattam is one of the famous classical dances that developed and remained popular in the state of Kerala.",
+      "credit": "Shagil Kannur",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mohiniyattam_at_Kerala_School_Kalolsavam_2019_02.jpg"
+    }
+  ],
   "tags": [
     "dance",
     "classical",

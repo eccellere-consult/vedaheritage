@@ -78,8 +78,24 @@
     "lat": 9.5775,
     "lng": 77.18
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/thekkady-and-periyar-1.jpg",
+      "alt": "This view was captured from Periyar Tiger Reserve, Thekkady,Kerala, which is a national park blessed with very rich biodiversity. A group of wild pigs are seen ",
+      "credit": "Ardra Balakrishnan",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:View_from_Periyar_Tiger_Reserve,_Thekkady,_Idukki.jpg"
+    },
+    {
+      "src": "/images/discover/thekkady-and-periyar-2.jpg",
+      "alt": "Periyar Tiger Reserve",
+      "credit": "Jaseem Hamza",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Periyar_Tiger_Reserve_-_panoramio.jpg"
+    }
+  ],
   "tags": [
     "wildlife",
     "periyar",

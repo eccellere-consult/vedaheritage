@@ -74,8 +74,24 @@
       "Buy authenticated reproductions or work directly from recognised mural studios and training centres to support artisans."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kerala-mural-painting-1.jpg",
+      "alt": "ചുമർചിത്രം Keralam, the Museum of History and Heritage http://www.museumkeralam.org/",
+      "credit": "Akhilan",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kerala_Temple_Mural_Replica.jpg"
+    },
+    {
+      "src": "/images/discover/kerala-mural-painting-2.jpg",
+      "alt": "Pundareekapuram mural painting",
+      "credit": "Sivavkm",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pundareekapuram_mural.jpg"
+    }
+  ],
   "tags": [
     "mural",
     "painting",

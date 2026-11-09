@@ -72,8 +72,24 @@
     "lat": 10.524511,
     "lng": 76.214538
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/vadakkumnathan-temple-1.jpg",
+      "alt": "വടക്കുംനാഥക്ഷേത്രം - തെക്കേഗോപുരം",
+      "credit": "Challiyan at Malayalam Wikipedia",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E0%B4%B5%E0%B4%9F%E0%B4%95%E0%B5%8D%E0%B4%95%E0%B5%81%E0%B4%82%E0%B4%A8%E0%B4%BE%E0%B4%A5%E0%B4%95%E0%B5%8D%E0%B4%B7%E0%B5%87%E0%B4%A4%E0%B5%8D%E0%B4%B0%E0%B4%82-%E0%B4%A4%E0%B5%86%E0%B4%95%E0%B5%8D%E0%B4%95%E0%B5%87%E0%B4%97%E0%B5%8B%E0%B4%AA%E0%B5%81%E0%B4%B0%E0%B4%82.jpg"
+    },
+    {
+      "src": "/images/discover/vadakkumnathan-temple-2.jpg",
+      "alt": "Vadakkunnathan Temple, Thrissur",
+      "credit": "Manukrishnan80",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vadakkunnathan_Temple,_Thrissur.jpg"
+    }
+  ],
   "tags": [
     "shiva",
     "thrissur",

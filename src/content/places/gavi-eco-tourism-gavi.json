@@ -78,8 +78,24 @@
     "lat": 9.4404778,
     "lng": 77.1603472
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/gavi-eco-tourism-gavi-1.jpg",
+      "alt": "Gavi eco Tourism",
+      "credit": "Jaseem Hamza",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gavi_eco_Tourism_-_panoramio.jpg"
+    },
+    {
+      "src": "/images/discover/gavi-eco-tourism-gavi-2.jpg",
+      "alt": "Gavi eco Tourism",
+      "credit": "Jaseem Hamza",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gavi_eco_Tourism_-_panoramio_(1).jpg"
+    }
+  ],
   "tags": [
     "gavi",
     "ecotourism",

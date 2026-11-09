@@ -68,8 +68,24 @@
     "lat": 11.6233,
     "lng": 76.223
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/edakkal-caves-1.jpg",
+      "alt": "Wayanad / Kerala - Petroglyphs in Edakkal Caves‎",
+      "credit": "Ingo Mehling",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edakkal_Caves_-_Petroglyphs_-_4.jpg"
+    },
+    {
+      "src": "/images/discover/edakkal-caves-2.jpg",
+      "alt": "Wayanad / Kerala - Petroglyphs in Edakkal Caves‎",
+      "credit": "Ingo Mehling",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Edakkal_Caves_-_Petroglyphs_-_10.jpg"
+    }
+  ],
   "tags": [
     "wayanad",
     "petroglyphs",

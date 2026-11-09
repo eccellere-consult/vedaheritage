@@ -75,8 +75,24 @@
     "lat": 8.4004,
     "lng": 76.9787
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kovalam-beach-1.jpg",
+      "alt": "View of Kovalam beach",
+      "credit": "Manu M G",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kovalam_beach_view.JPG"
+    },
+    {
+      "src": "/images/discover/kovalam-beach-2.jpg",
+      "alt": "The lighthouse at Kovalam Beach on a monsoon morning. Located near Thiruvananthapuram city in the state of Keralam, Bharat",
+      "credit": "Amitbalani",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lighthouse_at_Kovalam_Beach,_Thiruvananthapuram.jpg"
+    }
+  ],
   "tags": [
     "beaches",
     "lighthouse",

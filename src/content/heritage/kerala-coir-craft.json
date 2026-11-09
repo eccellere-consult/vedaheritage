@@ -68,8 +68,16 @@
       "If you visit retting areas, wear shoes and avoid wading — retting pits are not tourist bathing spots."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kerala-coir-craft-1.jpg",
+      "alt": "bulcart float in Alappuzha coir fest 2016",
+      "credit": "Kottakkalnet",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bulcart_IMG_20160202_181142035.jpg"
+    }
+  ],
   "tags": [
     "coir",
     "craft",

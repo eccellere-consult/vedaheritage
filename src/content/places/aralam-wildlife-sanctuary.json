@@ -75,8 +75,24 @@
     "lat": 11.9351,
     "lng": 75.8631
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/aralam-wildlife-sanctuary-1.jpg",
+      "alt": "Photos from Aralam Wildlife sanctuary during Aralam butterfly survey 2020",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moths_of_Aralam_Wildlife_sanctuary_during_Aralam_butterfly_survey_2020_(8).jpg"
+    },
+    {
+      "src": "/images/discover/aralam-wildlife-sanctuary-2.jpg",
+      "alt": "Photos from Aralam Wildlife sanctuary during Aralam butterfly survey 2020",
+      "credit": "Vinayaraj",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moths_of_Aralam_Wildlife_sanctuary_during_Aralam_butterfly_survey_2020_(9).jpg"
+    }
+  ],
   "tags": [
     "kannur",
     "butterfly",

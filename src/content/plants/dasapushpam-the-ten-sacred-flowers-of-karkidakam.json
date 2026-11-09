@@ -76,8 +76,16 @@
       "Support sustainable use: avoid uprooting rare plants and favour visits to botanical gardens or accredited Ayurveda centres for demonstrations."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/dasapushpam-the-ten-sacred-flowers-of-karkidakam-1.jpg",
+      "alt": "ദശപുഷ്പങ്ങള്‍ - എറണാകുളം ചങ്ങമ്പുഴ പാര്‍ക്കിലെ ഒരു ബോര്‍ഡ്",
+      "credit": "Vijayanrajapuram",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dasapushpam_board.jpg"
+    }
+  ],
   "tags": [
     "plants",
     "ayurveda",

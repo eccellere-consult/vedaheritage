@@ -82,8 +82,16 @@
       "Ask quietly if you may meet performers after a concert; many artists welcome respectful questions about repertoire and technique."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/sopana-sangeetham-1.jpg",
+      "alt": "It is the first ever temple which is having a musical instrument as an idol.Name of instrument is EDAKKS (a traditional kerala drum).This particular Edakka inst",
+      "credit": "KALASRAMAM",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:IMG-20200724-WA0151.jpg"
+    }
+  ],
   "tags": [
     "music",
     "temple-music",

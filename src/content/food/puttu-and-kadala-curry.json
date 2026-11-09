@@ -70,8 +70,24 @@
       "If you have coconut or legume allergies, confirm ingredients before ordering."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/puttu-and-kadala-curry-1.jpg",
+      "alt": "Coconut \"puttu\", kadala curry and steamed bananas",
+      "credit": "Deepak Kumaran",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coconut_puttu,_kadala_curry_and_steamed_banana.jpg"
+    },
+    {
+      "src": "/images/discover/puttu-and-kadala-curry-2.jpg",
+      "alt": "Puttu and Kadala Curry – the immensely healthy and tasty dish from southern India. Puttu is steamed ground and roasted rice with coconut filling, served with ar",
+      "credit": "Nilanjan Sasmal",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Puttu_and_Kadala_Curry.jpg"
+    }
+  ],
   "tags": [
     "breakfast",
     "kerala",

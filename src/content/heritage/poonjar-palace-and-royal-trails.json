@@ -70,8 +70,16 @@
     "lat": 9.675997,
     "lng": 76.795232
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/poonjar-palace-and-royal-trails-1.jpg",
+      "alt": "Poonjar Palace.",
+      "credit": "Ganesh Mohan T",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Poonjar_Palace_02.jpg"
+    }
+  ],
   "tags": [
     "palace",
     "royal",

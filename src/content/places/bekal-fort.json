@@ -77,8 +77,24 @@
     "lat": 12.39222,
     "lng": 75.0325
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/bekal-fort-1.jpg",
+      "alt": "A view of Bekal fort from its watch tower",
+      "credit": "Vijayanrajapuram",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bekal_fort_kasaragod_07.jpg"
+    },
+    {
+      "src": "/images/discover/bekal-fort-2.jpg",
+      "alt": "A view of Bekal fort from its watch tower",
+      "credit": "Vijayanrajapuram",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bekal_fort_kasaragod_10.jpg"
+    }
+  ],
   "tags": [
     "fort",
     "kasaragod",

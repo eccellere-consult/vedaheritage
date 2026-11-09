@@ -64,8 +64,24 @@
       "Confirm festival dates and timings before travel — local schedules change annually."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/panchavadyam-1.jpg",
+      "alt": "Panchavadayam Means 5 instruments. Used during temple processions in Kerala, India.It is a wonderful orchestration, typical Panchavadyam can have duration of 3 ",
+      "credit": "Mahesh K",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Panchavadyam_Cherpulasseri,Kerala.jpg"
+    },
+    {
+      "src": "/images/discover/panchavadyam-2.jpg",
+      "alt": "This media file is uploaded with Malayalam loves Wikimedia event - 3 .",
+      "credit": "Pranchiyettan",
+      "license": "CC BY-SA 2.5 in",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/in/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:GKN_Panchavadyam_DSC_0064.JPG"
+    }
+  ],
   "tags": [
     "music",
     "temple",

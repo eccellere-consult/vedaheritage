@@ -74,8 +74,24 @@
     "lat": 11.8745,
     "lng": 75.3704
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/theyyam-1.jpg",
+      "alt": "Theyyam, Kannur, Kerala",
+      "credit": "Shagil Kannur",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Theyyam_of_Kerala_by_Shagil_Kannur_2024_(30).jpg"
+    },
+    {
+      "src": "/images/discover/theyyam-2.jpg",
+      "alt": "Theyyam is a ritual art form of northern Kerala, India. In consists of many types of folk culture like folk painting, folk dance, folk music etc.",
+      "credit": "Shagil Kannur",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Theyyam_of_Kerala_by_Shagil_Kannur_(41).jpg"
+    }
+  ],
   "tags": [
     "dance",
     "ritual",

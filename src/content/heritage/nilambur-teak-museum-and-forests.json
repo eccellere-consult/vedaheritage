@@ -54,8 +54,24 @@
     "lat": 11.30016,
     "lng": 76.25047
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/nilambur-teak-museum-and-forests-1.jpg",
+      "alt": "Teak Museum Nilambur",
+      "credit": "Vengolis",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Teak_Museum_Nilambur_04200.JPG"
+    },
+    {
+      "src": "/images/discover/nilambur-teak-museum-and-forests-2.jpg",
+      "alt": "Tribal statue at Nilambur",
+      "credit": "Ganesh Mohan T",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tribal_statue_at_Nilambur_teak_museum_3.jpg"
+    }
+  ],
   "tags": [
     "teak",
     "museum",

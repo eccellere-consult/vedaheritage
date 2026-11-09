@@ -62,8 +62,24 @@
     "lat": 11.85378,
     "lng": 75.37243
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/st-angelo-s-fort-kannur-1.jpg",
+      "alt": "Kannur Fort",
+      "credit": "Rajesh Kakkanatt",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kannur-Fort-22.jpg"
+    },
+    {
+      "src": "/images/discover/st-angelo-s-fort-kannur-2.jpg",
+      "alt": "St. Angelo Fort kannur",
+      "credit": "Mujeebcpy",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:St._Angelo_Fort_kannur.jpg"
+    }
+  ],
   "tags": [
     "kannur",
     "fort",

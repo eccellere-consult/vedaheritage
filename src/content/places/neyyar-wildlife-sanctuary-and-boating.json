@@ -62,8 +62,24 @@
     "lat": 8.53472,
     "lng": 77.14583
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/neyyar-wildlife-sanctuary-and-boating-1.jpg",
+      "alt": "Acytolepis lilacea lilacea – Hampson's Hedge Blue butterfly at Venkulamedu, Neyyar WLS, Kerala",
+      "credit": "Milind Bhakare",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Acytolepis_lilacea_lilacea_%E2%80%93_Hampson%27s_Hedge_Blue_(1).jpg"
+    },
+    {
+      "src": "/images/discover/neyyar-wildlife-sanctuary-and-boating-2.jpg",
+      "alt": "Acytolepis lilacea lilacea – Hampson's Hedge Blue butterfly at Venkulamedu, Neyyar WLS, Kerala",
+      "credit": "Milind Bhakare",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Acytolepis_lilacea_lilacea_%E2%80%93_Hampson%27s_Hedge_Blue_(2).jpg"
+    }
+  ],
   "tags": [
     "wildlife",
     "boating",

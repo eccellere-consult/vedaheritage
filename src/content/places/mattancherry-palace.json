@@ -66,8 +66,24 @@
     "lat": 9.95826985700006,
     "lng": 76.259358997
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/mattancherry-palace-1.jpg",
+      "alt": "This is a photo of ASI monument number",
+      "credit": "Ranjith Siji",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mattancherry_Palace_DSC_0899.JPG"
+    },
+    {
+      "src": "/images/discover/mattancherry-palace-2.jpg",
+      "alt": "This is a photo of ASI monument number",
+      "credit": "Ranjith Siji",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mattancherry_Palace_DSC_0894.JPG"
+    }
+  ],
   "tags": [
     "museums",
     "heritage",
