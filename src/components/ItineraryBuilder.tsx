@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { SITE } from '@/lib/config'
+import BookingRequest from '@/components/BookingRequest'
 
 export interface PickPlace { id: string; name: string; district: string; kind: string; tagline: string; href: string }
 export interface PickEvent { id: string; name: string; district: string; place: string; start: string; end: string; when: string; expected: boolean }
@@ -166,6 +167,7 @@ export default function ItineraryBuilder({ places, events }: { places: PickPlace
             <p className="text-sm text-ink-mid mb-3">Send your plan to us on WhatsApp. We reply with stay options and a local driver or auto you can pay directly on arrival.</p>
             <a className="btn-primary text-xs" href={waHref} target="_blank" rel="noopener noreferrer">{total ? 'Send my plan on WhatsApp' : 'Ask on WhatsApp'}</a>
             {planDistricts.length > 0 && <p className="text-xs text-ink-mid mt-3">Your plan covers: {planDistricts.join(', ')}.</p>}
+            <BookingRequest summary={summary()} start={plan.start} days={plan.days.length} />
           </div>
           <div className="card !p-4">
             <h3 className="font-serif text-lg text-ink mb-1">Book tickets on the official sites</h3>

@@ -5,6 +5,27 @@
 - **Stay and local transport help**: "Send my plan on WhatsApp" sends the day-by-day plan to the Veda Heritage number. Stay options and a local driver or auto are arranged by people, paid directly on arrival.
 - **Tickets on the official sites**: IRCTC, KSRTC Swift, redBus, State Water Transport, KTDC. Links only; no resale, no scraping.
 
+## Built (phase 2): the bookings module, LOCKED by default
+Everything below exists in the software but does nothing until you open it. Admin, **Bookings** tab. Travellers see no booking form while it is locked.
+- **Capability gates.** Four capabilities, each with a checklist and evidence field (for example grievance officer, GSTIN). A capability can be switched on only when every item is ticked and the evidence is recorded; the server enforces this, not just the screen. Changing the evidence switches it off again until it is complete.
+  - *Partner enquiries and booking references*: travellers send a request to a verified partner and get a reference such as `VH-2611-K7QD`. A person checks it and sends it to the partner. Payment is on site.
+  - *Commission ledger and monthly settlement*: records the fee on completed bookings and builds a monthly sheet per partner with GST on the fee, as CSV, and lets you mark a month settled with an invoice reference.
+  - *Online payments with split commission* and *Cab and auto dispatch*: shown as **not built**. They stay locked even with every box ticked, because the software for them does not exist yet.
+- **Your fee, configurable.** Either a percentage of the booking value (0 to 20) or a flat rupee amount per completed booking (0 to 5000). Set a default and, if you like, a different fee per partner. A flat fee never exceeds the booking value. The fee is computed in code and kept on each booking, so changing it later does not alter past bookings.
+- **Partners.** Only verified stays and transport providers from the Directory. Each needs a signed agreement date and a registration or permit check before it can take requests.
+- **Privacy.** Traveller details sit in the private data folder, never in GitHub. When a booking is completed, cancelled or declined, the phone, email and message are deleted; the reference, dates and fee stay.
+- **Traveller side.** On the itinerary page, "Ask a verified partner for a stay or a ride" appears only when Partner enquiries is open. The plan is prefilled; consent to share details with the partner is required.
+
+### To start using it
+1. Sign agreements with partners; add them in the Directory tab; check their registrations.
+2. In Bookings, record the approvals and evidence for "Partner enquiries", save, switch on. Add partners (agreement date, registration checked, switch on).
+3. When your accountant is ready, record GSTIN and approvals for "Commission", switch on, choose the fee.
+
+### Decision: pay on site, fee invoiced monthly (no online payments)
+Travellers pay the partner directly on site. Veda Heritage earns its fee by invoicing each partner once a month from the settlement sheet (fee plus GST on the fee). This avoids holding traveller money, so no payment-aggregator integration, refund handling or split settlement is needed, and the "Online payments" capability stays locked and unbuilt on purpose. Razorpay (or another aggregator) can be revisited later; if so, the software still has to be written (orders, signature checks, webhooks, refunds, Route split) and the approvals listed in the admin apply.
+
+Monthly routine: at month end open Bookings, Monthly settlement sheet, pick the month, download the CSV, give it to your accountant to raise one invoice per partner, then record the invoice number with Mark settled. The partner tells you (or you confirm with them) the booking value when a booking is completed; a flat fee needs no value.
+
 ## Not built, and why (needs your decision)
 1. **Commission of 0.5 to 1 percent on pay-on-site bookings.** The site cannot see money that changes hands on site, so the fee depends on trust: a written agreement with each provider, a booking reference per enquiry, a monthly self-reported settlement and the right to audit. Expect leakage (guest and provider simply agree a direct deal). Also, 0.5 to 1 percent is far below what booking platforms charge (typically 10 to 20 percent for stays), so it will not fund development. Better options: a flat fee per confirmed booking, or 5 to 10 percent only on stays Veda Heritage arranges itself.
 2. **Taking payments on the site.** Needs a licensed payment aggregator (for example Razorpay or Cashfree with split settlement), a refund and grievance process, and tax handling: GST on the commission, and e-commerce operator rules (TCS under GST, TDS on payouts). Confirm each with a chartered accountant before launch.
@@ -16,7 +37,7 @@
 | Phase | What | Needs |
 |---|---|---|
 | 1 (done) | Itinerary planner, WhatsApp enquiry, official ticket links | Nothing |
-| 2 | Partner directory for registered stays and licensed drivers with an enquiry form; booking reference; monthly settlement sheet in the admin | Written partner agreement, registration check, privacy notice |
+| 2 (built, locked) | Partner enquiries, booking reference, fee (percentage or flat), monthly settlement sheet, all gated in the admin | Written partner agreement, registration check, privacy notice, then switch on |
 | 3 | On-site payments with split commission | Payment aggregator, CA sign-off on GST/TCS/TDS, refund and grievance policy, terms of service, legal review |
 | 4 | Booking-site partnerships (KTDC, KSRTC, redBus) | Their written approval and API or affiliate access |
 

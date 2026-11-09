@@ -157,7 +157,7 @@ function rate_ok(string $purpose, int $limit, int $window): bool {
     flock($h, LOCK_EX);
     $hits = json_decode(stream_get_contents($h) ?: '[]', true); if (!is_array($hits)) $hits = [];
     $now = time(); $hits = array_values(array_filter($hits, fn($t) => $t > $now - $window));
-    if (strpos($purpose, 'provider') === 0) $limit *= max(1, (int)(vh_cfg()['rate_scale'] ?? 1)); // tests only
+    if (strpos($purpose, 'provider') === 0 || strpos($purpose, 'booking') === 0) $limit *= max(1, (int)(vh_cfg()['rate_scale'] ?? 1)); // tests only
     $ok = count($hits) < $limit;
     if ($ok) $hits[] = $now;
     ftruncate($h, 0); rewind($h); fwrite($h, json_encode($hits)); flock($h, LOCK_UN); fclose($h);

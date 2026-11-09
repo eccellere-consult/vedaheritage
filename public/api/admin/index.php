@@ -3,6 +3,7 @@
 // Reads are GET, writes are POST with the session CSRF token. See docs/ADMIN.md.
 define('VH_ADMIN', 1);
 require __DIR__ . '/lib.php';
+require_once __DIR__ . '/../lib/bookings.php';
 
 $a = preg_replace('/[^a-z_]/', '', $_GET['a'] ?? '');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -832,6 +833,137 @@ try {
         if (!$hit) json_out(404, ['error' => 'Topic not found.']);
         gh_commit_files(['agents/registers/topics.json' => ['text' => json_encode($reg, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"]], "Topic $id: $st (admin)");
         audit('topic-set', ['id' => $id, 'status' => $st]); json_out(200, ['ok' => true, 'message' => $st === 'todo' ? 'Queued for the next sprint.' : 'Skipped.']);
+    }
+
+    // ------------------------------------------------------------ bookings module (locked until licences are recorded)
+    case 'bk_overview': {
+        $cfg = bk_config(); $caps = [];
+        foreach (BK_CAPS as $id => $d) {
+            $st = $cfg['caps'][$id] ?? [];
+            $caps[] = ['id' => $id, 'label' => $d[0], 'about' => $d[1], 'buildable' => $d[2], 'enabled' => !empty($st['enabled']) && $d[2], 'open' => bk_open($id, $cfg),
+                'missing' => bk_missing($id, $cfg), 'checklist' => array_map(fn($l) => $l, $d[3]), 'evidenceFields' => array_map(fn($e) => $e[0], $d[4]),
+                'checked' => $st['checklist'] ?? new stdClass(), 'evidence' => $st['evidence'] ?? new stdClass(), 'updated' => $st['updated'] ?? null];
+        }
+        $partners = [];
+        foreach (bk_providers() as $p) if (in_array($p['status'] ?? '', ['approved', 'suspended'], true) && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true))
+            $partners[] = ['id' => $p['id'], 'name' => $p['name'], 'type' => $p['type'], 'typeLabel' => PROVIDER_TYPES[$p['type']][0], 'districts' => $p['districts'], 'status' => $p['status'],
+                'partner' => !empty($p['booking']['partner']), 'agreementOn' => $p['booking']['agreementOn'] ?? '', 'registrationChecked' => !empty($p['booking']['registrationChecked']),
+                'fee' => bk_fee_clean($p['booking']['feeMode'] ?? null, $p['booking']['feeValue'] ?? null), 'live' => bk_partner_ok($p)];
+        $items = []; foreach (glob(bk_dir('items') . '/*.json') ?: [] as $f) { $b = json_file($f); if ($b) $items[] = $b; }
+        usort($items, fn($x, $y) => strcmp($y['created'], $x['created']));
+        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate']]);
+    }
+
+    case 'bk_cap_save': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cap = need_str($in, 'cap', 20); $def = BK_CAPS[$cap] ?? null; if (!$def) json_out(400, ['error' => 'Unknown capability.']);
+        $cfg = bk_config(); $st = $cfg['caps'][$cap] ?? [];
+        $ck = []; foreach ($def[3] as $k => $_) $ck[$k] = !empty($in['checklist'][$k]);
+        $ev = []; foreach ($def[4] as $k => $_) $ev[$k] = clean_text($in['evidence'][$k] ?? '', 200);
+        $st['checklist'] = $ck; $st['evidence'] = $ev; $st['updated'] = gmdate('c');
+        if (bk_missing($cap, ['caps' => [$cap => $st]])) $st['enabled'] = false;   // changing the proof switches it off until it is complete again
+        $cfg['caps'][$cap] = $st; bk_save($cfg); audit('bk-cap-save', ['cap' => $cap]);
+        json_out(200, ['ok' => true, 'missing' => bk_missing($cap, $cfg), 'message' => 'Saved.']);
+    }
+
+    case 'bk_cap_set': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cap = need_str($in, 'cap', 20); $def = BK_CAPS[$cap] ?? null; if (!$def) json_out(400, ['error' => 'Unknown capability.']);
+        $cfg = bk_config(); $on = !empty($in['enabled']);
+        if ($on) {
+            if (!$def[2]) json_out(422, ['error' => 'This part is not built yet, so it cannot be switched on.', 'blockers' => ['The software for "' . $def[0] . '" does not exist yet.']]);
+            $m = bk_missing($cap, $cfg); if ($m) json_out(422, ['error' => 'Cannot switch on yet.', 'blockers' => $m]);
+        }
+        $cfg['caps'][$cap]['enabled'] = $on; $cfg['caps'][$cap]['updated'] = gmdate('c'); bk_save($cfg); audit('bk-cap-' . ($on ? 'on' : 'off'), ['cap' => $cap]);
+        json_out(200, ['ok' => true, 'message' => $on ? 'Switched on.' : 'Switched off.']);
+    }
+
+    case 'bk_settings': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cfg = bk_config(); $g = $in['gstRate'] ?? null;
+        $fee = bk_fee_clean($in['feeMode'] ?? null, $in['feeValue'] ?? null);
+        if (!$fee) json_out(400, ['error' => 'Choose a percentage (0 to 20) or a flat amount per booking (0 to 5000 rupees).']);
+        if (!is_numeric($g) || $g < 0 || $g > 40) json_out(400, ['error' => 'GST rate must be 0 to 40 percent.']);
+        $cfg['fee'] = $fee; $cfg['gstRate'] = round((float)$g, 2); unset($cfg['commissionRate']); bk_save($cfg); audit('bk-settings', ['fee' => $fee['mode'] . ':' . $fee['value']]);
+        json_out(200, ['ok' => true, 'message' => 'Saved: ' . bk_fee_label($fee) . '. Bookings completed from now use it; earlier ones keep theirs.']);
+    }
+
+    case 'bk_partner_set': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('providers') . "/$id.json"; $p = json_file($path);
+        if (!$p || !in_array($p['status'] ?? '', ['approved', 'suspended'], true)) json_out(404, ['error' => 'No verified provider with that id.']);
+        if (!in_array($p['type'] ?? '', BK_PARTNER_TYPES, true)) json_out(422, ['error' => 'Only stays and transport providers can be booking partners.']);
+        $on = !empty($in['partner']); $d = (string)($in['agreementOn'] ?? ''); $reg = !empty($in['registrationChecked']);
+        $fee = null;
+        if (($in['feeValue'] ?? '') !== '' && ($in['feeValue'] ?? null) !== null) { $fee = bk_fee_clean($in['feeMode'] ?? null, $in['feeValue']); if (!$fee) json_out(400, ['error' => 'The partner fee must be a percentage (0 to 20) or a flat amount (0 to 5000 rupees).']); }
+        if ($on) {
+            $b = [];
+            if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $d) || strtotime($d) === false) $b[] = 'Enter the date the written agreement was signed.';
+            if (!$reg) $b[] = 'Confirm you checked the partner\'s registration or permit' . ($p['type'] === 'stay' ? ' (Kerala Tourism classification or registration)' : ' (taxi or auto permit and driver licence)') . '.';
+            if (($p['status'] ?? '') !== 'approved') $b[] = 'The provider is suspended.';
+            if ($b) json_out(422, ['error' => 'Cannot switch this partner on yet.', 'blockers' => $b]);
+        }
+        $p['booking'] = ['partner' => $on, 'agreementOn' => $d, 'registrationChecked' => $reg, 'feeMode' => $fee['mode'] ?? null, 'feeValue' => $fee['value'] ?? null];
+        save_json($path, $p); audit('bk-partner', ['provider' => $id, 'on' => $on]);
+        json_out(200, ['ok' => true, 'message' => $on ? 'Partner switched on. They show for booking requests once Partner enquiries is open.' : 'Partner switched off.']);
+    }
+
+    case 'bk_send': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
+        $path = bk_dir('items') . "/$id.json"; $b = json_file($path); if (!$b) json_out(404, ['error' => 'Not found.']);
+        if (!in_array($b['status'], ['new', 'sent'], true)) json_out(422, ['error' => 'This request is already ' . $b['status'] . '.']);
+        $p = json_file(market_dir('providers') . '/' . $b['providerId'] . '.json');
+        if (!$p || !bk_partner_ok($p)) json_out(422, ['error' => 'This partner is not switched on any more.']);
+        $contact = trim(($b['contactPhone'] ?? '') . ' ' . ($b['contactEmail'] ?? ''));
+        $ok = send_mail($p['email'], 'Veda Heritage booking request ' . $b['ref'],
+            "Booking request {$b['ref']}\n\nTraveller: {$b['name']} ($contact)\nDates: {$b['checkIn']} to {$b['checkOut']}\nPeople: {$b['people']}\n\nTraveller's message and plan:\n{$b['message']}\n\nPlease contact the traveller directly to confirm. Payment is made to you on site. Quote {$b['ref']} in your confirmation and tell Veda Heritage if the booking goes ahead.\n\nVeda Heritage");
+        $b['status'] = 'sent'; $b['sentOn'] = gmdate('c'); save_json($path, $b); audit('bk-send', ['ref' => $b['ref']]);
+        json_out(200, ['ok' => true, 'emailed' => $ok, 'message' => $ok ? 'Sent to the partner by email.' : 'Marked as sent, but the email could not be sent. Contact the partner yourself.']);
+    }
+
+    case 'bk_status': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $to = need_str($in, 'status', 12);
+        if (!valid_id($id) || !in_array($to, BK_STATUSES, true)) json_out(400, ['error' => 'Bad request.']);
+        $path = bk_dir('items') . "/$id.json"; $b = json_file($path); if (!$b) json_out(404, ['error' => 'Not found.']);
+        $cfg = bk_config();
+        if ($to === 'completed') {
+            $v = $in['valueInr'] ?? null; $hasV = is_numeric($v) && $v > 0;
+            if ($v !== null && $v !== '' && (!is_numeric($v) || $v < 0 || $v > 5000000)) json_out(422, ['error' => 'The booking value must be a number in rupees.']);
+            if ($hasV) $b['valueInr'] = round((float)$v, 2);
+            if (bk_open('commission', $cfg)) {
+                $p = json_file(market_dir('providers') . '/' . $b['providerId'] . '.json');
+                $fee = $p ? bk_fee_for($p, $cfg) : $cfg['fee'];
+                if ($fee['mode'] === 'percent' && !$hasV) json_out(422, ['error' => 'Enter the booking value in rupees (the partner confirms it). The fee is a percentage of it.']);
+                $b['feeMode'] = $fee['mode']; $b['feeValue'] = $fee['value']; $b['commissionInr'] = bk_commission($hasV ? (float)$b['valueInr'] : null, $fee);
+            }
+            $b['completedOn'] = gmdate('Y-m-d');
+        }
+        $b['status'] = $to; $b['note'] = clean_text($in['note'] ?? ($b['note'] ?? ''), 300);
+        if (in_array($to, ['completed', 'cancelled', 'declined'], true)) foreach (['contactEmail', 'contactPhone', 'message'] as $k) $b[$k] = '';   // data minimisation: keep the reference, drop the traveller's details
+        save_json($path, $b); audit('bk-status', ['ref' => $b['ref'], 'to' => $to]);
+        json_out(200, ['ok' => true, 'commissionInr' => $b['commissionInr'] ?? null, 'message' => 'Updated.' . (in_array($to, ['completed', 'cancelled', 'declined'], true) ? ' The traveller\'s contact details were deleted.' : '')]);
+    }
+
+    case 'bk_settlement': {
+        $cfg = bk_config(); if (!bk_open('commission', $cfg)) json_out(403, ['error' => 'Commission and settlement are locked. Record the approvals and switch it on first.']);
+        $m = (string)($_GET['month'] ?? gmdate('Y-m')); if (!preg_match('/^\d{4}-\d{2}$/', $m)) json_out(400, ['error' => 'Month must look like 2026-11.']);
+        $rows = bk_settlement($m, $cfg);
+        json_out(200, ['month' => $m, 'rows' => $rows, 'csv' => bk_csv($rows, $m), 'gstRate' => $cfg['gstRate'],
+            'totals' => ['commissionInr' => round(array_sum(array_column($rows, 'commissionInr')), 2), 'gstInr' => round(array_sum(array_column($rows, 'gstInr')), 2), 'totalDueInr' => round(array_sum(array_column($rows, 'totalDueInr')), 2)]]);
+    }
+
+    case 'bk_settle': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cfg = bk_config(); if (!bk_open('commission', $cfg)) json_out(403, ['error' => 'Commission and settlement are locked.']);
+        $pid = need_str($in, 'providerId', 20); $m = need_str($in, 'month', 7); $ref = clean_text($in['reference'] ?? '', 60);
+        if (!valid_id($pid) || !preg_match('/^\d{4}-\d{2}$/', $m) || mb_strlen($ref) < 3) json_out(400, ['error' => 'Give the month and the payment or invoice reference.']);
+        $n = 0; foreach (glob(bk_dir('items') . '/*.json') ?: [] as $f) { $b = json_file($f);
+            if ($b && $b['providerId'] === $pid && ($b['status'] ?? '') === 'completed' && substr($b['completedOn'] ?? '', 0, 7) === $m && empty($b['settled'])) { $b['settled'] = true; $b['settledRef'] = $ref; $b['settledOn'] = gmdate('Y-m-d'); save_json($f, $b); $n++; } }
+        audit('bk-settle', ['provider' => $pid, 'month' => $m, 'n' => $n]);
+        json_out(200, ['ok' => true, 'message' => "$n booking(s) marked as settled."]);
     }
 
     case 'activity': {
