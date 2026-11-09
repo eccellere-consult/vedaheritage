@@ -82,6 +82,6 @@ jobs:
           FILL_B=$(awk -v b="$BUDGET" 'BEGIN{print b*0.8}'); REF_B=$(awk -v b="$BUDGET" 'BEGIN{print b*0.2}')
           node agents/run.mjs fill --minutes "$MINUTES" --max "$MAX" --budget "$FILL_B" || true
           cp agents/reports/latest.md /tmp/fill-report.md 2>/dev/null || true
-          node agents/run.mjs refresh --max 20 --minutes 25 --budget "$REF_B" || true
+          node agents/run.mjs refresh --max 40 --minutes 25 --budget "$REF_B" || true
           cat /tmp/fill-report.md agents/reports/latest.md > /tmp/both.md 2>/dev/null && cp /tmp/both.md agents/reports/latest.md || true
           bash scripts/ship.sh "content: fill $(date +%F)" src/content agents/registers agents/reports
