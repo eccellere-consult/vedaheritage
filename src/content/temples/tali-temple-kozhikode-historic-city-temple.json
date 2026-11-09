@@ -1,0 +1,111 @@
+{
+  "slug": "tali-temple-kozhikode-historic-city-temple",
+  "category": "temples",
+  "name": "Tali (Tali Mahadeva) Temple",
+  "district": "Kozhikode",
+  "format": "lite",
+  "tagline": "Historic city Shiva temple at the heart of Kozhikode's heritage circuit",
+  "summary": "Tali Mahadeva Temple is a 14th‑century Shiva temple in central Kozhikode, tied to the Zamorin era and the Revathi Pattathanam scholarly tradition; it remains a living heritage site with morning and…",
+  "description": [
+    "Tali Mahadeva Temple (commonly called Tali Temple) stands in the Palayam/Chalappuram quarter of Kozhikode and represents traditional Kerala temple architecture and the city's medieval civic-religious core.",
+    "The temple is closely associated with the Zamorin rulers and with the Revathi Pattathanam — an annual scholarly assembly historically held at the Tali — so it matters both as a place of worship and as a civic cultural landmark.",
+    "Visitors find a compact, atmospheric precinct: timber-roofed buildings, a temple tank (tali), lamp-lit evening rituals and small subsidiary shrines around the courtyard. The site regularly features in local heritage walks and responsible-tourism trails that finish at the Tali.",
+    "The temple functions as a living site: daily pujas, seasonal festivals and local ceremonies continue to draw devotees and visitors. Confirm specific puja times, special events and photography rules before you travel."
+  ],
+  "highlights": [
+    "14th‑century city Shiva temple tied to the Zamorin court",
+    "Revathi Pattathanam scholarly tradition connected to the precinct",
+    "Kerala-style timber and tiled temple architecture and tank (tali)",
+    "Atmospheric evening deepa-aradhana (lamp ritual) — a good visitor moment",
+    "Located inside Kozhikode city — easy to include on a heritage walk"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Tali Temple is one of Kozhikode’s oldest and most revered shrines and sits in the historic Palayam/Chalappuram area. Accounts and tourism sources place its origins in the medieval period and link the temple to the Zamorins’ patronage and to the city’s learned traditions.",
+        "The temple precinct historically hosted the Revathi Pattathanam, the famous scholarly assembly; that tradition continues in varying forms and contributes to the site's cultural importance."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Take in the main sanctum (Shiva lingam), the traditional Kerala timber-and-tile roofscape, the temple tank (the 'tali') and the subsidiary shrines that form the compact courtyard. The carved timber work, lamp-pillars and courtyard layout show the local temple-building idiom.",
+        "Time your visit for early morning puja or the evening deeparadhana (lamp ritual) for atmosphere — many visitors prefer dusk when the lamp-lighting and rituals make the precinct especially photogenic and devotional in character. Respect any photography restrictions, particularly inside the sanctum."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "The temple sits inside the city and is easy to add to a Kozhikode heritage circuit that includes nearby markets and colonial-era streets. Typical visitor flows peak in the cooler months (October–March) and during festival periods — check local listings for Revathi Pattathanam and Maha Shivaratri dates.",
+        "Daily routines commonly include morning and evening darshan windows; several visitor guides and the temple information pages list an evening reopening for darshan (confirm exact times with the temple). Dress modestly and follow local temple etiquette — remove footwear, avoid revealing clothing and follow staff guidance."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-11-09",
+      "text": "Kerala Tourism lists Tali Temple on the Kozhikode life‑experience trail and highlights the site for heritage visitors; the page notes the temple’s architecture and its role in city trails.",
+      "url": "https://www.keralatourism.org/destination/tali-temple-kozhikode/281/"
+    },
+    {
+      "date": "2026-11-09",
+      "text": "Local temple listings and pilgrimage sites show the temple open for evening darshan (typical evening reopening around 17:00–20:30), making dusk visits and deepa-aradhana convenient for arriving tourists; confirm timings before you go.",
+      "url": "https://devalayam.app/temples/tali-mahadeva-temple"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "October–March (cool, dry); dawn or dusk for the best atmosphere",
+    "howToReach": "In central Kozhikode (Palayam/Chalappuram). About 1 km from Kozhikode Railway Station — walk or take an auto/taxi. The temple is easy to include on a city heritage walk.",
+    "etiquette": [
+      "Confirm current puja/darshan timings with the temple or local tourism office before you travel.",
+      "Respect dress and footwear rules; carry a shawl or scarf if you plan to enter the sanctum area.",
+      "Visit at dusk for deepa-aradhana (lamp ritual) but avoid crowded festival days unless you want the full experience.",
+      "Photography may be restricted inside the sanctum — ask permission and follow staff directions."
+    ]
+  },
+  "coordinates": {
+    "lat": 11.2477,
+    "lng": 75.78719
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "kozhikode",
+    "temple",
+    "shiva",
+    "heritage",
+    "palayam"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Tali Temple (destination)",
+      "url": "https://www.keralatourism.org/destination/tali-temple-kozhikode/281/"
+    },
+    {
+      "label": "Kerala Tourism — Revathi Pattathanam (event page)",
+      "url": "https://www.keralatourism.org/event/revathi-pattathanam/90/"
+    },
+    {
+      "label": "Wikipedia — Tali Shiva Temple",
+      "url": "https://en.wikipedia.org/wiki/Tali_Shiva_Temple"
+    },
+    {
+      "label": "Devalayam — Tali Mahadeva Temple (timings & guide)",
+      "url": "https://devalayam.app/temples/tali-mahadeva-temple"
+    },
+    {
+      "label": "Sahapedia / My City My Heritage — Kozhikode (city booklet)",
+      "url": "https://www.sahapedia.org/sites/default/files/MyCityMyHeritage_%20MyKozhikode%20_%20City%20Booklet2025.pdf"
+    },
+    {
+      "label": "keralatourism.org",
+      "url": "https://www.keralatourism.org/malabar/destination_detailed_view/tali-temple/83"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

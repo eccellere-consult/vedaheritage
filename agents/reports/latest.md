@@ -2,59 +2,69 @@
 
 Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
 
-### Content fill: 40 page(s) created in 19.28 min
+### Content fill: 39 page(s) created in 14.1 min
 
-Attempted 40 · created 40 · already had a page 0 · failed 0 · new topics found 37 · topics still to do 11
+Attempted 40 · created 39 · already had a page 0 · failed 1 · new topics found 38 · topics still to do 9
 
-- ✅ **Theyyam season (North Malabar)** → live
-- ✅ **Balaramapuram Handloom Weavers** → live
-- ✅ **Kuthampully Handloom** → live
-- ✅ **Aranmula Metal Mirror Craft Community** → live
-- ✅ **Thalassery (Tellicherry) Biryani** → live
-- ✅ **Kadalundi Bird Sanctuary** → live
-- ✅ **Calicut (Kozhikode) halwa tradition** → live
-- ✅ **Beypore Uru shipbuilding** → live
-- ✅ **Dhow / Uru Museum, Beypore** → live
-- ✅ **Edakkal Caves** → live
-- ✅ **Chaliyar river-estuary cruises** → live
-- ✅ **Banasura Sagar Dam & island** → live
-- ✅ **Wayanad Heritage Museum** → live
-- ✅ **Silent Valley National Park** → live
-- ✅ **Malampuzha Garden & Leisure Park** → live
-- ✅ **Ananthapura Lake Temple** → live
-- ✅ **St. Angelo's Fort (Kannur)** → live
-- ✅ **Konni Elephant Training Centre** → live
-- ✅ **Thenmala Ecotourism Adventure Zone** → live
-- ✅ **Veli Tourist Village (lagoon)** → live
-- ✅ **Gavi eco‑tourism (Gavi)** → live
-- ✅ **Vizhinjam coastal heritage (rock-cut caves & fisheries)** → live
-- ✅ **Marari Beach** → live
-- ✅ **Vembanad-Kol wetlands (birding & backwater trails)** → live
-- ✅ **Pattanam (Muziris) archaeological site** → live
-- ✅ **Kumbalangi Integrated Tourism Village** → live
-- ✅ **Paliam Palace, Chendamangalam** → live
-- ✅ **Fort Kochi art walk & gallery circuit** → live
-- ✅ **Peruvannamuzhi Dam & Spice Park** → live
-- ✅ **Nilambur Teak Museum & forests** → live
-- ✅ **Thunchan Parambu (Thunchath Ezhuthachan memorial)** → live
-- ✅ **Marayoor sandalwood forests & dolmens** → live
-- ✅ **Thekkady spice‑plantation tours (Periyar region)** → live
-- ✅ **Poonjar Palace and royal trails** → live
-- ✅ **Idukki Arch Dam viewpoints & hill circuits** → live
-- ✅ **Kozhikode SM Street (Mittai/Sheri) food walk** → live
-- ✅ **Aralam Wildlife Sanctuary** → live
-- ✅ **Thusharagiri Waterfalls** → live
-- ✅ **Attappady tribal cultural trails** → live
-- ✅ **Neyyar Wildlife Sanctuary & boating** → live
+- ✅ **Parassinikadavu Sree Muthappan Temple** → live
+- ✅ **Thattekkad Bird Sanctuary (Salim Ali Bird Sanctuary)** → live
+- ✅ **Muzhappilangad Drive-in Beach** → live
+- ✅ **Thirunelli Mahavishnu Temple** → live
+- ✅ **Theyyam season (North Malabar ritual performances)** → live
+- ✅ **Cheraman Juma Masjid (Kodungallur)** → live
+- ✅ **Arakkal Kettu (Arakkal Museum)** → live
+- ✅ **Paradesi Synagogue, Mattancherry** → live
+- ✅ **Cochin Carnival (Fort Kochi New‑Year festivities)** → live
+- ✅ **Vrischikolsavam — Sree Poornathrayeesa Temple, Thripunithura** → live
+- ✅ **Thenmala Eco‑Tourism (India’s planned ecotourism project)** → live
+- ✅ **Karimeen Pollichathu (Kuttanad pearl‑spot dish)** → live
+- ✅ **Pathiramanal Island (Vembanad backwater islet)** → live
+- ✅ **Margamkali (Syrian‑Christian circle dance)** → live
+- ✅ **Pathiri (Malabar rice pancake)** → live
+- ✅ **Mappila Paattu (Malabar Muslim song tradition)** → live
+- ✅ **Kalaripayattu training & demonstrations (Kalari schools)** → live
+- ✅ **Oppana (Mappila wedding performance)** → live
+- ✅ **Kalady (Adi Shankaracharya’s birthplace)** → live
+- ✅ **Ranipuram Hills (Kasargod trekking & shola forests)** → live
+- ✅ **Nelliyampathy Hills (tea orchards & viewpoints)** → live
+- ✅ **Ramakkalmedu wind‑hill viewpoint** → live
+- ✅ **Ilaveezha Poonchira (sunrise/sunset valley)** → live
+- ✅ **Vagamon meadows & paragliding events** → live
+- ✅ **Poovar backwater‑sea interface (Poovar Island)** → live
+- ✅ **Tholpetty range (Wayanad wildlife safaris)** → live
+- ✅ **Thalassery Fort (colonial heritage & circus history)** → live
+- ✅ **Chendamangalam Synagogue and handloom cluster** → live
+- ✅ **Champions Boat League & Vallam Kali (snake‑boat races)** → live
+- ✅ **Vellayani Lake (boating & birding near Thiruvananthapuram)** → live
+- ✅ **Neeleshwar (Neeleswaram) beach & Krishna temple circuit** → live
+- ✅ **Thalassery circus legacy (circus history & performances)** → live
+- ✅ **Tali Temple, Kozhikode (historic city temple)** → live
+- ✅ **Nendran banana chips & banana cultivation** → live
+- ✅ **Coconut groves & traditional toddy‑tapping culture** → live
+- ✅ **Ayurveda retreats on Varkala cliff (coastal Panchakarma & day spas)** → live
+- ✅ **Chendamangalam handloom (specific artisan clusters)** → live
+- ✅ **Traditional muthassi (grandmother) pickles & preserved recipes (avakka achar etc.)** → live
+- ✅ **Parassinikkadavu Muthappan Temple** → live
+- ⚠️ **Payyambalam Beach**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
 
 
-_Run: 19.3 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+_Run: 14.1 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
 ## Discover Kerala content agents — 2026-11-09
 
 Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
 
 ### Recency refresh: 0 page(s) checked, 0 with news
 
+- ⚠️ Kettuvallam — the Rice Barge: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Sabarimala Sree Dharma Sastha Temple: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Varkala Beach (Papanasam): 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Kasavu and Kerala Handloom: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Pathayam — the Kerala Granary Chest: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Nilavilakku — the Kerala Standing Lamp: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Uruli — Kerala Bell-Metal Cookware: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Karkidakam: the Monsoon Rejuvenation Season: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Oachira Parabrahma Temple: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Panchakarma in Kerala: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
 
 
-_Run: 0.0 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+_Run: 0.1 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_

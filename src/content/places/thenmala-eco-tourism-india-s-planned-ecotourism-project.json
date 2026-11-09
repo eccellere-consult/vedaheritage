@@ -1,0 +1,112 @@
+{
+  "slug": "thenmala-eco-tourism-india-s-planned-ecotourism-project",
+  "category": "places",
+  "name": "Thenmala Ecotourism",
+  "district": "Kollam",
+  "format": "lite",
+  "tagline": "India’s first planned ecotourism project — forest boardwalks, trails and adventure",
+  "summary": "Thenmala is India’s first planned ecotourism destination in the Shendurney foothills, offering elevated boardwalks, guided forest trails, a butterfly safari, reservoir boating and an adventure zone.",
+  "description": [
+    "Thenmala is India’s first planned ecotourism project, set around the Parappar/Thenmala reservoir and the Shendurney Wildlife Sanctuary foothills. It groups attractions into Culture, Adventure and Leisure zones to balance wildlife protection with visitor activities.",
+    "The site matters because it pairs conservation and local livelihoods: guided nature walks, a butterfly safari and a deer rehabilitation area provide wildlife viewing and interpretation, while the Adventure Zone delivers supervised challenges such as rock-climbing, river crossing and elevated walkways.",
+    "Visitors get canopy views from the elevated boardwalk and suspension footbridge, hour-long boat rides on the reservoir, short guided treks through moist deciduous forest and access to community-run services. Thenmala is a compact, year-round nature-and-adventure stop that also connects to nearby Palaruvi waterfall and forested hill routes.",
+    "Practical conservation measures and accredited operators run many programmes; confirm bookings for adventure activities and guided walks before you travel."
+  ],
+  "highlights": [
+    "Elevated boardwalk and suspension footbridge across forest canopy",
+    "Guided nature trails and butterfly safari (about 120+ species observed locally)",
+    "Adventure Zone: rock climbing, valley crossings and supervised rope activities",
+    "Boat rides on the Parappar/Thenmala reservoir",
+    "Deer rehabilitation centre and cultural amphitheatre with musical fountain"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Thenmala was developed as India’s first planned ecotourism destination to showcase sustainable tourism in the Western Ghats foothills. The project sits where the Parappar reservoir spreads into the Shendurney Wildlife Sanctuary landscape and was designed to offer low-impact visitor experiences while supporting local communities.",
+        "Management and programming work through the Thenmala Ecotourism Promotion Society (TEPS) together with Kerala Tourism and district authorities; the site historically groups attractions into Culture, Adventure and Leisure zones to distribute visitors and reduce pressure on sensitive areas."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Walk the elevated pathway and suspension footbridge for a bird’s-eye view of the canopy and reservoir margins. Book a guided nature walk to learn common tree species, birds and insects; the butterfly safari highlights many Western Ghats species in a planted enclosure.",
+        "Take the one‑hour boat ride on the reservoir to view forested shoreline and watch for waterbirds. In the Adventure Zone, accredited operators run supervised activities — short treks, rock-climbing, valley crossings and rope elements; these are organised to limit ecological impact.",
+        "Visit the deer rehabilitation area and the Leisure Zone sculpture garden and amphitheatre. The musical/dancing fountain is a local evening attraction after recent revitalisation work described in government reports."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Thenmala is reachable by road from Kollam and Thiruvananthapuram; the nearest railway access is Thenmala/ Punalur/Sengottai lines. The site operates year-round, but activity availability (guided walks, adventure modules, boat rides) varies by season and operator—book in advance through accredited providers.",
+        "Bring closed shoes, rain protection in the monsoon months and insect repellent for forest trails. Follow instructions from guides, do not feed wildlife, and confirm times and safety requirements for adventure elements before arrival."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-11-09",
+      "text": "Kerala Tourism lists nature walks, the elevated boardwalk and the Adventure Zone as active offerings at Thenmala and the official booking platform shows availability for November 2026—trails, boardwalks and supervised adventure activities are bookable for winter visitors (confirm specific slots before travel).",
+      "url": "https://www.keralatourism.org/destination/thenmala-ecotourism/41/"
+    },
+    {
+      "date": "2026-01",
+      "text": "Kerala State Planning Board Economic Review notes that Thenmala’s upgradation during 2024–25 included completion of an elevated walkway, suspension bridge works and revitalisation of the musical dancing fountain.",
+      "url": "https://spb.kerala.gov.in/sites/default/files/2026-01/ER%202025%20Volume1%20Eng%20final.pdf"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November to February for cooler, drier weather and clearer trails",
+    "howToReach": "Road is the easiest: Thenmala lies on the Kollam–Shenkottai/Thiruvananthapuram–Shenkottai route (about 66–72 km from Kollam/Thiruvananthapuram); nearby railheads include Thenmala, Punalur and Sengottai. Confirm local transfers and operator pickup when you book.",
+    "etiquette": [
+      "Book guided nature walks and adventure modules in advance through accredited operators—availability can change seasonally.",
+      "Wear closed shoes and carry insect repellent; trails and boardwalks can be muddy after rain.",
+      "Follow guide instructions, don’t stray off marked trails and do not feed or disturb deer and other wildlife.",
+      "Check boat-ride and evening-fountain schedules before you travel; confirm locally as times vary."
+    ]
+  },
+  "coordinates": {
+    "lat": 8.95,
+    "lng": 77.06667
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "ecotourism",
+    "thenmala",
+    "forest-trails",
+    "adventure",
+    "kollam"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Thenmala Ecotourism (destination page)",
+      "url": "https://www.keralatourism.org/destination/thenmala-ecotourism/41/"
+    },
+    {
+      "label": "Kerala Tourism — Thenmala nature walks & adventure listings",
+      "url": "https://www.keralatourism.org/adventure-tourism/nature-walks/thenmala"
+    },
+    {
+      "label": "Economic Review 2025, Kerala State Planning Board (January 2026)",
+      "url": "https://spb.kerala.gov.in/sites/default/files/2026-01/ER%202025%20Volume1%20Eng%20final.pdf"
+    },
+    {
+      "label": "Thenmala Ecotourism Promotion Society — official site",
+      "url": "https://thenmalaecotourism.com/"
+    },
+    {
+      "label": "Kollam District — Thenmala page (district site)",
+      "url": "https://kollam.nic.in/en/tourist-place/thenmala/"
+    },
+    {
+      "label": "keralatourism.org",
+      "url": "https://www.keralatourism.org/ecotourism/trekking-programs/thenmala-ecopackages/43"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}

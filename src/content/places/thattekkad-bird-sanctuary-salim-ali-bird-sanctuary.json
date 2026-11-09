@@ -1,0 +1,108 @@
+{
+  "slug": "thattekkad-bird-sanctuary-salim-ali-bird-sanctuary",
+  "category": "places",
+  "name": "Thattekkad Bird Sanctuary (Salim Ali Bird Sanctuary)",
+  "district": "Ernakulam",
+  "format": "lite",
+  "tagline": "Kerala’s lowland evergreen haven — best birding for migrants and endemics",
+  "summary": "Thattekkad (Salim Ali) Bird Sanctuary is a compact, species‑rich reserve on the Periyar river in Ernakulam. Prime season for migrants runs from November to March; mornings are best for birdwatching.",
+  "description": [
+    "Thattekkad Bird Sanctuary — also called the Salim Ali Bird Sanctuary — protects low‑elevation evergreen and riverine forest along the Periyar. Salim Ali praised it as one of peninsular India’s richest bird habitats.",
+    "The sanctuary matters for both resident Western Ghats endemics (Malabar grey hornbill, Ceylon frogmouth, Malabar trogon and more) and a steady influx of winter migrants. The forest’s mix of water, wetlands and riparian trees concentrates birds in a small area.",
+    "Visitors get close, walkable trails (the Salim Ali Bird Trail), riverside views and homestays nearby that operate as birding bases. Early‑morning walks and guided tours yield the best sightings; confirm trail access and guides before you travel."
+  ],
+  "highlights": [
+    "Prime migrant season: November–March, with peak activity in winter mornings",
+    "High species density: resident endemics and overwintering migrants together",
+    "Salim Ali Bird Trail — short trails into forest interiors for close views",
+    "Nearby river and Bhoothathankettu make easy day‑trip combinations",
+    "Good local birding guides and small homestays as bases"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Thattekkad was described by Dr. Salim Ali as among the richest bird habitats he had seen in peninsular India and later became Kerala’s first designated bird sanctuary. The protected area is a compact mosaic of evergreen forest, riverine fringes and wet patches that supports a long species list despite its small size."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "Walk the Salim Ali Bird Trail at first light for the best bird activity: resident species such as Malabar grey hornbill, grey‑headed bulbul and Malabar trogon are joined by migrants during winter. Nocturnal spotlights and specialist night walks (run by local guides) increase chances for Ceylon (Sri Lanka) frogmouth and owls. Combine forest trails with riverside watching near Bhoothathankettu for waterbirds and migrant passage species."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Visit between November and March for the migrant influx; early mornings are prime. Thattekkad is about 12 km from Kothamangalam and commonly reached by road from Kochi (many guides and homestays run day trips). Book a local guide if you want targeted species or night walks, and check trail access with Kerala Tourism or the Forest Department before you go."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-11-09",
+      "text": "Kerala Tourism’s Thattekkad page emphasizes October–March (November–February as peak) as the main birding window and lists the Salim Ali Bird Trail and contact routes; check the official page for any local notices before travel.",
+      "url": "https://www.keralatourism.org/adventure-tourism/bird-watching/thattekkad"
+    },
+    {
+      "date": "2026-11-09",
+      "text": "Local Thattekad birding guides note November as the arrival month for several passage migrants (Indian pitta among them); guided tours and seasonal walks are operating for the 2026–27 season — confirm and book with local operators.",
+      "url": "https://thattekadbirding.com/blog/post-2.html"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "November to March (winter migrants + dry trails); dawn is best each day",
+    "howToReach": "Road access from Kothamangalam (≈12 km) and Kochi; most visitors drive or hire a car/guide from Kochi/Perumbavoor and base themselves in Kothamangalam or nearby homestays. Confirm local transport options before travel.",
+    "etiquette": [
+      "Start at first light and be quietly patient — birds are most active then.",
+      "Bring binoculars, a field guide or app, light rain gear and insect repellent.",
+      "Hire a local guide for targeted species and night walks; confirm trail openings with Kerala Tourism or the Forest Department.",
+      "Combine Thattekkad with nearby Bhoothathankettu for a riverside walk and more birding."
+    ]
+  },
+  "coordinates": {
+    "lat": 10.133333,
+    "lng": 76.683333
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "birding",
+    "thattekkad",
+    "salim ali",
+    "migrants",
+    "ernakulam",
+    "western ghats"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — Thattekkad Bird Sanctuary (Salim Ali Birding Trails)",
+      "url": "https://www.keralatourism.org/adventure-tourism/bird-watching/thattekkad"
+    },
+    {
+      "label": "ThattekadBirding — Best Time to Visit Thattekad (local guide site)",
+      "url": "https://thattekadbirding.com/blog/post-2.html"
+    },
+    {
+      "label": "Forest Clearance / project note — coordinates and sanctuary area",
+      "url": "https://forestsclearance.nic.in/writereaddata/FormA/Justification/711231201213IRT1INote.pdf"
+    },
+    {
+      "label": "EcoKochi — Thattekkad guide and where to stay (local travel guide)",
+      "url": "https://www.ecokochi.com/blog/where-to-stay-in-thattekkad-birding-base/"
+    },
+    {
+      "label": "Wikipedia — Thattekad Bird Sanctuary (overview & area)",
+      "url": "https://en.wikipedia.org/wiki/Thattekad_Bird_Sanctuary"
+    },
+    {
+      "label": "keralatourism.org",
+      "url": "https://www.keralatourism.org/adventure-tourism/bird-watching"
+    }
+  ],
+  "updated": "2026-11-09",
+  "lastVerified": "2026-11-09",
+  "status": "approved",
+  "autoPublished": "2026-11-09",
+  "reviewed": false
+}
