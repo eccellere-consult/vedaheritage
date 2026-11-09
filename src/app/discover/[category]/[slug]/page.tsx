@@ -106,12 +106,6 @@ export default async function EntryPage({ params }: Props) {
 
       <article className="py-14 bg-surface">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {cautionFor(e.category) && (
-            <p role="note" className="rounded-lg border border-accent/30 bg-accent-pale px-4 py-3 text-sm text-ink mb-6"><span className="font-medium">Please note: </span>{cautionFor(e.category)}</p>
-          )}
-          {e.autoPublished && e.reviewed !== true && (
-            <p role="note" className="rounded-lg border border-accent/30 bg-white px-4 py-3 text-sm text-ink mb-6"><span className="font-medium">Editor review pending: </span>research agents drafted this guide from the sources listed below. An editor has not read it yet. Confirm details before you travel.</p>
-          )}
           <EntryImages images={e.images} />
           {e.description.map((p, i) => <p key={i} className="text-ink-mid leading-relaxed mb-4">{p}</p>)}
 
@@ -242,6 +236,12 @@ export default async function EntryPage({ params }: Props) {
             </section>
           )}
 
+          {cautionFor(e.category) && (
+            <p role="note" className="rounded-lg border border-accent/30 bg-accent-pale px-4 py-3 text-sm text-ink mt-6"><span className="font-medium">Please note: </span>{cautionFor(e.category)}</p>
+          )}
+          {e.autoPublished && e.reviewed !== true && (
+            <p role="note" className="rounded-lg border border-accent/30 bg-white px-4 py-3 text-sm text-ink mt-6"><span className="font-medium">Editor review pending: </span>research agents drafted this guide from the sources listed below. An editor has not read it yet. Confirm details before you travel.</p>
+          )}
           <p className="text-xs text-ink-mid/70 mt-8">
             {e.format === 'lite' ? 'Updated' : 'Last verified'} {new Date(e.updated || e.lastVerified).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}.{e.format === 'lite' && (e.reviewed === true ? ` Compiled by AI from recent web sources; reviewed by an editor${e.reviewedOn ? ` on ${new Date(e.reviewedOn).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}` : ''}.` : ' Compiled by AI from recent web sources; not yet reviewed by an editor.')} Timings, fees and dates change — confirm with the venue before travelling.
             Sources: {e.sources.map((s, i) => (
