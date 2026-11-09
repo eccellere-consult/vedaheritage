@@ -2,7 +2,7 @@
 // Bookings module (phase 2): partner enquiries with a booking reference, a commission ledger and a monthly settlement sheet.
 // EVERYTHING here is locked until the admin records the licences or approvals each capability needs (see BK_CAPS) and
 // switches it on. Locked is the default. Private data (traveller contact details) lives in the data dir, never in GitHub.
-// Payments and cab dispatch are NOT built: those capabilities stay locked even with every box ticked.
+// Stays, rides and Razorpay payments live in lib/commerce.php. Locked is the default for every capability.
 if (!defined('VH_LIB')) define('VH_LIB', 1);
 require_once __DIR__ . '/common.php';
 
@@ -19,19 +19,24 @@ const BK_CAPS = [
          'invoicing' => 'Your accountant agreed how commission invoices are raised and how GST on commission is shown',
          'agreement' => 'Each partner agreement states the commission rate and the monthly settlement'],
         ['gstin' => ['GSTIN (15 characters), or "exempt: <accountant note>"', '/^([0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]|exempt:.{6,})$/i']]],
-    'payments' => ['Online payments with split commission', 'Takes the traveller\'s payment on the site and pays the partner minus your commission. NOT BUILT, and not planned: the chosen model is pay on site with the fee invoiced to partners monthly. This switch stays locked.', false,
-        ['aggregator' => 'A licensed payment aggregator has approved your account',
-         'ca' => 'Your chartered accountant signed off GST, TCS and TDS handling',
-         'refunds' => 'Refund and cancellation policy is published',
-         'legal' => 'A lawyer reviewed the terms for a marketplace that takes payments'],
+    'payments' => ['Online payments with split commission (Razorpay)', 'Takes the traveller\'s payment on the site through Razorpay. After payment the partner\'s share is transferred (held until the stay or trip is done, then released) and your fee stays with you. Needs the Razorpay keys in vh-config.php and a Razorpay linked account ID for each partner.', true,
+        ['aggregator' => 'Your payment aggregator account is approved and Route (split payments) is active',
+         'ca' => 'Your chartered accountant signed off GST, TCS and TDS handling (rates are set under Your fee)',
+         'refunds' => 'A refund and cancellation policy is published',
+         'legal' => 'The terms for taking payments were reviewed'],
         ['aggregatorName' => ['Payment aggregator name and merchant ID', null]]],
-    'cabs' => ['Cab and auto dispatch (aggregator)', 'Instant cab or auto booking with fares and dispatch. NOT BUILT, and legally this makes you a motor vehicle aggregator. Cab and auto REQUESTS to licensed partners are already covered by "Partner enquiries".', false,
-        ['licence' => 'A state motor vehicle aggregator licence is granted',
-         'drivers' => 'Driver verification and insurance process is in place',
-         'fares' => 'Fares and safety rules meet the aggregator guidelines'],
-        ['aggregatorLicence' => ['Aggregator licence number and issuing authority', null]]],
+    'stays' => ['Stay booking (rooms, availability, instant booking)', 'Stay partners list rooms with a nightly rate. Travellers search dates, see the price and book. Dates are blocked for the room while a booking is held or paid. With payments open they pay online; otherwise it becomes a request paid on site.', true,
+        ['registration' => 'Every stay you switch on has a valid Kerala Tourism registration or classification, checked',
+         'pricing' => 'Room rates shown include or state taxes as the partner agreed',
+         'policy' => 'A cancellation policy for stays is published'],
+        ['stayPolicyNote' => ['Where the stay cancellation policy is published (page or note)', null]]],
+    'rides' => ['Ride booking and dispatch (cabs, autos)', 'Travellers book a ride with a fare estimate from the partner rate card. The request goes to eligible partners; the first driver to accept gets it. The traveller receives driver details and a trip code; the driver starts the trip with that code and completes it. No live GPS tracking.', true,
+        ['licence' => 'The licence or approval needed to run ride dispatch is in place',
+         'drivers' => 'Driver verification and insurance process is in place for every partner',
+         'fares' => 'Rate cards meet the applicable fare and safety rules'],
+        ['aggregatorLicence' => ['Licence number and issuing authority', null]]],
 ];
-const BK_STATUSES = ['new', 'sent', 'confirmed', 'completed', 'cancelled', 'declined'];
+const BK_STATUSES = ['new', 'sent', 'confirmed', 'completed', 'cancelled', 'declined', 'pay_pending', 'paid', 'searching', 'assigned', 'started', 'expired'];
 const BK_PARTNER_TYPES = ['stay', 'transport'];
 
 function bk_dir(string $sub = ''): string {
@@ -46,6 +51,13 @@ function bk_config(): array {
     $fee = is_array($c['fee'] ?? null) ? $c['fee'] : ['mode' => 'percent', 'value' => isset($c['commissionRate']) ? (float)$c['commissionRate'] : 1.0];
     $c['fee'] = bk_fee_clean($fee['mode'] ?? 'percent', $fee['value'] ?? 1.0) ?? ['mode' => 'percent', 'value' => 1.0];
     $c['gstRate'] = isset($c['gstRate']) ? (float)$c['gstRate'] : 18.0;
+    // Statutory amounts held back from the partner's payout on online payments. Default 0: set only with your accountant's advice.
+    $c['rideRates'] = is_array($c['rideRates'] ?? null) ? $c['rideRates'] : [
+        'auto' => ['baseInr' => 30, 'perKmInr' => 15, 'minInr' => 50, 'nightPct' => 25],
+        'car' => ['baseInr' => 50, 'perKmInr' => 14, 'minInr' => 150, 'nightPct' => 20],
+        'suv' => ['baseInr' => 80, 'perKmInr' => 18, 'minInr' => 250, 'nightPct' => 20]];
+    $c['tcsPercent'] = isset($c['tcsPercent']) ? (float)$c['tcsPercent'] : 0.0;
+    $c['tdsPercent'] = isset($c['tdsPercent']) ? (float)$c['tdsPercent'] : 0.0;
     return $c;
 }
 /** Validated fee {mode, value}, or null. percent: 0 to 20. flat: 0 to 5000 rupees per completed booking. */
@@ -66,6 +78,11 @@ function bk_missing(string $cap, array $cfg): array {
         $v = trim((string)($st['evidence'][$k] ?? ''));
         if ($v === '') $m[] = 'Record: ' . $e[0];
         elseif ($e[1] && !preg_match($e[1], $v)) $m[] = 'Check the format of: ' . $e[0];
+    }
+    if ($cap === 'payments') {
+        if (!function_exists('rzp_keys_ok') || !rzp_keys_ok()) $m[] = 'Add razorpay_key_id, razorpay_key_secret and razorpay_webhook_secret to vh-config.php';
+        if (!bk_open('enquiries', $cfg)) $m[] = 'Switch on Partner enquiries first (it carries the partner agreements)';
+        if (!bk_open('commission', $cfg)) $m[] = 'Switch on Commission and settlement first (it computes your fee)';
     }
     return $m;
 }

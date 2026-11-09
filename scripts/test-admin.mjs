@@ -73,10 +73,24 @@ const gh = http.createServer((req, res) => {
   })
 }).listen(0)
 const ghPort = gh.address().port
+// Mock Razorpay: records every call so the tests can check what we sent (amounts, holds, reversals).
+const rzCalls = []; let rzSeq = 0
+const rz = http.createServer((req, res) => {
+  let body = ''; req.on('data', c => body += c); req.on('end', () => {
+    const b = body ? JSON.parse(body) : {}; const j = (o, c = 200) => { res.statusCode = c; res.setHeader('content-type', 'application/json'); res.end(JSON.stringify(o)) }
+    rzCalls.push({ method: req.method, path: req.url, b, auth: req.headers.authorization }); let m
+    if (req.method === 'POST' && req.url === '/v1/orders') return j({ id: 'order_T' + (++rzSeq), amount: b.amount })
+    if ((m = req.url.match(/^\/v1\/payments\/([^/]+)\/transfers$/))) return j({ items: [{ id: 'trf_T' + (++rzSeq) }] })
+    if ((m = req.url.match(/^\/v1\/transfers\/([^/]+)$/)) && req.method === 'PATCH') return j({ id: m[1], on_hold: 0 })
+    if ((m = req.url.match(/^\/v1\/payments\/([^/]+)\/refund$/))) return j({ id: 'rfnd_T' + (++rzSeq) })
+    j({ error: 'unmocked' }, 404)
+  })
+}).listen(0)
+const rzPort = rz.address().port
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'vh-admin-'))
 const pwHash = spawnSync('php', ['-r', 'echo password_hash("correct horse battery staple", PASSWORD_DEFAULT);']).stdout.toString()
-fs.writeFileSync(path.join(tmp, 'vh-config.php'), `<?php return ['github_token'=>'tok','repo'=>'o/r','github_api'=>'http://127.0.0.1:${ghPort}','admin_password_hash'=>'${pwHash}','data_dir'=>'${tmp}/data','insecure_cookies'=>true,'site_url'=>'http://127.0.0.1:18911','insecure_checks'=>true,'rate_scale'=>10,'mail_outbox'=>'${tmp}/outbox.jsonl'];`)
+fs.writeFileSync(path.join(tmp, 'vh-config.php'), `<?php return ['github_token'=>'tok','repo'=>'o/r','github_api'=>'http://127.0.0.1:${ghPort}','admin_password_hash'=>'${pwHash}','data_dir'=>'${tmp}/data','insecure_cookies'=>true,'site_url'=>'http://127.0.0.1:18911','insecure_checks'=>true,'rate_scale'=>10,'mail_outbox'=>'${tmp}/outbox.jsonl','razorpay_key_id'=>'rzp_test_key','razorpay_key_secret'=>'sekret','razorpay_webhook_secret'=>'whsec','razorpay_api'=>'http://127.0.0.1:${rzPort}'];`)
 const php = spawn('php', ['-S', '127.0.0.1:0'.replace(':0', ':18911'), '-t', process.env.ADMIN_DOCROOT || 'public'], { env: { ...process.env, VH_CONFIG: path.join(tmp, 'vh-config.php') }, stdio: 'ignore' })
 await new Promise(r => setTimeout(r, 1200))
 
@@ -364,7 +378,7 @@ try {
   const trav = (o = {}) => ({ providerId: stay.id, name: 'Meera', contactPhone: '+91 98470 12345', contactEmail: 'meera@example.com', checkIn: new Date(Date.now() + 10 * 864e5).toISOString().slice(0, 10), checkOut: new Date(Date.now() + 12 * 864e5).toISOString().slice(0, 10), people: '2', message: 'Day 1: Alappuzha Backwaters. Day 2: Varkala Beach.', consent: '1', ...o })
   ok((await pp('submit-booking', trav())).s === 403, 'bookings: a request is refused while the module is locked')
   const bo = await call('bk_overview'); const cap = id => bo.d.caps.find(c => c.id === id)
-  ok(bo.d.caps.length === 4 && bo.d.caps.every(c => c.open === false) && cap('enquiries').missing.length === 5, 'bookings: every capability starts locked with its missing items listed')
+  ok(bo.d.caps.length === 5 && bo.d.caps.every(c => c.open === false) && cap('enquiries').missing.length === 5, 'bookings: every capability starts locked with its missing items listed')
   const on0 = await call('bk_cap_set', { method: 'POST', body: { cap: 'enquiries', enabled: true } })
   ok(on0.s === 422 && on0.d.blockers.length === 5, 'bookings: cannot switch on without the approvals recorded')
   const fullEnq = { cap: 'enquiries', checklist: { terms: true, grievance: true, agreements: true, retention: true }, evidence: { grievanceOfficer: 'Asha, stay@example.com' } }
@@ -386,9 +400,9 @@ try {
   const after0 = JSON.parse(fs.readFileSync(path.join(tmp, `data/bookings/items/${b1.id}.json`), 'utf8'))
   ok(done0.s === 200 && after0.commissionInr === null && after0.contactEmail === '' && after0.contactPhone === '' && after0.message === '' && after0.ref === ref1, 'bookings: completing a booking with commission locked records no commission and deletes the traveller details')
   ok((await call('bk_settlement')).s === 403, 'bookings: settlement is locked until commission is switched on')
-  ok((await call('bk_cap_set', { method: 'POST', body: { cap: 'payments', enabled: true } })).s === 422 && (await call('bk_cap_set', { method: 'POST', body: { cap: 'cabs', enabled: true } })).s === 422, 'bookings: online payments and cab dispatch cannot be switched on, even with approvals (software not built)')
+  ok((await call('bk_cap_set', { method: 'POST', body: { cap: 'payments', enabled: true } })).s === 422 && (await call('bk_cap_set', { method: 'POST', body: { cap: 'rides', enabled: true } })).s === 422, 'bookings: payments and rides cannot be switched on before their approvals are recorded')
   const payAll = await call('bk_cap_save', { method: 'POST', body: { cap: 'payments', checklist: { aggregator: true, ca: true, refunds: true, legal: true }, evidence: { aggregatorName: 'Razorpay MID123' } } })
-  ok(payAll.d.missing.length === 0 && (await call('bk_cap_set', { method: 'POST', body: { cap: 'payments', enabled: true } })).s === 422, 'bookings: payments stay locked even when every approval is recorded')
+  ok(payAll.d.missing.length === 1 && /Commission/.test(payAll.d.missing[0]) && (await call('bk_cap_set', { method: 'POST', body: { cap: 'payments', enabled: true } })).s === 422, 'bookings: payments stay locked until commission is on, even when every approval is recorded')
   const comBad = await call('bk_cap_save', { method: 'POST', body: { cap: 'commission', checklist: { gst: true, invoicing: true, agreement: true }, evidence: { gstin: 'not a gstin' } } })
   ok(comBad.d.missing.some(m => /format/.test(m)), 'bookings: a malformed GSTIN is not accepted')
   await call('bk_cap_save', { method: 'POST', body: { cap: 'commission', checklist: { gst: true, invoicing: true, agreement: true }, evidence: { gstin: '32ABCDE1234F1Z5' } } })
@@ -414,6 +428,119 @@ try {
   ok(d4.s === 200 && d4.d.commissionInr === 50, 'bookings: a flat fee needs no booking value (Rs 50)')
   const rq5 = await pp('submit-booking', trav({ contactEmail: 'g@example.com' })); const b5 = (await call('bk_overview')).d.bookings.find(b => b.ref === rq5.d.ref)
   ok((await call('bk_status', { method: 'POST', body: { id: b5.id, status: 'completed', valueInr: 30 } })).d.commissionInr === 30, 'bookings: a flat fee never exceeds the booking value')
+  }
+
+
+  // ---------------------------------------------------------------- stays, rides and Razorpay payments
+  {
+    const fullEnq = { cap: 'enquiries', checklist: { terms: true, grievance: true, agreements: true, retention: true }, evidence: { grievanceOfficer: 'Asha, stay@example.com' } }
+    const hmac = (k, d) => crypto.createHmac('sha256', k).update(d).digest('hex')
+    const trk = async (url) => (await fetch('http://127.0.0.1:18911/api/' + url)).json()
+    const jp = async (ep, body) => { const r = await fetch('http://127.0.0.1:18911/api/' + ep, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }); return { s: r.status, d: await r.json().catch(() => ({})) } }
+    const stay2 = await addProvider({ type: 'stay', businessName: 'Lake View Villa', credentialKind: 'Kerala Tourism homestay registration', credentialNumber: 'KT-H-2' })
+    const cab2 = await addProvider({ type: 'transport', businessName: 'Kollam Cabs A', credentialKind: '', credentialNumber: '' }, { phone: true })
+    const cab3 = await addProvider({ type: 'transport', businessName: 'Kollam Cabs B', credentialKind: '', credentialNumber: '' }, { phone: true })
+    const ag = { partner: true, agreementOn: '2026-11-01', registrationChecked: true }
+    for (const x of [stay2, cab2, cab3]) await call('bk_partner_set', { method: 'POST', body: { id: x.id, ...ag } })
+    // open every capability: the approvals are recorded (the owner's statement), then the switches
+    await call('bk_cap_save', { method: 'POST', body: fullEnq }); await call('bk_cap_set', { method: 'POST', body: { cap: 'enquiries', enabled: true } })
+    await call('bk_cap_save', { method: 'POST', body: { cap: 'commission', checklist: { gst: true, invoicing: true, agreement: true }, evidence: { gstin: '32ABCDE1234F1Z5' } } }); await call('bk_cap_set', { method: 'POST', body: { cap: 'commission', enabled: true } })
+    await call('bk_cap_save', { method: 'POST', body: { cap: 'stays', checklist: { registration: true, pricing: true, policy: true }, evidence: { stayPolicyNote: 'terms page' } } })
+    await call('bk_cap_save', { method: 'POST', body: { cap: 'rides', checklist: { licence: true, drivers: true, fares: true }, evidence: { aggregatorLicence: 'LIC-1 State RTO' } } })
+    await call('bk_cap_save', { method: 'POST', body: { cap: 'payments', checklist: { aggregator: true, ca: true, refunds: true, legal: true }, evidence: { aggregatorName: 'Razorpay MID9' } } })
+    ok((await call('bk_cap_set', { method: 'POST', body: { cap: 'stays', enabled: true } })).s === 200 && (await call('bk_cap_set', { method: 'POST', body: { cap: 'rides', enabled: true } })).s === 200, 'commerce: stays and rides switch on once their approvals are recorded')
+    ok((await call('bk_cap_set', { method: 'POST', body: { cap: 'payments', enabled: true } })).s === 200, 'commerce: payments switch on when the keys are in vh-config.php, enquiries and commission are on, and approvals are recorded')
+    ok((await call('bk_settings', { method: 'POST', body: { feeMode: 'percent', feeValue: 2, gstRate: 18, tcsPercent: 1, tdsPercent: 0.1, rideRates: { car: { baseInr: 50, perKmInr: 14, minInr: 150, nightPct: 20 } } } })).s === 200, 'commerce: fee, GST, TCS, TDS and the ride rate card are saved')
+    ok((await call('bk_inventory_set', { method: 'POST', body: { id: stay2.id, razorpayAccountId: 'bad' } })).s === 400, 'commerce: a malformed Razorpay account ID is rejected')
+    const invOk = await call('bk_inventory_set', { method: 'POST', body: { id: stay2.id, razorpayAccountId: 'acc_TestAccount01', rooms: [{ id: 'deluxe', name: 'Deluxe', capacity: 2, count: 1, rateInr: 3000 }], blocked: { deluxe: ['2099-01-05'] } } })
+    await call('bk_inventory_set', { method: 'POST', body: { id: cab2.id, razorpayAccountId: 'acc_CabAccount0A', vehicles: ['car'] } }); await call('bk_inventory_set', { method: 'POST', body: { id: cab3.id, razorpayAccountId: 'acc_CabAccount0B', vehicles: ['car'] } })
+    ok(invOk.s === 200, 'commerce: rooms, rates, blocked dates and account IDs are saved for a partner')
+    const st = await trk('booking-status.php')
+    ok(st.caps.stays && st.caps.rides && st.caps.payments && st.stays.some(x => x.rooms?.[0]?.rateInr === 3000) && st.rides.points.length > 10 && st.rides.vehicles.length === 1 && !JSON.stringify(st).includes('acc_') && !JSON.stringify(st).includes('@example.com'), 'commerce: the public status shows rooms, ride points and vehicles but no account IDs or contacts')
+
+    // ---- stay with online payment
+    const day = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10)
+    const sb = (o = {}) => ({ providerId: stay2.id, roomId: 'deluxe', checkIn: day(20), checkOut: day(22), guests: '2', name: 'Anil', contactEmail: 'anil@example.com', contactPhone: '+91 98470 22222', consent: '1', message: '', ...o })
+    ok((await pp('submit-booking', {}).catch(() => ({ s: 0 }))).s !== 500, 'commerce: (smoke) public endpoints respond')
+    ok((await pp('stay-book', sb({ guests: '3' }))).s === 409 && (await pp('stay-book', sb({ checkIn: '2099-01-04', checkOut: '2099-01-06' }))).s === 409 && (await pp('stay-book', sb({ roomId: 'nope' }))).s === 409 && (await pp('stay-book', sb({ consent: '' }))).s === 422, 'commerce: stay rejects too many guests, blocked dates, an unknown room and missing consent')
+    const s1 = await pp('stay-book', sb()); const ref = s1.d.ref
+    ok(s1.s === 200 && s1.d.mode === 'online' && s1.d.amountInr === 6000 && s1.d.nights === 2 && s1.d.payToken && s1.d.holdMinutes === 30, 'commerce: a stay is priced from the room rate (2 nights x 3000 = 6000) and held for payment')
+    ok((await pp('stay-book', sb({ name: 'Other', contactEmail: 'other@example.com' }))).s === 409, 'commerce: the held room cannot be booked by a second traveller')
+    ok((await jp('pay-create.php', { ref, token: 'wrong', amount: 1 })).s === 404, 'commerce: a wrong payment token is refused')
+    const pc = await jp('pay-create.php', { ref, token: s1.d.payToken, amount: 1 })
+    ok(pc.s === 200 && pc.d.amountPaise === 600000 && pc.d.keyId === 'rzp_test_key' && !JSON.stringify(pc.d).includes('sekret') && rzCalls.find(c => c.path === '/v1/orders' && c.b.amount === 600000 && c.auth?.startsWith('Basic ')), 'commerce: the order amount comes from our record (600000 paise), not from the browser')
+    ok((await jp('pay-create.php', { ref, token: s1.d.payToken })).d.orderId === pc.d.orderId && rzCalls.filter(c => c.path === '/v1/orders').length === 1, 'commerce: asking again returns the same order, no duplicate')
+    ok((await jp('pay-verify.php', { ref, token: s1.d.payToken, razorpay_order_id: pc.d.orderId, razorpay_payment_id: 'pay_1', razorpay_signature: 'f'.repeat(64) })).s === 400 && !rzCalls.some(c => c.path.includes('/transfers')), 'commerce: a bad payment signature does not mark anything paid')
+    const pv = await jp('pay-verify.php', { ref, token: s1.d.payToken, razorpay_order_id: pc.d.orderId, razorpay_payment_id: 'pay_1', razorpay_signature: hmac('sekret', pc.d.orderId + '|pay_1') })
+    const tr = rzCalls.find(c => c.path === '/v1/payments/pay_1/transfers')
+    ok(pv.s === 200 && pv.d.paid && pv.d.status === 'confirmed', 'commerce: a valid signature marks the stay paid and confirmed')
+    ok(tr && tr.b.transfers[0].account === 'acc_TestAccount01' && tr.b.transfers[0].on_hold === 1 && tr.b.transfers[0].amount === 579240, 'commerce: the partner share is a HELD transfer: 6000 - fee 120 - GST 21.60 - TCS 60 - TDS 6 = 5792.40')
+    const wh = (ev, id) => fetch('http://127.0.0.1:18911/api/razorpay-webhook.php', { method: 'POST', headers: { 'x-razorpay-signature': hmac('whsec', JSON.stringify(ev)), ...(id ? { 'x-razorpay-event-id': id } : {}) }, body: JSON.stringify(ev) })
+    const evCap = { event: 'payment.captured', payload: { payment: { entity: { id: 'pay_1', order_id: pc.d.orderId, amount: 600000, notes: { ref } } } } }
+    ok((await fetch('http://127.0.0.1:18911/api/razorpay-webhook.php', { method: 'POST', headers: { 'x-razorpay-signature': 'bad' }, body: JSON.stringify(evCap) })).status === 400, 'commerce: a webhook with a bad signature is refused')
+    await wh(evCap, 'evt_1'); const dup = await (await wh(evCap, 'evt_1')).json()
+    ok(dup.duplicate === true && rzCalls.filter(c => c.path.includes('/transfers')).length === 1, 'commerce: a replayed webhook does nothing (one transfer only)')
+    // webhook alone can confirm a payment the browser never reported
+    const s2 = await pp('stay-book', sb({ checkIn: day(30), checkOut: day(31), contactEmail: 'w@example.com' })); const pc2 = await jp('pay-create.php', { ref: s2.d.ref, token: s2.d.payToken })
+    await wh({ event: 'payment.captured', payload: { payment: { entity: { id: 'pay_2', order_id: pc2.d.orderId, amount: 1, notes: { ref: s2.d.ref } } } } }, 'evt_2')
+    ok((await jp('pay-create.php', { ref: s2.d.ref, token: s2.d.payToken })).d.paid !== true, 'commerce: a webhook with the wrong amount is ignored')
+    await wh({ event: 'payment.captured', payload: { payment: { entity: { id: 'pay_2', order_id: pc2.d.orderId, amount: 300000, notes: { ref: s2.d.ref } } } } }, 'evt_3')
+    ok((await jp('pay-create.php', { ref: s2.d.ref, token: s2.d.payToken })).d.paid === true, 'commerce: the webhook alone confirms a payment when the tab was closed')
+    const all = (await call('bk_overview')).d.bookings; const bk1 = all.find(b => b.ref === ref)
+    ok(bk1.payment.status === 'paid' && bk1.feeInr === 120 && bk1.gstInr === 21.6 && bk1.partnerShareInr === 5792.4 && bk1.payTokenHash === undefined, 'commerce: the admin sees the money split, never the token')
+    // refunds and payout release
+    const r1 = await call('bk_pay_action', { method: 'POST', body: { id: bk1.id, action: 'refund', amountInr: 1000 } }); const rf = rzCalls.find(c => c.path === '/v1/payments/pay_1/refund')
+    ok(r1.s === 200 && rf.b.amount === 100000 && rf.b.reverse_all === 1, 'commerce: a part refund is sent with the partner transfer reversed')
+    ok((await call('bk_pay_action', { method: 'POST', body: { id: bk1.id, action: 'refund', amountInr: 99999 } })).s === 422, 'commerce: a refund above what is left is refused')
+    ok((await call('bk_pay_action', { method: 'POST', body: { id: bk1.id, action: 'refund' } })).s === 200 && (await call('bk_overview')).d.bookings.find(b => b.ref === ref).status === 'cancelled', 'commerce: refunding the rest cancels the booking')
+    const bk2 = (await call('bk_overview')).d.bookings.find(b => b.ref === s2.d.ref)
+    ok((await call('bk_pay_action', { method: 'POST', body: { id: bk2.id, action: 'release' } })).s === 200 && rzCalls.some(c => c.method === 'PATCH' && c.b.on_hold === 0), 'commerce: the held payout is released on request')
+    // fee is a flat fee for this partner? keep default; completed online booking keeps its fee
+    const done = await call('bk_status', { method: 'POST', body: { id: bk2.id, status: 'completed' } })
+    ok(done.s === 200, 'commerce: an online-paid booking completes without re-entering a value')
+
+    // ---- rides
+    const q = await trk('ride-quote.php?pickup=karunagappally&drop=trv-airport&vehicle=car&when=' + encodeURIComponent(new Date(Date.now() + 2 * 864e5).toISOString().replace(/T\d\d/, 'T06')))
+    ok(q.ok && q.km > 70 && q.km < 130 && q.partners === 2 && Math.abs(q.fareInr - Math.max(150, 50 + q.km * 14)) < 0.02, `commerce: fare estimate from the rate card and distance (${q.km} km, Rs ${q.fareInr}, 2 partners)`)
+    const night = await trk('ride-quote.php?pickup=karunagappally&drop=trv-airport&vehicle=car&when=' + encodeURIComponent('2099-01-01T23:30:00+05:30'))
+    ok(Math.abs(night.fareInr - q.fareInr * 1.2) < 0.05 || night.fareInr > q.fareInr, 'commerce: the night surcharge applies from 10pm to 5am')
+    const nL = await trk('ride-quote.php?pickup=karunagappally&drop=trv-airport&vehicle=car&when=2099-01-01T23:30'), dL = await trk('ride-quote.php?pickup=karunagappally&drop=trv-airport&vehicle=car&when=2099-01-01T12:00')
+    ok(Math.abs(nL.fareInr - dL.fareInr * 1.2) < 0.05, 'commerce: a pickup time typed without a time zone is read as India time (23:30 gets the night surcharge, 12:00 does not)')
+    const when = new Date(Date.now() + 2 * 864e5).toISOString().slice(0, 16)
+    const rb = (o = {}) => ({ pickup: 'karunagappally', drop: 'trv-airport', vehicle: 'car', when, guests: '2', name: 'Divya', contactEmail: 'divya@example.com', contactPhone: '+91 98470 33333', consent: '1', ...o })
+    ok((await pp('ride-book', rb({ guests: '9' }))).s === 422 && (await pp('ride-book', rb({ pickup: 'amritapuri', drop: 'amritapuri' }))).s === 422 && (await pp('ride-book', rb({ when: '2020-01-01T10:00' }))).s === 422 && (await pp('ride-book', rb({ vehicle: 'suv' }))).s === 422, 'commerce: ride rejects too many passengers, same point, a past time and an unpriced vehicle')
+    const rd = await pp('ride-book', rb()); const rref = rd.d.ref
+    ok(rd.s === 200 && rd.d.mode === 'online' && rd.d.amountInr > 100 && rd.d.payToken, 'commerce: a ride is priced and waits for payment before any driver is asked')
+    ok(!outbox().some(m => /Ride request/.test(m.subject) && m.body.includes(rref)), 'commerce: no driver is contacted before payment')
+    const rpc = await jp('pay-create.php', { ref: rref, token: rd.d.payToken })
+    await jp('pay-verify.php', { ref: rref, token: rd.d.payToken, razorpay_order_id: rpc.d.orderId, razorpay_payment_id: 'pay_r1', razorpay_signature: hmac('sekret', rpc.d.orderId + '|pay_r1') })
+    const reqMails = outbox().filter(m => /Ride request/.test(m.subject) && m.body.includes(rref))
+    ok(reqMails.length === 2, 'commerce: after payment the ride goes to both partners that run a car in Kollam')
+    const link = m => m.body.match(/#id=([\d]{8}-[0-9a-f]{8})&p=([\d]{8}-[0-9a-f]{8})&t=([0-9a-f]{48})/)
+    const mA = reqMails.find(m => m.to === cab2.f.email.toLowerCase()), mB = reqMails.find(m => m.to === cab3.f.email.toLowerCase()); const LA = link(mA), LB = link(mB)
+    const view = await trk(`ride-claim.php?id=${LA[1]}&p=${LA[2]}&t=${LA[3]}`)
+    ok(view.ride.pickup.includes('Karunagappally') && view.ride.online === true && (await trk(`ride-claim.php?id=${LA[1]}&p=${LA[2]}&t=bad`)).ok === false, 'commerce: the driver link shows the ride; a wrong token shows nothing')
+    ok((await jp('ride-claim.php', { id: LA[1], p: LA[2], t: LA[3], driverName: 'Raju' })).s === 422, 'commerce: claiming needs driver name, phone and vehicle number')
+    const cl = await jp('ride-claim.php', { id: LA[1], p: LA[2], t: LA[3], driverName: 'Raju', driverPhone: '+91 98470 44444', vehicleNo: 'KL 02 AB 1234' })
+    ok(cl.s === 200 && (await jp('ride-claim.php', { id: LB[1], p: LB[2], t: LB[3], driverName: 'Sunil', driverPhone: '+91 98470 55555', vehicleNo: 'KL 02 CD 5678' })).s === 409, 'commerce: the first driver gets the ride and the second is told it is taken')
+    const code = outbox().filter(m => m.to === 'divya@example.com' && /driver/i.test(m.subject)).pop()?.body.match(/Trip code: (\d{4})/)?.[1]
+    const stt = await trk(`ride-status.php?ref=${rref}&t=${rd.d.payToken}`)
+    ok(code && stt.status === 'assigned' && stt.driver.name === 'Raju' && stt.tripCode === code && rzCalls.some(c => c.path === '/v1/payments/pay_r1/transfers' && c.b.transfers[0].account === 'acc_CabAccount0A'), 'commerce: the traveller gets driver details and a trip code, and the payout transfer goes to the claiming partner')
+    ok((await trk(`ride-status.php?ref=${rref}&t=wrong`)).ok === false, 'commerce: ride status needs the private token')
+    ok((await jp('ride-trip.php', { id: LA[1], p: LA[2], t: LA[3], action: 'start', otp: '0000' })).s === 422 && (await jp('ride-trip.php', { id: LA[1], p: LA[2], t: LA[3], action: 'complete' })).s === 422, 'commerce: a wrong trip code cannot start the trip, and a trip cannot complete before it starts')
+    ok((await jp('ride-trip.php', { id: LB[1], p: LB[2], t: LB[3], action: 'start', otp: code })).s === 404, 'commerce: only the driver who accepted can run the trip')
+    ok((await jp('ride-trip.php', { id: LA[1], p: LA[2], t: LA[3], action: 'start', otp: code })).s === 200, 'commerce: the trip starts with the right trip code')
+    const rel0 = rzCalls.filter(c => c.method === 'PATCH').length; const fin = await jp('ride-trip.php', { id: LA[1], p: LA[2], t: LA[3], action: 'complete' })
+    const rbk = (await call('bk_overview')).d.bookings.find(b => b.ref === rref)
+    ok(fin.s === 200 && rzCalls.filter(c => c.method === 'PATCH').length === rel0 + 1 && rbk.status === 'completed' && rbk.contactEmail === '' && rbk.payment.payoutHeld === false, 'commerce: completing the trip releases the held payout and deletes the traveller details')
+
+    // ---- pay on site when payments are off
+    ok((await call('bk_cap_set', { method: 'POST', body: { cap: 'payments', enabled: false } })).s === 200, 'commerce: payments can be switched off')
+    const ro = await pp('ride-book', rb({ contactEmail: 'onsite@example.com' }))
+    ok(ro.d.mode === 'onsite' && ro.d.partnersTold === 2 && outbox().filter(m => /Ride request/.test(m.subject) && m.body.includes(ro.d.ref)).length === 2, 'commerce: with payments off, a ride goes straight to drivers and is paid to the driver')
+    const so = await pp('stay-book', sb({ checkIn: day(40), checkOut: day(41), contactEmail: 'so@example.com' }))
+    ok(so.d.mode === 'onsite' && !so.d.payToken, 'commerce: with payments off, a stay becomes a request paid on site')
+    ok((await jp('pay-create.php', { ref, token: s1.d.payToken })).s === 403 && (await call('bk_pay_action', { method: 'POST', body: { id: bk1.id, action: 'refund' } })).s === 403, 'commerce: payment endpoints and refunds are locked when payments are off')
   }
 
   ok(/Require all denied/.test(fs.readFileSync(path.join(priv, '.htaccess'), 'utf8')) && /Deny from all/.test(fs.readFileSync(path.join(priv, '.htaccess'), 'utf8')), 'the protected folder public/api/private denies every web request (Apache 2.4 and 2.2 syntax)')
@@ -443,6 +570,6 @@ try {
     ok(locked.s === 429, 'login locks out after repeated failures (even with the right password)')
   }
   if (process.env.ADMIN_HOLD) { console.log('holding on http://127.0.0.1:18911 (Ctrl-C to stop)'); await new Promise(() => {}) }
-} finally { php.kill(); gh.close(); fs.rmSync(tmp, { recursive: true, force: true }) }
+} finally { php.kill(); gh.close(); rz.close(); fs.rmSync(tmp, { recursive: true, force: true }) }
 if (fails) { console.error(`\n✖ ${fails} admin test(s) failed`); process.exit(1) }
 console.log('\n✔ admin API tests passed')
