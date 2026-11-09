@@ -1,252 +1,255 @@
 {
-  "slug": "chottanikkara-bhagavathy-temple",
-  "category": "temples",
-  "name": "Chottanikkara Bhagavathy Temple",
-  "malayalamName": "ചോറ്റാനിക്കര ഭഗവതി ക്ഷേത്രം",
-  "district": "Ernakulam",
-  "tagline": "Major Devi shrine near Kochi, famed for its living ritual calendar and traditional healing (Keezhukkavu Guruthi).",
-  "summary": "Chottanikkara Bhagavathy Temple, Ernakulam — a major Devi shrine near Kochi known for its self‑manifested laterite idol, daily threefold deity forms and a living healing/exorcism ritual tradition.",
-  "description": [
-    "Chottanikkara is a working Hindu temple complex in Ernakulam district, southeast of Kochi. The main sanctum (Melekkavu) houses the Goddess worshipped as Rajarajeswari; ritual life is active throughout the day and year, and the complex includes the lower Keezhukkavu (Bhadrakali) shrine, temple tank and pilgrim facilities.",
-    "Devotees visit for daily pujas, bhajans and the Keezhukkavu Guruthi (the ritual most closely associated with the temple’s healing traditions), and for seasonal festivals such as Makam Thozhal and Navaratri. The temple is administered by the Cochin Devaswom Board and operates official counters and an online booking portal for vazhipadu/poojas."
-  ],
-  "history": {
-    "significance": "One of central Kerala’s best‑known Devi shrines; locally famed for rites believed to relieve severe mental distress and for a continuously active festival and puja calendar.",
-    "timeline": [
-      {
-        "period": "By tradition (undated)",
-        "event": "Local legends credit early discovery and worship of the goddess to devotional figures such as Vilwamangalam Swamiyar and to a tribal herdsman story that yielded the sacred stones."
-      },
-      {
-        "period": "10th century CE (as reported)",
-        "event": "Kerala Tourism states the temple 'dates back to the 10th century CE' as a conventional historical estimate for its origins."
-      },
-      {
-        "period": "1950",
-        "event": "The Cochin Devaswom Board becomes the statutory body administering many Cochin‑area temples; Chottanikkara appears among temples under its management."
-      },
-      {
-        "period": "Contemporary",
-        "event": "The temple maintains a public annual festival calendar (Makam Thozhal / Ulsavam, Navaratri etc.) and posts notices and pooja/booking information on its official website."
-      }
+    "slug": "chottanikkara-bhagavathy-temple",
+    "category": "temples",
+    "name": "Chottanikkara Bhagavathy Temple",
+    "malayalamName": "ചോറ്റാനിക്കര ഭഗവതി ക്ഷേത്രം",
+    "district": "Ernakulam",
+    "tagline": "Major Devi shrine near Kochi, famed for its living ritual calendar and traditional healing (Keezhukkavu Guruthi).",
+    "summary": "Chottanikkara Bhagavathy Temple, Ernakulam — a major Devi shrine near Kochi known for its self‑manifested laterite idol, daily threefold deity forms and a living healing/exorcism ritual tradition.",
+    "description": [
+        "Chottanikkara is a working Hindu temple complex in Ernakulam district, southeast of Kochi. The main sanctum (Melekkavu) houses the Goddess worshipped as Rajarajeswari; ritual life is active throughout the day and year, and the complex includes the lower Keezhukkavu (Bhadrakali) shrine, temple tank and pilgrim facilities.",
+        "Devotees visit for daily pujas, bhajans and the Keezhukkavu Guruthi (the ritual most closely associated with the temple’s healing traditions), and for seasonal festivals such as Makam Thozhal and Navaratri. The temple is administered by the Cochin Devaswom Board and operates official counters and an online booking portal for vazhipadu/poojas."
     ],
-    "keyFacts": [
-      "Administration: Chottanikkara Temple is administered by the Cochin Devaswom Board.",
-      "Deity and daily forms: The Goddess is worshipped as Saraswati in the morning, Lakshmi at noon and Durga/Bhadrakali in the evening.",
-      "Principal image: The central idol is described in temple sources as a self‑manifested laterite stone (often referred to in accounts as a Rudrāksha Śilā).",
-      "Keezhukkavu (lower shrine) and the nightly Valiya Guruthi are central to the temple’s local healing/exorcism traditions."
-    ]
-  },
-  "folklore": {
-    "title": "The Kannappan story and the discovery of the stones",
-    "story": [
-      "By local tradition, a herdsman (often named Kannappan in retellings) lived in the forest where the temple now stands. After incidents involving his cattle and family, two sacred stones are said to appear at the site.",
-      "A saint or seer recognises the stones as the Goddess and Narayana; later Vilwamangalam Swamiyar is traditionally linked with selecting and consecrating the shrine. A second idol and the Keezhukkavu shrine acquire prominence in local healing rites.",
-      "The Makam Thozhal tradition holds that on the Makam nakshatra day each year the goddess appears in full regalia before devotees; this annual appearance is celebrated as part of the temple’s ulsavam."
+    "history": {
+        "significance": "One of central Kerala’s best‑known Devi shrines; locally famed for rites believed to relieve severe mental distress and for a continuously active festival and puja calendar.",
+        "timeline": [
+            {
+                "period": "By tradition (undated)",
+                "event": "Local legends credit early discovery and worship of the goddess to devotional figures such as Vilwamangalam Swamiyar and to a tribal herdsman story that yielded the sacred stones."
+            },
+            {
+                "period": "10th century CE (as reported)",
+                "event": "Kerala Tourism states the temple 'dates back to the 10th century CE' as a conventional historical estimate for its origins."
+            },
+            {
+                "period": "1950",
+                "event": "The Cochin Devaswom Board becomes the statutory body administering many Cochin‑area temples; Chottanikkara appears among temples under its management."
+            },
+            {
+                "period": "Contemporary",
+                "event": "The temple maintains a public annual festival calendar (Makam Thozhal / Ulsavam, Navaratri etc.) and posts notices and pooja/booking information on its official website."
+            }
+        ],
+        "keyFacts": [
+            "Administration: Chottanikkara Temple is administered by the Cochin Devaswom Board.",
+            "Deity and daily forms: The Goddess is worshipped as Saraswati in the morning, Lakshmi at noon and Durga/Bhadrakali in the evening.",
+            "Principal image: The central idol is described in temple sources as a self‑manifested laterite stone (often referred to in accounts as a Rudrāksha Śilā).",
+            "Keezhukkavu (lower shrine) and the nightly Valiya Guruthi are central to the temple’s local healing/exorcism traditions."
+        ]
+    },
+    "folklore": {
+        "title": "The Kannappan story and the discovery of the stones",
+        "story": [
+            "By local tradition, a herdsman (often named Kannappan in retellings) lived in the forest where the temple now stands. After incidents involving his cattle and family, two sacred stones are said to appear at the site.",
+            "A saint or seer recognises the stones as the Goddess and Narayana; later Vilwamangalam Swamiyar is traditionally linked with selecting and consecrating the shrine. A second idol and the Keezhukkavu shrine acquire prominence in local healing rites.",
+            "The Makam Thozhal tradition holds that on the Makam nakshatra day each year the goddess appears in full regalia before devotees; this annual appearance is celebrated as part of the temple’s ulsavam."
+        ],
+        "note": "Versions of the origin tale vary in local retellings and printed accounts; these paragraphs present the commonly cited traditional narrative rather than verifiable historical fact. Sources include the temple’s own history notes and visitor guides."
+    },
+    "spiritual": {
+        "summary": "Visitors come for darshan, bhajanam and the temple’s living ritual calendar; many devotees seek blessings and relief through rites at the Keezhukkavu (Guruthi). The temple’s practices are presented by local authorities and guides as devotional and traditional.",
+        "experiences": [
+            {
+                "title": "Attend the Keezhukkavu Guruthi (Valiya Guruthi)",
+                "text": "Observe the evening Guruthi ritual at the lower Bhadrakali shrine from public areas. The rite is associated in local tradition with healing and the dispelling of evil influences; follow temple staff and priest instructions and do not photograph ritual participants without permission. (See sources on ritual practice and visitor guidance.)"
+            },
+            {
+                "title": "Morning Nirmalya darshan and Mandapathil Paattu",
+                "text": "Many devotees attend early morning prayers when the deity is worshipped as Saraswati; devotional singing (Mandapathil Paattu) and bhajanam are regular devotional offerings. Attend quietly and join devotional singing only where invited."
+            },
+            {
+                "title": "Festival darshan (Makam Thozhal / Ulsavam)",
+                "text": "Witnessing festival processions, ezhunnallippu and the Makam Thozhal darshan offers insight into the temple’s ritual calendar; these events draw large crowds—plan for crowd management and confirm dates before travel."
+            }
+        ],
+        "bestFor": "Devotees of the Devi tradition, visitors interested in Kerala temple ritual life and festival culture, and those researching traditional healing/exorcism practices in a devotional setting.",
+        "mindfulTips": [
+            "Respect ritual privacy: do not photograph or intrude on people participating in healing rites or Guruthi; follow priests’ and staff directions. (sensitive)",
+            "Follow dress and entry rules for inner enclosures; ask at the counters if you are unsure. (sensitive)",
+            "Use the temple’s official vazhipadu counters or the online booking portal for paid offerings; confirm availability and fees before paying. (sensitive)",
+            "If accompanying someone seeking ritual healing, follow temple staff guidance and avoid physical interference or confrontational behaviour. (sensitive)"
+        ]
+    },
+    "highlights": [
+        "Melekkavu (upper/main sanctum) — the Rajarajeswari sanctum where the deity is worshipped through three daily forms.",
+        "Keezhukkavu (lower Bhadrakali shrine) — focal point for the Guruthi ritual and the local healing tradition.",
+        "Makam Thozhal and the annual Ulsavam — major festival events (Kumbham; dates published annually by the temple).",
+        "Temple tank and the old pala tree — traditional features of the complex, linked in local accounts to pilgrims and healing lore."
     ],
-    "note": "Versions of the origin tale vary in local retellings and printed accounts; these paragraphs present the commonly cited traditional narrative rather than verifiable historical fact. Sources include the temple’s own history notes and visitor guides."
-  },
-  "spiritual": {
-    "summary": "Visitors come for darshan, bhajanam and the temple’s living ritual calendar; many devotees seek blessings and relief through rites at the Keezhukkavu (Guruthi). The temple’s practices are presented by local authorities and guides as devotional and traditional.",
-    "experiences": [
-      {
-        "title": "Attend the Keezhukkavu Guruthi (Valiya Guruthi)",
-        "text": "Observe the evening Guruthi ritual at the lower Bhadrakali shrine from public areas. The rite is associated in local tradition with healing and the dispelling of evil influences; follow temple staff and priest instructions and do not photograph ritual participants without permission. (See sources on ritual practice and visitor guidance.)"
-      },
-      {
-        "title": "Morning Nirmalya darshan and Mandapathil Paattu",
-        "text": "Many devotees attend early morning prayers when the deity is worshipped as Saraswati; devotional singing (Mandapathil Paattu) and bhajanam are regular devotional offerings. Attend quietly and join devotional singing only where invited."
-      },
-      {
-        "title": "Festival darshan (Makam Thozhal / Ulsavam)",
-        "text": "Witnessing festival processions, ezhunnallippu and the Makam Thozhal darshan offers insight into the temple’s ritual calendar; these events draw large crowds—plan for crowd management and confirm dates before travel."
-      }
+    "visitorInfo": {
+        "bestTime": "October–March for cooler, drier weather and the main festival season; Makam Thozhal (in Kumbham, roughly Feb–Mar) and Navaratri are the busiest. Confirm festival dates with the temple before travelling.",
+        "howToReach": "Chottanikkara is southeast of central Kochi and reachable by road from Ernakulam, Tripunithura and Kochi airport. Frequent local buses and taxis connect Tripunithura / Ernakulam to Chottanikkara; nearest rail halts and the airport require a short road transfer.",
+        "etiquette": [
+            "Dress according to Kerala temple custom: many inner sanctum rules ask men to wear mundu/dhoti (often without a shirt) and women to wear saree, set‑mundu or other modest traditional dress; confirm at the temple counter. (sensitive)",
+            "Photography is restricted inside the sanctum and during many rituals; always ask permission and follow signage and staff directions.",
+            "Do not interrupt or attempt to photograph participants during Guruthi or healing ceremonies; offer respectful distance.",
+            "Use official temple vazhipadu counters or the temple’s booking portal for paid offerings; beware of unlicensed intermediaries. (sensitive)"
+        ],
+        "duration": "Plan 1–2 hours for a standard visit; allow more time during festivals or if you attend Guruthi or other special rites."
+    },
+    "travel": {
+        "byTrain": [
+            "Tripunithura railway station — station code TRTR; commonly used for longer‑distance visitors to Chottanikkara (Tripunithura is commonly cited as roughly 6–7 km from Chottanikkara in tourism materials). (Source: Tripunithura station page and Kerala Tourism festival PDF.)",
+            "Chottanikkara Road railway station — station code KFE; a nearer local halt served by selected passenger/local trains. Confirm current train services before travel. (Source: Chottanikkara Road station page.)"
+        ],
+        "byBus": [
+            "KSRTC and private buses run from Ernakulam and Tripunithura to Chottanikkara; local bus stops serve the temple precinct. Confirm schedules with KSRTC or local counters. (Source: Kerala Tourism and local visitor guides.)"
+        ],
+        "byAir": [
+            "Cochin International Airport (COK, Nedumbassery) — the nearest airport; Kerala Tourism materials list an approximate road distance of about 36.6 km. Travel time varies with traffic; confirm route in advance."
+        ]
+    },
+    "heritage": {
+        "localName": "Chottanikkara Bhagavathy Temple (ചോറ്റാനിക്കര ഭഗവതി ക്ഷേത്രം)",
+        "materials": "Principal idol described as a self‑manifested laterite stone (Rudrāksha Śilā); traditional Kerala temple construction uses wood, stone and tiled roofs.",
+        "whereToSee": [
+            {
+                "name": "Chottanikkara Bhagavathy Temple (Melekkavu & Keezhukkavu)",
+                "district": "Ernakulam",
+                "kind": "temple",
+                "note": "The working temple complex with upper and lower shrines, tank and festival spaces; see official site for puja and darshan details.",
+                "url": "https://www.chottanikkarabhagavathy.org/"
+            }
+        ],
+        "whereToBuy": [
+            {
+                "name": "Temple vazhipadu / pooja counters (on‑site)",
+                "district": "Ernakulam",
+                "kind": "other",
+                "note": "Official counters inside the complex handle offerings and prasadam; availability varies by time of day and festival.",
+                "url": "https://www.chottanikkarabhagavathy.org/"
+            },
+            {
+                "name": "Chottanikkara online vazhipadu portal",
+                "district": "Ernakulam",
+                "kind": "online",
+                "note": "The temple operates an official booking portal for many poojas and offerings; use this or the on‑site counters rather than unlicensed agents.",
+                "url": "https://booking.chottanikkarabhagavathy.org/"
+            },
+            {
+                "name": "Cochin Devaswom Board (administration / information)",
+                "district": "Ernakulam (head office serves Cochin area)",
+                "kind": "other",
+                "note": "CDB lists temples under its management and provides official guidance and notices.",
+                "url": "https://cochindevaswomboard.org/"
+            }
+        ],
+        "experiences": [
+            {
+                "name": "Keezhukkavu Guruthi (nightly ritual)",
+                "district": "Ernakulam",
+                "kind": "temple-ritual",
+                "note": "A public ritual associated with the temple’s healing tradition; observe respectfully from designated areas. See temple and visitor guides for notes.",
+                "url": "https://devalayam.app/temples/chottanikkara-bhagavathy-temple"
+            },
+            {
+                "name": "Makam Thozhal / Ulsavam (annual festival)",
+                "district": "Ernakulam",
+                "kind": "temple-festival",
+                "note": "Annual Makam darshan in Kumbham draws large pilgrim crowds; the temple announces festival dates and programme on its official site.",
+                "url": "https://www.chottanikkarabhagavathy.org/"
+            },
+            {
+                "name": "Daily puja cycle, Nirmalya darshan and Mandapathil Paattu",
+                "district": "Ernakulam",
+                "kind": "temple-ritual",
+                "note": "Regular devotional services and singing are part of the temple’s daily routine; check the temple site for puja timings.",
+                "url": "https://www.chottanikkarabhagavathy.org/"
+            }
+        ],
+        "buyingTips": [
+            "Use the temple’s official counters or the official online portal for vazhipadu/poojas; request written/printed confirmation of bookings and fees.",
+            "Prasadam and specific offerings can be limited during peak times; check availability at the counter or via the portal before you travel.",
+            "Avoid unlicensed intermediaries who offer guaranteed slots; the temple’s online portal and on‑site counters are the authoritative sources."
+        ]
+    },
+    "officialLinks": [
+        {
+            "label": "Chochin Devaswom Board — official site",
+            "url": "https://cochindevaswomboard.org/"
+        },
+        {
+            "label": "Kerala Tourism — Chottanikkara page",
+            "url": "https://www.keralatourism.org/temples/ernakulam/chottanikkara"
+        }
     ],
-    "bestFor": "Devotees of the Devi tradition, visitors interested in Kerala temple ritual life and festival culture, and those researching traditional healing/exorcism practices in a devotional setting.",
-    "mindfulTips": [
-      "Respect ritual privacy: do not photograph or intrude on people participating in healing rites or Guruthi; follow priests’ and staff directions. (sensitive)",
-      "Follow dress and entry rules for inner enclosures; ask at the counters if you are unsure. (sensitive)",
-      "Use the temple’s official vazhipadu counters or the online booking portal for paid offerings; confirm availability and fees before paying. (sensitive)",
-      "If accompanying someone seeking ritual healing, follow temple staff guidance and avoid physical interference or confrontational behaviour. (sensitive)"
-    ]
-  },
-  "highlights": [
-    "Melekkavu (upper/main sanctum) — the Rajarajeswari sanctum where the deity is worshipped through three daily forms.",
-    "Keezhukkavu (lower Bhadrakali shrine) — focal point for the Guruthi ritual and the local healing tradition.",
-    "Makam Thozhal and the annual Ulsavam — major festival events (Kumbham; dates published annually by the temple).",
-    "Temple tank and the old pala tree — traditional features of the complex, linked in local accounts to pilgrims and healing lore."
-  ],
-  "visitorInfo": {
-    "bestTime": "October–March for cooler, drier weather and the main festival season; Makam Thozhal (in Kumbham, roughly Feb–Mar) and Navaratri are the busiest. Confirm festival dates with the temple before travelling.",
-    "howToReach": "Chottanikkara is southeast of central Kochi and reachable by road from Ernakulam, Tripunithura and Kochi airport. Frequent local buses and taxis connect Tripunithura / Ernakulam to Chottanikkara; nearest rail halts and the airport require a short road transfer.",
-    "etiquette": [
-      "Dress according to Kerala temple custom: many inner sanctum rules ask men to wear mundu/dhoti (often without a shirt) and women to wear saree, set‑mundu or other modest traditional dress; confirm at the temple counter. (sensitive)",
-      "Photography is restricted inside the sanctum and during many rituals; always ask permission and follow signage and staff directions.",
-      "Do not interrupt or attempt to photograph participants during Guruthi or healing ceremonies; offer respectful distance.",
-      "Use official temple vazhipadu counters or the temple’s booking portal for paid offerings; beware of unlicensed intermediaries. (sensitive)"
+    "contacts": [
+        {
+            "label": "Cochin Devaswom Board — head office (administration)",
+            "kind": "other",
+            "phone": "0487-2331124",
+            "email": "admin@cochindevaswomboard.org",
+            "website": "https://cochindevaswomboard.org/",
+            "sourceUrl": "https://cochindevaswomboard.org/",
+            "verifiedOn": "2026-11-01"
+        },
+        {
+            "label": "Aster Medcity (Kochi) — major hospital for emergencies",
+            "kind": "hospital",
+            "website": "https://www.asterhospitals.in/hospitals/aster-medcity-kochi/international-patients",
+            "sourceUrl": "https://www.asterhospitals.in/hospitals/aster-medcity-kochi/international-patients",
+            "verifiedOn": "2026-11-01"
+        }
     ],
-    "duration": "Plan 1–2 hours for a standard visit; allow more time during festivals or if you attend Guruthi or other special rites."
-  },
-  "travel": {
-    "byTrain": [
-      "Tripunithura railway station — station code TRTR; commonly used for longer‑distance visitors to Chottanikkara (Tripunithura is commonly cited as roughly 6–7 km from Chottanikkara in tourism materials). (Source: Tripunithura station page and Kerala Tourism festival PDF.)",
-      "Chottanikkara Road railway station — station code KFE; a nearer local halt served by selected passenger/local trains. Confirm current train services before travel. (Source: Chottanikkara Road station page.)"
+    "coordinates": {
+        "lat": 9.933167,
+        "lng": 76.391417
+    },
+    "images": [],
+    "tags": [
+        "Devi",
+        "Bhadrakali",
+        "pilgrimage",
+        "healing",
+        "festival",
+        "Ernakulam",
+        "temple"
     ],
-    "byBus": [
-      "KSRTC and private buses run from Ernakulam and Tripunithura to Chottanikkara; local bus stops serve the temple precinct. Confirm schedules with KSRTC or local counters. (Source: Kerala Tourism and local visitor guides.)"
+    "sources": [
+        {
+            "label": "Cochin Devaswom Board — official site",
+            "url": "https://cochindevaswomboard.org/"
+        },
+        {
+            "label": "Kerala Tourism — Chottanikkara page",
+            "url": "https://www.keralatourism.org/temples/ernakulam/chottanikkara"
+        },
+        {
+            "label": "Kerala Tourism festival factsheet (PDF)",
+            "url": "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1507883152-0.pdf"
+        },
+        {
+            "label": "Devalayam — Chottanikkara visitor & ritual notes",
+            "url": "https://devalayam.app/temples/chottanikkara-bhagavathy-temple"
+        },
+        {
+            "label": "Chottanikkara — Wikipedia (overview & coordinates)",
+            "url": "https://en.wikipedia.org/wiki/Chottanikkara_Temple"
+        },
+        {
+            "label": "Chottanikkara Road railway station — Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Chottanikkara_Road_railway_station"
+        },
+        {
+            "label": "Tripunithura railway station — Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Tripunithura_railway_station"
+        },
+        {
+            "label": "Kerala Tourism — Kochi / Chottanikkara entry",
+            "url": "https://www.keralatourism.org/kochi/chottanikkara-temple-ernakulam.php"
+        },
+        {
+            "label": "Visitor guide and practical notes (Haila Kochi)",
+            "url": "https://www.hailakochi.com/articles/chottanikkara-temple-visit-from-kochi-guide"
+        },
+        {
+            "label": "Aster Medcity — official hospital page",
+            "url": "https://www.asterhospitals.in/hospitals/aster-medcity-kochi/international-patients"
+        }
     ],
-    "byAir": [
-      "Cochin International Airport (COK, Nedumbassery) — the nearest airport; Kerala Tourism materials list an approximate road distance of about 36.6 km. Travel time varies with traffic; confirm route in advance."
-    ]
-  },
-  "heritage": {
-    "localName": "Chottanikkara Bhagavathy Temple (ചോറ്റാനിക്കര ഭഗവതി ക്ഷേത്രം)",
-    "materials": "Principal idol described as a self‑manifested laterite stone (Rudrāksha Śilā); traditional Kerala temple construction uses wood, stone and tiled roofs.",
-    "whereToSee": [
-      {
-        "name": "Chottanikkara Bhagavathy Temple (Melekkavu & Keezhukkavu)",
-        "district": "Ernakulam",
-        "kind": "temple",
-        "note": "The working temple complex with upper and lower shrines, tank and festival spaces; see official site for puja and darshan details.",
-        "url": "https://www.chottanikkarabhagavathy.org/"
-      }
-    ],
-    "whereToBuy": [
-      {
-        "name": "Temple vazhipadu / pooja counters (on‑site)",
-        "district": "Ernakulam",
-        "kind": "other",
-        "note": "Official counters inside the complex handle offerings and prasadam; availability varies by time of day and festival.",
-        "url": "https://www.chottanikkarabhagavathy.org/"
-      },
-      {
-        "name": "Chottanikkara online vazhipadu portal",
-        "district": "Ernakulam",
-        "kind": "online",
-        "note": "The temple operates an official booking portal for many poojas and offerings; use this or the on‑site counters rather than unlicensed agents.",
-        "url": "https://booking.chottanikkarabhagavathy.org/"
-      },
-      {
-        "name": "Cochin Devaswom Board (administration / information)",
-        "district": "Ernakulam (head office serves Cochin area)",
-        "kind": "other",
-        "note": "CDB lists temples under its management and provides official guidance and notices.",
-        "url": "https://cochindevaswomboard.org/"
-      }
-    ],
-    "experiences": [
-      {
-        "name": "Keezhukkavu Guruthi (nightly ritual)",
-        "district": "Ernakulam",
-        "kind": "temple-ritual",
-        "note": "A public ritual associated with the temple’s healing tradition; observe respectfully from designated areas. See temple and visitor guides for notes.",
-        "url": "https://devalayam.app/temples/chottanikkara-bhagavathy-temple"
-      },
-      {
-        "name": "Makam Thozhal / Ulsavam (annual festival)",
-        "district": "Ernakulam",
-        "kind": "temple-festival",
-        "note": "Annual Makam darshan in Kumbham draws large pilgrim crowds; the temple announces festival dates and programme on its official site.",
-        "url": "https://www.chottanikkarabhagavathy.org/"
-      },
-      {
-        "name": "Daily puja cycle, Nirmalya darshan and Mandapathil Paattu",
-        "district": "Ernakulam",
-        "kind": "temple-ritual",
-        "note": "Regular devotional services and singing are part of the temple’s daily routine; check the temple site for puja timings.",
-        "url": "https://www.chottanikkarabhagavathy.org/"
-      }
-    ],
-    "buyingTips": [
-      "Use the temple’s official counters or the official online portal for vazhipadu/poojas; request written/printed confirmation of bookings and fees.",
-      "Prasadam and specific offerings can be limited during peak times; check availability at the counter or via the portal before you travel.",
-      "Avoid unlicensed intermediaries who offer guaranteed slots; the temple’s online portal and on‑site counters are the authoritative sources."
-    ]
-  },
-  "officialLinks": [
-    {
-      "label": "Chochin Devaswom Board — official site",
-      "url": "https://cochindevaswomboard.org/"
-    },
-    {
-      "label": "Kerala Tourism — Chottanikkara page",
-      "url": "https://www.keralatourism.org/temples/ernakulam/chottanikkara"
-    }
-  ],
-  "contacts": [
-    {
-      "label": "Cochin Devaswom Board — head office (administration)",
-      "kind": "other",
-      "phone": "0487-2331124",
-      "email": "admin@cochindevaswomboard.org",
-      "website": "https://cochindevaswomboard.org/",
-      "sourceUrl": "https://cochindevaswomboard.org/",
-      "verifiedOn": "2026-11-01"
-    },
-    {
-      "label": "Aster Medcity (Kochi) — major hospital for emergencies",
-      "kind": "hospital",
-      "website": "https://www.asterhospitals.in/hospitals/aster-medcity-kochi/international-patients",
-      "sourceUrl": "https://www.asterhospitals.in/hospitals/aster-medcity-kochi/international-patients",
-      "verifiedOn": "2026-11-01"
-    }
-  ],
-  "coordinates": {
-    "lat": 9.933167,
-    "lng": 76.391417
-  },
-  "images": [],
-  "tags": [
-    "Devi",
-    "Bhadrakali",
-    "pilgrimage",
-    "healing",
-    "festival",
-    "Ernakulam",
-    "temple"
-  ],
-  "sources": [
-    {
-      "label": "Cochin Devaswom Board — official site",
-      "url": "https://cochindevaswomboard.org/"
-    },
-    {
-      "label": "Kerala Tourism — Chottanikkara page",
-      "url": "https://www.keralatourism.org/temples/ernakulam/chottanikkara"
-    },
-    {
-      "label": "Kerala Tourism festival factsheet (PDF)",
-      "url": "https://www.keralatourism.org/1000festivals/assets/uploads/pdf/1507883152-0.pdf"
-    },
-    {
-      "label": "Devalayam — Chottanikkara visitor & ritual notes",
-      "url": "https://devalayam.app/temples/chottanikkara-bhagavathy-temple"
-    },
-    {
-      "label": "Chottanikkara — Wikipedia (overview & coordinates)",
-      "url": "https://en.wikipedia.org/wiki/Chottanikkara_Temple"
-    },
-    {
-      "label": "Chottanikkara Road railway station — Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Chottanikkara_Road_railway_station"
-    },
-    {
-      "label": "Tripunithura railway station — Wikipedia",
-      "url": "https://en.wikipedia.org/wiki/Tripunithura_railway_station"
-    },
-    {
-      "label": "Kerala Tourism — Kochi / Chottanikkara entry",
-      "url": "https://www.keralatourism.org/kochi/chottanikkara-temple-ernakulam.php"
-    },
-    {
-      "label": "Visitor guide and practical notes (Haila Kochi)",
-      "url": "https://www.hailakochi.com/articles/chottanikkara-temple-visit-from-kochi-guide"
-    },
-    {
-      "label": "Aster Medcity — official hospital page",
-      "url": "https://www.asterhospitals.in/hospitals/aster-medcity-kochi/international-patients"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-11-01"
+    "status": "approved",
+    "lastVerified": "2026-11-01",
+    "imageStatus": "needed",
+    "autoPublished": "2026-11-09",
+    "reviewed": false
 }

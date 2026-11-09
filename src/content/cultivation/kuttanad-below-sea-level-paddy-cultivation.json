@@ -1,184 +1,187 @@
 {
-  "slug": "kuttanad-below-sea-level-paddy-cultivation",
-  "category": "cultivation",
-  "name": "Kuttanad — below‑sea‑level paddy cultivation",
-  "malayalamName": "കുട്ടനാട്",
-  "district": "Alappuzha",
-  "tagline": "A living below‑sea‑level paddy landscape of padasekharams, boat‑based rice farming and village backwaters",
-  "summary": "Kuttanad, Alappuzha — a unique below‑sea‑level paddy landscape of bunded padasekharams, boat‑based rice farming and integrated backwater livelihoods.",
-  "description": [
-    "Kuttanad is the low, reclaimed rice belt in and around Alappuzha where paddy fields lie in bunded plots (padasekharams) that are regularly below mean sea level. The visible landscape is a mosaic of outer bunds, internal canals, motor tharas (engine platforms), coconut lines and village waterways where rice cultivation, inland fisheries and home gardens form an integrated rural economy.",
-    "Visitors experience Kuttanad by village boat, SWTD ferry or short houseboat circuits, and through guided farm visits or homestays arranged by DTPC or Responsible Tourism hosts. Field visits let you observe dewatering (pump use), bund maintenance and padasekhara samithi (polder committee) organisation; confirm bookings and field access with local RT or DTPC contacts before travelling."
-  ],
-  "history": {
-    "significance": "Kuttanad’s below‑sea‑level farming lies within the Vembanad‑Kol wetland (a Ramsar site) and is recognised by FAO as a Globally Important Agricultural Heritage System (GIAHS).",
-    "timeline": [
-      {
-        "period": "1958",
-        "event": "Thottappally Spillway construction completed as part of mid‑20th‑century drainage and Kuttanad development interventions that enabled expanded paddy cultivation."
-      },
-      {
-        "period": "1965–1975",
-        "event": "Thanneermukkom bund/regulator was built in stages in the 1960s–1970s; sources describe phased construction with works on either side of the bund and later modernization efforts."
-      },
-      {
-        "period": "19 August 2002",
-        "event": "Vembanad‑Kol Wetland (covering Vembanad lake and associated kol/kole lands that include Kuttanad) was listed as a Wetland of International Importance (Ramsar site)."
-      },
-      {
-        "period": "2013",
-        "event": "FAO designated the Kuttanad Below Sea Level Farming System as a Globally Important Agricultural Heritage System (GIAHS)."
-      },
-      {
-        "period": "2017",
-        "event": "Government of Kerala identified Kuttanad as a Special Agricultural Zone (SAZ) for paddy (policy action noted in state planning materials)."
-      },
-      {
-        "period": "2018",
-        "event": "Severe floods damaged many engine platforms (motor tharas) and dewatering infrastructure; state planning reviews recommended urgent replacement and modernization."
-      }
+    "slug": "kuttanad-below-sea-level-paddy-cultivation",
+    "category": "cultivation",
+    "name": "Kuttanad — below‑sea‑level paddy cultivation",
+    "malayalamName": "കുട്ടനാട്",
+    "district": "Alappuzha",
+    "tagline": "A living below‑sea‑level paddy landscape of padasekharams, boat‑based rice farming and village backwaters",
+    "summary": "Kuttanad, Alappuzha — a unique below‑sea‑level paddy landscape of bunded padasekharams, boat‑based rice farming and integrated backwater livelihoods.",
+    "description": [
+        "Kuttanad is the low, reclaimed rice belt in and around Alappuzha where paddy fields lie in bunded plots (padasekharams) that are regularly below mean sea level. The visible landscape is a mosaic of outer bunds, internal canals, motor tharas (engine platforms), coconut lines and village waterways where rice cultivation, inland fisheries and home gardens form an integrated rural economy.",
+        "Visitors experience Kuttanad by village boat, SWTD ferry or short houseboat circuits, and through guided farm visits or homestays arranged by DTPC or Responsible Tourism hosts. Field visits let you observe dewatering (pump use), bund maintenance and padasekhara samithi (polder committee) organisation; confirm bookings and field access with local RT or DTPC contacts before travelling."
     ],
-    "keyFacts": [
-      "Vembanad‑Kol (including Kuttanad/Kole lands) is a Ramsar wetland designated on 19 August 2002 (Ramsar Information Sheet).",
-      "Kuttanad padasekharams lie below mean sea level; the Ramsar information sheet records the site's elevation range around 0.6–2.2 metres below MSL.",
-      "Padasekharams are dewatered before sowing using motor tharas and pump systems; maintaining pumps and bunds is essential to the local crop calendar and timely cultivation."
-    ]
-  },
-  "folklore": {
-    "title": "Local oral accounts of reclamation and joint maintenance",
-    "story": [
-      "Official sources do not record a single founding legend. Local oral traditions emphasise successive generations reclaiming land from the backwaters and neighbourhood cooperation in building and repairing bunds and channels. These stories explain place names and the patchwork of padasekharams.",
-      "Villages retain place‑level tales about early reclamation work, heroic bund repairs and cooperatively managed irrigation during difficult years; these circulate orally and vary by community."
+    "history": {
+        "significance": "Kuttanad’s below‑sea‑level farming lies within the Vembanad‑Kol wetland (a Ramsar site) and is recognised by FAO as a Globally Important Agricultural Heritage System (GIAHS).",
+        "timeline": [
+            {
+                "period": "1958",
+                "event": "Thottappally Spillway construction completed as part of mid‑20th‑century drainage and Kuttanad development interventions that enabled expanded paddy cultivation."
+            },
+            {
+                "period": "1965–1975",
+                "event": "Thanneermukkom bund/regulator was built in stages in the 1960s–1970s; sources describe phased construction with works on either side of the bund and later modernization efforts."
+            },
+            {
+                "period": "19 August 2002",
+                "event": "Vembanad‑Kol Wetland (covering Vembanad lake and associated kol/kole lands that include Kuttanad) was listed as a Wetland of International Importance (Ramsar site)."
+            },
+            {
+                "period": "2013",
+                "event": "FAO designated the Kuttanad Below Sea Level Farming System as a Globally Important Agricultural Heritage System (GIAHS)."
+            },
+            {
+                "period": "2017",
+                "event": "Government of Kerala identified Kuttanad as a Special Agricultural Zone (SAZ) for paddy (policy action noted in state planning materials)."
+            },
+            {
+                "period": "2018",
+                "event": "Severe floods damaged many engine platforms (motor tharas) and dewatering infrastructure; state planning reviews recommended urgent replacement and modernization."
+            }
+        ],
+        "keyFacts": [
+            "Vembanad‑Kol (including Kuttanad/Kole lands) is a Ramsar wetland designated on 19 August 2002 (Ramsar Information Sheet).",
+            "Kuttanad padasekharams lie below mean sea level; the Ramsar information sheet records the site's elevation range around 0.6–2.2 metres below MSL.",
+            "Padasekharams are dewatered before sowing using motor tharas and pump systems; maintaining pumps and bunds is essential to the local crop calendar and timely cultivation."
+        ]
+    },
+    "folklore": {
+        "title": "Local oral accounts of reclamation and joint maintenance",
+        "story": [
+            "Official sources do not record a single founding legend. Local oral traditions emphasise successive generations reclaiming land from the backwaters and neighbourhood cooperation in building and repairing bunds and channels. These stories explain place names and the patchwork of padasekharams.",
+            "Villages retain place‑level tales about early reclamation work, heroic bund repairs and cooperatively managed irrigation during difficult years; these circulate orally and vary by community."
+        ],
+        "note": "Versions differ by village and family; official studies focus on hydrology, engineering and social institutions (padasekhara samithis) rather than a single written myth. Sources: Kerala Tourism, Kerala State Planning Board."
+    },
+    "spiritual": {
+        "summary": "Kuttanad’s spiritual life is expressed at village temples, churches and mosques and in community festivals and vallamkali (boat‑race) traditions that follow the agricultural calendar. Rituals and communal meals often coincide with sowing and harvest cycles.",
+        "experiences": [
+            {
+                "title": "Attend a local temple or church festival",
+                "text": "When scheduled, festivals and church feasts show agrarian links such as offerings, community meals and processions. Follow local dress expectations, remove footwear where required and ask before photographing rituals."
+            },
+            {
+                "title": "Time a visit around vallamkali (boat races)",
+                "text": "Boat races in the Alappuzha/Punnamada area are tied to Onam and local calendars; attending reveals community organisation and boat‑craft traditions. Confirm dates before travel."
+            },
+            {
+                "title": "Dawn or dusk bund and kayal walks",
+                "text": "Guided short walks along outer bunds or kayal edges let you observe birds, farmers moving between fields and village life rhythms; use recommended local guides for safe access."
+            }
+        ],
+        "bestFor": "Visitors interested in agritourism, cultural festivals, birdwatching and low‑impact village stays.",
+        "mindfulTips": [
+            "Ask permission before entering fields, homes or places of worship; padasekharams are often community‑managed.",
+            "Dress modestly at religious sites and remove footwear where required; follow on‑site signage.",
+            "Keep a safe distance from pumps, sluices and motor tharas; do not operate agricultural machinery.",
+            "Use DTPC/Responsible Tourism‑recommended guides and hosts for farm visits to ensure community benefit and avoid disturbance."
+        ]
+    },
+    "highlights": [
+        "Village boat cruises through padasekharams and kayals — short boat or canoe trips reveal bund layouts and water‑based access to fields.",
+        "Thanneermukkom Bund/regulator — large earth bund across Vembanad built in stages (1960s–1970s) and central to salinity‑control discussions.",
+        "AC Road (Alappuzha–Changanassery) — a main road crossing the polders with short bund walks and close views of padasekharam structure.",
+        "Ambalappuzha Sree Krishna Temple and nearby village festival ties to local agrarian life."
     ],
-    "note": "Versions differ by village and family; official studies focus on hydrology, engineering and social institutions (padasekhara samithis) rather than a single written myth. Sources: Kerala Tourism, Kerala State Planning Board."
-  },
-  "spiritual": {
-    "summary": "Kuttanad’s spiritual life is expressed at village temples, churches and mosques and in community festivals and vallamkali (boat‑race) traditions that follow the agricultural calendar. Rituals and communal meals often coincide with sowing and harvest cycles.",
-    "experiences": [
-      {
-        "title": "Attend a local temple or church festival",
-        "text": "When scheduled, festivals and church feasts show agrarian links such as offerings, community meals and processions. Follow local dress expectations, remove footwear where required and ask before photographing rituals."
-      },
-      {
-        "title": "Time a visit around vallamkali (boat races)",
-        "text": "Boat races in the Alappuzha/Punnamada area are tied to Onam and local calendars; attending reveals community organisation and boat‑craft traditions. Confirm dates before travel."
-      },
-      {
-        "title": "Dawn or dusk bund and kayal walks",
-        "text": "Guided short walks along outer bunds or kayal edges let you observe birds, farmers moving between fields and village life rhythms; use recommended local guides for safe access."
-      }
+    "visitorInfo": {
+        "bestTime": "November–February (dry, cooler weather) for clearer road and boat access and good birdwatching; the monsoon (June–September) is lush but can limit rural access — confirm local services before travel.",
+        "howToReach": "Kuttanad is reached from Alappuzha town by road (KSRTC and private buses), by SWTD ferries and by private boat hires from the Alappuzha boat jetty. Houseboats, village cruises and local homestays are booked via DTPC or Responsible Tourism hosts.",
+        "etiquette": [
+            "Do not enter paddy fields or private property without permission from owners or the padasekhara samithi.",
+            "Follow dress and footwear rules at religious sites; remove shoes where required and obey on‑site instructions.",
+            "Keep a safe distance from pumps, motor tharas and sluices; do not touch or operate irrigation equipment.",
+            "Avoid littering, keep noise low in small villages and use DTPC/RT‑approved guides for farm access."
+        ],
+        "duration": "Short village boat trips typically 2–3 hours; guided farm visits half‑day; combining a houseboat trip with a homestay (1–2 nights) gives a fuller experience—confirm timings with operators."
+    },
+    "travel": {
+        "byTrain": [
+            "Alappuzha (ALLP) — main railhead for Alappuzha town and many Kuttanad approaches.",
+            "Ambalappuzha (AMPA) — local station serving southern Kuttanad / Ambalappuzha areas.",
+            "Changanassery (CGY) — regional railhead to the east used by many travellers for road transfer into the polders.",
+            "Kottayam (KTYM) — regional railhead with road links into Kuttanad from the east."
+        ],
+        "byBus": [
+            "Alappuzha KSRTC Bus Stand — KSRTC and private services connect Alappuzha with polders and villages; the Alappuzha–Changanassery (AC) Road is the main spine across Kuttanad. Confirm seasonal service changes (monsoon) before travel."
+        ],
+        "byWater": [
+            "State Water Transport Department (SWTD) public ferries and DTPC‑arranged village boat services operate from Alappuzha boat jetty to Kuttanad villages and kayal islands; local shikara/canoe trips serve narrow canals—book via DTPC or accredited hosts."
+        ],
+        "byAir": [
+            "Cochin International Airport (COK) — the nearest major airport for visitors to Alappuzha/Kuttanad; road transfer from Kochi varies with traffic and route."
+        ]
+    },
+    "officialLinks": [
+        {
+            "label": "Kerala State Planning Board — Kuttanad report (A Special Package for Post‑Flood Kuttanad)",
+            "url": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf"
+        },
+        {
+            "label": "FAO GIAHS — Kuttanad Below Sea Level Farming System",
+            "url": "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en"
+        },
+        {
+            "label": "Kerala Tourism — Kuttanad destination page",
+            "url": "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/"
+        },
+        {
+            "label": "Kerala Irrigation Department — Thanneermukkom project page",
+            "url": "https://irrigation.kerala.gov.in/thanneermukkom"
+        },
+        {
+            "label": "Southern Railway — List of stations & categorisation (station codes PDF)",
+            "url": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf"
+        }
     ],
-    "bestFor": "Visitors interested in agritourism, cultural festivals, birdwatching and low‑impact village stays.",
-    "mindfulTips": [
-      "Ask permission before entering fields, homes or places of worship; padasekharams are often community‑managed.",
-      "Dress modestly at religious sites and remove footwear where required; follow on‑site signage.",
-      "Keep a safe distance from pumps, sluices and motor tharas; do not operate agricultural machinery.",
-      "Use DTPC/Responsible Tourism‑recommended guides and hosts for farm visits to ensure community benefit and avoid disturbance."
-    ]
-  },
-  "highlights": [
-    "Village boat cruises through padasekharams and kayals — short boat or canoe trips reveal bund layouts and water‑based access to fields.",
-    "Thanneermukkom Bund/regulator — large earth bund across Vembanad built in stages (1960s–1970s) and central to salinity‑control discussions.",
-    "AC Road (Alappuzha–Changanassery) — a main road crossing the polders with short bund walks and close views of padasekharam structure.",
-    "Ambalappuzha Sree Krishna Temple and nearby village festival ties to local agrarian life."
-  ],
-  "visitorInfo": {
-    "bestTime": "November–February (dry, cooler weather) for clearer road and boat access and good birdwatching; the monsoon (June–September) is lush but can limit rural access — confirm local services before travel.",
-    "howToReach": "Kuttanad is reached from Alappuzha town by road (KSRTC and private buses), by SWTD ferries and by private boat hires from the Alappuzha boat jetty. Houseboats, village cruises and local homestays are booked via DTPC or Responsible Tourism hosts.",
-    "etiquette": [
-      "Do not enter paddy fields or private property without permission from owners or the padasekhara samithi.",
-      "Follow dress and footwear rules at religious sites; remove shoes where required and obey on‑site instructions.",
-      "Keep a safe distance from pumps, motor tharas and sluices; do not touch or operate irrigation equipment.",
-      "Avoid littering, keep noise low in small villages and use DTPC/RT‑approved guides for farm access."
+    "contacts": [
+        {
+            "label": "Southern Railway — station lists (rail enquiries and station codes)",
+            "kind": "transport-enquiry",
+            "website": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf",
+            "sourceUrl": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf",
+            "verifiedOn": "2026-11-01"
+        }
     ],
-    "duration": "Short village boat trips typically 2–3 hours; guided farm visits half‑day; combining a houseboat trip with a homestay (1–2 nights) gives a fuller experience—confirm timings with operators."
-  },
-  "travel": {
-    "byTrain": [
-      "Alappuzha (ALLP) — main railhead for Alappuzha town and many Kuttanad approaches.",
-      "Ambalappuzha (AMPA) — local station serving southern Kuttanad / Ambalappuzha areas.",
-      "Changanassery (CGY) — regional railhead to the east used by many travellers for road transfer into the polders.",
-      "Kottayam (KTYM) — regional railhead with road links into Kuttanad from the east."
+    "images": [],
+    "tags": [
+        "Kuttanad",
+        "Alappuzha",
+        "below-sea-level",
+        "paddy",
+        "padasekharam",
+        "backwaters",
+        "agriculture",
+        "boat-tours",
+        "cultivation"
     ],
-    "byBus": [
-      "Alappuzha KSRTC Bus Stand — KSRTC and private services connect Alappuzha with polders and villages; the Alappuzha–Changanassery (AC) Road is the main spine across Kuttanad. Confirm seasonal service changes (monsoon) before travel."
+    "sources": [
+        {
+            "label": "Kerala State Planning Board — Kuttanad report (A Special Package for Post‑Flood Kuttanad)",
+            "url": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf"
+        },
+        {
+            "label": "FAO GIAHS — Kuttanad Below Sea Level Farming System",
+            "url": "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en"
+        },
+        {
+            "label": "Kerala Tourism — Kuttanad destination page",
+            "url": "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/"
+        },
+        {
+            "label": "Kerala Irrigation Department — Thanneermukkom project",
+            "url": "https://irrigation.kerala.gov.in/thanneermukkom"
+        },
+        {
+            "label": "Southern Railway — List/Categorisation of stations (station codes PDF)",
+            "url": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf"
+        },
+        {
+            "label": "Onmanorama — Thottappally spillway opened to prevent flooding (news item)",
+            "url": "https://www.onmanorama.com/news/kerala/2020/08/01/thottappally-spillway-opened-to-prevent-flooding-kuttanad.html"
+        }
     ],
-    "byWater": [
-      "State Water Transport Department (SWTD) public ferries and DTPC‑arranged village boat services operate from Alappuzha boat jetty to Kuttanad villages and kayal islands; local shikara/canoe trips serve narrow canals—book via DTPC or accredited hosts."
-    ],
-    "byAir": [
-      "Cochin International Airport (COK) — the nearest major airport for visitors to Alappuzha/Kuttanad; road transfer from Kochi varies with traffic and route."
-    ]
-  },
-  "officialLinks": [
-    {
-      "label": "Kerala State Planning Board — Kuttanad report (A Special Package for Post‑Flood Kuttanad)",
-      "url": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf"
-    },
-    {
-      "label": "FAO GIAHS — Kuttanad Below Sea Level Farming System",
-      "url": "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en"
-    },
-    {
-      "label": "Kerala Tourism — Kuttanad destination page",
-      "url": "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/"
-    },
-    {
-      "label": "Kerala Irrigation Department — Thanneermukkom project page",
-      "url": "https://irrigation.kerala.gov.in/thanneermukkom"
-    },
-    {
-      "label": "Southern Railway — List of stations & categorisation (station codes PDF)",
-      "url": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf"
-    }
-  ],
-  "contacts": [
-    {
-      "label": "Southern Railway — station lists (rail enquiries and station codes)",
-      "kind": "transport-enquiry",
-      "website": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf",
-      "sourceUrl": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf",
-      "verifiedOn": "2026-11-01"
-    }
-  ],
-  "images": [],
-  "tags": [
-    "Kuttanad",
-    "Alappuzha",
-    "below-sea-level",
-    "paddy",
-    "padasekharam",
-    "backwaters",
-    "agriculture",
-    "boat-tours",
-    "cultivation"
-  ],
-  "sources": [
-    {
-      "label": "Kerala State Planning Board — Kuttanad report (A Special Package for Post‑Flood Kuttanad)",
-      "url": "https://spb.kerala.gov.in/sites/default/files/2020-09/Kutanad_Large2.pdf"
-    },
-    {
-      "label": "FAO GIAHS — Kuttanad Below Sea Level Farming System",
-      "url": "https://www.fao.org/giahs/giahs-around-the-world/india-kuttanad-farming-system/en"
-    },
-    {
-      "label": "Kerala Tourism — Kuttanad destination page",
-      "url": "https://www.keralatourism.org/destination/kuttanad-alappuzha/59/"
-    },
-    {
-      "label": "Kerala Irrigation Department — Thanneermukkom project",
-      "url": "https://irrigation.kerala.gov.in/thanneermukkom"
-    },
-    {
-      "label": "Southern Railway — List/Categorisation of stations (station codes PDF)",
-      "url": "https://sr.indianrailways.gov.in/cris/uploads/files/1748432112041-List%20of%20stations%20as%20on%2001042025.pdf"
-    },
-    {
-      "label": "Onmanorama — Thottappally spillway opened to prevent flooding (news item)",
-      "url": "https://www.onmanorama.com/news/kerala/2020/08/01/thottappally-spillway-opened-to-prevent-flooding-kuttanad.html"
-    }
-  ],
-  "status": "draft",
-  "lastVerified": "2026-11-01"
+    "status": "approved",
+    "lastVerified": "2026-11-01",
+    "imageStatus": "needed",
+    "autoPublished": "2026-11-09",
+    "reviewed": false
 }
