@@ -21,8 +21,10 @@ Everything below exists in the software but does nothing until you open it. Admi
 2. In Bookings, record the approvals and evidence for "Partner enquiries", save, switch on. Add partners (agreement date, registration checked, switch on).
 3. When your accountant is ready, record GSTIN and approvals for "Commission", switch on, choose the fee.
 
-### Payments with Razorpay (not built yet)
-Recording "a payment aggregator approved my account" is only one of four approvals the payments capability asks for (aggregator, CA sign-off, refund policy, legal review). The software also has to be written: creating orders, verifying payment signatures, handling webhooks and refunds, and splitting settlement to partners (Razorpay Route needs its own activation and partner KYC). Keys go in `vh-config.php`, never in the repository. See the next step in the project notes.
+### Decision: pay on site, fee invoiced monthly (no online payments)
+Travellers pay the partner directly on site. Veda Heritage earns its fee by invoicing each partner once a month from the settlement sheet (fee plus GST on the fee). This avoids holding traveller money, so no payment-aggregator integration, refund handling or split settlement is needed, and the "Online payments" capability stays locked and unbuilt on purpose. Razorpay (or another aggregator) can be revisited later; if so, the software still has to be written (orders, signature checks, webhooks, refunds, Route split) and the approvals listed in the admin apply.
+
+Monthly routine: at month end open Bookings, Monthly settlement sheet, pick the month, download the CSV, give it to your accountant to raise one invoice per partner, then record the invoice number with Mark settled. The partner tells you (or you confirm with them) the booking value when a booking is completed; a flat fee needs no value.
 
 ## Not built, and why (needs your decision)
 1. **Commission of 0.5 to 1 percent on pay-on-site bookings.** The site cannot see money that changes hands on site, so the fee depends on trust: a written agreement with each provider, a booking reference per enquiry, a monthly self-reported settlement and the right to audit. Expect leakage (guest and provider simply agree a direct deal). Also, 0.5 to 1 percent is far below what booking platforms charge (typically 10 to 20 percent for stays), so it will not fund development. Better options: a flat fee per confirmed booking, or 5 to 10 percent only on stays Veda Heritage arranges itself.
