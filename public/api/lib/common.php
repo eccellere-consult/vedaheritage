@@ -223,9 +223,22 @@ function listing_blockers(array $s): array {
 /** Sends mail, or appends it to a file when 'mail_outbox' is configured (used by tests). */
 function send_mail(string $to, string $subject, string $body): bool {
     $box = vh_cfg()['mail_outbox'] ?? '';
-    if ($box) return @file_put_contents($box, json_encode(['to' => $to, 'subject' => $subject, 'body' => $body]) . "\n", FILE_APPEND | LOCK_EX) !== false;
-    return @mail($to, $subject, $body, 'Content-Type: text/plain; charset=utf-8');
+    if ($box) { $ok = @file_put_contents($box, json_encode(['to' => $to, 'subject' => $subject, 'body' => $body]) . "\n", FILE_APPEND | LOCK_EX) !== false; mail_log($to, $subject, $ok, 'outbox file'); return $ok; }
+    // A proper From address matters: without it many hosts send as a server account and inboxes reject or hide the mail.
+    $host = preg_replace('/^www\./', '', (string)parse_url((string)(vh_cfg()['site_url'] ?? 'https://www.vedaheritage.co.in'), PHP_URL_HOST));
+    $from = (string)(vh_cfg()['mail_from'] ?? ('no-reply@' . ($host ?: 'vedaheritage.co.in')));
+    $headers = "From: Veda Heritage <$from>\r\nReply-To: " . ((string)(vh_cfg()['notify_email'] ?? $from)) . "\r\nContent-Type: text/plain; charset=utf-8\r\nMIME-Version: 1.0";
+    $ok = @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . $from);
+    mail_log($to, $subject, $ok, $ok ? 'handed to the mail server' : 'the mail server refused it');
+    return $ok;
 }
+/** One line per attempt, newest last, kept short. Lets the admin see whether the site tried to send and what the server said. */
+function mail_log(string $to, string $subject, bool $ok, string $note): void {
+    $f = vh_data_dir() . '/mail.log'; $lines = is_file($f) ? file($f, FILE_IGNORE_NEW_LINES) : [];
+    $lines[] = json_encode(['at' => gmdate('c'), 'to' => mb_substr($to, 0, 80), 'subject' => mb_substr($subject, 0, 100), 'ok' => $ok, 'note' => $note]);
+    @file_put_contents($f, implode("\n", array_slice($lines, -200)) . "\n", LOCK_EX);
+}
+function mail_log_tail(int $n = 15): array { $f = vh_data_dir() . '/mail.log'; $l = is_file($f) ? array_slice(file($f, FILE_IGNORE_NEW_LINES), -$n) : []; return array_reverse(array_map(fn($x) => json_decode($x, true) ?: [], $l)); }
 
 function notify(string $subject, string $body): void {
     $to = vh_cfg()['notify_email'] ?? '';

@@ -872,7 +872,7 @@ try {
             $items[] = $b; }
         usort($items, fn($x, $y) => strcmp($y['created'], $x['created']));
         foreach ($items as &$it) unset($it['payTokenHash'], $it['dispatch'], $it['otp']); unset($it);
-        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate'], 'tcsPercent' => $cfg['tcsPercent'], 'tdsPercent' => $cfg['tdsPercent'], 'rideRates' => $cfg['rideRates'], 'vehicles' => RIDE_VEHICLES, 'districts' => DISTRICTS, 'rzpKeys' => rzp_keys_ok(), 'rzpTestKeys' => bk_test_keys(), 'testMode' => !empty($cfg['testMode']), 'notifyEmail' => !empty(vh_cfg()['notify_email'])]);
+        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate'], 'tcsPercent' => $cfg['tcsPercent'], 'tdsPercent' => $cfg['tdsPercent'], 'rideRates' => $cfg['rideRates'], 'vehicles' => RIDE_VEHICLES, 'districts' => DISTRICTS, 'mailLog' => mail_log_tail(12), 'notifyEmailValue' => (string)(vh_cfg()['notify_email'] ?? ''), 'rzpKeys' => rzp_keys_ok(), 'rzpTestKeys' => bk_test_keys(), 'testMode' => !empty($cfg['testMode']), 'notifyEmail' => !empty(vh_cfg()['notify_email'])]);
     }
 
     case 'bk_cap_save': {
@@ -897,6 +897,14 @@ try {
         }
         $cfg['caps'][$cap]['enabled'] = $on; $cfg['caps'][$cap]['updated'] = gmdate('c'); bk_save($cfg); audit('bk-cap-' . ($on ? 'on' : 'off'), ['cap' => $cap]);
         json_out(200, ['ok' => true, 'message' => $on ? 'Switched on.' : 'Switched off.']);
+    }
+
+    case 'mail_test': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $to = trim((string)($in['to'] ?? '')); if (!valid_email($to)) json_out(400, ['error' => 'Give a valid email address.']);
+        $ok = send_mail($to, 'Veda Heritage email test', "This is a test message from the Veda Heritage admin page.\n\nIf you can read it, the site can send email to this address. If it landed in spam, mark it as not spam.\n\nSent " . gmdate('Y-m-d H:i') . " UTC.");
+        audit('mail-test', ['ok' => $ok]);
+        json_out(200, ['ok' => true, 'sent' => $ok, 'message' => $ok ? 'Handed to the mail server. Check the inbox and the spam folder in a minute.' : 'The mail server refused the message. See the email log below.', 'log' => mail_log_tail(12)]);
     }
 
     case 'bk_testmode': {

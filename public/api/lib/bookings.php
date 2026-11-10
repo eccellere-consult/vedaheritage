@@ -119,7 +119,7 @@ function bk_test_keys(): bool { return function_exists('rzp_keys_ok') && rzp_key
 /** Booking email. In test mode it goes to the owner (notify_email) with the intended recipient in the subject, never to a partner or traveller. */
 function bk_mail(string $to, string $subject, string $body): bool {
     if (!bk_test()) return send_mail($to, $subject, $body);
-    $owner = (string)(vh_cfg()['notify_email'] ?? ''); if ($owner === '') return false;
+    $owner = (string)(vh_cfg()['notify_email'] ?? ''); if ($owner === '') { mail_log($to, $subject, false, 'TEST MODE: not sent, because notify_email is not set in vh-config.php'); return false; }
     return send_mail($owner, "[TEST] to $to: $subject", "TEST MODE: this message was NOT sent to $to.\n\n$body");
 }
 /** Public-facing gate: stops the request with a plain message while the capability is locked. */

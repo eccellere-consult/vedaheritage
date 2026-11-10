@@ -761,6 +761,12 @@ try {
       const pr = await call('kyc_purge', { method: 'POST', body: {} })
       ok(pr.s === 200 && dId && !fs.existsSync(path.join(tmp, 'data/kyc/files', dId + '.bin')), 'retention: a document past its delete-after date is deleted automatically')
     }
+    // ---- email check and delivery log
+    {
+      const m0 = outbox().length; const mt = await call('mail_test', { method: 'POST', body: { to: 'check@example.com' } })
+      ok(mt.s === 200 && mt.d.sent === true && mt.d.log[0].to === 'check@example.com' && outbox().length === m0 + 1 && (await call('mail_test', { method: 'POST', body: { to: 'nope' } })).s === 400, 'email check: the admin can send a test message and sees it in the delivery log')
+      const lg = (await call('bk_overview')).d; ok(Array.isArray(lg.mailLog) && lg.mailLog.length > 0 && lg.notifyEmailValue === 'owner@example.com', 'email check: the delivery log and the notify address are shown')
+    }
     const tpA = await call('bk_test_partner', { method: 'POST', body: { name: 'Quick Stay', type: 'stay', district: 'Kollam' } })
     const ovT = (await call('bk_overview')).d; const tPartner = ovT.partners.find(p => p.test)
     ok(tpA.s === 200 && tPartner && tPartner.live === true && tPartner.name.includes('(TEST)'), 'test mode: a test partner can be added in one step and is live for testing')
