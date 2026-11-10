@@ -1,6 +1,6 @@
 // Client helpers for the booking endpoints (PHP on the live site). Nothing here is secret; prices are always recomputed on the server.
 export interface BookingStatus {
-  ok: boolean; open: boolean
+  ok: boolean; open: boolean; testMode?: boolean
   caps: { enquiries: boolean; stays: boolean; rides: boolean; payments: boolean }
   partners: { id: string; name: string; type: string; typeLabel: string; districts: string[]; summary: string }[]
   stays: { id: string; name: string; districts: string[]; summary: string; rooms: { id: string; name: string; capacity: number; rateInr: number }[] }[]
@@ -22,3 +22,5 @@ export async function postJson(ep: string, body: unknown) {
 export const inr = (n: number) => `₹${Number(n).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`
 export const hashParams = () => { try { return new URLSearchParams(window.location.hash.replace(/^#/, '')) } catch { return new URLSearchParams() } }
 export const fieldClass = 'w-full border border-ink/20 rounded px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-primary/40'
+
+export const TEST_BANNER = 'TEST MODE: this is a test. Nothing here is a real booking, no email goes to partners or travellers, and payments use test cards only.'

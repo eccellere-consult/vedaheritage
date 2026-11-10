@@ -29,5 +29,5 @@ $x = bk_locked($id, function ($r) use ($pid, $name, $phone, $veh, $otp, $p, $cfg
 });
 if (!$won) $err('This ride was already taken by another driver.', 409);
 $x = pay_transfer($x);
-if (!empty($x['contactEmail'])) send_mail($x['contactEmail'], 'Your driver for ' . $x['ref'], "Your driver is on the way.\n\nDriver: $name, $phone\nVehicle: $veh\nTrip code: $otp (tell the driver this code when the trip starts)\nRide: " . RIDE_POINTS[$x['pickupId']][0] . ' to ' . RIDE_POINTS[$x['dropId']][0] . ", {$x['when']}\n\nVeda Heritage");
+if (!empty($x['contactEmail'])) bk_mail($x['contactEmail'], 'Your driver for ' . $x['ref'], "Your driver is on the way.\n\nDriver: $name, $phone\nVehicle: $veh\nTrip code: $otp (tell the driver this code when the trip starts)\nRide: " . RIDE_POINTS[$x['pickupId']][0] . ' to ' . RIDE_POINTS[$x['dropId']][0] . ", {$x['when']}\n\nVeda Heritage");
 public_out(200, ['ok' => true, 'ride' => $view($x)]);

@@ -21,9 +21,9 @@ $id = new_id(); $ref = bk_ref(); [$tok, $hash] = bk_token_new();
 $b = ['id' => $id, 'ref' => $ref, 'kind' => 'ride', 'status' => $online ? 'pay_pending' : 'searching', 'created' => gmdate('c'), 'providerId' => '', 'providerName' => '', 'providerType' => 'transport',
     'name' => $t['name'], 'contactEmail' => $t['contactEmail'], 'contactPhone' => $t['contactPhone'], 'people' => $t['guests'], 'guests' => $t['guests'], 'message' => $t['message'],
     'pickupId' => $a, 'dropId' => $d, 'vehicle' => $v, 'when' => gmdate('Y-m-d H:i', $ts + 19800) . ' IST', 'whenTs' => $ts, 'km' => $km, 'checkIn' => gmdate('Y-m-d', $ts + 19800), 'checkOut' => gmdate('Y-m-d', $ts + 19800),
-    'valueInr' => $fare, 'feeMode' => $fee['mode'], 'feeValue' => $fee['value'], 'commissionInr' => $bd['feeInr'], 'settled' => false, 'payTokenHash' => $hash,
+    'valueInr' => $fare, 'feeMode' => $fee['mode'], 'feeValue' => $fee['value'], 'commissionInr' => $bd['feeInr'], 'test' => bk_test(), 'settled' => false, 'payTokenHash' => $hash,
     'payment' => ['mode' => $online ? 'online' : 'onsite', 'status' => $online ? 'unpaid' : 'onsite']] + $bd;
 bk_put($b);
 $sent = 0; if (!$online) $sent = ride_dispatch($b);
-if ($t['contactEmail'] !== '') send_mail($t['contactEmail'], "Your Veda Heritage ride $ref", "Hello {$t['name']},\n\nRide {$ref}: " . RIDE_POINTS[$a][0] . ' to ' . RIDE_POINTS[$d][0] . ", {$b['when']}. Estimated fare Rs $fare.\n\n" . ($online ? 'Please complete the payment; we then find your driver.' : 'We are finding you a driver. You will get the driver details and your trip code by email. Pay the driver.') . "\n\nVeda Heritage");
+if ($t['contactEmail'] !== '') bk_mail($t['contactEmail'], "Your Veda Heritage ride $ref", "Hello {$t['name']},\n\nRide {$ref}: " . RIDE_POINTS[$a][0] . ' to ' . RIDE_POINTS[$d][0] . ", {$b['when']}. Estimated fare Rs $fare.\n\n" . ($online ? 'Please complete the payment; we then find your driver.' : 'We are finding you a driver. You will get the driver details and your trip code by email. Pay the driver.') . "\n\nVeda Heritage");
 public_out(200, ['ok' => true, 'ref' => $ref, 'mode' => $online ? 'online' : 'onsite', 'amountInr' => $fare, 'km' => $km, 'payToken' => $tok, 'partnersTold' => $sent]);

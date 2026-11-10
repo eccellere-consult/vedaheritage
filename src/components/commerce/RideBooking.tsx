@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { type BookingStatus, fieldClass as inp, getStatus, hashParams, inr, postForm } from '@/lib/bookingApi'
+import { TEST_BANNER, type BookingStatus, fieldClass as inp, getStatus, hashParams, inr, postForm } from '@/lib/bookingApi'
 
 const SEATS: Record<string, number> = { auto: 3, car: 4, suv: 6 }
 const localNow = () => { const d = new Date(Date.now() + 3 * 3600e3); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16) }
@@ -51,6 +51,7 @@ export default function RideBooking() {
   const pts = st.rides?.points || []
   return (
     <form onSubmit={book} className="card space-y-3">
+      {st.testMode && <p role="status" className="rounded border border-amber-300 bg-amber-50 text-amber-900 px-3 py-2 text-xs">{TEST_BANNER}</p>}
       <div className="grid sm:grid-cols-2 gap-3">
         <label className="text-xs">Pickup<select required className={inp + ' mt-1'} value={f.pickup} onChange={e => setF({ ...f, pickup: e.target.value })}><option value="">Choose…</option>{pts.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}</select></label>
         <label className="text-xs">Drop<select required className={inp + ' mt-1'} value={f.drop} onChange={e => setF({ ...f, drop: e.target.value })}><option value="">Choose…</option>{pts.filter(p => p.id !== f.pickup).map(p => <option key={p.id} value={p.id}>{p.label}</option>)}</select></label>

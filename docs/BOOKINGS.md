@@ -28,6 +28,9 @@ Decision update: online payment at booking is now built. Pay-on-site with a mont
 - **Payments**: Razorpay Checkout. Our server creates the order from its own price, verifies the payment signature, and also listens to the webhook (so a closed tab never loses a payment; replays are ignored). The partner's share (amount minus your fee, GST on the fee, and any TCS/TDS you set) becomes a HELD transfer to the partner's Razorpay linked account and is released when the stay or trip is completed (or by you). Refunds (full or part) reverse the partner transfer. Admin buttons: Release payout, Retry payout transfer, Refund.
 - **Everything stays locked until switched on** in the Bookings tab. Payments additionally need: the keys in `vh-config.php`, Partner enquiries and Commission switched on, and the approvals recorded.
 
+#### Test mode (to try everything before launch)
+Admin, Bookings, **Test mode**. One switch opens enquiries, stays, rides and commission without recording approvals. While it is on: every booking is marked TEST; **no email goes to partners or travellers** (messages go to `notify_email` in `vh-config.php`, with the intended recipient in the subject, so the driver links reach you); a partner can be switched on without an agreement; and online payments work only with Razorpay **test** keys (key id starting `rzp_test_`), so real money is impossible. Pages show a TEST MODE banner. Switching test mode off locks everything again until the approvals are recorded and each capability is switched on.
+
 #### Razorpay setup (one time)
 1. In `vh-config.php` (never in the repository) add:
    `'razorpay_key_id' => 'rzp_live_...', 'razorpay_key_secret' => '...', 'razorpay_webhook_secret' => '...'`. Start with TEST keys.

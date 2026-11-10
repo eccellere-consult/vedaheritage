@@ -119,7 +119,7 @@ function ride_dispatch(array $b): int {
     foreach (ride_partners_for($pts[1], $b['vehicle']) as $p) {
         [$t, $h] = bk_token_new(); $disp[] = ['providerId' => $p['id'], 'tokenHash' => $h, 'sentOn' => gmdate('c')];
         $link = site_base() . '/driver/#id=' . $b['id'] . '&p=' . $p['id'] . '&t=' . $t;
-        send_mail($p['email'], 'Ride request ' . $b['ref'] . ': ' . $pts[0], "Ride request {$b['ref']}\n\nPickup: {$pts[0]}\nDrop: " . RIDE_POINTS[$b['dropId']][0] . "\nWhen: {$b['when']}\nVehicle: " . (RIDE_VEHICLES[$b['vehicle']] ?? $b['vehicle']) . "\nPassengers: {$b['guests']}\nFare" . (($b['payment']['mode'] ?? '') === 'online' ? ' (paid online to Veda Heritage; your share is released after the trip)' : ' (pay the driver on the trip)') . ": Rs {$b['amountInr']}\n\nFirst to accept gets the ride. Open this private link and enter the driver and vehicle details:\n$link\n\nVeda Heritage");
+        bk_mail($p['email'], 'Ride request ' . $b['ref'] . ': ' . $pts[0], "Ride request {$b['ref']}\n\nPickup: {$pts[0]}\nDrop: " . RIDE_POINTS[$b['dropId']][0] . "\nWhen: {$b['when']}\nVehicle: " . (RIDE_VEHICLES[$b['vehicle']] ?? $b['vehicle']) . "\nPassengers: {$b['guests']}\nFare" . (($b['payment']['mode'] ?? '') === 'online' ? ' (paid online to Veda Heritage; your share is released after the trip)' : ' (pay the driver on the trip)') . ": Rs {$b['amountInr']}\n\nFirst to accept gets the ride. Open this private link and enter the driver and vehicle details:\n$link\n\nVeda Heritage");
         $n++;
     }
     bk_locked($b['id'], function ($x) use ($disp) { $x['dispatch'] = $disp; $x['status'] = 'searching'; $x['dispatchedOn'] = gmdate('c'); return $x; });
@@ -154,7 +154,7 @@ function pay_mark_paid(string $id, string $orderId, string $paymentId, int $pais
     $b = pay_transfer($b);
     if (($b['kind'] ?? '') === 'ride') { ride_dispatch($b); $b = bk_load($id); }
     $pn = $b['providerName'] ?? ''; notify('Payment received ' . $b['ref'], "Rs {$b['amountInr']} paid for {$b['kind']} {$b['ref']} ($pn).");
-    if (!empty($b['contactEmail'])) send_mail($b['contactEmail'], 'Payment received for ' . $b['ref'], "Thank you. We received Rs {$b['amountInr']} for booking {$b['ref']}" . (($b['kind'] ?? '') === 'stay' ? " at $pn, {$b['checkIn']} to {$b['checkOut']}." : '. We are finding you a driver now and will email the driver details and your trip code.') . "\n\nQuote {$b['ref']} in any message.\n\nVeda Heritage");
+    if (!empty($b['contactEmail'])) bk_mail($b['contactEmail'], 'Payment received for ' . $b['ref'], "Thank you. We received Rs {$b['amountInr']} for booking {$b['ref']}" . (($b['kind'] ?? '') === 'stay' ? " at $pn, {$b['checkIn']} to {$b['checkOut']}." : '. We are finding you a driver now and will email the driver details and your trip code.') . "\n\nQuote {$b['ref']} in any message.\n\nVeda Heritage");
     return $b;
 }
 /** Creates the held transfer of the partner's share from the captured payment (stays at once; rides when a driver claims). */

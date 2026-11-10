@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { hashParams, inr, postJson } from '@/lib/bookingApi'
+import { TEST_BANNER, hashParams, inr, postJson } from '@/lib/bookingApi'
 
 declare global { interface Window { Razorpay?: new (o: Record<string, unknown>) => { open: () => void; on: (e: string, f: (r: unknown) => void) => void } } }
 
@@ -35,6 +35,7 @@ export default function PayClient() {
   return (
     <div className="card space-y-3">
       {err && <p role="alert" className="text-sm text-red-700">{err}</p>}
+      {String(info?.keyId || '').startsWith('rzp_test_') && <p role="status" className="rounded border border-amber-300 bg-amber-50 text-amber-900 px-3 py-2 text-xs">{TEST_BANNER} Use Razorpay's test card details.</p>}
       {info ? <>
         <p className="text-sm text-ink-mid">Booking <strong>{info.ref}</strong> · {info.partner}</p><p className="text-sm text-ink">{info.summary}</p>
         <p className="font-serif text-3xl text-primary">{inr(info.amountInr)}</p>

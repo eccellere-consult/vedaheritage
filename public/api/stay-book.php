@@ -25,9 +25,9 @@ $b = ['id' => $id, 'ref' => $ref, 'kind' => 'stay', 'status' => $online ? 'pay_p
     'providerId' => $pid, 'providerName' => $p['name'], 'providerType' => 'stay', 'districts' => $p['districts'],
     'name' => $t['name'], 'contactEmail' => $t['contactEmail'], 'contactPhone' => $t['contactPhone'], 'checkIn' => $in, 'checkOut' => $out, 'people' => $t['guests'], 'guests' => $t['guests'], 'message' => $t['message'],
     'roomId' => $roomId, 'roomName' => $q['room']['name'], 'nights' => $q['nights'], 'valueInr' => $q['amountInr'], 'feeMode' => $fee['mode'], 'feeValue' => $fee['value'], 'commissionInr' => $bd['feeInr'], 'settled' => false,
-    'payTokenHash' => $hash, 'payment' => ['mode' => $online ? 'online' : 'onsite', 'status' => $online ? 'unpaid' : 'onsite']] + $bd;
+    'test' => bk_test(), 'payTokenHash' => $hash, 'payment' => ['mode' => $online ? 'online' : 'onsite', 'status' => $online ? 'unpaid' : 'onsite']] + $bd;
 if ($online) $b['holdUntil'] = time() + STAY_HOLD_MINUTES * 60;
 bk_put($b); flock($lock, LOCK_UN);
-if (!$online && $t['contactEmail'] !== '') send_mail($t['contactEmail'], "Your Veda Heritage request $ref", "Hello {$t['name']},\n\nWe received your stay request at {$p['name']} ({$q['room']['name']}), $in to $out, {$t['guests']} guests. Price: Rs {$q['amountInr']}. Reference $ref.\n\nWe pass it to the partner, who confirms with you. You pay the partner on site.\n\nVeda Heritage");
+if (!$online && $t['contactEmail'] !== '') bk_mail($t['contactEmail'], "Your Veda Heritage request $ref", "Hello {$t['name']},\n\nWe received your stay request at {$p['name']} ({$q['room']['name']}), $in to $out, {$t['guests']} guests. Price: Rs {$q['amountInr']}. Reference $ref.\n\nWe pass it to the partner, who confirms with you. You pay the partner on site.\n\nVeda Heritage");
 notify('New stay ' . ($online ? 'booking (awaiting payment) ' : 'request ') . $ref, "{$p['name']}, $in to $out. Open Bookings in the admin.");
 public_out(200, ['ok' => true, 'ref' => $ref, 'mode' => $online ? 'online' : 'onsite', 'amountInr' => $q['amountInr'], 'nights' => $q['nights'], 'payToken' => $online ? $tok : null, 'holdMinutes' => $online ? STAY_HOLD_MINUTES : null]);
