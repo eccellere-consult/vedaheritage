@@ -13,6 +13,7 @@ Owner/author: Eccellere (management-consulting audience for plans and reports; W
 - `docs/DIRECTORY_MODEL.md` — contacts and services directory: three tiers, verification, advertising caps, risks, legal checklist.
 - `docs/MARKETPLACE.md` — moderated classifieds: flow, where data lives (contact details are private), rules, pre-launch legal checklist.
 - `docs/BOOKINGS.md` — itinerary planner, stay and transport help, and what needs legal or commercial decisions before payments or commissions.
+- `docs/IDENTITY.md` — traveller accounts, identity documents (encrypted), partner verification, Form C assist, privacy design and the decisions that are the owner's.
 - `docs/ADMIN.md` — the admin page: what it does, one-time setup, security notes.
 - `docs/SPRINT.md` — the fill route: stop switch, topic register, what is and is not built. `docs/skills/vedaheritage-content-acceleration.skill.md` — the portable v2 skill with learnings.
 

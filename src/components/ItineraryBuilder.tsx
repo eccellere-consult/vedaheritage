@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { SITE } from '@/lib/config'
 import BookingRequest from '@/components/BookingRequest'
+import { acct, acctStore } from '@/lib/accountApi'
 
 export interface PickPlace { id: string; name: string; district: string; kind: string; tagline: string; href: string }
 export interface PickEvent { id: string; name: string; district: string; place: string; start: string; end: string; when: string; expected: boolean }
@@ -66,6 +67,11 @@ export default function ItineraryBuilder({ places, events }: { places: PickPlace
   const total = plan.days.flat().length
   const planDistricts = [...new Set(plan.days.flat().map(s => s.sub.split(' · ').pop()?.split(',').pop()?.trim() || '').filter(Boolean))]
   const flash = (t: string) => { setMsg(t); window.setTimeout(() => setMsg(''), 3500) }
+  const saveToAccount = async () => {
+    if (!acctStore.get()) { flash('Sign in to save this plan to your account.'); window.setTimeout(() => { window.location.href = '/account/' }, 1200); return }
+    const r = await acct('itinerary_save', { name: `Trip ${plan.start || new Date().toISOString().slice(0, 10)}`, plan })
+    flash(r.ok ? 'Saved to your account.' : r.status === 401 ? 'Please sign in again to save.' : r.data.error || 'Could not save.')
+  }
   const share = async () => {
     const url = `${window.location.origin}/itinerary/#plan=${enc(plan)}`
     try { await navigator.clipboard.writeText(url); flash('Link copied. Anyone with it sees this plan.') } catch { window.prompt('Copy this link', url) }
@@ -118,6 +124,7 @@ export default function ItineraryBuilder({ places, events }: { places: PickPlace
           <label className="text-xs text-ink-mid">Trip starts<input type="date" className={inp + ' mt-1 !w-auto block'} value={plan.start} onChange={e => setPlan(p => ({ ...p, start: e.target.value }))} /></label>
           <button className="btn-outline text-xs" onClick={() => setPlan(p => ({ ...p, days: [...p.days, []] }))}>Add a day</button>
           <button className="btn-outline text-xs" onClick={share}>Copy share link</button>
+          <button className="btn-outline text-xs" onClick={saveToAccount}>Save to my account</button>
           <button className="btn-outline text-xs" onClick={() => window.print()}>Print or save as PDF</button>
           <button className="text-xs underline text-ink-mid" onClick={() => { if (window.confirm('Clear the whole plan?')) setPlan(EMPTY) }}>Clear</button>
         </div>

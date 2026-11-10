@@ -3,6 +3,7 @@
 // and the traveller pays online; otherwise it becomes a request paid on site. Locked until "Stay booking" is on.
 define('VH_LIB', 1);
 require __DIR__ . '/lib/intake.php';
+require_once __DIR__ . '/lib/accounts.php';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') public_out(405, ['ok' => false, 'error' => 'POST only.']);
 $err = fn(string $m, int $c = 422) => public_out($c, ['ok' => false, 'error' => $m]);
@@ -25,7 +26,7 @@ $b = ['id' => $id, 'ref' => $ref, 'kind' => 'stay', 'status' => $online ? 'pay_p
     'providerId' => $pid, 'providerName' => $p['name'], 'providerType' => 'stay', 'districts' => $p['districts'],
     'name' => $t['name'], 'contactEmail' => $t['contactEmail'], 'contactPhone' => $t['contactPhone'], 'checkIn' => $in, 'checkOut' => $out, 'people' => $t['guests'], 'guests' => $t['guests'], 'message' => $t['message'],
     'roomId' => $roomId, 'roomName' => $q['room']['name'], 'nights' => $q['nights'], 'valueInr' => $q['amountInr'], 'feeMode' => $fee['mode'], 'feeValue' => $fee['value'], 'commissionInr' => $bd['feeInr'], 'settled' => false,
-    'test' => bk_test(), 'payTokenHash' => $hash, 'payment' => ['mode' => $online ? 'online' : 'onsite', 'status' => $online ? 'unpaid' : 'onsite']] + $bd;
+    'test' => bk_test(), 'accountId' => (($__a = acct_session((string)($_POST['account'] ?? ''))) ? $__a['id'] : ''), 'payTokenHash' => $hash, 'payment' => ['mode' => $online ? 'online' : 'onsite', 'status' => $online ? 'unpaid' : 'onsite']] + $bd;
 if ($online) $b['holdUntil'] = time() + STAY_HOLD_MINUTES * 60;
 bk_put($b); flock($lock, LOCK_UN);
 if (!$online && $t['contactEmail'] !== '') bk_mail($t['contactEmail'], "Your Veda Heritage request $ref", "Hello {$t['name']},\n\nWe received your stay request at {$p['name']} ({$q['room']['name']}), $in to $out, {$t['guests']} guests. Price: Rs {$q['amountInr']}. Reference $ref.\n\nWe pass it to the partner, who confirms with you. You pay the partner on site.\n\nVeda Heritage");

@@ -382,7 +382,7 @@ try {
   const trav = (o = {}) => ({ providerId: stay.id, name: 'Meera', contactPhone: '+91 98470 12345', contactEmail: 'meera@example.com', checkIn: new Date(Date.now() + 10 * 864e5).toISOString().slice(0, 10), checkOut: new Date(Date.now() + 12 * 864e5).toISOString().slice(0, 10), people: '2', message: 'Day 1: Alappuzha Backwaters. Day 2: Varkala Beach.', consent: '1', ...o })
   ok((await pp('submit-booking', trav())).s === 403, 'bookings: a request is refused while the module is locked')
   const bo = await call('bk_overview'); const cap = id => bo.d.caps.find(c => c.id === id)
-  ok(bo.d.caps.length === 5 && bo.d.caps.every(c => c.open === false) && cap('enquiries').missing.length === 5, 'bookings: every capability starts locked with its missing items listed')
+  ok(bo.d.caps.length === 7 && bo.d.caps.every(c => c.open === false) && cap('enquiries').missing.length === 5, 'bookings: every capability starts locked with its missing items listed')
   const on0 = await call('bk_cap_set', { method: 'POST', body: { cap: 'enquiries', enabled: true } })
   ok(on0.s === 422 && on0.d.blockers.length === 5, 'bookings: cannot switch on without the approvals recorded')
   const fullEnq = { cap: 'enquiries', checklist: { terms: true, grievance: true, agreements: true, retention: true }, evidence: { grievanceOfficer: 'Asha, stay@example.com' } }
@@ -628,6 +628,139 @@ try {
       ok(fin.status === 'completed' && fin.paid === true && fin.partnerShareInr > 0 && fin.payoutHeld === false, 'portal: the partner sees the finished ride and its payout')
       ok((await J('partner.php?a=logout', {}, CS)).s === 200 && (await J('partner.php?a=me', null, CS)).s === 401, 'portal: signing out ends the session')
     }
+    // ---- traveller accounts, identity details, documents, dashboard
+    {
+      const A = async (a, body, tok, raw) => { const r = await fetch('http://127.0.0.1:18911/api/account.php?a=' + a, { method: body ? 'POST' : 'GET', headers: { 'content-type': 'application/json', ...(tok ? { 'x-account-token': tok } : {}) }, body: body ? JSON.stringify(body) : undefined }); return { s: r.status, d: await r.json().catch(() => ({})) } }
+      const signIn = async (email, extra = {}) => { const o0 = outbox().length; await A('register', { email, name: 'Anna', phone: '+91 98470 12121', country: 'Germany', residency: 'foreign', consent: true, ...extra }); const m = outbox().slice(o0).find(x => /sign-in link/.test(x.subject)); const t = m?.body.match(/#t=([0-9a-f]{48})/)?.[1]; return { m, session: t ? (await A('session', { token: t })).d.session : null, t } }
+      ok((await A('register', { email: 'bad', name: 'A', consent: true })).s === 422 && (await A('register', { email: 'a@example.com', name: 'A' })).s === 422, 'accounts: registration needs a valid email and the consent box')
+      const s1 = await signIn('anna@example.com'); const T1 = s1.session
+      ok(s1.m && s1.m.to === 'owner@example.com' && T1, 'accounts: registering emails a sign-in link (to the owner in test mode) and the link signs in')
+      ok((await A('session', { token: s1.t })).s === 401, 'accounts: a sign-in link works once')
+      ok((await A('me')).s === 401 && (await A('dashboard', null, 'bad')).s === 401, 'accounts: no session, no access')
+      const o1 = outbox().length; const again = await A('register', { email: 'anna@example.com', name: 'Someone else', consent: true }); const relink = outbox().slice(o1).find(x => /sign-in link/.test(x.subject))
+      ok(again.s === 200 && relink && (await A('me', null, T1)).d.account.name === 'Anna', 'accounts: registering again with a verified email only sends a sign-in link and changes nothing')
+      const me0 = await A('me', null, T1)
+      ok(me0.d.account.email === 'anna@example.com' && me0.d.account.residency === 'foreign' && me0.d.kycOpen && me0.d.vaultReady, 'accounts: the profile is returned')
+      ok((await A('profile_save', { name: 'Anna K', phone: '+91 98470 12121', country: 'Germany', residency: 'foreign', emergencyContact: { name: 'Hans', phone: '+49 151 1234567' } }, T1)).s === 200 && (await A('me', null, T1)).d.account.emergencyContact.name === 'Hans', 'accounts: profile and emergency contact are saved')
+      // itineraries
+      const plan = { start: '2027-01-10', days: [[{ k: 'p', id: 'temples/x', label: 'Test Temple', sub: 'Temple · Kollam' }], []] }
+      const sv = await A('itinerary_save', { name: 'Kerala January', plan }, T1)
+      ok(sv.s === 200 && (await A('dashboard', null, T1)).d.trips[0].name === 'Kerala January' && (await A('itinerary_save', { name: 'x', plan: { nope: 1 } }, T1)).s === 422, 'accounts: an itinerary is saved to the account and listed on the dashboard')
+      // identity: validation
+      const fid = { fullName: 'Anna Keller', dob: '1990-05-01', nationality: 'German', passportNo: 'C01X00T47', passportIssuePlace: 'Berlin', passportIssueDate: '2020-01-01', passportExpiry: '2099-01-01', visaNo: 'V123456', visaType: 'Tourist', visaIssueDate: '2026-12-01', visaExpiry: '2099-06-01', arrivalDate: '2027-01-10', arrivedFrom: 'Frankfurt', purpose: 'Tourism', nextDestination: 'Kochi', addressAbroad: 'Musterstrasse 1, Berlin' }
+      ok((await A('identity_save', { identity: fid }, T1)).s === 422, 'identity: consent is required before anything is stored')
+      ok((await A('identity_save', { consent: true, identity: { ...fid, passportExpiry: '2020-01-01' } }, T1)).d.error.includes('expired') && (await A('identity_save', { consent: true, identity: { ...fid, visaNo: '' } }, T1)).s === 422, 'identity: an expired passport and missing visa details are refused')
+      const idS = await A('identity_save', { consent: true, identity: fid }, T1)
+      ok(idS.s === 200, 'identity: foreign guest details (Form C data) are saved')
+      const acctFile = fs.readdirSync(path.join(tmp, 'data/accounts/items')).map(f => fs.readFileSync(path.join(tmp, 'data/accounts/items', f), 'utf8')).join('')
+      ok(!acctFile.includes('C01X00T47') && !acctFile.includes('Musterstrasse'), 'identity: the passport number and address are NOT readable in the stored account file (sealed)')
+      ok((await A('identity_get', null, T1)).d.identity.passportNo === 'C01X00T47', 'identity: the owner can read it back')
+      // Indian resident: Aadhaar refused
+      const s2 = await signIn('ravi@example.com', { name: 'Ravi', residency: 'indian', country: 'India' }); const T2 = s2.session
+      const ind = { fullName: 'Ravi Nair', dob: '1985-03-03', idType: 'Driving licence', idNumber: 'KL0120200012345', address: 'Kollam, Kerala', purpose: 'Tourism' }
+      ok((await A('identity_save', { consent: true, identity: { ...ind, idType: 'Aadhaar card', idNumber: '1234 5678 9012' } }, T2)).d.error.includes('Aadhaar') && (await A('identity_save', { consent: true, identity: { ...ind, idNumber: '123456789012' } }, T2)).s === 422, 'identity: Aadhaar numbers are never stored')
+      ok((await A('identity_save', { consent: true, identity: ind }, T2)).s === 200, 'identity: an Indian resident can store a government ID (not Aadhaar)')
+      // documents
+      const png = Buffer.concat([Buffer.from('89504e470d0a1a0a', 'hex'), Buffer.from('SECRETPASSPORTSCAN-MARKER-12345'), Buffer.alloc(200, 7)]); const up = (b, tok, dt = 'passport_photo') => A('doc_upload', { docType: dt, name: 'p.png', data: b.toString('base64') }, tok)
+      ok((await up(Buffer.from('just text, not an image'), T1)).s === 422 && (await up(Buffer.alloc(5.5 * 1024 * 1024, 1), T1)).s === 422 && (await A('doc_upload', { docType: 'bogus', data: png.toString('base64') }, T1)).s === 422, 'documents: only JPEG, PNG or PDF under 5 MB, and a known document type')
+      const dU = await up(png, T1); const meA = await A('me', null, T1); const docId = meA.d.docs[0]?.id
+      ok(dU.s === 200 && docId && meA.d.docs[0].deleteAfter > new Date().toISOString().slice(0, 10), 'documents: a document uploads with an automatic delete-after date')
+      const raw = fs.readFileSync(path.join(tmp, 'data/kyc/files', docId + '.bin'))
+      ok(!raw.includes(Buffer.from('SECRETPASSPORTSCAN')) && !raw.includes(Buffer.from('89504e47', 'hex')), 'documents: the file on disk is encrypted (no readable content or file signature)')
+      const got = await A('doc_get&id=' + docId, null, T1)
+      ok(Buffer.from(got.d.data, 'base64').equals(png) && got.d.mime === 'image/png', 'documents: the owner gets the exact file back')
+      ok((await A('doc_get&id=' + docId, null, T2)).s === 404 && (await A('doc_delete', { id: docId }, T2)).s === 404, 'documents: another account cannot read or delete it')
+      // a booking made while signed in shows on the dashboard with steps, contact and payment
+      const stayDash = (await call('bk_overview')).d.partners.find(p => p.name === 'Portal Stay (TEST)'); await call('bk_inventory_set', { method: 'POST', body: { id: stayDash.id, razorpayAccountId: 'acc_PortalStay001' } })
+      const bkD = await pp('stay-book', { providerId: stayDash.id, roomId: 'room1', checkIn: new Date(Date.now() + 90 * 864e5).toISOString().slice(0, 10), checkOut: new Date(Date.now() + 92 * 864e5).toISOString().slice(0, 10), guests: '2', name: 'Anna', contactEmail: 'anna@example.com', consent: '1', account: T1 })
+      const dash = (await A('dashboard', null, T1)).d; const bv = dash.bookings.find(b => b.ref === bkD.d.ref)
+      ok(bv && bv.kind === 'stay' && bv.steps[0][1] === true && bv.steps.find(s => s[0] === 'Confirmed')[1] === false && bv.payment.mode === 'online' && bv.payment.status === 'unpaid', 'dashboard: a booking shows status steps and its payment state')
+      ok(dash.payments.some(p => p.ref === bkD.d.ref) && dash.emergency.some(e => e.phone === '112') && !(await A('dashboard', null, T2)).d.bookings.some(b => b.ref === bkD.d.ref), 'dashboard: payments, emergency numbers, and bookings stay private to the account')
+      // pay it, then the contact appears
+      const hmx = (k, d) => crypto.createHmac('sha256', k).update(d).digest('hex'); const pcx = await (await fetch('http://127.0.0.1:18911/api/pay-create.php', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ref: bkD.d.ref, token: bkD.d.payToken }) })).json()
+      await fetch('http://127.0.0.1:18911/api/pay-verify.php', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ref: bkD.d.ref, token: bkD.d.payToken, razorpay_order_id: pcx.orderId, razorpay_payment_id: 'pay_dash1', razorpay_signature: hmx('sekret', pcx.orderId + '|pay_dash1') }) })
+      const bv2 = (await A('dashboard', null, T1)).d.bookings.find(b => b.ref === bkD.d.ref)
+      ok(bv2.status === 'confirmed' && bv2.payment.status === 'paid' && bv2.payment.receipt === 'pay_dash1' && bv2.contact?.name.includes('Portal Stay') && bv2.steps.find(s => s[0] === 'Paid')[1] === true, 'dashboard: after payment the booking is confirmed, shows the receipt and the stay to contact')
+      // audit log
+      const au = fs.readFileSync(path.join(tmp, 'data/kyc/audit.log'), 'utf8')
+      ok(/identity_saved/.test(au) && /doc_uploaded/.test(au) && /doc_view_own/.test(au), 'audit: identity and document actions are logged')
+      // erase
+      ok((await A('erase', { confirm: 'no' }, T2)).s === 422, 'accounts: erasing needs the word DELETE')
+      const er = await A('erase', { confirm: 'DELETE' }, T1)
+      ok(er.s === 200 && (await A('me', null, T1)).s === 401 && !fs.existsSync(path.join(tmp, 'data/kyc/files', docId + '.bin')) && !(await call('bk_overview')).d.bookings.find(b => b.ref === bkD.d.ref).accountId, 'accounts: erasing deletes the account, itineraries and documents, and unlinks bookings')
+    }
+    // ---- partner verification (documents, location) and Form C assist
+    {
+      const hm = (k, d) => crypto.createHmac('sha256', k).update(d).digest('hex')
+      const J = async (url, body, token, hdr = 'x-partner-token') => { const r = await fetch('http://127.0.0.1:18911/api/' + url, { method: body ? 'POST' : 'GET', headers: { 'content-type': 'application/json', ...(token ? { [hdr]: token } : {}) }, body: body ? JSON.stringify(body) : undefined }); return { s: r.status, d: await r.json().catch(() => ({})) } }
+      const ps = (await call('bk_overview')).d.partners; const stayP = ps.find(x => x.name === 'Portal Stay (TEST)')
+      const o0 = outbox().length; await J('partner.php?a=login', { email: stayP.email }); const lt = outbox().slice(o0).find(m => /sign-in/.test(m.subject)).body.match(/#t=([0-9a-f]{48})/)[1]; const PS = (await J('partner.php?a=session', { token: lt })).d.session
+      const vw = await J('partner.php?a=verification', null, PS)
+      ok(vw.d.required.map(r => r.docType).join() === 'registration,owner_id' && vw.d.state.ok === false && vw.d.state.missing.includes('location') && vw.d.state.missing.includes('registration'), 'verification: a stay must provide a registration certificate, an owner ID and a location')
+      const png = Buffer.concat([Buffer.from('89504e470d0a1a0a', 'hex'), Buffer.from('REGISTRATION-CERT-MARKER'), Buffer.alloc(100, 3)]); const b64 = png.toString('base64')
+      ok((await J('partner.php?a=vdoc_upload', { docType: 'insurance', data: b64 }, PS)).s === 422 && (await J('partner.php?a=vdoc_upload', { docType: 'registration', data: Buffer.from('not an image').toString('base64') }, PS)).s === 422, 'verification: a stay cannot upload a document type that is not for it, or a file that is not an image or PDF')
+      const u1 = await J('partner.php?a=vdoc_upload', { docType: 'registration', data: b64 }, PS); await J('partner.php?a=vdoc_upload', { docType: 'registration', data: b64 }, PS); await J('partner.php?a=vdoc_upload', { docType: 'owner_id', data: b64 }, PS)
+      const vw2 = await J('partner.php?a=verification', null, PS)
+      ok(u1.s === 200 && vw2.d.docs.length === 2 && vw2.d.docs.every(d => d.status === 'pending'), 'verification: documents upload as pending, and a new upload replaces the old one of the same type')
+      ok((await J('partner.php?a=geo_save', { lat: 51.5, lng: -0.1 }, PS)).s === 422 && (await J('partner.php?a=geo_save', { lat: 'x', lng: 76 }, PS)).s === 422 && (await J('partner.php?a=geo_save', { lat: 9.0925, lng: 76.4903, source: 'device' }, PS)).s === 200, 'verification: a location outside Kerala is refused; one inside is saved')
+      const files = fs.readdirSync(path.join(tmp, 'data/kyc/files')); const enc = files.some(f => fs.readFileSync(path.join(tmp, 'data/kyc/files', f)).includes(Buffer.from('REGISTRATION-CERT-MARKER')))
+      ok(!enc, 'verification: partner documents are encrypted on disk')
+      // admin review
+      const kv = (await call('kyc_overview')).d; const row = kv.providers.find(x => x.id === stayP.id); const reg = row.docs.find(d => d.docType === 'registration'), oid = row.docs.find(d => d.docType === 'owner_id')
+      ok(row.verified === false && row.geo.map.includes('openstreetmap.org') && reg.needsExpiry === true && kv.stats.accounts >= 0, 'verification: the admin sees the partner documents, the location with a map link, and who is missing what')
+      ok((await call('kyc_doc_view&id=' + reg.docId)).s === 400, 'verification: opening a document needs a reason')
+      const view = await call('kyc_doc_view&id=' + reg.docId + '&reason=' + encodeURIComponent('checking the registration certificate'))
+      ok(view.s === 200 && Buffer.from(view.d.data, 'base64').equals(png), 'verification: the admin opens the document with a reason')
+      ok(/admin","action":"doc_view".*checking the registration/.test(fs.readFileSync(path.join(tmp, 'data/kyc/audit.log'), 'utf8')), 'verification: the view is written to the audit log with the reason')
+      ok((await call('kyc_doc_decide', { method: 'POST', body: { providerId: stayP.id, docId: reg.docId, decision: 'approve' } })).s === 422 && (await call('kyc_doc_decide', { method: 'POST', body: { providerId: stayP.id, docId: reg.docId, decision: 'approve', expires: '2020-01-01' } })).s === 422 && (await call('kyc_doc_decide', { method: 'POST', body: { providerId: stayP.id, docId: oid.docId, decision: 'reject' } })).s === 422, 'verification: approving a licence needs a future expiry date, and rejecting needs a reason')
+      await call('kyc_doc_decide', { method: 'POST', body: { providerId: stayP.id, docId: reg.docId, decision: 'approve', expires: '2099-12-31' } }); await call('kyc_doc_decide', { method: 'POST', body: { providerId: stayP.id, docId: oid.docId, decision: 'approve' } }); await call('kyc_geo_decide', { method: 'POST', body: { providerId: stayP.id, decision: 'approve' } })
+      ok((await J('partner.php?a=verification', null, PS)).d.state.ok === true, 'verification: with every document approved and in date and the location approved, the partner is verified')
+      // gating logic with identity verification really switched on (CLI, separate data folder and a real key)
+      const g = fs.mkdtempSync(path.join(os.tmpdir(), 'vh-gate-')); fs.mkdirSync(path.join(g, 'data/bookings'), { recursive: true })
+      const key = crypto.randomBytes(32).toString('base64'); fs.writeFileSync(path.join(g, 'vh-config.php'), `<?php return ['data_dir'=>'${g}/data','doc_key'=>'${key}'];`)
+      const cfgK = { caps: { kyc: { enabled: true, checklist: { notice: true, retention: true, key: true, hosts: true, access: true }, evidence: { dpoName: 'A B, a@b.c' } } } }; fs.writeFileSync(path.join(g, 'data/bookings/config.json'), JSON.stringify(cfgK))
+      const run = pv => spawnSync('php', ['-r', 'define("VH_LIB",1); require "public/api/lib/accounts.php"; $p=json_decode(' + JSON.stringify(JSON.stringify(pv)) + ',true); echo json_encode([bk_open("kyc"), bk_partner_base($p), bk_partner_ok($p)]);'], { encoding: 'utf8', env: { ...process.env, VH_CONFIG: path.join(g, 'vh-config.php') } }).stdout.trim()
+      const base = { id: '20261110-aaaaaaaa', status: 'approved', type: 'stay', booking: { partner: true, agreementOn: '2026-11-01', registrationChecked: true } }
+      ok(run(base) === '[true,true,false]', 'gating: with identity verification on, a partner without approved documents and location cannot take bookings (but can sign in to upload them)')
+      ok(run({ ...base, verification: { docs: [{ docType: 'registration', status: 'approved', expires: '2099-01-01' }, { docType: 'owner_id', status: 'approved' }], geo: { status: 'approved' } } }) === '[true,true,true]', 'gating: once documents and location are approved and in date, it can')
+      ok(run({ ...base, verification: { docs: [{ docType: 'registration', status: 'approved', expires: '2020-01-01' }, { docType: 'owner_id', status: 'approved' }], geo: { status: 'approved' } } }) === '[true,true,false]', 'gating: an expired document takes the partner off bookings again automatically')
+      fs.rmSync(g, { recursive: true, force: true })
+      // Form C assist
+      const A = async (a, body, tok) => { const r = await fetch('http://127.0.0.1:18911/api/account.php?a=' + a, { method: body ? 'POST' : 'GET', headers: { 'content-type': 'application/json', ...(tok ? { 'x-account-token': tok } : {}) }, body: body ? JSON.stringify(body) : undefined }); return { s: r.status, d: await r.json().catch(() => ({})) } }
+      const reg2 = async (email, res) => { const m0 = outbox().length; await A('register', { email, name: 'Guest ' + res, phone: '+91 98470 13131', country: 'X', residency: res, consent: true }); const t = outbox().slice(m0).find(x => /sign-in/.test(x.subject)).body.match(/#t=([0-9a-f]{48})/)[1]; return (await A('session', { token: t })).d.session }
+      const G = await reg2('guest-f@example.com', 'foreign'); const I = await reg2('guest-i@example.com', 'indian')
+      const fid = { fullName: 'Guest Foreign', dob: '1991-02-02', nationality: 'French', passportNo: 'FR1234567', passportIssuePlace: 'Paris', passportIssueDate: '2021-01-01', passportExpiry: '2099-01-01', visaNo: 'VISA555', visaType: 'Tourist', visaIssueDate: '2026-12-01', visaExpiry: '2099-06-01', arrivalDate: '2026-11-12', arrivedFrom: 'Paris', purpose: 'Tourism', nextDestination: 'Kochi', addressAbroad: '1 Rue X, Paris' }
+      await A('identity_save', { consent: true, identity: fid }, G); await A('doc_upload', { docType: 'passport_photo', data: b64 }, G)
+      const bookPaid = async (tok, name, email, inD, outD) => { const r = await pp('stay-book', { providerId: stayP.id, roomId: 'room1', checkIn: inD, checkOut: outD, guests: '1', name, contactEmail: email, consent: '1', account: tok }); const pc = await J('pay-create.php', { ref: r.d.ref, token: r.d.payToken }); await J('pay-verify.php', { ref: r.d.ref, token: r.d.payToken, razorpay_order_id: pc.d.orderId, razorpay_payment_id: 'pay_fc' + r.d.ref.slice(-4), razorpay_signature: hm('sekret', pc.d.orderId + '|pay_fc' + r.d.ref.slice(-4)) }); return r.d.ref }
+      const dd = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10)
+      const refNear = await bookPaid(G, 'Guest Foreign', 'guest-f@example.com', dd(1), dd(3)); const refFar = await bookPaid(G, 'Guest Foreign', 'guest-f@example.com', dd(120), dd(122)); const refInd = await bookPaid(I, 'Guest Indian', 'guest-i@example.com', dd(1), dd(2))
+      const fl = (await J('partner.php?a=formc_list', null, PS)).d.guests; const gNear = fl.find(x => x.ref === refNear), gFar = fl.find(x => x.ref === refFar), gInd = fl.find(x => x.ref === refInd)
+      ok(gNear.available === true && gNear.foreign && gFar.available === false && /3 days/.test(gFar.reason) && gInd.foreign === false && gInd.available === false, 'form C: details open for a foreign guest near check-in; not far in advance; an Indian guest does not need Form C')
+      ok((await J('partner.php?a=formc_view', { id: gFar.id }, PS)).s === 403 && (await J('partner.php?a=formc_view', { id: gInd.id }, PS)).s === 403, 'form C: no access outside the window or for an Indian resident')
+      const fv = await J('partner.php?a=formc_view', { id: gNear.id }, PS)
+      ok(fv.s === 200 && fv.d.identity.passportNo === 'FR1234567' && fv.d.identity.visaNo === 'VISA555' && fv.d.docs.length === 1, 'form C: the host sees the guest details needed to file it, and the document list')
+      const fd = await J('partner.php?a=formc_doc', { id: gNear.id, docId: fv.d.docs[0].id }, PS)
+      ok(fd.s === 200 && Buffer.from(fd.d.data, 'base64').equals(png), 'form C: the host can open the guest passport scan')
+      const au = fs.readFileSync(path.join(tmp, 'data/kyc/audit.log'), 'utf8')
+      ok(new RegExp('provider:' + stayP.id + '","action":"formc_view","ref":"' + refNear).test(au) && /formc_doc/.test(au), 'form C: every view by the host is logged with the booking')
+      // another stay partner cannot see this guest
+      const otherStay = (await call('bk_overview')).d.partners.find(x => x.type === 'stay' && x.id !== stayP.id && x.test) ; const o2 = outbox().length
+      if (otherStay) { await J('partner.php?a=login', { email: otherStay.email }); const t2 = outbox().slice(o2).find(m => /sign-in/.test(m.subject)).body.match(/#t=([0-9a-f]{48})/)[1]; const OS = (await J('partner.php?a=session', { token: t2 })).d.session
+        ok((await J('partner.php?a=formc_view', { id: gNear.id }, OS)).s === 403, 'form C: another host cannot open this guest') }
+      ok((await J('partner.php?a=formc_filed', { id: gNear.id, ack: 'x' }, PS)).s === 422 && (await J('partner.php?a=formc_filed', { id: gNear.id, ack: 'FRRO-ACK-9988' }, PS)).s === 200 && (await J('partner.php?a=formc_list', null, PS)).d.guests.find(x => x.ref === refNear).filed.ack === 'FRRO-ACK-9988', 'form C: the host records the FRRO acknowledgement number')
+      // admin: traveller view/erase, settings, key, purge
+      const trv = (await call('kyc_overview')).d.travellers.find(x => x.email === 'guest-f@example.com')
+      ok((await call('kyc_traveller_view', { method: 'POST', body: { id: trv.id } })).s === 400 && (await call('kyc_traveller_view', { method: 'POST', body: { id: trv.id, reason: 'support request' } })).d.identity.passportNo === 'FR1234567', 'admin: opening a traveller record needs a reason, and returns the decrypted details')
+      ok((await call('kyc_traveller_erase', { method: 'POST', body: { id: trv.id } })).s === 422 && (await call('kyc_traveller_erase', { method: 'POST', body: { id: trv.id, confirm: 'DELETE', reason: 'deletion request from the traveller' } })).s === 200 && !(await call('kyc_overview')).d.travellers.some(x => x.id === trv.id), 'admin: a data-deletion request erases the account and its documents')
+      ok((await call('kyc_settings', { method: 'POST', body: { retentionDays: 3 } })).s === 400 && (await call('kyc_settings', { method: 'POST', body: { retentionDays: 90 } })).s === 200 && (await call('kyc_overview')).d.retentionDays === 90, 'admin: the retention period is validated and saved')
+      const kg = (await call('kyc_keygen')).d; ok(Buffer.from(kg.key, 'base64').length === 32 && /doc_key/.test(kg.how), 'admin: a new encryption key can be generated for vh-config.php')
+      // retention: an expired document is deleted automatically
+      await A('identity_save', { consent: true, identity: { fullName: 'Guest Indian', dob: '1988-01-01', idType: 'Voter ID', idNumber: 'ABC1234567', address: 'Kollam', purpose: 'Tourism' } }, I); await A('doc_upload', { docType: 'visa', data: b64 }, I)
+      const meI = (await A('me', null, I)).d; const dId = meI.docs.find(d => d.docType === 'visa')?.id
+      if (dId) { const mf = path.join(tmp, 'data/kyc/meta', dId + '.json'); const m = JSON.parse(fs.readFileSync(mf, 'utf8')); m.deleteAfter = '2020-01-01'; fs.writeFileSync(mf, JSON.stringify(m)) }
+      const pr = await call('kyc_purge', { method: 'POST', body: {} })
+      ok(pr.s === 200 && dId && !fs.existsSync(path.join(tmp, 'data/kyc/files', dId + '.bin')), 'retention: a document past its delete-after date is deleted automatically')
+    }
     const tpA = await call('bk_test_partner', { method: 'POST', body: { name: 'Quick Stay', type: 'stay', district: 'Kollam' } })
     const ovT = (await call('bk_overview')).d; const tPartner = ovT.partners.find(p => p.test)
     ok(tpA.s === 200 && tPartner && tPartner.live === true && tPartner.name.includes('(TEST)'), 'test mode: a test partner can be added in one step and is live for testing')
@@ -635,6 +768,7 @@ try {
     const off = await call('bk_testmode', { method: 'POST', body: { enabled: false } }); const s2 = await trk('booking-status.php')
     ok((await call('bk_test_partner', { method: 'POST', body: { name: 'Late', type: 'stay', district: 'Kollam' } })).s === 403 && (await call('bk_overview')).d.partners.find(p => p.test)?.live === false, 'test mode: test partners cannot be added, and are not live, once test mode is off')
     ok(off.s === 200 && !s2.testMode && Object.values(s2.caps).every(v => v === false), 'test mode: switching it off locks everything again')
+    ok(fs.readdirSync(path.join(tmp, 'data/kyc/files')).length === 0 && !fs.readdirSync(path.join(tmp, 'data/accounts/items')).map(f => fs.readFileSync(path.join(tmp, 'data/accounts/items', f), 'utf8')).join('').includes('identityEnc'), 'test mode: documents and identities made with the throwaway test key are deleted when test mode is switched off')
     ok((await pp('stay-book', { providerId: stayT.id, roomId: 'r1', checkIn: day(70), checkOut: day(71), guests: '2', name: 'X', contactEmail: 'x@example.com', consent: '1' })).s === 403, 'test mode: with test mode off, booking is refused again')
   }
 

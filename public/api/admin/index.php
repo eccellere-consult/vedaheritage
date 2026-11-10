@@ -4,6 +4,7 @@
 define('VH_ADMIN', 1);
 require __DIR__ . '/lib.php';
 require_once __DIR__ . '/../lib/commerce.php';
+require_once __DIR__ . '/../lib/accounts.php';
 
 $a = preg_replace('/[^a-z_]/', '', $_GET['a'] ?? '');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -900,7 +901,8 @@ try {
 
     case 'bk_testmode': {
         if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
-        $cfg = bk_config(); $cfg['testMode'] = !empty($in['enabled']); bk_save($cfg); audit('bk-testmode', ['on' => $cfg['testMode']]);
+        $cfg = bk_config(); $wasTest = !empty($cfg['testMode']); $cfg['testMode'] = !empty($in['enabled']); bk_save($cfg);
+        if ($wasTest && !$cfg['testMode']) { $pd = vault_purge_test(); $pa = acct_purge_test(); audit('bk-testmode-purge', ['docs' => $pd, 'identities' => $pa]); }   // documents made with the throwaway test key cannot be read again, so they are deleted audit('bk-testmode', ['on' => $cfg['testMode']]);
         json_out(200, ['ok' => true, 'message' => $cfg['testMode'] ? 'Test mode is ON. Stays, rides and enquiries are open for testing. No email goes to partners or travellers, and online payments work only with Razorpay test keys.' : 'Test mode is OFF. Every capability is locked again until its approvals are recorded and it is switched on.']);
     }
 
@@ -1043,6 +1045,91 @@ try {
             if ($b && $b['providerId'] === $pid && ($b['status'] ?? '') === 'completed' && substr($b['completedOn'] ?? '', 0, 7) === $m && empty($b['settled'])) { $b['settled'] = true; $b['settledRef'] = $ref; $b['settledOn'] = gmdate('Y-m-d'); save_json($f, $b); $n++; } }
         audit('bk-settle', ['provider' => $pid, 'month' => $m, 'n' => $n]);
         json_out(200, ['ok' => true, 'message' => "$n booking(s) marked as settled."]);
+    }
+
+    // ------------------------------------------------------------ identity verification (documents, locations, travellers)
+    case 'kyc_overview': {
+        kyc_purge_all(); $provs = [];
+        foreach (bk_providers() as $p) {
+            if (!in_array($p['type'] ?? '', BK_PARTNER_TYPES, true) || !in_array($p['status'] ?? '', ['approved', 'suspended'], true)) continue;
+            $v = prov_verification($p); $docs = [];
+            foreach (($p['verification']['docs'] ?? []) as $d) { $m = vault_meta($d['docId']); $docs[] = ['docId' => $d['docId'], 'docType' => $d['docType'], 'label' => PROV_DOC_TYPES[$d['docType']] ?? $d['docType'], 'status' => $d['status'], 'expires' => $d['expires'] ?? null, 'note' => $d['note'] ?? '', 'uploadedOn' => $d['uploadedOn'] ?? '', 'size' => $m['size'] ?? 0, 'kind' => $m['kind'] ?? '', 'needsExpiry' => in_array($d['docType'], PROV_EXPIRY_REQUIRED, true)]; }
+            $g = $p['verification']['geo'] ?? null;
+            $provs[] = ['id' => $p['id'], 'name' => $p['name'], 'type' => $p['type'], 'districts' => $p['districts'], 'test' => !empty($p['test']), 'verified' => $v['ok'], 'missing' => $v['missing'], 'docs' => $docs, 'required' => PROV_REQUIRED[$p['type']] ?? [],
+                'geo' => $g ? $g + ['map' => 'https://www.openstreetmap.org/?mlat=' . $g['lat'] . '&mlon=' . $g['lng'] . '#map=17/' . $g['lat'] . '/' . $g['lng']] : null, 'address' => $p['address'] ?? ''];
+        }
+        $acs = acct_all(); $trav = []; $withId = 0; $foreign = 0; $docsN = 0;
+        foreach ($acs as $a) { $n = count(vault_owned('account', $a['id'])); $docsN += $n; if (!empty($a['identityEnc'])) $withId++; if (($a['residency'] ?? '') === 'foreign') $foreign++; $trav[] = ['id' => $a['id'], 'email' => $a['email'], 'name' => $a['name'] ?? '', 'residency' => $a['residency'] ?? '', 'verified' => !empty($a['verified']), 'identityOn' => $a['identityOn'] ?? null, 'docs' => $n, 'created' => $a['created']]; }
+        usort($trav, fn($x, $y) => strcmp($y['created'], $x['created']));
+        json_out(200, ['providers' => $provs, 'travellers' => array_slice($trav, 0, 100), 'stats' => ['accounts' => count($acs), 'withIdentity' => $withId, 'foreign' => $foreign, 'documents' => $docsN],
+            'retentionDays' => (int)bk_config()['kycRetentionDays'], 'vaultReady' => vault_ready(), 'realKey' => vault_real_key(), 'kycOpen' => bk_open('kyc'), 'audit' => vault_audit_tail(60), 'docLabels' => PROV_DOC_TYPES]);
+    }
+
+    case 'kyc_doc_view': {
+        $m = vault_meta((string)($_GET['id'] ?? '')); $reason = clean_text($_GET['reason'] ?? '', 200);
+        if (!$m) json_out(404, ['error' => 'Not found.']); if (mb_strlen($reason) < 5) json_out(400, ['error' => 'Say why you are opening this document (at least 5 characters). It is written to the audit log.']);
+        $d = vault_get($m['id']); if (!$d) json_out(500, ['error' => 'Could not open the file. Check that doc_key in vh-config.php has not changed.']);
+        vault_audit('admin', 'doc_view', $m['owner']['type'] . ':' . $m['owner']['id'] . ':' . $m['id'], $reason);
+        json_out(200, ['ok' => true, 'mime' => $m['mime'], 'data' => base64_encode($d['bytes'])]);
+    }
+
+    case 'kyc_doc_decide': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $pid = need_str($in, 'providerId', 20); $did = need_str($in, 'docId', 20); $dec = need_str($in, 'decision', 10); if (!valid_id($pid) || !in_array($dec, ['approve', 'reject'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('providers') . "/$pid.json"; $p = json_file($path); if (!$p) json_out(404, ['error' => 'Provider not found.']);
+        $docs = $p['verification']['docs'] ?? []; $hit = false; $note = clean_text($in['note'] ?? '', 200); $exp = trim((string)($in['expires'] ?? ''));
+        foreach ($docs as &$d) if ($d['docId'] === $did) {
+            $hit = true;
+            if ($dec === 'approve') {
+                if ($exp !== '' && (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $exp) || strtotime($exp) === false)) json_out(400, ['error' => 'The expiry date must be YYYY-MM-DD.']);
+                if ($exp !== '' && $exp < gmdate('Y-m-d')) json_out(422, ['error' => 'This document has already expired.']);
+                if ($exp === '' && in_array($d['docType'], PROV_EXPIRY_REQUIRED, true)) json_out(422, ['error' => 'Enter the expiry date shown on the document.']);
+                $d['status'] = 'approved'; $d['expires'] = $exp === '' ? null : $exp; $d['note'] = $note;
+            } else { if ($note === '') json_out(422, ['error' => 'Say what is wrong so the partner can fix it.']); $d['status'] = 'rejected'; $d['note'] = $note; }
+            $d['decidedOn'] = gmdate('Y-m-d');
+        } unset($d);
+        if (!$hit) json_out(404, ['error' => 'Document not found.']);
+        $p['verification']['docs'] = $docs; save_json($path, $p); audit('kyc-doc-' . $dec, ['provider' => $pid, 'doc' => $did]);
+        json_out(200, ['ok' => true, 'message' => $dec === 'approve' ? 'Approved.' : 'Rejected. The partner sees your note.']);
+    }
+
+    case 'kyc_geo_decide': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $pid = need_str($in, 'providerId', 20); $dec = need_str($in, 'decision', 10); if (!valid_id($pid) || !in_array($dec, ['approve', 'reject'], true)) json_out(400, ['error' => 'Bad request.']);
+        $path = market_dir('providers') . "/$pid.json"; $p = json_file($path); if (!$p || empty($p['verification']['geo'])) json_out(404, ['error' => 'No location to review.']);
+        $note = clean_text($in['note'] ?? '', 200); if ($dec === 'reject' && $note === '') json_out(422, ['error' => 'Say what is wrong.']);
+        $p['verification']['geo']['status'] = $dec === 'approve' ? 'approved' : 'rejected'; $p['verification']['geo']['note'] = $note; save_json($path, $p); audit('kyc-geo-' . $dec, ['provider' => $pid]);
+        json_out(200, ['ok' => true, 'message' => $dec === 'approve' ? 'Location approved.' : 'Location rejected.']);
+    }
+
+    case 'kyc_settings': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $d = $in['retentionDays'] ?? null; if (!is_numeric($d) || (int)$d != $d || $d < 7 || $d > 730) json_out(400, ['error' => 'Retention must be 7 to 730 days.']);
+        $cfg = bk_config(); $cfg['kycRetentionDays'] = (int)$d; bk_save($cfg); audit('kyc-settings', ['days' => (int)$d]);
+        json_out(200, ['ok' => true, 'message' => 'Saved. New uploads are deleted after ' . (int)$d . ' days; identity details saved earlier follow this period too.']);
+    }
+
+    case 'kyc_purge': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $r = kyc_purge_all(); audit('kyc-purge', $r); json_out(200, ['ok' => true, 'message' => $r['docs'] . ' expired document(s) and ' . $r['identities'] . ' old identity record(s) deleted.']);
+    }
+
+    case 'kyc_keygen': {
+        json_out(200, ['key' => base64_encode(random_bytes(32)), 'how' => "Add this line to vh-config.php (before the closing ];), save, then keep a safe copy of the key somewhere private. If the key is lost, stored documents cannot be opened:\n'doc_key' => 'PASTE_THE_KEY_HERE',"]);
+    }
+
+    case 'kyc_traveller_view': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $reason = clean_text($in['reason'] ?? '', 200); $a = acct_load($id);
+        if (!$a) json_out(404, ['error' => 'Not found.']); if (mb_strlen($reason) < 5) json_out(400, ['error' => 'Say why you are opening this record (at least 5 characters). It is written to the audit log.']);
+        vault_audit('admin', 'traveller_view', $id, $reason);
+        json_out(200, ['ok' => true, 'email' => $a['email'], 'name' => $a['name'] ?? '', 'identity' => acct_identity($a), 'docs' => array_map(fn($m) => ['id' => $m['id'], 'label' => ACCT_DOC_TYPES[$m['docType']] ?? $m['docType'], 'created' => $m['created']], vault_owned('account', $id))]);
+    }
+
+    case 'kyc_traveller_erase': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $id = need_str($in, 'id', 20); $a = acct_load($id); if (!$a) json_out(404, ['error' => 'Not found.']); if (($in['confirm'] ?? '') !== 'DELETE') json_out(422, ['error' => 'Type DELETE to confirm.']);
+        vault_audit('admin', 'traveller_erased', $id, clean_text($in['reason'] ?? 'data deletion request', 200)); acct_erase($a); json_out(200, ['ok' => true, 'message' => 'The account, itineraries and documents were deleted.']);
     }
 
     case 'activity': {
