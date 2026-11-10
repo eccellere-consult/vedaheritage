@@ -801,7 +801,7 @@ function Activity() {
 // ---------------------------------------------------------------- Bookings (locked until approvals are recorded)
 function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
   const { data, err, reload } = useLoad('bk_overview')
-  const [fee, setFee] = useState({ feeMode: 'percent', feeValue: '1', gstRate: '18', tcsPercent: '0', tdsPercent: '0' }); const [tp, setTp] = useState({ name: '', type: 'stay', district: 'Kollam' }); const [rates, setRates] = useState<Record<string, Json>>({}); const [inv, setInv] = useState<Record<string, Json>>({}); const [loaded, setLoaded] = useState(false)
+  const [fee, setFee] = useState({ feeMode: 'percent', feeValue: '1', gstRate: '18', tcsPercent: '0', tdsPercent: '0' }); const [mailTo, setMailTo] = useState(''); const [tp, setTp] = useState({ name: '', type: 'stay', district: 'Kollam' }); const [rates, setRates] = useState<Record<string, Json>>({}); const [inv, setInv] = useState<Record<string, Json>>({}); const [loaded, setLoaded] = useState(false)
   const [month, setMonth] = useState(new Date().toISOString().slice(0, 7)); const [sheet, setSheet] = useState<Json | null>(null)
   const [draft, setDraft] = useState<Record<string, Json>>({}); const [part, setPart] = useState<Record<string, Json>>({})
   const [vals, setVals] = useState<Record<string, string>>({}); const [refs, setRefs] = useState<Record<string, string>>({})
@@ -833,8 +833,15 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
               <label>Type<select className={inp + ' block'} value={tp.type} onChange={e => setTp({ ...tp, type: e.target.value })}><option value="stay">Stay</option><option value="transport">Taxi / auto / transport</option></select></label>
               <label>District<select className={inp + ' block'} value={tp.district} onChange={e => setTp({ ...tp, district: e.target.value })}>{(data.districts || []).map((d: string) => <option key={d}>{d}</option>)}</select></label>
               <button className="btn-primary text-xs" onClick={() => post('bk_test_partner', tp, () => setTp({ ...tp, name: '' }))}>Add test partner</button>
-            </div><p className="text-xs text-ink-mid mt-1">Test partners appear in the partner list below, are never listed publicly, and disappear from booking when test mode is off. Their email is your notify email.</p></div>)}
+            </div><p className="text-xs text-ink-mid mt-1">Test partners appear in the partner list below, are never listed publicly, and disappear from booking when test mode is off. Each has its own sign-in address (shown under its name below). While test mode is on, their sign-in links and all booking emails arrive in your notify email.</p></div>)}
         <button className={data.testMode ? 'btn-outline text-xs mt-3' : 'btn-primary text-xs'} onClick={() => { if (!data.testMode && !window.confirm('Switch test mode on? Booking features open for testing; no real emails or real payments.')) return; post('bk_testmode', { enabled: !data.testMode }) }}>{data.testMode ? 'Switch test mode off' : 'Switch test mode on'}</button>
+      </div>
+
+      <div className="card">
+        <h3 className="font-serif text-lg mb-1">Email check</h3>
+        <p className="text-sm text-ink-mid mb-2">Sign-in links, booking messages and ride requests are sent by email. Send yourself a test to see whether the site can deliver, and read what the server said below. Notify email set: {data.notifyEmailValue ? badge(data.notifyEmailValue, 'ok') : badge('not set', 'bad')}</p>
+        <div className="flex flex-wrap gap-2 items-end text-xs"><label>Send a test to<input className={inp + ' block w-64'} value={mailTo} onChange={e => setMailTo(e.target.value)} placeholder="you@example.com" /></label><button className="btn-outline text-xs" onClick={() => post('mail_test', { to: mailTo })}>Send test email</button></div>
+        <table className="w-full text-xs mt-3"><tbody>{(data.mailLog || []).map((m: Json, i: number) => <tr key={i} className="border-t border-accent/20"><td className="py-1 pr-2 whitespace-nowrap">{String(m.at).replace('T', ' ').slice(5, 16)}</td><td className="pr-2">{m.ok ? badge('sent', 'ok') : badge('failed', 'bad')}</td><td className="pr-2 break-all">{m.to}</td><td className="pr-2">{m.subject}</td><td className="text-ink-mid">{m.note}</td></tr>)}{!(data.mailLog || []).length && <tr><td className="text-ink-mid py-1">No email attempts yet.</td></tr>}</tbody></table>
       </div>
 
       <div className="space-y-4">
@@ -881,7 +888,7 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
         <table className="w-full text-sm"><tbody>{data.partners.map((p: Json) => { const d = part[p.id] || { partner: p.partner, agreementOn: p.agreementOn, registrationChecked: p.registrationChecked, feeMode: p.fee?.mode || 'percent', feeValue: p.fee ? String(p.fee.value) : '' }
           const set = (x: Json) => setPart({ ...part, [p.id]: { ...d, ...x } })
           return (
-            <tr key={p.id} className="border-t border-accent/20 align-top"><td className="py-2 pr-3"><p className="font-medium">{p.name} {p.test && badge('test partner', 'warn')}</p><p className="text-xs text-ink-mid">{p.typeLabel} · {p.districts.join(', ')} · fee: {feeLabel(p.fee)}</p>{p.live && badge('live partner', 'ok')}</td>
+            <tr key={p.id} className="border-t border-accent/20 align-top"><td className="py-2 pr-3"><p className="font-medium">{p.name} {p.test && badge('test partner', 'warn')}</p><p className="text-xs text-ink-mid">{p.typeLabel} · {p.districts.join(', ')} · fee: {feeLabel(p.fee)}</p><p className="text-xs text-ink-mid">Sign-in email: <code>{p.email}</code></p>{p.live && badge('live partner', 'ok')}</td>
               <td className="py-2 pr-3"><label className="block text-xs">Agreement signed<input type="date" className={inp + ' block'} value={d.agreementOn} onChange={e => set({ agreementOn: e.target.value })} /></label></td>
               <td className="py-2 pr-3"><label className="text-xs flex gap-1 items-center"><input type="checkbox" checked={d.registrationChecked} onChange={e => set({ registrationChecked: e.target.checked })} />Registration / permit checked</label>
                 <label className="text-xs flex gap-1 items-center mt-1"><input type="checkbox" checked={d.partner} onChange={e => set({ partner: e.target.checked })} />Switch on as partner</label></td>
