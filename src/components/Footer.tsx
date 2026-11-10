@@ -35,6 +35,7 @@ const GROUPS: { title: string; links: [string, string][] }[] = [
       ['/stories', 'Traveller Stories'],
       ['/blog', 'Blog'],
       ['/stay', 'Stay with us'],
+      ['/partner', 'Partner sign-in'],
     ],
   },
 ]

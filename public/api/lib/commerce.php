@@ -187,3 +187,71 @@ function pay_refund(string $id, ?float $amount): array {
     bk_locked($id, function ($x) use ($amt, $full, $res) { $x['payment']['refundedInr'] = round((float)($x['payment']['refundedInr'] ?? 0) + $amt, 2); $x['payment']['refundId'] = $res['id']; if ($full) { $x['payment']['status'] = 'refunded'; $x['status'] = 'cancelled'; foreach (['contactEmail', 'contactPhone', 'message'] as $k) $x[$k] = ''; } return $x; });
     return [true, 'Refund of Rs ' . $amt . ' started. It reaches the traveller in a few days.'];
 }
+
+
+// ---------------------------------------------------------------- shared partner actions (private link, partner portal and admin all use these)
+/** What a driver may see about a ride. */
+function ride_view(array $x, string $pid): array {
+    return ['id' => $x['id'], 'ref' => $x['ref'], 'pickup' => RIDE_POINTS[$x['pickupId']][0], 'drop' => RIDE_POINTS[$x['dropId']][0], 'when' => $x['when'], 'vehicle' => RIDE_VEHICLES[$x['vehicle']] ?? $x['vehicle'], 'guests' => $x['guests'], 'km' => $x['km'],
+        'fareInr' => $x['amountInr'], 'online' => ($x['payment']['mode'] ?? '') === 'online', 'status' => $x['status'], 'mine' => ($x['driver']['providerId'] ?? '') === $pid, 'note' => $x['message'] ?? '', 'test' => !empty($x['test']),
+        'driver' => ($x['driver']['providerId'] ?? '') === $pid ? ['name' => $x['driver']['name'], 'phone' => $x['driver']['phone'], 'vehicleNo' => $x['driver']['vehicleNo']] : null];
+}
+/** First valid claim wins. Returns [updated booking, null] or [null, error message]. */
+function ride_claim_do(string $id, array $p, string $name, string $phone, string $veh): array {
+    $name = clean_text($name, 60); $phoneN = normalise_phone($phone); $veh = strtoupper(clean_text($veh, 14));
+    if ($name === '' || !$phoneN || !preg_match('/^[A-Z0-9 -]{6,14}$/', $veh)) return [null, 'Please give the driver name, phone number and vehicle number.'];
+    if (!bk_partner_ok($p)) return [null, 'This partner is not active.'];
+    $pid = $p['id']; $otp = (string)random_int(1000, 9999); $cfg = bk_config(); $won = false;
+    $x = bk_locked($id, function ($r) use ($pid, $name, $phoneN, $veh, $otp, $p, $cfg, &$won) {
+        if ($r['status'] !== 'searching') return null;
+        $r['driver'] = ['providerId' => $pid, 'name' => $name, 'phone' => $phoneN, 'vehicleNo' => $veh]; $r['otp'] = $otp; $r['status'] = 'assigned'; $r['assignedOn'] = gmdate('c');
+        $r['providerId'] = $pid; $r['providerName'] = $p['name'];
+        $fee = bk_fee_for($p, $cfg); $r['feeMode'] = $fee['mode']; $r['feeValue'] = $fee['value'];
+        try { $bd = bk_breakdown((float)$r['amountInr'], $fee, $cfg); foreach ($bd as $k => $v) $r[$k] = $v; $r['commissionInr'] = $bd['feeInr']; } catch (Throwable $e) { /* keep the default split */ }
+        $won = true; return $r;
+    });
+    if (!$won) { $cur = bk_load($id); return [null, ($cur['driver']['providerId'] ?? '') === $pid ? 'You already have this ride.' : 'This ride was already taken by another driver.']; }
+    $x = pay_transfer($x);
+    if (!empty($x['contactEmail'])) bk_mail($x['contactEmail'], 'Your driver for ' . $x['ref'], "Your driver is on the way.\n\nDriver: $name, $phoneN\nVehicle: $veh\nTrip code: $otp (tell the driver this code when the trip starts)\nRide: " . RIDE_POINTS[$x['pickupId']][0] . ' to ' . RIDE_POINTS[$x['dropId']][0] . ", {$x['when']}\n\nVeda Heritage");
+    return [$x, null];
+}
+/** Start (with the traveller's trip code) or complete a ride the partner owns. Returns [ok, message]. */
+function ride_trip_do(string $id, string $pid, string $act, string $otp = ''): array {
+    $b = bk_load($id); if (!$b || ($b['driver']['providerId'] ?? '') !== $pid) return [false, 'This ride is not yours.'];
+    if ($act === 'start') {
+        $otp = preg_replace('/\D/', '', $otp);
+        $r = bk_locked($id, function ($x) use ($otp) { if ($x['status'] !== 'assigned' || !hash_equals((string)($x['otp'] ?? ''), $otp)) return null; $x['status'] = 'started'; $x['startedOn'] = gmdate('c'); return $x; });
+        return $r ? [true, 'Trip started.'] : [false, 'The trip code is not right, or the trip already started.'];
+    }
+    if ($act === 'complete') {
+        $r = bk_locked($id, function ($x) { if ($x['status'] !== 'started') return null; $x['status'] = 'completed'; $x['completedOn'] = gmdate('Y-m-d'); foreach (['contactEmail', 'contactPhone', 'message'] as $k) $x[$k] = ''; return $x; });
+        if (!$r) return [false, 'Start the trip first.'];
+        $msg = 'Trip completed.'; if (!empty($r['payment']['transferId'])) { [, $m] = pay_release($id); $msg .= ' ' . $m; }
+        return [true, $msg];
+    }
+    return [false, 'Unknown action.'];
+}
+/** Validates and applies rooms, blocked nights and vehicles to a provider's inventory. Returns [inventory, error]. The payout account ID is set only when $withAccount (admin). */
+function bk_inventory_apply(array $p, array $in, bool $withAccount): array {
+    $inv = is_array($p['inventory'] ?? null) ? $p['inventory'] : [];
+    if ($withAccount && array_key_exists('razorpayAccountId', $in)) {
+        $acc = trim((string)$in['razorpayAccountId']); if ($acc !== '' && !preg_match('/^acc_[A-Za-z0-9]{8,30}$/', $acc)) return [null, 'A Razorpay linked account ID looks like acc_AbCd1234EfGh.'];
+        $inv['razorpayAccountId'] = $acc;
+    }
+    if (($p['type'] ?? '') === 'stay' && isset($in['rooms'])) {
+        if (!is_array($in['rooms']) || count($in['rooms']) > 20) return [null, 'Up to 20 rooms.'];
+        $rooms = []; $ids = [];
+        foreach ($in['rooms'] as $r) {
+            $rid = preg_replace('/[^a-z0-9-]/', '', strtolower((string)($r['id'] ?? ''))); $nm = clean_text($r['name'] ?? '', 60);
+            if ($rid === '' || $nm === '' || isset($ids[$rid])) return [null, 'Each room needs a unique id and a name.'];
+            if (!is_numeric($r['rateInr'] ?? null) || $r['rateInr'] < 1 || $r['rateInr'] > 200000) return [null, "Room $nm: the nightly rate must be 1 to 200000 rupees."];
+            if (!is_numeric($r['capacity'] ?? null) || $r['capacity'] < 1 || $r['capacity'] > 30 || !is_numeric($r['count'] ?? 1) || $r['count'] < 1 || $r['count'] > 50) return [null, "Room $nm: capacity 1 to 30, units 1 to 50."];
+            $ids[$rid] = 1; $rooms[] = ['id' => $rid, 'name' => $nm, 'capacity' => (int)$r['capacity'], 'count' => (int)($r['count'] ?? 1), 'rateInr' => round((float)$r['rateInr'], 2)];
+        }
+        $inv['rooms'] = $rooms;
+        $bl = []; foreach (($in['blocked'] ?? []) as $rid => $days) { if (!isset($ids[$rid])) continue; $bl[$rid] = array_values(array_unique(array_filter(array_map('strval', (array)$days), fn($d) => preg_match('/^\d{4}-\d{2}-\d{2}$/', $d)))); sort($bl[$rid]); }
+        $inv['blocked'] = $bl;
+    }
+    if (($p['type'] ?? '') === 'transport' && isset($in['vehicles'])) $inv['vehicles'] = array_values(array_intersect(array_keys(RIDE_VEHICLES), (array)$in['vehicles']));
+    return [$inv, null];
+}

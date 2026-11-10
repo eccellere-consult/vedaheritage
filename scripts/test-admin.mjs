@@ -580,6 +580,54 @@ try {
     const live = spawnSync('php', ['-r', 'define("VH_LIB",1); require "public/api/lib/commerce.php"; echo json_encode([bk_open("payments"), bk_open("stays"), bk_open("rides")]);'], { encoding: 'utf8', env: { ...process.env, VH_CONFIG: path.join(cfgDir, 'vh-config.php') } })
     ok(live.stdout.trim() === '[false,true,true]', 'test mode: with LIVE Razorpay keys, payments stay closed (stays and rides still open for testing)')
     fs.rmSync(cfgDir, { recursive: true, force: true })
+    // ---- partner portal: emailed sign-in link, then rides, bookings, rooms
+    {
+      const hm = (k, d) => crypto.createHmac('sha256', k).update(d).digest('hex')
+      const J = async (url, body, token) => { const r = await fetch('http://127.0.0.1:18911/api/' + url, { method: body ? 'POST' : 'GET', headers: { 'content-type': 'application/json', ...(token ? { 'x-partner-token': token } : {}) }, body: body ? JSON.stringify(body) : undefined }); return { s: r.status, d: await r.json().catch(() => ({})) } }
+      await call('bk_test_partner', { method: 'POST', body: { name: 'Portal Stay', type: 'stay', district: 'Kollam' } }); await call('bk_test_partner', { method: 'POST', body: { name: 'Portal Cab', type: 'transport', district: 'Kollam' } })
+      const pv = (await call('bk_overview')).d.partners; const pStay = pv.find(x => x.name === 'Portal Stay (TEST)'), pCab = pv.find(x => x.name === 'Portal Cab (TEST)')
+      ok(/^owner\+test[0-9a-f]{4}@example\.com$/.test(pStay.email) && pStay.email !== pCab.email, 'portal: each test partner gets its own sign-in address')
+      await call('bk_inventory_set', { method: 'POST', body: { id: pStay.id, rooms: [{ id: 'room1', name: 'Room', capacity: 2, count: 1, rateInr: 1500 }] } }); await call('bk_inventory_set', { method: 'POST', body: { id: pCab.id, vehicles: ['car'] } })
+      const outs = outbox().length
+      const lg0 = await J('partner.php?a=login', { email: 'nobody@example.com' }); const lgS = await J('partner.php?a=login', { email: pStay.email })
+      ok(lg0.s === 200 && lgS.s === 200 && JSON.stringify(lg0.d) === JSON.stringify(lgS.d), 'portal: asking for a link answers the same for partners and strangers')
+      const mails = outbox().slice(outs); const lm = mails.find(m => /sign-in link/.test(m.subject)); const lt = lm?.body.match(/#t=([0-9a-f]{48})/)?.[1]
+      ok(mails.length === 1 && lm.to === 'owner@example.com' && lm.subject.includes(pStay.email) && lt, 'portal: the sign-in link is emailed (to the owner in test mode, naming the partner)')
+      ok((await J('partner.php?a=session', { token: 'f'.repeat(48) })).s === 401, 'portal: a wrong sign-in link is refused')
+      const se = await J('partner.php?a=session', { token: lt }); const S = se.d.session
+      ok(se.s === 200 && S && (await J('partner.php?a=session', { token: lt })).s === 401, 'portal: a sign-in link works once')
+      ok((await J('partner.php?a=me')).s === 401 && (await J('partner.php?a=me', null, 'bad')).s === 401, 'portal: no session, no access')
+      const me = await J('partner.php?a=me', null, S)
+      ok(me.d.partner.name === 'Portal Stay (TEST)' && me.d.inventory.rooms.length === 1 && me.d.payoutAccountSet === false, 'portal: a partner sees its own details')
+      const inv = await J('partner.php?a=inventory_save', { rooms: [{ id: 'room1', name: 'Room', capacity: 3, count: 2, rateInr: 1800 }], blocked: { room1: ['2099-02-01'] }, razorpayAccountId: 'acc_Hacked000001' }, S)
+      const me2 = await J('partner.php?a=me', null, S)
+      ok(inv.s === 200 && me2.d.inventory.rooms[0].rateInr === 1800 && me2.d.inventory.blocked.room1[0] === '2099-02-01' && me2.d.payoutAccountSet === false, 'portal: a partner edits its own rooms, rates and blocked dates but cannot set its payout account')
+      ok((await J('partner.php?a=inventory_save', { rooms: [{ id: 'r', name: 'X', capacity: 2, count: 1, rateInr: 0 }] }, S)).s === 400, 'portal: invalid rooms are refused')
+      // an enquiry the admin sent: the partner confirms it
+      const enq = await pp('submit-booking', { providerId: pStay.id, name: 'Guest', contactEmail: 'guest-p@example.com', checkIn: new Date(Date.now() + 80 * 864e5).toISOString().slice(0, 10), checkOut: new Date(Date.now() + 81 * 864e5).toISOString().slice(0, 10), people: '2', consent: '1', message: 'hi' })
+      const enqRow = (await call('bk_overview')).d.bookings.find(b => b.ref === enq.d.ref); await call('bk_send', { method: 'POST', body: { id: enqRow.id } })
+      const ov = await J('partner.php?a=overview', null, S); const seen = ov.d.bookings.find(b => b.ref === enq.d.ref)
+      ok(seen && seen.name === 'Guest' && seen.status === 'sent', 'portal: the partner sees the requests sent to it, with the traveller to contact')
+      ok((await J('partner.php?a=respond', { id: enqRow.id, decision: 'confirm' }, S)).s === 200 && (await call('bk_overview')).d.bookings.find(b => b.id === enqRow.id).status === 'confirmed', 'portal: the partner confirms a request')
+      // a ride: pay, then the cab partner claims it from the portal and runs the trip
+      const when = new Date(Date.now() + 2 * 864e5).toISOString().slice(0, 16)
+      const rbk = await pp('ride-book', { pickup: 'karunagappally', drop: 'trv-airport', vehicle: 'car', when, guests: '2', name: 'Rider', contactEmail: 'rider-p@example.com', consent: '1' })
+      const rpc = await J('pay-create.php', { ref: rbk.d.ref, token: rbk.d.payToken })
+      await J('pay-verify.php', { ref: rbk.d.ref, token: rbk.d.payToken, razorpay_order_id: rpc.d.orderId, razorpay_payment_id: 'pay_portal1', razorpay_signature: hm('sekret', rpc.d.orderId + '|pay_portal1') })
+      const o1 = outbox().length; await J('partner.php?a=login', { email: pCab.email }); const ct = outbox().slice(o1).find(m => /sign-in/.test(m.subject)).body.match(/#t=([0-9a-f]{48})/)[1]
+      const CS = (await J('partner.php?a=session', { token: ct })).d.session
+      const cov = await J('partner.php?a=overview', null, CS); const openR = cov.d.openRides.find(r => r.ref === rbk.d.ref)
+      ok(openR && openR.pickup.includes('Karunagappally') && !(await J('partner.php?a=overview', null, S)).d.openRides.length, 'portal: an open ride shows to the cab partner that can take it, and not to the stay partner')
+      ok((await J('partner.php?a=claim', { id: openR.id, driverName: 'Raju' }, CS)).s === 422, 'portal: claiming needs driver details')
+      ok((await J('partner.php?a=claim', { id: openR.id, driverName: 'Raju', driverPhone: '+91 98470 77777', vehicleNo: 'KL 02 ZZ 9999' }, S)).s === 404, 'portal: a partner that was not asked cannot claim the ride')
+      const clm = await J('partner.php?a=claim', { id: openR.id, driverName: 'Raju', driverPhone: '+91 98470 77777', vehicleNo: 'KL 02 ZZ 9999' }, CS)
+      ok(clm.s === 200 && (await J('partner.php?a=claim', { id: openR.id, driverName: 'Raju', driverPhone: '+91 98470 77777', vehicleNo: 'KL 02 ZZ 9999' }, CS)).s === 409, 'portal: the partner claims the ride once')
+      const code = (await (await fetch(`http://127.0.0.1:18911/api/ride-status.php?ref=${rbk.d.ref}&t=${rbk.d.payToken}`)).json()).tripCode
+      ok((await J('partner.php?a=trip', { id: openR.id, action: 'start', otp: '0000' }, CS)).s === 422 && (await J('partner.php?a=trip', { id: openR.id, action: 'start', otp: code }, CS)).s === 200 && (await J('partner.php?a=trip', { id: openR.id, action: 'complete' }, CS)).s === 200, 'portal: the trip starts with the traveller code and completes, releasing the payout')
+      const fin = (await J('partner.php?a=overview', null, CS)).d.rides.find(r => r.ref === rbk.d.ref)
+      ok(fin.status === 'completed' && fin.paid === true && fin.partnerShareInr > 0 && fin.payoutHeld === false, 'portal: the partner sees the finished ride and its payout')
+      ok((await J('partner.php?a=logout', {}, CS)).s === 200 && (await J('partner.php?a=me', null, CS)).s === 401, 'portal: signing out ends the session')
+    }
     const tpA = await call('bk_test_partner', { method: 'POST', body: { name: 'Quick Stay', type: 'stay', district: 'Kollam' } })
     const ovT = (await call('bk_overview')).d; const tPartner = ovT.partners.find(p => p.test)
     ok(tpA.s === 200 && tPartner && tPartner.live === true && tPartner.name.includes('(TEST)'), 'test mode: a test partner can be added in one step and is live for testing')
