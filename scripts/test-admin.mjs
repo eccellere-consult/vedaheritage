@@ -580,7 +580,12 @@ try {
     const live = spawnSync('php', ['-r', 'define("VH_LIB",1); require "public/api/lib/commerce.php"; echo json_encode([bk_open("payments"), bk_open("stays"), bk_open("rides")]);'], { encoding: 'utf8', env: { ...process.env, VH_CONFIG: path.join(cfgDir, 'vh-config.php') } })
     ok(live.stdout.trim() === '[false,true,true]', 'test mode: with LIVE Razorpay keys, payments stay closed (stays and rides still open for testing)')
     fs.rmSync(cfgDir, { recursive: true, force: true })
+    const tpA = await call('bk_test_partner', { method: 'POST', body: { name: 'Quick Stay', type: 'stay', district: 'Kollam' } })
+    const ovT = (await call('bk_overview')).d; const tPartner = ovT.partners.find(p => p.test)
+    ok(tpA.s === 200 && tPartner && tPartner.live === true && tPartner.name.includes('(TEST)'), 'test mode: a test partner can be added in one step and is live for testing')
+    ok((await call('bk_test_partner', { method: 'POST', body: { name: 'X', type: 'guide', district: 'Kollam' } })).s === 400, 'test mode: only stay or transport test partners can be added')
     const off = await call('bk_testmode', { method: 'POST', body: { enabled: false } }); const s2 = await trk('booking-status.php')
+    ok((await call('bk_test_partner', { method: 'POST', body: { name: 'Late', type: 'stay', district: 'Kollam' } })).s === 403 && (await call('bk_overview')).d.partners.find(p => p.test)?.live === false, 'test mode: test partners cannot be added, and are not live, once test mode is off')
     ok(off.s === 200 && !s2.testMode && Object.values(s2.caps).every(v => v === false), 'test mode: switching it off locks everything again')
     ok((await pp('stay-book', { providerId: stayT.id, roomId: 'r1', checkIn: day(70), checkOut: day(71), guests: '2', name: 'X', contactEmail: 'x@example.com', consent: '1' })).s === 403, 'test mode: with test mode off, booking is refused again')
   }

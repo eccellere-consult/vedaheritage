@@ -800,7 +800,7 @@ function Activity() {
 // ---------------------------------------------------------------- Bookings (locked until approvals are recorded)
 function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
   const { data, err, reload } = useLoad('bk_overview')
-  const [fee, setFee] = useState({ feeMode: 'percent', feeValue: '1', gstRate: '18', tcsPercent: '0', tdsPercent: '0' }); const [rates, setRates] = useState<Record<string, Json>>({}); const [inv, setInv] = useState<Record<string, Json>>({}); const [loaded, setLoaded] = useState(false)
+  const [fee, setFee] = useState({ feeMode: 'percent', feeValue: '1', gstRate: '18', tcsPercent: '0', tdsPercent: '0' }); const [tp, setTp] = useState({ name: '', type: 'stay', district: 'Kollam' }); const [rates, setRates] = useState<Record<string, Json>>({}); const [inv, setInv] = useState<Record<string, Json>>({}); const [loaded, setLoaded] = useState(false)
   const [month, setMonth] = useState(new Date().toISOString().slice(0, 7)); const [sheet, setSheet] = useState<Json | null>(null)
   const [draft, setDraft] = useState<Record<string, Json>>({}); const [part, setPart] = useState<Record<string, Json>>({})
   const [vals, setVals] = useState<Record<string, string>>({}); const [refs, setRefs] = useState<Record<string, string>>({})
@@ -825,7 +825,15 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
         <p className="text-sm text-ink-mid mb-2">Opens stays, rides and enquiries so you can try everything now without recording approvals. While it is on: bookings are marked TEST, <strong>no email goes to partners or travellers</strong> (it goes to your notify email, with the intended recipient in the subject), a partner needs no agreement to be switched on, and online payments work only with Razorpay <strong>test</strong> keys (key id starting rzp_test_). Switch it off before launch: everything locks again until its approvals are recorded and it is switched on below.</p>
         {!data.notifyEmail && <p className="text-xs text-amber-800 mb-2">No notify_email is set in vh-config.php, so test emails (including driver links) cannot be delivered to you. Add <code>'notify_email' =&gt; 'you@example.com'</code>.</p>}
         <p className="text-xs text-ink-mid mb-2">Razorpay test keys: {data.rzpTestKeys ? badge('found', 'ok') : data.rzpKeys ? badge('live keys only: payments stay off in test mode', 'warn') : badge('not added', 'mute')}</p>
-        <button className={data.testMode ? 'btn-outline text-xs' : 'btn-primary text-xs'} onClick={() => { if (!data.testMode && !window.confirm('Switch test mode on? Booking features open for testing; no real emails or real payments.')) return; post('bk_testmode', { enabled: !data.testMode }) }}>{data.testMode ? 'Switch test mode off' : 'Switch test mode on'}</button>
+        {data.testMode && (
+          <div className="border-t border-amber-300 mt-3 pt-3"><p className="text-sm font-medium mb-1">Add a test partner (no application needed)</p>
+            <div className="flex flex-wrap gap-2 items-end text-xs">
+              <label>Name<input className={inp + ' block w-44'} value={tp.name} onChange={e => setTp({ ...tp, name: e.target.value })} /></label>
+              <label>Type<select className={inp + ' block'} value={tp.type} onChange={e => setTp({ ...tp, type: e.target.value })}><option value="stay">Stay</option><option value="transport">Taxi / auto / transport</option></select></label>
+              <label>District<select className={inp + ' block'} value={tp.district} onChange={e => setTp({ ...tp, district: e.target.value })}>{(data.districts || []).map((d: string) => <option key={d}>{d}</option>)}</select></label>
+              <button className="btn-primary text-xs" onClick={() => post('bk_test_partner', tp, () => setTp({ ...tp, name: '' }))}>Add test partner</button>
+            </div><p className="text-xs text-ink-mid mt-1">Test partners appear in the partner list below, are never listed publicly, and disappear from booking when test mode is off. Their email is your notify email.</p></div>)}
+        <button className={data.testMode ? 'btn-outline text-xs mt-3' : 'btn-primary text-xs'} onClick={() => { if (!data.testMode && !window.confirm('Switch test mode on? Booking features open for testing; no real emails or real payments.')) return; post('bk_testmode', { enabled: !data.testMode }) }}>{data.testMode ? 'Switch test mode off' : 'Switch test mode on'}</button>
       </div>
 
       <div className="space-y-4">
@@ -868,16 +876,16 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
       <div className="card overflow-x-auto">
         <h3 className="font-serif text-lg mb-1">Partners (verified stays and transport)</h3>
         <p className="text-sm text-ink-mid mb-3">Add providers in the Directory tab first. A partner needs a signed agreement and a registration check before it can take requests.</p>
-        {!data.partners.length && <p className="text-sm text-ink-mid">No verified stays or transport providers yet.</p>}
+        {!data.partners.length && <p className="text-sm text-ink-mid">No verified stays or transport providers yet. For testing, switch test mode on and add a test partner above.</p>}
         <table className="w-full text-sm"><tbody>{data.partners.map((p: Json) => { const d = part[p.id] || { partner: p.partner, agreementOn: p.agreementOn, registrationChecked: p.registrationChecked, feeMode: p.fee?.mode || 'percent', feeValue: p.fee ? String(p.fee.value) : '' }
           const set = (x: Json) => setPart({ ...part, [p.id]: { ...d, ...x } })
           return (
-            <tr key={p.id} className="border-t border-accent/20 align-top"><td className="py-2 pr-3"><p className="font-medium">{p.name}</p><p className="text-xs text-ink-mid">{p.typeLabel} · {p.districts.join(', ')} · fee: {feeLabel(p.fee)}</p>{p.live && badge('live partner', 'ok')}</td>
+            <tr key={p.id} className="border-t border-accent/20 align-top"><td className="py-2 pr-3"><p className="font-medium">{p.name} {p.test && badge('test partner', 'warn')}</p><p className="text-xs text-ink-mid">{p.typeLabel} · {p.districts.join(', ')} · fee: {feeLabel(p.fee)}</p>{p.live && badge('live partner', 'ok')}</td>
               <td className="py-2 pr-3"><label className="block text-xs">Agreement signed<input type="date" className={inp + ' block'} value={d.agreementOn} onChange={e => set({ agreementOn: e.target.value })} /></label></td>
               <td className="py-2 pr-3"><label className="text-xs flex gap-1 items-center"><input type="checkbox" checked={d.registrationChecked} onChange={e => set({ registrationChecked: e.target.checked })} />Registration / permit checked</label>
                 <label className="text-xs flex gap-1 items-center mt-1"><input type="checkbox" checked={d.partner} onChange={e => set({ partner: e.target.checked })} />Switch on as partner</label></td>
               <td className="py-2 pr-3 text-xs"><select className={inp} value={d.feeMode} onChange={e => set({ feeMode: e.target.value })}><option value="percent">%</option><option value="flat">Rs flat</option></select> <input className={inp + ' w-20'} placeholder="default" value={d.feeValue} onChange={e => set({ feeValue: e.target.value })} /></td>
-              <td className="py-2"><button className="btn-outline text-xs" onClick={() => post('bk_partner_set', { id: p.id, partner: d.partner, agreementOn: d.agreementOn, registrationChecked: d.registrationChecked, feeMode: d.feeMode, feeValue: d.feeValue === '' ? '' : Number(d.feeValue) })}>Save</button></td></tr>) })}</tbody></table>
+              <td className="py-2">{p.test && <button className="text-xs underline mr-2" onClick={() => { if (window.confirm('Remove this test partner?')) post('bk_test_partner', { remove: true, id: p.id }) }}>Remove</button>}<button className="btn-outline text-xs" onClick={() => post('bk_partner_set', { id: p.id, partner: d.partner, agreementOn: d.agreementOn, registrationChecked: d.registrationChecked, feeMode: d.feeMode, feeValue: d.feeValue === '' ? '' : Number(d.feeValue) })}>Save</button></td></tr>) })}</tbody></table>
         {data.partners.map((p: Json) => { const cur = inv[p.id] || { razorpayAccountId: p.inventory?.razorpayAccountId || '', rooms: (p.inventory?.rooms || []).map((r: Json) => ({ ...r, rateInr: String(r.rateInr), capacity: String(r.capacity), count: String(r.count) })), blocked: Object.fromEntries(Object.entries(p.inventory?.blocked || {}).map(([k, v]: [string, any]) => [k, (v as string[]).join(', ')])), vehicles: p.inventory?.vehicles || [] }
           const set = (x: Json) => setInv({ ...inv, [p.id]: { ...cur, ...x } })
           return (

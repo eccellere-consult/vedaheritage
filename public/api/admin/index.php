@@ -863,7 +863,7 @@ try {
         foreach (bk_providers() as $p) if (in_array($p['status'] ?? '', ['approved', 'suspended'], true) && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true))
             $partners[] = ['id' => $p['id'], 'name' => $p['name'], 'type' => $p['type'], 'typeLabel' => PROVIDER_TYPES[$p['type']][0], 'districts' => $p['districts'], 'status' => $p['status'],
                 'partner' => !empty($p['booking']['partner']), 'agreementOn' => $p['booking']['agreementOn'] ?? '', 'registrationChecked' => !empty($p['booking']['registrationChecked']),
-                'fee' => bk_fee_clean($p['booking']['feeMode'] ?? null, $p['booking']['feeValue'] ?? null), 'live' => bk_partner_ok($p), 'inventory' => $p['inventory'] ?? new stdClass()];
+                'fee' => bk_fee_clean($p['booking']['feeMode'] ?? null, $p['booking']['feeValue'] ?? null), 'live' => bk_partner_ok($p), 'test' => !empty($p['test']), 'inventory' => $p['inventory'] ?? new stdClass()];
         $items = []; foreach (glob(bk_dir('items') . '/*.json') ?: [] as $f) { $b = json_file($f); if (!$b) continue;
             // Abandoned payments: a stay hold that ran out, or a ride left unpaid for two days, is closed and its traveller details are deleted.
             if (($b['status'] ?? '') === 'pay_pending' && ((($b['kind'] ?? '') === 'stay' && ($b['holdUntil'] ?? 0) < time()) || (($b['kind'] ?? '') === 'ride' && strtotime($b['created']) < time() - 2 * 86400))) {
@@ -871,7 +871,7 @@ try {
             $items[] = $b; }
         usort($items, fn($x, $y) => strcmp($y['created'], $x['created']));
         foreach ($items as &$it) unset($it['payTokenHash'], $it['dispatch'], $it['otp']); unset($it);
-        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate'], 'tcsPercent' => $cfg['tcsPercent'], 'tdsPercent' => $cfg['tdsPercent'], 'rideRates' => $cfg['rideRates'], 'vehicles' => RIDE_VEHICLES, 'rzpKeys' => rzp_keys_ok(), 'rzpTestKeys' => bk_test_keys(), 'testMode' => !empty($cfg['testMode']), 'notifyEmail' => !empty(vh_cfg()['notify_email'])]);
+        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate'], 'tcsPercent' => $cfg['tcsPercent'], 'tdsPercent' => $cfg['tdsPercent'], 'rideRates' => $cfg['rideRates'], 'vehicles' => RIDE_VEHICLES, 'districts' => DISTRICTS, 'rzpKeys' => rzp_keys_ok(), 'rzpTestKeys' => bk_test_keys(), 'testMode' => !empty($cfg['testMode']), 'notifyEmail' => !empty(vh_cfg()['notify_email'])]);
     }
 
     case 'bk_cap_save': {
@@ -902,6 +902,24 @@ try {
         if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
         $cfg = bk_config(); $cfg['testMode'] = !empty($in['enabled']); bk_save($cfg); audit('bk-testmode', ['on' => $cfg['testMode']]);
         json_out(200, ['ok' => true, 'message' => $cfg['testMode'] ? 'Test mode is ON. Stays, rides and enquiries are open for testing. No email goes to partners or travellers, and online payments work only with Razorpay test keys.' : 'Test mode is OFF. Every capability is locked again until its approvals are recorded and it is switched on.']);
+    }
+
+    case 'bk_test_partner': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        if (!bk_test()) json_out(403, ['error' => 'Switch test mode on first. Test partners exist only for testing.']);
+        if (!empty($in['remove'])) {
+            $id = need_str($in, 'id', 20); $path = market_dir('providers') . "/$id.json"; $p = valid_id($id) ? json_file($path) : null;
+            if (!$p || empty($p['test'])) json_out(404, ['error' => 'No test partner with that id.']);
+            @unlink($path); audit('bk-test-partner-remove', ['id' => $id]); json_out(200, ['ok' => true, 'message' => 'Test partner removed.']);
+        }
+        $name = clean_text($in['name'] ?? '', 80); $type = (string)($in['type'] ?? ''); $dist = (string)($in['district'] ?? '');
+        if (mb_strlen($name) < 3 || !in_array($type, BK_PARTNER_TYPES, true) || !in_array($dist, DISTRICTS, true)) json_out(400, ['error' => 'Give a name, choose stay or transport, and choose a district.']);
+        $id = new_id(); $owner = (string)(vh_cfg()['notify_email'] ?? 'test@example.com');
+        save_json(market_dir('providers') . "/$id.json", ['id' => $id, 'status' => 'approved', 'created' => gmdate('c'), 'test' => true, 'name' => $name . ' (TEST)', 'type' => $type, 'districts' => [$dist],
+            'summary' => 'A test partner created for trying the booking features. It is not a real business and is never listed publicly.', 'phone' => '+910000000000', 'email' => $owner, 'website' => '', 'address' => '',
+            'credentialKind' => '', 'credentialNumber' => '', 'contactPerson' => 'Test', 'contactPersonPhone' => '', 'emailVerified' => true, 'booking' => ['partner' => true, 'agreementOn' => gmdate('Y-m-d'), 'registrationChecked' => true]]);
+        audit('bk-test-partner-add', ['id' => $id]);
+        json_out(200, ['ok' => true, 'message' => 'Test partner added and switched on. Open it below to add rooms (stay) or vehicles (transport).']);
     }
 
     case 'bk_settings': {

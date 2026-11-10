@@ -118,6 +118,7 @@ function bk_ref(): string {
 
 /** A provider is a booking partner only when verified, in a bookable type, flagged as partner and the agreement is recorded. */
 function bk_partner_ok(array $p): bool {
+    if (!empty($p['test']) && !bk_test()) return false;   // test partners exist only while test mode is on
     $base = ($p['status'] ?? '') === 'approved' && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true) && !empty($p['booking']['partner']);
     if (bk_test()) return $base;   // test mode: the agreement and registration check are not required
     return $base && !empty($p['booking']['agreementOn']) && !empty($p['booking']['registrationChecked']);
