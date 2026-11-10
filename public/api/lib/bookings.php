@@ -19,6 +19,18 @@ const BK_CAPS = [
          'invoicing' => 'Your accountant agreed how commission invoices are raised and how GST on commission is shown',
          'agreement' => 'Each partner agreement states the commission rate and the monthly settlement'],
         ['gstin' => ['GSTIN (15 characters), or "exempt: <accountant note>"', '/^([0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]|exempt:.{6,})$/i']]],
+    'accounts' => ['Traveller accounts and dashboard', 'Travellers register and sign in with an emailed link and get a dashboard: saved itineraries, bookings with their confirmation status, payments, key contacts and emergency numbers.', true,
+        ['privacy' => 'A privacy notice for accounts is published and says what we collect, why and for how long',
+         'terms' => 'Terms of use for accounts are published',
+         'grievance' => 'A grievance contact for data requests (access, correction, deletion) is named and published'],
+        ['dataContact' => ['Data protection contact: name and email', null]]],
+    'kyc' => ['Identity documents and verification', 'Travellers (including foreign nationals) store identity details and document scans, encrypted, for the stays they book (Form C details). Partners and service providers upload their registration, licence and vehicle documents and a location; you review each document and set an expiry. Hosts see guest details only for their own confirmed bookings, and every view is logged.', true,
+        ['notice' => 'The privacy notice and consent wording for identity documents were reviewed by a lawyer',
+         'retention' => 'The retention period for traveller documents is decided and set under Verification',
+         'key' => 'The document encryption key (doc_key) is set in vh-config.php and backed up safely',
+         'hosts' => 'Partners understand that they file Form C themselves; this site only helps them with the details',
+         'access' => 'Only named people have admin access and the admin password is strong'],
+        ['dpoName' => ['Person responsible for identity data: name and email', null]]],
     'payments' => ['Online payments with split commission (Razorpay)', 'Takes the traveller\'s payment on the site through Razorpay. After payment the partner\'s share is transferred (held until the stay or trip is done, then released) and your fee stays with you. Needs the Razorpay keys in vh-config.php and a Razorpay linked account ID for each partner.', true,
         ['aggregator' => 'Your payment aggregator account is approved and Route (split payments) is active',
          'ca' => 'Your chartered accountant signed off GST, TCS and TDS handling (rates are set under Your fee)',
@@ -36,6 +48,12 @@ const BK_CAPS = [
          'fares' => 'Rate cards meet the applicable fare and safety rules'],
         ['aggregatorLicence' => ['Licence number and issuing authority', null]]],
 ];
+/** Documents a partner or provider must have approved (and in date) before it can take bookings when identity verification is switched on. */
+const PROV_DOC_TYPES = ['registration' => 'Registration or classification certificate (Kerala Tourism, local body licence or similar)', 'owner_id' => 'Owner or driver photo ID (not Aadhaar)', 'property_photo' => 'Property photo',
+    'driving_licence' => 'Driving licence', 'vehicle_rc' => 'Vehicle registration certificate (RC)', 'permit' => 'Taxi or auto permit', 'insurance' => 'Vehicle insurance'];
+const PROV_REQUIRED = ['stay' => ['registration', 'owner_id'], 'transport' => ['owner_id', 'driving_licence', 'vehicle_rc', 'permit', 'insurance']];
+const PROV_EXPIRY_REQUIRED = ['registration', 'driving_licence', 'permit', 'insurance'];
+const KERALA_BOUNDS = ['lat' => [8.0, 12.9], 'lng' => [74.7, 77.5]];
 const BK_STATUSES = ['new', 'sent', 'confirmed', 'completed', 'cancelled', 'declined', 'pay_pending', 'paid', 'searching', 'assigned', 'started', 'expired'];
 const BK_PARTNER_TYPES = ['stay', 'transport'];
 
@@ -56,6 +74,7 @@ function bk_config(): array {
         'auto' => ['baseInr' => 30, 'perKmInr' => 15, 'minInr' => 50, 'nightPct' => 25],
         'car' => ['baseInr' => 50, 'perKmInr' => 14, 'minInr' => 150, 'nightPct' => 20],
         'suv' => ['baseInr' => 80, 'perKmInr' => 18, 'minInr' => 250, 'nightPct' => 20]];
+    $c['kycRetentionDays'] = isset($c['kycRetentionDays']) ? max(7, min(730, (int)$c['kycRetentionDays'])) : 180;   // traveller documents are deleted this many days after upload
     $c['tcsPercent'] = isset($c['tcsPercent']) ? (float)$c['tcsPercent'] : 0.0;
     $c['tdsPercent'] = isset($c['tdsPercent']) ? (float)$c['tdsPercent'] : 0.0;
     return $c;
@@ -72,7 +91,7 @@ function bk_save(array $c): void { save_json(bk_dir() . '/config.json', $c); }
 /** Missing prerequisites for a capability, in plain words. Empty = ready to switch on. */
 function bk_missing(string $cap, array $cfg): array {
     $def = BK_CAPS[$cap] ?? null; if (!$def) return ['Unknown capability.'];
-    if (!empty($cfg['testMode'])) return ($cap === 'payments' && !bk_test_keys()) ? ['Test mode needs Razorpay TEST keys (key id starting rzp_test_) in vh-config.php'] : [];
+    if (!empty($cfg['testMode'])) { if ($cap === 'payments' && !bk_test_keys()) return ['Test mode needs Razorpay TEST keys (key id starting rzp_test_) in vh-config.php']; if ($cap === 'kyc' && function_exists('vault_ready') && !vault_ready()) return ['Document storage needs libsodium on the server']; return []; }
     $st = $cfg['caps'][$cap] ?? []; $m = [];
     foreach ($def[3] as $k => $label) if (empty($st['checklist'][$k])) $m[] = $label;
     foreach ($def[4] as $k => $e) {
@@ -80,6 +99,7 @@ function bk_missing(string $cap, array $cfg): array {
         if ($v === '') $m[] = 'Record: ' . $e[0];
         elseif ($e[1] && !preg_match($e[1], $v)) $m[] = 'Check the format of: ' . $e[0];
     }
+    if ($cap === 'kyc' && function_exists('vault_real_key') && !vault_real_key()) $m[] = 'Add doc_key (base64 of 32 random bytes) to vh-config.php. The admin Verification tab can generate one for you';
     if ($cap === 'payments') {
         if (!function_exists('rzp_keys_ok') || !rzp_keys_ok()) $m[] = 'Add razorpay_key_id, razorpay_key_secret and razorpay_webhook_secret to vh-config.php';
         if (!bk_open('enquiries', $cfg)) $m[] = 'Switch on Partner enquiries first (it carries the partner agreements)';
@@ -90,7 +110,7 @@ function bk_missing(string $cap, array $cfg): array {
 /** True only when the software exists, every prerequisite is recorded AND the admin switched it on. */
 function bk_open(string $cap, ?array $cfg = null): bool {
     $cfg = $cfg ?? bk_config(); $def = BK_CAPS[$cap] ?? null;
-    if ($def && $def[2] && !empty($cfg['testMode'])) return $cap !== 'payments' || bk_test_keys();   // TEST MODE: no approvals needed, but real money stays impossible
+    if ($def && $def[2] && !empty($cfg['testMode'])) return $cap === 'payments' ? bk_test_keys() : ($cap !== 'kyc' || (function_exists('vault_ready') && vault_ready()));   // TEST MODE: no approvals needed, but real money stays impossible
     return $def && $def[2] && !empty($cfg['caps'][$cap]['enabled']) && !bk_missing($cap, $cfg);
 }
 /** Test mode: every booking feature works for testing without recorded approvals. Mail is redirected to the owner, bookings are flagged TEST, and payments need Razorpay TEST keys. */
@@ -117,11 +137,24 @@ function bk_ref(): string {
 }
 
 /** A provider is a booking partner only when verified, in a bookable type, flagged as partner and the agreement is recorded. */
-function bk_partner_ok(array $p): bool {
+/** Verification state: which required documents are approved and in date, and whether the location is approved. */
+function prov_verification(array $p): array {
+    $req = PROV_REQUIRED[$p['type'] ?? ''] ?? []; $docs = $p['verification']['docs'] ?? []; $today = gmdate('Y-m-d'); $missing = [];
+    foreach ($req as $t) { $ok = false; foreach ($docs as $d) if (($d['docType'] ?? '') === $t && ($d['status'] ?? '') === 'approved' && (empty($d['expires']) || $d['expires'] >= $today)) $ok = true; if (!$ok) $missing[] = $t; }
+    $geo = ($p['verification']['geo']['status'] ?? '') === 'approved'; if (!$geo) $missing[] = 'location';
+    return ['ok' => !$missing, 'missing' => $missing];
+}
+/** A partner the admin has switched on (agreement and registration check, or test mode). It can sign in to the partner page even before its documents are verified. */
+function bk_partner_base(array $p): bool {
     if (!empty($p['test']) && !bk_test()) return false;   // test partners exist only while test mode is on
     $base = ($p['status'] ?? '') === 'approved' && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true) && !empty($p['booking']['partner']);
     if (bk_test()) return $base;   // test mode: the agreement and registration check are not required
     return $base && !empty($p['booking']['agreementOn']) && !empty($p['booking']['registrationChecked']);
+}
+/** A partner that can take bookings: switched on AND, when identity verification is on (not in test mode), documents and location approved and in date. */
+function bk_partner_ok(array $p): bool {
+    if (!bk_partner_base($p)) return false;
+    return bk_test() || !bk_open('kyc') || prov_verification($p)['ok'];
 }
 /** The partner's own fee if set, else the default fee. */
 function bk_fee_for(array $p, array $cfg): array {

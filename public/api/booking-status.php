@@ -4,7 +4,7 @@ define('VH_LIB', 1);
 require __DIR__ . '/lib/commerce.php';
 header('Cache-Control: no-store');
 $cfg = bk_config(); $caps = [];
-foreach (['enquiries', 'stays', 'rides', 'payments'] as $c) $caps[$c] = bk_open($c, $cfg);
+foreach (['enquiries', 'stays', 'rides', 'payments', 'accounts', 'kyc'] as $c) $caps[$c] = bk_open($c, $cfg);
 $partners = []; $stays = []; $rides = null;
 foreach (bk_providers() as $p) {
     if (!bk_partner_ok($p)) continue;

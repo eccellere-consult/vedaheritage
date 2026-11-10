@@ -6,8 +6,8 @@ import PhotoUploadBase from './PhotoUpload'
 // Explicit file name: a folder URL only works if the server's DirectoryIndex lists index.php.
 const API = '/api/admin/index.php'
 type Json = Record<string, any>
-type Tab = 'overview' | 'sprint' | 'review' | 'drafts' | 'market' | 'providers' | 'bookings' | 'prs' | 'stories' | 'agents' | 'activity'
-const TABS: [Tab, string][] = [['overview', 'Overview'], ['sprint', 'Content sprint'], ['review', 'Review agent work'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['bookings', 'Bookings'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
+type Tab = 'overview' | 'sprint' | 'review' | 'drafts' | 'market' | 'providers' | 'bookings' | 'verification' | 'prs' | 'stories' | 'agents' | 'activity'
+const TABS: [Tab, string][] = [['overview', 'Overview'], ['sprint', 'Content sprint'], ['review', 'Review agent work'], ['drafts', 'Drafts'], ['market', 'Marketplace'], ['providers', 'Directory'], ['bookings', 'Bookings'], ['verification', 'Verification'], ['prs', 'Pull requests'], ['stories', 'Stories'], ['agents', 'Run agents'], ['activity', 'Activity']]
 
 let csrf = ''
 async function api(a: string, body?: Json, query = ''): Promise<{ ok: boolean; status: number; data: Json }> {
@@ -86,6 +86,7 @@ export default function AdminApp() {
       {tab === 'market' && <Market say={say} />}
       {tab === 'providers' && <Providers say={say} />}
       {tab === 'bookings' && <Bookings say={say} />}
+      {tab === 'verification' && <Verification say={say} />}
       {tab === 'prs' && <Prs say={say} />}
       {tab === 'stories' && <Stories say={say} />}
       {tab === 'agents' && <Agents say={say} />}
@@ -988,6 +989,8 @@ function QuickLinks({ go }: { go: (t: Tab) => void }) {
         {inner('bookings', 'Bookings and test mode', 'Switches, partners, requests, settlement')}
         {inner('sprint', 'Content sprint', 'Fill content, coverage table, stop switch')}
         {inner('providers', 'Directory', 'Verify service providers')}
+        {inner('verification', 'Verification', 'Partner documents, traveller IDs, audit log')}
+        {ext('/account/', 'Traveller account page', 'Register, sign in, dashboard')}
         {inner('drafts', 'Drafts and reviews', 'Guides waiting for a look')}
         {ext('/partner/', 'Partner page', 'Where stays and drivers sign in')}
         {ext('/stays/', 'Book a stay', 'Traveller page')}
@@ -995,6 +998,58 @@ function QuickLinks({ go }: { go: (t: Tab) => void }) {
         {ext('/itinerary/', 'Itinerary planner', 'Traveller page')}
       </div>
       <p className="text-xs text-ink-mid mt-3">Partners do not need any link from you: they open the Partner page and ask for a sign-in link by email. Ride requests and payment links still reach travellers and drivers by email.</p>
+    </div>
+  )
+}
+
+
+// ---------------------------------------------------------------- Verification: partner documents and locations, traveller identity records, audit log
+function Verification({ say }: { say: (t: string, bad?: boolean) => void }) {
+  const { data, err, reload } = useLoad('kyc_overview'); const [key, setKey] = useState<Json | null>(null); const [days, setDays] = useState(''); const [peek, setPeek] = useState<Json | null>(null)
+  useEffect(() => { if (data?.retentionDays && days === '') setDays(String(data.retentionDays)) }, [data, days])
+  const inp = 'border border-accent/30 px-2 py-1 text-sm bg-white'
+  const post = async (a: string, body: Json) => { const r = await api(a, body); say(r.ok ? (r.data.message || 'Done.') : r.data.error, !r.ok); reload(); return r }
+  const view = async (docId: string) => { const reason = window.prompt('Why are you opening this document? (written to the audit log)'); if (!reason) return; const r = await api('kyc_doc_view', undefined, `&id=${docId}&reason=${encodeURIComponent(reason)}`); if (!r.ok) { say(r.data.error, true); return } const bin = atob(r.data.data); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); window.open(URL.createObjectURL(new Blob([u], { type: r.data.mime })), '_blank'); reload() }
+  if (err) return <p className="text-red-700 text-sm">{err}</p>
+  if (!data) return <p className="text-ink-mid">Loading…</p>
+  return (
+    <div className="space-y-6">
+      <div className="card space-y-2"><h2 className="font-serif text-xl">Identity and documents</h2>
+        <p className="text-sm text-ink-mid">Documents are encrypted on the server. Opening one asks for a reason and is written to the audit log below. Switch the capability on in Bookings (Identity documents and verification), or use Test mode.</p>
+        <div className="flex flex-wrap gap-2 text-sm">{badge(data.kycOpen ? 'identity capability ON' : 'identity capability off', data.kycOpen ? 'ok' : 'mute')}{badge(data.vaultReady ? (data.realKey ? 'encryption key set' : 'TEST key only (not for real documents)') : 'no encryption key', data.vaultReady && data.realKey ? 'ok' : 'warn')}
+          {badge(`${data.stats.accounts} traveller account(s), ${data.stats.withIdentity} with ID, ${data.stats.foreign} foreign, ${data.stats.documents} document(s)`, 'mute')}</div>
+        <div className="flex flex-wrap gap-3 items-end text-xs">
+          <button className="btn-outline text-xs" onClick={async () => { const r = await api('kyc_keygen'); if (r.ok) setKey(r.data) }}>Generate an encryption key</button>
+          <label>Delete traveller documents after (days)<input className={inp + ' block w-24'} value={days} onChange={e => setDays(e.target.value)} /></label><button className="btn-outline text-xs" onClick={() => post('kyc_settings', { retentionDays: Number(days) })}>Save</button>
+          <button className="btn-outline text-xs" onClick={() => post('kyc_purge', {})}>Delete expired now</button></div>
+        {key && <div className="rounded border border-amber-300 bg-amber-50 p-3 text-xs"><p className="font-medium mb-1">New key (shown once, not stored here)</p><code className="break-all block mb-2">{key.key}</code><pre className="whitespace-pre-wrap">{key.how}</pre></div>}
+      </div>
+
+      <div className="card space-y-4"><h3 className="font-serif text-lg">Partners and service providers</h3>
+        {!data.providers.length && <p className="text-sm text-ink-mid">No stay or transport providers yet. Add providers in the Directory tab.</p>}
+        {data.providers.map((p: Json) => (
+          <div key={p.id} className="border-t border-accent/20 pt-3 text-sm">
+            <p className="font-medium">{p.name} {p.test && badge('test partner', 'warn')} {badge(p.verified ? 'verified' : 'not verified', p.verified ? 'ok' : 'bad')} <span className="text-xs text-ink-mid">{p.type} · {p.districts.join(', ')}</span></p>
+            {!p.verified && <p className="text-xs text-amber-800">Missing: {p.missing.map((m: string) => data.docLabels[m] || (m === 'location' ? 'approved location' : m)).join('; ')}</p>}
+            <ul className="mt-1 space-y-1">{p.docs.map((d: Json) => (
+              <li key={d.docId} className="flex flex-wrap items-center gap-2 text-xs"><span className="w-72">{d.label}</span>{badge(d.status, d.status === 'approved' ? 'ok' : d.status === 'rejected' ? 'bad' : 'warn')}<span>{d.expires ? `valid until ${d.expires}` : d.needsExpiry ? 'expiry not set' : ''}{d.note ? ` · ${d.note}` : ''}</span>
+                <button className="underline text-primary" onClick={() => view(d.docId)}>View</button>
+                <button className="underline text-primary" onClick={() => { const exp = d.needsExpiry ? window.prompt('Expiry date shown on the document (YYYY-MM-DD)') : window.prompt('Expiry date, if any (YYYY-MM-DD), or leave empty') ; if (exp === null) return; post('kyc_doc_decide', { providerId: p.id, docId: d.docId, decision: 'approve', expires: exp }) }}>Approve</button>
+                <button className="underline text-red-700" onClick={() => { const n = window.prompt('What is wrong? The partner sees this note.'); if (n) post('kyc_doc_decide', { providerId: p.id, docId: d.docId, decision: 'reject', note: n }) }}>Reject</button></li>))}
+              {!p.docs.length && <li className="text-xs text-ink-mid">No documents uploaded yet.</li>}</ul>
+            <p className="text-xs mt-1">Location: {p.geo ? <>{p.geo.lat}, {p.geo.lng} ({p.geo.source}) {badge(p.geo.status, p.geo.status === 'approved' ? 'ok' : p.geo.status === 'rejected' ? 'bad' : 'warn')} <a className="underline text-primary" href={p.geo.map} target="_blank" rel="noopener noreferrer">map ↗</a> <span className="text-ink-mid">{p.address ? `Claimed address: ${p.address}` : ''}</span> <button className="underline text-primary ml-2" onClick={() => post('kyc_geo_decide', { providerId: p.id, decision: 'approve' })}>Approve</button> <button className="underline text-red-700" onClick={() => { const n = window.prompt('What is wrong with the location?'); if (n) post('kyc_geo_decide', { providerId: p.id, decision: 'reject', note: n }) }}>Reject</button></> : 'not set'}</p>
+          </div>))}
+      </div>
+
+      <div className="card space-y-2"><h3 className="font-serif text-lg">Travellers</h3>
+        <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="text-left text-xs text-ink-mid"><th>Email</th><th>Name</th><th>Type</th><th>ID saved</th><th>Docs</th><th></th></tr></thead><tbody>{data.travellers.map((t: Json) => (
+          <tr key={t.id} className="border-t border-accent/20"><td className="py-1">{t.email}</td><td>{t.name}</td><td>{t.residency}</td><td>{t.identityOn ? 'yes' : 'no'}</td><td>{t.docs}</td>
+            <td className="space-x-2"><button className="underline text-primary text-xs" onClick={async () => { const reason = window.prompt('Why are you opening this record? (written to the audit log)'); if (!reason) return; const r = await api('kyc_traveller_view', { id: t.id, reason }); if (r.ok) setPeek(r.data); else say(r.data.error, true); reload() }}>Open</button>
+              <button className="underline text-red-700 text-xs" onClick={async () => { const w = window.prompt('Type DELETE to erase this traveller account, itineraries and documents'); if (w) post('kyc_traveller_erase', { id: t.id, confirm: w, reason: 'deletion request' }) }}>Erase</button></td></tr>))}</tbody></table></div>
+        {peek && <div className="rounded border border-accent/30 p-3 text-xs"><p className="font-medium">{peek.name} · {peek.email}</p><pre className="whitespace-pre-wrap mt-1">{peek.identity ? JSON.stringify(peek.identity, null, 2) : 'No identity details saved.'}</pre><p className="mt-1">Documents: {peek.docs.length ? peek.docs.map((d: Json) => <button key={d.id} className="underline text-primary mr-2" onClick={() => view(d.id)}>{d.label}</button>) : 'none'}</p><button className="underline mt-2" onClick={() => setPeek(null)}>Close</button></div>}
+      </div>
+
+      <div className="card"><h3 className="font-serif text-lg mb-2">Audit log (latest 60)</h3><div className="overflow-x-auto"><table className="w-full text-xs"><tbody>{data.audit.map((a: Json, i: number) => <tr key={i} className="border-t border-accent/20"><td className="py-1 pr-3 whitespace-nowrap">{String(a.at).replace('T', ' ').slice(0, 16)}</td><td className="pr-3">{a.who}</td><td className="pr-3">{a.action}</td><td className="pr-3 break-all">{a.ref}</td><td>{a.reason}</td></tr>)}</tbody></table></div></div>
     </div>
   )
 }

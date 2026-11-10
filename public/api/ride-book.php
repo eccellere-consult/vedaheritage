@@ -3,6 +3,7 @@
 // to drivers now and the traveller pays the driver. Locked until "Ride booking and dispatch" is on.
 define('VH_LIB', 1);
 require __DIR__ . '/lib/intake.php';
+require_once __DIR__ . '/lib/accounts.php';
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') public_out(405, ['ok' => false, 'error' => 'POST only.']);
 $err = fn(string $m, int $c = 422) => public_out($c, ['ok' => false, 'error' => $m]);
 bk_gate('rides', $err);
@@ -21,7 +22,7 @@ $id = new_id(); $ref = bk_ref(); [$tok, $hash] = bk_token_new();
 $b = ['id' => $id, 'ref' => $ref, 'kind' => 'ride', 'status' => $online ? 'pay_pending' : 'searching', 'created' => gmdate('c'), 'providerId' => '', 'providerName' => '', 'providerType' => 'transport',
     'name' => $t['name'], 'contactEmail' => $t['contactEmail'], 'contactPhone' => $t['contactPhone'], 'people' => $t['guests'], 'guests' => $t['guests'], 'message' => $t['message'],
     'pickupId' => $a, 'dropId' => $d, 'vehicle' => $v, 'when' => gmdate('Y-m-d H:i', $ts + 19800) . ' IST', 'whenTs' => $ts, 'km' => $km, 'checkIn' => gmdate('Y-m-d', $ts + 19800), 'checkOut' => gmdate('Y-m-d', $ts + 19800),
-    'valueInr' => $fare, 'feeMode' => $fee['mode'], 'feeValue' => $fee['value'], 'commissionInr' => $bd['feeInr'], 'test' => bk_test(), 'settled' => false, 'payTokenHash' => $hash,
+    'valueInr' => $fare, 'feeMode' => $fee['mode'], 'feeValue' => $fee['value'], 'commissionInr' => $bd['feeInr'], 'test' => bk_test(), 'accountId' => (($__a = acct_session((string)($_POST['account'] ?? ''))) ? $__a['id'] : ''), 'settled' => false, 'payTokenHash' => $hash,
     'payment' => ['mode' => $online ? 'online' : 'onsite', 'status' => $online ? 'unpaid' : 'onsite']] + $bd;
 bk_put($b);
 $sent = 0; if (!$online) $sent = ride_dispatch($b);
