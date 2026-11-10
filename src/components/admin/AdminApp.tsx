@@ -79,7 +79,7 @@ export default function AdminApp() {
         ))}
       </div>
       {msg && <p role="status" className={`mb-4 px-4 py-3 text-sm border ${msg.bad ? 'bg-red-50 border-red-300 text-red-800' : 'bg-primary/10 border-primary/30 text-ink'}`}>{msg.text}</p>}
-      {tab === 'overview' && <Overview go={setTab} />}
+      {tab === 'overview' && <><QuickLinks go={setTab} /><Overview go={setTab} /></>}
       {tab === 'sprint' && <Sprint say={say} />}
       {tab === 'review' && <Review say={say} />}
       {tab === 'drafts' && <Drafts say={say} />}
@@ -972,5 +972,29 @@ function Coverage({ st, say }: { st: { data: Json | null; reload: () => void }; 
             {(data.districts as string[]).map(d => <td key={d} className={`px-1 text-center ${(r.none || []).includes(d) ? 'bg-ink/5 text-ink-mid' : tone(r.districts[d], c.perDistrictMin)}`} title={(r.none || []).includes(d) ? 'nothing real here' : ''}>{(r.none || []).includes(d) ? '–' : r.districts[d]}</td>)}</tr>)}</tbody></table></div>}
       </div>
     </details>
+  )
+}
+
+
+// ---------------------------------------------------------------- Quick links: every page and tool in one place, no addresses to remember
+function QuickLinks({ go }: { go: (t: Tab) => void }) {
+  const ext = (href: string, label: string, note: string) => <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="card !p-3 hover:shadow-md block"><p className="font-medium text-primary text-sm">{label} ↗</p><p className="text-xs text-ink-mid">{note}</p></a>
+  const inner = (t: Tab, label: string, note: string) => <button key={t} onClick={() => go(t)} className="card !p-3 text-left hover:shadow-md"><p className="font-medium text-primary text-sm">{label}</p><p className="text-xs text-ink-mid">{note}</p></button>
+  return (
+    <div className="card mb-6">
+      <h2 className="font-serif text-xl mb-1">Quick links</h2>
+      <p className="text-xs text-ink-mid mb-3">Everything in one place. Traveller and partner pages open in a new tab.</p>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {inner('bookings', 'Bookings and test mode', 'Switches, partners, requests, settlement')}
+        {inner('sprint', 'Content sprint', 'Fill content, coverage table, stop switch')}
+        {inner('providers', 'Directory', 'Verify service providers')}
+        {inner('drafts', 'Drafts and reviews', 'Guides waiting for a look')}
+        {ext('/partner/', 'Partner page', 'Where stays and drivers sign in')}
+        {ext('/stays/', 'Book a stay', 'Traveller page')}
+        {ext('/rides/', 'Book a cab or auto', 'Traveller page')}
+        {ext('/itinerary/', 'Itinerary planner', 'Traveller page')}
+      </div>
+      <p className="text-xs text-ink-mid mt-3">Partners do not need any link from you: they open the Partner page and ask for a sign-in link by email. Ride requests and payment links still reach travellers and drivers by email.</p>
+    </div>
   )
 }

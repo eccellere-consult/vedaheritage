@@ -863,7 +863,7 @@ try {
         foreach (bk_providers() as $p) if (in_array($p['status'] ?? '', ['approved', 'suspended'], true) && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true))
             $partners[] = ['id' => $p['id'], 'name' => $p['name'], 'type' => $p['type'], 'typeLabel' => PROVIDER_TYPES[$p['type']][0], 'districts' => $p['districts'], 'status' => $p['status'],
                 'partner' => !empty($p['booking']['partner']), 'agreementOn' => $p['booking']['agreementOn'] ?? '', 'registrationChecked' => !empty($p['booking']['registrationChecked']),
-                'fee' => bk_fee_clean($p['booking']['feeMode'] ?? null, $p['booking']['feeValue'] ?? null), 'live' => bk_partner_ok($p), 'test' => !empty($p['test']), 'inventory' => $p['inventory'] ?? new stdClass()];
+                'fee' => bk_fee_clean($p['booking']['feeMode'] ?? null, $p['booking']['feeValue'] ?? null), 'live' => bk_partner_ok($p), 'test' => !empty($p['test']), 'email' => $p['email'] ?? '', 'inventory' => $p['inventory'] ?? new stdClass()];
         $items = []; foreach (glob(bk_dir('items') . '/*.json') ?: [] as $f) { $b = json_file($f); if (!$b) continue;
             // Abandoned payments: a stay hold that ran out, or a ride left unpaid for two days, is closed and its traveller details are deleted.
             if (($b['status'] ?? '') === 'pay_pending' && ((($b['kind'] ?? '') === 'stay' && ($b['holdUntil'] ?? 0) < time()) || (($b['kind'] ?? '') === 'ride' && strtotime($b['created']) < time() - 2 * 86400))) {
@@ -915,6 +915,7 @@ try {
         $name = clean_text($in['name'] ?? '', 80); $type = (string)($in['type'] ?? ''); $dist = (string)($in['district'] ?? '');
         if (mb_strlen($name) < 3 || !in_array($type, BK_PARTNER_TYPES, true) || !in_array($dist, DISTRICTS, true)) json_out(400, ['error' => 'Give a name, choose stay or transport, and choose a district.']);
         $id = new_id(); $owner = (string)(vh_cfg()['notify_email'] ?? 'test@example.com');
+        if (strpos($owner, '@') !== false) $owner = preg_replace('/^([^@+]+)(\+[^@]*)?@/', '$1+test' . substr($id, -4) . '@', $owner);   // a unique address per test partner, so portal sign-in finds the right one
         save_json(market_dir('providers') . "/$id.json", ['id' => $id, 'status' => 'approved', 'created' => gmdate('c'), 'test' => true, 'name' => $name . ' (TEST)', 'type' => $type, 'districts' => [$dist],
             'summary' => 'A test partner created for trying the booking features. It is not a real business and is never listed publicly.', 'phone' => '+910000000000', 'email' => $owner, 'website' => '', 'address' => '',
             'credentialKind' => '', 'credentialNumber' => '', 'contactPerson' => 'Test', 'contactPersonPhone' => '', 'emailVerified' => true, 'booking' => ['partner' => true, 'agreementOn' => gmdate('Y-m-d'), 'registrationChecked' => true]]);
@@ -950,26 +951,7 @@ try {
         $id = need_str($in, 'id', 20); if (!valid_id($id)) json_out(400, ['error' => 'Bad request.']);
         $path = market_dir('providers') . "/$id.json"; $p = json_file($path);
         if (!$p || !in_array($p['type'] ?? '', BK_PARTNER_TYPES, true)) json_out(404, ['error' => 'No stay or transport provider with that id.']);
-        $inv = is_array($p['inventory'] ?? null) ? $p['inventory'] : [];
-        if (array_key_exists('razorpayAccountId', $in)) {
-            $acc = trim((string)$in['razorpayAccountId']); if ($acc !== '' && !preg_match('/^acc_[A-Za-z0-9]{8,30}$/', $acc)) json_out(400, ['error' => 'A Razorpay linked account ID looks like acc_AbCd1234EfGh.']);
-            $inv['razorpayAccountId'] = $acc;
-        }
-        if ($p['type'] === 'stay' && isset($in['rooms'])) {
-            if (!is_array($in['rooms']) || count($in['rooms']) > 20) json_out(400, ['error' => 'Up to 20 rooms.']);
-            $rooms = []; $ids = [];
-            foreach ($in['rooms'] as $r) {
-                $rid = preg_replace('/[^a-z0-9-]/', '', strtolower((string)($r['id'] ?? ''))); $nm = clean_text($r['name'] ?? '', 60);
-                if ($rid === '' || $nm === '' || isset($ids[$rid])) json_out(400, ['error' => 'Each room needs a unique id and a name.']);
-                if (!is_numeric($r['rateInr'] ?? null) || $r['rateInr'] < 1 || $r['rateInr'] > 200000) json_out(400, ['error' => "Room $nm: the nightly rate must be 1 to 200000 rupees."]);
-                if (!is_numeric($r['capacity'] ?? null) || $r['capacity'] < 1 || $r['capacity'] > 30 || !is_numeric($r['count'] ?? 1) || $r['count'] < 1 || $r['count'] > 50) json_out(400, ['error' => "Room $nm: capacity 1 to 30, units 1 to 50."]);
-                $ids[$rid] = 1; $rooms[] = ['id' => $rid, 'name' => $nm, 'capacity' => (int)$r['capacity'], 'count' => (int)($r['count'] ?? 1), 'rateInr' => round((float)$r['rateInr'], 2)];
-            }
-            $inv['rooms'] = $rooms;
-            $bl = []; foreach (($in['blocked'] ?? []) as $rid => $days) { if (!isset($ids[$rid])) continue; $bl[$rid] = array_values(array_unique(array_filter(array_map('strval', (array)$days), fn($d) => preg_match('/^\d{4}-\d{2}-\d{2}$/', $d)))); sort($bl[$rid]); }
-            $inv['blocked'] = $bl;
-        }
-        if ($p['type'] === 'transport' && isset($in['vehicles'])) $inv['vehicles'] = array_values(array_intersect(array_keys(RIDE_VEHICLES), (array)$in['vehicles']));
+        [$inv, $ierr] = bk_inventory_apply($p, $in, true); if ($ierr) json_out(400, ['error' => $ierr]);
         $p['inventory'] = $inv; save_json($path, $p); audit('bk-inventory', ['provider' => $id]);
         json_out(200, ['ok' => true, 'message' => 'Saved.']);
     }
