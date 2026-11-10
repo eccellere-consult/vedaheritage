@@ -1,16 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { NAV_GROUPS, NAV_LINKS, NAV_PLAN } from '@/lib/nav'
 
 const MENU = [...NAV_GROUPS, NAV_PLAN]
 
+/** Where the "Sign in" button goes: the hub, or straight to the account or partner page when this browser is already signed in. */
+function useSignIn() {
+  const [s, setS] = useState({ href: '/login', label: 'Sign in' })
+  useEffect(() => { try {
+    if (localStorage.getItem('vh-account-session')) setS({ href: '/account', label: 'My account' })
+    else if (localStorage.getItem('vh-partner-session')) setS({ href: '/partner', label: 'Partner page' })
+  } catch { /* private mode: keep the default */ } }, [])
+  return s
+}
+
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const close = () => setOpen(false)
+  const signIn = useSignIn()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-b border-accent/20">
@@ -18,13 +29,13 @@ export default function Nav() {
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none whitespace-nowrap shrink-0">
+          <Link href="/" className="flex flex-col leading-none whitespace-nowrap shrink-0 mr-4">
             <span className="font-serif text-xl md:text-2xl text-primary tracking-wide">Veda Heritage</span>
             <span className="font-sans text-[10px] text-accent tracking-[0.2em] uppercase mt-0.5">Discover Kerala</span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden xl:flex items-center gap-4 whitespace-nowrap" aria-label="Main">
+          <nav className="hidden xl:flex items-center gap-3 2xl:gap-4 whitespace-nowrap" aria-label="Main">
             {MENU.map(g => (
               <div key={g.label} className="relative group">
                 <button type="button" className="nav-link whitespace-nowrap inline-flex items-center gap-1" aria-haspopup="true">
@@ -45,8 +56,12 @@ export default function Nav() {
             {NAV_LINKS.map(l => (
               <Link key={l.href} href={l.href} className={`nav-link ${pathname.startsWith(l.href) ? 'text-primary font-medium' : ''}`}>{l.label}</Link>
             ))}
-            <Link href="/stay" className="text-xs text-ink-mid/70 hover:text-primary border-l border-accent/20 pl-5 ml-1 whitespace-nowrap">Stay with us</Link>
+            <Link href="/stay" className="text-xs text-ink-mid/70 hover:text-primary border-l border-accent/20 pl-3 ml-0 whitespace-nowrap">Stay with us</Link>
+            <Link href={signIn.href} className="btn-outline !px-3 !py-1.5 text-xs whitespace-nowrap">{signIn.label}</Link>
           </nav>
+
+          {/* Mobile: sign-in stays visible next to the menu button */}
+          <Link href={signIn.href} className="xl:hidden btn-outline !px-3 !py-1.5 text-xs ml-auto mr-2">{signIn.label}</Link>
 
           {/* Mobile burger */}
           <button onClick={() => setOpen(!open)} className="xl:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu" aria-expanded={open}>
@@ -71,6 +86,7 @@ export default function Nav() {
           {NAV_LINKS.map(l => (
             <Link key={l.href} href={l.href} onClick={close} className="block py-3 nav-link border-b border-accent/10">{l.label}</Link>
           ))}
+          <Link href={signIn.href} onClick={close} className="btn-primary text-xs mt-4 inline-block">{signIn.label}</Link>
           <Link href="/stay" onClick={close} className="block pt-4 text-xs text-ink-mid/70">Stay with us</Link>
         </div>
       )}
