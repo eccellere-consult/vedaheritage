@@ -17,4 +17,4 @@ if ($caps['rides']) {
     $pts = []; foreach (RIDE_POINTS as $k => $v) $pts[] = ['id' => $k, 'label' => $v[0], 'district' => $v[1]];
     $rides = ['vehicles' => $veh, 'points' => $pts];
 }
-public_out(200, ['ok' => true, 'open' => $caps['enquiries'], 'caps' => $caps, 'partners' => $partners, 'stays' => $stays, 'rides' => $rides]);
+public_out(200, ['ok' => true, 'testMode' => !empty($cfg['testMode']), 'open' => $caps['enquiries'], 'caps' => $caps, 'partners' => $partners, 'stays' => $stays, 'rides' => $rides]);

@@ -820,6 +820,14 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
         <p className="text-sm text-ink-mid">{enq?.open ? 'Partner enquiries are ON: travellers can send requests to the partners you switched on.' : <><strong>Locked.</strong> Nothing on the site accepts a booking request until you record the approvals below and switch a capability on. Travellers see nothing while it is locked.</>}</p>
       </div>
 
+      <div className={`card ${data.testMode ? 'border-amber-300 bg-amber-50' : ''}`}>
+        <div className="flex flex-wrap items-center gap-2 mb-1"><h3 className="font-serif text-lg">Test mode</h3>{data.testMode ? badge('ON', 'warn') : badge('off', 'mute')}</div>
+        <p className="text-sm text-ink-mid mb-2">Opens stays, rides and enquiries so you can try everything now without recording approvals. While it is on: bookings are marked TEST, <strong>no email goes to partners or travellers</strong> (it goes to your notify email, with the intended recipient in the subject), a partner needs no agreement to be switched on, and online payments work only with Razorpay <strong>test</strong> keys (key id starting rzp_test_). Switch it off before launch: everything locks again until its approvals are recorded and it is switched on below.</p>
+        {!data.notifyEmail && <p className="text-xs text-amber-800 mb-2">No notify_email is set in vh-config.php, so test emails (including driver links) cannot be delivered to you. Add <code>'notify_email' =&gt; 'you@example.com'</code>.</p>}
+        <p className="text-xs text-ink-mid mb-2">Razorpay test keys: {data.rzpTestKeys ? badge('found', 'ok') : data.rzpKeys ? badge('live keys only: payments stay off in test mode', 'warn') : badge('not added', 'mute')}</p>
+        <button className={data.testMode ? 'btn-outline text-xs' : 'btn-primary text-xs'} onClick={() => { if (!data.testMode && !window.confirm('Switch test mode on? Booking features open for testing; no real emails or real payments.')) return; post('bk_testmode', { enabled: !data.testMode }) }}>{data.testMode ? 'Switch test mode off' : 'Switch test mode on'}</button>
+      </div>
+
       <div className="space-y-4">
         {caps.map(c => { const d = draft[c.id] || { checklist: c.checked, evidence: c.evidence }
           const save = () => post('bk_cap_save', { cap: c.id, checklist: d.checklist, evidence: d.evidence })
@@ -892,7 +900,7 @@ function Bookings({ say }: { say: (t: string, bad?: boolean) => void }) {
         {!data.bookings.length && <p className="text-sm text-ink-mid">No requests yet.</p>}
         <ul className="space-y-3">{data.bookings.map((b: Json) => (
           <li key={b.id} className="border-t border-accent/20 pt-3 text-sm">
-            <div className="flex flex-wrap items-center gap-2"><strong>{b.ref}</strong>{badge(b.status, b.status === 'completed' ? 'ok' : b.status === 'cancelled' || b.status === 'declined' ? 'mute' : 'warn')}<span>{b.providerName} · {b.checkIn} to {b.checkOut} · {b.people} people</span></div>
+            <div className="flex flex-wrap items-center gap-2"><strong>{b.ref}</strong>{badge(b.status, b.status === 'completed' ? 'ok' : b.status === 'cancelled' || b.status === 'declined' ? 'mute' : 'warn')}{b.test && badge('TEST', 'warn')}<span>{b.providerName} · {b.checkIn} to {b.checkOut} · {b.people} people</span></div>
             {b.contactEmail || b.contactPhone ? <p className="text-xs text-ink-mid mt-1">{b.name}: {b.contactPhone} {b.contactEmail}</p> : <p className="text-xs text-ink-mid mt-1">Traveller details deleted.</p>}
             {b.message && <p className="text-xs text-ink-mid whitespace-pre-line mt-1">{b.message}</p>}
             {b.kind && b.kind !== 'enquiry' && <p className="text-xs mt-1">{b.kind === 'ride' ? 'Ride' : 'Stay'} · Rs {b.amountInr ?? b.valueInr} · {b.payment?.mode === 'online' ? `online (${b.payment.status}${b.payment.payoutHeld ? ', payout held' : b.payment.payoutReleasedOn ? ', payout released' : ''})` : 'pay on site'}{b.feeInr != null ? ` · fee ${b.feeInr} + GST ${b.gstInr}, partner gets ${b.partnerShareInr}` : ''}{b.driver ? ` · driver ${b.driver.name} ${b.driver.vehicleNo}` : ''}</p>}

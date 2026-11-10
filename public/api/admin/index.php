@@ -871,7 +871,7 @@ try {
             $items[] = $b; }
         usort($items, fn($x, $y) => strcmp($y['created'], $x['created']));
         foreach ($items as &$it) unset($it['payTokenHash'], $it['dispatch'], $it['otp']); unset($it);
-        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate'], 'tcsPercent' => $cfg['tcsPercent'], 'tdsPercent' => $cfg['tdsPercent'], 'rideRates' => $cfg['rideRates'], 'vehicles' => RIDE_VEHICLES, 'rzpKeys' => rzp_keys_ok()]);
+        json_out(200, ['caps' => $caps, 'partners' => $partners, 'bookings' => array_slice($items, 0, 200), 'fee' => $cfg['fee'], 'gstRate' => $cfg['gstRate'], 'tcsPercent' => $cfg['tcsPercent'], 'tdsPercent' => $cfg['tdsPercent'], 'rideRates' => $cfg['rideRates'], 'vehicles' => RIDE_VEHICLES, 'rzpKeys' => rzp_keys_ok(), 'rzpTestKeys' => bk_test_keys(), 'testMode' => !empty($cfg['testMode']), 'notifyEmail' => !empty(vh_cfg()['notify_email'])]);
     }
 
     case 'bk_cap_save': {
@@ -896,6 +896,12 @@ try {
         }
         $cfg['caps'][$cap]['enabled'] = $on; $cfg['caps'][$cap]['updated'] = gmdate('c'); bk_save($cfg); audit('bk-cap-' . ($on ? 'on' : 'off'), ['cap' => $cap]);
         json_out(200, ['ok' => true, 'message' => $on ? 'Switched on.' : 'Switched off.']);
+    }
+
+    case 'bk_testmode': {
+        if ($method !== 'POST') json_out(405, ['error' => 'POST only.']);
+        $cfg = bk_config(); $cfg['testMode'] = !empty($in['enabled']); bk_save($cfg); audit('bk-testmode', ['on' => $cfg['testMode']]);
+        json_out(200, ['ok' => true, 'message' => $cfg['testMode'] ? 'Test mode is ON. Stays, rides and enquiries are open for testing. No email goes to partners or travellers, and online payments work only with Razorpay test keys.' : 'Test mode is OFF. Every capability is locked again until its approvals are recorded and it is switched on.']);
     }
 
     case 'bk_settings': {
@@ -969,7 +975,7 @@ try {
         $on = !empty($in['partner']); $d = (string)($in['agreementOn'] ?? ''); $reg = !empty($in['registrationChecked']);
         $fee = null;
         if (($in['feeValue'] ?? '') !== '' && ($in['feeValue'] ?? null) !== null) { $fee = bk_fee_clean($in['feeMode'] ?? null, $in['feeValue']); if (!$fee) json_out(400, ['error' => 'The partner fee must be a percentage (0 to 20) or a flat amount (0 to 5000 rupees).']); }
-        if ($on) {
+        if ($on && !bk_test()) {
             $b = [];
             if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $d) || strtotime($d) === false) $b[] = 'Enter the date the written agreement was signed.';
             if (!$reg) $b[] = 'Confirm you checked the partner\'s registration or permit' . ($p['type'] === 'stay' ? ' (Kerala Tourism classification or registration)' : ' (taxi or auto permit and driver licence)') . '.';
@@ -978,7 +984,7 @@ try {
         }
         $p['booking'] = ['partner' => $on, 'agreementOn' => $d, 'registrationChecked' => $reg, 'feeMode' => $fee['mode'] ?? null, 'feeValue' => $fee['value'] ?? null];
         save_json($path, $p); audit('bk-partner', ['provider' => $id, 'on' => $on]);
-        json_out(200, ['ok' => true, 'message' => $on ? 'Partner switched on. They show for booking requests once Partner enquiries is open.' : 'Partner switched off.']);
+        json_out(200, ['ok' => true, 'message' => $on ? (bk_test() ? 'Partner switched on for testing (the agreement and registration check are not needed in test mode, and the partner will not be live without them once test mode is off).' : 'Partner switched on. They show for booking requests once Partner enquiries is open.') : 'Partner switched off.']);
     }
 
     case 'bk_send': {
@@ -989,7 +995,7 @@ try {
         $p = json_file(market_dir('providers') . '/' . $b['providerId'] . '.json');
         if (!$p || !bk_partner_ok($p)) json_out(422, ['error' => 'This partner is not switched on any more.']);
         $contact = trim(($b['contactPhone'] ?? '') . ' ' . ($b['contactEmail'] ?? ''));
-        $ok = send_mail($p['email'], 'Veda Heritage booking request ' . $b['ref'],
+        $ok = bk_mail($p['email'], 'Veda Heritage booking request ' . $b['ref'],
             "Booking request {$b['ref']}\n\nTraveller: {$b['name']} ($contact)\nDates: {$b['checkIn']} to {$b['checkOut']}\nPeople: {$b['people']}\n\nTraveller's message and plan:\n{$b['message']}\n\nPlease contact the traveller directly to confirm. Payment is made to you on site. Quote {$b['ref']} in your confirmation and tell Veda Heritage if the booking goes ahead.\n\nVeda Heritage");
         $b['status'] = 'sent'; $b['sentOn'] = gmdate('c'); save_json($path, $b); audit('bk-send', ['ref' => $b['ref']]);
         json_out(200, ['ok' => true, 'emailed' => $ok, 'message' => $ok ? 'Sent to the partner by email.' : 'Marked as sent, but the email could not be sent. Contact the partner yourself.']);

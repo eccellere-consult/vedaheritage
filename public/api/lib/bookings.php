@@ -72,6 +72,7 @@ function bk_save(array $c): void { save_json(bk_dir() . '/config.json', $c); }
 /** Missing prerequisites for a capability, in plain words. Empty = ready to switch on. */
 function bk_missing(string $cap, array $cfg): array {
     $def = BK_CAPS[$cap] ?? null; if (!$def) return ['Unknown capability.'];
+    if (!empty($cfg['testMode'])) return ($cap === 'payments' && !bk_test_keys()) ? ['Test mode needs Razorpay TEST keys (key id starting rzp_test_) in vh-config.php'] : [];
     $st = $cfg['caps'][$cap] ?? []; $m = [];
     foreach ($def[3] as $k => $label) if (empty($st['checklist'][$k])) $m[] = $label;
     foreach ($def[4] as $k => $e) {
@@ -89,7 +90,17 @@ function bk_missing(string $cap, array $cfg): array {
 /** True only when the software exists, every prerequisite is recorded AND the admin switched it on. */
 function bk_open(string $cap, ?array $cfg = null): bool {
     $cfg = $cfg ?? bk_config(); $def = BK_CAPS[$cap] ?? null;
+    if ($def && $def[2] && !empty($cfg['testMode'])) return $cap !== 'payments' || bk_test_keys();   // TEST MODE: no approvals needed, but real money stays impossible
     return $def && $def[2] && !empty($cfg['caps'][$cap]['enabled']) && !bk_missing($cap, $cfg);
+}
+/** Test mode: every booking feature works for testing without recorded approvals. Mail is redirected to the owner, bookings are flagged TEST, and payments need Razorpay TEST keys. */
+function bk_test(): bool { return !empty(bk_config()['testMode']); }
+function bk_test_keys(): bool { return function_exists('rzp_keys_ok') && rzp_keys_ok() && strpos((string)(vh_cfg()['razorpay_key_id'] ?? ''), 'rzp_test_') === 0; }
+/** Booking email. In test mode it goes to the owner (notify_email) with the intended recipient in the subject, never to a partner or traveller. */
+function bk_mail(string $to, string $subject, string $body): bool {
+    if (!bk_test()) return send_mail($to, $subject, $body);
+    $owner = (string)(vh_cfg()['notify_email'] ?? ''); if ($owner === '') return false;
+    return send_mail($owner, "[TEST] to $to: $subject", "TEST MODE: this message was NOT sent to $to.\n\n$body");
 }
 /** Public-facing gate: stops the request with a plain message while the capability is locked. */
 function bk_gate(string $cap, callable $deny): void {
@@ -107,8 +118,9 @@ function bk_ref(): string {
 
 /** A provider is a booking partner only when verified, in a bookable type, flagged as partner and the agreement is recorded. */
 function bk_partner_ok(array $p): bool {
-    return ($p['status'] ?? '') === 'approved' && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true)
-        && !empty($p['booking']['partner']) && !empty($p['booking']['agreementOn']) && !empty($p['booking']['registrationChecked']);
+    $base = ($p['status'] ?? '') === 'approved' && in_array($p['type'] ?? '', BK_PARTNER_TYPES, true) && !empty($p['booking']['partner']);
+    if (bk_test()) return $base;   // test mode: the agreement and registration check are not required
+    return $base && !empty($p['booking']['agreementOn']) && !empty($p['booking']['registrationChecked']);
 }
 /** The partner's own fee if set, else the default fee. */
 function bk_fee_for(array $p, array $cfg): array {

@@ -90,7 +90,7 @@ const rzPort = rz.address().port
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'vh-admin-'))
 const pwHash = spawnSync('php', ['-r', 'echo password_hash("correct horse battery staple", PASSWORD_DEFAULT);']).stdout.toString()
-fs.writeFileSync(path.join(tmp, 'vh-config.php'), `<?php return ['github_token'=>'tok','repo'=>'o/r','github_api'=>'http://127.0.0.1:${ghPort}','admin_password_hash'=>'${pwHash}','data_dir'=>'${tmp}/data','insecure_cookies'=>true,'site_url'=>'http://127.0.0.1:18911','insecure_checks'=>true,'rate_scale'=>10,'mail_outbox'=>'${tmp}/outbox.jsonl','razorpay_key_id'=>'rzp_test_key','razorpay_key_secret'=>'sekret','razorpay_webhook_secret'=>'whsec','razorpay_api'=>'http://127.0.0.1:${rzPort}'];`)
+fs.writeFileSync(path.join(tmp, 'vh-config.php'), `<?php return ['github_token'=>'tok','repo'=>'o/r','github_api'=>'http://127.0.0.1:${ghPort}','admin_password_hash'=>'${pwHash}','data_dir'=>'${tmp}/data','insecure_cookies'=>true,'site_url'=>'http://127.0.0.1:18911','insecure_checks'=>true,'rate_scale'=>10,'mail_outbox'=>'${tmp}/outbox.jsonl','razorpay_key_id'=>'rzp_test_key','razorpay_key_secret'=>'sekret','razorpay_webhook_secret'=>'whsec','notify_email'=>'owner@example.com','razorpay_api'=>'http://127.0.0.1:${rzPort}'];`)
 const php = spawn('php', ['-S', '127.0.0.1:0'.replace(':0', ':18911'), '-t', process.env.ADMIN_DOCROOT || 'public'], { env: { ...process.env, VH_CONFIG: path.join(tmp, 'vh-config.php') }, stdio: 'ignore' })
 await new Promise(r => setTimeout(r, 1200))
 
@@ -545,6 +545,44 @@ try {
     const so = await pp('stay-book', sb({ checkIn: day(40), checkOut: day(41), contactEmail: 'so@example.com' }))
     ok(so.d.mode === 'onsite' && !so.d.payToken, 'commerce: with payments off, a stay becomes a request paid on site')
     ok((await jp('pay-create.php', { ref, token: s1.d.payToken })).s === 403 && (await call('bk_pay_action', { method: 'POST', body: { id: bk1.id, action: 'refund' } })).s === 403, 'commerce: payment endpoints and refunds are locked when payments are off')
+  }
+
+
+  // ---------------------------------------------------------------- test mode: everything open for testing, nothing real
+  {
+    const trk = async url => (await fetch('http://127.0.0.1:18911/api/' + url)).json()
+    fs.rmSync(path.join(tmp, 'data/bookings/config.json'), { force: true })   // back to the locked default
+    const day = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10)
+    const s0 = await trk('booking-status.php')
+    ok(!s0.testMode && Object.values(s0.caps).every(v => v === false), 'test mode: everything is locked before test mode is switched on')
+    const on = await call('bk_testmode', { method: 'POST', body: { enabled: true } })
+    const s1 = await trk('booking-status.php')
+    ok(on.s === 200 && s1.testMode === true && s1.caps.enquiries && s1.caps.stays && s1.caps.rides && s1.caps.payments, 'test mode: one switch opens enquiries, stays, rides and payments (test keys present) with no approvals recorded')
+    const stayT = await addProvider({ type: 'stay', businessName: 'Test Homestay', credentialKind: 'Kerala Tourism homestay registration', credentialNumber: 'KT-H-9' })
+    ok((await call('bk_partner_set', { method: 'POST', body: { id: stayT.id, partner: true } })).s === 200, 'test mode: a partner can be switched on without an agreement or registration check')
+    await call('bk_inventory_set', { method: 'POST', body: { id: stayT.id, razorpayAccountId: 'acc_TestStay00001', rooms: [{ id: 'r1', name: 'Room', capacity: 2, count: 1, rateInr: 2000 }] } })
+    const mailsBefore = outbox().length
+    const bkT = await pp('stay-book', { providerId: stayT.id, roomId: 'r1', checkIn: day(50), checkOut: day(51), guests: '2', name: 'Tester', contactEmail: 'traveller-t@example.com', contactPhone: '+91 98470 66666', consent: '1' })
+    const rowT = (await call('bk_overview')).d.bookings.find(b => b.ref === bkT.d.ref)
+    ok(bkT.s === 200 && bkT.d.mode === 'online' && rowT.test === true, 'test mode: a booking works end to end and is flagged TEST')
+    const newMails = outbox().slice(mailsBefore)
+    ok(!newMails.some(m => m.to === 'traveller-t@example.com' || m.to === stayT.f.email.toLowerCase()), 'test mode: no email is sent to the traveller or the partner')
+    ok(newMails.every(m => m.to === 'owner@example.com'), 'test mode: every message goes to the owner only')
+    await call('bk_status', { method: 'POST', body: { id: rowT.id, status: 'cancelled' } })
+    const sendT = await pp('submit-booking', { providerId: stayT.id, name: 'T', contactEmail: 't2@example.com', checkIn: day(60), checkOut: day(61), people: '2', consent: '1', message: 'test' })
+    const rowS = (await call('bk_overview')).d.bookings.find(b => b.ref === sendT.d.ref); const m0 = outbox().length
+    await call('bk_send', { method: 'POST', body: { id: rowS.id } })
+    const sentMail = outbox().slice(m0)
+    ok(sentMail.length === 1 && sentMail[0].to === 'owner@example.com' && /^\[TEST\] to /.test(sentMail[0].subject) && sentMail[0].body.startsWith('TEST MODE'), 'test mode: "send to partner" is redirected to the owner and clearly marked')
+    // live keys never take money in test mode
+    const cfgDir = fs.mkdtempSync(path.join(os.tmpdir(), 'vh-live-')); fs.mkdirSync(path.join(cfgDir, 'data/bookings'), { recursive: true }); fs.writeFileSync(path.join(cfgDir, 'data/bookings/config.json'), JSON.stringify({ testMode: true }))
+    fs.writeFileSync(path.join(cfgDir, 'vh-config.php'), `<?php return ['data_dir'=>'${cfgDir}/data','razorpay_key_id'=>'rzp_live_abc','razorpay_key_secret'=>'x','razorpay_webhook_secret'=>'y'];`)
+    const live = spawnSync('php', ['-r', 'define("VH_LIB",1); require "public/api/lib/commerce.php"; echo json_encode([bk_open("payments"), bk_open("stays"), bk_open("rides")]);'], { encoding: 'utf8', env: { ...process.env, VH_CONFIG: path.join(cfgDir, 'vh-config.php') } })
+    ok(live.stdout.trim() === '[false,true,true]', 'test mode: with LIVE Razorpay keys, payments stay closed (stays and rides still open for testing)')
+    fs.rmSync(cfgDir, { recursive: true, force: true })
+    const off = await call('bk_testmode', { method: 'POST', body: { enabled: false } }); const s2 = await trk('booking-status.php')
+    ok(off.s === 200 && !s2.testMode && Object.values(s2.caps).every(v => v === false), 'test mode: switching it off locks everything again')
+    ok((await pp('stay-book', { providerId: stayT.id, roomId: 'r1', checkIn: day(70), checkOut: day(71), guests: '2', name: 'X', contactEmail: 'x@example.com', consent: '1' })).s === 403, 'test mode: with test mode off, booking is refused again')
   }
 
   ok(/Require all denied/.test(fs.readFileSync(path.join(priv, '.htaccess'), 'utf8')) && /Deny from all/.test(fs.readFileSync(path.join(priv, '.htaccess'), 'utf8')), 'the protected folder public/api/private denies every web request (Apache 2.4 and 2.2 syntax)')

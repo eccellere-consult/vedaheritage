@@ -32,9 +32,9 @@ save_json(bk_dir('items') . "/$id.json", [
     'id' => $id, 'ref' => $ref, 'status' => 'new', 'created' => gmdate('c'),
     'providerId' => $pid, 'providerName' => $prov['name'], 'providerType' => $prov['type'], 'districts' => $prov['districts'],
     'name' => $name, 'contactEmail' => strtolower($email), 'contactPhone' => $phoneN ?? '', 'checkIn' => $in, 'checkOut' => $out, 'people' => $people, 'message' => $msg,
-    'valueInr' => null, 'feeMode' => null, 'feeValue' => null, 'commissionInr' => null, 'settled' => false,
+    'test' => bk_test(), 'valueInr' => null, 'feeMode' => null, 'feeValue' => null, 'commissionInr' => null, 'settled' => false,
 ]);
-if ($email !== '') send_mail($email, "Your Veda Heritage request $ref",
+if ($email !== '') bk_mail($email, "Your Veda Heritage request $ref",
     "Hello $name,\n\nWe received your request to {$prov['name']} for $in to $out ($people people). Your reference is $ref.\n\nWe check each request and pass it to the partner, who will confirm directly with you. Payment is made to the partner on site. Quote $ref in any message.\n\nVeda Heritage");
 notify('New booking request ' . $ref, "A traveller asked {$prov['name']} for $in to $out. Open the admin page (Bookings tab) to send it to the partner.");
 public_out(200, ['ok' => true, 'ref' => $ref]);

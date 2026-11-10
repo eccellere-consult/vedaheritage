@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { type BookingStatus, fieldClass as inp, getStatus, inr, postForm } from '@/lib/bookingApi'
+import { TEST_BANNER, type BookingStatus, fieldClass as inp, getStatus, inr, postForm } from '@/lib/bookingApi'
 
 type Stay = BookingStatus['stays'][number]
 const today = () => new Date().toISOString().slice(0, 10)
@@ -42,6 +42,7 @@ export default function StayFinder() {
   if (done) return <p role="status" className="card text-sm text-primary">Request sent. Your reference is <strong>{done.ref}</strong>. We check it and pass it to the stay, which confirms directly with you. You pay the stay on arrival.</p>
   return (
     <div className="space-y-6">
+      {st.testMode && <p role="status" className="rounded border border-amber-300 bg-amber-50 text-amber-900 px-3 py-2 text-xs">{TEST_BANNER}</p>}
       <div className="card !p-4 grid sm:grid-cols-4 gap-3 text-xs">
         <label>Check in<input type="date" min={today()} className={inp + ' mt-1'} value={f.checkIn} onChange={e => setF({ ...f, checkIn: e.target.value, checkOut: e.target.value >= f.checkOut ? plus(e.target.value, 1) : f.checkOut })} /></label>
         <label>Check out<input type="date" min={plus(f.checkIn, 1)} className={inp + ' mt-1'} value={f.checkOut} onChange={e => setF({ ...f, checkOut: e.target.value })} /></label>
