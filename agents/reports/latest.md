@@ -1,46 +1,28 @@
-## Discover Kerala content agents — 2026-11-09
+## Discover Kerala content agents — 2026-11-14
 
 Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
 
-### Content fill: 0 page(s) created in 0.51 min
+### Events calendar: 29 upcoming event(s)
 
-Attempted 9 · created 0 · already had a page 0 · failed 9 · new topics found 0 · topics still to do 0
+Dates come from pages the agent retrieved. Check each link before merging.
 
-- ⚠️ astrology: planning failed (429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.)
-- ⚠️ weddings: planning failed (429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.)
-- ⚠️ medical: planning failed (429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.)
-- ⚠️ crafts: planning failed (429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.)
-- ⚠️ vedic: planning failed (429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.)
-- ⚠️ healing: planning failed (429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.)
-- ⚠️ finding new topics failed: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organiz
-- ⚠️ **Pazhanchollukal: Malayalam Proverbs**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Kerala Christian Wedding Traditions**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Thalassery Biryani**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Thiruvathira**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Mappila Muslim Wedding Traditions of Malabar**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Tulasi in Kerala Tradition**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Traditional Kerala Gold Ornaments**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Screw-pine Mat Weaving of Kerala**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
-- ⚠️ **Kerala Bamboo and Cane Crafts**: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.
+**New (5)**
+- **Kayamkulam Boat Race (Champions Boat League leg)** · 2026-11-14 · Kayamkulam, Alappuzha · dates published · https://www.keralatourism.org/champions-boat-league https://kumarakom.com/news/kerala-boat-race-2026-champions-boat-league-schedule
+- **International Film Festival of Kerala (IFFK) — 31st edition** · 2026-12-11 to 2026-12-18 · Thiruvananthapuram (city venues), Thiruvananthapuram · dates published · https://iffk.in/iffk-31/31st_official_selection.pdf https://iffk.in/index.php/aboutiffk
+- **Cochin Carnival (Fort Kochi year‑end / New Year carnival)** · 2026-12-23 to 2027-01-01 · Fort Kochi / Kochi, Ernakulam · usual dates, confirm before travelling · https://cochincarnival.org/ https://kochi2go.in/cochin-carnival-kochi
+- **Attukal Pongala (ten‑day Attukal Bhagavathy festival; Pongala main day)** · 2027-02-14 to 2027-02-23 · Attukal Bhagavathy Temple, Attukal, Thiruvananthapuram · dates published · https://www.devadarshanam.com/festivals https://panchangtime.com/festivals/attukal-pongal/yearly/2027
+- **Nehru Trophy Boat Race (Punnamada Lake)** · 2027-08-14 · Punnamada Lake, Alappuzha · usual dates, confirm before travelling · https://www.keralatourism.org/event/nehru-trophy-boat-race/433// https://www.keralatourism.org/kerala-article/2011/snake-boats-backwaters/143
 
+**Dates changed (3)**
+- Sabarimala — Mandala Pooja season (Sabarimala opening for Mandala): 2026-11-16 to 2026-12-27 → 2026-11-17 to 2026-12-27
+- Thrissur Pooram: 2027-04-17 to 2027-04-18 → 2027-04-17 to 2027-04-18
+- Onam (ten‑day celebrations; Thiruvonam main day): 2027-09-03 to 2027-09-12 → 2027-09-03 to 2027-09-12
 
-_Run: 0.5 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
-## Discover Kerala content agents — 2026-11-09
-
-Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
-
-### Recency refresh: 0 page(s) checked, 0 with news
-
-- ⚠️ Kasavu and Kerala Handloom: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Kettuvallam — the Rice Barge: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Sabarimala Sree Dharma Sastha Temple: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Varkala Beach (Papanasam): 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Nilavilakku — the Kerala Standing Lamp: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Uruli — Kerala Bell-Metal Cookware: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Pathayam — the Kerala Granary Chest: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Karkidakam: the Monsoon Rejuvenation Season: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Panchakarma in Kerala: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
-- ⚠️ Oachira Parabrahma Temple: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+**Removed because they are over (4)**
+- Parumala Perunnal (St. Peter & St. Paul's Church) (2026-11-02)
+- Mannarasala Ayilyam Festival (Sree Nagaraja Temple) (2026-11-02)
+- Pulinkunnu Boat Race (Champions Boat League) (2026-10-31)
+- Kainakary Boat Race (Champions Boat League) (2026-11-07)
 
 
-_Run: 0.2 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+_Run: 4.0 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
