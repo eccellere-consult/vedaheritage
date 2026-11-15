@@ -1,155 +1,183 @@
 {
-    "slug": "uruli-bell-metal",
-    "category": "heritage",
-    "name": "Uruli — Kerala Bell-Metal Cookware",
-    "malayalamName": "ഉരുളി",
-    "district": "Alappuzha",
-    "tagline": "The wide bronze vessel of Kerala kitchens and temple offerings",
-    "summary": "Uruli, Kerala's bell-metal cookware: history, how it is cast, why it matters at Onam and temples, and where to buy genuine pieces.",
-    "description": [
-        "The uruli is a wide, shallow, thick-walled cooking vessel cast in bell metal (a bronze alloy) and used for payasam, chutneys and sweets. Larger urulis are used in temple kitchens to cook offerings for large crowds.",
-        "Related pieces include the kindi (a spouted vessel for water), the cheena chatti (a wok) and the nilavilakku. Mannar in Alappuzha is the best-known centre for bell-metal casting."
+  "slug": "uruli-bell-metal",
+  "category": "heritage",
+  "name": "Uruli — Kerala Bell-Metal Cookware",
+  "malayalamName": "ഉരുളി",
+  "district": "Alappuzha",
+  "tagline": "The wide bronze vessel of Kerala kitchens and temple offerings",
+  "summary": "Uruli, Kerala's bell-metal cookware: history, how it is cast, why it matters at Onam and temples, and where to buy genuine pieces.",
+  "description": [
+    "The uruli is a wide, shallow, thick-walled cooking vessel cast in bell metal (a bronze alloy) and used for payasam, chutneys and sweets. Larger urulis are used in temple kitchens to cook offerings for large crowds.",
+    "Related pieces include the kindi (a spouted vessel for water), the cheena chatti (a wok) and the nilavilakku. Mannar in Alappuzha is the best-known centre for bell-metal casting."
+  ],
+  "history": {
+    "significance": "A kitchen and temple staple that links Kerala's metalworking heritage to food and festival culture.",
+    "timeline": [
+      {
+        "period": "Medieval period",
+        "event": "Metal casting is established in temple towns across South India to supply ritual vessels."
+      },
+      {
+        "period": "Early modern",
+        "event": "Mannar develops as a bell-metal casting centre, supplying temples and tharavads."
+      },
+      {
+        "period": "Contemporary",
+        "event": "Craft families continue with sand-casting and hand finishing; demand grows for gifts and cookware."
+      }
     ],
-    "history": {
-        "significance": "A kitchen and temple staple that links Kerala's metalworking heritage to food and festival culture.",
-        "timeline": [
-            {
-                "period": "Medieval period",
-                "event": "Metal casting is established in temple towns across South India to supply ritual vessels."
-            },
-            {
-                "period": "Early modern",
-                "event": "Mannar develops as a bell-metal casting centre, supplying temples and tharavads."
-            },
-            {
-                "period": "Contemporary",
-                "event": "Craft families continue with sand-casting and hand finishing; demand grows for gifts and cookware."
-            }
-        ],
-        "keyFacts": [
-            "Bell metal is a copper-tin alloy; good pieces ring when tapped.",
-            "Urulis are cast in clay or sand moulds and finished by hand.",
-            "Temples cook payasam for hundreds in large urulis.",
-            "Cookware requires tinning or careful seasoning; ask the seller for advice."
-        ]
-    },
-    "folklore": {
-        "title": "The Pot that Feeds a Temple",
-        "story": [
-            "Temple cooks tell of giant urulis that have fed thousands, stirred with long wooden paddles by cooks who work in teams. The first portion is offered to the deity before anyone eats.",
-            "At Onam, families cook payasam in the uruli as a household blessing, a custom handed down through the women of the family."
-        ],
-        "note": "General account; customs vary between communities."
-    },
-    "spiritual": {
-        "summary": "Cooking in an uruli connects the household kitchen to the older rhythm of temple feasting.",
-        "experiences": [
-            {
-                "title": "Visit Mannar",
-                "text": "See the casting process and ask about the alloy and finishing."
-            },
-            {
-                "title": "Try payasam at a temple",
-                "text": "Taste payasam made in a temple uruli, such as Ambalappuzha's famous palpayasam (check offering times)."
-            }
-        ],
-        "bestFor": "Food lovers and craft fans.",
-        "mindfulTips": [
-            "Ask whether the piece is food-safe and how to season it.",
-            "Do not buy items from workshops that refuse to show you casting."
-        ]
-    },
-    "highlights": [
-        "Bell-metal casting at Mannar",
-        "Temple payasam",
-        "Heavy, hand-finished vessels"
+    "keyFacts": [
+      "Bell metal is a copper-tin alloy; good pieces ring when tapped.",
+      "Urulis are cast in clay or sand moulds and finished by hand.",
+      "Temples cook payasam for hundreds in large urulis.",
+      "Cookware requires tinning or careful seasoning; ask the seller for advice."
+    ]
+  },
+  "folklore": {
+    "title": "The Pot that Feeds a Temple",
+    "story": [
+      "Temple cooks tell of giant urulis that have fed thousands, stirred with long wooden paddles by cooks who work in teams. The first portion is offered to the deity before anyone eats.",
+      "At Onam, families cook payasam in the uruli as a household blessing, a custom handed down through the women of the family."
     ],
-    "visitorInfo": {
-        "bestTime": "October to March; Onam season for kitchen shopping.",
-        "howToReach": "Mannar is about 25 km east of Alappuzha; the nearest railhead is Chengannur or Haripad.",
-        "etiquette": [
-            "Ask before photographing workshops.",
-            "Handle hot casting areas with care."
-        ],
-        "duration": "Half a day"
-    },
-    "heritage": {
-        "localName": "ഉരുളി (uruli)",
-        "materials": "Bell metal (copper–tin alloy), sometimes brass",
-        "whereToSee": [
-            {
-                "name": "Mannar bell-metal workshops",
-                "district": "Alappuzha",
-                "note": "Traditional casting centre; ask for a local guide."
-            },
-            {
-                "name": "Ambalappuzha Sree Krishna Temple",
-                "district": "Alappuzha",
-                "note": "Known for its palpayasam offering."
-            }
-        ],
-        "whereToBuy": [
-            {
-                "name": "Surabhi — Handicrafts Development Corporation of Kerala emporiums",
-                "kind": "emporium",
-                "district": "Statewide",
-                "note": "State-run emporiums selling metalcraft, wood carving, coir and handloom; good for fixed-price first purchases."
-            },
-            {
-                "name": "Kairali — Kerala State Handicrafts Apex Co-operative Society emporiums",
-                "kind": "cooperative",
-                "district": "Statewide",
-                "note": "Government-linked craft emporiums in major towns; fixed prices and craft-certified items."
-            },
-            {
-                "name": "Mannar and Aranmula metalcraft shops",
-                "kind": "workshop",
-                "district": "Alappuzha / Pathanamthitta",
-                "note": "Buy at workshops with visible casting; ask for weight and alloy details."
-            }
-        ],
-        "experiences": [
-            {
-                "name": "Sargaalaya — Kerala Arts and Crafts Village, Iringal",
-                "district": "Kozhikode",
-                "kind": "cultural-centre",
-                "note": "Craft village near Vadakara where artisans work and sell; allow half a day."
-            },
-            {
-                "name": "Kerala Folklore Museum, Thripunithura",
-                "district": "Ernakulam",
-                "kind": "museum",
-                "note": "Private museum housed in a building assembled from traditional timber architecture; displays household objects, lamps and ritual items."
-            }
-        ],
-        "buyingTips": [
-            "Hand-cast pieces are thick and heavy.",
-            "Ask for care instructions: seasoning and cleaning.",
-            "Compare prices at emporiums before buying at workshops."
-        ]
-    },
-    "images": [],
-    "tags": [
-        "heritage",
-        "Kerala",
-        "traditional craft",
-        "uruli",
-        "bell",
-        "Alappuzha"
+    "note": "General account; customs vary between communities."
+  },
+  "spiritual": {
+    "summary": "Cooking in an uruli connects the household kitchen to the older rhythm of temple feasting.",
+    "experiences": [
+      {
+        "title": "Visit Mannar",
+        "text": "See the casting process and ask about the alloy and finishing."
+      },
+      {
+        "title": "Try payasam at a temple",
+        "text": "Taste payasam made in a temple uruli, such as Ambalappuzha's famous palpayasam (check offering times)."
+      }
     ],
-    "sources": [
-        {
-            "label": "Kerala Tourism — official site",
-            "url": "https://www.keralatourism.org/"
-        },
-        {
-            "label": "Mannar, Kerala — Wikipedia",
-            "url": "https://en.wikipedia.org/wiki/Mannar,_Alappuzha"
-        }
+    "bestFor": "Food lovers and craft fans.",
+    "mindfulTips": [
+      "Ask whether the piece is food-safe and how to season it.",
+      "Do not buy items from workshops that refuse to show you casting."
+    ]
+  },
+  "highlights": [
+    "Bell-metal casting at Mannar",
+    "Temple payasam",
+    "Heavy, hand-finished vessels"
+  ],
+  "visitorInfo": {
+    "bestTime": "October to March; Onam season for kitchen shopping.",
+    "howToReach": "Mannar is about 25 km east of Alappuzha; the nearest railhead is Chengannur or Haripad.",
+    "etiquette": [
+      "Ask before photographing workshops.",
+      "Handle hot casting areas with care."
     ],
-    "status": "approved",
-    "lastVerified": "2026-10-28",
-    "imageStatus": "needed",
-    "autoPublished": "2026-11-09",
-    "reviewed": false
+    "duration": "Half a day"
+  },
+  "heritage": {
+    "localName": "ഉരുളി (uruli)",
+    "materials": "Bell metal (copper–tin alloy), sometimes brass",
+    "whereToSee": [
+      {
+        "name": "Mannar bell-metal workshops",
+        "district": "Alappuzha",
+        "note": "Traditional casting centre; ask for a local guide."
+      },
+      {
+        "name": "Ambalappuzha Sree Krishna Temple",
+        "district": "Alappuzha",
+        "note": "Known for its palpayasam offering."
+      }
+    ],
+    "whereToBuy": [
+      {
+        "name": "Surabhi — Handicrafts Development Corporation of Kerala emporiums",
+        "kind": "emporium",
+        "district": "Statewide",
+        "note": "State-run emporiums selling metalcraft, wood carving, coir and handloom; good for fixed-price first purchases."
+      },
+      {
+        "name": "Kairali — Kerala State Handicrafts Apex Co-operative Society emporiums",
+        "kind": "cooperative",
+        "district": "Statewide",
+        "note": "Government-linked craft emporiums in major towns; fixed prices and craft-certified items."
+      },
+      {
+        "name": "Mannar and Aranmula metalcraft shops",
+        "kind": "workshop",
+        "district": "Alappuzha / Pathanamthitta",
+        "note": "Buy at workshops with visible casting; ask for weight and alloy details."
+      }
+    ],
+    "experiences": [
+      {
+        "name": "Sargaalaya — Kerala Arts and Crafts Village, Iringal",
+        "district": "Kozhikode",
+        "kind": "cultural-centre",
+        "note": "Craft village near Vadakara where artisans work and sell; allow half a day."
+      },
+      {
+        "name": "Kerala Folklore Museum, Thripunithura",
+        "district": "Ernakulam",
+        "kind": "museum",
+        "note": "Private museum housed in a building assembled from traditional timber architecture; displays household objects, lamps and ritual items."
+      }
+    ],
+    "buyingTips": [
+      "Hand-cast pieces are thick and heavy.",
+      "Ask for care instructions: seasoning and cleaning.",
+      "Compare prices at emporiums before buying at workshops."
+    ]
+  },
+  "images": [],
+  "tags": [
+    "heritage",
+    "Kerala",
+    "traditional craft",
+    "uruli",
+    "bell",
+    "Alappuzha"
+  ],
+  "sources": [
+    {
+      "label": "Kerala Tourism — official site",
+      "url": "https://www.keralatourism.org/"
+    },
+    {
+      "label": "Mannar, Kerala — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mannar,_Alappuzha"
+    }
+  ],
+  "status": "approved",
+  "lastVerified": "2026-10-28",
+  "imageStatus": "needed",
+  "autoPublished": "2026-11-09",
+  "reviewed": false,
+  "latest": [
+    {
+      "date": "2026-11-02",
+      "text": "Festival listings for 2026 show Mannarasala Ayilyam on 2 November 2026 and note Uruli Kamazhthal as a central rite during the celebrations.",
+      "url": "https://www.cholantours.com/newsletter/festivals-of-south-india-2026-2027"
+    },
+    {
+      "date": "2026-10-09",
+      "text": "A October 2026 responsible‑tourism feature highlights Mannar’s bell‑metal foundries and visitor experiences where artisans cast uruli and related temple/household metalwares using traditional techniques.",
+      "url": "https://keraladmc.online/blog/kerala-responsible-tourism-and-village-life-experiences/"
+    },
+    {
+      "date": "2026-10-05",
+      "text": "News coverage in October 2026 reported the Vettikode and Mannarasala Ayilyam festivals and described the Uruli Kamazhthal ritual (placing/inverting an uruli) performed by childless couples at serpent shrines.",
+      "url": "https://theindianmessenger.com/festivities-at-serpent-shrines-vettikode-and-mannarasala-ayilyam-festivals-begin/"
+    },
+    {
+      "date": "2026-08-10",
+      "text": "Kerala’s official Nammude Keralam tourism page lists “Mannar Bell Metal Village” as a living craft destination highlighting local uruli (bell-metal/bronze) vessels and workshops.",
+      "url": "https://tourism.nammudekeralam.com/destination/mannar-bell-metal-village/"
+    },
+    {
+      "date": "2026-06-12",
+      "text": "A Kerala government e‑tender published in June 2026 used the name “Uruli” for procurement of a wide‑mouth non‑stick cooking pot (pre‑bid meeting dated 12‑Jun‑2026), indicating contemporary commercial use of the term beyond traditional bell‑metal vessels.",
+      "url": "https://etenders.kerala.gov.in/nicgep/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SIF3FI8ZXSCU2LJvj%2FVU1%2FtkBBlbxTGqaDp95SQPImxU%3D"
+    }
+  ],
+  "updated": "2026-11-15"
 }

@@ -170,5 +170,27 @@
     }
   ],
   "status": "approved",
-  "lastVerified": "2026-10-30"
+  "lastVerified": "2026-10-30",
+  "latest": [
+    {
+      "date": "2026-09-16",
+      "text": "The annual Aranmula Vallasadya season concluded on September 16 with organisers reporting 553 vallasadyas held and about 1.75 lakh (175,000) people attending between July and September.",
+      "url": "https://timesofindia.indiatimes.com/city/kochi/aranmula-vallasadya-concludes-with-553-feasts/amp_articleshow/134290759.cms"
+    },
+    {
+      "date": "2026-09-11",
+      "text": "Mallappuzhassery panchayat inspected the temple perimeter after a garbage-tank rupture and fined the Travancore Devaswom Board Rs.10,000 over accumulated waste and foul odour near the temple."
+    },
+    {
+      "date": "2026-08-06",
+      "text": "The Aranmula Vallasadya programme resumed after a temporary suspension when water levels in the Pampa River receded; organisers rescheduled several postponed sadhyas for later August dates.",
+      "url": "https://www.deshabhimani.com/deshabhimani-english-/kerala-news/aranmula-vallasadya-resumes-after-flood-suspension-pampa-river-29556"
+    },
+    {
+      "date": "2026-08-02",
+      "text": "Heavy rains and severe flooding in Pathanamthitta forced postponement of multiple Vallasadya feasts at Aranmula Parthasarathy Temple and disrupted temple access and palliyodam launches.",
+      "url": "https://www.onmanorama.com/travel/travel-news/2026/08/02/aranmula-temple-flood-impact.amp.html"
+    }
+  ],
+  "updated": "2026-11-15"
 }

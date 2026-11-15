@@ -149,5 +149,23 @@
     }
   ],
   "status": "approved",
-  "lastVerified": "2026-10-30"
+  "lastVerified": "2026-10-30",
+  "latest": [
+    {
+      "date": "2026-08-30",
+      "text": "Vice‑President C. P. Radhakrishnan inaugurated the Aranmula Uthrittathi Vallamkali on Aug 30, 2026 and highlighted the cultural importance of Aranmula and the Aranmula Kannadi, noting he had presented an Aranmula Kannadi as a gift at his residence previously.",
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2304723&lang=2&reg=48"
+    },
+    {
+      "date": "2026-08-07",
+      "text": "Aranmula Vallasadya resumed on Aug 7, 2026 after the suspension; organisers announced special-pass sadyas on Aug 12, 25 and 29 and scheduled the Uthrittathi Vallamkali and Ashtamirohini Vallasadya for Aug 30 and Sept 4 respectively.",
+      "url": "https://www.malayalamtv9.com/lifestyle/travel/aranmula-vallasadya-2026-resumes-after-suspension-due-to-heavy-rain-and-flooding-2221840.html/amp"
+    },
+    {
+      "date": "2026-08-02",
+      "text": "Heavy rains and flooding in Pathanamthitta on Aug 2, 2026 forced authorities to cancel the Aranmula palliyodam (snake-boat) procession and suspend boating activities on the Pampa, interrupting the Aranmula Vallasadya season.",
+      "url": "https://www.newindianexpress.com/amp/story/states/kerala/2026/Aug/02/over-500-rescued-as-pathanamthitta-inundated-aranmula-boat-procession-cancelled"
+    }
+  ],
+  "updated": "2026-11-15"
 }

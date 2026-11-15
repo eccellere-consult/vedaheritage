@@ -133,5 +133,28 @@
   "status": "approved",
   "lastVerified": "2026-10-28",
   "autoPublished": "2026-11-09",
-  "reviewed": false
+  "reviewed": false,
+  "latest": [
+    {
+      "date": "2026-10-24",
+      "text": "The Varkala Tourism Development Association sought a realignment of the proposed Coastal Highway to keep major traffic away from Varkala Beach (Papanasam) and protect the cliff and tourism zone.",
+      "url": "https://www.newindianexpress.com/cities/thiruvananthapuram/2026/Oct/24/coastal-highway-realignment-sought-to-protect-varkala-belt"
+    },
+    {
+      "date": "2026-09-26",
+      "text": "The Indian National Centre for Ocean Information Services (reported by multiple outlets) issued a swell-surge/high-wave red alert affecting the Kappil–Pozhiyoor stretch (covering Varkala) from 26 September to 28 September 2026, advising avoidance of beach trips.",
+      "url": "https://thesouthfirst.com/keralam/swell-surge-threat-red-alert-along-keralam-coast/"
+    },
+    {
+      "date": "2026-07-05",
+      "text": "A section of the laterite cliff at Varkala's Papanasam Beach collapsed after heavy rain, and tourism police warned visitors to exercise extreme caution.",
+      "url": "https://www.deccanchronicle.com/southern-states/kerala/rain-triggers-cliff-collapse-at-keralas-varkala-beach-1968570"
+    },
+    {
+      "date": "2026-06-20",
+      "text": "An India Meteorological Department bulletin (quoting INCOIS) issued a swell-surge alert for the Thiruvananthapuram coast from Kappil to Pozhiyoor with forecast wave periods and heights, advising caution around 20 June 2026.",
+      "url": "https://mausam.imd.gov.in/backend/assets/cwc_thiru_pdf/d832a6e5b270ff168d0a5211c53c79e6.pdf"
+    }
+  ],
+  "updated": "2026-11-15"
 }

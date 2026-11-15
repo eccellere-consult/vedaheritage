@@ -228,5 +228,32 @@
   "status": "approved",
   "lastVerified": "2026-10-31",
   "autoPublished": "2026-10-31",
-  "reviewed": false
+  "reviewed": false,
+  "latest": [
+    {
+      "date": "2026-11-10",
+      "text": "Manorama reported large water-lily blooms at Cheepunkal (Kumarakom area) and noted that kayaking and pedal-boat facilities around the Vembanad backwaters are attracting more visitors.",
+      "url": "https://www.manoramaonline.com/district-news/kottayam/2026/11/10/kumarakom-water-lily-tourism-nalupank-kayaking.html"
+    },
+    {
+      "date": "2026-10-24",
+      "text": "A school-focused birdwatching and wetland-awareness programme brought 45 students to areas around Kumarakom Bird Sanctuary and introduced the CROW app for digital bird-observation tracking.",
+      "url": "https://kumarakom.com/news/kumarakom-students-birdwatching-wetland-awareness"
+    },
+    {
+      "date": "2026-10-15",
+      "text": "Kerala State Water Transport Department introduced a 5:30 PM ‘Sea Kuttanad’ sunset cruise on Vembanad Lake (approx. two hours) with a reported fare of ₹200, expanding public backwater sightseeing options that serve Kumarakom and nearby areas."
+    },
+    {
+      "date": "2026-09-03",
+      "text": "An experimental aquatic-weed removal project for Vembanad Lake, using a robotic boat and processing system (with Sera Robotics involvement), was announced to begin on September 10, 2026 to clear and repurpose excessive lake vegetation.",
+      "url": "https://kumarakom.com/news/vembanad-lake-weed-removal-project"
+    },
+    {
+      "date": "2026-08-21",
+      "text": "Union Tourism Minister Suresh Gopi visited Kumarakom Bird Sanctuary to review ongoing Swadesh Darshan 2.0 renovation works reported at about ₹13.5 crore, and officials said the renovation was expected to be completed in September 2026.",
+      "url": "https://kumarakom.com/news/suresh-gopi-visits-kumarakom-bird-sanctuary"
+    }
+  ],
+  "updated": "2026-11-15"
 }

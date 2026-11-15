@@ -156,5 +156,27 @@
     }
   ],
   "status": "approved",
-  "lastVerified": "2026-10-31"
+  "lastVerified": "2026-10-31",
+  "latest": [
+    {
+      "date": "2026-09-27",
+      "text": "The Lumière Arts Festival (Sept 27, 2026) included an artist project titled 'Nettipattam' (Thushara Premarajan) presenting a large caparison through dance and visual display, indicating international artistic engagement with the form.",
+      "url": "https://lumierecb.com/project/nettipattam/"
+    },
+    {
+      "date": "2026-08-26",
+      "text": "An online workshop titled 'Kerala Traditional Elephant Caparison' (Nettipattam) was held on August 26, 2026, showing continued public and educational interest in learning the craft and its design techniques.",
+      "url": "https://www.townscript.com/e/elephant-nettipattam-craft-234203"
+    },
+    {
+      "date": "2026-08-03",
+      "text": "India Book of Records (Oct 2026 issue) records that a Christ College (Irinjalakuda) team set the record for the 'Longest Elephant Caparison Created by a Team' — a 16.9‑foot caparison — confirmed on August 3, 2026. This was reported in the IBR e‑magazine in October 2026.",
+      "url": "https://fliphtml5.com/indiabookofrecords/IBR-eMagazine-issue-67-Oct-2026/"
+    },
+    {
+      "date": "2026-07-03",
+      "text": "AP News published a photo gallery showing that robotic elephants have begun to be used at some Kerala temples (including locations in Thrissur) and are appearing in temple/festival contexts. The images document these mechanical elephants in temple compounds and festival settings."
+    }
+  ],
+  "updated": "2026-11-15"
 }
