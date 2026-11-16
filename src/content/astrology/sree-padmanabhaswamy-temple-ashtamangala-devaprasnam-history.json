@@ -84,8 +84,24 @@
     "lat": 8.48278,
     "lng": 76.94361
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/sree-padmanabhaswamy-temple-ashtamangala-devaprasnam-history-1.jpg",
+      "alt": "Sree Padmanabhaswamy Temple Lakshadeepam 2020",
+      "credit": "Arun RJ",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sree_Padmanabhaswamy_Temple_Lakshadeepam.jpg"
+    },
+    {
+      "src": "/images/discover/sree-padmanabhaswamy-temple-ashtamangala-devaprasnam-history-2.jpg",
+      "alt": "Night view of Sree Padmanabhaswamy Temple in Thiruvananthapuram, Kerala",
+      "credit": "JVN5871",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sree_Padmanabhaswamy_Temple_night.jpg"
+    }
+  ],
   "tags": [
     "astrology",
     "devaprasnam",

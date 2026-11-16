@@ -70,8 +70,24 @@
     "lat": 10.90333,
     "lng": 76.34389
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/olappamanna-mana-vellinezhi-1.jpg",
+      "alt": "Tranquil view of Padmanabhaswamy Temple reflecting in water in Kerala, India.",
+      "credit": "Adarsh Panicker via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/serene-reflections-at-padmanabhaswamy-temple-kerala-35717401/"
+    },
+    {
+      "src": "/images/discover/olappamanna-mana-vellinezhi-2.jpg",
+      "alt": "church, orthodox, religion, architecture, christianity, mana ton pedion, mother of the children, meniko, cyprus, brown church",
+      "credit": "dimitrisvetsikas1969 via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/church-orthodox-religion-4293141/"
+    }
+  ],
   "tags": [
     "ritual",
     "jyotisha",

@@ -75,8 +75,24 @@
     "lat": 9.95722,
     "lng": 76.25944
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/cochin-jewish-wedding-customs-paradesi-synagogue-mattancherry-1.jpg",
+      "alt": "Explore the ornate architectural details and historic charm of a beautifully preserved synagogue interior.",
+      "credit": "sivildikkatsizlik via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/intricate-interior-of-historic-synagogue-39544868/"
+    },
+    {
+      "src": "/images/discover/cochin-jewish-wedding-customs-paradesi-synagogue-mattancherry-2.jpg",
+      "alt": "Stunning view of the historical Magen David Synagogue's interior in Kolkata, India.",
+      "credit": "Robert Stokoe via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/interior-of-magen-david-synagogue-in-kolkata-in-india-22689147/"
+    }
+  ],
   "tags": [
     "paradesi synagogue",
     "cochin jews",

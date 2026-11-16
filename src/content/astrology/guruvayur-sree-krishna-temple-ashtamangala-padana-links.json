@@ -75,8 +75,24 @@
     "lat": 10.594611,
     "lng": 76.036889
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/guruvayur-sree-krishna-temple-ashtamangala-padana-links-1.jpg",
+      "alt": "A young woman in traditional dance attire at Guruvayur, Kerala. Capturing cultural essence.",
+      "credit": "atelierbyvineeth . . . via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/young-dancer-in-traditional-attire-at-guruvayur-34717648/"
+    },
+    {
+      "src": "/images/discover/guruvayur-sree-krishna-temple-ashtamangala-padana-links-2.jpg",
+      "alt": "A Bharatanatyam dancer gracefully poses in traditional attire at night in Guruvayur, India.",
+      "credit": "atelierbyvineeth . . . via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/traditional-bharatanatyam-dancer-in-guruvayur-at-night-34322336/"
+    }
+  ],
   "tags": [
     "guruvayur",
     "devaprasnam",

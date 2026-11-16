@@ -69,8 +69,24 @@
     "lat": 10.77111,
     "lng": 76.33722
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/varikkasseri-mana-manisseri-1.jpg",
+      "alt": "Varikkasseri Mana, Palakkad, Kerala",
+      "credit": "Ps484",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Varikkasheri_mana2.jpg"
+    },
+    {
+      "src": "/images/discover/varikkasseri-mana-manisseri-2.jpg",
+      "alt": "A window of the Varikkasseri Mana",
+      "credit": "sandeep MM from Bangalore, INDIA",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_window_of_the_Varikkasseri_Mana.jpg"
+    }
+  ],
   "tags": [
     "palakkad",
     "namboothiri",
