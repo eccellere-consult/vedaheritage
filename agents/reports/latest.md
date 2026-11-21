@@ -1,94 +1,29 @@
-## Discover Kerala content agents — 2026-11-15
+## Discover Kerala content agents — 2026-11-21
 
 Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
 
-### Content fill: 40 page(s) created in 29.81 min
+### Events calendar: 33 upcoming event(s)
 
-Attempted 40 · created 40 · already had a page 0 · failed 0 · new topics found 142 · topics still to do 102
+Dates come from pages the agent retrieved. Check each link before merging.
 
-- astrology: +22 topic(s) planned (1 pages now, 29 short of 30)
-- weddings: +26 topic(s) planned (1 pages now, 29 short of 30)
-- medical: +26 topic(s) planned (1 pages now, 29 short of 30)
-- crafts: +27 topic(s) planned (1 pages now, 29 short of 30)
-- vedic: +26 topic(s) planned (2 pages now, 28 short of 30)
-- healing: +15 topic(s) planned (2 pages now, 28 short of 30)
-- ✅ **Sabarimala Sree Ayyappa Temple (prasna traditions)** → live
-- ✅ **Department of Jyotisha, Government Sanskrit College, Thiruvananthapuram** → live
-- ✅ **Chettikulangara Bhagavathy Temple** → live
-- ✅ **Kottarakkara Sree Mahaganapathi Temple** → live
-- ✅ **Sree Padmanabhaswamy Temple (Ashtamangala Devaprasnam history)** → live
-- ✅ **Kulathupuzha Sree Dharma Sastha Temple** → live
-- ✅ **Suryakaladi Mana (Nattassery)** → live
-- ✅ **Ambalappuzha Sree Krishna Temple** → live
-- ✅ **Puthukkulam Sree Nagaraja Temple (Vengalloor / Thodupuzha)** → live
-- ✅ **Guruvayur Sree Krishna Temple (Ashtamangala/Padana links)** → live
-- ✅ **Varikkasseri Mana (Manisseri)** → live
-- ✅ **Chottanikkara Devi Temple** → live
-- ✅ **Thrikkakkara Vamana Moorthy Temple** → live
-- ✅ **Olappamanna Mana (Vellinezhi)** → live
-- ✅ **Tali Sree Mahadeva Kshetram, Angadippuram (Tali Temple)** → live
-- ✅ **Poonthanam Illam, Keezhattur (Perinthalmanna)** → live
-- ✅ **Tali Sree Mahadeva Kshetram, Kozhikode (Tali Temple)** → live
-- ✅ **Pootheri Illam (Feroke)** → live
-- ✅ **Thaliparamba Rajarajeshwara Temple** → live
-- ✅ **Madhur Sree Madanantheshwara–Siddhivinayaka Temple** → live
-- ✅ **Ananthapura Lake Temple (Ananthapadmanabha), Kumbla** → live
-- ✅ **Eettisseri Mana (historic illam)** → live
-- ✅ **Attukal Pongala and Thiruvathira Kali as marital-wellbeing rituals (Attukal, Thiruvananthapuram)** → live
-- ✅ **Ashtamudi houseboat nuptials (Ashtamudi Lake, Kollam)** → live
-- ✅ **Aranmula Kannadi (ashtamangalyam mirror) as a wedding gift** → live
-- ✅ **Travancore royal wedding traditions (Padmanabhaswamy / Travancore family)** → live
-- ✅ **Munroe Island jetty and boat-landing wedding processions (Munroe Island, Kollam)** → live
-- ✅ **Mannarasala serpent-shrines and fertility/bridal offerings (Mannarasala, Alappuzha)** → live
-- ✅ **Alappuzha backwater wedding ceremonies and jetty arrivals (Alappuzha/Alleppey)** → live
-- ✅ **Aranmula Parthasarathy Temple wedding blessings & ritual links (Aranmula, Pathanamthitta)** → live
-- ✅ **Muthuvan (Muthuvar) tribal marriage rituals in the high ranges (Mankulam / Idukki)** → live
-- ✅ **Syrian Christian crowning ceremony (Orthodox / Malankara crowning) in Ernakulam churches** → live
-- ✅ **Knanaya wedding traditions (Mylanchi Ideel, Othukalyanam)** → live
-- ✅ **Cochin Jewish wedding customs (Paradesi Synagogue, Mattancherry)** → live
-- ✅ **Margamkali — the traditional Syrian Christian wedding dance (Kottayam)** → live
-- ✅ **Palakkad Iyer (Tamil Brahmin) wedding rituals (Kalpathy, Palakkad)** → live
-- ✅ **Oppana — Malabar Mappila women’s wedding dance (Malappuram style)** → live
-- ✅ **Namboothiri Vedic wedding rites and illam traditions (Vadakkunnathan / Thrissur illams)** → live
-- ✅ **Mappilappattu & Vattappattu wedding songs of northern Malabar (Malappuram)** → live
-- ✅ **Palakkad tharavad Nair wedding songs and matrilineal inheritance rituals** → live
+**New (7)**
+- **President's Trophy Boat Race (Champions Boat League final)** · 2026-11-21 · Ashtamudi Lake, Kollam · dates published · https://www.keralatourism.org/champions-boat-league https://www.keralatourism.org/articlesonkerala/cbl-sixth-season-title-to-be-decided-in-final-race-at-kollam-on-saturday-20261120190757-1.pdf
+- **Sabarimala — Mandala Pooja (Mandala season / temple opening)** · 2026-11-17 to 2026-12-27 · Sabarimala (Sree Ayyappa Temple), Pathanamthitta · dates published · https://www.goodreturns.in/news/sabarimala-mandala-kalam-2026-how-to-book-virtual-q-tickets-check-spot-booking-online-1547221.html?utm_source=openai https://todaythithi.it.com/sabarimala-temple-opening-dates-2026/?utm_source=openai
+- **Cochin Carnival (Fort Kochi New Year carnival)** · 2026-12-13 to 2027-01-01 · Fort Kochi / Kochi, Ernakulam · dates published · https://www.incredibleindia.gov.in/en/festivals-and-events/kerala/cochin-carnival https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
+- **Kerala Literature Festival (KLF)** · 2027-01-21 to 2027-01-24 · Kozhikode Beach, Kozhikode · dates published · https://keralaliteraturefestival.com/ https://www.hindustantimes.com/cities/others/10th-kerala-literature-festival-to-begin-from-january-21-in-kozhikode-host-australia-as-guest-nation-101795258532775.html
+- **Chettikulangara Bharani (Chettikulangara Bhagavathy Temple) — Bharani festival (main observance)** · 2027-03-13 · Chettikulangara Bhagavathy Temple, Alappuzha · usual dates, confirm before travelling · https://www.cholantours.com/newsletter/festivals-of-south-india-2026-2027 https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
+- **Nehru Trophy Boat Race (Punnamada Lake, Alappuzha) — (usual: second Saturday of August)** · 2027-08-14 · Punnamada Lake, Alappuzha · usual dates, confirm before travelling · https://roampedia.com/india/kerala/alappuzha/alappuzha-town/place/punnamada-lake?section=eat&utm_source=openai https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
+- **Aranmula Uthrattathi Vallamkali (Aranmula boat race)** · 2027-09-17 · Pamba River, Aranmula, Pathanamthitta · usual dates, confirm before travelling · https://calendarkerala.com/kerala-festivals/?utm_source=openai https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
+
+**Dates changed (3)**
+- Sabarimala — Makaravilakku / Makara Jyothi phase: 2026-12-30 to 2027-01-20 → 2026-12-30 to 2027-01-20
+- Thrissur Pooram: 2027-04-17 to 2027-04-18 → 2027-04-17 to 2027-04-18
+- Onam (ten‑day festival; Thiruvonam main day): 2027-09-03 to 2027-09-12 → 2027-09-03 to 2027-09-12
+
+**Removed because they are over (3)**
+- Kalpathi Ratholsavam (Kalpathi chariot festival) (2026-11-16)
+- Kayamkulam Boat Race (Champions Boat League leg) (2026-11-14)
+- Kayamkulam Boat Race (Champions Boat League) (2026-11-14)
 
 
-_Run: 29.8 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
-## Discover Kerala content agents — 2026-11-15
-
-Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
-
-### Recency refresh: 29 page(s) checked, 28 with news
-
-- 🆕 **Varkala Beach (Papanasam)**: 4 new item(s)
-- 🆕 **Kasavu and Kerala Handloom**: 4 new item(s)
-- 🆕 **Sabarimala Sree Dharma Sastha Temple**: 6 new item(s)
-- 🆕 **Kettuvallam — the Rice Barge**: 5 new item(s)
-- 🆕 **Nilavilakku — the Kerala Standing Lamp**: 3 new item(s)
-- 🆕 **Uruli — Kerala Bell-Metal Cookware**: 5 new item(s)
-- 🆕 **Karkidakam: the Monsoon Rejuvenation Season**: 5 new item(s)
-- 🆕 **Oachira Parabrahma Temple**: 4 new item(s)
-- 🆕 **Panchakarma in Kerala**: 4 new item(s)
-- 🆕 **Aranmula Parthasarathy Temple**: 4 new item(s)
-- 🆕 **Alappuzha (Alleppey) Backwaters**: 4 new item(s)
-- 🆕 **Ambalappuzha Sree Krishna Swamy Temple**: 4 new item(s)
-- 🆕 **Fort Kochi**: 4 new item(s)
-- 🆕 **Ashtamudi Lake and Munroe Island**: 5 new item(s)
-- 🆕 **Aranmula Kannadi — the Metal Mirror**: 3 new item(s)
-- 🆕 **Mannarasala Sree Nagaraja Temple**: 2 new item(s)
-- 🆕 **Kaavu — Kerala's Sacred Groves**: 5 new item(s)
-- 🆕 **Munnar**: 5 new item(s)
-- 🆕 **Sree Padmanabhaswamy Temple**: 3 new item(s)
-- 🆕 **Nalukettu — the Courtyard House of Kerala**: 4 new item(s)
-- 🆕 **Kappad Beach**: 4 new item(s)
-- 🆕 **Kumarakom Bird Sanctuary (Vembanad Lake)**: 5 new item(s)
-- 🆕 **Nettipattam — the Elephant Caparison**: 4 new item(s)
-- 🆕 **Chottanikkara Bhagavathy Temple**: 3 new item(s)
-- 🆕 **Kalari chikitsa (Kalari marma and traditional Kalari healing)**: 3 new item(s)
-- 🆕 **Kuttanad — below‑sea‑level paddy cultivation**: 5 new item(s)
-- 🆕 **Vaikom Mahadeva Temple**: 5 new item(s)
-- 🆕 **Attukal Bhagavathy Temple**: 3 new item(s)
-
-
-_Run: 7.5 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+_Run: 4.3 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
