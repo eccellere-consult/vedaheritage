@@ -1,9 +1,9 @@
 {
-  "updated": "2026-11-15",
+  "updated": "2026-11-22",
   "perCategory": 30,
   "perDistrictMin": 2,
-  "pagesTotal": 185,
-  "pagesNeeded": 416,
+  "pagesTotal": 225,
+  "pagesNeeded": 376,
   "categories": {
     "temples": {
       "total": 20,
@@ -292,7 +292,7 @@
       "none": []
     },
     "weddings": {
-      "total": 19,
+      "total": 27,
       "districts": {
         "Thiruvananthapuram": 2,
         "Kollam": 2,
@@ -304,35 +304,35 @@
         "Thrissur": 1,
         "Palakkad": 2,
         "Malappuram": 2,
-        "Kozhikode": 0,
-        "Wayanad": 0,
-        "Kannur": 0,
-        "Kasaragod": 0
+        "Kozhikode": 2,
+        "Wayanad": 2,
+        "Kannur": 2,
+        "Kasaragod": 2
       },
       "statewide": 1,
-      "need": 11,
+      "need": 3,
       "none": []
     },
     "medical": {
-      "total": 1,
+      "total": 27,
       "districts": {
-        "Thiruvananthapuram": 0,
-        "Kollam": 0,
-        "Pathanamthitta": 0,
-        "Alappuzha": 0,
-        "Kottayam": 0,
-        "Idukki": 0,
-        "Ernakulam": 0,
-        "Thrissur": 0,
-        "Palakkad": 0,
-        "Malappuram": 0,
-        "Kozhikode": 0,
-        "Wayanad": 0,
-        "Kannur": 0,
-        "Kasaragod": 0
+        "Thiruvananthapuram": 2,
+        "Kollam": 2,
+        "Pathanamthitta": 2,
+        "Alappuzha": 2,
+        "Kottayam": 2,
+        "Idukki": 2,
+        "Ernakulam": 2,
+        "Thrissur": 2,
+        "Palakkad": 2,
+        "Malappuram": 2,
+        "Kozhikode": 2,
+        "Wayanad": 1,
+        "Kannur": 2,
+        "Kasaragod": 1
       },
       "statewide": 1,
-      "need": 29,
+      "need": 3,
       "none": []
     },
     "food": {
@@ -380,11 +380,11 @@
       "none": []
     },
     "crafts": {
-      "total": 1,
+      "total": 7,
       "districts": {
-        "Thiruvananthapuram": 0,
-        "Kollam": 0,
-        "Pathanamthitta": 0,
+        "Thiruvananthapuram": 3,
+        "Kollam": 2,
+        "Pathanamthitta": 1,
         "Alappuzha": 0,
         "Kottayam": 0,
         "Idukki": 0,
@@ -398,7 +398,7 @@
         "Kasaragod": 0
       },
       "statewide": 0,
-      "need": 29,
+      "need": 23,
       "none": []
     },
     "artisans": {

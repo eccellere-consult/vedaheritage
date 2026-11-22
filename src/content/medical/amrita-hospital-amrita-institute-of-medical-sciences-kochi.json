@@ -1,0 +1,122 @@
+{
+  "slug": "amrita-hospital-amrita-institute-of-medical-sciences-kochi",
+  "category": "medical",
+  "name": "Amrita Institute of Medical Sciences and Research Centre (Amrita Hospital, Kochi)",
+  "district": "Ernakulam",
+  "format": "lite",
+  "tagline": "NABH/NABL‑accredited tertiary referral and teaching hospital",
+  "summary": "Large multi‑specialty tertiary referral and teaching hospital in Kochi, NABH/NABL accredited, with multiple centres of excellence and an attached medical school.",
+  "description": [
+    "Amrita Hospital (Amrita Institute of Medical Sciences and Research Centre, Kochi) is a large multi‑specialty tertiary referral and teaching hospital on the Amrita Vishwa Vidyapeetham health sciences campus. It combines tertiary clinical services, an attached medical school, allied health programmes and advanced diagnostic laboratories.",
+    "The hospital is known for its accredited laboratory services (NABL), hospital quality systems (NABH) and a suite of Centres of Excellence across oncology, cardiology, neurology, transplant and other specialties. It serves large outpatient and inpatient volumes and supports teaching, research and advanced clinical care.",
+    "Visitors and referring clinicians find a fully networked hospital information system, a comprehensive diagnostics complex and specialist centres (including a poison control and advanced stroke/epilepsy units). Institutional communications and public pages list significant research, patents and awards alongside patient‑care services.",
+    "Bed counts differ by source (see notes) so confirm capacity and specific services directly with the hospital when planning referrals or travel."
+  ],
+  "highlights": [
+    "NABH‑accredited hospital services and NABL‑accredited laboratories",
+    "Large tertiary referral and teaching hospital attached to Amrita School of Medicine",
+    "Multiple Centres of Excellence across oncology, cardiology, neurology, transplant and more",
+    "Advanced diagnostics including PET/MRI, molecular labs and a WHO‑listed poison control centre",
+    "Active clinical research and recent patented imaging/analysis method for epilepsy (2026)"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Founded and opened in 1998, Amrita Hospital is part of Amrita Vishwa Vidyapeetham’s Health Sciences Campus in Kochi (Ponekkara/Edapally). The campus houses the medical school, nursing, allied health and research facilities that support its tertiary care and teaching mission.",
+        "The institution positions itself as a high‑volume referral centre with an integrated academic hospital model that combines clinical care, training and translational research."
+      ]
+    },
+    {
+      "heading": "Centres of excellence and services",
+      "body": [
+        "The hospital lists 17 Centres of Excellence and 100+ departments offering services that include organ transplantation, cardiac care, medical and surgical oncology, neurosciences (epilepsy and stroke), neonatal and pediatric specialties, advanced imaging (PET/CT, PET/MRI) and comprehensive laboratory medicine.",
+        "Laboratory services operate to NABL/ISO standards and include molecular biology, cytogenetics, histopathology and toxicology. The hospital’s NABH scope covers a wide range of clinical, diagnostic and support services including intensive care, robotic and minimally invasive surgery, transplant programmes and blood transfusion services."
+      ]
+    },
+    {
+      "heading": "Teaching, research and accreditations",
+      "body": [
+        "Amrita Hospital is the teaching hospital for the Amrita School of Medicine. The university and hospital emphasise clinical research, patenting and collaborative projects; recent peer‑reviewed work and patents (for example a 2026 PET analysis method for epilepsy) form part of its research profile.",
+        "Accreditations and awards are a recurring theme on institutional pages: NABH accreditation for hospital services, NABL for laboratories and other national recognitions appear on official publications. For capacity figures, institutional pages and accreditation documents show different sanctioned totals (see sources); confirm the current bed strength with the hospital before planning."
+      ]
+    },
+    {
+      "heading": "Plan a referral or visit",
+      "body": [
+        "For elective referrals, use the hospital’s appointment and referrals desk (online or by the international patients desk for overseas patients). Emergency services operate continuously; specialist admissions and transplant programmes usually require advance coordination and documentation.",
+        "Bring recent medical records, imaging and test reports for faster triage. Confirm department availability, consultant schedules and insurance/TPA acceptance before travel. For international travellers, contact the hospital’s international patient services for logistics and documentation."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-03",
+      "text": "Academic Information Booklet 2026 for the Kochi campus documents NABH and NABL accreditation icons, lists ICMR collaborating centre recognition and institutional awards; useful for current academic and services summary.",
+      "url": "https://webfiles.amrita.edu/2026/03/academic-information-booklet-2026-kochi-campus.pdf"
+    },
+    {
+      "date": "2026-02-08",
+      "text": "Amrita Hospital announces and patents PASCOM, a patient‑specific PET analysis method to help pinpoint seizure origin; the work is reported by PTI/ThePrint and linked to clinical validation and journal publication.",
+      "url": "https://theprint.in/india/kochi-amrita-hospital-patents-new-method-to-pinpoint-seizure-origin/2849378/"
+    },
+    {
+      "date": "2025-06-03",
+      "text": "NABH accreditation record and scope shows an updated certificate (H-2009-0028) with validity listed from 2025-06-03 through 2029-06-02 and a detailed scope of clinical and diagnostic services.",
+      "url": "https://portal.nabh.co/Documents/AccreditedList/Hospitals/H-2009-0028_5th%20Edition.pdf"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "Open year‑round; emergency services operate 24/7. For elective appointments or specialist clinics book in advance.",
+    "howToReach": "Campus address on official pages: Ponekkara / AIMS P.O., Kochi (Edapally). Reach the hospital from central Kochi/Ernakulam by road; Cochin International Airport and major railway stations serve Kochi—confirm directions and parking/entrance points with the hospital before travel.",
+    "etiquette": [
+      "Confirm current bed availability and the specific specialty clinic before travelling for a referral.",
+      "Carry copies of recent reports, imaging (digital if possible) and a list of medications to speed triage.",
+      "Use the international patients desk for overseas referrals; check insurance and package approvals in advance.",
+      "When comparing sources, note that official pages and accreditation documents may list different 'sanctioned' bed counts—confirm the figure you need."
+    ]
+  },
+  "coordinates": {
+    "lat": 10.0328,
+    "lng": 76.293
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "hospital",
+    "tertiary care",
+    "teaching hospital",
+    "nabh",
+    "nabl",
+    "kochi"
+  ],
+  "sources": [
+    {
+      "label": "Amrita Hospitals (official) – Kochi",
+      "url": "https://www.amritahospitals.org/kochi"
+    },
+    {
+      "label": "Amrita Vishwa Vidyapeetham – Health Sciences Campus / UGC About (Kochi campus pr",
+      "url": "https://www.amrita.edu/ugc/about/"
+    },
+    {
+      "label": "Academic Information Booklet 2026 – Amrita (Kochi campus) (PDF)",
+      "url": "https://webfiles.amrita.edu/2026/03/academic-information-booklet-2026-kochi-campus.pdf"
+    },
+    {
+      "label": "NABH Accredited List – Certificate H-2009-0028 (Amrita Institute of Medical Scie",
+      "url": "https://portal.nabh.co/Documents/AccreditedList/Hospitals/H-2009-0028_5th%20Edition.pdf"
+    },
+    {
+      "label": "PTI / ThePrint: 'Kochi: Amrita Hospital patents new method to pinpoint seizure o",
+      "url": "https://theprint.in/india/kochi-amrita-hospital-patents-new-method-to-pinpoint-seizure-origin/2849378/"
+    },
+    {
+      "label": "Wikipedia: Amrita Hospital, Kochi (for founding date, coordinates, overview)",
+      "url": "https://en.wikipedia.org/wiki/Amrita_Hospital,_Kochi"
+    }
+  ],
+  "updated": "2026-11-22",
+  "lastVerified": "2026-11-22",
+  "status": "draft"
+}

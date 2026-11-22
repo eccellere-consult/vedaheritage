@@ -43,9 +43,24 @@
   ],
   "latest": [
     {
+      "date": "2026-11-17",
+      "text": "A recent guide update (last checked 17 November 2026) reiterates that public visits have been allowed only in announced windows since July 2023, notes the August 2026 Onam window as the latest reported opening, and warns that reported fees and timings differ across sources so travellers should confirm current windows and bookings at the official hydel tourism site.",
+      "url": "https://www.rankraja.in/kerala/idukki/idukki-arch-dam"
+    },
+    {
       "date": "2026-11-05",
       "text": "Idukki.com refreshed its visitor guide in November 2026, emphasising Hill View Park and Kalvari Mount as the reliable public viewpoints and noting reservoir boating and dam‑crest visits operate intermittently — check locally before you go.",
       "url": "https://idukki.com/destinations/idukki-arch-dam/"
+    },
+    {
+      "date": "2026-10-13",
+      "text": "Kerala Electricity Minister Sunny Joseph announced a feasibility study to develop an 'Idukki Dam Tourism Corridor', proposing infrastructure upgrades and a plan that would aim to reopen the dam for daily public access as part of a multi‑year development push.",
+      "url": "https://www.onmanorama.com/news/kerala/2026/10/13/sunny-joseph-announces-feasibility-study-idukki-dam-tourism-corridor.html"
+    },
+    {
+      "date": "2026-08-23",
+      "text": "Travel reports say the Idukki Arch and Cheruthoni dams were opened to visitors for Onam from 22–31 August 2026 with mandatory advance online booking; reported arrangements included limited daily walking slots (250) and buggy visitors (1,144), visiting hours roughly 09:30–17:00, reported fees (buggy and walk rates) and a prohibition on cameras/electronic devices inside the restricted dam area.",
+      "url": "https://munnar.com/news/idukki-dam-open-visitors-onam-2026"
     },
     {
       "date": "2026-02",
@@ -102,7 +117,7 @@
       "url": "https://www.raahzo.com/city/idukki/hill-view-park"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

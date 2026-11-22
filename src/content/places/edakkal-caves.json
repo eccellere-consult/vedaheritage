@@ -45,8 +45,18 @@
   "latest": [
     {
       "date": "2026-09-22",
+      "text": "A ₹2.90 crore sanction for comprehensive development of Edakkal Cave was allowed to lapse after the DTPC and the Kerala Tourism Department failed to agree on conditions (notably revenue‑sharing), cancelling the allocated funds.",
+      "url": "https://www.onmanorama.com/news/kerala/2026/09/22/edakkal-cave-funds-lost-revenue-dispute.html"
+    },
+    {
+      "date": "2026-09-22",
       "text": "News report that Edakkal lost ₹2.90 crore sanctioned earlier for development amid revenue/dispute issues; follow local updates before planning visits.",
       "url": "https://www.onmanorama.com/news/kerala/2026/09/22/edakkal-cave-funds-lost-revenue-dispute.html"
+    },
+    {
+      "date": "2026-07-11",
+      "text": "Wayanad District Collector lifted broad tourism restrictions across the district but specified that restrictions would continue for the Edakkal tourism centre (Edakkal Caves) and certain other localities.",
+      "url": "https://www.manoramaonline.com/district-news/wayanad/2026/07/11/wayanad-tourism-restrictions-lifted.html"
     },
     {
       "date": "2025-07-18",
@@ -127,7 +137,7 @@
       "url": "https://en.wikipedia.org/wiki/Edakkal_caves"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

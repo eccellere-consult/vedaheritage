@@ -45,8 +45,18 @@
   "latest": [
     {
       "date": "2026-12-02",
+      "text": "Puthari Thiruvappana (the temple’s harvest Thiruvappana that restarts the ritual year) is scheduled for 2 Dec 2026 (Vrischikam 16).",
+      "url": "https://theyyam.entekannur.in/kavu/parassinikkadavu-sree-muthappan-temple"
+    },
+    {
+      "date": "2026-12-02",
       "text": "Kerala Tourism lists Puthari Thiruvappana (the annual Puthari harvest Thiruvappana) at Parassinikadavu on 2 December 2026; this is the temple's major yearly festival.",
       "url": "https://www.keralatourism.org/festivalcalendar/"
+    },
+    {
+      "date": "2026-11-22",
+      "text": "Daily Muthappan performances continue at Parassinikadavu — Vellattam in the morning (approx. 05:45–08:00) and Thiruvappana in the evening (approx. 18:30–20:30) — as listed in current Theyyam calendars.",
+      "url": "https://theyyamthirra.com/calendar?d=2026-11-22&district=kannur"
     },
     {
       "date": "2026-11-09",
@@ -103,7 +113,7 @@
       "url": "https://devalayam.app/temples/parassinikkadavu-sree-muthappan-temple"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

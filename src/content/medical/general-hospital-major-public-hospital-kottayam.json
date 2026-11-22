@@ -1,0 +1,102 @@
+{
+  "slug": "general-hospital-major-public-hospital-kottayam",
+  "category": "medical",
+  "name": "General Hospital, Kottayam",
+  "district": "Kottayam",
+  "format": "lite",
+  "tagline": "Kottayam’s main public general hospital for emergency and inpatient care",
+  "summary": "Major government general hospital in central Kottayam providing 24/7 emergency care and inpatient services for central Travancore; part of the district public health network.",
+  "description": [
+    "General Hospital, Kottayam is the district-run general hospital located in central Kottayam. It functions as a principal public facility for emergency and inpatient care serving the central Travancore area and is listed in the state’s owned-institutions directory. ([health.kerala.gov.in](https://health.kerala.gov.in/assets/backend/uploads/Galleryitem/17506790021511401637.pdf))",
+    "The hospital is a government facility (District General Hospital category) that works alongside the Government Medical College hospital in the district to handle referrals, emergencies and routine inpatient needs for the region. District health publications include it among the core general hospitals in Kottayam. ([health.kerala.gov.in](https://health.kerala.gov.in/assets/backend/publications/Health%40Kottayam.pdf))",
+    "Visitors and patients will find 24-hour casualty/emergency services and a range of inpatient wards and basic diagnostic services; for tertiary or super‑specialty needs the Government Medical College hospital is the typical referral centre. Confirm specific clinics, bed availability and visiting arrangements before travel. ([sdma.kerala.gov.in](https://sdma.kerala.gov.in/wp-content/uploads/2021/05/HDMP-Kottayam.pdf?utm_source=openai))"
+  ],
+  "highlights": [
+    "Government-run general hospital serving central Kottayam",
+    "24-hour casualty / emergency services (public hospital facility)",
+    "Inpatient wards and basic diagnostics (labs, imaging) for district-level care",
+    "Part of the district health network alongside Government Medical College, Kottayam",
+    "Official listing with phone/email and coordinates in state directories"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "General Hospital, Kottayam appears in Kerala Health / Directorate of Health Services listings as the district general hospital for Kottayam and is maintained under state health administration. Official state lists publish its contact details and coordinates. ([health.kerala.gov.in](https://health.kerala.gov.in/assets/backend/uploads/Galleryitem/17506790021511401637.pdf))"
+      ]
+    },
+    {
+      "heading": "Services and role",
+      "body": [
+        "The hospital provides 24/7 emergency (casualty) care and routine inpatient services for medical, surgical and obstetric cases at the district level; specialised or tertiary procedures are usually handled at the Government Medical College hospital when required. Public documents and district health reporting list the general hospitals as the backbone of inpatient/delivery care in the district. ([sdma.kerala.gov.in](https://sdma.kerala.gov.in/wp-content/uploads/2021/05/HDMP-Kottayam.pdf?utm_source=openai))",
+        "District reports also show the health system’s specialised facilities (dialysis, cath labs, newborn care units) distributed across district institutions; individual services at General Hospital Kottayam should be confirmed directly with the hospital before planning treatment. ([health.kerala.gov.in](https://health.kerala.gov.in/assets/backend/publications/Health%40Kottayam.pdf))"
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Address listings give the hospital location as Near Mamman Mappila Hall / Kumily Road, Kottayam PO, PIN 686001; the hospital is reachable by local road transport—confirm directions and timings before you travel. Official directories list the hospital phone and email. ([sha.kerala.gov.in](https://sha.kerala.gov.in/?lang=en&page_id=495&utm_source=openai))",
+        "For non-emergency outpatient visits check where specific clinics run (many government hospitals run specialty OPD days) and bring referral documents, ID and any prior investigation reports. For emergencies, use the casualty/emergency entry point. Confirm bed availability, OP schedules and visiting rules directly with the hospital. ([sha.kerala.gov.in](https://sha.kerala.gov.in/?lang=en&page_id=495&utm_source=openai))"
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2025-03-31",
+      "text": "District health report 'Health@Kottayam' (data to 31 March 2025) lists four general hospitals in Kottayam district and gives the total sanctioned bed strength for general hospitals in the district as 1,064 (useful district-level capacity snapshot).",
+      "url": "https://health.kerala.gov.in/assets/backend/publications/Health%40Kottayam.pdf"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "Anytime — emergency services operate 24/7; for routine OPD choose weekday mornings and confirm schedules.",
+    "howToReach": "Located in central Kottayam (Near Mamman Mappila Hall / Kumily Road). Reach by local buses, taxis or private vehicle; confirm exact directions on maps or by calling the hospital. ([sha.kerala.gov.in](https://sha.kerala.gov.in/?lang=en&page_id=495&utm_source=openai))",
+    "etiquette": [
+      "Carry government ID, referral notes and prior test reports for faster admission or consultation.",
+      "If you need tertiary/super-specialty care ask about referral links to Government Medical College, Kottayam.",
+      "Confirm services (OPD days, bed availability, visiting hours) by phone or email before long trips.",
+      "If it is an emergency, use the casualty/emergency entry; for planned procedures confirm paperwork and pre‑admission instructions."
+    ]
+  },
+  "coordinates": {
+    "lat": 9.5897182,
+    "lng": 76.5265482
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "hospital",
+    "kottayam",
+    "public hospital",
+    "emergency",
+    "district health"
+  ],
+  "sources": [
+    {
+      "label": "Owned List of Modern Medicine Institutions 2024-25 (Health Dept. Kerala) — list ",
+      "url": "https://health.kerala.gov.in/assets/backend/uploads/Galleryitem/17506790021511401637.pdf"
+    },
+    {
+      "label": "Health@Kottayam — district health profile (data to 31 March 2025)",
+      "url": "https://health.kerala.gov.in/assets/backend/publications/Health%40Kottayam.pdf"
+    },
+    {
+      "label": "State Health Agency (SHA) Kerala — hospital directory entry: General Hospital Ko",
+      "url": "https://sha.kerala.gov.in/?lang=en&page_id=495"
+    },
+    {
+      "label": "Kottayam district official site — public utility listing for General Hospital",
+      "url": "https://kottayam.nic.in/en/public-utility/hospital3-2/"
+    },
+    {
+      "label": "General Hospital Kottayam — local hospital site / information (confirm details b",
+      "url": "https://generalhospitalkottayam.in/"
+    },
+    {
+      "label": "dhs.kerala.gov.in",
+      "url": "https://dhs.kerala.gov.in/wp-content/uploads/2025/10/GH.pdf"
+    }
+  ],
+  "updated": "2026-11-22",
+  "lastVerified": "2026-11-22",
+  "status": "draft"
+}

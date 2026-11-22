@@ -41,19 +41,34 @@
   ],
   "latest": [
     {
+      "date": "2026-10-30",
+      "text": "The Kerala Forest Department and the Plantation Corporation of Kerala (PCK) will jointly survey leased forest land at Athirappilly amid disputes over expired leases and allegations that the land blocks an elephant corridor.",
+      "url": "https://www.ayde.com/news/1016229-leased-forest-land-at-athirappilly-in-keralam-to-be-surveyed-amid-disputes-over-blocking-elephant-corridor"
+    },
+    {
+      "date": "2026-10-12",
+      "text": "The Vazhachal Divisional Forest Office (Forest Department) published a tender for construction of a ticket-checking centre at Athirappilly (Charpa Range).",
+      "url": "https://etenders.kerala.gov.in/nicgep/app?component=%24DirectLink&page=FrontEndViewTender&service=direct&session=T&sp=SvTDI%2Fwx%2BopfzveEuQJ1Qhw%3D%3D"
+    },
+    {
+      "date": "2026-10-01",
+      "text": "The Vazhachal Divisional Forest Office issued a stop memo (dated Sept 29) directing the Plantation Corporation of Kerala to cease entering/using about 4,261 hectares of lease-expired forestland in the Chalakudy division.",
+      "url": "https://indialive.net/forest-department-issues-stop-memo-against-illegal-occupation-of-lease-expired-forestland-by-pck-in-chalakudy-division/"
+    },
+    {
       "date": "2026-09-15",
       "text": "Local reports warn of parking shortages and fines for illegal parking at Athirappilly; visitors are advised to use designated parking and follow local directions.",
       "url": "https://www.manoramaonline.com/district-news/thrissur/2026/09/15/athirappilly-parking-crisis.html"
     },
     {
-      "date": "2026-07-13",
-      "text": "Reports of a heavy tourist rush in the monsoon season as the falls flow strongly — local authorities highlight crowd management needs.",
-      "url": "https://www.manoramanews.com/kerala/spotlight/2026/07/13/kerala-tourism-athirappilly-rush.html"
+      "date": "2026-08-01",
+      "text": "Athirappilly (and nearby Vazhachal) was temporarily closed to visitors on August 1, 2026 as a safety precaution during heavy rains and high river levels.",
+      "url": "https://ftp.keralakaumudi.com/en/kerala/general/tourist-destinations-closed-across-kerala-amid-heavy-rain-1786487"
     },
     {
-      "date": "2026-05-21",
-      "text": "Kerala Forest Dept. draws up plans for wheelchair paths and a buggy service to make Athirappilly more accessible to elderly and disabled visitors.",
-      "url": "https://www.newindianexpress.com/states/kerala/2026/May/21/wheelchair-paths-buggy-service-to-make-athirappilly-disabled-friendly-3"
+      "date": "2026-07-31",
+      "text": "A tender (now closed) was processed in 2026 for construction of a toilet at the entrance gate of Athirappilly Waterfalls (Charpa Range), indicating small infrastructure works at the site.",
+      "url": "https://tenderkart.in/tender/54da6c3d-2314-44f2-a48e-008006c6fd48"
     }
   ],
   "visitorInfo": {
@@ -125,7 +140,7 @@
       "url": "https://en.wikipedia.org/wiki/Athirappilly_Falls"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

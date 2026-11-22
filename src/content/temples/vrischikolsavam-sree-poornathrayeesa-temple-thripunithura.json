@@ -47,8 +47,32 @@
   "latest": [
     {
       "date": "2026-12-07",
+      "text": "Welcome Kerala lists Vrischikolsavam at Poornathrayeesa Kshethram as 07–14 December 2026 with daily processions, melam and cultural programmes.",
+      "url": "https://mail.welcomekeralaonline.com/religious-rituals/vrischikolsavam-poornathrayeesha-kshethram-thrippunithura-ernakulam-district"
+    },
+    {
+      "date": "2026-12-07",
+      "text": "Yatrigo lists the 2026 Vrischikotsavam dates as 07–14 December 2026 and advises visitors to confirm dates with the temple.",
+      "url": "https://www.yatrigo.com/events/vrischikotsavam"
+    },
+    {
+      "date": "2026-12-07",
       "text": "Festival listings show Vrischikolsavam scheduled for 07–14 December 2026; visitors should confirm specific event times with the temple office or Cochin Devaswom Board before travelling.",
       "url": "https://mail.welcomekeralaonline.com/religious-rituals/vrischikolsavam-poornathrayeesha-kshethram-thrippunithura-ernakulam-district"
+    },
+    {
+      "date": "2026-11-25",
+      "text": "Eventify (an events aggregator) shows a conflicting Vrischikolsavam listing of 25 November – 5 December 2026 for Sree Poornathrayeesa Temple.",
+      "url": "https://app.eventifyplus.com/events/ernakulam/festivals"
+    },
+    {
+      "date": "2026-11-21",
+      "text": "Sree Poornathrayeesa Temple official website (checked 2026-11-21) displays regular temple timings but had no posted Vrischikolsavam schedule on its Event Festival/Announcements pages (Event Festival page showed a PHP error)."
+    },
+    {
+      "date": "2026-10-23",
+      "text": "Haila Kochi published a Vrischikolsavam guide listing the 2026 festival dates as 7–14 December 2026 and noting it could not find an official temple notice.",
+      "url": "https://www.hailakochi.com/articles/vrischikolsavam-thripunithura-poornathrayeesa-festival-guide"
     }
   ],
   "visitorInfo": {
@@ -108,7 +132,7 @@
       "url": "https://en.wikipedia.org/wiki/Sree_Poornathrayeesa_Temple"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

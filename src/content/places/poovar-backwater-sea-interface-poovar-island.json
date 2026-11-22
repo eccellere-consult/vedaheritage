@@ -42,7 +42,33 @@
       ]
     }
   ],
-  "latest": [],
+  "latest": [
+    {
+      "date": "2026-11-08",
+      "text": "PoovarIsland.com updated its 'Poovar Island Guide for Foreign Tourists' (published Oct 25, 2026; updated Nov 8, 2026) with current 2026–27 season tips, prices and practical travel information.",
+      "url": "https://www.poovarisland.com/articles/poovar-travel-guide-for-foreign-tourists/"
+    },
+    {
+      "date": "2026-11-01",
+      "text": "PoovarIsland's editorial team published a first‑hand review titled 'Gogo Land Poovar' on November 1, 2026, describing it as 'worth a day trip, not a stay' and giving practical details on costs and activities.",
+      "url": "https://poovarisland.com/authors/editorial-team/"
+    },
+    {
+      "date": "2026-10-06",
+      "text": "The official Poovar Grama Panchayat Poovar Beach page was updated on October 6, 2026; it lists the visitor season as 'October–March' and names local jetties such as Poovar Boat Club and Estuary Island Jetty.",
+      "url": "https://poovarpanchayat.lsgkerala.gov.in/en/node/34"
+    },
+    {
+      "date": "2026-09-24",
+      "text": "A ₹93.22 crore KIIFB-funded coastal protection project for the Pozhiyoor–Kollankode stretch (near Poovar) was inaugurated, planning tetrapod seawalls, 11 groynes and a 4.5‑m concrete walkway to protect about 1,700 metres of coastline.",
+      "url": "https://www.kovalam.com/news/pozhiyoor-coastal-protection-project-poovar"
+    },
+    {
+      "date": "2026-09-02",
+      "text": "TechnoparkToday reported (Sept 2, 2026) that Poovar Island Resorts resumed operations and ‘‘started its functions from September 11, 2026’’, announcing reopening packages and boat transfers.",
+      "url": "https://www.technoparktoday.com/unwind-for-a-new-beginning-at-poovar-island-resorts/"
+    }
+  ],
   "visitorInfo": {
     "bestTime": "November–February (cool, dry winter months; peak season for short coastal stays). ([poovarisland.com](https://poovarisland.com/articles/poovar-island-travel-guide-2026/?utm_source=openai))",
     "howToReach": "By road: 30–60 minutes from Kovalam (roughly 17–30 km depending on route). By air: Trivandrum International Airport ~26 km; last mile often needs a short boat to island resorts — confirm transfers with your property. ([poovarisland.com](https://poovarisland.com/articles/poovar-to-kovalam-distance/?utm_source=openai))",
@@ -111,7 +137,7 @@
       "url": "https://www.greentribunal.gov.in/sites/default/files/news_updates/932023.pdf"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

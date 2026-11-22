@@ -46,8 +46,23 @@
   "latest": [
     {
       "date": "2026-09-11",
+      "text": "Local reporting says the Malampuzha Garden remained closed for renovation and the prolonged shutdown has left about 110 temporary stall workers jobless and hit nearby small businesses hard.",
+      "url": "https://www.manoramanews.com/nattuvartha/north/palakkad/2026/09/11/malampuzha-garden-closure-cripples-local-businesses.html"
+    },
+    {
+      "date": "2026-09-11",
       "text": "Local coverage reports continued closure’s economic impact on vendors and temporary workers after nearly a year of park shutdown.",
       "url": "https://www.manoramanews.com/nattuvartha/north/palakkad/2026/09/11/malampuzha-garden-closure-cripples-local-businesses.amp.html"
+    },
+    {
+      "date": "2026-09-03",
+      "text": "Kerala Tourism and travel guides listed Malampuzha Garden as closed 'until further notice' during renovation while noting that dam access and the aerial ropeway were shown as operational but conditions were volatile and needed day-of confirmation.",
+      "url": "https://travelindia-guide.com/cities/palakkad/"
+    },
+    {
+      "date": "2026-08-19",
+      "text": "Union MoS Suresh Gopi inspected the stalled modernisation work, criticised the slow progress (officials pegged completion at ~3.75% then) and directed officials and contractors to finish the project by the end of December 2026 with daily progress monitoring.",
+      "url": "https://theprint.in/india/time-was-destroyed-union-mos-suresh-gopi-on-malampuzha-garden-project-delay/3019816/"
     },
     {
       "date": "2026-08-19",
@@ -55,14 +70,9 @@
       "url": "https://theprint.in/india/time-was-destroyed-union-mos-suresh-gopi-on-malampuzha-garden-project-delay/3019816/"
     },
     {
-      "date": "2026-03",
-      "text": "Ministry of Tourism lists the Malampuzha enhancement project among Swadesh Darshan 2.0 sanctioned projects and records initial releases and that work has commenced.",
-      "url": "https://tourism.gov.in/sites/default/files/2026-03/usq.2565%20for%2009.03.2026.pdf"
-    },
-    {
-      "date": "2025-03-30",
-      "text": "Kerala Tourism announces Centre clearance and administrative sanction for the ‘Enhancement of Tourist Experience at Malampuzha Garden and Leisure Park’ under Swadesh Darshan 2.0 (project outlay ~Rs 75.87 crore).",
-      "url": "https://www.keralatourism.org/articlesonkerala/30_03_202520250330205307_1.pdf"
+      "date": "2026-07-23",
+      "text": "The Kerala State Commission for Protection of Child Rights directed authorities to examine safety measures at the Malampuzha aerial ropeway and was told a modern, safer ropeway would be commissioned after ongoing renovation work.",
+      "url": "https://english.metrovaartha.com/amp/story/news/kerala/child-rights-commission-seeks-safety-audit-of-malampuzha-ropeway-in-palakkad"
     }
   ],
   "visitorInfo": {
@@ -121,7 +131,7 @@
       "url": "https://www.irrigation.kerala.gov.in/malampuzha-project"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

@@ -45,8 +45,18 @@
   "latest": [
     {
       "date": "2026-09-20",
+      "text": "Kozhikode district administration announced the resumption of boating services at the Peruvannamuzhi reservoir and the introduction of a new boating service at Thonikadavu, with a mandate to use eco-friendly solar-powered boats.",
+      "url": "https://www.mirrornow.in/kerala-news/kozhikode-resumes-boating-at-peruvannamuzhi-reservoir-article-156193116"
+    },
+    {
+      "date": "2026-09-20",
       "text": "Kozhikode district administration announces restart and expansion of boating at Peruvannamuzhi reservoir, mandating eco‑friendly solar boats and approving a new boating point at Thonikadavu (Heart Island).",
       "url": "https://www.mirrornow.in/kerala-news/kozhikode-resumes-boating-at-peruvannamuzhi-reservoir-article-156193116"
+    },
+    {
+      "date": "2026-07-27",
+      "text": "The Kerala Infrastructure and Industrial Development Corporation (KIIDC) Kozhikode page was updated listing the \"Development of Peruvannamuzhi Dam Tourism Project,\" noting works such as an interpretation centre, toilet block, canteen, walkway with handrail, car parking, children’s park and ticket counter as part of the project scope.",
+      "url": "https://kiidc.kerala.gov.in/development-of-peruvannamuzhi-dam-tourism-project-kozhikode-district/"
     },
     {
       "date": "2025-05",
@@ -103,7 +113,7 @@
       "url": "https://new.spices.res.in/sites/default/files/Public_Disclosures2023-24.pdf"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

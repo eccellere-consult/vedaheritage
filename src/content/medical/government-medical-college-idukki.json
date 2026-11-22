@@ -1,0 +1,113 @@
+{
+  "slug": "government-medical-college-idukki",
+  "category": "medical",
+  "name": "Government Medical College, Idukki",
+  "district": "Idukki",
+  "format": "lite",
+  "tagline": "Idukki's tertiary referral and teaching hospital for the high ranges",
+  "summary": "Government Medical College, Idukki (Painavu) is the district's tertiary teaching hospital and referral centre — a 300-bed government medical college hospital serving the high-range communities.",
+  "description": [
+    "Government Medical College, Idukki (GMC Idukki) is the district medical college and teaching hospital located at Painavu (Kuyilimala). It grew by upgrading the old District Hospital and functions as a multidisciplinary tertiary centre for the high-range areas of Idukki.",
+    "The college is a teaching institution with undergraduate (MBBS) intake approved by the National Medical Commission and an on‑campus nursing college; it combines emergency, specialist and teaching services so high-range referrals do not always need travel to lowland cities.",
+    "For patients and attendants the hospital offers 24×7 emergency care, major clinical departments and in‑patient services (state reports list a 300‑bed strength). The campus also participates in Kerala’s eHealth (HMS/UHID) systems to manage records and referrals."
+  ],
+  "highlights": [
+    "Tertiary referral hospital for Idukki high ranges and surrounding taluks",
+    "Listed bed strength 300 in Kerala state economic review (2024‑25 / 2025‑26 data).",
+    "Teaching hospital with NMC‑approved MBBS intake and on‑campus nursing programme.",
+    "eHealth / Hospital Management System active; included in Medical College eHealth dashboards.",
+    "Located at Painavu (district headquarters) on the Kuyilimala/Painavu campus."
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "GMC Idukki began as an upgrade of the District Hospital; official state documents record its inception under a 2014 government order. The project saw early delays and relocation of initial MBBS batches, but after infrastructure upgrades the National Medical Commission granted approval for undergraduate intake (100 seats) and the college now runs multiple MBBS batches and nursing courses.",
+        "State publications and the college’s institutional report describe GMC Idukki as a growing teaching institution building clinical services, human resources and academic programmes suited to the district’s geographically challenging terrain."
+      ]
+    },
+    {
+      "heading": "Role and services",
+      "body": [
+        "GMC Idukki functions as the district tertiary centre: emergency care, general medicine, surgery, obstetrics & gynaecology, paediatrics, anaesthesia, orthopaedics, psychiatry and several specialty/outpatient clinics operate from the hospital. The college also provides undergraduate medical training and nursing education on the same campus.",
+        "Kerala’s eHealth dashboards list the hospital among medical colleges with active HMS modules; state performance factsheets show metrics for UHID usage, consultations and department‑level activity, underlining its role in digitised referrals and clinical record keeping."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "The hospital serves patients from the Idukki high ranges and receives referrals from taluks such as Kattappana, Thodupuzha and Kumily. Painavu is the district headquarters; travel to the campus is by road across ghats — allow extra time for winding mountain roads and occasional heavy monsoon traffic.",
+        "Confirm visiting hours, outpatient appointment procedures and any required documents before travel. For admissions or specialist referral follow the referring doctor’s instructions and the hospital’s outpatient/admission desk procedures (confirm in advance with the hospital)."
+      ]
+    }
+  ],
+  "latest": [
+    {
+      "date": "2026-07",
+      "text": "State eHealth medical‑college factsheet (July 2026) lists Government Medical College Hospital, Idukki as an active eHealth/HMS site and includes department-level performance metrics.",
+      "url": "https://dashboard.ehealth.kerala.gov.in/dist/uploads/factsheet/2026/July/MCH/m.pdf"
+    },
+    {
+      "date": "2026-01",
+      "text": "Kerala State Planning Board economic review (ER 2025, published Jan 2026) reports Medical College, Idukki with a 300‑bed capacity and gives outpatient/inpatient activity figures through Aug 31, 2025.",
+      "url": "https://spb.kerala.gov.in/sites/default/files/2026-01/ER%202025%20Volume%202%20Eng%20final.pdf"
+    }
+  ],
+  "visitorInfo": {
+    "bestTime": "Hospital functions year‑round; plan travel Oct–Mar for easier road access (avoid heavy monsoon periods).",
+    "howToReach": "GMC Idukki is at Painavu (district HQ) and is reachable only by road. Approach from Thodupuzha / Kattappana by state highways and ghat roads. Nearest major railheads are Kottayam / Aluva / Ernakulam; the nearest big airport is Cochin International (Nedumbassery). Confirm road conditions before travel.",
+    "etiquette": [
+      "Confirm appointments, visiting hours and required ID/documents with the hospital before you travel.",
+      "Allow extra time for ghat‑road travel; monsoon (June–Sept) can slow journeys and affect visibility.",
+      "If referred from a taluk hospital, carry referral paperwork and prior investigation reports to speed care.",
+      "Local languages: Malayalam is primary; hospital staff commonly speak English — bring a family member to help with local coordination if needed."
+    ]
+  },
+  "coordinates": {
+    "lat": 9.84983,
+    "lng": 76.9627
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "medical",
+    "hospital",
+    "teaching-hospital",
+    "idukki",
+    "painavu",
+    "referral"
+  ],
+  "sources": [
+    {
+      "label": "Government Medical College, Idukki — institutional report (Kerala Health PDF)",
+      "url": "https://health.kerala.gov.in/assets/backend/uploads/publicrelation/1774592253_69c620fddc70b.pdf"
+    },
+    {
+      "label": "eHealth Kerala — Medical Colleges factsheet (July 2026)",
+      "url": "https://dashboard.ehealth.kerala.gov.in/dist/uploads/factsheet/2026/July/MCH/m.pdf"
+    },
+    {
+      "label": "Kerala State Planning Board — Economic Review 2025 (Appendix: status of medical ",
+      "url": "https://spb.kerala.gov.in/sites/default/files/2026-01/ER%202025%20Volume%202%20Eng%20final.pdf"
+    },
+    {
+      "label": "National Medical Commission — list / seat matrix (Government Medical College, Id",
+      "url": "https://www.nmc.org.in/information-desk/for-students-to-study-in-india/list-of-college-teaching-mbbs/1000/"
+    },
+    {
+      "label": "Government Medical College, Idukki — official site / contact (college pages)",
+      "url": "https://www.gmci.in/"
+    },
+    {
+      "label": "TRAI drive test report (maps) — location coordinates showing 'Govt. Medical Coll",
+      "url": "https://trai.gov.in/sites/default/files/OADT_Idukki_21072026.pdf"
+    },
+    {
+      "label": "Painavu / Idukki travel and access notes (district / government pages and local ",
+      "url": "https://en.wikipedia.org/wiki/Painavu"
+    }
+  ],
+  "updated": "2026-11-22",
+  "lastVerified": "2026-11-22",
+  "status": "draft"
+}

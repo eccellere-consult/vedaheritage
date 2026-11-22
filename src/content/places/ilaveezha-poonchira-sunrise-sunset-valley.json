@@ -44,6 +44,11 @@
   ],
   "latest": [
     {
+      "date": "2026-11-08",
+      "text": "Aggregator News Minimalist (citing Mathrubhumi) reports local calls for improved night-time safety on the Melukavu–Ilaveezhapoonchira route, urging installation of streetlights (including solar options) because many sections currently lack lighting.",
+      "url": "https://www.newsminimalist.com/articles/ilaveezhapoonchira-night-travel-needs-streetlights-for-safety-43c49137"
+    },
+    {
       "date": "2026-11",
       "text": "Kerala Tourism updates its Ilaveezha Poonchira destination page and photo gallery highlighting twilight and sunrise views, and references the three hillocks and DTPC rest house nearby."
     },
@@ -51,6 +56,16 @@
       "date": "2026-10",
       "text": "Local hill-station operator (Poonchira Holidays) lists organised guided treks, jeep transfers and on-site bamboo-hut homestays; site presents elevation ~3,700 ft and recommends post‑monsoon/early winter visits.",
       "url": "https://ilaveezhapoonchira.com/about/"
+    },
+    {
+      "date": "2026-09-07",
+      "text": "Madhyamam reports that Kodayathoor (Kudayathoor) Panchayat has allotted 10 cents for a 'Take a Break' project and the District Panchayat has sanctioned Rs 35 lakh, with tendering completed to build basic tourist amenities (rest area, toilets) at Ilaveezhapoonchira.",
+      "url": "https://origin.madhyamam.com/travel/destinations/ilaveezhapoonchira-gets-tourism-funding-1552351"
+    },
+    {
+      "date": "2026-08-01",
+      "text": "Manorama Online reports the Kottayam District Collector ordered entry to Ilaveezhapoonchira and other local tourist spots banned and night travel on the Erattupetta–Vagamon road prohibited until August 4, 2026 due to heavy rainfall and weather warnings.",
+      "url": "https://www.manoramaonline.com/district-news/kottayam/2026/08/01/erattappetta-vagamon-road-restrictions-imposed.amp.html"
     }
   ],
   "visitorInfo": {
@@ -126,7 +141,7 @@
       "url": "https://www.prod.incredibleindia.gov.in/content/incredible-india-v2/en/destinations/kottayam/ilaveezha-poonchira.html"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

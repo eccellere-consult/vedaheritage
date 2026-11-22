@@ -1,0 +1,105 @@
+{
+  "slug": "amala-institute-of-medical-sciences-amala-hospital",
+  "category": "medical",
+  "name": "Amala Institute of Medical Sciences",
+  "district": "Thrissur",
+  "format": "lite",
+  "tagline": "Thrissur’s NABH-accredited teaching hospital for oncology, cardiac and surgical care",
+  "summary": "Major private teaching hospital at Amala Nagar, Thrissur. NABH‑accredited multi‑speciality centre with recognised oncology, cardiac and surgical programmes and a medical college.",
+  "description": [
+    "Amala Institute of Medical Sciences (AIMS, often called Amala Hospital) is a private medical college campus and teaching hospital at Amala Nagar, Thrissur. The campus houses a super‑speciality hospital, cancer hospital and research units alongside a medical college and nursing schools.",
+    "It matters regionally as one of Thrissur’s largest referral centres: the hospital lists comprehensive oncology services (radiation, medical and surgical oncology), cardiology (including interventional cardiology) and cardiothoracic surgery among many other specialties, and it operates allied diagnostic and laboratory services. The institute also runs postgraduate and clinical research activities.",
+    "Visitors (patients and families) find a full‑service tertiary hospital with intensive care, imaging (CT/MRI/PET‑CT), an accredited laboratory and a blood bank. As a teaching hospital, it also supports specialist clinics, training postings and clinical trials in oncology and other fields.",
+    "Check credentials and current service status before making plans (see sources). Some accreditation and empanelment documents on public sites show certificate dates that may have changed since publication."
+  ],
+  "highlights": [
+    "Large private teaching hospital and medical college at Amala Nagar, Thrissur",
+    "Comprehensive oncology services: radiation, medical and surgical oncology (cancer centre since the 1970s by the hospital pages)",
+    "Cardiology including interventional cardiology and cardiothoracic & vascular surgery",
+    "Surgical oncology, bone‑marrow transplant unit and extensive diagnostic services (CT/MRI/PET‑CT)",
+    "NABH and NABL listed for many clinical and laboratory services (see sources; confirm current status)"
+  ],
+  "sections": [
+    {
+      "heading": "Background",
+      "body": [
+        "Amala Institute of Medical Sciences is an undertaking of the Amala Cancer Hospital Society and functions as a medical college campus with a super‑speciality teaching hospital, allied ayurvedic & homeopathic units, nursing schools and a cancer research centre. The institute appears in WHO/SEARO PHI institutional listings and in regional hospital directories.",
+        "The hospital’s oncology programme is long‑established on the campus; the hospital web pages describe radiation oncology, medical oncology (with a bone marrow transplant unit) and surgical oncology as core services. AIMS also hosts many other specialties and allied diagnostic services."
+      ]
+    },
+    {
+      "heading": "What to see and do",
+      "body": [
+        "For patients: expect a full tertiary referral service — outpatient specialist clinics, inpatient wards, ICUs, interventional cardiology, cardiothoracic surgery, cancer surgery and multimodality cancer care (chemotherapy, radiation, nuclear medicine and PET‑CT). The hospital lists bone marrow transplantation as an available service.",
+        "For visiting family or professional visitors: the campus includes teaching facilities and research units; you may encounter postgraduate clinics, training rounds and clinical research activity in oncology and allied departments. Administrative contact and appointment booking are available via the hospital helplines and website."
+      ]
+    },
+    {
+      "heading": "Plan your visit",
+      "body": [
+        "Location: Amala Nagar P.O., Thrissur — PIN 680555. For appointments the hospital lists enquiry and booking numbers on its contact pages; confirm clinic times and visiting rules before travel. (The institute’s official contact pages are listed in sources.)",
+        "Accreditation & empanelment: public NABH documentation and government empanelment lists (ESIC/ESM) show wide super‑speciality scope and past NABH certification; those records include certificate dates and validity ranges — confirm the current accreditation/empanelment status with the hospital before scheduling major procedures."
+      ]
+    }
+  ],
+  "latest": [],
+  "visitorInfo": {
+    "bestTime": "Any time of year for clinical visits; plan around Kerala weather if combining travel (monsoon months may affect transport).",
+    "howToReach": "Amala Nagar is on the Thrissur–Kunnamkulam road. Thrissur city is the nearest rail hub (Thrissur Railway Station); taxis or local buses connect the station to Amala Nagar. Confirm local directions with the hospital before travel.",
+    "etiquette": [
+      "Call the hospital appointment line or use the official website to book specialist clinics and to confirm availability and visiting hours.",
+      "If you need a specific procedure (e.g., bone marrow transplant, cardiothoracic surgery), request written confirmation of the treating unit and dates — confirm empanelment with insurers/ESI before admission.",
+      "Bring any prior medical records and imaging on a USB or printed copies; teaching hospitals often require documentation for specialist referrals."
+    ]
+  },
+  "coordinates": {
+    "lat": 10.562831,
+    "lng": 76.167719
+  },
+  "images": [],
+  "imageStatus": "needed",
+  "tags": [
+    "medical",
+    "hospital",
+    "oncology",
+    "cardiology",
+    "teaching hospital"
+  ],
+  "sources": [
+    {
+      "label": "Amala Institute of Medical Sciences — Contact / Hospital pages",
+      "url": "https://amalaims.edu.in/hospital/contact-us"
+    },
+    {
+      "label": "Amala Institute — Medical Oncology / Bone marrow transplant (hospital site)",
+      "url": "https://amalaims.edu.in/hospital/super-speciality/department/medical-oncology"
+    },
+    {
+      "label": "Amala Institute — Radiation Oncology (hospital site)",
+      "url": "https://amalaims.org/hospital/general-speciality/department/radiation-oncology"
+    },
+    {
+      "label": "Amala Institute — Surgical Oncology (hospital site)",
+      "url": "https://amalaims.in/hospital/super-speciality/department/surgical-oncology"
+    },
+    {
+      "label": "NABH certificate / scope of accreditation (NABH PDF showing certificate H-2018-0",
+      "url": "https://portal.nabh.co/Documents/AccreditedList/Hospitals/HN2018N0561N5th%20Edition.pdf"
+    },
+    {
+      "label": "WHO SEARO PHI institute listing — Amala Institute of Medical Sciences",
+      "url": "https://apps.searo.who.int/PHI/Institute/Details/54"
+    },
+    {
+      "label": "ESIC / empanelment listing showing Amala services (PDF)",
+      "url": "https://esic.gov.in/attachments/sstfile/cbfc1f52348d61e5a56ba82a3a7df6b5.pdf"
+    },
+    {
+      "label": "Institutional / local info (Amala Nagar entries, college listings)",
+      "url": "https://en.wikipedia.org/wiki/Amala_Institute_of_Medical_Sciences"
+    }
+  ],
+  "updated": "2026-11-22",
+  "lastVerified": "2026-11-22",
+  "status": "draft"
+}

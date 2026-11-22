@@ -1,29 +1,98 @@
-## Discover Kerala content agents — 2026-11-21
+## Discover Kerala content agents — 2026-11-22
 
 Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
 
-### Events calendar: 33 upcoming event(s)
+### Content fill: 40 page(s) created in 7.95 min
 
-Dates come from pages the agent retrieved. Check each link before merging.
+Attempted 40 · created 40 · already had a page 0 · failed 0 · new topics found 0 · topics still to do 62
 
-**New (7)**
-- **President's Trophy Boat Race (Champions Boat League final)** · 2026-11-21 · Ashtamudi Lake, Kollam · dates published · https://www.keralatourism.org/champions-boat-league https://www.keralatourism.org/articlesonkerala/cbl-sixth-season-title-to-be-decided-in-final-race-at-kollam-on-saturday-20261120190757-1.pdf
-- **Sabarimala — Mandala Pooja (Mandala season / temple opening)** · 2026-11-17 to 2026-12-27 · Sabarimala (Sree Ayyappa Temple), Pathanamthitta · dates published · https://www.goodreturns.in/news/sabarimala-mandala-kalam-2026-how-to-book-virtual-q-tickets-check-spot-booking-online-1547221.html?utm_source=openai https://todaythithi.it.com/sabarimala-temple-opening-dates-2026/?utm_source=openai
-- **Cochin Carnival (Fort Kochi New Year carnival)** · 2026-12-13 to 2027-01-01 · Fort Kochi / Kochi, Ernakulam · dates published · https://www.incredibleindia.gov.in/en/festivals-and-events/kerala/cochin-carnival https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
-- **Kerala Literature Festival (KLF)** · 2027-01-21 to 2027-01-24 · Kozhikode Beach, Kozhikode · dates published · https://keralaliteraturefestival.com/ https://www.hindustantimes.com/cities/others/10th-kerala-literature-festival-to-begin-from-january-21-in-kozhikode-host-australia-as-guest-nation-101795258532775.html
-- **Chettikulangara Bharani (Chettikulangara Bhagavathy Temple) — Bharani festival (main observance)** · 2027-03-13 · Chettikulangara Bhagavathy Temple, Alappuzha · usual dates, confirm before travelling · https://www.cholantours.com/newsletter/festivals-of-south-india-2026-2027 https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
-- **Nehru Trophy Boat Race (Punnamada Lake, Alappuzha) — (usual: second Saturday of August)** · 2027-08-14 · Punnamada Lake, Alappuzha · usual dates, confirm before travelling · https://roampedia.com/india/kerala/alappuzha/alappuzha-town/place/punnamada-lake?section=eat&utm_source=openai https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
-- **Aranmula Uthrattathi Vallamkali (Aranmula boat race)** · 2027-09-17 · Pamba River, Aranmula, Pathanamthitta · usual dates, confirm before travelling · https://calendarkerala.com/kerala-festivals/?utm_source=openai https://www.keralatourism.org/ktadmin/img/file_upload/lowres/digital-event-calendar-2026-27-4a87455577.pdf?utm_source=openai
+- ✅ **Paniya (Paniyar) tribal marriage customs and ceremonies (Wayanad)** → live
+- ✅ **Vattappattu / Kolkali wedding-eve songs and performances (Kozhikode)** → live
+- ✅ **Thalassery biryani and Malabar wedding feast traditions (Thalassery, Kozhikode district)** → live
+- ✅ **Kurichiya tribal wedding rituals (Wayanad)** → live
+- ✅ **Thiyya community wedding customs and matrilineal traces (Thalassery, Kannur)** → live
+- ✅ **Male-frame percussion & Duff Muttu at Kannur wedding celebrations** → live
+- ✅ **Beary community wedding customs (Kasaragod)** → live
+- ✅ **Bunt / Tuluva (Mulki) wedding traditions in northern Kasaragod** → live
+- ✅ **Regional Cancer Centre (RCC), Thiruvananthapuram** → draft
+- ✅ **Azeezia Medical College Hospital (Meeyannoor)** → draft
+- ✅ **Sree Chitra Tirunal Institute for Medical Sciences & Technology (SCTIMST)** → draft
+- ✅ **Travancore Medical College Hospital (Travancore Medicity)** → draft
+- ✅ **Government T D Medical College, Vandanam (T D Medical College, Alappuzha)** → draft
+- ✅ **Pushpagiri Medical College Hospital, Thiruvalla** → draft
+- ✅ **Believers Church Medical College Hospital (BCMCH), Thiruvalla** → draft
+- ✅ **Keraleeyam Ayurvedic Resort (Punnamada), Alleppey** → draft
+- ✅ **Kumarakom Lake Resort — Ayurmana (Ayurvedic Spa)** → draft
+- ✅ **General Hospital / Major Public Hospital, Kottayam** → draft
+- ✅ **Spice Village Ayurvedic Centre (Thekkady) — CGH Earth group** → draft
+- ✅ **Aster Medcity (Cheranalloor)** → draft
+- ✅ **Government Medical College, Idukki** → draft
+- ✅ **Amala Institute of Medical Sciences (Amala Hospital)** → draft
+- ✅ **Jubilee Mission Medical College & Research Institute, Thrissur** → draft
+- ✅ **Amrita Hospital / Amrita Institute of Medical Sciences, Kochi** → draft
+- ✅ **Ahalia Foundation Eye Hospital (Palakkad / Kozhippara)** → draft
+- ✅ **Vaidyaratnam P.S. Varier’s Arya Vaidya Sala (Kottakkal)** → draft
+- ✅ **Government Medical College, Manjeri (GMC Manjeri)** → draft
+- ✅ **Aster MIMS (Malabar Institute of Medical Sciences), Kozhikode** → draft
+- ✅ **Baby Memorial Hospital, Kozhikode** → draft
+- ✅ **Karuna Medical College Hospital (Vilayodi, Chittur)** → draft
+- ✅ **Government Medical College, Kannur (Pariyaram)** → draft
+- ✅ **Dr. Moopen’s Medical College Hospital, Meppadi** → draft
+- ✅ **Government Medical College, Kasaragod** → draft
+- ✅ **Balaramapuram handloom (Balaramapuram sarees & settu‑mundu)** → live
+- ✅ **Karamana Onavillu makers (Vilayil family tradition)** → live
+- ✅ **Malabar Cancer Centre (MCC), Thalassery** → draft
+- ✅ **Munroe Island boat‑making & coir villages** → live
+- ✅ **Kerala Arts & Crafts Village, Vellar (Kovalam)** → live
+- ✅ **Alumkadavu boat‑building yard (kettuvallam builders)** → live
+- ✅ **Aranmula Kannadi (Aranmula metal mirror)** → live
 
-**Dates changed (3)**
-- Sabarimala — Makaravilakku / Makara Jyothi phase: 2026-12-30 to 2027-01-20 → 2026-12-30 to 2027-01-20
-- Thrissur Pooram: 2027-04-17 to 2027-04-18 → 2027-04-17 to 2027-04-18
-- Onam (ten‑day festival; Thiruvonam main day): 2027-09-03 to 2027-09-12 → 2027-09-03 to 2027-09-12
 
-**Removed because they are over (3)**
-- Kalpathi Ratholsavam (Kalpathi chariot festival) (2026-11-16)
-- Kayamkulam Boat Race (Champions Boat League leg) (2026-11-14)
-- Kayamkulam Boat Race (Champions Boat League) (2026-11-14)
+_Run: 7.9 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+## Discover Kerala content agents — 2026-11-22
+
+Drafts only. Nothing here is published until a human sets `status: "approved"` and merges.
+
+### Recency refresh: 36 page(s) checked, 34 with news
+
+- 🆕 **Ananthapura Lake Temple**: 1 new item(s)
+- 🆕 **Kalady**: 5 new item(s)
+- 🆕 **Ettumanoor Mahadeva Temple**: 1 new item(s)
+- 🆕 **Guruvayur Sree Krishna Temple**: 5 new item(s)
+- 🆕 **Kodungallur Sree Kurumba Bhagavathy Temple**: 1 new item(s)
+- 🆕 **Parassinikadavu Sree Muthappan Temple**: 2 new item(s)
+- 🆕 **Parassinikadavu Sree Muthappan Temple (Parassini Madappura)**: 2 new item(s)
+- 🆕 **Tali (Tali Mahadeva) Temple**: 5 new item(s)
+- 🆕 **Vadakkunnathan Temple**: 4 new item(s)
+- 🆕 **Aralam Wildlife Sanctuary (Aralam Butterfly Sanctuary)**: 2 new item(s)
+- 🆕 **Sree Poornathrayeesa Temple — Vrischikolsavam**: 5 new item(s)
+- 🆕 **Thirunelli Mahavishnu Temple**: 4 new item(s)
+- 🆕 **Athirappilly Falls**: 5 new item(s)
+- 🆕 **Edakkal Caves**: 2 new item(s)
+- 🆕 **Banasura Sagar Dam**: 5 new item(s)
+- 🆕 **Gavi Eco‑Tourism**: 3 new item(s)
+- 🆕 **Bekal Fort**: 6 new item(s)
+- 🆕 **Idukki Arch Dam viewpoints & hill circuits**: 3 new item(s)
+- 🆕 **Ilaveezha Poonchira**: 3 new item(s)
+- 🆕 **Mattancherry Palace**: 1 new item(s)
+- 🆕 **Malampuzha Garden & Leisure Park**: 4 new item(s)
+- 🆕 **Kadalundi Bird Sanctuary**: 2 new item(s)
+- 🆕 **Neyyar Wildlife Sanctuary**: 2 new item(s)
+- 🆕 **Peruvannamuzhi Dam & Spice Park**: 2 new item(s)
+- 🆕 **Nelliyampathy Hills**: 4 new item(s)
+- 🆕 **Ranipuram Hills**: 3 new item(s)
+- 🆕 **Ramakkalmedu**: 3 new item(s)
+- 🆕 **Silent Valley National Park**: 3 new item(s)
+- 🆕 **St. Angelo's Fort (Kannur)**: 1 new item(s)
+- 🆕 **Poovar (Poovar Island)**: 5 new item(s)
+- ⚠️ Thenmala Ecotourism: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Thusharagiri Waterfalls: 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- 🆕 **Thattekkad Bird Sanctuary (Salim Ali Bird Sanctuary)**: 3 new item(s)
+- ⚠️ Periyar Tiger Reserve (Thekkady): 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- ⚠️ Vellayani Lake (Vellayani Kayal): 429 You have no credits remaining. Add credits to continue using the API at https://platform.openai.
+- 🆕 **Tholpetty (Tholpetty range, Wayanad Wildlife Sanctuary)**: 3 new item(s)
+- 🆕 **Veli Tourist Village (Veli Lagoon)**: 5 new item(s)
+- 🆕 **Vagamon Meadows & Paragliding**: 4 new item(s)
 
 
-_Run: 4.3 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_
+_Run: 9.0 min · ~$0.00 model spend (estimate; excludes web-search tool fees) · scout openai/gpt-5-mini · enricher openai/gpt-5-mini · verifier xai/grok-4-fast_

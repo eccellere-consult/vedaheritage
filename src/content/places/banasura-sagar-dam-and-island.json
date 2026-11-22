@@ -43,6 +43,31 @@
   ],
   "latest": [
     {
+      "date": "2026-11-18",
+      "text": "DTPC-based listing (read 18 Nov 2026) shows updated visitor timings and fees for Banasura Sagar: opening hours 09:00–17:30, entry ₹40 (adult) / ₹20 (child), and published boating/zipline rates (e.g. speed boat ₹1,000; pontoon ₹2,000).",
+      "url": "https://horizonfinderindia.com/blog/banasura-sagar-dam/"
+    },
+    {
+      "date": "2026-10-23",
+      "text": "Kerala SDMA/KSEB daily alert reported the dam’s control-shaft (tunnel) gate was closed on 2026-10-23 at 13:00 hrs and tunnel discharge was recorded as 0 MCM.",
+      "url": "https://sdma.kerala.gov.in/wp-content/uploads/2026/11/KSEB-SITE.pdf"
+    },
+    {
+      "date": "2026-10-10",
+      "text": "Onmanorama reported growing local calls on 2026-10-10 to begin distributing drinking water from the Banasura Sagar project because wells were drying and pipe-laying work had stalled amid contractor issues.",
+      "url": "https://www.onmanorama.com/news/kerala/2026/10/10/urgent-calls-grow-for-banasura-sagar-dam-water-distribution.html"
+    },
+    {
+      "date": "2026-10-09",
+      "text": "Kerala SDMA/KSEB daily alert recorded the control-shaft (tunnel) gate at Banasura Sagar was opened 50% on 2026-10-09 at 11:15 hrs, with a tunnel discharge of about 0.58 MCM.",
+      "url": "https://sdma.kerala.gov.in/wp-content/uploads/2026/10/KSEB-SITE-10.pdf"
+    },
+    {
+      "date": "2026-09-08",
+      "text": "Onmanorama reported on 2026-09-08 that Wayanad experienced a significant drop in tourists during the Onam season, noting popular sites including Banasurasagar Dam saw markedly fewer visitors and calls for new tourism initiatives.",
+      "url": "https://www.onmanorama.com/news/kerala/2026/09/08/wayanad-tourism-faces-onam-slump-calls-grow-for-new-intiatives-and-fewer-blanket-restrictions.html"
+    },
+    {
       "date": "2026-06-11",
       "text": "A new boating zone and expanded activities (sunrise kayaking, guided bund walks and designated island camping/campfire areas) were announced for the reservoir’s visitor area; island access remains conditional on water level and permissions.",
       "url": "https://www.wayanadbook.com/news/banasura-sagar-dam-asias-largest-earthen-dam-opens-new-boating-zone"
@@ -113,7 +138,7 @@
       "url": "https://www.beeindia.gov.in/WriteReadData/RTF1984/RTF-PDF-e1b78a871e013df5_1776149188.pdf"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",

@@ -51,9 +51,19 @@
   ],
   "latest": [
     {
+      "date": "2026-10-24",
+      "text": "Travel guides (citing Kerala Tourism) list Vagamon paragliding season as October–March (December–February most reliable); tandem flights are typically priced around ₹3,000–₹4,500 and run roughly 09:00–16:00, weather permitting.",
+      "url": "https://www.rankraja.in/blog/things-to-do-in-vagamon"
+    },
+    {
       "date": "2026-10-05",
       "text": "Vagamon’s Kolahalamedu glass bridge moved toward reopening after structural strengthening and inspection work — a sign of infrastructure returning ahead of the winter season (visitors told to await official reopening confirmation).",
       "url": "https://www.vagamon.com/news/vagamon-glass-bridge-reopening-safety-upgrade"
+    },
+    {
+      "date": "2026-08-31",
+      "text": "The Vagamon Adventure Park glass bridge at Kolahalamedu remained closed pending post-repair inspections and safety certification, with no firm reopening date announced.",
+      "url": "https://vagamon.com/news/vagamon-glass-bridge-closure-reopening-update"
     },
     {
       "date": "2026-08-31",
@@ -61,9 +71,14 @@
       "url": "https://www.vagamon.com/news/vagamon-tourism-resumes-idukki"
     },
     {
-      "date": "2026-07-06",
-      "text": "Recent visitor guides and local operator notes state paragliding is suspended during the peak southwest monsoon and typically resumes around mid‑October, with the most reliable flying in winter months (Dec–Mar).",
-      "url": "https://www.stayvista.com/blog/vagamon-in-monsoon/"
+      "date": "2026-08-21",
+      "text": "Idukki district authorities withdrew the temporary tourism restrictions in Vagamon after rainfall subsided, reopening the area to visitors while advising travellers to check local weather and travel guidance.",
+      "url": "https://vagamon.com/news/vagamon-tourism-restrictions-withdrawn-rain-subsides"
+    },
+    {
+      "date": "2026-08-01",
+      "text": "Heavy monsoon rains and debris flows at Kolahalamedu on August 1, 2026 blocked the Erattupetta–Vagamon road, caused at least one death, and prompted suspension of DTPC-run tourism activities in Idukki.",
+      "url": "https://thesouthfirst.com/keralam/rain-fury-leaves-six-dead-in-kerala-cuts-off-towns-as-rivers-overflow/"
     }
   ],
   "visitorInfo": {
@@ -120,7 +135,7 @@
       "url": "https://www.keralatourism.org/articlesonkerala/19_03_202520250320090341_2.pdf"
     }
   ],
-  "updated": "2026-11-09",
+  "updated": "2026-11-22",
   "lastVerified": "2026-11-09",
   "status": "approved",
   "autoPublished": "2026-11-09",
