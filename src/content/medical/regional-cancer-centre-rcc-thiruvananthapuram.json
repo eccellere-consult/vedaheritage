@@ -78,8 +78,16 @@
     "lat": 8.5206614,
     "lng": 76.9245217
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/regional-cancer-centre-rcc-thiruvananthapuram-1.jpg",
+      "alt": "Picture of Regional Cancer Centre, Trivandrum",
+      "credit": "Drcmohank",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Regional_Cancer_Centre,_Trivandrum.jpg"
+    }
+  ],
   "tags": [
     "hospital",
     "oncology",

@@ -73,8 +73,24 @@
     "lat": 10.04333,
     "lng": 76.27806
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/aster-medcity-cheranalloor-1.jpg",
+      "alt": "Vibrant close-up of white and red asters in full bloom, showcasing natural beauty.",
+      "credit": "Irina Iriser via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/white-and-pink-chrysanthemums-closeup-photography-1416716/"
+    },
+    {
+      "src": "/images/discover/aster-medcity-cheranalloor-2.jpg",
+      "alt": "A stunning display of purple aster flowers in full bloom, offering a vibrant splash of color.",
+      "credit": "Алексей Свидерский via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/vibrant-purple-asters-in-bloom-in-the-garden-38987683/"
+    }
+  ],
   "tags": [
     "hospital",
     "medical-tourism",

@@ -82,8 +82,24 @@
     "lat": 11.11637,
     "lng": 76.121
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/government-medical-college-manjeri-gmc-manjeri-1.jpg",
+      "alt": "malappuram manjeri medical college sep 5 - 2018",
+      "credit": "Akbarali",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Manjeri_govt_medical_college.jpg"
+    },
+    {
+      "src": "/images/discover/government-medical-college-manjeri-gmc-manjeri-2.jpg",
+      "alt": "Beautiful view of the historical clock tower at Kozhikode Medical College with lush greenery and a stunning sky.",
+      "credit": "Nithin PA via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/calicut-clock-tower-in-kozhikode-5096913/"
+    }
+  ],
   "tags": [
     "medical",
     "hospital",

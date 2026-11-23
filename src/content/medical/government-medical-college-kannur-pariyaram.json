@@ -65,8 +65,24 @@
       "Parking and wait times can be long for busy specialty clinics; plan extra time and arrange local accommodation if needed."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/government-medical-college-kannur-pariyaram-1.jpg",
+      "alt": "Government Medical College Kannur, Pariyaram was established in March 1993 at Pariyaram in Kannur district, Kerala state, South India.It was the first medical c",
+      "credit": "Vijayanrajapuram",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pariyaram_Medical_College_garden.jpg"
+    },
+    {
+      "src": "/images/discover/government-medical-college-kannur-pariyaram-2.jpg",
+      "alt": "Government Medical College Kannur, Pariyaram was established in March 1993 at Pariyaram in Kannur district, Kerala state, South India.It was the first medical c",
+      "credit": "Vijayanrajapuram",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pariyaram_Medical_College_front_view_01.jpg"
+    }
+  ],
   "tags": [
     "medical",
     "teaching hospital",

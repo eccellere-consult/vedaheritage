@@ -67,8 +67,16 @@
     "lat": 9.84983,
     "lng": 76.9627
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/government-medical-college-idukki-1.jpg",
+      "alt": "Beautiful view of the historical clock tower at Kozhikode Medical College with lush greenery and a stunning sky.",
+      "credit": "Nithin PA via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/calicut-clock-tower-in-kozhikode-5096913/"
+    }
+  ],
   "tags": [
     "medical",
     "hospital",

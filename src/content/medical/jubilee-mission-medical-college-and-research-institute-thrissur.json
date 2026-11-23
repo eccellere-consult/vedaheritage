@@ -75,8 +75,24 @@
     "lat": 10.5207799,
     "lng": 76.2275593
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/jubilee-mission-medical-college-and-research-institute-thrissur-1.jpg",
+      "alt": "Jubilee Mission Medical College at Thrissur in Kerala, India",
+      "credit": "Joe Ravi",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jubilee_Mission_Medical_College.jpg"
+    },
+    {
+      "src": "/images/discover/jubilee-mission-medical-college-and-research-institute-thrissur-2.jpg",
+      "alt": "St Thomas block, in front of Jubily Mission Medical College Hospital, Thrissur",
+      "credit": "Krish9",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:%E0%B4%9C%E0%B5%82%E0%B4%AC%E0%B4%BF%E0%B4%B2%E0%B4%BF_%E0%B4%AE%E0%B4%BF%E0%B4%B7%E0%B5%BB_%E0%B4%AE%E0%B5%86%E0%B4%A1%E0%B4%BF%E0%B4%95%E0%B5%8D%E0%B4%95%E0%B5%BD_%E0%B4%95%E0%B5%8B%E0%B4%B3%E0%B5%87%E0%B4%9C%E0%B5%8D,_%E0%B4%A4%E0%B5%83%E0%B4%B6%E0%B5%8D%E0%B4%B6%E0%B5%82%E0%B5%BC..JPG"
+    }
+  ],
   "tags": [
     "hospital",
     "medical college",

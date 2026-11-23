@@ -64,8 +64,24 @@
       "If you are accompanying a patient, plan parking/transport in advance — campus is large and blocks are spread out."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/government-t-d-medical-college-vandanam-t-d-medical-college-alappuzha-1.jpg",
+      "alt": "Government T D Medical College, Vandanam, Alappuzha",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Government_Medical_College,_Alappuzha_23.jpg"
+    },
+    {
+      "src": "/images/discover/government-t-d-medical-college-vandanam-t-d-medical-college-alappuzha-2.jpg",
+      "alt": "Government T D Medical College, Vandanam, Alappuzha",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Government_Medical_College,_Alappuzha_16.jpg"
+    }
+  ],
   "tags": [
     "medical",
     "hospital",

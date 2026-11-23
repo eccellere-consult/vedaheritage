@@ -61,8 +61,16 @@
     "lat": 9.5897182,
     "lng": 76.5265482
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/general-hospital-major-public-hospital-kottayam-1.jpg",
+      "alt": "General Hospital, Kottayam",
+      "credit": "Vis M",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:General_Hospital_Kottayam.jpg"
+    }
+  ],
   "tags": [
     "hospital",
     "kottayam",

@@ -69,8 +69,24 @@
     "lat": 8.875831,
     "lng": 76.6435
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/travancore-medical-college-hospital-travancore-medicity-1.jpg",
+      "alt": "Travancore Medicity Medical College, Kollam - One among the three medical colleges in Kollam city",
+      "credit": "Arunvrparavur",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Travancore_Medicity_Medical_College,_Kollam.jpg"
+    },
+    {
+      "src": "/images/discover/travancore-medical-college-hospital-travancore-medicity-2.jpg",
+      "alt": "Travancore Medical College Hospital or Travancore Medicity Medical College is one of the premier self-financing medical colleges situated in the city of Kollam.",
+      "credit": "Arunvrparavur",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Travancore_Medicity_in_Kollam,_Feb_2020.jpg"
+    }
+  ],
   "tags": [
     "hospital",
     "medical college",

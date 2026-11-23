@@ -71,8 +71,24 @@
     "lat": 11.260167,
     "lng": 75.792639
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/baby-memorial-hospital-kozhikode-1.jpg",
+      "alt": "Baby Memorial Hospital - A Block",
+      "credit": "Baby Memorial Hospital",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baby_Memorial_Hospital_-_A_Block.jpg"
+    },
+    {
+      "src": "/images/discover/baby-memorial-hospital-kozhikode-2.jpg",
+      "alt": "Arayidathupalam Junction, Mavoor Road, Kozhikode, India",
+      "credit": "Prof tpms",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baby_Memorial_Hospital,_Arayidhathupalam,_Kozhikode.jpg"
+    }
+  ],
   "tags": [
     "hospital",
     "kozhikode",

@@ -71,8 +71,16 @@
       "Be aware of legal and ethical concerns (authorities continue awareness drives on child marriage); avoid participating in or promoting underage marriages."
     ]
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/kurichiya-tribal-wedding-rituals-wayanad-1.jpg",
+      "alt": "indian, henna, wedding, bridal, mehndi, bride, culture, ceremony, hindu, jewellery, traditional, celebration, hinduism, marriage, india, bangles, couple, asian,",
+      "credit": "vireshstudio via Pixabay",
+      "license": "Pixabay Content License",
+      "licenseUrl": "https://pixabay.com/service/license-summary/",
+      "sourceUrl": "https://pixabay.com/photos/indian-henna-wedding-bridal-mehndi-4388167/"
+    }
+  ],
   "tags": [
     "kurichiya",
     "wayanad",

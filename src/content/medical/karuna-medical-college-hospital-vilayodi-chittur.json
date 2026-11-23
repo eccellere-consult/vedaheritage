@@ -76,8 +76,24 @@
     "lat": 10.68041,
     "lng": 76.77566
   },
-  "images": [],
-  "imageStatus": "needed",
+  "images": [
+    {
+      "src": "/images/discover/karuna-medical-college-hospital-vilayodi-chittur-1.jpg",
+      "alt": "Beautiful view of the historical clock tower at Kozhikode Medical College with lush greenery and a stunning sky.",
+      "credit": "Nithin PA via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/calicut-clock-tower-in-kozhikode-5096913/"
+    },
+    {
+      "src": "/images/discover/karuna-medical-college-hospital-vilayodi-chittur-2.jpg",
+      "alt": "Unrecognizable male doctor wearing medical uniform and latex gloves holding Petri dish filled with assorted drugs while standing near white wall in hospital",
+      "credit": "kaboompics via Pexels",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "sourceUrl": "https://www.pexels.com/photo/crop-man-doctor-with-stethoscope-and-medicine-4021800/"
+    }
+  ],
   "tags": [
     "medical",
     "hospital",
