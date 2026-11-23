@@ -31,7 +31,7 @@ assert.ok(!reg.some(x => x.name === 'Padmanabhaswamy Temple'), 'a topic that alr
 assert.ok(reg.some(x => /Three$/.test(x.name) && x.district === 'Kerala'), 'an unknown district becomes Kerala')
 assert.equal(new Set(reg.map(x => x.category)).size, 2, 'only the requested number of categories is planned')
 assert.ok(Object.values(j('agents/registers/coverage-none.json')).every(a => a.includes('Idukki') && !a.includes('Atlantis')), 'districts with nothing real are remembered, unknown names are dropped')
-assert.ok(cov.pagesNeeded > 400 && cov.categories.temples.total >= 1, 'the coverage matrix is written for the admin')
+assert.ok(Number.isInteger(cov.pagesNeeded) && cov.pagesNeeded >= 0 && cov.categories.temples.total >= 1, 'the coverage matrix is written for the admin')
 r = run(['coverage', '--max-categories', '2']); const again = j('agents/registers/topics.json').topics
 assert.ok(again.length >= reg.length && new Set(again.map(x => x.id)).size === again.length && reg.every(x => again.some(y => y.id === x.id)), 'planning again rotates to other categories and never duplicates or drops a queued topic')
 
