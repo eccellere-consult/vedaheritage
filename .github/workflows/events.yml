@@ -57,6 +57,9 @@ jobs:
           OPENAI_PRICE_OUT_PER_M: ${{ vars.OPENAI_PRICE_OUT_PER_M }}
           XAI_PRICE_IN_PER_M: ${{ vars.XAI_PRICE_IN_PER_M }}
           XAI_PRICE_OUT_PER_M: ${{ vars.XAI_PRICE_OUT_PER_M }}
+          # AI Control Tower (optional). Empty = off: nothing is sent. See agents/README.md.
+          AIOPS_ENDPOINT: ${{ vars.AIOPS_ENDPOINT || secrets.AIOPS_ENDPOINT }}
+          AIOPS_KEY: ${{ secrets.AIOPS_KEY }}
           BUDGET: ${{ inputs.budget || vars.AGENT_MAX_USD || '3' }}
         run: node agents/run.mjs events --budget "$BUDGET"
       - name: Validate content

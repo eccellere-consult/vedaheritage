@@ -92,6 +92,14 @@ Setup once:
 3. Optional variables: `AGENT_MAX_USD`, `CONTENT_BASE_BRANCH`, and the per-role provider/model variables above.
 4. Test with **Actions → Content agents → Run workflow** (try `verify` first to check the 10 seed drafts).
 
+## AI Control Tower (optional usage and cost tracking)
+Every AI call the agents make can be reported to the Eccellere AI Control Tower (`aiops.eccellere.co.in`) as app `veda_heritage`, module `content_agents`, one task code per agent step (`agent_fill`, `agent_refresh`, `agent_enrich`, `agent_scout`, `agent_verify`, `agent_events`, `agent_coverage`, `agent_discover`). It is **off until you set two values**; with them empty nothing is sent and nothing changes.
+- Set `AIOPS_ENDPOINT` (the Control Tower address) and `AIOPS_KEY` (made for this app in the Control Tower) under repo **Settings → Secrets and variables → Actions**. For runs on your own computer, put them in `.env` (see `.env.example`).
+- Sent: provider, model, token counts, time taken, success or failure. **Never sent:** prompts, answers, page text, names, or a cost (the Control Tower works that out).
+- It cannot break a run: it waits at most 2 seconds, ignores any error, and never changes what an agent returns.
+- Code: `agents/lib/aiops-client.mjs` (the client file) and `agents/lib/aiops.mjs` (the hook used by `llm.mjs` and `openai-compat.mjs`). Test: `agents/test/aiops.test.mjs`.
+- The live website (a static site) makes no AI calls, so there is nothing to connect there.
+
 ## Reviewing an agent PR (about 10 minutes per entry)
 1. Read the PR body: score, claim counts, gate reasons, issues, folklore and sensitivity notes.
 2. 🟡 *Needs human edit* entries: fix the listed items or delete the file.
