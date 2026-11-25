@@ -11,6 +11,7 @@
 import OpenAI from 'openai'
 import { z } from 'zod'
 import { BudgetExceeded, ModelRefused } from './errors.mjs'
+import { reportAI } from './aiops.mjs'
 
 // Conservative (deliberately high) fallback prices in USD per million tokens, so the spend cap
 // trips early rather than late. Override with <PROVIDER>_PRICE_IN_PER_M / _OUT_PER_M.
@@ -39,11 +40,15 @@ export function createOpenAICompat({ provider, model, budget, state }) {
   function meter(usage, est) {
     let inTok = usage?.input_tokens ?? usage?.prompt_tokens ?? 0
     let outTok = usage?.output_tokens ?? usage?.completion_tokens ?? 0
-    if (!inTok && !outTok) {
+    const reported = Boolean(inTok || outTok)
+    if (!reported) {
       inTok = Math.ceil((est?.inChars || 0) / 3.5) + (est?.research ? RESEARCH_FLOOR_TOKENS : 0)
       outTok = Math.ceil((est?.outChars || 0) / 3.5)
       state.estimated = true
     }
+    // Report to the AI Control Tower (does nothing unless AIOPS_ENDPOINT and AIOPS_KEY are set; never throws).
+    reportAI({ label: est?.label, provider, model, startedAt: est?.startedAt, estimated: !reported,
+      usage: reported ? usage : { input_tokens: inTok, output_tokens: outTok } })
     const cost = inTok * price.in + outTok * price.out
     state.calls++; state.inputTokens += inTok; state.outputTokens += outTok; state.usd += cost
     budget.usd += cost
@@ -67,30 +72,37 @@ export function createOpenAICompat({ provider, model, budget, state }) {
   const refused = res => (res.output || []).some(i => i.type === 'message' && (i.content || []).some(c => c.type === 'refusal'))
   const textOf = res => res.output_text ?? (res.output || []).filter(i => i.type === 'message').flatMap(i => i.content || []).filter(c => c.type === 'output_text').map(c => c.text).join('')
 
-  async function research({ system, user, search = 8, maxTurns }) {
+  // Run one API call; on failure tell the AI Control Tower, then re-throw unchanged.
+  async function call(label, startedAt, make) {
+    try { return await make() } catch (err) { reportAI({ label, provider, model, startedAt, status: 'failed', errorCode: err?.status || err?.name }); throw err }
+  }
+
+  async function research({ system, user, search = 8, maxTurns, label }) {
     const urls = new Set()
-    const res = await client.responses.create({
+    const startedAt = Date.now()
+    const res = await call(label, startedAt, () => client.responses.create({
       model, instructions: system, input: user, max_output_tokens: 32000,
       tools: [{ type: 'web_search' }],
       ...(isXai ? {} : { include: ['web_search_call.action.sources'] }),
       ...reasoning,
-    })
-    meter(res.usage, { research: true, inChars: system.length + user.length, outChars: textOf(res).length })
+    }))
+    meter(res.usage, { research: true, inChars: system.length + user.length, outChars: textOf(res).length, label, startedAt })
     if (refused(res)) throw new ModelRefused('refusal')
     harvest(res, urls)
     urls.forEach(u => consulted.add(u))
     return { text: textOf(res), urls }
   }
 
-  async function extract({ system, user, schema }) {
+  async function extract({ system, user, schema, label }) {
     const jsonSchema = z.toJSONSchema(schema)
     delete jsonSchema.$schema
-    const res = await client.responses.create({
+    const startedAt = Date.now()
+    const res = await call(label, startedAt, () => client.responses.create({
       model, instructions: system, input: user, max_output_tokens: 32000,
       text: { format: { type: 'json_schema', name: 'result', strict: true, schema: jsonSchema } },
       ...reasoning,
-    })
-    meter(res.usage, { inChars: system.length + user.length, outChars: textOf(res).length })
+    }))
+    meter(res.usage, { inChars: system.length + user.length, outChars: textOf(res).length, label, startedAt })
     if (refused(res)) throw new ModelRefused('refusal')
     if (res.status === 'incomplete') throw new Error(`Structured output incomplete (${res.incomplete_details?.reason || 'unknown'})`)
     const parsed = schema.safeParse(JSON.parse(textOf(res)))

@@ -8,6 +8,7 @@ import Anthropic from '@anthropic-ai/sdk'
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod'
 import { BudgetExceeded, ModelRefused } from './errors.mjs'
 import { createOpenAICompat } from './openai-compat.mjs'
+import { reportAI } from './aiops.mjs'
 
 const PRICE = { in: 4 / 1e6, out: 20 / 1e6, cacheRead: 0.2 / 1e6, cacheWrite: 5 / 1e6 } // claude-opus-5-5, USD/token
 
@@ -103,15 +104,24 @@ export function createLLM({ mock = false, provider = 'anthropic', model, budget 
     { type: 'web_fetch_20260209', name: 'web_fetch', max_uses: fetch, ...(allowedDomains ? { allowed_domains: allowedDomains } : {}) },
   ]
 
-  async function research({ system, user, effort = 'medium', search = 8, fetch = 8, maxTurns = 6 }) {
+  // Report one API call to the AI Control Tower (does nothing unless AIOPS_ENDPOINT and AIOPS_KEY are set; never throws).
+  async function timed(label, call) {
+    const startedAt = Date.now()
+    let res
+    try { res = await call() } catch (err) { reportAI({ label, provider: 'anthropic', model: MODEL, startedAt, status: 'failed', errorCode: err?.status || err?.name }); throw err }
+    reportAI({ label, provider: 'anthropic', model: MODEL, usage: res.usage, startedAt, status: res.stop_reason === 'refusal' ? 'blocked' : 'success' })
+    return res
+  }
+
+  async function research({ system, user, effort = 'medium', search = 8, fetch = 8, maxTurns = 6, label }) {
     const urls = new Set()
     const messages = [{ role: 'user', content: user }]
     let text = ''
     for (let turn = 0; turn < maxTurns; turn++) {
-      const res = await client.messages.stream({
+      const res = await timed(label, () => client.messages.stream({
         model: MODEL, max_tokens: 32000, system,
         output_config: { effort }, tools: tools({ search, fetch }), messages,
-      }).finalMessage()
+      }).finalMessage())
       meter(res.usage)
       harvestUrls(res.content, urls)
       if (res.stop_reason === 'refusal') throw new ModelRefused(res.stop_details?.category || 'refusal')
@@ -123,12 +133,12 @@ export function createLLM({ mock = false, provider = 'anthropic', model, budget 
     return { text, urls }
   }
 
-  async function extract({ system, user, schema, effort = 'medium', maxTokens = 32000 }) {
+  async function extract({ system, user, schema, effort = 'medium', maxTokens = 32000, label }) {
     // Streamed (large max_tokens would otherwise hit the SDK's non-streaming guard); JSON validated with Zod.
-    const res = await client.messages.stream({
+    const res = await timed(label, () => client.messages.stream({
       model: MODEL, max_tokens: maxTokens, system, output_config: { effort, format: zodOutputFormat(schema) },
       messages: [{ role: 'user', content: user }],
-    }).finalMessage()
+    }).finalMessage())
     meter(res.usage)
     if (res.stop_reason === 'refusal') throw new ModelRefused(res.stop_details?.category || 'refusal')
     if (res.stop_reason === 'max_tokens') throw new Error('Structured output truncated (max_tokens)')
