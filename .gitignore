@@ -1,0 +1,6 @@
+# Published with the site into the web folder (and into the `deploy` branch). Tells Git on the server to leave
+# the server's own settings and private data alone when a new build is pulled. Never commit these files.
+api/private/vh-config.php
+api/private/data/
+vh-config.php
+vh-data/
